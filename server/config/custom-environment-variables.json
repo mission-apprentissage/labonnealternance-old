@@ -1,26 +1,26 @@
 {  
-  "appName": "IDEA_NAME",
-  "env": "IDEA_ENV",
-  "publicUrl": "IDEA_PUBLIC_URL",
+  "appName": "LABONNEALTERNANCE_NAME",
+  "env": "LABONNEALTERNANCE_ENV",
+  "publicUrl": "LABONNEALTERNANCE_PUBLIC_URL",
   "log": {
-    "type": "IDEA_LOG_TYPE",
-    "level": "IDEA_LOG_LEVEL"
+    "type": "LABONNEALTERNANCE_LOG_TYPE",
+    "level": "LABONNEALTERNANCE_LOG_LEVEL"
   },
-  "slackWebhookUrl": "IDEA_SLACK_WEBHOOK_URL",
-  "outputDir": "IDEA_OUTPUT_DIR",
+  "slackWebhookUrl": "LABONNEALTERNANCE_SLACK_WEBHOOK_URL",
+  "outputDir": "LABONNEALTERNANCE_OUTPUT_DIR",
   "private":
   {
-    "apiKey": "IDEA_API_KEY",
+    "apiKey": "LABONNEALTERNANCE_API_KEY",
     "auth": {
-      "passwordHashRounds": "IDEA_AUTH_PASSWORD_HASH_ROUNDS",
+      "passwordHashRounds": "LABONNEALTERNANCE_AUTH_PASSWORD_HASH_ROUNDS",
       "user": {
-        "jwtSecret": "IDEA_AUTH_USER_JWT_SECRET"
+        "jwtSecret": "LABONNEALTERNANCE_AUTH_USER_JWT_SECRET"
       },
       "activation": {
-        "jwtSecret": "IDEA_AUTH_ACTIVATION_JWT_SECRET"
+        "jwtSecret": "LABONNEALTERNANCE_AUTH_ACTIVATION_JWT_SECRET"
       },
       "password": {
-        "jwtSecret": "IDEA_AUTH_PASSWORD_JWT_SECRET"
+        "jwtSecret": "LABONNEALTERNANCE_AUTH_PASSWORD_JWT_SECRET"
       }
     },
     "awsAccessKeyId": "AWS_ACCESS_KEY_ID",
@@ -28,7 +28,7 @@
     "esUrl": "ES_URL",
     "mongodbUrl": "MONGODB_URL",
     "mongodb": {
-      "uri": "IDEA_MONGODB_URI"
+      "uri": "LABONNEALTERNANCE_MONGODB_URI"
     },
     "mongodbDbname": "MONGODB_DBNAME",
     "apiEntrepriseKey": "API_ENTREPRISE_KEY",

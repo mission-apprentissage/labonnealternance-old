@@ -4,12 +4,12 @@ const config = {
     baseUrl: "http://localhost:5000",    
   },
   dev: {
-    urls: [/^idea-recette.apprentissage.beta.gouv.fr$/g],
-    baseUrl: "https://idea-recette.apprentissage.beta.gouv.fr",
+    urls: [/^labonnealternance-recette.apprentissage.beta.gouv.fr$/g],
+    baseUrl: "https://labonnealternance-recette.apprentissage.beta.gouv.fr",
   },
   prod: {
-    urls: [/^idea.apprentissage.beta.gouv.fr$/g],
-    baseUrl: "https://idea.apprentissage.beta.gouv.fr",
+    urls: [/^labonnealternance.apprentissage.beta.gouv.fr$/g],
+    baseUrl: "https://labonnealternance.apprentissage.beta.gouv.fr",
   },
 };
 

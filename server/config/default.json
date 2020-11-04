@@ -1,5 +1,5 @@
 {
-  "appName": "Idea",
+  "appName": "labonnealternance",
   "env": "local",
   "stage": "local",
   "publicUrl": "http://localhost",
@@ -28,7 +28,7 @@
       }
     },
     "mongodb": {
-      "uri": "mongodb://127.0.0.1:27017/idea?retryWrites=true&w=majority"
+      "uri": "mongodb://127.0.0.1:27017/labonnealternance?retryWrites=true&w=majority"
     },
     "awsAccessKeyId": "1234",
     "awsSecretAccessKey": "1234",

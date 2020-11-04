@@ -16,7 +16,7 @@ const Map = ReactMapboxGl({
 });
 
 const baseUrl =
-  window.location.hostname === "localhost" ? "http://localhost:3000" : "https://idea.apprentissage.beta.gouv.fr";
+  window.location.hostname === "localhost" ? "http://localhost:3000" : "https://labonnealternance.apprentissage.beta.gouv.fr";
 
 const formationsApi = baseUrl + "/api/v1/formations";
 const jobsApi = baseUrl + "/api/v1/jobs";
@@ -154,7 +154,7 @@ const ApiTester = () => {
       <Container>
         <Row>
           <Col xs="12">
-            <h1>Test des APIs IDEA</h1>
+            <h1>Test des APIs de LBA</h1>
             <Formik
               validate={(values) => {
                 const errors = {};

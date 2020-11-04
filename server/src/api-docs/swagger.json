@@ -11,10 +11,10 @@
 
     "servers": [
         {
-            "url": "https://idea.apprentissage.beta.gouv.fr"
+            "url": "https://labonnealternance.apprentissage.beta.gouv.fr"
         },
         {
-            "url": "https://idea-recette.apprentissage.beta.gouv.fr"
+            "url": "https://labonnealternance-recette.apprentissage.beta.gouv.fr"
         }
     ],
 
@@ -562,7 +562,7 @@
                     "type": "string",
                     "value": "formation",
                     "example": "formation",
-                    "description": "Le type idea d'objet, ici la seule valeur possible est 'formation'"
+                    "description": "Le type labonnealternance d'objet, ici la seule valeur possible est 'formation'"
                 },
                 "id": 
                 { 

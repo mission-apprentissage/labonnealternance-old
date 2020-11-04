@@ -8,7 +8,7 @@ let mongoHolder = null;
 
 const connectToMongoForTests = async () => {
   if (!mongoHolder) {
-    const uri = config.private.mongodb.uri.split("idea").join("idea_test");
+    const uri = config.private.mongodb.uri.split("labonnealternance").join("labonnealternance_test");
     mongoHolder = await connectToMongo(uri);
   }
   return mongoHolder;
