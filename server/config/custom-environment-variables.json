@@ -1,0 +1,27 @@
+{
+  "appName": "LABONNEALTERNANCE_NAME",
+  "env": "LABONNEALTERNANCE_ENV",
+  "publicUrl": "LABONNEALTERNANCE_PUBLIC_URL",
+  "mongodb": {
+    "uri": "LABONNEALTERNANCE_MONGODB_URI"
+  },
+  "apiKey": "LABONNEALTERNANCE_API_KEY",
+  "auth": {
+    "passwordHashRounds": "LABONNEALTERNANCE_AUTH_PASSWORD_HASH_ROUNDS",
+    "user": {
+      "jwtSecret": "LABONNEALTERNANCE_AUTH_USER_JWT_SECRET"
+    },
+    "activation": {
+      "jwtSecret": "LABONNEALTERNANCE_AUTH_ACTIVATION_JWT_SECRET"
+    },
+    "password": {
+      "jwtSecret": "LABONNEALTERNANCE_AUTH_PASSWORD_JWT_SECRET"
+    }
+  },
+  "log": {
+    "type": "LABONNEALTERNANCE_LOG_TYPE",
+    "level": "LABONNEALTERNANCE_LOG_LEVEL"
+  },
+  "slackWebhookUrl": "LABONNEALTERNANCE_SLACK_WEBHOOK_URL",
+  "outputDir": "LABONNEALTERNANCE_OUTPUT_DIR"
+}

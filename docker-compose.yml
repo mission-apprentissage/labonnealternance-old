@@ -1,0 +1,73 @@
+version: "2.4"
+services:
+  reverse_proxy:
+    image: labonnealternance_reverse_proxy
+    container_name: labonnealternance_reverse_proxy
+    build:
+      context: reverse_proxy
+    mem_limit: 256m
+    restart: unless-stopped
+    ports:
+      - 80:80
+    networks:
+      - labonnealternance_network
+    depends_on:
+      - server
+      - ui
+
+  ui:
+    image: labonnealternance_ui
+    container_name: labonnealternance_ui
+    build:
+      context: ui
+    mem_limit: 256m
+    networks:
+      - labonnealternance_network
+    depends_on:
+      - server
+
+  server:
+    image: labonnealternance_server
+    container_name: labonnealternance_server
+    build:
+      context: server
+    mem_limit: 1g
+    restart: unless-stopped
+    networks:
+      - labonnealternance_network
+    depends_on:
+      - mongodb
+    environment:
+      - LABONNEALTERNANCE_MONGODB_URI=mongodb://mongodb:27017/labonnealternance?retryWrites=true&w=majority
+
+  mongodb:
+    image: mongo:4.2.6-bionic
+    container_name: labonnealternance_mongodb
+    mem_limit: 1g
+    restart: unless-stopped
+    networks:
+      - labonnealternance_network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.1.1
+    container_name: labonnealternance_elasticsearch
+    environment:
+      - ES_JAVA_OPTS=-Xmx512m -Xms512m
+      - discovery.type=single-node
+    mem_limit: 1g
+    networks:
+      - labonnealternance_network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.1.1
+    container_name: labonnealternance_kibana
+    depends_on:
+      - elasticsearch
+    networks:
+      - labonnealternance_network
+    environment:
+      - SERVER_BASEPATH=/kibana
+
+networks:
+  labonnealternance_network:
+    name: labonnealternance_network
