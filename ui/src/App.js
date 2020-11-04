@@ -1,42 +1,35 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import Layout from "./pages/Layout";
-import "tabler-react/dist/Tabler.css";
-import DashboardPage from "./pages/DashboardPage";
-import useAuth from "./common/hooks/useAuth";
-import HomePage from "./pages/HomePage";
-import ResetPasswordPage from "./pages/password/ResetPasswordPage";
-import ForgottenPasswordPage from "./pages/password/ForgottenPasswordPage";
+import { Switch, Route, withRouter } from "react-router-dom";
 
-function PrivateRoute({ children, ...rest }) {
-  let [auth] = useAuth();
+import Layout from "./components/Layout";
+import { ScrollToTop } from "./components";
+import { NotFound, ApiTester, WidgetTester, SearchForTrainingsAndJobs } from "./pages";
 
+import routes from "./routes.json";
+
+import "./App.css";
+
+const App = ({ isTrainingOnly }) => {
   return (
-    <Route
-      {...rest}
-      render={() => {
-        return auth.sub !== "anonymous" ? children : <Redirect to="/login" />;
-      }}
-    />
-  );
-}
-
-export default () => {
-  let [auth] = useAuth();
-
-  return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <PrivateRoute exact path="/">
-            <Layout>{auth && auth.permissions.isAdmin ? <DashboardPage /> : <HomePage />}</Layout>
-          </PrivateRoute>
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/reset-password" component={ResetPasswordPage} />
-          <Route exact path="/forgotten-password" component={ForgottenPasswordPage} />
-        </Switch>
-      </Router>
-    </div>
+    <Layout>
+      <ScrollToTop />
+      <Switch>
+        <Route
+          exact
+          path={routes.LANDING}
+          render={(props) => <SearchForTrainingsAndJobs {...props} isTrainingOnly={isTrainingOnly} />}
+        />
+        <Route exact path={routes.APITESTER} component={ApiTester} />
+        <Route exact path={routes.WIDGETTESTER} component={WidgetTester} />
+        <Route
+          exact
+          path={routes.SEARCHFORTRAININGSANDJOBS}
+          render={(props) => <SearchForTrainingsAndJobs {...props} isTrainingOnly={isTrainingOnly} />}
+        />
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
   );
 };
+
+export default withRouter(App);
