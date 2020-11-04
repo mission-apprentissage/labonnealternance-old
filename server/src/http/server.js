@@ -1,50 +1,70 @@
 const express = require("express");
+const Sentry = require("@sentry/node");
+const Tracing = require("@sentry/tracing");
 const config = require("config");
 const logger = require("../common/logger");
 const bodyParser = require("body-parser");
-const logMiddleware = require("./middlewares/logMiddleware");
-const errorMiddleware = require("./middlewares/errorMiddleware");
+//const logMiddleware = require("./middlewares/logMiddleware");
+//const errorMiddleware = require("./middlewares/errorMiddleware");
 const tryCatch = require("./middlewares/tryCatchMiddleware");
-const apiKeyAuthMiddleware = require("./middlewares/apiKeyAuthMiddleware");
 const corsMiddleware = require("./middlewares/corsMiddleware");
-const authMiddleware = require("./middlewares/authMiddleware");
-const permissionsMiddleware = require("./middlewares/permissionsMiddleware");
 const packageJson = require("../../package.json");
-const hello = require("./routes/hello");
-const entity = require("./routes/entity");
-const secured = require("./routes/secured");
-const login = require("./routes/login");
-const authentified = require("./routes/authentified");
-const admin = require("./routes/admin");
-const password = require("./routes/password");
-const stats = require("./routes/stats");
+const rome = require("./routes/rome");
+const jobDiploma = require("./routes/jobDiploma");
+const formation = require("./routes/formation");
+const formationV1 = require("./routes/formationV1");
+const formationRegionV1 = require("./routes/formationRegionV1");
+const job = require("./routes/job");
+const jobV1 = require("./routes/jobV1");
+const jobEtFormationV1 = require("./routes/jobEtFormationV1");
 
 module.exports = async (components) => {
   const { db } = components;
   const app = express();
-  const checkJwtToken = authMiddleware(components);
-  const adminOnly = permissionsMiddleware({ isAdmin: true });
+
+  Sentry.init({
+    dsn: "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826",
+    integrations: [
+      // enable HTTP calls tracing
+      new Sentry.Integrations.Http({ tracing: true }),
+      // enable Express.js middleware tracing
+      new Tracing.Integrations.Express({ app }),
+    ],
+    tracesSampleRate: 1.0,
+  });
+
+  // RequestHandler creates a separate execution context using domains, so that every
+  // transaction/span/breadcrumb is attached to its own Hub instance
+  app.use(Sentry.Handlers.requestHandler());
+  // TracingHandler creates a trace for every incoming request
+  app.use(Sentry.Handlers.tracingHandler());
 
   app.use(bodyParser.json());
   app.use(corsMiddleware());
-  app.use(logMiddleware());
+  //app.use(logMiddleware());
 
-  app.use("/api/helloRoute", hello());
-  app.use("/api/entity", entity());
-  app.use("/api/secured", apiKeyAuthMiddleware, secured());
-  app.use("/api/login", login(components));
-  app.use("/api/authentified", checkJwtToken, authentified());
-  app.use("/api/admin", checkJwtToken, adminOnly, admin());
-  app.use("/api/password", password(components));
-  app.use("/api/stats", checkJwtToken, adminOnly, stats(components));
+  const swaggerUi = require("swagger-ui-express");
+  const swaggerDocument = require('../api-docs/swagger.json');
+
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+  app.use("/api/formations", formation());
+  app.use("/api/jobs", job());
+
+  app.use("/api/v1/formations", formationV1());
+  app.use("/api/v1/formationsParRegion", formationRegionV1());
+  app.use("/api/v1/jobs", jobV1());
+  app.use("/api/v1/jobsEtFormations", jobEtFormationV1());
+
+  app.use("/api/jobsdiplomas", jobDiploma());
+  app.use("/api/romelabels", rome());
 
   app.get(
     "/api",
     tryCatch(async (req, res) => {
       let mongodbStatus;
-      logger.info("/api called");
       await db
-        .collection("sample")
+        .collection("sampleEntity")
         .stats()
         .then(() => {
           mongodbStatus = true;
@@ -69,12 +89,18 @@ module.exports = async (components) => {
     "/api/config",
     tryCatch(async (req, res) => {
       return res.json({
-        config: config,
+        config: {
+          ...config,
+          private: "",
+        },
       });
     })
   );
 
-  app.use(errorMiddleware());
+  /*  app.use((err, req, res, next) => {
+    //console.log("err : ",err,res.status());
+    return res.json({error:"prout",message:err});
+  });*/
 
   return app;
 };

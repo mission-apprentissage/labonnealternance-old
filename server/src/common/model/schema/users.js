@@ -1,4 +1,6 @@
-const usersSchema = {
+const { Schema } = require("mongoose");
+
+module.exports = new Schema({
   username: {
     type: String,
     default: null,
@@ -15,5 +17,4 @@ const usersSchema = {
     default: false,
     description: "true si l'utilisateur est administrateur",
   },
-};
-module.exports = usersSchema;
+});

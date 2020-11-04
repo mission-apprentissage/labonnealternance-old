@@ -3,6 +3,10 @@ const axiosist = require("axiosist");
 const createComponents = require("../../src/common/components/components");
 const { connectToMongoForTests, cleanAll } = require("./testUtils.js");
 const server = require("../../src/http/server");
+const nock = require("nock")
+
+nock.disableNetConnect()
+nock.enableNetConnect('127.0.0.1')
 
 const startServer = async (options = {}) => {
   const { db } = await connectToMongoForTests();
@@ -10,6 +14,9 @@ const startServer = async (options = {}) => {
   const app = await server(components);
   const httpClient = axiosist(app);
 
+
+  // Allow localhost connections so we can test local routes and mock servers.
+  
   return {
     httpClient,
     components,

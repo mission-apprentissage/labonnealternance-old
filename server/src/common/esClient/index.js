@@ -1,54 +1,71 @@
 const { Client } = require("@elastic/elasticsearch");
-const ElasticsearchScrollStream = require("elasticsearch-scroll-stream");
-const { transformObject, mergeStreams } = require("../utils/streamUtils");
-const mongoosastic = require("./mongoosastic");
+const { AmazonConnection } = require("aws-elasticsearch-connector");
 const config = require("config");
-
-const getClientOptions = () => {
-  switch (config.env) {
-    case "recette":
+const getClientOptions = (envName) => {
+  switch (envName) {
     case "production":
+    case "recette":
       return {
-        node: `${config.publicUrl}/es`, // TODO HANDLE HTTPS CONNECTOR
+        node: `https://${config.private.esUrl}`,
+        Connection: AmazonConnection,
+        awsConfig: {
+          credentials: {
+            accessKeyId: config.private.awsAccessKeyId,
+            secretAccessKey: config.private.awsAccessSecretKey,
+          },
+        },
       };
     case "local":
     default:
-      return { node: `${config.publicUrl}/es` };
+      return { node: `http://${config.private.esUrl}` };
   }
 };
 
-const createEsInstance = () => {
-  const options = getClientOptions();
+const createEsInstance = (stage = null) => {
+  const options = getClientOptions(stage || config.env);
   const client = new Client({
     ...options,
     maxRetries: 5,
     requestTimeout: 60000,
   });
 
-  client.extend("searchDocumentsAsStream", () => {
-    return (options) => {
-      return mergeStreams(
-        new ElasticsearchScrollStream(
-          client,
-          {
-            scroll: "1m",
-            size: "50",
-            ...options,
-          },
-          ["_id"]
-        ),
-        transformObject((data) => {
-          return JSON.parse(Buffer.from(data).toString());
-        })
-      );
-    };
-  });
   return client;
 };
-const clientDefault = createEsInstance();
-const getElasticInstance = () => clientDefault;
+
+let clientDefault = createEsInstance();
+
+// To keep singleton
+let clientProd = null;
+let clientDev = null;
+let clientLocal = null;
+
+const getElasticInstance = (envName = null) => {
+  if (!envName) {
+    return clientDefault;
+  }
+  switch (envName) {
+    case "production": {
+      if (!clientProd) {
+        clientProd = createEsInstance("production");
+      }
+      return clientProd;
+    }
+    case "recette": {
+      if (!clientDev) {
+        clientDev = createEsInstance("recette");
+      }
+      return clientDev;
+    }
+    case "local":
+    default: {
+      if (!clientLocal) {
+        clientLocal = createEsInstance("local");
+      }
+      return clientLocal;
+    }
+  }
+};
 
 module.exports = {
   getElasticInstance,
-  mongoosastic,
 };

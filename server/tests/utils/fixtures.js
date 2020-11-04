@@ -1,6 +1,6 @@
 module.exports = {
   models: {
-    Sample: {
+    sampleEntity: {
       nom: "TEST",
       valeur: "Valeur",
     },

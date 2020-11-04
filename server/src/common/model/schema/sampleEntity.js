@@ -1,4 +1,6 @@
-const sampleSchema = {
+const { Schema } = require("mongoose");
+
+module.exports = new Schema({
   id: {
     type: Number,
     default: null,
@@ -14,5 +16,4 @@ const sampleSchema = {
     default: null,
     description: "Valeur de test",
   },
-};
-module.exports = sampleSchema;
+});

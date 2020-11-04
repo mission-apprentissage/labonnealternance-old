@@ -1,30 +1,43 @@
 {
-  "appName": "La Bonne Alternance",
+  "appName": "Idea",
   "env": "local",
+  "stage": "local",
   "publicUrl": "http://localhost",
-  "mongodb": {
-    "uri": "mongodb://127.0.0.1:27017/labonnealternance?retryWrites=true&w=majority"
-  },
-  "apiKey": "12345",
-  "auth": {
-    "passwordHashRounds": 1001,
-    "user": {
-      "jwtSecret": "1234",
-      "expiresIn": "24h"
-    },
-    "activation": {
-      "jwtSecret": "45678",
-      "expiresIn": "96h"
-    },
-    "password": {
-      "jwtSecret": "91011",
-      "expiresIn": "1h"
-    }
-  },
   "log": {
     "type": "console",
     "level": "info"
   },
   "slackWebhookUrl": null,
-  "outputDir": ".local/output"
+  "outputDir": ".local/output",
+  "private":
+  {
+    "apiKey": "12345",
+    "auth": {
+      "passwordHashRounds": 1001,
+      "user": {
+        "jwtSecret": "1234",
+        "expiresIn": "24h"
+      },
+      "activation": {
+        "jwtSecret": "45678",
+        "expiresIn": "96h"
+      },
+      "password": {
+        "jwtSecret": "91011",
+        "expiresIn": "1h"
+      }
+    },
+    "mongodb": {
+      "uri": "mongodb://127.0.0.1:27017/idea?retryWrites=true&w=majority"
+    },
+    "awsAccessKeyId": "1234",
+    "awsSecretAccessKey": "1234",
+    "esUrl": "localhost:9200",
+    "mongodbUrl": "1234",
+    "mongodbDbname": "1234",
+    "apiEntrepriseKey": "1234",
+    "azureStorageConnectionString": "1234",
+    "esdClientId": "1234",
+    "esdClientSecret": "1234"
+  }
 }
