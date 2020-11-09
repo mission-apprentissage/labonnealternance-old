@@ -100,6 +100,7 @@ const RightColumn = ({
               type: "Point",
               coordinates: [widgetParameters.lon, widgetParameters.lat],
             },
+            insee: addresses[0].insee,
           },
           job: {
             romes: widgetParameters.romes.split(","),
