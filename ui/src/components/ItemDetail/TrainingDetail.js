@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import infoIcon from "../../assets/icons/info.svg";
+import FakeFeature from "../FakeFeature/FakeFeature";
 
 const TrainingDetail = ({ training }) => {
   //console.log("training : ", training);
@@ -10,11 +11,11 @@ const TrainingDetail = ({ training }) => {
     } catch (err) {}
   });
 
-  const [displayRdv, setDisplayRdv] = useState(false);
+  /*const [displayRdv, setDisplayRdv] = useState(false);
 
   const onRdvClicked = () => {
     setDisplayRdv(!displayRdv)
-  };
+  };*/
 
   return (
     <>
@@ -55,18 +56,16 @@ const TrainingDetail = ({ training }) => {
             D'autres informations seront disponibles sur cette page prochainement
           </div>
         </div>
-        <div className="tmsPriseDeRendezVous" onClick={onRdvClicked}>
-          Prendre RDV avec l'établissement
-        </div>
-        {displayRdv ? (
-            <>
-              <div className="rdvFakeDoor">
-                Cette fonctionnalité n'est pas encore disponible. Votre clic nous est utile : il permet de mesurer votre intérêt pour la prise de rendez-vous en ligne !
-              </div>
-            </>
-          ) : (
-            ""
-          )}
+        <FakeFeature
+          buttonText="Prendre RDV avec l'établissement"
+          tagName="tmsPriseDeRendezVous"
+          modalTitle="Cette fonctionnalité n'est pas encore disponible"
+          modalText="Votre clic nous est utile : il permet de mesurer votre intérêt pour la prise de rendez-vous en ligne !"
+          questionsAndTags={[
+            { question: "alors?", tagName: "tag1" },
+            { question: "beh?", tagName: "tag2" },
+          ]}
+        />
       </div>
     </>
   );
