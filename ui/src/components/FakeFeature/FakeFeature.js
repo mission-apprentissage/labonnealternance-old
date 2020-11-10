@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
+import "./FakeFeature.css";
 
 const FakeFeature = ({ buttonText, tagName, modalTitle, modalText, questionsAndTags }) => {
   const handleClick = () => {
-    console.log("aaaa ", modalText, "  ----- ", questionsAndTags);
     toggle();
   };
 
@@ -13,17 +13,19 @@ const FakeFeature = ({ buttonText, tagName, modalTitle, modalText, questionsAndT
 
   return (
     <>
-      <button onClick={handleClick} className={`${tagName} avenir`}>
-        {buttonText}
-      </button>
-      <Modal isOpen={modal} toggle={toggle} className="">
+      <div className="avenir">
+        <button onClick={handleClick} className={tagName}>
+          {buttonText}
+        </button>
+      </div>
+      <Modal isOpen={modal} toggle={toggle} backdrop="static" className="avenirModale">
         <ModalHeader toggle={toggle}>{modalTitle}</ModalHeader>
         {questionsAndTags ? (
           <ModalBody>
             {modalText}
             {questionsAndTags.map((question, idx) => (
               <div key={idx}>
-                <Button color="secondary" className={question.tagName} onClick={toggle}>
+                <Button color="primary" className={`${question.tagName} question`} onClick={toggle}>
                   {question.question}
                 </Button>
               </div>
