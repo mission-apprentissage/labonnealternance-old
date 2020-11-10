@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import infoIcon from "../../assets/icons/info.svg";
 import FakeFeature from "../FakeFeature/FakeFeature";
 
