@@ -3,19 +3,11 @@ import infoIcon from "../../assets/icons/info.svg";
 import FakeFeature from "../FakeFeature/FakeFeature";
 
 const TrainingDetail = ({ training }) => {
-  //console.log("training : ", training);
-
   useEffect(() => {
     try {
       document.getElementsByClassName("rightCol")[0].scrollTo(0, 0);
     } catch (err) {}
   });
-
-  /*const [displayRdv, setDisplayRdv] = useState(false);
-
-  const onRdvClicked = () => {
-    setDisplayRdv(!displayRdv)
-  };*/
 
   return (
     <>
@@ -60,10 +52,21 @@ const TrainingDetail = ({ training }) => {
           buttonText="Prendre RDV avec l'établissement"
           tagName="tmsPriseDeRendezVous"
           modalTitle="Cette fonctionnalité n'est pas encore disponible"
-          modalText="Votre clic nous est utile : il permet de mesurer votre intérêt pour la prise de rendez-vous en ligne !"
+          modalText={
+            <>
+              Votre clic nous est utile : il permet de mesurer votre intérêt pour la prise de rendez-vous en ligne !
+              <br />
+              <br />
+              comment préféreriez-vous prendre RDV avec l'établissement :{" "}
+            </>
+          }
           questionsAndTags={[
-            { question: "alors?", tagName: "tag1" },
-            { question: "beh?", tagName: "tag2" },
+            { question: "1) en choisissant des créneaux dans 1 agenda", tagName: "tmsPriseDeRendezVousParAgenda" },
+            { question: "2) en envoyant une demande de RDV par mail", tagName: "tmsPriseDeRendezVousParMail" },
+            {
+              question: "3) en demandant à être rappelé ou en appelant l'établissement",
+              tagName: "tmsPriseDeRendezVousParTelephone",
+            },
           ]}
         />
       </div>
