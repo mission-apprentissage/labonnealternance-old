@@ -2,7 +2,6 @@
   "root": true,
   "extends": [
     "eslint:recommended",
-    "plugin:node/recommended",
     "plugin:prettier/recommended"
   ],
   "env": {
@@ -12,5 +11,10 @@
   },
   "parserOptions": {
     "ecmaVersion": 2018
+  },
+  "rules": {
+    "prettier/prettier": ["off", {
+     "endOfLine": "auto"
+   }]
   }
 }
