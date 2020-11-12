@@ -25,9 +25,9 @@ module.exports = async (components) => {
     dsn: "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826",
     integrations: [
       // enable HTTP calls tracing
-    new Sentry.Integrations.Http({ tracing: true }),
+      new Sentry.Integrations.Http({ tracing: true }),
       // enable Express.js middleware tracing
-    new Tracing.Integrations.Express({ app }),
+      new Tracing.Integrations.Express({ app }),
     ],
     tracesSampleRate: 1.0,
   });
@@ -81,15 +81,15 @@ module.exports = async (components) => {
     tryCatch(async (req, res) => {
       let mongodbStatus;
       await db
-      .collection("sampleEntity")
-      .stats()
-      .then(() => {
-        mongodbStatus = true;
-      })
-      .catch((e) => {
-        mongodbStatus = false;
-        logger.error("Healthcheck failed", e);
-      });
+        .collection("sampleEntity")
+        .stats()
+        .then(() => {
+          mongodbStatus = true;
+        })
+        .catch((e) => {
+          mongodbStatus = false;
+          logger.error("Healthcheck failed", e);
+        });
 
       return res.json({
         name: `Serveur MNA - ${config.appName}`,
@@ -100,7 +100,7 @@ module.exports = async (components) => {
         },
       });
     })
-    );
+  );
 
   app.get(
     "/api/config",
@@ -112,7 +112,7 @@ module.exports = async (components) => {
         },
       });
     })
-    );
+  );
 
   return app;
 };
