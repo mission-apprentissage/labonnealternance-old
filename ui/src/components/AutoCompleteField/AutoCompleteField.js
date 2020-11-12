@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useFormikContext } from "formik";
 import { useCombobox } from "downshift";
 import "./AutoCompleteField.css";
+import _ from "lodash";
+import onInputValueChangeService from "./onInputValueChangeService"
+
+let debouncedOnInputValueChange = null;
 
 export const AutoCompleteField = ({
   itemToStringFunction,
@@ -37,8 +41,6 @@ export const AutoCompleteField = ({
 
   const {
     isOpen,
-    /*getToggleButtonProps,
-    getLabelProps,*/
     getMenuProps,
     getInputProps,
     getComboboxProps,
@@ -53,24 +55,15 @@ export const AutoCompleteField = ({
     initialIsOpen,
     onSelectedItemChange: ({ selectedItem }) => {
       // modifie les valeurs sélectionnées du formulaire en fonction de l'item sélectionné
-      if (onSelectedItemChangeFunction) onSelectedItemChangeFunction(selectedItem, setFieldValue);
+      if (onSelectedItemChangeFunction) {
+        onSelectedItemChangeFunction(selectedItem, setFieldValue);
+      }
     },
     onInputValueChange: async ({ inputValue }) => {
-      // fixe la liste d'items en fonction de la valeur courante du champ input. S'il y a appel à une API c'est ici
-
-      if (onInputValueChangeFunction) {
-        const newItems = await onInputValueChangeFunction(inputValue);
-        setInputItems(newItems);
-      } else setInputItems(items.filter((item) => item.label.toLowerCase().startsWith(inputValue.toLowerCase())));
-      
-      // sélectionne ou désélectionne l'objet en fonction des modifications au clavier de l'utilisateur
-      if (compareItemFunction) {
-        const itemIndex = compareItemFunction(inputItems, inputValue);
-
-        if (itemIndex >= 0)
-          selectItem(inputItems[itemIndex]);
-        else selectItem(null);                
-      }
+      if (!debouncedOnInputValueChange) {
+        debouncedOnInputValueChange = _.debounce(onInputValueChangeService, 300)
+      } 
+      debouncedOnInputValueChange(inputValue, inputItems, items, setInputItems, selectItem, onInputValueChangeFunction, compareItemFunction)
     },
   });
 
