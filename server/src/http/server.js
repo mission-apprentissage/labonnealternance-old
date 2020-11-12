@@ -4,8 +4,6 @@ const Tracing = require("@sentry/tracing");
 const config = require("config");
 const logger = require("../common/logger");
 const bodyParser = require("body-parser");
-//const logMiddleware = require("./middlewares/logMiddleware");
-//const errorMiddleware = require("./middlewares/errorMiddleware");
 const tryCatch = require("./middlewares/tryCatchMiddleware");
 const corsMiddleware = require("./middlewares/corsMiddleware");
 const packageJson = require("../../package.json");
@@ -17,6 +15,7 @@ const formationRegionV1 = require("./routes/formationRegionV1");
 const job = require("./routes/job");
 const jobV1 = require("./routes/jobV1");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
+const rateLimit = require("express-rate-limit");
 
 module.exports = async (components) => {
   const { db } = components;
@@ -26,9 +25,9 @@ module.exports = async (components) => {
     dsn: "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826",
     integrations: [
       // enable HTTP calls tracing
-      new Sentry.Integrations.Http({ tracing: true }),
+    new Sentry.Integrations.Http({ tracing: true }),
       // enable Express.js middleware tracing
-      new Tracing.Integrations.Express({ app }),
+    new Tracing.Integrations.Express({ app }),
     ],
     tracesSampleRate: 1.0,
   });
@@ -43,36 +42,63 @@ module.exports = async (components) => {
   app.use(corsMiddleware());
   //app.use(logMiddleware());
 
+  const limiter3PerSecond = rateLimit({
+    windowMs: 1000, // 1 second
+    max: 3, // limit each IP to 3 requests per windowMs
+  });
+  const limiter5PerSecond = rateLimit({
+    windowMs: 1000, // 1 second
+    max: 5, // limit each IP to 5 requests per windowMs
+  });
+  const limiter10PerSecond = rateLimit({
+    windowMs: 1000, // 1 second
+    max: 10, // limit each IP to 10 requests per windowMs
+  });
+
   const swaggerUi = require("swagger-ui-express");
   const swaggerDocument = require('../api-docs/swagger.json');
 
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.use("/api-docs", limiter10PerSecond);
 
   app.use("/api/formations", formation());
+  app.use("/api/formations", limiter5PerSecond);
+
   app.use("/api/jobs", job());
+  app.use("/api/jobs", limiter3PerSecond);
 
   app.use("/api/v1/formations", formationV1());
+  app.use("/api/v1/formations", limiter5PerSecond);
+  
   app.use("/api/v1/formationsParRegion", formationRegionV1());
+  app.use("/api/v1/formationsParRegion", limiter5PerSecond);
+
   app.use("/api/v1/jobs", jobV1());
+  app.use("/api/jobs", limiter3PerSecond);
+
   app.use("/api/v1/jobsEtFormations", jobEtFormationV1());
+  app.use("/api/v1/jobs", limiter3PerSecond);
 
   app.use("/api/jobsdiplomas", jobDiploma());
+  app.use("/api/jobsdiplomas", limiter10PerSecond);
+
   app.use("/api/romelabels", rome());
+  app.use("/api/romelabels", limiter10PerSecond);
 
   app.get(
     "/api",
     tryCatch(async (req, res) => {
       let mongodbStatus;
       await db
-        .collection("sampleEntity")
-        .stats()
-        .then(() => {
-          mongodbStatus = true;
-        })
-        .catch((e) => {
-          mongodbStatus = false;
-          logger.error("Healthcheck failed", e);
-        });
+      .collection("sampleEntity")
+      .stats()
+      .then(() => {
+        mongodbStatus = true;
+      })
+      .catch((e) => {
+        mongodbStatus = false;
+        logger.error("Healthcheck failed", e);
+      });
 
       return res.json({
         name: `Serveur MNA - ${config.appName}`,
@@ -83,7 +109,7 @@ module.exports = async (components) => {
         },
       });
     })
-  );
+    );
 
   app.get(
     "/api/config",
@@ -95,7 +121,7 @@ module.exports = async (components) => {
         },
       });
     })
-  );
+    );
 
   /*  app.use((err, req, res, next) => {
     //console.log("err : ",err,res.status());
