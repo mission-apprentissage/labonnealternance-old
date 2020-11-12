@@ -17,3 +17,9 @@ jobs:
         run: |
           cd ui
           yarn install
+
+      # Run jest tests
+      - name: Run Tests
+        run: |
+          cd ui
+          yarn test

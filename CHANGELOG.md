@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.11 (12/11/2020)
+[337][UI] temporisation clavier
+
 ## 0.0.10 (06/11/2020)
 [#164] Bouton prise de RDV
 
