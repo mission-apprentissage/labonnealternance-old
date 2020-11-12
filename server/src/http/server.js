@@ -123,10 +123,5 @@ module.exports = async (components) => {
     })
   );
 
-  /*  app.use((err, req, res, next) => {
-    //console.log("err : ",err,res.status());
-    return res.json({error:"prout",message:err});
-  });*/
-
   return app;
 };
