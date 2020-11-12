@@ -7,8 +7,6 @@ description: >-
 
 # Présentation
 
-## Présentation
-
 L'objectif de ce service est de permettre à ses utilisateurs de trouver plus facilement et plus rapidement une formation en apprentissage et un contrat en alternance en offrant une information complète et centralisée.
 
 Le service, en cours d'amélioration, est disponible ici : [https://labonnealternance.pole-emploi.fr/](https://labonnealternance.pole-emploi.fr/)
@@ -52,4 +50,3 @@ Côté ui,
 $> cd ui/
 $ui> yarn start
 ```
-
