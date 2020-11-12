@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import infoIcon from "../../assets/icons/info.svg";
-import FakeFeature from "../FakeFeature/FakeFeature";
+//import FakeFeature from "../FakeFeature/FakeFeature";
 
 const TrainingDetail = ({ training }) => {
   useEffect(() => {
@@ -13,7 +13,6 @@ const TrainingDetail = ({ training }) => {
     <>
       <div className="itemDetailBody">
         <div className="title">En savoir plus</div>
-
         {training.onisepUrl ? (
           <div className="ellipsisLink">
             Descriptif du{" "}
@@ -27,7 +26,6 @@ const TrainingDetail = ({ training }) => {
         ) : (
           ""
         )}
-
         {training.contact && training.contact.email ? (
           <>
             <div className="sectionTitle">Email de contact:</div>
@@ -37,7 +35,6 @@ const TrainingDetail = ({ training }) => {
         ) : (
           ""
         )}
-
         <div className="blueAdvice">
           <div className="floatLeft">
             <img src={infoIcon} alt="" />
@@ -48,6 +45,7 @@ const TrainingDetail = ({ training }) => {
             D'autres informations seront disponibles sur cette page prochainement
           </div>
         </div>
+        {/*
         <FakeFeature
           buttonText="Prendre RDV avec l'établissement"
           tagName="tmsPriseDeRendezVous"
@@ -68,7 +66,7 @@ const TrainingDetail = ({ training }) => {
               tagName: "tmsPriseDeRendezVousParTelephone",
             },
           ]}
-        />
+        />*/}
       </div>
     </>
   );
