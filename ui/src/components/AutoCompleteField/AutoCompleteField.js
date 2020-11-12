@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFormikContext } from "formik";
 import { useCombobox } from "downshift";
 import "./AutoCompleteField.css";
-import _ from "lodash";
+import {debounce} from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService"
 
 let debouncedOnInputValueChange = null;
@@ -61,7 +61,7 @@ export const AutoCompleteField = ({
     },
     onInputValueChange: async ({ inputValue }) => {
       if (!debouncedOnInputValueChange) {
-        debouncedOnInputValueChange = _.debounce(onInputValueChangeService, 300)
+        debouncedOnInputValueChange = debounce(onInputValueChangeService, 300)
       } 
       debouncedOnInputValueChange(inputValue, inputItems, items, setInputItems, selectItem, onInputValueChangeFunction, compareItemFunction)
     },
@@ -69,7 +69,6 @@ export const AutoCompleteField = ({
 
   return (
     <div className="autoCompleteContainer">
-      {/*<label {...getLabelProps()}>Possibilité de poser un label avec des props dédiées</label>*/}
       <div {...getComboboxProps()}>
         <input
           {...getInputProps()}
@@ -78,9 +77,6 @@ export const AutoCompleteField = ({
           onFocus={onFocus}
           name={props.name}
         />
-        {/*<button {...getToggleButtonProps()} aria-label="toggle menu">
-          &#8595;   possibilité de poser un bouton toggle avec des props dédiées
-        </button>*/}
       </div>
       <ul {...getMenuProps()} className="autoCompleteMenu">
         {isOpen &&
