@@ -25,9 +25,9 @@ module.exports = async (components) => {
     dsn: "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826",
     integrations: [
       // enable HTTP calls tracing
-      new Sentry.Integrations.Http({ tracing: true }),
+    new Sentry.Integrations.Http({ tracing: true }),
       // enable Express.js middleware tracing
-      new Tracing.Integrations.Express({ app }),
+    new Tracing.Integrations.Express({ app }),
     ],
     tracesSampleRate: 1.0,
   });
@@ -59,46 +59,37 @@ module.exports = async (components) => {
   const swaggerDocument = require('../api-docs/swagger.json');
 
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-  app.use("/api-docs", limiter10PerSecond);
 
-  app.use("/api/formations", formation());
-  app.use("/api/formations", limiter5PerSecond);
+  app.use("/api/formations", limiter5PerSecond, formation());
 
-  app.use("/api/jobs", job());
-  app.use("/api/jobs", limiter3PerSecond);
+  app.use("/api/jobs", limiter3PerSecond, job());
 
-  app.use("/api/v1/formations", formationV1());
-  app.use("/api/v1/formations", limiter5PerSecond);
+  app.use("/api/v1/formations", limiter5PerSecond, formationV1());
 
-  app.use("/api/v1/formationsParRegion", formationRegionV1());
-  app.use("/api/v1/formationsParRegion", limiter5PerSecond);
+  app.use("/api/v1/formationsParRegion", limiter5PerSecond, formationRegionV1());
 
-  app.use("/api/v1/jobs", jobV1());
-  app.use("/api/jobs", limiter3PerSecond);
+  app.use("/api/v1/jobs", limiter3PerSecond, jobV1());
 
-  app.use("/api/v1/jobsEtFormations", jobEtFormationV1());
-  app.use("/api/v1/jobs", limiter3PerSecond);
+  app.use("/api/v1/jobsEtFormations", limiter3PerSecond, jobEtFormationV1());
 
-  app.use("/api/jobsdiplomas", jobDiploma());
-  app.use("/api/jobsdiplomas", limiter10PerSecond);
+  app.use("/api/jobsdiplomas", limiter10PerSecond, jobDiploma());
 
-  app.use("/api/romelabels", rome());
-  app.use("/api/romelabels", limiter10PerSecond);
+  app.use("/api/romelabels", limiter10PerSecond, rome());
 
   app.get(
     "/api",
     tryCatch(async (req, res) => {
       let mongodbStatus;
       await db
-        .collection("sampleEntity")
-        .stats()
-        .then(() => {
-          mongodbStatus = true;
-        })
-        .catch((e) => {
-          mongodbStatus = false;
-          logger.error("Healthcheck failed", e);
-        });
+      .collection("sampleEntity")
+      .stats()
+      .then(() => {
+        mongodbStatus = true;
+      })
+      .catch((e) => {
+        mongodbStatus = false;
+        logger.error("Healthcheck failed", e);
+      });
 
       return res.json({
         name: `Serveur MNA - ${config.appName}`,
@@ -109,7 +100,7 @@ module.exports = async (components) => {
         },
       });
     })
-  );
+    );
 
   app.get(
     "/api/config",
@@ -121,7 +112,7 @@ module.exports = async (components) => {
         },
       });
     })
-  );
+    );
 
   return app;
 };
