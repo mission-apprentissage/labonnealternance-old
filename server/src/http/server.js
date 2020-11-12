@@ -69,7 +69,7 @@ module.exports = async (components) => {
 
   app.use("/api/v1/formations", formationV1());
   app.use("/api/v1/formations", limiter5PerSecond);
-  
+
   app.use("/api/v1/formationsParRegion", formationRegionV1());
   app.use("/api/v1/formationsParRegion", limiter5PerSecond);
 
@@ -90,15 +90,15 @@ module.exports = async (components) => {
     tryCatch(async (req, res) => {
       let mongodbStatus;
       await db
-      .collection("sampleEntity")
-      .stats()
-      .then(() => {
-        mongodbStatus = true;
-      })
-      .catch((e) => {
-        mongodbStatus = false;
-        logger.error("Healthcheck failed", e);
-      });
+        .collection("sampleEntity")
+        .stats()
+        .then(() => {
+          mongodbStatus = true;
+        })
+        .catch((e) => {
+          mongodbStatus = false;
+          logger.error("Healthcheck failed", e);
+        });
 
       return res.json({
         name: `Serveur MNA - ${config.appName}`,
@@ -109,7 +109,7 @@ module.exports = async (components) => {
         },
       });
     })
-    );
+  );
 
   app.get(
     "/api/config",
@@ -121,7 +121,7 @@ module.exports = async (components) => {
         },
       });
     })
-    );
+  );
 
   /*  app.use((err, req, res, next) => {
     //console.log("err : ",err,res.status());
