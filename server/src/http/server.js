@@ -25,9 +25,9 @@ module.exports = async (components) => {
     dsn: "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826",
     integrations: [
       // enable HTTP calls tracing
-    new Sentry.Integrations.Http({ tracing: true }),
+      new Sentry.Integrations.Http({ tracing: true }),
       // enable Express.js middleware tracing
-    new Tracing.Integrations.Express({ app }),
+      new Tracing.Integrations.Express({ app }),
     ],
     tracesSampleRate: 1.0,
   });
