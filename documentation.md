@@ -10,7 +10,7 @@ description: >-
 ## **Notice d’intégration du widget Idea**
 
 Vous devez intégrer Idea dans une Iframe :  
-**&lt;iframe src="**[https://idea-mna.netlify.app&lt;parametres&gt](https://idea-mna.netlify.app<parametres&gt)**;" /&gt;**
+**&lt;iframe src="**[https://idea-mna.netlify.app&lt;parametres&gt;](https://idea-mna.netlify.app<parametres&gt)**;" /&gt;**
 
 Ex de paramètres :  
 **?radius=60&romes=F1702,F1705,F1701&scope=all&lat=47&lon=2.2&caller=ID\_service\_appelant\_idea&return\_uri=/&return\_logo\_url=**[https://url/image.png](https://url/image.png)
