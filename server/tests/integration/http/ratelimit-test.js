@@ -3,7 +3,7 @@ const httpTests = require("../../utils/httpTests");
 const config = require("config");
 
 httpTests(__filename, ({ startServer }) => {
-  it("rate-limit, exemple avec /api/romelabels : 4 requêtes consécutives : les 3 premières sont acceptées, mais pas la 4ème", async () => {
+  it("rate-limit, exemple avec /api/romelabels : 11 requêtes consécutives : les 10 premières sont acceptées, mais pas la 11ème", async () => {
     const { httpClient } = await startServer();
 
     const response1 = await httpClient.get("/api/romelabels");
