@@ -4,8 +4,6 @@ const Tracing = require("@sentry/tracing");
 const config = require("config");
 const logger = require("../common/logger");
 const bodyParser = require("body-parser");
-//const logMiddleware = require("./middlewares/logMiddleware");
-//const errorMiddleware = require("./middlewares/errorMiddleware");
 const tryCatch = require("./middlewares/tryCatchMiddleware");
 const corsMiddleware = require("./middlewares/corsMiddleware");
 const packageJson = require("../../package.json");
@@ -17,6 +15,7 @@ const formationRegionV1 = require("./routes/formationRegionV1");
 const job = require("./routes/job");
 const jobV1 = require("./routes/jobV1");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
+const rateLimit = require("express-rate-limit");
 
 module.exports = async (components) => {
   const { db } = components;
@@ -43,21 +42,39 @@ module.exports = async (components) => {
   app.use(corsMiddleware());
   //app.use(logMiddleware());
 
+  const limiter3PerSecond = rateLimit({
+    windowMs: 1000, // 1 second
+    max: 3, // limit each IP to 3 requests per windowMs
+  });
+  const limiter5PerSecond = rateLimit({
+    windowMs: 1000, // 1 second
+    max: 5, // limit each IP to 5 requests per windowMs
+  });
+  const limiter10PerSecond = rateLimit({
+    windowMs: 1000, // 1 second
+    max: 10, // limit each IP to 10 requests per windowMs
+  });
+
   const swaggerUi = require("swagger-ui-express");
   const swaggerDocument = require('../api-docs/swagger.json');
 
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-  app.use("/api/formations", formation());
-  app.use("/api/jobs", job());
+  app.use("/api/formations", limiter5PerSecond, formation());
 
-  app.use("/api/v1/formations", formationV1());
-  app.use("/api/v1/formationsParRegion", formationRegionV1());
-  app.use("/api/v1/jobs", jobV1());
-  app.use("/api/v1/jobsEtFormations", jobEtFormationV1());
+  app.use("/api/jobs", limiter3PerSecond, job());
 
-  app.use("/api/jobsdiplomas", jobDiploma());
-  app.use("/api/romelabels", rome());
+  app.use("/api/v1/formations", limiter5PerSecond, formationV1());
+
+  app.use("/api/v1/formationsParRegion", limiter5PerSecond, formationRegionV1());
+
+  app.use("/api/v1/jobs", limiter3PerSecond, jobV1());
+
+  app.use("/api/v1/jobsEtFormations", limiter3PerSecond, jobEtFormationV1());
+
+  app.use("/api/jobsdiplomas", limiter10PerSecond, jobDiploma());
+
+  app.use("/api/romelabels", limiter10PerSecond, rome());
 
   app.get(
     "/api",
@@ -96,11 +113,6 @@ module.exports = async (components) => {
       });
     })
   );
-
-  /*  app.use((err, req, res, next) => {
-    //console.log("err : ",err,res.status());
-    return res.json({error:"prout",message:err});
-  });*/
 
   return app;
 };

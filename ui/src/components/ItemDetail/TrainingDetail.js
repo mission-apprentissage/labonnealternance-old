@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import infoIcon from "../../assets/icons/info.svg";
+//import FakeFeature from "../FakeFeature/FakeFeature";
 
 const TrainingDetail = ({ training }) => {
-  //console.log("training : ", training);
-
   useEffect(() => {
     try {
       document.getElementsByClassName("rightCol")[0].scrollTo(0, 0);
@@ -14,7 +13,6 @@ const TrainingDetail = ({ training }) => {
     <>
       <div className="itemDetailBody">
         <div className="title">En savoir plus</div>
-
         {training.onisepUrl ? (
           <div className="ellipsisLink">
             Descriptif du{" "}
@@ -28,7 +26,6 @@ const TrainingDetail = ({ training }) => {
         ) : (
           ""
         )}
-
         {training.contact && training.contact.email ? (
           <>
             <div className="sectionTitle">Email de contact:</div>
@@ -38,7 +35,6 @@ const TrainingDetail = ({ training }) => {
         ) : (
           ""
         )}
-
         <div className="blueAdvice">
           <div className="floatLeft">
             <img src={infoIcon} alt="" />
@@ -49,6 +45,28 @@ const TrainingDetail = ({ training }) => {
             D'autres informations seront disponibles sur cette page prochainement
           </div>
         </div>
+        {/*
+        <FakeFeature
+          buttonText="Prendre RDV avec l'établissement"
+          tagName="tmsPriseDeRendezVous"
+          modalTitle="Cette fonctionnalité n'est pas encore disponible"
+          modalText={
+            <>
+              Votre clic nous est utile : il permet de mesurer votre intérêt pour la prise de rendez-vous en ligne !
+              <br />
+              <br />
+              comment préféreriez-vous prendre RDV avec l'établissement :{" "}
+            </>
+          }
+          questionsAndTags={[
+            { question: "1) en choisissant des créneaux dans 1 agenda", tagName: "tmsPriseDeRendezVousParAgenda" },
+            { question: "2) en envoyant une demande de RDV par mail", tagName: "tmsPriseDeRendezVousParMail" },
+            {
+              question: "3) en demandant à être rappelé ou en appelant l'établissement",
+              tagName: "tmsPriseDeRendezVousParTelephone",
+            },
+          ]}
+        />*/}
       </div>
     </>
   );
