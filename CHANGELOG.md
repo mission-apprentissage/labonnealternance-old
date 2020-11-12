@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.12 (12/11/2020)
+[321][Server] limitation du nombre de requêtes par seconde
+
 ## 0.0.11 (12/11/2020)
 [337][UI] temporisation clavier
 
