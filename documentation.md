@@ -7,14 +7,14 @@ description: >-
 
 # Documentation Apprentissage : formations & entreprises
 
-### **Notice d’intégration du widget Idea**
+### **Notice d’intégration du widget Labonnealernance**
 
-Vous devez intégrer Idea dans une Iframe :   
-**&lt;iframe src="https://idea-mna.netlify.app&lt;parametres&gt;" /&gt;**  
+Vous devez intégrer Labonnealternance dans une Iframe :   
+**&lt;iframe src="https://labonnealternance.apprentissage.beta.gouv.fr&lt;parametres&gt;" /&gt;**  
 
 
 Ex de paramètres :   
-**?radius=60&romes=F1702,F1705,F1701&scope=all&lat=47&lon=2.2&caller=ID\_service\_appelant\_idea&return\_uri=/&return\_logo\_url=https://url/image.png**  
+**?radius=60&romes=F1702,F1705,F1701&scope=all&lat=47&lon=2.2&caller=ID\_service\_appelant\_labonnealternance&return\_uri=/&return\_logo\_url=https://url/image.png**  
 
 
 #### **A / Liste des paramètres :** 
@@ -29,11 +29,11 @@ Ex de paramètres :
 
 **lon :** Optionnel. Coordonnée géographique en degrés décimaux \(float\). Valeur par défaut null. La partie longitude des coordonnées gps.
 
-**caller :** Obligatoire. L'identification du site appelant. A fixer lors de la mise en place avec l’équipe d’IDEA.
+**caller :** Obligatoire. L'identification du site appelant. A fixer lors de la mise en place avec l’équipe de Labonnealternance.
 
 **return\_uri :** Optionnel. Valeur par défaut / . L'uri de retour qui sera notifiée au site appelant. ****
 
-**return\_logo\_url :** Optionnel. Valeur par défaut : logo du site Labonnealternance.pole-emploi.fr . L'url du logo du site vers lequel l'utilisateur revient en cliquant sur le bouton de retour dans Idea. ****
+**return\_logo\_url :** Optionnel. Valeur par défaut : logo du site Labonnealternance.pole-emploi.fr . L'url du logo du site vers lequel l'utilisateur revient en cliquant sur le bouton de retour dans Labonnealternance. ****
 
 **Si lat, lon et romes sont correctement renseignés une recherche sera lancée automatiquement en utilisant ces critères. Si radius est correctement renseigné il sera utilisé comme critère de la recherche.**  
 
@@ -48,7 +48,7 @@ Pour bénéficier du bouton de retour vous devez ajouter un listener pour l'API 
 
 **`window.addEventListener('message',function(e){`** 
 
-**`/*Remplacer par votre code pour gérer la navigation vers la page de votre site correspondante aux paramètres transmis par Idea dans le message*/`**
+**`/*Remplacer par votre code pour gérer la navigation vers la page de votre site correspondante aux paramètres transmis par Labonnealternance dans le message*/`**
 
   
 **`console.log("Type du message goToPage ", e.data.type);`**
