@@ -80,7 +80,22 @@ window.addEventListener("unhandledrejection", (event) => {
 * End of Hack
 */
 
-
+const parseChangelog = require('changelog-parser')
+// parseChangelog('../../CHANGELOG.md', function (err, result) {
+//   if (err) throw err
+ 
+//   // changelog object
+//   console.log(result)
+// })
+parseChangelog('../../CHANGELOG.md')
+  .then(function (result) {
+    // changelog object
+    console.log(result)
+  })
+  .catch(function (err) {
+    // Whoops, something went wrong!
+    console.error(err)
+  })
 
 /*
 * ACTUALLY STARTS THE APP
