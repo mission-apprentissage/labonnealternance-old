@@ -6,5 +6,5 @@ description: >-
 
 # APIs : tester et consulter la documentation
 
-[https://idea.apprentissage.beta.gouv.fr/api-docs/](https://idea.apprentissage.beta.gouv.fr/api-docs/)
+[https://labonnealternance.apprentissage.beta.gouv.fr/api-docs/](https://labonnealternance.apprentissage.beta.gouv.fr/api-docs/)
 
