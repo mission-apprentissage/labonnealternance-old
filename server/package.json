@@ -8,6 +8,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
+    "dev": "node ssr-server.js",
     "start": "nodemon --ignore tests/ src/index.js",
     "debug": "nodemon --inspect=0.0.0.0 --signal SIGINT --ignore tests/ src/index.js",
     "test": "mocha --recursive --exit --timeout 5000 tests/",
@@ -49,11 +50,14 @@
     "lodash": "4.17.20",
     "moment": "2.26.0",
     "mongoose": "5.10.2",
+    "next": "10.0.1",
     "nock": "13.0.4",
     "passport": "0.4.1",
     "passport-http": "0.3.0",
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "sha512crypt-node": "0.1.0",
     "swagger-ui-express": "4.1.4",
     "xlsx": "0.16.1"
