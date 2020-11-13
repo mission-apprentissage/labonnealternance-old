@@ -84,7 +84,7 @@ window.addEventListener("unhandledrejection", (event) => {
 
 // Print current version
 microAjax({ 
-  url: baseUrl + '/version', 
+  url: baseUrl + '/api/version', 
   success: (res) => console.log(`version : ${JSON.parse(res).version}`)
 });
 

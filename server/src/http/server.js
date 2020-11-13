@@ -61,7 +61,7 @@ module.exports = async (components) => {
 
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   
-  app.use("/version", limiter3PerSecond, version());
+  app.use("/api/version", limiter3PerSecond, version());
 
   app.use("/api/formations", limiter5PerSecond, formation());
 
