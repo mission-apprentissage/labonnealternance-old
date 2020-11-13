@@ -7,15 +7,17 @@ description: >-
 
 # Documentation Apprentissage : formations & entreprises
 
-## **Notice d’intégration du widget Idea**
+### **Notice d’intégration du widget Idea**
 
-Vous devez intégrer Idea dans une Iframe :  
-**&lt;iframe src="**[https://idea-mna.netlify.app&lt;parametres&gt;](https://idea-mna.netlify.app<parametres&gt)**;" /&gt;**
+Vous devez intégrer Idea dans une Iframe :   
+**&lt;iframe src="https://idea-mna.netlify.app&lt;parametres&gt;" /&gt;**  
 
-Ex de paramètres :  
-**?radius=60&romes=F1702,F1705,F1701&scope=all&lat=47&lon=2.2&caller=ID\_service\_appelant\_idea&return\_uri=/&return\_logo\_url=**[https://url/image.png](https://url/image.png)
 
-### **A / Liste des paramètres :**
+Ex de paramètres :   
+**?radius=60&romes=F1702,F1705,F1701&scope=all&lat=47&lon=2.2&caller=ID\_service\_appelant\_idea&return\_uri=/&return\_logo\_url=https://url/image.png**  
+
+
+#### **A / Liste des paramètres :** 
 
 **radius :** Optionnel . Valeur numérique. Valeurs autorisées : 10 \| 30 \| 60 \| 100. Le rayon de recherche autour du lieu en km. Valeur par défaut 30.
 
@@ -29,13 +31,14 @@ Ex de paramètres :
 
 **caller :** Obligatoire. L'identification du site appelant. A fixer lors de la mise en place avec l’équipe d’IDEA.
 
-**return\_uri :** Optionnel. Valeur par défaut / . L'uri de retour qui sera notifiée au site appelant. _\*\*_
+**return\_uri :** Optionnel. Valeur par défaut / . L'uri de retour qui sera notifiée au site appelant. ****
 
-**return\_logo\_url :** Optionnel. Valeur par défaut : logo du site Labonnealternance.pole-emploi.fr . L'url du logo du site vers lequel l'utilisateur revient en cliquant sur le bouton de retour dans Idea. _\*\*_
+**return\_logo\_url :** Optionnel. Valeur par défaut : logo du site Labonnealternance.pole-emploi.fr . L'url du logo du site vers lequel l'utilisateur revient en cliquant sur le bouton de retour dans Idea. ****
 
-**Si lat, lon et romes sont correctement renseignés une recherche sera lancée automatiquement en utilisant ces critères. Si radius est correctement renseigné il sera utilisé comme critère de la recherche.**
+**Si lat, lon et romes sont correctement renseignés une recherche sera lancée automatiquement en utilisant ces critères. Si radius est correctement renseigné il sera utilisé comme critère de la recherche.**  
 
-### **B /  Bouton de retour**
+
+#### **B /  Bouton de retour** 
 
 Cliquer sur le logo en haut du formulaire ou d’une liste de résultat permet de signaler à la page appelante une instruction de changement de page.
 
@@ -43,10 +46,11 @@ Cliquer sur le logo en haut du formulaire ou d’une liste de résultat permet d
 
 Pour bénéficier du bouton de retour vous devez ajouter un listener pour l'API postMessage de javascript et coder l’action de navigation :
 
-**`window.addEventListener('message',function(e){`**
+**`window.addEventListener('message',function(e){`** 
 
 **`/*Remplacer par votre code pour gérer la navigation vers la page de votre site correspondante aux paramètres transmis par Idea dans le message*/`**
 
+  
 **`console.log("Type du message goToPage ", e.data.type);`**
 
 **`console.log("URI de la page de redirection ", e.data.page);`**
