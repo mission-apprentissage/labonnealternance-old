@@ -17,9 +17,25 @@ const jobV1 = require("./routes/jobV1");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
 const rateLimit = require("express-rate-limit");
 
+
+
+
+
+const next = require('next')
+    
+const dev = process.env.NODE_ENV !== 'production'
+const nextApp = next({ dev })
+const nextHandle = nextApp.getRequestHandler()
+
+
+
+
+
+
+
 module.exports = async (components) => {
   const { db } = components;
-  const app = express();
+  const expressServer = express();
 
   Sentry.init({
     dsn: "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826",
@@ -27,20 +43,20 @@ module.exports = async (components) => {
       // enable HTTP calls tracing
       new Sentry.Integrations.Http({ tracing: true }),
       // enable Express.js middleware tracing
-      new Tracing.Integrations.Express({ app }),
+      new Tracing.Integrations.Express({ expressServer }),
     ],
     tracesSampleRate: 1.0,
   });
 
   // RequestHandler creates a separate execution context using domains, so that every
   // transaction/span/breadcrumb is attached to its own Hub instance
-  app.use(Sentry.Handlers.requestHandler());
+  expressServer.use(Sentry.Handlers.requestHandler());
   // TracingHandler creates a trace for every incoming request
-  app.use(Sentry.Handlers.tracingHandler());
+  expressServer.use(Sentry.Handlers.tracingHandler());
 
-  app.use(bodyParser.json());
-  app.use(corsMiddleware());
-  //app.use(logMiddleware());
+  expressServer.use(bodyParser.json());
+  expressServer.use(corsMiddleware());
+  //expressServer.use(logMiddleware());
 
   const limiter3PerSecond = rateLimit({
     windowMs: 1000, // 1 second
@@ -58,25 +74,25 @@ module.exports = async (components) => {
   const swaggerUi = require("swagger-ui-express");
   const swaggerDocument = require('../api-docs/swagger.json');
 
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  expressServer.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-  app.use("/api/formations", limiter5PerSecond, formation());
+  expressServer.use("/api/formations", limiter5PerSecond, formation());
 
-  app.use("/api/jobs", limiter3PerSecond, job());
+  expressServer.use("/api/jobs", limiter3PerSecond, job());
 
-  app.use("/api/v1/formations", limiter5PerSecond, formationV1());
+  expressServer.use("/api/v1/formations", limiter5PerSecond, formationV1());
 
-  app.use("/api/v1/formationsParRegion", limiter5PerSecond, formationRegionV1());
+  expressServer.use("/api/v1/formationsParRegion", limiter5PerSecond, formationRegionV1());
 
-  app.use("/api/v1/jobs", limiter3PerSecond, jobV1());
+  expressServer.use("/api/v1/jobs", limiter3PerSecond, jobV1());
 
-  app.use("/api/v1/jobsEtFormations", limiter3PerSecond, jobEtFormationV1());
+  expressServer.use("/api/v1/jobsEtFormations", limiter3PerSecond, jobEtFormationV1());
 
-  app.use("/api/jobsdiplomas", limiter10PerSecond, jobDiploma());
+  expressServer.use("/api/jobsdiplomas", limiter10PerSecond, jobDiploma());
 
-  app.use("/api/romelabels", limiter10PerSecond, rome());
+  expressServer.use("/api/romelabels", limiter10PerSecond, rome());
 
-  app.get(
+  expressServer.get(
     "/api",
     tryCatch(async (req, res) => {
       let mongodbStatus;
@@ -102,7 +118,7 @@ module.exports = async (components) => {
     })
   );
 
-  app.get(
+  expressServer.get(
     "/api/config",
     tryCatch(async (req, res) => {
       return res.json({
@@ -114,5 +130,5 @@ module.exports = async (components) => {
     })
   );
 
-  return app;
+  return expressServer;
 };
