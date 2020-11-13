@@ -19,7 +19,7 @@
     "jobs": "node src/jobs/index.js",
     "clear": "node src/jobs/clear/index.js",
     "stats": "node src/jobs/stats/index.js",
-    "foo": "nodemon --ignore tests/ src/http/nextserver.js"
+    "foo": "nodemon --ignore tests/ src/nextserver.js"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.7.0",
