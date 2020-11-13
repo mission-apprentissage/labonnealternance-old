@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.14 [13/11/2020]
+[169][UI][Front] Fix clignotement sur desktop width<768px
+
 ## 0.0.13 - 13-11-2020
 [179][Server][Front] Versionning
 
