@@ -202,6 +202,8 @@ const getAtLeastSomeFormations = async ({ romes, romeDomain, coords, radius, dip
       });
     }
 
+    formations = deduplicateFormations(formations);
+    
     //throw new Error("BANG");
     formations = transformFormationsForIdea(formations);
 
@@ -221,6 +223,24 @@ const getAtLeastSomeFormations = async ({ romes, romeDomain, coords, radius, dip
     return errorObj;
   }
 };
+
+const deduplicateFormations = (formations) => {
+  return formations.reduce((acc, formation) => {
+
+    const found = acc.find((f) => { 
+       return (f.source.nom === formation.source.nom &&
+                                    f.source.etablissement_formateur_siret === formation.source.etablissement_formateur_siret &&
+                                    f.source.niveau === formation.source.niveau)
+                                    
+       });
+
+    if (!found) {
+      acc = [...acc, formation];
+    }
+
+    return acc;
+  }, []);
+}
 
 const transformFormationsForIdea = (formations) => {
   let resultFormations = {
