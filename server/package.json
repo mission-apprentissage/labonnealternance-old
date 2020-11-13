@@ -18,7 +18,8 @@
     "seed": "node src/jobs/seed/index.js",
     "jobs": "node src/jobs/index.js",
     "clear": "node src/jobs/clear/index.js",
-    "stats": "node src/jobs/stats/index.js"
+    "stats": "node src/jobs/stats/index.js",
+    "foo": "nodemon --ignore tests/ src/http/nextserver.js"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.7.0",
