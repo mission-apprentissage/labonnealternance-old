@@ -15,7 +15,8 @@ module.exports = () => {
     "/",
     tryCatch(async (req, res) => {
       let data = await parseChangelog(path.join(__dirname, '../../../../CHANGELOG.md'))
-      return res.json(_.get(data, 'versions.0', {}));
+      //return res.json(_.get(data, 'versions.0', {}));
+      return res.json(path.join(__dirname, '../../../../CHANGELOG.md'));
     })
   );
 
