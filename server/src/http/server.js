@@ -11,6 +11,7 @@ const rome = require("./routes/rome");
 const jobDiploma = require("./routes/jobDiploma");
 const formation = require("./routes/formation");
 const formationV1 = require("./routes/formationV1");
+const version = require("./routes/version");
 const formationRegionV1 = require("./routes/formationRegionV1");
 const job = require("./routes/job");
 const jobV1 = require("./routes/jobV1");
@@ -59,6 +60,8 @@ module.exports = async (components) => {
   const swaggerDocument = require('../api-docs/swagger.json');
 
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  
+  app.use("/version", limiter3PerSecond, version());
 
   app.use("/api/formations", limiter5PerSecond, formation());
 

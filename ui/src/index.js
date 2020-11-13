@@ -16,6 +16,8 @@ import "./index.css";
 import ErrorBoundary from  "./ErrorBoundary";
 import { getWidgetParameters, getIsTrainingOnly } from "./services/config";
 import DomainError from  "./pages/SearchForTrainingsAndJobs/components/DomainError/DomainError.js";
+import baseUrl from "./utils/baseUrl";
+import microAjax from "./utils/microAjax";
 
 const store = configureStore();
 
@@ -80,6 +82,11 @@ window.addEventListener("unhandledrejection", (event) => {
 * End of Hack
 */
 
+// Print current version
+microAjax({ 
+  url: baseUrl + '/version', 
+  success: (res) => console.log(`version : ${JSON.parse(res).version}`)
+});
 
 
 /*

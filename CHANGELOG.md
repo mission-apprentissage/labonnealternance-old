@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.13 - 13-11-2020
+[179][Server][Front] Versionning
+
 ## 0.0.12 (12/11/2020)
 [321][Server] limitation du nombre de requêtes par seconde
 
