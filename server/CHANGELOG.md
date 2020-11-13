@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.14 [13/11/2020]
+[169][UI][Front] Fix clignotement sur desktop width<768px
+
 ## 0.0.12 (12/11/2020)
 [321][Server] limitation du nombre de requêtes par seconde
 
