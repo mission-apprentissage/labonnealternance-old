@@ -5,9 +5,13 @@ description: >-
   entreprises pour entrer en apprentissage.
 ---
 
-# Documentation Apprentissage : formations & entreprises
+# Widget : tester et consulter la documentation
 
-### **Notice d’intégration du widget Labonnealernance**
+### **Tester le widget Labonnealternance**
+
+Pour voir comment le widget peut s'intégrer sur votre site, testez dès à présent les différentes versions possibles : [https://labonnealternance.apprentissage.beta.gouv.fr/test-widget](https://labonnealternance.apprentissage.beta.gouv.fr/test-widget)
+
+### **Notice d’intégration du widget Labonnealternance**
 
 Vous devez intégrer Labonnealternance dans une Iframe :   
 **&lt;iframe src="https://labonnealternance.apprentissage.beta.gouv.fr&lt;parametres&gt;" /&gt;**  
