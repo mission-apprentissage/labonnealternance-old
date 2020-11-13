@@ -33,10 +33,6 @@ En tant que Région, vous pourrez choisir d'y afficher les formations et/ou les 
 
 En tant que CFA, vous pourrez choisir de n'afficher que les entreprises de votre zone géographique.
 
-[Testez le Widget ! ](https://app.gitbook.com/@mission-apprentissage/s/la-bonne-alternance/~/drafts/-MM-Z9zgDemd_fDYLO4r/dou-viennent-les-donnees/tester-le-widget/@drafts)
-
-[Documentation Widget](https://app.gitbook.com/@mission-apprentissage/s/la-bonne-alternance/~/drafts/-MM-Z9zgDemd_fDYLO4r/documentation/@drafts)
-
 **Les APIs**
 
   
@@ -49,6 +45,4 @@ En tant que CFA, vous pourrez choisir de n'afficher que les entreprises de votre
 -          ​/api​/V1​/jobs, pour rechercher les entreprises recrutant ou susceptibles de recruter en apprentissage référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique
 
 -          /api/V1/jobsEtFormations, pour rechercher des formations en apprentissage et des entreprises recrutant ou susceptibles de recruter en apprentissage référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique
-
-[Testez les APIs et consultez la documentation !](https://app.gitbook.com/@mission-apprentissage/s/la-bonne-alternance/~/drafts/-MM-Z9zgDemd_fDYLO4r/documentation-alternance-entreprises/@drafts)
 
