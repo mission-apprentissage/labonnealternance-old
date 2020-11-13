@@ -228,7 +228,7 @@ const deduplicateFormations = (formations) => {
   return formations.reduce((acc, formation) => {
 
     const found = acc.find((f) => { 
-       return (f.source.nom === formation.source.nom &&
+       return (f.source.nom.toLowerCase() === formation.source.nom.toLowerCase() &&
                                     f.source.etablissement_formateur_siret === formation.source.etablissement_formateur_siret &&
                                     f.source.niveau === formation.source.niveau)
                                     
