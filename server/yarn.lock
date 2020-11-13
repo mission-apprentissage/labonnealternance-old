@@ -1798,6 +1798,13 @@ is-regex@^1.1.0:
   dependencies:
     has-symbols "^1.0.1"
 
+is-semver@1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/is-semver/-/is-semver-1.0.10.tgz#71a7eaef8da2f4cde2133d0f460efff868abe554"
+  integrity sha512-rKmdhbrrgr9VOJJdPrsO7cTYYYmDbbk8h7zjE7upRPT++oDh6jtL7m9zmOgHlUZgrTPfgJ0n08X5OZK9xS9dFg==
+  dependencies:
+    semver "^5.1.0"
+
 is-symbol@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.3.tgz#38e1014b9e6329be0de9d24a414fd7441ec61937"
