@@ -1,6 +1,5 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
-const fs = require("fs");
 
 const path = require('path');
 const parseChangelog = require('changelog-parser')
@@ -11,7 +10,6 @@ const _ = require('lodash')
  */
 module.exports = () => {
   const router = express.Router();
-
 
   router.get(
     "/",
