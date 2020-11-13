@@ -7,5 +7,5 @@ description: >-
 
 # Tester le widget Apprentissage : formations & entreprises
 
-[https://idea.apprentissage.beta.gouv.fr/test-widget](https://idea.apprentissage.beta.gouv.fr/test-widget)
+[https://labonnealternance.apprentissage.beta.gouv.fr/test-widget](https://labonnealternance.apprentissage.beta.gouv.fr/test-widget)
 
