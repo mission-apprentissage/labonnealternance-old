@@ -99,6 +99,7 @@ typings/
 
 # User-specific stuff
 .vscode/
+.idea/
 
 # CMake
 cmake-build-*/
