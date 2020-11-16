@@ -228,13 +228,16 @@ const deduplicateFormations = (formations) => {
   return formations.reduce((acc, formation) => {
 
     const found = acc.find((f) => { 
-       return (f.source.nom.toLowerCase() === formation.source.nom.toLowerCase() &&
-                                    f.source.etablissement_formateur_siret === formation.source.etablissement_formateur_siret &&
-                                    f.source.niveau === formation.source.niveau)
-                                    
+       //console.log(f.source.nom,formation.source.nom,"-----",f.source.intitule,formation.source.intitule,"-----",f.source.etablissement_formateur_siret,formation.source.etablissement_formateur_siret,"------",f.source.diplome,formation.source.diplome,"-----",f.source.code_postal,formation.source.code_postal);
+       return ( f.source.nom === formation.source.nom &&
+                f.source.intitule === formation.source.intitule &&
+                f.source.etablissement_formateur_siret === formation.source.etablissement_formateur_siret &&
+                f.source.diplome === formation.source.diplome &&
+                f.source.code_postal === formation.source.code_postal )                                    
        });
-
-    if (!found) {
+           
+    if (!found) {      
+      //console.log(formation.source.nom,"-----",formation.source.intitule,"-----",formation.source.etablissement_formateur_siret,"------",formation.source.diplome,"-----",formation.source.code_postal);
       acc = [...acc, formation];
     }
 
@@ -420,6 +423,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "intitule",
       "nom",
       "code_postal",
+      "diplome",
       "etablissement_formateur_adresse",
       "etablissement_formateur_code_postal",
       "etablissement_formateur_localite",
