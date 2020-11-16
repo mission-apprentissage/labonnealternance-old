@@ -11,21 +11,21 @@ const FakeFeature = ({
   modalTitleAfterSelection,
   modalTextAfterSelection,
   questionsAndTags,
-  isOptionSelected,
-  setIsOptionSelected,
 }) => {
+  
   const handleClick = () => {
     setIsOptionSelected(true);
   };
 
   const [modal, setModal] = useState(false);
+  const [isOptionSelected, setIsOptionSelected] = useState(false);
 
   const toggle = () => setModal(!modal);
 
   return (
     <>
       <div className="avenir">
-        <button onClick={handleClick} className={tagName}>
+        <button onClick={toggle} className={tagName}>
           <img src={buttonPriseDeRDVIcon} alt="thumb up icon" />{buttonText}
         </button>
       </div>
@@ -44,7 +44,7 @@ const FakeFeature = ({
                 {modalTextBeforeSelection}
                 {questionsAndTags.map((question, idx) => (
                   <div key={idx}>
-                    <Button color="primary" className={`${question.tagName} question`} onClick={toggle}>
+                    <Button color="primary" className={`${question.tagName} question`} onClick={handleClick}>
                       {question.question}
                     </Button>
                   </div>
