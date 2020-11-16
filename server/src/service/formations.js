@@ -260,7 +260,7 @@ const transformFormationsForIdea = (formations) => {
 const transformFormationForIdea = (formation) => {
   let resultFormation = itemModel("formation");
 
-  resultFormation.title = formation.source.nom;
+  resultFormation.title = formation.source.nom?formation.source.nom:formation.source.intitule;
   resultFormation.longTitle = formation.source.intitule_long;
   resultFormation.diplomaLevel = formation.source.niveau;
   resultFormation.onisepUrl = formation.source.onisep_url;
@@ -417,6 +417,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "niveau",
       "idea_geo_coordonnees_etablissement",
       "intitule_long",
+      "intitule",
       "nom",
       "code_postal",
       "etablissement_formateur_adresse",
