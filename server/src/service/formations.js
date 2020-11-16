@@ -203,7 +203,7 @@ const getAtLeastSomeFormations = async ({ romes, romeDomain, coords, radius, dip
     }
 
     formations = deduplicateFormations(formations);
-    
+
     //throw new Error("BANG");
     formations = transformFormationsForIdea(formations);
 
@@ -226,24 +226,25 @@ const getAtLeastSomeFormations = async ({ romes, romeDomain, coords, radius, dip
 
 const deduplicateFormations = (formations) => {
   return formations.reduce((acc, formation) => {
+    const found = acc.find((f) => {
+      //console.log(f.source.nom,formation.source.nom,"-----",f.source.intitule,formation.source.intitule,"-----",f.source.etablissement_formateur_siret,formation.source.etablissement_formateur_siret,"------",f.source.diplome,formation.source.diplome,"-----",f.source.code_postal,formation.source.code_postal);
+      return (
+        f.source.nom === formation.source.nom &&
+        f.source.intitule === formation.source.intitule &&
+        f.source.etablissement_formateur_siret === formation.source.etablissement_formateur_siret &&
+        f.source.diplome === formation.source.diplome &&
+        f.source.code_postal === formation.source.code_postal
+      );
+    });
 
-    const found = acc.find((f) => { 
-       //console.log(f.source.nom,formation.source.nom,"-----",f.source.intitule,formation.source.intitule,"-----",f.source.etablissement_formateur_siret,formation.source.etablissement_formateur_siret,"------",f.source.diplome,formation.source.diplome,"-----",f.source.code_postal,formation.source.code_postal);
-       return ( f.source.nom === formation.source.nom &&
-                f.source.intitule === formation.source.intitule &&
-                f.source.etablissement_formateur_siret === formation.source.etablissement_formateur_siret &&
-                f.source.diplome === formation.source.diplome &&
-                f.source.code_postal === formation.source.code_postal )                                    
-       });
-           
-    if (!found) {      
+    if (!found) {
       //console.log(formation.source.nom,"-----",formation.source.intitule,"-----",formation.source.etablissement_formateur_siret,"------",formation.source.diplome,"-----",formation.source.code_postal);
       acc = [...acc, formation];
     }
 
     return acc;
   }, []);
-}
+};
 
 const transformFormationsForIdea = (formations) => {
   let resultFormations = {
@@ -263,7 +264,7 @@ const transformFormationsForIdea = (formations) => {
 const transformFormationForIdea = (formation) => {
   let resultFormation = itemModel("formation");
 
-  resultFormation.title = formation.source.nom?formation.source.nom:formation.source.intitule;
+  resultFormation.title = formation.source.nom ? formation.source.nom : formation.source.intitule;
   resultFormation.longTitle = formation.source.intitule_long;
   resultFormation.diplomaLevel = formation.source.niveau;
   resultFormation.onisepUrl = formation.source.onisep_url;
@@ -483,4 +484,10 @@ const sortFormations = (formations) => {
   });
 };
 
-module.exports = { getFormationsQuery, getFormationsParRegionQuery, transformFormationsForIdea, getFormations };
+module.exports = {
+  getFormationsQuery,
+  getFormationsParRegionQuery,
+  transformFormationsForIdea,
+  getFormations,
+  deduplicateFormations,
+};
