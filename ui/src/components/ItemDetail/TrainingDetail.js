@@ -30,7 +30,7 @@ const TrainingDetail = ({ training }) => {
           <>
             <div className="sectionTitle">Email de contact:</div>
             <br />
-            <a href={`mailto://${training.contact.email}`}>{training.contact.email}</a>
+            <a href={`mailto:${training.contact.email}`}>{training.contact.email}</a>
           </>
         ) : (
           ""
