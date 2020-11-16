@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import infoIcon from "../../assets/icons/info.svg";
 import FakeFeature from "../FakeFeature/FakeFeature";
+import infoIcon from "../../assets/icons/info.svg";
+import thumbUpIcon from "../../assets/icons/fake_feature_thumbup.svg";
+import wipIcon from "../../assets/icons/fake_feature_wip.svg";
 
-const TrainingDetail = ({ training }) => {
+const TrainingDetail = ({ training }) => {  
   useEffect(() => {
     try {
       document.getElementsByClassName("rightCol")[0].scrollTo(0, 0);
@@ -47,25 +49,53 @@ const TrainingDetail = ({ training }) => {
         </div>
         {
           <FakeFeature
-            buttonText="Prendre RDV avec l'établissement"
+            buttonText="Prendre contact"
             tagName="tmsPriseDeRendezVous"
-            modalTitle="Cette fonctionnalité n'est pas encore disponible"
-            modalText={
+            modalTitleBeforeSelection={
               <>
-                Votre clic nous est utile : il permet de mesurer votre intérêt pour la prise de rendez-vous en ligne !
-                <br />
-                <br />
-                comment préféreriez-vous prendre RDV avec l'établissement :{" "}
+                <img src={wipIcon} alt="wip up icon" />
+                <span>
+                  La <strong>prise de rendez-vous en ligne</strong> est en cours de construction
+                </span>
               </>
             }
+            modalTextBeforeSelection={<>Est-ce que vous auriez aimé... : </>}
             questionsAndTags={[
-              { question: "1) en choisissant des créneaux dans 1 agenda", tagName: "tmsPriseDeRendezVousParAgenda" },
-              { question: "2) en envoyant une demande de RDV par mail", tagName: "tmsPriseDeRendezVousParMail" },
               {
-                question: "3) en demandant à être rappelé ou en appelant l'établissement",
+                question: "Choisir un créneau dans l'agenda de l'établissement",
+                tagName: "tmsPriseDeRendezVousParAgenda",
+              },
+              {
+                question: "Etre appelé par l'établissement pour obtenir des informations",
                 tagName: "tmsPriseDeRendezVousParTelephone",
               },
             ]}
+            modalTitleAfterSelection={
+              <>
+                <img src={thumbUpIcon} alt="thumb up icon" />
+                <span>
+                  <strong>Merci !</strong> Votre clic nous est utile et nous permet d'améliorer notre service.
+                </span>
+              </>
+            }
+            modalTextAfterSelection={
+              <>
+                <span>
+                  <strong>Psst, n'oubliez pas de contacter l'établissement !</strong>
+                </span>
+                <br />
+                <br />
+                {training.contact && training.contact.email && (
+                  <div className={"cfaEmail"}>
+                    <span>
+                      <strong>Envoyer un email :</strong>
+                    </span>
+                    <br />
+                    <span>{training.contact.email}</span>
+                  </div>
+                )}
+              </>
+            }
           />
         }
       </div>
