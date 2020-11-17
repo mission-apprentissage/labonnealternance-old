@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.15 [13/11/2020]
+[130][131][Server][Back] Dédoublonnage des formations 
+
 ## 0.0.14 [13/11/2020]
 [169][UI][Front] Fix clignotement sur desktop width<768px
 
