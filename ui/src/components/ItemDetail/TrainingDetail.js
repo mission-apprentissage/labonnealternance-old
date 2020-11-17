@@ -49,7 +49,7 @@ const TrainingDetail = ({ training }) => {
         </div>
         {
           <FakeFeature
-            buttonText="Prendre contact"
+            buttonText="Prendre rendez-vous"
             tagName="tmsPriseDeRendezVous"
             modalTitleBeforeSelection={
               <>
@@ -91,7 +91,9 @@ const TrainingDetail = ({ training }) => {
                       <strong>Envoyer un email :</strong>
                     </span>
                     <br />
-                    <span>{training.contact.email}</span>
+                    <span>
+                      <a href={`mailto://${training.contact.email}`}>{training.contact.email}</a>
+                    </span>
                   </div>
                 )}
               </>
