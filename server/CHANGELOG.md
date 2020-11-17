@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.0.17 [17/11/2020]
+[170] Github actions
+Utilisation de main comme branche de production
+
 ## 0.0.16 [17/11/2020]
 Fakefeature prise de rendez-vous
 Prettier
