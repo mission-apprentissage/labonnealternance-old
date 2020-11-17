@@ -2,7 +2,6 @@ const assert = require("assert");
 const httpTests = require("../../utils/httpTests");
 
 httpTests(__filename, ({ startServer }) => {
-  
   it("Vérifie que la route répond", async () => {
     const { httpClient } = await startServer();
 
@@ -22,7 +21,7 @@ httpTests(__filename, ({ startServer }) => {
   });
 
   it("Vérifie que la recherche répond avec des résultats", async () => {
-    console.log('entering...');
+    console.log("entering...");
 
     const { httpClient } = await startServer();
 

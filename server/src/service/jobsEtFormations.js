@@ -5,7 +5,6 @@ const { getJobsFromApi } = require("./poleEmploi/jobsAndCompanies");
 const { jobsEtFormationsQueryValidator } = require("./jobsEtFormationsQueryValidator");
 
 const getJobsEtFormationsQuery = async (query) => {
-
   const queryValidationResult = jobsEtFormationsQueryValidator(query);
 
   if (queryValidationResult.error) return queryValidationResult;

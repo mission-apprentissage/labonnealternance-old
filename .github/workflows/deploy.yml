@@ -1,9 +1,9 @@
 name: Deploy
 on:
   push:
-    branches: [ master, recette ]
+    branches: [ main, recette ]
   pull_request:
-    branches: [ master, recette ]
+    branches: [ main, recette ]
 
 jobs:
   deploy:
@@ -13,10 +13,10 @@ jobs:
         uses: actions/checkout@v2
 
       - shell: bash
-        run: echo '::set-env name=LABONNEALTERNANCE_HEAD_REF::${{ github.head_ref }}'
+        run: echo 'LABONNEALTERNANCE_HEAD_REF=${{ github.head_ref }}' >> $GITHUB_ENV
       
       - shell: bash
-        run: echo '::set-env name=LABONNEALTERNANCE_REF::${{ github.ref }}'
+        run: echo 'LABONNEALTERNANCE_REF=${{ github.ref }}' >> $GITHUB_ENV
 
       - name: Check output
         run: echo ${LABONNEALTERNANCE_REF:-${LABONNEALTERNANCE_REF##*/}}
@@ -36,5 +36,5 @@ jobs:
           repository: mission-apprentissage/labonnealternance-infra
           token: ${{ secrets.DEVOPS_ACCESS_TOKEN }}
           event-type: deploy
-          client-payload: '{"envName": "production", "branchName":"master"}'
-        if: github.ref == 'refs/heads/master'
+          client-payload: '{"envName": "production", "branchName":"main"}'
+        if: github.ref == 'refs/heads/main'

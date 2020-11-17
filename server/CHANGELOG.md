@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.0.17 [17/11/2020]
+[170] Github actions
+Utilisation de main comme branche de production
+
+## 0.0.16 [17/11/2020]
+Fakefeature prise de rendez-vous
+Prettier
+Fix dédoublonnage
+Fix tests
+
+## 0.0.15 [13/11/2020]
+[130][131][Server][Back] Dédoublonnage des formations 
+
+## 0.0.14 [13/11/2020]
+[169][UI][Front] Fix clignotement sur desktop width<768px
+
+## 0.0.13 - 13-11-2020
+[179][Server][Front] Versionning
+
 ## 0.0.12 (12/11/2020)
 [321][Server] limitation du nombre de requêtes par seconde
 
