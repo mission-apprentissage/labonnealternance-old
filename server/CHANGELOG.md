@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.18 [17/11/2020]
+[170-b] Branchement Github actions avec infra
+
 ## 0.0.17 [17/11/2020]
 [170] Github actions
 Utilisation de main comme branche de production
