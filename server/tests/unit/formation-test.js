@@ -41,4 +41,17 @@ describe(__filename, () => {
     assert.strictEqual(deduplicatedList[1].source.nom, "a2");
     assert.strictEqual(deduplicatedList[2].source.nom, "a3");
   });
+
+  it("Retourne l'objet d'origine si pas un array ", () => {
+    const deduplicatedList = deduplicateFormations("not_an_array");
+
+    assert.strictEqual(deduplicatedList, "not_an_array");
+  });
+
+  it("Retourne l'objet d'origine si tableau vide ", () => {
+    const deduplicatedList = deduplicateFormations([]);
+
+    assert.strictEqual(deduplicatedList instanceof Array, true);
+    assert.strictEqual(deduplicatedList.length, 0);
+  });
 });

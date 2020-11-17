@@ -225,25 +225,29 @@ const getAtLeastSomeFormations = async ({ romes, romeDomain, coords, radius, dip
 };
 
 const deduplicateFormations = (formations) => {
-  return formations.reduce((acc, formation) => {
-    const found = acc.find((f) => {
-      //console.log(f.source.nom,formation.source.nom,"-----",f.source.intitule,formation.source.intitule,"-----",f.source.etablissement_formateur_siret,formation.source.etablissement_formateur_siret,"------",f.source.diplome,formation.source.diplome,"-----",f.source.code_postal,formation.source.code_postal);
-      return (
-        f.source.nom === formation.source.nom &&
-        f.source.intitule === formation.source.intitule &&
-        f.source.etablissement_formateur_siret === formation.source.etablissement_formateur_siret &&
-        f.source.diplome === formation.source.diplome &&
-        f.source.code_postal === formation.source.code_postal
-      );
-    });
+  if (formations instanceof Array && formations.length > 0) {
+    return formations.reduce((acc, formation) => {
+      const found = acc.find((f) => {
+        //console.log(f.source.nom,formation.source.nom,"-----",f.source.intitule,formation.source.intitule,"-----",f.source.etablissement_formateur_siret,formation.source.etablissement_formateur_siret,"------",f.source.diplome,formation.source.diplome,"-----",f.source.code_postal,formation.source.code_postal);
+        return (
+          f.source.nom === formation.source.nom &&
+          f.source.intitule === formation.source.intitule &&
+          f.source.etablissement_formateur_siret === formation.source.etablissement_formateur_siret &&
+          f.source.diplome === formation.source.diplome &&
+          f.source.code_postal === formation.source.code_postal
+        );
+      });
 
-    if (!found) {
-      //console.log(formation.source.nom,"-----",formation.source.intitule,"-----",formation.source.etablissement_formateur_siret,"------",formation.source.diplome,"-----",formation.source.code_postal);
-      acc = [...acc, formation];
-    }
+      if (!found) {
+        //console.log(formation.source.nom,"-----",formation.source.intitule,"-----",formation.source.etablissement_formateur_siret,"------",formation.source.diplome,"-----",formation.source.code_postal);
+        acc = [...acc, formation];
+      }
 
-    return acc;
-  }, []);
+      return acc;
+    }, []);
+  } else {
+    return formations;
+  }
 };
 
 const transformFormationsForIdea = (formations) => {
