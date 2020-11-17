@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 import "./FakeFeature.css";
-import buttonPriseDeRDVIcon from "../../assets/icons/fake_feature_btn.svg";
 
 const FakeFeature = ({
   buttonText,
@@ -26,7 +25,7 @@ const FakeFeature = ({
     <>
       <div className="avenir">
         <button onClick={toggle} className={tagName}>
-          <img src={buttonPriseDeRDVIcon} alt="thumb up icon" />{buttonText}
+          {buttonText}
         </button>
       </div>
       <Modal isOpen={modal} toggle={toggle} backdrop="static" className="avenirModale">
