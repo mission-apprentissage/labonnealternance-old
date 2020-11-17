@@ -63,6 +63,8 @@ module.exports = async (components) => {
 
   app.use("/api/version", limiter3PerSecond, version());
 
+  app.use("/api/version", limiter3PerSecond, version());
+
   app.use("/api/formations", limiter5PerSecond, formation());
 
   app.use("/api/jobs", limiter3PerSecond, job());
