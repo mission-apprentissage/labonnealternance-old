@@ -54,11 +54,13 @@ const FakeFeature = ({
             )}
           </>
         )}
-        <ModalFooter>
-          <Button color="secondary" onClick={toggle}>
-            Retour
-          </Button>
-        </ModalFooter>
+        {isOptionSelected && (
+          <ModalFooter>
+            <Button color="secondary" onClick={toggle}>
+              Retour
+            </Button>
+          </ModalFooter>
+        )}
       </Modal>
     </>
   );
