@@ -92,7 +92,7 @@ const TrainingDetail = ({ training }) => {
                     </span>
                     <br />
                     <span>
-                      <a href={`mailto://${training.contact.email}`}>{training.contact.email}</a>
+                      <a href={`mailto:${training.contact.email}`}>{training.contact.email}</a>
                     </span>
                   </div>
                 )}
