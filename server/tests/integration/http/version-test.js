@@ -3,7 +3,6 @@ const httpTests = require("../../utils/httpTests");
 const isSemver = require("is-semver");
 
 httpTests(__filename, ({ startServer }) => {
-  
   it("Vérifie que la route répond", async () => {
     const { httpClient } = await startServer();
 
@@ -19,5 +18,4 @@ httpTests(__filename, ({ startServer }) => {
 
     assert(isSemver(response.data.version));
   });
-
 });

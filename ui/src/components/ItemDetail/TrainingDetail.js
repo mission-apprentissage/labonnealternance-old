@@ -4,7 +4,7 @@ import infoIcon from "../../assets/icons/info.svg";
 import thumbUpIcon from "../../assets/icons/fake_feature_thumbup.svg";
 import wipIcon from "../../assets/icons/fake_feature_wip.svg";
 
-const TrainingDetail = ({ training }) => {  
+const TrainingDetail = ({ training }) => {
   useEffect(() => {
     try {
       document.getElementsByClassName("rightCol")[0].scrollTo(0, 0);
