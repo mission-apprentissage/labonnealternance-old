@@ -1,9 +1,9 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
 
-const path = require('path');
-const parseChangelog = require('changelog-parser')
-const _ = require('lodash')
+const path = require("path");
+const parseChangelog = require("changelog-parser");
+const _ = require("lodash");
 
 /**
  * VERSION
@@ -14,8 +14,8 @@ module.exports = () => {
   router.get(
     "/",
     tryCatch(async (req, res) => {
-      let data = await parseChangelog(path.join(__dirname, '../../../CHANGELOG.md'))
-      return res.json(_.get(data, 'versions.0', {}));
+      let data = await parseChangelog(path.join(__dirname, "../../../CHANGELOG.md"));
+      return res.json(_.get(data, "versions.0", {}));
     })
   );
 

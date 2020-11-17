@@ -57,10 +57,12 @@ module.exports = async (components) => {
   });
 
   const swaggerUi = require("swagger-ui-express");
-  const swaggerDocument = require('../api-docs/swagger.json');
+  const swaggerDocument = require("../api-docs/swagger.json");
 
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   
+  app.use("/api/version", limiter3PerSecond, version());
+
   app.use("/api/version", limiter3PerSecond, version());
 
   app.use("/api/formations", limiter5PerSecond, formation());
