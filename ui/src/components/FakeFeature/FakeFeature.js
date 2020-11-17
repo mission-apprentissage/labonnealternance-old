@@ -11,7 +11,6 @@ const FakeFeature = ({
   modalTextAfterSelection,
   questionsAndTags,
 }) => {
-  
   const handleClick = () => {
     setIsOptionSelected(true);
   };
@@ -43,7 +42,7 @@ const FakeFeature = ({
                 {modalTextBeforeSelection}
                 {questionsAndTags.map((question, idx) => (
                   <div key={idx}>
-                    <Button color="primary" className={`${question.tagName} question`} onClick={handleClick}>
+                    <Button color="white" className={`${question.tagName} question`} onClick={handleClick}>
                       {question.question}
                     </Button>
                   </div>
