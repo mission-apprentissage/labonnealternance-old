@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.21 [20/11/2020]
+[172] SSR avec NextJS
+
 ## 0.0.20 [19/11/2020]
 [BSR] Suppression des ApiTesters inutilisés
 
