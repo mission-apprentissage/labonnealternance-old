@@ -1,0 +1,7 @@
+{
+    "LANDING": "/",
+    "NOTFOUND": "/404",    
+    "APITESTER": "/test-api",
+    "WIDGETTESTER": "/test-widget",
+    "SEARCHFORTRAININGSANDJOBS": "/recherche-apprentissage"
+}
