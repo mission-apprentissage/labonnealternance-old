@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.19 [19/11/2020]
+Pre-commit
+
 ## 0.0.18 [17/11/2020]
 [170-b] Branchement Github actions avec infra
 
