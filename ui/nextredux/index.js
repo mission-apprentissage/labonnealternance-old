@@ -53,31 +53,31 @@ async function init() {
 * HACK : Global error catching. 
 * See https://stackoverflow.com/a/56255288/2595513
 */
-let console = (function(oldCons){
-  return {
-    log: function(text){
-      oldCons.log(text);
-    },
-    info: function (text) {
-      oldCons.info(text);
-    },
-    warn: function (text) {
-      oldCons.warn(text);
-    },
-    error: function (text) {
-      oldCons.error(text);
-      if (text === '__unhandledrejection__') {
-        Sentry.captureException(text);
-        ReactDOM.render(<div style={{'textAlign' : 'center'}}><DomainError/></div>, document.getElementById('root'))
-      }
-    }
-  };
-}(window.console));
-// catch unhandled promises
-window.addEventListener("unhandledrejection", (event) => {
-  console.error('__unhandledrejection__');
-  console.error(event.reason);
-});
+// let console = (function(oldCons){
+//   return {
+//     log: function(text){
+//       oldCons.log(text);
+//     },
+//     info: function (text) {
+//       oldCons.info(text);
+//     },
+//     warn: function (text) {
+//       oldCons.warn(text);
+//     },
+//     error: function (text) {
+//       oldCons.error(text);
+//       if (text === '__unhandledrejection__') {
+//         Sentry.captureException(text);
+//         ReactDOM.render(<div style={{'textAlign' : 'center'}}><DomainError/></div>, document.getElementById('root'))
+//       }
+//     }
+//   };
+// }(window.console));
+// // catch unhandled promises
+// window.addEventListener("unhandledrejection", (event) => {
+//   console.error('__unhandledrejection__');
+//   console.error(event.reason);
+// });
 /*
 * End of Hack
 */

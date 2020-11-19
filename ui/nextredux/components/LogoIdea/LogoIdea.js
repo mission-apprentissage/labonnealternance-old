@@ -11,7 +11,9 @@ const LogoIdea = () => {
       type: "goToPage",
       page: widgetParameters && widgetParameters.returnURI ? widgetParameters.returnURI : "/",
     };
-    window.parent.postMessage(p, "*");
+    if (typeof window !== 'undefined') {
+      window.parent.postMessage(p, "*");
+    }
   };
 
   return (

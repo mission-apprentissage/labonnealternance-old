@@ -34,7 +34,9 @@ export const AutoCompleteField = ({
 
     if (ancestor) {
       setTimeout(() => {
-        if (window.innerHeight < 650) ancestor.scrollTop = ancestor.scrollTop + 150;
+        if (typeof window !== 'undefined') {
+         if (window.innerHeight < 650) ancestor.scrollTop = ancestor.scrollTop + 150;
+        }
       }, 350);
     }
   };

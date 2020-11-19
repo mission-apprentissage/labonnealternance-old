@@ -1,7 +1,11 @@
 import * as Sentry from "@sentry/react";
 
 const getValueFromPath = (key) => {
-  const url = new URL(window.location);
+  getConfig
+  let url = ''
+  if (typeof window !== 'undefined') {
+    url = new URL(window.location);
+  }
 
   // WARNING: URLSearchParams not supported by IE
   const searchParams = new URLSearchParams(url.search);

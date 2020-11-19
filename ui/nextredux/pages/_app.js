@@ -9,6 +9,8 @@ import routes from "../routes.json";
 
 import "./App.module.css";
 
+
+
 const App = ({ isTrainingOnly }) => {
 
   // // window object is not accessible from SSR, 

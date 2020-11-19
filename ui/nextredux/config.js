@@ -14,8 +14,10 @@ const config = {
 };
 
 export const getEnvName = () => {
-  let hostname = window.location.hostname;
-
+  let hostname = '';
+  if (typeof window !== 'undefined') {
+    hostname = window.location.hostname;
+  }
   if (config.dev.urls.some((regexp) => regexp.test(hostname))) {
     return "dev";
   } else if (config.prod.urls.some((regexp) => regexp.test(hostname))) {
@@ -28,11 +30,11 @@ export const getEnvName = () => {
 export const getConfig = (envName) => {
   switch (envName) {
     case "prod":
-      return config.prod;
+    return config.prod;
     case "dev":
-      return config.dev;
+    return config.dev;
     default:
-      return config.local;
+    return config.local;
   }
 };
 

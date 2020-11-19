@@ -31,6 +31,8 @@ async function init() {
   const isTrainingOnly = getIsTrainingOnly();
   getWidgetParameters();
 
+
+
   ReactDOM.render(
     <ErrorBoundary>
       <Provider store={store}>

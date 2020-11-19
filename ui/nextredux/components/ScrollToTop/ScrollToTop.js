@@ -16,7 +16,9 @@ const ScrollToTop = () => {
         element.scrollIntoView({ block: "start", behavior: "smooth" });
       }
     } else {
-      window.scrollTo(0, 0);
+      if (typeof window !== 'undefined') {
+        window.scrollTo(0, 0);
+      }
     }
   });
   return <div className="scrollToTopElement" />;
