@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 import peopleIcon from "../../assets/icons/searchingPeople.svg";
 import errorAlertIcon from "../../assets/icons/errorAlert.svg";
 import "./notFound.css";

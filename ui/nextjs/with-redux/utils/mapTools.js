@@ -2,7 +2,7 @@ import React from "react";
 import distance from "@turf/distance";
 import { Marker, MapPopup } from "../pages/SearchForTrainingsAndJobs/components";
 import ReactDOM from "react-dom";
-import mapboxgl from "mapbox-gl";
+// import mapboxgl from "mapbox-gl";
 import { Provider } from "react-redux";
 import { fetchAddresses } from "../services/baseAdresse";
 import { scrollToElementInContainer, getItemElement } from "./tools";

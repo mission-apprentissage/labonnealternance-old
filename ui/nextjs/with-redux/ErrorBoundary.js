@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import * as Sentry from "@sentry/react";
-import DomainError from  "./pages/SearchForTrainingsAndJobs/components/DomainError/DomainError.js";
+import DomainError from "./zpages/SearchForTrainingsAndJobs/components/DomainError/DomainError.js";
 
 export default class ErrorBoundary extends React.Component {
   constructor(props) {

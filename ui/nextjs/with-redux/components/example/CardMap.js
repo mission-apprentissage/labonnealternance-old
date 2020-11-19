@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 import { image } from "../../image";
 import shave from "shave";
 import "./CardMap.css";

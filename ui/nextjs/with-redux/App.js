@@ -3,7 +3,7 @@ import { Switch, Route, withRouter } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import { ScrollToTop } from "./components";
-import { NotFound, ApiTester, WidgetTester, SearchForTrainingsAndJobs } from "./pages";
+import { NotFound, ApiTester, WidgetTester, SearchForTrainingsAndJobs } from "./zpages";
 
 import routes from "./routes.json";
 
