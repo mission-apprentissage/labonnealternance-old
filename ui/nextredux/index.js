@@ -6,18 +6,18 @@ import { ConnectedRouter } from "connected-react-router";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 
-import configureStore, { history } from "../redux";
+import configureStore, { history } from "./redux";
 
-// import App from "./App";
-import * as serviceWorker from "../serviceWorker";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../index.module.css";
-import ErrorBoundary from  "../ErrorBoundary";
-import { getWidgetParameters, getIsTrainingOnly } from "../services/config";
-import DomainError from  "../zpages/SearchForTrainingsAndJobs/components/DomainError/DomainError.js";
-import baseUrl from "../utils/baseUrl";
-import microAjax from "../utils/microAjax";
+import "./index.css";
+import ErrorBoundary from  "./ErrorBoundary";
+import { getWidgetParameters, getIsTrainingOnly } from "./services/config";
+import DomainError from  "./zpages/SearchForTrainingsAndJobs/components/DomainError/DomainError.js";
+import baseUrl from "./utils/baseUrl";
+import microAjax from "./utils/microAjax";
 
 const store = configureStore();
 
@@ -49,10 +49,35 @@ async function init() {
 }
 
 
-
-
-
-
+/*
+* HACK : Global error catching. 
+* See https://stackoverflow.com/a/56255288/2595513
+*/
+let console = (function(oldCons){
+  return {
+    log: function(text){
+      oldCons.log(text);
+    },
+    info: function (text) {
+      oldCons.info(text);
+    },
+    warn: function (text) {
+      oldCons.warn(text);
+    },
+    error: function (text) {
+      oldCons.error(text);
+      if (text === '__unhandledrejection__') {
+        Sentry.captureException(text);
+        ReactDOM.render(<div style={{'textAlign' : 'center'}}><DomainError/></div>, document.getElementById('root'))
+      }
+    }
+  };
+}(window.console));
+// catch unhandled promises
+window.addEventListener("unhandledrejection", (event) => {
+  console.error('__unhandledrejection__');
+  console.error(event.reason);
+});
 /*
 * End of Hack
 */
