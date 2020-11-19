@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.20 [19/11/2020]
+[BSR] Suppression des ApiTesters inutilisés
+
 ## 0.0.19 [19/11/2020]
 Pre-commit
 

@@ -3,7 +3,7 @@ import { Switch, Route, withRouter } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import { ScrollToTop } from "./components";
-import { NotFound, ApiTester, WidgetTester, SearchForTrainingsAndJobs } from "./pages";
+import { NotFound, WidgetTester, SearchForTrainingsAndJobs } from "./pages";
 
 import routes from "./routes.json";
 
@@ -19,7 +19,6 @@ const App = ({ isTrainingOnly }) => {
           path={routes.LANDING}
           render={(props) => <SearchForTrainingsAndJobs {...props} isTrainingOnly={isTrainingOnly} />}
         />
-        <Route exact path={routes.APITESTER} component={ApiTester} />
         <Route exact path={routes.WIDGETTESTER} component={WidgetTester} />
         <Route
           exact

@@ -5,7 +5,6 @@ const api = require("../../service/jobsEtFormations");
  * API romes
  */
 module.exports = () => {
-
   const router = express.Router();
 
   router.get(
