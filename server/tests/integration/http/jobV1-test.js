@@ -63,12 +63,12 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     let response = await httpClient.get(
-      "/api/V1/jobs?romes=ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,&longitude=2.3752&latitude=48.845&radius=30&insee=75056"
+      "/api/V1/jobs?romes=ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE&longitude=2.3752&latitude=48.845&radius=30&insee=75056"
     );
 
     assert.strictEqual(response.status, 400);
     assert.deepStrictEqual(response.data.error, "wrong_parameters");
-    assert.ok(response.data.error_messages.indexOf("romes : Too many rome codes. Maximum is 9.") >= 0);
+    assert.ok(response.data.error_messages.indexOf("romes : Too many rome codes. Maximum is 15.") >= 0);
   });
 
   it("Vérifie que les requêtes sans code insee sont refusées", async () => {

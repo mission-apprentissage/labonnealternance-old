@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.22 [19/11/2020]
+[194] Fix bug de recherche sur le métier commerce
+
 ## 0.0.21 [19/11/2020]
 [191] Upgrade node 14
 
