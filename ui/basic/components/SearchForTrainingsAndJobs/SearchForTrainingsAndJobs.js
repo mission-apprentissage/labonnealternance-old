@@ -3,7 +3,7 @@ import { Row, Col } from "reactstrap";
 import "./searchfortrainingsandjobs.module.css";
 
 import { MapListSwitchButton, RightColumn } from "./components";
-import { setSelectedItem, setItemToScrollTo } from "../../redux/Training/actions";
+import { setSelectedItem, setItemToScrollTo } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { map } from "../../utils/mapTools";
 import Map from "../../components/Map";

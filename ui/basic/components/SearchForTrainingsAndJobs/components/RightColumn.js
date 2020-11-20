@@ -16,7 +16,7 @@ import {
   setItemToScrollTo,
   setFormValues,
   setExtendedSearch,
-} from "../../../redux/Training/actions";
+} from "../../../store/actions";
 import {
   map,
   flyToMarker,

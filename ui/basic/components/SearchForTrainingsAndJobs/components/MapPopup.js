@@ -1,10 +1,9 @@
 import React from "react";
-import { setSelectedItem } from "../../../redux/Training/actions";
+import { setSelectedItem } from "../../../store/actions";
 import { useDispatch } from "react-redux";
-//import { getTrainingSchoolName, getTrainingAddress } from "../../../utils/formations";
 import { getJobAddress } from "../../../utils/jobs";
 import { logError } from "../../../utils/tools";
-import { ErrorMessage } from "../../../components";
+import { ErrorMessage } from "../../";
 
 const MapPopup = ({ type, item, handleSelectItem }) => {
   //console.log("Mappopup : ", type, item);

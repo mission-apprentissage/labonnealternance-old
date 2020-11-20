@@ -2,6 +2,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { createRouterMiddleware, initialRouterState, routerReducer } from 'connected-next-router'
 import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import Router from 'next/router'
+import Training from './reducer'
+
+const appState = {
+  trainings: Training,
+};
 
 const bindMiddleware = (middleware) => {
   const { composeWithDevTools } = require('redux-devtools-extension')
@@ -10,9 +15,11 @@ const bindMiddleware = (middleware) => {
 
 const combinedReducer = combineReducers({
   router: routerReducer,
+  ...appState,
 })
 
 const reducer = (state, action) => {
+
   if (action.type === HYDRATE) {
     const nextState = {
       ...state, // use previous state
@@ -26,6 +33,7 @@ const reducer = (state, action) => {
   } else {
     return combinedReducer(state, action)
   }
+
 }
 
 export const initStore = (context) => {
@@ -34,7 +42,13 @@ export const initStore = (context) => {
   let initialState
   if (asPath) {
     initialState = {
-      router: initialRouterState(asPath)
+      router: initialRouterState(asPath),
+      trainings: [],
+      jobs: [],
+      itemToScrollTo: null,
+      selectedItem: null,
+      formValues: null,
+      extendedSearch: false,
     }
   }
   return createStore(reducer, initialState, bindMiddleware([routerMiddleware]))

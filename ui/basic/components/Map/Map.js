@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useStore, useDispatch } from "react-redux";
-import { setSelectedItem } from "../../redux/Training/actions";
+import { setSelectedItem } from "../../store/actions";
 
 import { map, initializeMap } from "../../utils/mapTools";
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, Row, Col, Input } from "reactstrap";
-import "../searchfortrainingsandjobs.css";
+import "../searchfortrainingsandjobs.module.css";
 import mapMarker from "../../../assets/icons/pin.svg";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AutoCompleteField, LogoIdea, RadioButton } from "../../";
