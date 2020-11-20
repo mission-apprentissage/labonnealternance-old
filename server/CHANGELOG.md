@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.21 [19/11/2020]
+[191] Upgrade node 14
+
 ## 0.0.20 [19/11/2020]
 [BSR] Suppression des ApiTesters inutilisés
 
