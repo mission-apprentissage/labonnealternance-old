@@ -1,4 +1,4 @@
-const validateRomes = (romes, error_messages, romeLimit = 9) => {
+const validateRomes = (romes, error_messages, romeLimit = 15) => {
   // codes ROME : romes
   if (!romes) error_messages.push("romes : Rome codes are missing. At least 1.");
   else if (romes.split(",").length > romeLimit)
@@ -9,7 +9,7 @@ const validateRomes = (romes, error_messages, romeLimit = 9) => {
     );
 };
 
-const validateRomeOrDomain = ({ romes, romeDomain, romeLimit = 9, optional }, error_messages) => {
+const validateRomeOrDomain = ({ romes, romeDomain, romeLimit = 15, optional }, error_messages) => {
   // codes ROME : romes
   if (!optional && !romes && !romeDomain) {
     error_messages.push("romes, romeDomain : You must define at least 1 rome code OR a single romeDomain.");
@@ -30,7 +30,7 @@ const validateRomeOrDomain = ({ romes, romeDomain, romeLimit = 9, optional }, er
   }
 };
 
-const validateOptionalRomeOrDomain = ({ romes, romeDomain, romeLimit = 9 }, error_messages) => {
+const validateOptionalRomeOrDomain = ({ romes, romeDomain, romeLimit = 15 }, error_messages) => {
   validateRomeOrDomain({ romes, romeDomain, romeLimit, optional: true }, error_messages);
 };
 
