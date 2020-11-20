@@ -1,6 +1,5 @@
 const assert = require("assert");
 const httpTests = require("../../utils/httpTests");
-const config = require("config");
 
 httpTests(__filename, ({ startServer }) => {
   it("rate-limit, exemple avec /api/romelabels : 11 requêtes consécutives : les 10 premières sont acceptées, mais pas la 11ème", async () => {
