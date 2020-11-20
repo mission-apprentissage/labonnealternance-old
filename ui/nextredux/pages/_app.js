@@ -50,7 +50,12 @@ const App = ({ isTrainingOnly }) => {
   //   });
   // })
 
-
+  if (typeof window !== 'undefined') {
+    microAjax({ 
+      url: baseUrl + '/api/version', 
+      success: (res) => console.log(`version : ${JSON.parse(res).version}`)
+    });  
+  }
 
   return (
     <Layout>

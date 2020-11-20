@@ -1,4 +1,6 @@
 import * as Sentry from "@sentry/react";
+import getConfig from '../config'
+
 
 const getValueFromPath = (key) => {
   getConfig

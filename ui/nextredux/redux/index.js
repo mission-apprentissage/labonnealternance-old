@@ -1,28 +1,41 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
-import { routerMiddleware } from "connected-react-router";
+import { connectRouter, routerMiddleware } from "connected-react-router";
 
 import rootReducer from "./rootReducer";
+import isClient from "../services/isClient";
 
-export const history = createBrowserHistory();
+const composeEnhancers =
+  typeof window !== 'undefined' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
 
-const initialState = {};
-const enhancers = [];
+export const getStoreConfiguration = (preloadedState) => {
+  const middlewares = [];
 
-const middleware = [routerMiddleware(history), thunk];
+  let history;
+  let reducers = {
+    init(state, action) {
+      return { ...state, ...action.payload };
+    },
+  };
 
-if (process.env.NODE_ENV === "development") {
-  const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
-
-  if (typeof devToolsExtension === "function") {
-    enhancers.push(devToolsExtension());
+  if (typeof window !== 'undefined') {
+    history = createBrowserHistory();
+    reducers.router = connectRouter(history);
+    middlewares.push(routerMiddleware(history));
+    middlewares.push(thunk);
   }
-}
 
-const createStoreWithMiddleware = compose(applyMiddleware(...middleware), ...enhancers)(createStore);
-
-export default function configureStore(preloadState = initialState) {
-  const store = createStoreWithMiddleware(rootReducer(history), preloadState);
-  return store;
-}
+  return {
+    store: createStore(
+      combineReducers(reducers),
+      preloadedState,
+      composeEnhancers(applyMiddleware(...middlewares))
+    ),
+    history,
+  };
+};
