@@ -1,0 +1,22 @@
+{
+  "name": "basic",
+  "version": "0.0.1",
+  "description": "S",
+  "license": "MIT",
+  "scripts": {
+    "dev": "./node_modules/next/dist/bin/next",
+    "build": "./node_modules/next/dist/bin/next build",
+    "start": "./node_modules/next/dist/bin/next start"
+  },
+  "dependencies": {
+    "next": "latest",
+    "next-images": "1.6.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.0",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.8",
+    "connected-next-router": "^4.0.0",
+    "next-redux-wrapper": "^6.0.0"
+  }
+}

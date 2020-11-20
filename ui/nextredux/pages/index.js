@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+
 import { ConnectedRouter } from "connected-react-router";
 
 import * as Sentry from "@sentry/react";
@@ -74,9 +75,9 @@ const IndexPage = () => {
   return (
     <ErrorBoundary>
       <Provider store={store_configuration.store}>
-        <ConnectedRouter history={store_configuration.history}>
+        <BrowserRouter history={store_configuration.history}>
           <App isTrainingOnly={isTrainingOnly} />
-        </ConnectedRouter>
+        </BrowserRouter>
       </Provider>
     </ErrorBoundary>
   );
