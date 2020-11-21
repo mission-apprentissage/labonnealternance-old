@@ -143,12 +143,13 @@ const getLbbCompanies = async (romes, latitude, longitude, radius, limit, type) 
   } catch (error) {
     let errorObj = { result: "error", message: error.message };
 
-    Sentry.captureException(error);
-
-    if (error.response) {
+    if (error?.response?.data) {
       errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
+      errorObj.statusText = `${error.response.statusText}: ${error.response.data}`;
+
+      Sentry.captureMessage(errorObj.statusText);
     }
+    Sentry.captureException(error);
 
     console.log("error get " + type + " Companies", errorObj);
 
