@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.23 [21/11/2020]
+[199] Retour d'erreur précis si utilisation d'un rome inconnu pour les appels à l'api lbb
+
 ## 0.0.22 [19/11/2020]
 [194] Fix bug de recherche sur le métier commerce
 
