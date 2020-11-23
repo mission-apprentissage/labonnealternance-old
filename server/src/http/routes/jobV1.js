@@ -17,7 +17,7 @@ module.exports = () => {
         else res.status(500);
       }
 
-      return res.json(result);
+      return res.json({ ...result, origin: req.headers.origin });
     })
   );
 
