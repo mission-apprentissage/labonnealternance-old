@@ -2,7 +2,7 @@ const axios = require("axios");
 const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
-
+const { isOriginLocal } = require("../../common/utils/isOriginLocal");
 const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius, origin }) => {
   console.log("lbba : ", { romes, latitude, longitude, radius, type, strictRadius, origin });
 
@@ -33,8 +33,6 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, s
 };
 
 const transformLbbCompaniesForIdea = ({ companySet, radius, type, strictRadius, origin }) => {
-  console.log("origin ", origin);
-
   let maxWeigth = type === "lbb" ? 800 : 900;
   if (!strictRadius) maxWeigth = 1000;
 
@@ -44,8 +42,12 @@ const transformLbbCompaniesForIdea = ({ companySet, radius, type, strictRadius, 
   };
 
   if (companySet.companies && companySet.companies.length) {
+    const contactAllowedOrigin = isOriginLocal(origin);
+
+    console.log("contactAllowedOrigin : ", contactAllowedOrigin);
+
     for (let i = 0; i < companySet.companies.length; ++i) {
-      let company = transformLbbCompanyForIdea(companySet.companies[i], type);
+      let company = transformLbbCompanyForIdea({ company: companySet.companies[i], type, contactAllowedOrigin });
       let distanceWeightModifier = 0;
 
       // détermine si la bonne boîte est dans le rayon de recherche initial ou non
@@ -69,14 +71,17 @@ const transformLbbCompaniesForIdea = ({ companySet, radius, type, strictRadius, 
 };
 
 // Adaptation au modèle Idea et conservation des seules infos utilisées des offres
-const transformLbbCompanyForIdea = (company, type) => {
+const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => {
   let resultCompany = itemModel(type);
 
   resultCompany.title = company.name;
-  resultCompany.contact = {
-    email: company.email,
-    phone: company.phone,
-  };
+
+  if (contactAllowedOrigin) {
+    resultCompany.contact = {
+      email: company.email,
+      phone: company.phone,
+    };
+  }
 
   resultCompany.place = {
     distance: company.distance,
