@@ -174,6 +174,7 @@ const getRegionFormations = async ({
 
 // tente de récupérer des formatiosn dans le rayon de recherche, si sans succès cherche les maxOutLimitFormation les plus proches du centre de recherche
 const getAtLeastSomeFormations = async ({ romes, romeDomain, coords, radius, diploma, maxOutLimitFormation }) => {
+  console.log("formations : ", { romes, romeDomain, coords, radius, diploma, maxOutLimitFormation });
   try {
     let formations = [];
     let currentRadius = radius;

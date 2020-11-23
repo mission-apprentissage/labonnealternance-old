@@ -3,7 +3,9 @@ const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
 
-const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius }) => {
+const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius, origin }) => {
+  console.log("lbba : ", { romes, latitude, longitude, radius, type, strictRadius, origin });
+
   let companySet = null;
   let currentRadius = strictRadius ? radius : 20000;
   let companyLimit = 100; //TODO: query params options or default value from properties -> size || 100
@@ -11,7 +13,7 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, s
   let trys = 0;
 
   while (trys < 3) {
-    companySet = await getLbbCompanies(romes, latitude, longitude, currentRadius, companyLimit, type);
+    companySet = await getLbbCompanies({ romes, latitude, longitude, currentRadius, companyLimit, type });
 
     if (companySet.status === 429) {
       console.log("Lbb api quota exceeded. Retrying : ", trys + 1);
@@ -23,14 +25,16 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, s
 
   //console.log("companies :", companySet);
   if (companySet.companies && companySet.companies.length) {
-    companySet = transformLbbCompaniesForIdea(companySet, radius, type, strictRadius);
+    companySet = transformLbbCompaniesForIdea({ companySet, radius, type, strictRadius, origin });
     //console.log("apres refine : ", jobs.resultats[0].lieuTravail.distance);
   }
 
   return companySet;
 };
 
-const transformLbbCompaniesForIdea = (companySet, radius, type, strictRadius) => {
+const transformLbbCompaniesForIdea = ({ companySet, radius, type, strictRadius, origin }) => {
+  console.log("origin ", origin);
+
   let maxWeigth = type === "lbb" ? 800 : 900;
   if (!strictRadius) maxWeigth = 1000;
 
@@ -113,7 +117,7 @@ const transformLbbCompanyForIdea = (company, type) => {
 const lbbApiEndpoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/company/";
 const lbaApiEndpoint = "https://api.emploi-store.fr/partenaire/labonnealternance/v1/company/";
 
-const getLbbCompanies = async (romes, latitude, longitude, radius, limit, type) => {
+const getLbbCompanies = async ({ romes, latitude, longitude, radius, limit, type }) => {
   try {
     const token = await getAccessToken(type);
     //console.log(token);

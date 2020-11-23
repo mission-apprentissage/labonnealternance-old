@@ -35,6 +35,7 @@ const getJobsFromApi = async (query) => {
             radius: parseInt(query.radius),
             type: "lba",
             strictRadius: query.strictRadius,
+            origin: query.origin,
           })
         : null,
       sources.indexOf("lbb") >= 0
@@ -45,6 +46,7 @@ const getJobsFromApi = async (query) => {
             radius: parseInt(query.radius),
             type: "lbb",
             strictRadius: query.strictRadius,
+            origin: query.origin,
           })
         : null,
     ]);
