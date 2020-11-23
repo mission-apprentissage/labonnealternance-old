@@ -117,7 +117,7 @@ const transformLbbCompanyForIdea = (company, type) => {
 const lbbApiEndpoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/company/";
 const lbaApiEndpoint = "https://api.emploi-store.fr/partenaire/labonnealternance/v1/company/";
 
-const getLbbCompanies = async ({ romes, latitude, longitude, radius, limit, type }) => {
+const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type }) => {
   try {
     const token = await getAccessToken(type);
     //console.log(token);
@@ -132,7 +132,7 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, limit, type
       sort: "distance",
       longitude: longitude,
       contract: type === "lbb" ? "dpae" : "alternance",
-      page_size: limit,
+      page_size: companyLimit,
       distance,
     };
 
