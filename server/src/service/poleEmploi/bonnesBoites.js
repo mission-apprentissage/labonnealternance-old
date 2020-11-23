@@ -3,8 +3,8 @@ const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
 const { isOriginLocal } = require("../../common/utils/isOriginLocal");
-const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius, origin }) => {
-  console.log("lbba : ", { romes, latitude, longitude, radius, type, strictRadius, origin });
+const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius, referer }) => {
+  console.log("lbba : ", { romes, latitude, longitude, radius, type, strictRadius, referer });
 
   let companySet = null;
   let currentRadius = strictRadius ? radius : 20000;
@@ -25,14 +25,14 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, s
 
   //console.log("companies :", companySet);
   if (companySet.companies && companySet.companies.length) {
-    companySet = transformLbbCompaniesForIdea({ companySet, radius, type, strictRadius, origin });
+    companySet = transformLbbCompaniesForIdea({ companySet, radius, type, strictRadius, referer });
     //console.log("apres refine : ", jobs.resultats[0].lieuTravail.distance);
   }
 
   return companySet;
 };
 
-const transformLbbCompaniesForIdea = ({ companySet, radius, type, strictRadius, origin }) => {
+const transformLbbCompaniesForIdea = ({ companySet, radius, type, strictRadius, referer }) => {
   let maxWeigth = type === "lbb" ? 800 : 900;
   if (!strictRadius) maxWeigth = 1000;
 
@@ -42,7 +42,7 @@ const transformLbbCompaniesForIdea = ({ companySet, radius, type, strictRadius, 
   };
 
   if (companySet.companies && companySet.companies.length) {
-    const contactAllowedOrigin = isOriginLocal(origin);
+    const contactAllowedOrigin = isOriginLocal(referer);
 
     console.log("contactAllowedOrigin : ", contactAllowedOrigin);
 
