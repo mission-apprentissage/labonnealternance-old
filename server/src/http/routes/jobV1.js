@@ -17,7 +17,7 @@ module.exports = () => {
         else res.status(500);
       }
 
-      return res.json({ ...result, headers: req.headers });
+      return res.json(result);
     })
   );
 
