@@ -4,8 +4,6 @@ const { itemModel } = require("../../model/itemModel");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
 const { isOriginLocal } = require("../../common/utils/isOriginLocal");
 const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius, referer }) => {
-  console.log("lbba : ", { romes, latitude, longitude, radius, type, strictRadius, referer });
-
   let companySet = null;
   let currentRadius = strictRadius ? radius : 20000;
   let companyLimit = 100; //TODO: query params options or default value from properties -> size || 100
@@ -43,8 +41,6 @@ const transformLbbCompaniesForIdea = ({ companySet, radius, type, strictRadius, 
 
   if (companySet.companies && companySet.companies.length) {
     const contactAllowedOrigin = isOriginLocal(referer);
-
-    console.log("contactAllowedOrigin : ", contactAllowedOrigin);
 
     for (let i = 0; i < companySet.companies.length; ++i) {
       let company = transformLbbCompanyForIdea({ company: companySet.companies[i], type, contactAllowedOrigin });
