@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.24 [23/11/2020]
+[198] Masquage coordonnées de contact des sociétés LBA / LBB pour les appels à l'api par des tiers
+
 ## 0.0.23 [21/11/2020]
 [199] Retour d'erreur précis si utilisation d'un rome inconnu pour les appels à l'api lbb
 

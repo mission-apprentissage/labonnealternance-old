@@ -10,14 +10,14 @@ module.exports = () => {
   router.get(
     "/",
     tryCatch(async (req, res) => {
-      const result = await peApi.getJobsQuery(req.query);
+      const result = await peApi.getJobsQuery({ ...req.query, referer: req.headers.referer });
 
       if (result.error) {
         if (result.error === "wrong_parameters") res.status(400);
         else res.status(500);
       }
 
-      return res.json(result);
+      return res.json({ ...result, headers: req.headers });
     })
   );
 
