@@ -18,7 +18,7 @@ describe(__filename, () => {
   });
 
   it("Détection origine autorisée - retourne true si origine connue labonnealternance.apprentissage.beta.gouv.fr", () => {
-    const result = isOriginLocal("https://labonnealternance.beta.gouv.fr/");
+    const result = isOriginLocal("https://labonnealternance.apprentissage.beta.gouv.fr/");
     assert.strictEqual(result, true);
   });
 });
