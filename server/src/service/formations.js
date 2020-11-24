@@ -3,6 +3,7 @@ const Sentry = require("@sentry/node");
 const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
 const { formationsQueryValidator, formationsRegionQueryValidator } = require("./formationsQueryValidator");
+const { trackEvent } = require("../common/utils/sendTrackingEvent");
 
 const formationResultLimit = 500;
 
@@ -364,6 +365,10 @@ const getFormationsQuery = async (query) => {
   const queryValidationResult = formationsQueryValidator(query);
 
   if (queryValidationResult.error) return queryValidationResult;
+
+  if (query.caller) {
+    trackEvent({ category: "Appel API", action: "formationV1", label: query.caller });
+  }
 
   try {
     const formations = await getAtLeastSomeFormations({
