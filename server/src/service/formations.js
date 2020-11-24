@@ -396,6 +396,10 @@ const getFormationsParRegionQuery = async (query) => {
 
   if (queryValidationResult.error) return queryValidationResult;
 
+  if (query.caller) {
+    trackEvent({ category: "Appel API", action: "formationRegionV1", label: query.caller });
+  }
+
   try {
     let formations = await getRegionFormations({
       romes: query.romes ? query.romes.split(",") : null,
