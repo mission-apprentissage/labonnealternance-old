@@ -14,7 +14,7 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     const response = await httpClient.get(
-      "/api/V1/formations?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30"
+      "/api/V1/formations?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&caller=a"
     );
 
     assert.strictEqual(response.status, 200);
@@ -24,7 +24,7 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     const response = await httpClient.get(
-      "/api/V1/formations?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30"
+      "/api/V1/formations?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&caller=a"
     );
 
     assert.strictEqual(response.status, 200);
@@ -35,7 +35,7 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     const response = await httpClient.get(
-      "/api/V1/formations?romeDomain=F16&longitude=2.3752&latitude=48.845&radius=30"
+      "/api/V1/formations?romeDomain=F16&longitude=2.3752&latitude=48.845&radius=30&caller=a"
     );
 
     assert.strictEqual(response.status, 200);
@@ -45,7 +45,9 @@ httpTests(__filename, ({ startServer }) => {
   it("Vérifie que la recherche avec grand Domaine rome répond avec des résultats", async () => {
     const { httpClient } = await startServer();
 
-    const response = await httpClient.get("/api/V1/formations?romeDomain=F&longitude=2.3752&latitude=48.845&radius=30");
+    const response = await httpClient.get(
+      "/api/V1/formations?romeDomain=F&longitude=2.3752&latitude=48.845&radius=30&caller=a"
+    );
 
     assert.strictEqual(response.status, 200);
     assert.ok(response.data.results instanceof Array);
@@ -119,6 +121,18 @@ httpTests(__filename, ({ startServer }) => {
     assert.strictEqual(response.status, 400);
     assert.deepStrictEqual(response.data.error, "wrong_parameters");
     assert.ok(response.data.error_messages.indexOf("romes : Too many rome codes. Maximum is 20.") >= 0);
+  });
+
+  it("Vérifie que les requêtes sans caller sont refusées", async () => {
+    const { httpClient } = await startServer();
+
+    let response = await httpClient.get(
+      "/api/V1/formations?romes=F1603,I1308&longitude=2.3752&latitude=48.845&insee=12345"
+    );
+
+    assert.strictEqual(response.status, 400);
+    assert.deepStrictEqual(response.data.error, "wrong_parameters");
+    assert.ok(response.data.error_messages.indexOf("caller : caller is missing.") >= 0);
   });
 
   it("Vérifie que les requêtes sans radius sont refusées", async () => {
