@@ -41,6 +41,9 @@ const formationsRegionQueryValidator = (query) => {
 
   // contrôle des paramètres
 
+  // présence d'identifiant de la source : caller
+  validateCaller({ caller: query.caller, referer: query.referer }, error_messages);
+
   // codes ROME : romes ou romeDomain optionnels dans ce contexte
   validateOptionalRomeOrDomain({ romes: query.romes, romeDomain: query.romeDomain, romeLimit: 20 }, error_messages);
 
