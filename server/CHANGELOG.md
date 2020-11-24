@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.25 [24/11/2020]
+[200] Identification des consommateurs d'API via tracking system
+
 ## 0.0.24 [23/11/2020]
 [198] Masquage coordonnées de contact des sociétés LBA / LBB pour les appels à l'api par des tiers
 
