@@ -5,7 +5,7 @@ const localOrigin = [
 ];
 
 const isOriginLocal = (origin) => {
-  return localOrigin.findIndex((element) => origin.includes(element));
+  return localOrigin.findIndex((element) => origin.includes(element)) >= 0;
 };
 
 module.exports = { isOriginLocal };
