@@ -28,7 +28,7 @@ export default async function fetchRomes(
   if (isError) {
     errorCallbackFn();
     if (isAxiosError) {
-      console.log("Rome API error : ",response.data);
+      console.log("Rome API error : ",response);
       _logError("Rome API error", `Rome API error ${response.data.error}`);
     } else if (hasNoLabelsAndRomes) {
       _logError("Rome API error : API call worked, but returned unexpected data");
