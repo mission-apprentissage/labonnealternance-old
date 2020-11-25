@@ -13,12 +13,19 @@ describe(__filename, () => {
   });
 
   it("Détection origine autorisée - retourne true si origine connue localhost ", () => {
-    const result = isOriginLocal("http://localhost:3003/");
+    const result = isOriginLocal("http://localhost:3003");
     assert.strictEqual(result, true);
   });
 
   it("Détection origine autorisée - retourne true si origine connue labonnealternance.apprentissage.beta.gouv.fr", () => {
     const result = isOriginLocal("https://labonnealternance.apprentissage.beta.gouv.fr/");
+    assert.strictEqual(result, true);
+  });
+
+  it("Détection origine autorisée - retourne true si origine connue labonnealternance-recette.apprentissage.beta.gouv.fr/recherche-apprentissage?isTrainingOnly=1", () => {
+    const result = isOriginLocal(
+      "https://labonnealternance.apprentissage.beta.gouv.fr/recherche-apprentissage?isTrainingOnly=1"
+    );
     assert.strictEqual(result, true);
   });
 });
