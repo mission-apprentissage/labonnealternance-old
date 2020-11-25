@@ -49,8 +49,10 @@
                     },
                     {
                         "$ref": "#/parameters/diploma"
-                    }
-                    
+                    },
+                    {
+                        "$ref": "#/parameters/caller"
+                    }                    
                 ],
 
                 "responses": {
@@ -98,7 +100,10 @@
                     },
                     {
                         "$ref": "#/parameters/diploma"
-                    }
+                    },
+                    {
+                        "$ref": "#/parameters/caller"
+                    }                    
                 ],
 
                 "responses": {
@@ -149,7 +154,10 @@
                     },
                     {
                         "$ref": "#/parameters/jobSources"
-                    }
+                    },
+                    {
+                        "$ref": "#/parameters/caller"
+                    }                    
                 ],
 
                 "responses": {
@@ -202,7 +210,10 @@
                     },
                     {
                         "$ref": "#/parameters/sources"
-                    }
+                    },
+                    {
+                        "$ref": "#/parameters/caller"
+                    }                    
                 ],
 
                 "responses": {
@@ -262,6 +273,16 @@
     
     "parameters":
     {
+        "caller":
+        {
+            "name": "caller",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Votre raison sociale ou le nom de votre produit qui fait appel à l'API",
+            "example": "mon_nom_de_societe"
+        },
+
         "romes":
         {
             "name": "romes",

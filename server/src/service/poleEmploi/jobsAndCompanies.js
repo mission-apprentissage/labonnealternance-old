@@ -3,11 +3,16 @@ const Sentry = require("@sentry/node");
 const offresPoleEmploi = require("./offresPoleEmploi");
 const bonnnesBoites = require("./bonnesBoites");
 const { jobsQueryValidator } = require("./jobsQueryValidator");
+const { trackEvent } = require("../../common/utils/sendTrackingEvent");
 
 const getJobsQuery = async (query) => {
   const queryValidationResult = jobsQueryValidator(query);
 
   if (queryValidationResult.error) return queryValidationResult;
+
+  if (query.caller) {
+    trackEvent({ category: "Appel API", action: "jobV1", label: query.caller });
+  }
 
   return getJobsFromApi(query);
 };

@@ -6,12 +6,16 @@ const {
   validateDiploma,
   validateApiSources,
   validateInsee,
+  validateCaller,
 } = require("./queryValidators");
 
 const jobsEtFormationsQueryValidator = (query) => {
   let error_messages = [];
 
   // contrôle des paramètres
+
+  // présence d'identifiant de la source : caller
+  validateCaller({ caller: query.caller, referer: query.referer }, error_messages);
 
   // codes ROME : romes
   validateRomes(query.romes, error_messages);
