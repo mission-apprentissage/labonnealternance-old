@@ -7,12 +7,16 @@ const {
   validateOptionalRomeOrDomain,
   validateOptionalRegion,
   validateRegionOrRome,
+  validateCaller,
 } = require("./queryValidators");
 
 const formationsQueryValidator = (query) => {
   let error_messages = [];
 
   // contrôle des paramètres
+
+  // présence d'identifiant de la source : caller
+  validateCaller({ caller: query.caller, referer: query.referer }, error_messages);
 
   // codes ROME : romes
   validateRomeOrDomain({ romes: query.romes, romeDomain: query.romeDomain, romeLimit: 20 }, error_messages);
@@ -36,6 +40,9 @@ const formationsRegionQueryValidator = (query) => {
   let error_messages = [];
 
   // contrôle des paramètres
+
+  // présence d'identifiant de la source : caller
+  validateCaller({ caller: query.caller, referer: query.referer }, error_messages);
 
   // codes ROME : romes ou romeDomain optionnels dans ce contexte
   validateOptionalRomeOrDomain({ romes: query.romes, romeDomain: query.romeDomain, romeLimit: 20 }, error_messages);

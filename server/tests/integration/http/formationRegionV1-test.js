@@ -13,7 +13,7 @@ httpTests(__filename, ({ startServer }) => {
   it("Vérifie que la recherche répond", async () => {
     const { httpClient } = await startServer();
 
-    const response = await httpClient.get("/api/V1/formationsParRegion?romes=F1603,I1308&region=01");
+    const response = await httpClient.get("/api/V1/formationsParRegion?romes=F1603,I1308&region=01&caller=a");
 
     assert.strictEqual(response.status, 200);
   });
@@ -21,7 +21,7 @@ httpTests(__filename, ({ startServer }) => {
   it("Vérifie que la recherche avec Rome et region répond avec des résultats", async () => {
     const { httpClient } = await startServer();
 
-    const response = await httpClient.get("/api/V1/formationsParRegion?romes=F1603,I1308&region=01");
+    const response = await httpClient.get("/api/V1/formationsParRegion?romes=F1603,I1308&region=01&caller=a");
 
     assert.strictEqual(response.status, 200);
     assert.ok(response.data.results instanceof Array);
@@ -30,7 +30,7 @@ httpTests(__filename, ({ startServer }) => {
   it("Vérifie que la recherche avec département répond avec des résultats", async () => {
     const { httpClient } = await startServer();
 
-    const response = await httpClient.get("/api/V1/formationsParRegion?departement=44");
+    const response = await httpClient.get("/api/V1/formationsParRegion?departement=44&caller=a");
 
     assert.strictEqual(response.status, 200);
     assert.ok(response.data.results instanceof Array);
@@ -130,6 +130,16 @@ httpTests(__filename, ({ startServer }) => {
     assert.strictEqual(response.status, 400);
     assert.deepStrictEqual(response.data.error, "wrong_parameters");
     assert.ok(response.data.error_messages.indexOf("romes : Too many rome codes. Maximum is 20.") >= 0);
+  });
+
+  it("Vérifie que les requêtes sans caller sont refusées", async () => {
+    const { httpClient } = await startServer();
+
+    let response = await httpClient.get("/api/V1/formationsParRegion?romes=F1603,I1308&region=01");
+
+    assert.strictEqual(response.status, 400);
+    assert.deepStrictEqual(response.data.error, "wrong_parameters");
+    assert.ok(response.data.error_messages.indexOf("caller : caller is missing.") >= 0);
   });
 
   it("Vérifie que les requêtes sans region ou département et sans rome ou domaine rome sont refusées", async () => {

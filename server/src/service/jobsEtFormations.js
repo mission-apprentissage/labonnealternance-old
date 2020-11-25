@@ -3,11 +3,16 @@ const Sentry = require("@sentry/node");
 const { getFormations, transformFormationsForIdea } = require("./formations");
 const { getJobsFromApi } = require("./poleEmploi/jobsAndCompanies");
 const { jobsEtFormationsQueryValidator } = require("./jobsEtFormationsQueryValidator");
+const { trackEvent } = require("../common/utils/sendTrackingEvent");
 
 const getJobsEtFormationsQuery = async (query) => {
   const queryValidationResult = jobsEtFormationsQueryValidator(query);
 
   if (queryValidationResult.error) return queryValidationResult;
+
+  if (query.caller) {
+    trackEvent({ category: "Appel API", action: "jobEtFormationV1", label: query.caller });
+  }
 
   try {
     const sources = !query.sources ? ["formations", "lba", "lbb", "offres"] : query.sources.split(",");
