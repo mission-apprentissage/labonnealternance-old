@@ -1,6 +1,7 @@
 const ua = require("universal-analytics");
+const config = require("config");
 
-const visitor = ua("UA-116850596-2");
+const visitor = ua(config.private.googleAnalyticsUA);
 
 const trackEvent = ({ category, action, label, value }) => {
   visitor.event(category, action, label, value).send();

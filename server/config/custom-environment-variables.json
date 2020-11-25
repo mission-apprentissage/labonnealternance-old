@@ -34,7 +34,8 @@
     "apiEntrepriseKey": "API_ENTREPRISE_KEY",
     "azureStorageConnectionString": "AZURE_STORAGE_CONNECTION_STRING",
     "esdClientId": "ESD_CLIENT_ID",
-    "esdClientSecret": "ESD_CLIENT_SECRET"
+    "esdClientSecret": "ESD_CLIENT_SECRET",
+    "googleAnalyticsUA": "LABONNEALTERNANCE_GOOGLE_ANALYTICS_UA"
   }
 
 }
