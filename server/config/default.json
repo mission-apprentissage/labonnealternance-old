@@ -38,6 +38,7 @@
     "apiEntrepriseKey": "1234",
     "azureStorageConnectionString": "1234",
     "esdClientId": "1234",
-    "esdClientSecret": "1234"
+    "esdClientSecret": "1234",
+    "googleAnalyticsUA": "1234"    
   }
 }
