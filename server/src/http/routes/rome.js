@@ -32,7 +32,6 @@ const getRomesAndLabelsFromTitleQuery = async (query) => {
 
 const getLabelsAndRomes = async (searchKeyword) => {
   //console.log(romes, coords, radius, diploma);
-  logger.info(searchKeyword);
   try {
     const esClient = getElasticInstance();
 
