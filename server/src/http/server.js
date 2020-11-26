@@ -23,7 +23,7 @@ module.exports = async (components) => {
   const app = express();
 
   Sentry.init({
-    dsn: "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826",
+    dsn: config.private.sentryDsn,
     integrations: [
       // enable HTTP calls tracing
       new Sentry.Integrations.Http({ tracing: true }),
@@ -60,10 +60,6 @@ module.exports = async (components) => {
   const swaggerDocument = require("../api-docs/swagger.json");
 
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-  app.use("/api/version", limiter3PerSecond, version());
-
-  app.use("/api/version", limiter3PerSecond, version());
 
   app.use("/api/version", limiter3PerSecond, version());
 

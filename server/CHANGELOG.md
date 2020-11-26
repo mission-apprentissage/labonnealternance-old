@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.26 [26/11/2020]
+[203] Enrichissement des logs applicatifs
+
 ## 0.0.25 [24/11/2020]
 [200] Identification des consommateurs d'API via tracking system
 
