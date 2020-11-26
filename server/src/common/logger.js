@@ -1,4 +1,5 @@
 const winston = require("winston");
+require("winston-daily-rotate-file");
 const { combine, timestamp, printf } = winston.format;
 const config = require("config");
 const Sentry = require("winston-transport-sentry-node").default;
@@ -19,12 +20,20 @@ const createLogger = () => {
     level: "info",
     format: combine(timestamp(), lbaFormat),
     transports: [
-      //
-      // - Write all logs with level `error` and below to `error.log`
-      // - Write all logs with level `info` and below to `combined.log`
-      //
-      new winston.transports.File({ filename: "error.log", level: "error" }),
-      new winston.transports.File({ filename: "combined.log" }),
+      new winston.transports.DailyRotateFile({
+        filename: "lbaserver-error-%DATE%.log",
+        datePattern: "YYYY-MM-DD",
+        dirname: config.env === "local" ? "./logs/" : "/data/logs",
+        maxFiles: "14d",
+        level: "error",
+      }),
+      new winston.transports.DailyRotateFile({
+        filename: "lbaserver-%DATE%.log",
+        datePattern: "YYYY-MM-DD",
+        dirname: config.env === "local" ? "./logs/" : "/data/logs",
+        maxFiles: "14d",
+        level: "info",
+      }),
       new Sentry(sentryOptions),
     ],
   });
