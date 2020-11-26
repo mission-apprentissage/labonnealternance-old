@@ -2,7 +2,9 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { createRouterMiddleware, initialRouterState, routerReducer } from 'connected-next-router'
 import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import Router from 'next/router'
-import Training from './reducer'
+import {mainReducer} from './reducer'
+
+import Training from "./Training/reducer";
 
 const appState = {
   trainings: Training,
@@ -15,7 +17,7 @@ const bindMiddleware = (middleware) => {
 
 const combinedReducer = combineReducers({
   router: routerReducer,
-  ...appState,
+  ...appState
 })
 
 const reducer = (state, action) => {

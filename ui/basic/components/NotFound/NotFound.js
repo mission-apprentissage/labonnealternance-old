@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import peopleIcon from "../../assets/icons/searchingPeople.svg";
-import errorAlertIcon from "../../assets/icons/errorAlert.svg";
+import peopleIcon from "../../public/static/icons/searchingPeople.svg";
+import errorAlertIcon from "../../public/static/icons/errorAlert.svg";
 import "./notFound.css";
 
 const NotFound = () => (

@@ -9,8 +9,8 @@ import CardMap from "./CardMap";
 import LinkedNotices from "./subComponents/LinkedNotices";
 import SingleNotice from "./subComponents/SingleNotice";
 
-import SateliteImg from "../../../../assets/Satelite.png";
-import StreetImg from "../../../../assets/street.png";
+import SateliteImg from "../../../../public/static/Satelite.png";
+import StreetImg from "../../../../public/static/street.png";
 
 const MAX_PRECISION = 8;
 const getPrecision = (zoom) => {

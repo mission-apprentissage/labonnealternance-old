@@ -9,7 +9,7 @@ const initialState = {
   extendedSearch: false,
 };
 
-const mainReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionsTypes.SET_RESULTS:
       return {
@@ -51,4 +51,4 @@ const mainReducer = (state = initialState, action) => {
   }
 };
 
-export { mainReducer,  initialState};
+export default reducer;

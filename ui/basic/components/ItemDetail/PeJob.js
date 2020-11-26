@@ -1,8 +1,8 @@
 import React from "react";
-import jobIcon from "../../assets/icons/job.svg";
-import companySizeIcon from "../../assets/icons/employees.svg";
+import jobIcon from "../../public/static/icons/job.svg";
+import companySizeIcon from "../../public/static/icons/employees.svg";
 import { useSelector } from "react-redux";
-import extendedSearchPin from "../../assets/icons/trainingPin.svg";
+import extendedSearchPin from "../../public/static/icons/trainingPin.svg";
 import { get } from "lodash";
 
 const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
