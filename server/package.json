@@ -57,6 +57,8 @@
     "sha512crypt-node": "0.1.0",
     "swagger-ui-express": "4.1.4",
     "universal-analytics": "0.4.23",
+    "winston": "3.3.3",
+    "winston-transport-sentry-node": "0.7.0",
     "xlsx": "0.16.1"
   },
   "engines": {
