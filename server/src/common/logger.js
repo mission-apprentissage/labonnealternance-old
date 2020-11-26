@@ -11,7 +11,7 @@ const createLogger = () => {
 
   const sentryOptions = {
     sentry: {
-      dsn: "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826",
+      dsn: config.private.sentryDsn,
     },
     level: "error",
     serverName: "labonnealternance",
