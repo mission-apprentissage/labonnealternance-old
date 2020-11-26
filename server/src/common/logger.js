@@ -13,7 +13,7 @@ const createLogger = () => {
     sentry: {
       dsn: "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826",
     },
-    level: "error",
+    level: "info",
   };
 
   const logger = winston.createLogger({
