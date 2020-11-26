@@ -32,7 +32,6 @@ const getRomesAndLabelsFromTitleQuery = async (query) => {
 
 const getLabelsAndRomes = async (searchKeyword) => {
   //console.log(romes, coords, radius, diploma);
-  logger.info(searchKeyword);
   try {
     const esClient = getElasticInstance();
 
@@ -72,10 +71,13 @@ const getLabelsAndRomes = async (searchKeyword) => {
     return { labelsAndRomes };
   } catch (err) {
     let error_msg = _.get(err, "meta.body") ? err.meta.body : err.message;
-    console.log("Error getting romes from keyword ", error_msg);
+
     if (_.get(err, "meta.meta.connection.status") === "dead") {
-      console.log("Elastic search is down or unreachable");
+      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
+    } else {
+      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
     }
+
     return { error: error_msg };
   }
 };
