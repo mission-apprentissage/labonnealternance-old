@@ -27,8 +27,8 @@ class ExampleApp extends App {
     return (
       <ConnectedRouter>
         <Component {...pageProps} />
-        </ConnectedRouter>
-        )
+      </ConnectedRouter>
+    )
   }
 }
 
