@@ -5,6 +5,6 @@ const path = require('path')
 
 module.exports = withImages({
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, '/public/styles')],
   },
 })
