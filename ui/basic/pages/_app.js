@@ -7,6 +7,7 @@ import Head from 'next/head'
 // global import, works, but module-approach should be preffered
 import "public/styles/mapbox-gl.scss";
 import "public/styles/searchfor.scss";
+import "public/styles/spinner.scss";
 
 class ExampleApp extends App {
   render() {
