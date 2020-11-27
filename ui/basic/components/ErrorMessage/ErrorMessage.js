@@ -1,5 +1,4 @@
 import React from "react";
-import "./errorMessage.module.css";
 import errorAlertIcon from "../../public/images/icons/errorAlert.svg";
 import searchingPeople from "../../public/images/icons/searchingPeople.svg";
 
