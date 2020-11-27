@@ -6,49 +6,59 @@ const initialState = {
   itemToScrollTo: null,
   selectedItem: null,
   formValues: null,
-  extendedSearch: false,
+  extendedSearch: false    
 };
 
 const mainReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionsTypes.SET_RESULTS:
-      return {
+  console.log('action -- ' + action.type)
+
+  // deep copy arg state
+  let state_copy = JSON.parse(JSON.stringify(state))
+  let res = {}
+
+  if (action.type === actionsTypes.SET_RESULTS) {
+    res = {
         trainings: action.trainings,
         jobs: action.jobs,
       };
-    case actionsTypes.SET_TRAININGS:
-      return {
-        ...state,
+  } else if (action.type === actionsTypes.SET_TRAININGS) {
+    res = {
+        ...state_copy,
         trainings: action.trainings,
       };
-    case actionsTypes.SET_JOBS:
-      return {
-        ...state,
+  } else if (action.type === actionsTypes.SET_JOBS) {
+    res = {
+        ...state_copy,
         jobs: action.jobs,
       };
-    case actionsTypes.SET_SELECTED_ITEM:
-      return {
-        ...state,
+  } else if (action.type === actionsTypes.SET_SELECTED_ITEM) {
+    res =  {
+        ...state_copy,
         selectedItem: action.selectedItem,
       };
-    case actionsTypes.SET_ITEM_TO_SCROLL_TO:
-      return {
-        ...state,
+  } else if (action.type === actionsTypes.SET_ITEM_TO_SCROLL_TO) {
+    res =  {
+        ...state_copy,
         itemToScrollTo: action.itemToScrollTo,
       };
-    case actionsTypes.SET_FORM_VALUES:
-      return {
-        ...state,
+  } else if (action.type === actionsTypes.SET_FORM_VALUES) {
+    res =  {
+        ...state_copy,
         formValues: action.formValues,
       };
-    case actionsTypes.SET_EXTENDED_SEARCH:
-      return {
-        ...state,
+  } else if (action.type === actionsTypes.SET_EXTENDED_SEARCH) {
+    res =  {
+        ...state_copy,
         extendedSearch: action.extendedSearch,
       };
-    default:
-      return state;
+  } else {
+    res = state_copy
+    console.log('res')
+    console.log(res)
   }
+
+  return res
+
 };
 
 export { mainReducer,  initialState};

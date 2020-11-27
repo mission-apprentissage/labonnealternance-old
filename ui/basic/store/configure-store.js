@@ -4,10 +4,9 @@ import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import Router from 'next/router'
 import {mainReducer} from './reducer'
 
-import Training from "./Training/reducer";
 
 const appState = {
-  trainings: Training,
+  trainings: mainReducer,
 };
 
 const bindMiddleware = (middleware) => {
