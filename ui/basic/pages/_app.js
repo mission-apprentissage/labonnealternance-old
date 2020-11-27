@@ -16,6 +16,7 @@ import "public/styles/jobAdvice.scss";
 import "public/styles/ideaHeader.scss";
 import "public/styles/errorMessage.scss";
 import "public/styles/AutoCompleteField.scss";
+import "public/styles/DomainError.scss";
 
 class ExampleApp extends App {
   render() {

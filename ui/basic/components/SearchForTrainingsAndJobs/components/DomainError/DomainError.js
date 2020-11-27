@@ -1,6 +1,5 @@
 import React from "react";
 
-import "./DomainError.module.css";
 import domainErrorMainSvg from "./domain_error_main.svg";
 import domainErrorNoticeSvg from "./domain_error_notice.svg";
 
