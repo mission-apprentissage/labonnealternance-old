@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useFormikContext } from "formik";
 import { useCombobox } from "downshift";
-import "./AutoCompleteField.module.css";
 import {debounce} from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService"
 
