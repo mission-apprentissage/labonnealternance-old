@@ -10,6 +10,7 @@ import "public/styles/searchfor.scss";
 import "public/styles/spinner.scss";
 import "public/styles/widgettester.scss";
 import "public/styles/FakeFeature.scss";
+import "public/styles/itemdetail.scss";
 
 class ExampleApp extends App {
   render() {
