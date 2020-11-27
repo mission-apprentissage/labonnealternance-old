@@ -20,12 +20,6 @@ const combinedReducer = combineReducers({
 })
 
 const reducer = (state, action) => {
-  console.log('inside configure-store--------------------')
-  console.log(state)
-  console.log(action.type)
-
-  console.log('quit configure-store--------------------')
-  console.log('')
   if (action.type === HYDRATE) {
     const nextState = {
       ...state, // use previous state
