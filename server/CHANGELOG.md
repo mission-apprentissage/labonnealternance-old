@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.0.27 [27/11/2020]
+[213] Enrichissement des logs applicatifs
+
 ## 0.0.26 [26/11/2020]
 [203] Enrichissement des logs applicatifs
 
