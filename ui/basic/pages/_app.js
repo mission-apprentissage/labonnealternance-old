@@ -8,6 +8,7 @@ import Head from 'next/head'
 import "public/styles/mapbox-gl.scss";
 import "public/styles/searchfor.scss";
 import "public/styles/spinner.scss";
+import "public/styles/widgettester.scss";
 
 class ExampleApp extends App {
   render() {

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Container, Row, Col } from "reactstrap";
-import "./widgettester.css";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { AutoCompleteField, RadioButton } from "../../components";
 import { fetchAddresses } from "../services/baseAdresse";
