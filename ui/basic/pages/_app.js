@@ -5,6 +5,7 @@ import { wrapper } from '../store/configure-store'
 import Head from 'next/head'
 
 import "public/styles/LogoIdea.scss";
+import "public/styles/notFound.scss";
 
 class ExampleApp extends App {
   render() {

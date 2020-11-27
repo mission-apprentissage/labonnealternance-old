@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import peopleIcon from "../../public/images/icons/searchingPeople.svg";
 import errorAlertIcon from "../../public/images/icons/errorAlert.svg";
-import "./notFound.css";
 
 const NotFound = () => (
   <div className="page not-found">
