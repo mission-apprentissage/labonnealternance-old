@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import moment from "moment";
-import infoIcon from "../../public/static/icons/info.svg";
-import linkIcon from "../../public/static/icons/link.svg";
+import infoIcon from "../../public/images/icons/info.svg";
+import linkIcon from "../../public/images/icons/link.svg";
 
 const PeJobDetail = ({ job }) => {
   useEffect(() => {

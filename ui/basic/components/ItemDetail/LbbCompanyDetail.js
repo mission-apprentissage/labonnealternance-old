@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import infoIcon from "../../public/static/icons/info.svg";
-import lightbulbIcon from "../../public/static/icons/lightbulb.svg";
-import linkIcon from "../../public/static/icons/link.svg";
+import infoIcon from "../../public/images/icons/info.svg";
+import lightbulbIcon from "../../public/images/icons/lightbulb.svg";
+import linkIcon from "../../public/images/icons/link.svg";
 
 const LbbCompanyDetail = ({ company }) => {
   //console.log("lbb : ", company);

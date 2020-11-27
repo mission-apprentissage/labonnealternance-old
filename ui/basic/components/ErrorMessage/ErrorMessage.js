@@ -1,7 +1,7 @@
 import React from "react";
 import "./errorMessage.module.css";
-import errorAlertIcon from "../../public/static/icons/errorAlert.svg";
-import searchingPeople from "../../public/static/icons/searchingPeople.svg";
+import errorAlertIcon from "../../public/images/icons/errorAlert.svg";
+import searchingPeople from "../../public/images/icons/searchingPeople.svg";
 
 const ErrorMessage = ({ type, message }) => {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 import "./FakeFeature.module.css";
-import buttonPriseDeRDVIcon from "../../public/static/icons/fake_feature_btn.svg";
+import buttonPriseDeRDVIcon from "../../public/images/icons/fake_feature_btn.svg";
 
 const FakeFeature = ({
   buttonText,

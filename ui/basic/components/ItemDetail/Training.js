@@ -1,8 +1,8 @@
 import React from "react";
-import trainingIcon from "../../public/static/icons/school.svg";
+import trainingIcon from "../../public/images/icons/school.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
-import extendedSearchPin from "../../public/static/icons/jobPin.svg";
+import extendedSearchPin from "../../public/images/icons/jobPin.svg";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter, isTrainingOnly }) => {
   const { formValues } = useSelector((state) => state.trainings);

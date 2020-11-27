@@ -1,8 +1,8 @@
 import React from "react";
-import trainingIcon from "../../../public/static/icons/training_filter.svg";
-import jobIcon from "../../../public/static/icons/job_filter.svg";
-import inactiveTrainingIcon from "../../../public/static/icons/training_filter_inactive.svg";
-import inactiveJobIcon from "../../../public/static/icons/job_filter_inactive.svg";
+import trainingIcon from "../../../public/images/icons/training_filter.svg";
+import jobIcon from "../../../public/images/icons/job_filter.svg";
+import inactiveTrainingIcon from "../../../public/images/icons/training_filter_inactive.svg";
+import inactiveJobIcon from "../../../public/images/icons/job_filter_inactive.svg";
 
 const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   const handleClick = (e) => {

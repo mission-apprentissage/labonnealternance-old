@@ -1,7 +1,6 @@
 import React from "react";
-import logoLBA from "../../public/static/logo-noir-lba.svg";
+import logoLBA from "../../public/images/logo-noir-lba.svg";
 
-import "./logoidea.module.css";
 import { Row, Col } from "reactstrap";
 import { widgetParameters } from "../../services/config";
 

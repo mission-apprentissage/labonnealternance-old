@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import FakeFeature from "../FakeFeature/FakeFeature";
-import infoIcon from "../../public/static/icons/info.svg";
-import thumbUpIcon from "../../public/static/icons/fake_feature_thumbup.svg";
-import wipIcon from "../../public/static/icons/fake_feature_wip.svg";
+import infoIcon from "../../public/images/icons/info.svg";
+import thumbUpIcon from "../../public/images/icons/fake_feature_thumbup.svg";
+import wipIcon from "../../public/images/icons/fake_feature_wip.svg";
 
 const TrainingDetail = ({ training }) => {
   useEffect(() => {

@@ -1,9 +1,9 @@
 import React from "react";
-import jobIcon from "../../public/static/icons/job.svg";
-import companySizeIcon from "../../public/static/icons/employees.svg";
+import jobIcon from "../../public/images/icons/job.svg";
+import companySizeIcon from "../../public/images/icons/employees.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
-import extendedSearchPin from "../../public/static/icons/trainingPin.svg";
+import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
