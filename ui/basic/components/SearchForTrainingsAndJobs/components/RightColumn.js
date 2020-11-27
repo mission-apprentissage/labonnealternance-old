@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import distance from "@turf/distance";
-import baseUrl from "../../../utils/baseUrl";
-import { scrollToTop, scrollToElementInContainer, logError, getItemElement } from "../../../utils/tools";
-import ItemDetail from "../../../components/ItemDetail/ItemDetail";
-import Spinner from "../../../components/Spinner";
+import baseUrl from "utils/baseUrl";
+import { scrollToTop, scrollToElementInContainer, logError, getItemElement } from "utils/tools";
+import ItemDetail from "components/ItemDetail/ItemDetail";
+import Spinner from "components/Spinner";
 import { setJobMarkers, setTrainingMarkers } from "../utils/mapTools";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
@@ -16,7 +16,7 @@ import {
   setItemToScrollTo,
   setFormValues,
   setExtendedSearch,
-} from "../../../store/actions";
+} from "store/actions";
 import {
   map,
   flyToMarker,
@@ -24,9 +24,9 @@ import {
   factorTrainingsForMap,
   factorJobsForMap,
   computeMissingPositionAndDistance,
-} from "../../../utils/mapTools";
-import { widgetParameters, applyWidgetParameters, setWidgetApplied } from "../../../services/config";
-import { fetchAddressFromCoordinates } from "../../../services/baseAdresse";
+} from "utils/mapTools";
+import { widgetParameters, applyWidgetParameters, setWidgetApplied } from "services/config";
+import { fetchAddressFromCoordinates } from "services/baseAdresse";
 
 const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
 const partialJobSearchErrorText = "Problème momentané d'accès à certaines opportunités d'emploi";

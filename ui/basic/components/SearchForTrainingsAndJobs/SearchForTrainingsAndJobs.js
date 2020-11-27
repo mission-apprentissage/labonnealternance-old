@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col } from "reactstrap";
-import "./searchfortrainingsandjobs.module.css";
-import dynamic from 'next/dynamic'
 
+import dynamic from 'next/dynamic'
 
 import { MapListSwitchButton, RightColumn } from "./components";
 import { setSelectedItem, setItemToScrollTo } from "../../store/actions";
@@ -10,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { map } from "../../utils/mapTools";
 import Map from "../../components/Map";
 
-// const DynamicMap= dynamic(() => import('../../components/Map'))
 
 const SearchForTrainingsAndJobs = ({ isTrainingOnly }) => {
   const dispatch = useDispatch();

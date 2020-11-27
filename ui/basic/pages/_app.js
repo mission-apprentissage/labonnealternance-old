@@ -5,7 +5,8 @@ import { wrapper } from '../store/configure-store'
 import Head from 'next/head'
 
 // global import, works, but module-approach should be preffered
-// import "public/styles/LogoIdea.scss";
+import "public/styles/mapbox-gl.scss";
+import "public/styles/searchfor.scss";
 
 class ExampleApp extends App {
   render() {
