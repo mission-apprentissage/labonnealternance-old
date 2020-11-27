@@ -20,7 +20,12 @@ const combinedReducer = combineReducers({
 })
 
 const reducer = (state, action) => {
+  console.log('inside configure-store--------------------')
+  console.log(state)
+  console.log(action.type)
 
+  console.log('quit configure-store--------------------')
+  console.log('')
   if (action.type === HYDRATE) {
     const nextState = {
       ...state, // use previous state
@@ -39,17 +44,11 @@ const reducer = (state, action) => {
 
 export const initStore = (context) => {
   const routerMiddleware = createRouterMiddleware()
-  const { asPath } = context.ctx || Router.router || {};
+  const { asPath } = context.ctx || Router.router || {}
   let initialState
   if (asPath) {
     initialState = {
-      router: initialRouterState(asPath),
-      trainings: [],
-      jobs: [],
-      itemToScrollTo: null,
-      selectedItem: null,
-      formValues: null,
-      extendedSearch: false,
+      router: initialRouterState(asPath)
     }
   }
   return createStore(reducer, initialState, bindMiddleware([routerMiddleware]))
