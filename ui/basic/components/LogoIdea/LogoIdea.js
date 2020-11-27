@@ -4,6 +4,8 @@ import logoLBA from "../../public/images/logo-noir-lba.svg";
 import { Row, Col } from "reactstrap";
 import { widgetParameters } from "../../services/config";
 
+import styles from "./LogoIdea.module.scss";
+
 const LogoIdea = () => {
   const goToLbaHome = () => {
     let p = {
@@ -16,17 +18,18 @@ const LogoIdea = () => {
   };
 
   return (
-    <Row className="logoIdea">
+    <Row className={styles.logoIdea}>
       <Col xs="4">
         <a href="#" onClick={goToLbaHome}>
           <img
             src={widgetParameters && widgetParameters.returnLogoURL ? widgetParameters.returnLogoURL : logoLBA}
             alt="Retour page d'accueil de La Bonne Alternance"
+            className={styles['logoIdea-img']}
           />
         </a>
       </Col>
       <Col xs="8">
-        <h1>Trouvez votre apprentissage</h1>
+        <h1 className={styles['logoIdea-h1']}>Trouvez votre apprentissage</h1>
       </Col>
     </Row>
   );
