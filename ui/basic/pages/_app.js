@@ -9,6 +9,7 @@ import "public/styles/mapbox-gl.scss";
 import "public/styles/searchfor.scss";
 import "public/styles/spinner.scss";
 import "public/styles/widgettester.scss";
+import "public/styles/FakeFeature.scss";
 
 class ExampleApp extends App {
   render() {
