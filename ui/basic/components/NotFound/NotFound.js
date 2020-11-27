@@ -3,15 +3,18 @@ import { Link } from "react-router-dom";
 import peopleIcon from "../../public/images/icons/searchingPeople.svg";
 import errorAlertIcon from "../../public/images/icons/errorAlert.svg";
 
+import styles from "./notFound.module.scss";
+
+
 const NotFound = () => (
-  <div className="page not-found">
-    <div className="error">
+  <div className={styles.root}>
+    <div className={styles.error}>
       <img src={peopleIcon} alt="" />
       <div id="error-text">
         <span>404</span>
         <h1>PAGE INCONNUE !</h1>
-        <div className="errorMessage">
-          <img src={errorAlertIcon} alt="" />
+        <div className={styles.errorMessage}>
+          <img src={errorAlertIcon} alt="" className={styles.errorImg}/>
           Aucun contenu ne correspond à cette adresse
         </div>
       </div>

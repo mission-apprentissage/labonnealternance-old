@@ -4,8 +4,8 @@ import { ConnectedRouter } from 'connected-next-router'
 import { wrapper } from '../store/configure-store'
 import Head from 'next/head'
 
+// global import, works, but module-approach should be preffered
 // import "public/styles/LogoIdea.scss";
-import "public/styles/notFound.scss";
 
 class ExampleApp extends App {
   render() {
