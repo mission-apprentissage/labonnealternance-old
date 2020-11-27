@@ -1,6 +1,5 @@
 import React from "react";
 import IdeaTitle from "../IdeaTitle";
-import "./ideaHeader.module.css";
 
 const IdeaHeader = () => {
   return (

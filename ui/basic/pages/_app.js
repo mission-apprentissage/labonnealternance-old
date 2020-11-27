@@ -13,6 +13,8 @@ import "public/styles/FakeFeature.scss";
 import "public/styles/itemdetail.scss";
 import "public/styles/ideaTitle.scss";
 import "public/styles/jobAdvice.scss";
+import "public/styles/ideaHeader.scss";
+import "public/styles/errorMessage.scss";
 
 class ExampleApp extends App {
   render() {
