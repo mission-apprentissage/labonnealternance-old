@@ -104,7 +104,7 @@ const validateDiploma = (diploma, error_messages) => {
 const validateInsee = (insee, error_messages) => {
   // code INSEE : insee
   if (!insee) error_messages.push("insee : insee city code is missing.");
-  if (!/^[0-9]{5}$/.test(insee))
+  if (!/^[0-9][abAB0-9][0-9]{3}$/.test(insee))
     error_messages.push("insee : Badly formatted insee city code. Must be 5 digit number.");
 };
 
