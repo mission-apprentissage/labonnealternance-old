@@ -11,6 +11,8 @@ import "public/styles/spinner.scss";
 import "public/styles/widgettester.scss";
 import "public/styles/FakeFeature.scss";
 import "public/styles/itemdetail.scss";
+import "public/styles/ideaTitle.scss";
+import "public/styles/jobAdvice.scss";
 
 class ExampleApp extends App {
   render() {

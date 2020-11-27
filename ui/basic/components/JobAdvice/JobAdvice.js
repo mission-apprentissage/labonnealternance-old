@@ -1,7 +1,5 @@
 import React from "react";
 
-import "./jobAdvice.module.css";
-
 const JobAdvice = (props) => {
   return (
     <section className="advice">

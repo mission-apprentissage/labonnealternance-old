@@ -1,5 +1,4 @@
 import React from "react";
-import "./ideaTitle.module.css";
 
 const IdeaTitle = () => {
   return (
