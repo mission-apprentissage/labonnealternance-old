@@ -1,7 +1,10 @@
 # CHANGELOG
 
+## 0.0.28 [27/11/2020]
+[214] Fix pastilles entreprises manquantes
+
 ## 0.0.27 [27/11/2020]
-[213] Enrichissement des logs applicatifs
+[213] Fix recherche en Corse
 
 ## 0.0.26 [26/11/2020]
 [203] Enrichissement des logs applicatifs
