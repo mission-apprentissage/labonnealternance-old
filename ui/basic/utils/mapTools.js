@@ -31,12 +31,12 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem }) =>
   map.on("load", async () => {
     map.resize();
 
-    map.loadImage("/static/icons/school.png", function (error, image) {
+    map.loadImage("/images/icons/school.png", function (error, image) {
       if (error) throw error;
       map.addImage("training", image);
     });
 
-    map.loadImage("/static/icons/job.png", function (error, image) {
+    map.loadImage("/images/icons/job.png", function (error, image) {
       if (error) throw error;
       map.addImage("job", image);
     });
