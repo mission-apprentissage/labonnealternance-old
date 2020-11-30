@@ -24,7 +24,7 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     const response = await httpClient.get(
-      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&insee=75056&caller=a"
+      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&insee=2B003&caller=a"
     );
 
     assert.strictEqual(response.status, 200);
