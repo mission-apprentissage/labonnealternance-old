@@ -263,7 +263,7 @@ const factorJobsForMap = (lists) => {
 
   if (lists.lbbCompanies) sortedList = sortedList.length ? sortedList.concat(lists.lbbCompanies) : lists.lbbCompanies;
 
-  if (lists.lbaCompanies) sortedList = sortedList.length ? sortedList.concat(lists.lbaCompanies) : lists.lbbCompanies;
+  if (lists.lbaCompanies) sortedList = sortedList.length ? sortedList.concat(lists.lbaCompanies) : lists.lbaCompanies;
 
   // tri de la liste de tous les emplois selon les coordonnées geo (l'objectif est d'avoir les emplois au même lieu proches)
   sortedList.sort((a, b) => {
