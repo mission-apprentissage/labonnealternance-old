@@ -14,8 +14,13 @@ const Map = ({ showResultList }) => {
   };
 
   useEffect(() => {
-    if (!map) initializeMap({ mapContainer, store, showResultList, unselectItem });
-  });
+
+    console.log("map : ",map);
+
+    if (!map || (map && !document.getElementsByClassName("mapContainer")[0].innerHTML.length )) 
+    {
+      initializeMap({ mapContainer, store, showResultList, unselectItem });
+    };});
 
   return <div ref={(el) => (mapContainer.current = el)} className="mapContainer" />;
 };
