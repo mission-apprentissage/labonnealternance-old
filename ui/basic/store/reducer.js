@@ -6,10 +6,15 @@ const initialState = {
   itemToScrollTo: null,
   selectedItem: null,
   formValues: null,
-  extendedSearch: false    
+  extendedSearch: false,
+  visiblePane: "resultList",
+  isFormVisible: true,
+  hasSearch: false,
 };
 
 const mainReducer = (state = initialState, action) => {
+
+  console.log("state : ",state);
 
   // deep copy arg state
   let state_copy = JSON.parse(JSON.stringify(state))
@@ -50,6 +55,21 @@ const mainReducer = (state = initialState, action) => {
       ...state_copy,
       extendedSearch: action.extendedSearch,
     };
+  } else if (action.type === actionsTypes.SET_VISIBLE_PANE) {
+    res =  {
+      ...state_copy,
+      visiblePane: action.visiblePane,
+    };
+  } else if (action.type === actionsTypes.SET_HAS_SEARCH) {
+    res =  {
+      ...state_copy,
+      hasSearch: action.hasSearch,
+    };
+  } else if (action.type === actionsTypes.SET_VISIBLE_FORM) {
+    res =  {
+      ...state_copy,
+      visibleForm: action.visibleForm,
+    };      
   } else {
     res = state_copy
   }

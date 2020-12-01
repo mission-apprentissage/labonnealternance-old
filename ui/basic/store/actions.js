@@ -6,6 +6,9 @@ export const types = {
   SET_ITEM_TO_SCROLL_TO: "trainings/SET_ITEM_TO_SCROLL_TO",
   SET_FORM_VALUES: "trainings/SET_FORM_VALUES",
   SET_EXTENDED_SEARCH: "trainings/SET_EXTENDED_SEARCH",
+  SET_VISIBLE_PANE: "trainings/SET_VISIBLE_PANE",
+  SET_HAS_SEARCH: "trainings/SET_HAS_SEARCH",
+  SET_VISIBLE_FORM: "trainings/SET_VISIBLE_FORM",
 };
 
 export const setResults = (trainings = [], jobs = []) => {
@@ -57,3 +60,25 @@ export const setExtendedSearch = (extendedSearch = false) => {
     extendedSearch,
   };
 };
+
+export const setVisiblePane = (visiblePane = "resultList") => {
+  return {
+    type: types.SET_VISIBLE_PANE,
+    visiblePane,
+  };
+};
+  
+export const setHasSearch = (hasSearch = false) => {
+  return {
+    type: types.SET_HAS_SEARCH,
+    hasSearch,
+  };
+};
+
+export const setVisibleForm = (visibleForm = true) => {
+  return {
+    type: types.SET_VISIBLE_FORM,
+    visibleForm,
+  };
+};
+
