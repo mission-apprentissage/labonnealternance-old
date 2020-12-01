@@ -8,7 +8,7 @@ export const types = {
   SET_EXTENDED_SEARCH: "trainings/SET_EXTENDED_SEARCH",
   SET_VISIBLE_PANE: "trainings/SET_VISIBLE_PANE",
   SET_HAS_SEARCH: "trainings/SET_HAS_SEARCH",
-  SET_VISIBLE_FORM: "trainings/SET_VISIBLE_FORM",
+  SET_IS_FORM_VISIBLE: "trainings/SET_IS_FORM_VISIBLE",
 };
 
 export const setResults = (trainings = [], jobs = []) => {
@@ -75,10 +75,10 @@ export const setHasSearch = (hasSearch = false) => {
   };
 };
 
-export const setVisibleForm = (visibleForm = true) => {
+export const setIsFormVisible = (isFormVisible = true) => {
   return {
-    type: types.SET_VISIBLE_FORM,
-    visibleForm,
+    type: types.SET_IS_FORM_VISIBLE,
+    isFormVisible,
   };
 };
 

@@ -65,10 +65,10 @@ const mainReducer = (state = initialState, action) => {
       ...state_copy,
       hasSearch: action.hasSearch,
     };
-  } else if (action.type === actionsTypes.SET_VISIBLE_FORM) {
+  } else if (action.type === actionsTypes.SET_IS_FORM_VISIBLE) {
     res =  {
       ...state_copy,
-      visibleForm: action.visibleForm,
+      isFormVisible: action.isFormVisible,
     };      
   } else {
     res = state_copy

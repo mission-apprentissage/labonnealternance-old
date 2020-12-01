@@ -4,7 +4,7 @@ import { Row, Col } from "reactstrap";
 import dynamic from 'next/dynamic'
 
 import { MapListSwitchButton, RightColumn } from "./components";
-import { setSelectedItem, setItemToScrollTo } from "../../store/actions";
+import { setSelectedItem, setItemToScrollTo, setIsFormVisible, setVisiblePane } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { map } from "../../utils/mapTools";
 import Map from "../../components/Map";
@@ -13,18 +13,16 @@ import Map from "../../components/Map";
 const SearchForTrainingsAndJobs = ({ isTrainingOnly }) => {
   const dispatch = useDispatch();
 
-  const { selectedItem } = useSelector((state) => state.trainings);
+  const { selectedItem, trainings, visiblePane, isFormVisible } = useSelector((state) => state.trainings);
 
-  const [visiblePane, setVisiblePane] = useState("resultList");
-  const [isFormVisible, setIsFormVisible] = useState(true);
-  const [hasSearch, setHasSearch] = useState(false); // booléen s'il y a un résultat de recherche
+  console.log("VISIBLEPANE ",visiblePane, isFormVisible, trainings);
 
   const showSearchForm = (e) => {
     if (e) {
       e.stopPropagation();
     }
-    setVisiblePane("resultList"); // affichage de la colonne resultList / searchForm
-    setIsFormVisible(true);
+    dispatch(setVisiblePane("resultList")); // affichage de la colonne resultList / searchForm
+    dispatch(setIsFormVisible(true));
     unSelectItem();
   };
 
@@ -33,7 +31,7 @@ const SearchForTrainingsAndJobs = ({ isTrainingOnly }) => {
       e.stopPropagation();
     }
 
-    setVisiblePane("resultMap");
+    dispatch(setVisiblePane("resultMap"));
 
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
     setTimeout(() => {
@@ -45,8 +43,8 @@ const SearchForTrainingsAndJobs = ({ isTrainingOnly }) => {
     if (e) {
       e.stopPropagation();
     }
-    setVisiblePane("resultList");
-    setIsFormVisible(false);
+    dispatch(setVisiblePane("resultList"));
+    dispatch(setIsFormVisible(false));
   };
 
   const unSelectItem = () => {
@@ -70,12 +68,6 @@ const SearchForTrainingsAndJobs = ({ isTrainingOnly }) => {
           <RightColumn
             showResultList={showResultList}
             showSearchForm={showSearchForm}
-            isFormVisible={isFormVisible}
-            setIsFormVisible={setIsFormVisible}
-            setVisiblePane={setVisiblePane}
-            visiblePane={visiblePane}
-            setHasSearch={setHasSearch}
-            hasSearch={hasSearch}
             unSelectItem={unSelectItem}
             isTrainingOnly={isTrainingOnly}
           />
@@ -85,8 +77,6 @@ const SearchForTrainingsAndJobs = ({ isTrainingOnly }) => {
         showSearchForm={showSearchForm}
         showResultMap={showResultMap}
         showResultList={showResultList}
-        visiblePane={visiblePane}
-        hasSearch={hasSearch}
       />
     </div>
   );

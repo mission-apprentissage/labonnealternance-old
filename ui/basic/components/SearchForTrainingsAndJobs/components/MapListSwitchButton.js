@@ -1,9 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "reactstrap";
 
-const MapListSwitchButton = ({ visiblePane, hasSearch, showResultMap, showSearchForm, showResultList }) => {
+const MapListSwitchButton = ({ showResultMap, showSearchForm, showResultList }) => {
+
+  const { visiblePane, hasSearch } = useSelector((state) => state.trainings);
+
   if (visiblePane === "resultList") {
     if (hasSearch)
       return (

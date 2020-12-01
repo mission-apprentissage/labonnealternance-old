@@ -13,7 +13,7 @@ import FilterButton from "./FilterButton";
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
 
-  const { extendedSearch } = useSelector((state) => state.trainings);
+  const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
 
   const filterButtonClicked = (filterButton) => {
     setActiveFilter(filterButton);
@@ -21,7 +21,7 @@ const ResultLists = (props) => {
   };
 
   const getTrainingResult = () => {
-    if (props.hasSearch && (activeFilter === "all" || activeFilter === "trainings")) {
+    if (hasSearch && (activeFilter === "all" || activeFilter === "trainings")) {
       return <div className="trainingResult">{getTrainingList()}</div>;
     } else {
       return "";
@@ -59,7 +59,7 @@ const ResultLists = (props) => {
   };
 
   const getJobResult = () => {
-    if (props.hasSearch && !props.isJobSearchLoading && (activeFilter === "all" || activeFilter === "jobs")) {
+    if (hasSearch && !props.isJobSearchLoading && (activeFilter === "all" || activeFilter === "jobs")) {
       if (props.allJobSearchError) return "";
 
       const jobCount = getJobCount(props.jobs);
@@ -366,7 +366,7 @@ const ResultLists = (props) => {
   };
 
   return (
-    <div className={props.isFormVisible || props.selectedItem ? "hiddenResultList" : ""}>
+    <div className={isFormVisible || props.selectedItem ? "hiddenResultList" : ""}>
       <header>
         <LogoIdea />
         <Button className="blueButton filterButton" onClick={props.showSearchForm}>

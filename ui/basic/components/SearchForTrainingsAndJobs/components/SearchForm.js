@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Button, Container, Row, Col, Input } from "reactstrap";
 import mapMarker from "../../../public/images/icons/pin.svg";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -9,6 +10,7 @@ import fetchDiplomas from "../../../services/fetchDiplomas";
 import DomainError from "./DomainError/DomainError";
 
 const SearchForm = (props) => {
+  const { isFormVisible } = useSelector((state) => state.trainings);
   const [locationRadius, setLocationRadius] = useState(30);
   const [diplomas, setDiplomas] = useState([]);
   const [domainError, setDomainError] = useState(false);
@@ -249,7 +251,7 @@ const SearchForm = (props) => {
   };
 
   return (
-    <div className={props.isFormVisible ? "" : "hiddenSearchForm"}>
+    <div className={isFormVisible ? "" : "hiddenSearchForm"}>
       <header>
         <LogoIdea />
         {props.hasSearch ? (

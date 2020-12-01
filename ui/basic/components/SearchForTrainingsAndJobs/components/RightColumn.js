@@ -16,6 +16,8 @@ import {
   setItemToScrollTo,
   setFormValues,
   setExtendedSearch,
+  setHasSearch,
+  setIsFormVisible,
 } from "store/actions";
 import {
   map,
@@ -40,15 +42,11 @@ const RightColumn = ({
   showResultList,
   unSelectItem,
   showSearchForm,
-  setHasSearch,
-  hasSearch,
-  isFormVisible,
-  setIsFormVisible,
   isTrainingOnly,
 }) => {
   const dispatch = useDispatch();
 
-  const { trainings, jobs, selectedItem, itemToScrollTo, formValues } = useSelector((state) => state.trainings);
+  const { hasSearch, isFormVisible, trainings, jobs, selectedItem, itemToScrollTo, formValues } = useSelector((state) => state.trainings);
   const [isLoading, setIsLoading] = useState(true);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(true);
   const [isJobSearchLoading, setIsJobSearchLoading] = useState(true);
@@ -128,7 +126,7 @@ const RightColumn = ({
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
 
-    setHasSearch(false);
+    dispatch(setHasSearch(false));
     setSearchRadius(values.radius || 30);
     dispatch(setExtendedSearch(false));
     map.flyTo({ center: searchCenter, zoom: 10 });
@@ -139,7 +137,7 @@ const RightColumn = ({
       searchForJobsWithStrictRadius(values);
     }
 
-    setIsFormVisible(false);
+    dispatch(setIsFormVisible(false));
   };
 
   const searchForJobsOnNewCenter = async (newCenter) => {
@@ -205,9 +203,8 @@ const RightColumn = ({
       }
 
       dispatch(setTrainings(response.data.results));
-
-      setHasSearch(true);
-      setIsFormVisible(false);
+      dispatch(setHasSearch(true));
+      dispatch(setIsFormVisible(false));
 
       if (response.data.results.length) {
         setTrainingMarkers(factorTrainingsForMap(response.data.results));
@@ -333,8 +330,6 @@ const RightColumn = ({
   const getResultLists = () => {
     return (
       <ResultLists
-        hasSearch={hasSearch}
-        isFormVisible={isFormVisible}
         selectedItem={selectedItem}
         handleSelectItem={handleSelectItem}
         showSearchForm={showSearchForm}
@@ -357,9 +352,7 @@ const RightColumn = ({
   const getSearchForm = () => {
     return (
       <SearchForm
-        isFormVisible={isFormVisible}
         selectedItem={selectedItem}
-        hasSearch={hasSearch}
         showResultList={showResultList}
         handleSubmit={handleSubmit}
       />
