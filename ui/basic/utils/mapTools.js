@@ -136,12 +136,12 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trai
       onLayerClick(e, "training", store, showResultList, unselectItem);
     });
 
-    if(jobs)
+    if(jobs && jobs.length)
     {
       setJobMarkers(factorJobsForMap(jobs));
     }
     
-    if(trainings)
+    if(trainings && trainings.length)
     {
       setTrainingMarkers(factorTrainingsForMap(trainings));
     }
