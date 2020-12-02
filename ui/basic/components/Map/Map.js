@@ -15,9 +15,6 @@ const Map = ({ showResultList }) => {
   };
 
   useEffect(() => {
-
-    console.log("map : ",map);
-
     if (!map || (map && !document.getElementsByClassName("mapContainer")[0].innerHTML.length )) 
     {
       initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });      

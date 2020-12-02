@@ -25,6 +25,17 @@ const Navigation = props => {
                 </a>
               </li>
               <li>
+              <a
+                href="recherche-apprentissage-formation"
+                onClick={e => {
+                  e.preventDefault()
+                  dispatch(push({ pathname: '/recherche-apprentissage-formation' }))
+                  }}
+                  >
+                  Push /recherche-apprentissage-formation
+                </a>
+              </li>
+              <li>
                 <a
                   href="about"
                   onClick={e => {
