@@ -47,9 +47,9 @@ const RightColumn = ({
   const dispatch = useDispatch();
 
   const { hasSearch, isFormVisible, trainings, jobs, selectedItem, itemToScrollTo, formValues } = useSelector((state) => state.trainings);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(true);
-  const [isJobSearchLoading, setIsJobSearchLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(hasSearch?false:true);
+  const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch?false:true);
+  const [isJobSearchLoading, setIsJobSearchLoading] = useState(hasSearch?false:true);
   const [searchRadius, setSearchRadius] = useState(30);
   const [jobSearchError, setJobSearchError] = useState("");
   const [allJobSearchError, setAllJobSearchError] = useState(false);
