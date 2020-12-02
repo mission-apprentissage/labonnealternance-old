@@ -1,6 +1,7 @@
 import React from "react";
 import distance from "@turf/distance";
 import { Marker, MapPopup } from "../components/SearchForTrainingsAndJobs/components";
+import { setJobMarkers, setTrainingMarkers } from "../components/SearchForTrainingsAndJobs/utils/mapTools";
 import ReactDOM from "react-dom";
 // import mapboxgl from "mapbox-gl";
 import * as mapboxgl from 'mapbox-gl';
@@ -10,7 +11,7 @@ import { scrollToElementInContainer, getItemElement } from "./tools";
 let currentPopup = null;
 let map = null;
 
-const initializeMap = ({ mapContainer, store, showResultList, unselectItem }) => {
+const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trainings, jobs }) => {
   mapboxgl.accessToken = "pk.eyJ1IjoiYWxhbmxyIiwiYSI6ImNrYWlwYWYyZDAyejQzMHBpYzE0d2hoZWwifQ.FnAOzwsIKsYFRnTUwneUSA";
 
   /*lat: 47,    affichage centre France plus zoom France métropolitaine en entier
@@ -134,6 +135,18 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem }) =>
       e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
       onLayerClick(e, "training", store, showResultList, unselectItem);
     });
+
+    if(jobs)
+    {
+      setJobMarkers(factorJobsForMap(jobs));
+    }
+    
+    if(trainings)
+    {
+      setTrainingMarkers(factorTrainingsForMap(trainings));
+    }
+    
+
   });
 
   /*map.on("move", () => {
