@@ -11,8 +11,8 @@ const NotFound = () => (
     <div className={styles.error}>
       <img src={peopleIcon} alt="" />
       <div id="error-text">
-        <span>404</span>
-        <h1>PAGE INCONNUE !</h1>
+        <span className={styles.span}>404</span>
+        <h1 className={styles.h1}>PAGE INCONNUE !</h1>
         <div className={styles.errorMessage}>
           <img src={errorAlertIcon} alt="" className={styles.errorImg}/>
           Aucun contenu ne correspond à cette adresse
