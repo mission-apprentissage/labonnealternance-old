@@ -57,7 +57,7 @@ const getLabelsAndRomes = async (searchKeyword) => {
 
     return { labelsAndRomes };
   } catch (err) {
-    let error_msg = _.get(err, "meta.body") ? err.meta.body : err.message;
+    let error_msg = _.get(err, "meta.body") ?? err.message;
 
     if (_.get(err, "meta.meta.connection.status") === "dead") {
       logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
