@@ -5,7 +5,6 @@ const { trackEvent } = require("../common/utils/sendTrackingEvent");
 
 const getRomesAndLabelsFromTitleQuery = async (query) => {
   if (!query.title) return { error: "title_missing" };
-  //else if (query.title.length < 3) return "title_too_short";
   else {
     const romes = await getLabelsAndRomes(query.title);
     return romes;
@@ -13,7 +12,6 @@ const getRomesAndLabelsFromTitleQuery = async (query) => {
 };
 
 const getLabelsAndRomes = async (searchKeyword) => {
-  //console.log(romes, coords, radius, diploma);
   try {
     const esClient = getElasticInstance();
 
