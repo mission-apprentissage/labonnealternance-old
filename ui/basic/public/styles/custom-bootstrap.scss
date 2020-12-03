@@ -1,0 +1,44 @@
+// Inspired by https://stackoverflow.com/a/49070142/2595513
+
+/** 
+* Custom settings
+* Any settings that is not from Bootstrap should be
+* boldly prefixed (here with "my-") to avoid confusions.
+*/
+// $my-navbar-height: 100px;
+
+
+/** 
+* Some variables needs to be defined before bootstrap's definitions
+*/
+// $primary:       #00835c;
+
+
+/** 
+* Bootstrap settings. It will overrides
+* any bootstrap variable defined in bootstrap/scss/_variables.scss
+*/
+// $btn-border-radius: 5px;
+
+/* import the necessary Bootstrap files */
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+
+/** 
+* Some variables relies on others 
+*/
+// $toast-font-size: $font-size-base;
+
+
+/** 
+* Overrides an existing Bootstrap class 
+* .c-app must be used as prefix to avoid conflict
+*/
+// .c-app {
+  // .btn-dark:hover, .btn-dark:focus, .btn-dark:active {
+      // Override here btn-dark from Bootstrap
+  // }
+// }
+
+
