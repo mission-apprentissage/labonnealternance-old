@@ -1,0 +1,361 @@
+.demoPage {
+  max-width: 99%;
+}
+.demoPage .autoCompleteMenu {
+  margin-left: 0px;
+  width: 100%;
+  max-width: 370px;
+  margin-top: 4px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+.demoPage header {
+  background: none;
+  padding: 0px 10px;
+}
+.demoPage .bold {
+  font-weight: bold;
+}
+.demoPage form {
+  margin-top: 20px;
+}
+.demoPage form .row {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.demoPage form .col-3.radioButton {
+  max-width: 100% !important;
+}
+.demoPage .hiddenResultList,
+.demoPage .hiddenSearchForm,
+.demoPage .hiddenItemDetail {
+  display: none;
+}
+.demoPage .leftShadow {
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media only screen and (min-width: 768px) {
+  .demoPage .leftShadow {
+    box-shadow: 2px -15px 15px rgba(0, 0, 0, 0.5);
+  }
+}
+.demoPage .activeXSPane {
+  display: block;
+}
+.demoPage .inactiveXSPane {
+  display: block;
+}
+.demoPage .floatingButtons {
+  display: none;
+}
+.demoPage .floatingButtons button {
+  cursor: pointer;
+  margin-right: 30px;
+  background-color: #0061DF;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 19px;
+  border: none;
+  padding: 10px 20px;
+}
+.demoPage .floatingButtons button:focus {
+  box-shadow: none;
+}
+@media only screen and (max-width: 350px) {
+  .demoPage .inactiveXSPane {
+    display: none;
+  }
+  .demoPage .floatingButtons {
+    display: block;
+    position: fixed;
+    bottom: 40px;
+    right: unset;
+    left: 20px;
+  }
+  .demoPage .floatingButtons.resultList {
+    right: 30px;
+  }
+}
+@media only screen and (min-width: 351px) and (max-width: 767px) {
+  .demoPage .inactiveXSPane {
+    display: none;
+  }
+  .demoPage .floatingButtons {
+    display: block;
+    position: fixed;
+    bottom: 40px;
+    right: 40%;
+  }
+  .demoPage .floatingButtons.resultList {
+    right: -10px;
+  }
+}
+.demoPage .inFormIcon {
+  margin-top: 13px;
+}
+.demoPage .rightCol {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.demoPage .rightCol .apiResult {
+  text-align: left;
+}
+.demoPage .rightCol .formGroup {
+  text-align: left;
+  margin: auto;
+  width: 90%;
+  max-width: 450px;
+  min-width: 250px;
+}
+.demoPage .rightCol .fieldContainer {
+  border: 1px solid #e0e0e0;
+  height: 56px;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 15px;
+  text-align: left;
+  padding: 1px 10px;
+  background: #fff;
+  border-radius: 10px;
+}
+.demoPage .rightCol .fieldContainer:focus-within {
+  border: 1px solid #006AEB;
+}
+.demoPage .rightCol .errorField {
+  color: red;
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+.demoPage .rightCol .form-check {
+  padding-left: 0;
+}
+.demoPage .rightCol .buttons {
+  margin: auto;
+  max-width: 600px;
+}
+.demoPage .rightCol input,
+.demoPage .rightCol select {
+  border: none;
+  height: 52px;
+  margin-left: 5px;
+  width: 90%;
+}
+.demoPage .rightCol input[type="radio"] {
+  height: 16px;
+  margin-left: -45px;
+  margin-top: 3px;
+}
+.demoPage .rightCol input:focus,
+.demoPage .rightCol select:focus {
+  outline: none;
+}
+.demoPage .rightCol .fa-search,
+.demoPage .rightCol .fa-map-marker-alt {
+  margin-top: 16px;
+}
+.demoPage .rightCol .autoCompleteContainer {
+  width: 87%;
+  float: left;
+}
+.demoPage .rightCol h2 {
+  font-size: 24px;
+  color: #333;
+  margin: 20px 0;
+}
+.demoPage .rightCol .listText {
+  font-weight: bold;
+  margin: 20px 0;
+}
+.demoPage .rightCol button {
+  width: 80%;
+  background: #333;
+  color: #fff;
+  border: 1px solid #333;
+  text-align: center;
+  font-size: 16px;
+  padding: 18px;
+  max-width: 280px;
+  margin: auto;
+}
+.demoPage .rightCol .blueButton {
+  color: #066EE7;
+  background: #fff;
+  border: 2px solid #066EE7;
+  border-radius: 50px !important;
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+  width: auto;
+}
+.demoPage .rightCol .closeButton {
+  color: #4A4A4A;
+  background: #fff;
+  border-radius: 50px !important;
+  font-size: 16px;
+  padding: 4px 5px 3px 4px;
+  text-align: center;
+  width: auto;
+  float: right;
+  width: 32px;
+  height: 32px;
+  border: none;
+  box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.2);
+}
+.demoPage .rightCol .submitButton {
+  margin-top: 20px;
+  background-color: #0061DF;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  margin-bottom: 30px;
+}
+.demoPage .rightCol header .blueButton {
+  margin-top: 5px;
+  float: right;
+}
+.demoPage .rightCol .blueButton:hover {
+  color: #fff;
+  border: 2px solid #066EE7;
+  background: #066EE7;
+}
+.demoPage .rightCol .filterButton {
+  background-image: url(/pic/icons/filter.svg);
+  background-position: 4px;
+  background-repeat: no-repeat;
+  width: 80px;
+  text-align: right;
+}
+.demoPage .rightCol .filterButton:hover {
+  background-image: url("/pic/icons/filter_white.svg");
+  background-position: 4px;
+  background-repeat: no-repeat;
+}
+.demoPage .rightCol .noOpportunityFound {
+  margin-top: 30px;
+}
+.demoPage .rightCol .filterButtons {
+  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin-left: 15px;
+}
+.demoPage .rightCol .filterButtons button {
+  text-align: center;
+  font-size: 14px;
+  background: none;
+  border-radius: 20px !important;
+  width: fit-content;
+  min-width: 100px;
+  margin: 0 0 10px 10px;
+  outline: none;
+  border: 1px solid #C9C9C9;
+  padding: 11px;
+  color: #929292;
+}
+.demoPage .rightCol .filterButtons button img {
+  margin: -2px 5px 0 5px;
+}
+.demoPage .rightCol .filterButtons button.filterButtonall.active {
+  border: 2px solid #828282;
+  color: #4A4A4A;
+}
+.demoPage .rightCol .filterButtons button.filterButtontrainings.active {
+  border: 1px solid #BD1992;
+  padding: 11px;
+  color: #BD1992;
+}
+.demoPage .rightCol .filterButtons button.filterButtonjobs.active {
+  border: 1px solid #54108E;
+  padding: 11px;
+  color: #54108E;
+}
+.demoPage .rightCol .filterButtons button:hover,
+.demoPage .rightCol .filterButtons button:focus {
+  box-shadow: 0px 1px 2px #000000;
+}
+.demoPage .row {
+  text-align: center;
+}
+.demoPage .clearBoth {
+  clear: both;
+}
+@media only screen and (max-width: 900px) {
+  .demoPage .hiddenSM {
+    display: none;
+  }
+  .demoPage .filterButton {
+    background-position: 8px !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
+  .demoPage .filterButton:hover {
+    background-position: 8px !important;
+  }
+}
+.demoPage .countValue {
+  font-weight: bold;
+}
+.demoPage .trainingColor {
+  color: #BD1992;
+}
+.demoPage .jobColor {
+  color: #54108E;
+}
+.demoPage .resultTitle {
+  text-align: left;
+  margin-left: 10px;
+  color: #4A4A4A;
+  font-weight: 600;
+  font-size: 22px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+.demoPage .searchLoading {
+  margin-bottom: 20px;
+}
+.demoPage .searchLoading .spinner-border {
+  margin-bottom: -3px;
+  margin-left: 20px;
+}
+.demoPage .mapContainer {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+.demoPage .markerIcon {
+  width: 30px;
+  height: 30px;
+}
+.demoPage .jobMarkerIcon {
+  background-image: url(/pic/icons/job.svg);
+  background-repeat: no-repeat;
+}
+.demoPage .trainingMarkerIcon {
+  background-image: url(/pic/icons/school.svg);
+  background-repeat: no-repeat;
+}
+.demoPage .markerIcon > div {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  color: #fff;
+  background-color: #000;
+  text-align: left;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 15px !important;
+  text-align: center;
+}
+

@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.1.0 [03/12/2020]
+[172] SSR avec NextJS
+
 ## 0.0.28 [27/11/2020]
 [214] Fix pastilles entreprises manquantes
 

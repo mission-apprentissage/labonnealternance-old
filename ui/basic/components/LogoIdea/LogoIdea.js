@@ -1,0 +1,38 @@
+import React from "react";
+import logoLBA from "../../public/images/logo-noir-lba.svg";
+
+import { Row, Col } from "reactstrap";
+import { widgetParameters } from "../../services/config";
+
+import styles from "./LogoIdea.module.scss";
+
+const LogoIdea = () => {
+  const goToLbaHome = () => {
+    let p = {
+      type: "goToPage",
+      page: widgetParameters && widgetParameters.returnURI ? widgetParameters.returnURI : "/",
+    };
+    if (typeof window !== 'undefined') {
+      window.parent.postMessage(p, "*");
+    }
+  };
+
+  return (
+    <Row className={styles.root}>
+      <Col xs="4">
+        <a href="#" onClick={goToLbaHome}>
+          <img
+            src={widgetParameters && widgetParameters.returnLogoURL ? widgetParameters.returnLogoURL : logoLBA}
+            alt="Retour page d'accueil de La Bonne Alternance"
+            className={styles.img}
+          />
+        </a>
+      </Col>
+      <Col xs="8">
+        <h1 className={styles.h1}>Trouvez votre apprentissage</h1>
+      </Col>
+    </Row>
+  );
+};
+
+export default LogoIdea;
