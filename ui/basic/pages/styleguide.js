@@ -16,51 +16,74 @@ const Styleguide = () => {
 
         <h2 className="fw-bold mt-4 pt-4">Palette</h2>
         <hr/>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="p-3 mb-3 swatch-blue">Blue</div>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-blue">Blue</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 swatch-indigo">Indigo</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-indigo">Indigo</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 swatch-purple">Purple</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-purple">Purple</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 swatch-pink">Pink</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-pink">Pink</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 swatch-red">Red</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-red">Red</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 swatch-orange">Orange</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-orange">Orange</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 swatch-yellow">Yellow</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-yellow">Yellow</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 swatch-green">Green</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-green">Green</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 swatch-teal">Teal</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-teal">Teal</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 swatch-cyan">Cyan</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-cyan">Cyan</div>
           </div>
         </div>
 
         <h2 className="fw-bold mt-4 pt-4">Grayscale</h2>
         <hr/>
-        <div class="col-md-4">
-          <div class="p-3 swatch-100">100</div>
-          <div class="p-3 swatch-200">200</div>
-          <div class="p-3 swatch-300">300</div>
-          <div class="p-3 swatch-400">400</div>
-          <div class="p-3 swatch-500">500</div>
-          <div class="p-3 swatch-600">600</div>
-          <div class="p-3 swatch-700">700</div>
-          <div class="p-3 swatch-800">800</div>
-          <div class="p-3 swatch-900">900</div>
+        <div className="col-md-4">
+          <div className="p-3 swatch-100">100</div>
+          <div className="p-3 swatch-200">200</div>
+          <div className="p-3 swatch-300">300</div>
+          <div className="p-3 swatch-400">400</div>
+          <div className="p-3 swatch-500">500</div>
+          <div className="p-3 swatch-600">600</div>
+          <div className="p-3 swatch-700">700</div>
+          <div className="p-3 swatch-800">800</div>
+          <div className="p-3 swatch-900">900</div>
+        </div>
+
+        <h2 className="fw-bold mt-4 pt-4">Spacing</h2>
+        <hr/>
+        <div className="d-flex">
+          <div className=""><div className="border bg-light">First box</div></div>
+          <div className="ml-1"><div className="border bg-light">2nd box, margin-left-1</div></div>
+        </div>
+        <div className="d-flex">
+          <div className=""><div className="border bg-light">First box</div></div>
+          <div className="ml-2"><div className="border bg-light">2nd box, margin-left-2</div></div>
+        </div>
+        <div className="d-flex">
+          <div className=""><div className="border bg-light">First box</div></div>
+          <div className="ml-3"><div className="border bg-light">2nd box, margin-left-3</div></div>
+        </div>
+        <div className="d-flex">
+          <div className=""><div className="border bg-light">First box</div></div>
+          <div className="ml-4"><div className="border bg-light">2nd box, margin-left-4</div></div>
+        </div>
+        <div className="d-flex">
+          <div className=""><div className="border bg-light">First box</div></div>
+          <div className="ml-5"><div className="border bg-light">2nd box, margin-left-5</div></div>
         </div>
 
         <h2 className="fw-bold mt-4 pt-4">Typography</h2>
@@ -146,30 +169,30 @@ const Styleguide = () => {
         <h2 className="fw-bold mt-4 pt-4">Background Colors</h2>
         <hr/>
 
-        <div class="row">
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-primary text-white">Primary</div>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-primary text-white">Primary</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-secondary text-white">Secondary</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-secondary text-white">Secondary</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-success text-white">Success</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-success text-white">Success</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-danger text-white">Danger</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-danger text-white">Danger</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-warning text-dark">Warning</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-warning text-dark">Warning</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-info text-white">Info</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-info text-white">Info</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-light text-dark">Light</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-light text-dark">Light</div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 mb-3 bg-dark text-white">Dark</div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-dark text-white">Dark</div>
           </div>
         </div>
 
@@ -271,7 +294,7 @@ const Styleguide = () => {
             </table>
           </div>
         </div>
-        <div className="row">Name
+        <div className="row">NameName
           <div class="col-md">
             <table class="table table-bordered">
               <thead>
