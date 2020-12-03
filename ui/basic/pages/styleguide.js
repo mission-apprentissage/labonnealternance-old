@@ -14,7 +14,71 @@ const Styleguide = () => {
 
       <p class="lead text-center">Here are all the assets of your app</p>
 
-      <h2 class="fw-bold mt-4 pt-4">Colors</h2>
+
+      <h2 class="fw-bold mt-4 pt-4">Typography</h2>
+      <hr/>
+      <h1>Heading 1</h1>
+      <h2>Heading 2</h2>
+      <h3>Heading 3</h3>
+      <h4>Heading 4</h4>
+      <h5>Heading 5</h5>
+      <h6>Heading 6</h6>
+      <p>Ceci est un paragraphe, tout ce qu'il y a de plus classique. Et voici  <a href="#">un lien</a> qui ne pointe vers aucune page, mais est suffisant pour la demo. Une balise strong fait <strong>apparaître le texte en gras</strong>, une balise small,<small>en petit</small>.</p>
+      
+      <h2 class="fw-bold mt-4 pt-4">Displays</h2>
+      <hr/>
+      <div class="display-1">This is display 1</div>
+      <div class="display-2">This is display 2</div>
+      <div class="display-3">This is display 3</div>
+      <div class="display-4">This is display 4</div>
+
+
+
+      <h2 class="fw-bold mt-4 pt-4">Buttons</h2>
+      <hr/>
+      <p>
+        <button type="button" class="btn btn-primary btn-lg ml-1">Primary</button>
+        <button type="button" class="btn btn-secondary btn-lg ml-1">Secondary</button>
+        <button type="button" class="btn btn-success btn-lg ml-1">Success</button>
+        <button type="button" class="btn btn-danger btn-lg ml-1">Danger</button>
+        <button type="button" class="btn btn-warning btn-lg ml-1">Warning</button>
+        <button type="button" class="btn btn-info btn-lg ml-1">Info</button>
+        <button type="button" class="btn btn-light btn-lg ml-1">Light</button>
+        <button type="button" class="btn btn-dark btn-lg ml-1">Dark</button>
+      </p>
+      <p>
+        <button type="button" class="btn btn-primary ml-1">Primary</button>
+        <button type="button" class="btn btn-secondary ml-1">Secondary</button>
+        <button type="button" class="btn btn-success ml-1">Success</button>
+        <button type="button" class="btn btn-danger ml-1">Danger</button>
+        <button type="button" class="btn btn-warning ml-1">Warning</button>
+        <button type="button" class="btn btn-info ml-1">Info</button>
+        <button type="button" class="btn btn-light ml-1">Light</button>
+        <button type="button" class="btn btn-dark ml-1">Dark</button>
+      </p>
+      <p>
+        <button type="button" class="btn btn-primary btn-sm ml-1">Primary</button>
+        <button type="button" class="btn btn-secondary btn-sm ml-1">Secondary</button>
+        <button type="button" class="btn btn-success btn-sm ml-1">Success</button>
+        <button type="button" class="btn btn-danger btn-sm ml-1">Danger</button>
+        <button type="button" class="btn btn-warning btn-sm ml-1">Warning</button>
+        <button type="button" class="btn btn-info btn-sm ml-1">Info</button>
+        <button type="button" class="btn btn-light btn-sm ml-1">Light</button>
+        <button type="button" class="btn btn-dark btn-sm ml-1">Dark</button>
+      </p>
+      <p>
+        <button type="button" class="btn btn-outline-primary ml-1">Primary</button>
+        <button type="button" class="btn btn-outline-secondary ml-1">Secondary</button>
+        <button type="button" class="btn btn-outline-success ml-1">Success</button>
+        <button type="button" class="btn btn-outline-danger ml-1">Danger</button>
+        <button type="button" class="btn btn-outline-warning ml-1">Warning</button>
+        <button type="button" class="btn btn-outline-info ml-1">Info</button>
+        <button type="button" class="btn btn-outline-light ml-1">Light</button>
+        <button type="button" class="btn btn-outline-dark ml-1">Dark</button>
+      </p>
+
+
+      <h2 class="fw-bold mt-4 pt-4">Background Colors</h2>
       <hr/>
       <div class="lead bg-primary text-white">&nbsp;primary color</div>
       <div class="lead bg-success text-white">&nbsp;success color</div>
@@ -24,14 +88,148 @@ const Styleguide = () => {
       <div class="lead bg-dark text-white">&nbsp;dark color</div>
       <div class="lead bg-light text-black">&nbsp;light color</div>
 
-      <h2 class="fw-bold mt-4 pt-4">Displays</h2>
-      <hr/>
-      <div class="display-1">This is display 1</div>
-      <div class="display-2">This is display 2</div>
-      <div class="display-3">This is display 3</div>
-      <div class="display-4">This is display 4</div>
-    </div>
 
+
+
+
+      <h2 class="fw-bold mt-4 pt-4">Tables</h2>
+      <hr/>
+      <div class="row">
+        <div class="col-md">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">1</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@TwBootstrap</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md">
+         <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Username</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td colspan="2">Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
 
   </div>
