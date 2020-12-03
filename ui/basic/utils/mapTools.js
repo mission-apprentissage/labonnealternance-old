@@ -136,7 +136,7 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trai
       onLayerClick(e, "training", store, showResultList, unselectItem);
     });
 
-    if(jobs && jobs.length)
+    if(jobs && jobs.peJobs && (jobs.peJobs.length || jobs.lbaCompanies.length || jobs.lbbCompanies.length))
     {
       setJobMarkers(factorJobsForMap(jobs));
     }
