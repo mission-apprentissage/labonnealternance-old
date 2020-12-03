@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.1.1 [03/12/2020]
+[234] Tracker les mots clefs de métiers cherchés
+
 ## 0.1.0 [03/12/2020]
 [172] SSR avec NextJS
 
