@@ -23,7 +23,10 @@ const Styleguide = () => {
         <h4>Heading 4</h4>
         <h5>Heading 5</h5>
         <h6>Heading 6</h6>
-        <p>Ceci est un paragraphe, tout ce qu'il y a de plus classique. Et voici  <a href="#">un lien</a> qui ne pointe vers aucune page, mais est suffisant pour la demo.</p>
+
+        <p>Un simple paragraphe avec du texte. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius iure sapiente, ab ea aliquid minima animi maxime incidunt accusantium, sunt cupiditate soluta perferendis deleniti vitae commodi ratione fugiat ut quidem.</p>
+        
+        <p>Et voici  <a href="#">un lien</a> qui ne pointe vers aucune page, mais est suffisant pour la demo.</p>
         <p class="lead">Ceci est un paragraphe avec de l'emphase (classe "lead" appliquée).</p>
 
         <p>You can use the mark tag to <mark>highlight</mark> text.</p>
@@ -34,6 +37,10 @@ const Styleguide = () => {
         <p><small>This line of text is meant to be treated as fine print.</small></p>
         <p><strong>This line rendered as bold text.</strong></p>
         <p><em>This line rendered as italicized text.</em></p>
+        <blockquote class="blockquote">
+          <p class="mb-0">Ceci est une citation. Rendons hommage à celui qui l'a formulée.</p>
+          <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+        </blockquote>
 
 
         <h2 class="fw-bold mt-4 pt-4">Displays</h2>
@@ -99,8 +106,34 @@ const Styleguide = () => {
         <div class="lead bg-light text-black">&nbsp;light color</div>
 
 
-
-
+        <h2 class="fw-bold mt-4 pt-4">Alertes</h2>
+        <hr/>
+        <div class="bd-example">
+          <div class="alert alert-primary" role="alert">
+            A simple primary alert—check it out!
+          </div>
+          <div class="alert alert-secondary" role="alert">
+            A simple secondary alert—check it out!
+          </div>
+          <div class="alert alert-success" role="alert">
+            A simple success alert—check it out!
+          </div>
+          <div class="alert alert-danger" role="alert">
+            A simple danger alert—check it out!
+          </div>
+          <div class="alert alert-warning" role="alert">
+            A simple warning alert—check it out!
+          </div>
+          <div class="alert alert-info" role="alert">
+            A simple info alert—check it out!
+          </div>
+          <div class="alert alert-light" role="alert">
+            A simple light alert—check it out!
+          </div>
+          <div class="alert alert-dark" role="alert">
+            A simple dark alert—check it out!
+          </div>
+        </div>
 
         <h2 class="fw-bold mt-4 pt-4">Tables</h2>
         <hr/>
