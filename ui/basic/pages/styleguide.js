@@ -14,6 +14,54 @@ const Styleguide = () => {
 
         <p className="lead text-center">Here are all the assets of your app</p>
 
+        <h2 className="fw-bold mt-4 pt-4">Palette</h2>
+        <hr/>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="p-3 mb-3 swatch-blue">Blue</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 swatch-indigo">Indigo</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 swatch-purple">Purple</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 swatch-pink">Pink</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 swatch-red">Red</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 swatch-orange">Orange</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 swatch-yellow">Yellow</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 swatch-green">Green</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 swatch-teal">Teal</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 swatch-cyan">Cyan</div>
+          </div>
+        </div>
+
+        <h2 className="fw-bold mt-4 pt-4">Grayscale</h2>
+        <hr/>
+        <div class="col-md-4">
+          <div class="p-3 swatch-100">100</div>
+          <div class="p-3 swatch-200">200</div>
+          <div class="p-3 swatch-300">300</div>
+          <div class="p-3 swatch-400">400</div>
+          <div class="p-3 swatch-500">500</div>
+          <div class="p-3 swatch-600">600</div>
+          <div class="p-3 swatch-700">700</div>
+          <div class="p-3 swatch-800">800</div>
+          <div class="p-3 swatch-900">900</div>
+        </div>
 
         <h2 className="fw-bold mt-4 pt-4">Typography</h2>
         <hr/>
@@ -97,13 +145,33 @@ const Styleguide = () => {
 
         <h2 className="fw-bold mt-4 pt-4">Background Colors</h2>
         <hr/>
-        <div className="lead bg-primary text-white">&nbsp;primary color</div>
-        <div className="lead bg-success text-white">&nbsp;success color</div>
-        <div className="lead bg-danger text-white">&nbsp;danger color</div>
-        <div className="lead bg-info text-white">&nbsp;info color</div>
-        <div className="lead bg-warning text-white">&nbsp;warning color</div>
-        <div className="lead bg-dark text-white">&nbsp;dark color</div>
-        <div className="lead bg-light text-black">&nbsp;light color</div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="p-3 mb-3 bg-primary text-white">Primary</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 bg-secondary text-white">Secondary</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 bg-success text-white">Success</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 bg-danger text-white">Danger</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 bg-warning text-dark">Warning</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 bg-info text-white">Info</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 bg-light text-dark">Light</div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 mb-3 bg-dark text-white">Dark</div>
+          </div>
+        </div>
 
 
         <h2 className="fw-bold mt-4 pt-4">Alertes</h2>
