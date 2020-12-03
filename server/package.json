@@ -56,6 +56,10 @@
     "passport-local": "1.0.0",
     "sha512crypt-node": "0.1.0",
     "swagger-ui-express": "4.1.4",
+    "universal-analytics": "0.4.23",
+    "winston": "3.3.3",
+    "winston-daily-rotate-file": "4.5.0",
+    "winston-transport-sentry-node": "0.7.0",
     "xlsx": "0.16.1"
   },
   "engines": {
@@ -84,6 +88,9 @@
     }
   },
   "lint-staged": {
-    "*.js": ["eslint --cache --fix", "prettier --write"]
+    "*.js": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
   }
 }

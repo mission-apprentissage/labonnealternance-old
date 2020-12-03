@@ -1,4 +1,5 @@
 const Boom = require("boom");
+const logger = require("../../common/logger");
 
 module.exports = () => {
   // eslint-disable-next-line no-unused-vars
@@ -18,6 +19,8 @@ module.exports = () => {
         ...(!rawError.message ? "Une erreur est survenue" : {}),
       });
     }
+
+    logger.error(`${error.output.statusCode} - ${error.output.payload.message}`);
 
     return res.status(error.output.statusCode).send(error.output.payload);
   };

@@ -14,7 +14,7 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     const response = await httpClient.get(
-      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&insee=75056"
+      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&insee=75056&caller=a"
     );
 
     assert.strictEqual(response.status, 200);
@@ -24,7 +24,7 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     const response = await httpClient.get(
-      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&insee=75056"
+      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&insee=2B003&caller=a"
     );
 
     assert.strictEqual(response.status, 200);
@@ -63,12 +63,24 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     let response = await httpClient.get(
-      "/api/V1/jobs?romes=ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,&longitude=2.3752&latitude=48.845&radius=30&insee=75056"
+      "/api/V1/jobs?romes=ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE,ABCDE&longitude=2.3752&latitude=48.845&radius=30&insee=75056"
     );
 
     assert.strictEqual(response.status, 400);
     assert.deepStrictEqual(response.data.error, "wrong_parameters");
-    assert.ok(response.data.error_messages.indexOf("romes : Too many rome codes. Maximum is 9.") >= 0);
+    assert.ok(response.data.error_messages.indexOf("romes : Too many rome codes. Maximum is 15.") >= 0);
+  });
+
+  it("Vérifie que les requêtes sans caller sont refusées", async () => {
+    const { httpClient } = await startServer();
+
+    let response = await httpClient.get(
+      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&insee=75056"
+    );
+
+    assert.strictEqual(response.status, 400);
+    assert.deepStrictEqual(response.data.error, "wrong_parameters");
+    assert.ok(response.data.error_messages.indexOf("caller : caller is missing.") >= 0);
   });
 
   it("Vérifie que les requêtes sans code insee sont refusées", async () => {
@@ -224,5 +236,21 @@ httpTests(__filename, ({ startServer }) => {
         "sources : Optional sources argument used with wrong value. Should contains comma separated values among 'lbb', 'lba', 'offres'."
       ) >= 0
     );
+  });
+
+  it("Vérifie que les requêtes avec rome inconnu retournent bien une erreur explicite pour les appels lbb et lba", async () => {
+    const { httpClient } = await startServer();
+
+    let response = await httpClient.get(
+      "/api/V1/jobs?romes=X0000&radius=0&longitude=180&latitude=90&insee=12345&caller=a"
+    );
+
+    assert.strictEqual(response.status, 200);
+
+    assert.strictEqual(response.data.lbaCompanies.result, "error");
+    //assert.ok(response.data.lbaCompanies.statusText.indexOf("Unknown rome_code") >= 0);
+
+    assert.strictEqual(response.data.lbbCompanies.result, "error");
+    //assert.ok(response.data.lbbCompanies.statusText.indexOf("Unknown rome_code") >= 0);
   });
 });

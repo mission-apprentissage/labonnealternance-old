@@ -2,8 +2,8 @@ const axios = require("axios");
 const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
-
-const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius }) => {
+const { isOriginLocal } = require("../../common/utils/isOriginLocal");
+const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius, referer }) => {
   let companySet = null;
   let currentRadius = strictRadius ? radius : 20000;
   let companyLimit = 100; //TODO: query params options or default value from properties -> size || 100
@@ -11,7 +11,7 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, s
   let trys = 0;
 
   while (trys < 3) {
-    companySet = await getLbbCompanies(romes, latitude, longitude, currentRadius, companyLimit, type);
+    companySet = await getLbbCompanies({ romes, latitude, longitude, currentRadius, companyLimit, type });
 
     if (companySet.status === 429) {
       console.log("Lbb api quota exceeded. Retrying : ", trys + 1);
@@ -23,14 +23,14 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, s
 
   //console.log("companies :", companySet);
   if (companySet.companies && companySet.companies.length) {
-    companySet = transformLbbCompaniesForIdea(companySet, radius, type, strictRadius);
+    companySet = transformLbbCompaniesForIdea({ companySet, radius, type, strictRadius, referer });
     //console.log("apres refine : ", jobs.resultats[0].lieuTravail.distance);
   }
 
   return companySet;
 };
 
-const transformLbbCompaniesForIdea = (companySet, radius, type, strictRadius) => {
+const transformLbbCompaniesForIdea = ({ companySet, radius, type, strictRadius, referer }) => {
   let maxWeigth = type === "lbb" ? 800 : 900;
   if (!strictRadius) maxWeigth = 1000;
 
@@ -40,8 +40,10 @@ const transformLbbCompaniesForIdea = (companySet, radius, type, strictRadius) =>
   };
 
   if (companySet.companies && companySet.companies.length) {
+    const contactAllowedOrigin = isOriginLocal(referer);
+
     for (let i = 0; i < companySet.companies.length; ++i) {
-      let company = transformLbbCompanyForIdea(companySet.companies[i], type);
+      let company = transformLbbCompanyForIdea({ company: companySet.companies[i], type, contactAllowedOrigin });
       let distanceWeightModifier = 0;
 
       // détermine si la bonne boîte est dans le rayon de recherche initial ou non
@@ -65,14 +67,17 @@ const transformLbbCompaniesForIdea = (companySet, radius, type, strictRadius) =>
 };
 
 // Adaptation au modèle Idea et conservation des seules infos utilisées des offres
-const transformLbbCompanyForIdea = (company, type) => {
+const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => {
   let resultCompany = itemModel(type);
 
   resultCompany.title = company.name;
-  resultCompany.contact = {
-    email: company.email,
-    phone: company.phone,
-  };
+
+  if (contactAllowedOrigin) {
+    resultCompany.contact = {
+      email: company.email,
+      phone: company.phone,
+    };
+  }
 
   resultCompany.place = {
     distance: company.distance,
@@ -113,7 +118,7 @@ const transformLbbCompanyForIdea = (company, type) => {
 const lbbApiEndpoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/company/";
 const lbaApiEndpoint = "https://api.emploi-store.fr/partenaire/labonnealternance/v1/company/";
 
-const getLbbCompanies = async (romes, latitude, longitude, radius, limit, type) => {
+const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type }) => {
   try {
     const token = await getAccessToken(type);
     //console.log(token);
@@ -128,7 +133,7 @@ const getLbbCompanies = async (romes, latitude, longitude, radius, limit, type) 
       sort: "distance",
       longitude: longitude,
       contract: type === "lbb" ? "dpae" : "alternance",
-      page_size: limit,
+      page_size: companyLimit,
       distance,
     };
 
@@ -143,12 +148,13 @@ const getLbbCompanies = async (romes, latitude, longitude, radius, limit, type) 
   } catch (error) {
     let errorObj = { result: "error", message: error.message };
 
-    Sentry.captureException(error);
-
-    if (error.response) {
+    if (error?.response?.data) {
       errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
+      errorObj.statusText = `${error.response.statusText}: ${error.response.data}`;
+
+      Sentry.captureMessage(errorObj.statusText);
     }
+    Sentry.captureException(error);
 
     console.log("error get " + type + " Companies", errorObj);
 

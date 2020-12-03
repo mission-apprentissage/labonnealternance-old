@@ -3,11 +3,16 @@ const Sentry = require("@sentry/node");
 const offresPoleEmploi = require("./offresPoleEmploi");
 const bonnnesBoites = require("./bonnesBoites");
 const { jobsQueryValidator } = require("./jobsQueryValidator");
+const { trackEvent } = require("../../common/utils/sendTrackingEvent");
 
 const getJobsQuery = async (query) => {
   const queryValidationResult = jobsQueryValidator(query);
 
   if (queryValidationResult.error) return queryValidationResult;
+
+  if (query.caller) {
+    trackEvent({ category: "Appel API", action: "jobV1", label: query.caller });
+  }
 
   return getJobsFromApi(query);
 };
@@ -35,6 +40,7 @@ const getJobsFromApi = async (query) => {
             radius: parseInt(query.radius),
             type: "lba",
             strictRadius: query.strictRadius,
+            referer: query.referer,
           })
         : null,
       sources.indexOf("lbb") >= 0
@@ -45,6 +51,7 @@ const getJobsFromApi = async (query) => {
             radius: parseInt(query.radius),
             type: "lbb",
             strictRadius: query.strictRadius,
+            referer: query.referer,
           })
         : null,
     ]);

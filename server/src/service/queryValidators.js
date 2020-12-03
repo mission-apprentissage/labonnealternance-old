@@ -1,4 +1,4 @@
-const validateRomes = (romes, error_messages, romeLimit = 9) => {
+const validateRomes = (romes, error_messages, romeLimit = 15) => {
   // codes ROME : romes
   if (!romes) error_messages.push("romes : Rome codes are missing. At least 1.");
   else if (romes.split(",").length > romeLimit)
@@ -9,7 +9,7 @@ const validateRomes = (romes, error_messages, romeLimit = 9) => {
     );
 };
 
-const validateRomeOrDomain = ({ romes, romeDomain, romeLimit = 9, optional }, error_messages) => {
+const validateRomeOrDomain = ({ romes, romeDomain, romeLimit = 15, optional }, error_messages) => {
   // codes ROME : romes
   if (!optional && !romes && !romeDomain) {
     error_messages.push("romes, romeDomain : You must define at least 1 rome code OR a single romeDomain.");
@@ -30,7 +30,7 @@ const validateRomeOrDomain = ({ romes, romeDomain, romeLimit = 9, optional }, er
   }
 };
 
-const validateOptionalRomeOrDomain = ({ romes, romeDomain, romeLimit = 9 }, error_messages) => {
+const validateOptionalRomeOrDomain = ({ romes, romeDomain, romeLimit = 15 }, error_messages) => {
   validateRomeOrDomain({ romes, romeDomain, romeLimit, optional: true }, error_messages);
 };
 
@@ -104,7 +104,7 @@ const validateDiploma = (diploma, error_messages) => {
 const validateInsee = (insee, error_messages) => {
   // code INSEE : insee
   if (!insee) error_messages.push("insee : insee city code is missing.");
-  if (!/^[0-9]{5}$/.test(insee))
+  if (!/^[0-9][abAB0-9][0-9]{3}$/.test(insee))
     error_messages.push("insee : Badly formatted insee city code. Must be 5 digit number.");
 };
 
@@ -125,6 +125,15 @@ const validateApiSources = (apiSources, error_messages, allowedSources = ["forma
   }
 };
 
+const { isOriginLocal } = require("../common/utils/isOriginLocal");
+
+// contrôle sur la présence d'un appelant valide
+const validateCaller = ({ caller, referer }, error_messages) => {
+  if (!isOriginLocal(referer) && !caller) {
+    error_messages.push("caller : caller is missing.");
+  }
+};
+
 module.exports = {
   validateRadius,
   validateRomes,
@@ -137,4 +146,5 @@ module.exports = {
   validateOptionalRomeOrDomain,
   validateOptionalRegion,
   validateRegionOrRome,
+  validateCaller,
 };

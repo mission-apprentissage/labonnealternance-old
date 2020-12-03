@@ -1,7 +1,31 @@
 # CHANGELOG
 
-## 0.0.21 [20/11/2020]
+## 0.1.00 [03/12/2020]
 [172] SSR avec NextJS
+
+## 0.0.28 [27/11/2020]
+[214] Fix pastilles entreprises manquantes
+
+## 0.0.27 [27/11/2020]
+[213] Fix recherche en Corse
+
+## 0.0.26 [26/11/2020]
+[203] Enrichissement des logs applicatifs
+
+## 0.0.25 [24/11/2020]
+[200] Identification des consommateurs d'API via tracking system
+
+## 0.0.24 [23/11/2020]
+[198] Masquage coordonnées de contact des sociétés LBA / LBB pour les appels à l'api par des tiers
+
+## 0.0.23 [21/11/2020]
+[199] Retour d'erreur précis si utilisation d'un rome inconnu pour les appels à l'api lbb
+
+## 0.0.22 [19/11/2020]
+[194] Fix bug de recherche sur le métier commerce
+
+## 0.0.21 [19/11/2020]
+[191] Upgrade node 14
 
 ## 0.0.20 [19/11/2020]
 [BSR] Suppression des ApiTesters inutilisés
