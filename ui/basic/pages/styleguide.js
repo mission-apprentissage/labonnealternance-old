@@ -5,17 +5,17 @@ import { useSelector } from 'react-redux'
 const Styleguide = () => {
   const routerState = useSelector(state => state.router)
   return (
-    <div class="c-styleguide">
+    <div className="c-styleguide">
       <Navigation />
       <h1>Styleguide</h1>
 
-      <div class="container mt-5">
-        <h1 class="text-center">Styleguide</h1>
+      <div className="container mt-5">
+        <h1 className="text-center">Styleguide</h1>
 
-        <p class="lead text-center">Here are all the assets of your app</p>
+        <p className="lead text-center">Here are all the assets of your app</p>
 
 
-        <h2 class="fw-bold mt-4 pt-4">Typography</h2>
+        <h2 className="fw-bold mt-4 pt-4">Typography</h2>
         <hr/>
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
@@ -27,7 +27,7 @@ const Styleguide = () => {
         <p>Un simple paragraphe avec du texte. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius iure sapiente, ab ea aliquid minima animi maxime incidunt accusantium, sunt cupiditate soluta perferendis deleniti vitae commodi ratione fugiat ut quidem.</p>
         
         <p>Et voici  <a href="#">un lien</a> qui ne pointe vers aucune page, mais est suffisant pour la demo.</p>
-        <p class="lead">Ceci est un paragraphe avec de l'emphase (classe "lead" appliquée).</p>
+        <p className="lead">Ceci est un paragraphe avec de l'emphase (classe "lead" appliquée).</p>
 
         <p>You can use the mark tag to <mark>highlight</mark> text.</p>
         <p><del>This line of text is meant to be treated as deleted text.</del></p>
@@ -37,109 +37,109 @@ const Styleguide = () => {
         <p><small>This line of text is meant to be treated as fine print.</small></p>
         <p><strong>This line rendered as bold text.</strong></p>
         <p><em>This line rendered as italicized text.</em></p>
-        <blockquote class="blockquote">
-          <p class="mb-0">Ceci est une citation. Rendons hommage à celui qui l'a formulée.</p>
-          <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+        <blockquote className="blockquote">
+          <p className="mb-0">Ceci est une citation. Rendons hommage à celui qui l'a formulée.</p>
+          <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
         </blockquote>
 
 
-        <h2 class="fw-bold mt-4 pt-4">Displays</h2>
+        <h2 className="fw-bold mt-4 pt-4">Displays</h2>
         <hr/>
-        <div class="display-1">This is display 1</div>
-        <div class="display-2">This is display 2</div>
-        <div class="display-3">This is display 3</div>
-        <div class="display-4">This is display 4</div>
+        <div className="display-1">This is display 1</div>
+        <div className="display-2">This is display 2</div>
+        <div className="display-3">This is display 3</div>
+        <div className="display-4">This is display 4</div>
 
 
-        <h2 class="fw-bold mt-4 pt-4">Buttons</h2>
+        <h2 className="fw-bold mt-4 pt-4">Buttons</h2>
         <hr/>
         <p>
-          <button type="button" class="btn btn-primary btn-lg ml-1">Primary</button>
-          <button type="button" class="btn btn-secondary btn-lg ml-1">Secondary</button>
-          <button type="button" class="btn btn-success btn-lg ml-1">Success</button>
-          <button type="button" class="btn btn-danger btn-lg ml-1">Danger</button>
-          <button type="button" class="btn btn-warning btn-lg ml-1">Warning</button>
-          <button type="button" class="btn btn-info btn-lg ml-1">Info</button>
-          <button type="button" class="btn btn-light btn-lg ml-1">Light</button>
-          <button type="button" class="btn btn-dark btn-lg ml-1">Dark</button>
+          <button type="button" className="btn btn-primary btn-lg ml-1">Primary</button>
+          <button type="button" className="btn btn-secondary btn-lg ml-1">Secondary</button>
+          <button type="button" className="btn btn-success btn-lg ml-1">Success</button>
+          <button type="button" className="btn btn-danger btn-lg ml-1">Danger</button>
+          <button type="button" className="btn btn-warning btn-lg ml-1">Warning</button>
+          <button type="button" className="btn btn-info btn-lg ml-1">Info</button>
+          <button type="button" className="btn btn-light btn-lg ml-1">Light</button>
+          <button type="button" className="btn btn-dark btn-lg ml-1">Dark</button>
         </p>
         <p>
-          <button type="button" class="btn btn-primary ml-1">Primary</button>
-          <button type="button" class="btn btn-secondary ml-1">Secondary</button>
-          <button type="button" class="btn btn-success ml-1">Success</button>
-          <button type="button" class="btn btn-danger ml-1">Danger</button>
-          <button type="button" class="btn btn-warning ml-1">Warning</button>
-          <button type="button" class="btn btn-info ml-1">Info</button>
-          <button type="button" class="btn btn-light ml-1">Light</button>
-          <button type="button" class="btn btn-dark ml-1">Dark</button>
+          <button type="button" className="btn btn-primary ml-1">Primary</button>
+          <button type="button" className="btn btn-secondary ml-1">Secondary</button>
+          <button type="button" className="btn btn-success ml-1">Success</button>
+          <button type="button" className="btn btn-danger ml-1">Danger</button>
+          <button type="button" className="btn btn-warning ml-1">Warning</button>
+          <button type="button" className="btn btn-info ml-1">Info</button>
+          <button type="button" className="btn btn-light ml-1">Light</button>
+          <button type="button" className="btn btn-dark ml-1">Dark</button>
         </p>
         <p>
-          <button type="button" class="btn btn-primary btn-sm ml-1">Primary</button>
-          <button type="button" class="btn btn-secondary btn-sm ml-1">Secondary</button>
-          <button type="button" class="btn btn-success btn-sm ml-1">Success</button>
-          <button type="button" class="btn btn-danger btn-sm ml-1">Danger</button>
-          <button type="button" class="btn btn-warning btn-sm ml-1">Warning</button>
-          <button type="button" class="btn btn-info btn-sm ml-1">Info</button>
-          <button type="button" class="btn btn-light btn-sm ml-1">Light</button>
-          <button type="button" class="btn btn-dark btn-sm ml-1">Dark</button>
+          <button type="button" className="btn btn-primary btn-sm ml-1">Primary</button>
+          <button type="button" className="btn btn-secondary btn-sm ml-1">Secondary</button>
+          <button type="button" className="btn btn-success btn-sm ml-1">Success</button>
+          <button type="button" className="btn btn-danger btn-sm ml-1">Danger</button>
+          <button type="button" className="btn btn-warning btn-sm ml-1">Warning</button>
+          <button type="button" className="btn btn-info btn-sm ml-1">Info</button>
+          <button type="button" className="btn btn-light btn-sm ml-1">Light</button>
+          <button type="button" className="btn btn-dark btn-sm ml-1">Dark</button>
         </p>
         <p>
-          <button type="button" class="btn btn-outline-primary ml-1">Primary</button>
-          <button type="button" class="btn btn-outline-secondary ml-1">Secondary</button>
-          <button type="button" class="btn btn-outline-success ml-1">Success</button>
-          <button type="button" class="btn btn-outline-danger ml-1">Danger</button>
-          <button type="button" class="btn btn-outline-warning ml-1">Warning</button>
-          <button type="button" class="btn btn-outline-info ml-1">Info</button>
-          <button type="button" class="btn btn-outline-light ml-1">Light</button>
-          <button type="button" class="btn btn-outline-dark ml-1">Dark</button>
+          <button type="button" className="btn btn-outline-primary ml-1">Primary</button>
+          <button type="button" className="btn btn-outline-secondary ml-1">Secondary</button>
+          <button type="button" className="btn btn-outline-success ml-1">Success</button>
+          <button type="button" className="btn btn-outline-danger ml-1">Danger</button>
+          <button type="button" className="btn btn-outline-warning ml-1">Warning</button>
+          <button type="button" className="btn btn-outline-info ml-1">Info</button>
+          <button type="button" className="btn btn-outline-light ml-1">Light</button>
+          <button type="button" className="btn btn-outline-dark ml-1">Dark</button>
         </p>
 
 
-        <h2 class="fw-bold mt-4 pt-4">Background Colors</h2>
+        <h2 className="fw-bold mt-4 pt-4">Background Colors</h2>
         <hr/>
-        <div class="lead bg-primary text-white">&nbsp;primary color</div>
-        <div class="lead bg-success text-white">&nbsp;success color</div>
-        <div class="lead bg-danger text-white">&nbsp;danger color</div>
-        <div class="lead bg-info text-white">&nbsp;info color</div>
-        <div class="lead bg-warning text-white">&nbsp;warning color</div>
-        <div class="lead bg-dark text-white">&nbsp;dark color</div>
-        <div class="lead bg-light text-black">&nbsp;light color</div>
+        <div className="lead bg-primary text-white">&nbsp;primary color</div>
+        <div className="lead bg-success text-white">&nbsp;success color</div>
+        <div className="lead bg-danger text-white">&nbsp;danger color</div>
+        <div className="lead bg-info text-white">&nbsp;info color</div>
+        <div className="lead bg-warning text-white">&nbsp;warning color</div>
+        <div className="lead bg-dark text-white">&nbsp;dark color</div>
+        <div className="lead bg-light text-black">&nbsp;light color</div>
 
 
-        <h2 class="fw-bold mt-4 pt-4">Alertes</h2>
+        <h2 className="fw-bold mt-4 pt-4">Alertes</h2>
         <hr/>
-        <div class="bd-example">
-          <div class="alert alert-primary" role="alert">
+        <div className="bd-example">
+          <div className="alert alert-primary" role="alert">
             A simple primary alert—check it out!
           </div>
-          <div class="alert alert-secondary" role="alert">
+          <div className="alert alert-secondary" role="alert">
             A simple secondary alert—check it out!
           </div>
-          <div class="alert alert-success" role="alert">
+          <div className="alert alert-success" role="alert">
             A simple success alert—check it out!
           </div>
-          <div class="alert alert-danger" role="alert">
+          <div className="alert alert-danger" role="alert">
             A simple danger alert—check it out!
           </div>
-          <div class="alert alert-warning" role="alert">
+          <div className="alert alert-warning" role="alert">
             A simple warning alert—check it out!
           </div>
-          <div class="alert alert-info" role="alert">
+          <div className="alert alert-info" role="alert">
             A simple info alert—check it out!
           </div>
-          <div class="alert alert-light" role="alert">
+          <div className="alert alert-light" role="alert">
             A simple light alert—check it out!
           </div>
-          <div class="alert alert-dark" role="alert">
+          <div className="alert alert-dark" role="alert">
             A simple dark alert—check it out!
           </div>
         </div>
 
-        <h2 class="fw-bold mt-4 pt-4">Tables</h2>
+        <h2 className="fw-bold mt-4 pt-4">Tables</h2>
         <hr/>
-        <div class="row">
-          <div class="col-md">
-            <table class="table">
+        <div className="row">
+          <div className="col-md">
+            <table className="table">
               <thead>
                 <tr>
                   <th>#</th>
@@ -170,8 +170,8 @@ const Styleguide = () => {
               </tbody>
             </table>
           </div>
-          <div class="col-md">
-            <table class="table table-striped">
+          <div className="col-md">
+            <table className="table table-striped">
               <thead>
                 <tr>
                   <th>#</th>
@@ -203,7 +203,7 @@ const Styleguide = () => {
             </table>
           </div>
         </div>
-        <div class="row">
+        <div className="row">Name
           <div class="col-md">
             <table class="table table-bordered">
               <thead>
