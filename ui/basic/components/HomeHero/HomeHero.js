@@ -5,8 +5,7 @@ import styles from "./HomeHero.module.scss";
 
 const HomeHero = () => {
   return (
-    <>
-      <div className={styles.root}>
+      <div className="c-home-hero">
         <p>
           1) Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -104,7 +103,6 @@ const HomeHero = () => {
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.          
         </p>
       </div>
-    </>
   );
 };
 
