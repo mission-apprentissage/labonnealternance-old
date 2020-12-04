@@ -1,0 +1,12 @@
+import React from "react";
+
+const HomeHero = ({ type, message }) => {
+  return (
+    <>
+      <div className="HomeHero">
+      </div>
+    </>
+  );
+};
+
+export default HomeHero;

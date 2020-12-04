@@ -1,6 +1,9 @@
 # CHANGELOG
 
 
+## 0.3.0 [04/12/2020]
+[236] Home header
+
 ## 0.2.0 [03/12/2020]
 [233] Styleguide
 

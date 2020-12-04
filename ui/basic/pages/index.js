@@ -3,9 +3,9 @@ import Navigation from '../components/navigation'
 
 const Home = () => (
   <div>
-    <h1>Home</h1>
     <Navigation />
-  </div>
-)
+    <h1>Home</h1>
+    </div>
+    )
 
 export default Home
