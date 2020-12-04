@@ -1,8 +1,14 @@
-import {noop} from "lodash/noop";
+import { noop } from "lodash/noop";
 
-
-export default async function onInputValueChangeService(inputValue, inputItems = [], items = [], setInputItems = noop, selectItem = noop, onInputValueChangeFunction = null, compareItemFunction = null) {
-
+export default async function onInputValueChangeService(
+  inputValue,
+  inputItems = [],
+  items = [],
+  setInputItems = noop,
+  selectItem = noop,
+  onInputValueChangeFunction = null,
+  compareItemFunction = null
+) {
   // fixe la liste d'items en fonction de la valeur courante du champ input. S'il y a appel à une API c'est ici
   if (onInputValueChangeFunction) {
     const newItems = await onInputValueChangeFunction(inputValue);
@@ -20,5 +26,4 @@ export default async function onInputValueChangeService(inputValue, inputItems =
       selectItem(null);
     }
   }
-
-};
+}

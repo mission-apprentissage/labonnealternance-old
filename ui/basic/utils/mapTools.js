@@ -4,7 +4,7 @@ import { Marker, MapPopup } from "../components/SearchForTrainingsAndJobs/compon
 import { setJobMarkers, setTrainingMarkers } from "../components/SearchForTrainingsAndJobs/utils/mapTools";
 import ReactDOM from "react-dom";
 // import mapboxgl from "mapbox-gl";
-import * as mapboxgl from 'mapbox-gl';
+import * as mapboxgl from "mapbox-gl";
 import { Provider } from "react-redux";
 import { fetchAddresses } from "../services/baseAdresse";
 import { scrollToElementInContainer, getItemElement } from "./tools";
@@ -136,17 +136,13 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trai
       onLayerClick(e, "training", store, showResultList, unselectItem);
     });
 
-    if(jobs && jobs.peJobs && (jobs.peJobs.length || jobs.lbaCompanies.length || jobs.lbbCompanies.length))
-    {
+    if (jobs && jobs.peJobs && (jobs.peJobs.length || jobs.lbaCompanies.length || jobs.lbbCompanies.length)) {
       setJobMarkers(factorJobsForMap(jobs));
     }
-    
-    if(trainings && trainings.length)
-    {
+
+    if (trainings && trainings.length) {
       setTrainingMarkers(factorTrainingsForMap(trainings));
     }
-    
-
   });
 
   /*map.on("move", () => {

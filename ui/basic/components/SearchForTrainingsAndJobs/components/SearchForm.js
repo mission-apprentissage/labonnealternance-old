@@ -10,9 +10,11 @@ import fetchDiplomas from "../../../services/fetchDiplomas";
 import DomainError from "./DomainError/DomainError";
 
 const SearchForm = (props) => {
-  const { isFormVisible } = useSelector((state) => state.trainings);
-  const [locationRadius, setLocationRadius] = useState(30);
+  const { isFormVisible, hasSearch, formValues } = useSelector((state) => state.trainings);
+
+  const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
   const [diplomas, setDiplomas] = useState([]);
+  const [diploma, setDiploma] = useState(formValues?.diploma ?? "");
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
@@ -55,7 +57,7 @@ const SearchForm = (props) => {
   };
 
   // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
-  const autoCompleteToStringFunction = (item) => {    
+  const autoCompleteToStringFunction = (item) => {
     return item ? item.label : "";
   };
 
@@ -92,6 +94,7 @@ const SearchForm = (props) => {
 
   const handleDiplomaChange = (evt, setFieldValue) => {
     const value = evt.currentTarget.value;
+    setDiploma(value);
     setTimeout(() => {
       setFieldValue("diploma", value);
     }, 0);
@@ -119,7 +122,7 @@ const SearchForm = (props) => {
         setDiplomaError(true);
       });
     }
-    
+
     setTimeout(() => {
       setDiplomas(diplomas);
     }, 0);
@@ -138,7 +141,7 @@ const SearchForm = (props) => {
           }
           return errors;
         }}
-        initialValues={{ job: {}, location: {}, radius: 30, diploma: "" }}
+        initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={props.handleSubmit}
       >
         {({ isSubmitting, setFieldValue }) => (
@@ -154,6 +157,7 @@ const SearchForm = (props) => {
                       onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
                       compareItemFunction={compareAutoCompleteValues}
                       onInputValueChangeFunction={domainChanged}
+                      previouslySelectedItem={formValues?.job ?? null}
                       name="jobField"
                       placeholder="ex: plomberie"
                     />
@@ -166,7 +170,12 @@ const SearchForm = (props) => {
                 <div className="formGroup">
                   <label htmlFor="diplomaField">Le diplôme que vous souhaitez obtenir ...</label>
                   <div className="fieldContainer">
-                    <Input onChange={(evt) => handleDiplomaChange(evt, setFieldValue)} type="select" name="diploma">
+                    <Input
+                      onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
+                      value={diploma}
+                      type="select"
+                      name="diploma"
+                    >
                       {buildAvailableDiplomas()}
                     </Input>
                   </div>
@@ -183,6 +192,7 @@ const SearchForm = (props) => {
                       onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
                       compareItemFunction={compareAutoCompleteValues}
                       onInputValueChangeFunction={fetchAddresses}
+                      previouslySelectedItem={formValues?.location ?? null}
                       scrollParentId="rightColumn"
                       name="placeField"
                       placeholder="Adresse ou ville ou code postal"
@@ -254,7 +264,7 @@ const SearchForm = (props) => {
     <div className={isFormVisible ? "" : "hiddenSearchForm"}>
       <header>
         <LogoIdea />
-        {props.hasSearch ? (
+        {hasSearch ? (
           <Button className="blueButton" onClick={props.showResultList}>
             Retour
           </Button>

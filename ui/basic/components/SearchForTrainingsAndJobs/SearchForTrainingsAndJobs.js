@@ -11,9 +11,7 @@ import Map from "../../components/Map";
 const SearchForTrainingsAndJobs = ({ isTrainingOnly }) => {
   const dispatch = useDispatch();
 
-  const { selectedItem, trainings, visiblePane, isFormVisible } = useSelector((state) => state.trainings);
-
-  console.log("VISIBLEPANE ", visiblePane, isFormVisible, trainings);
+  const { selectedItem, visiblePane } = useSelector((state) => state.trainings);
 
   const showSearchForm = (e) => {
     if (e) {
