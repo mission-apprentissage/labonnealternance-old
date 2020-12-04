@@ -14,6 +14,7 @@ const SearchForm = (props) => {
 
   const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
   const [diplomas, setDiplomas] = useState([]);
+  const [diploma, setDiploma] = useState(formValues?.diploma ?? "");
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
@@ -93,6 +94,7 @@ const SearchForm = (props) => {
 
   const handleDiplomaChange = (evt, setFieldValue) => {
     const value = evt.currentTarget.value;
+    setDiploma(value);
     setTimeout(() => {
       setFieldValue("diploma", value);
     }, 0);
@@ -167,7 +169,7 @@ const SearchForm = (props) => {
                 <div className="formGroup">
                   <label htmlFor="diplomaField">Le diplôme que vous souhaitez obtenir ...</label>
                   <div className="fieldContainer">
-                    <Input onChange={(evt) => handleDiplomaChange(evt, setFieldValue)} type="select" name="diploma">
+                    <Input onChange={(evt) => handleDiplomaChange(evt, setFieldValue)} value={diploma} type="select" name="diploma">
                       {buildAvailableDiplomas()}
                     </Input>
                   </div>
