@@ -3,3 +3,10 @@
    width: 110px;
  }
 }
+
+
+.c-navigation .navbar-toggler:after {
+  content: 'menu';
+  display: block;
+  font-size: 12px; // can't find proper variable here
+}

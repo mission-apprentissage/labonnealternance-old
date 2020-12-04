@@ -33,7 +33,7 @@ const Navigation = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <div className="c-navigation">
       <Navbar expand="md" className="bg-transparent navbar-light">
         <div className="container">
           <NavbarBrand href="/">
@@ -41,14 +41,14 @@ const Navigation = (props) => {
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="c-navbar-links ml-auto" navbar>
               <NavItem>
                 <NavLink href="#">Accès recruteur</NavLink>
               </NavItem>
               <NavItem className="ml-5">
                 <div className="d-flex cursor-pointer">
                   <img src='/images/square_link.svg' alt="Lien organisme de formation"/>
-                  <NavLink href="#">Accès organisme de formation</NavLink>
+                  <NavLink href="#" className="ml-1">Accès organisme de formation</NavLink>
                 </div>
               </NavItem>
             </Nav>
