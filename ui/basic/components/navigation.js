@@ -23,7 +23,7 @@ import styles from "./navigation.module.scss";
 
 /*
  Different kind of navigation are available here :
- https://raw.githubusercontent.com/danielr18/connected-next-router/master/Navigations/basic/components/navigation.js
+ https://raw.githubusercontent.com/danielr18/connected-next-router/master/examples/basic/components/navigation.js
 */
 const Navigation = (props) => {
   const dispatch = useDispatch()
