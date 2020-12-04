@@ -7,45 +7,29 @@ const Styleguide = () => {
   return (
     <div className="c-styleguide">
       <Navigation />
-      <h1>Styleguide</h1>
 
       <div className="container mt-5">
         <h1 className="text-center">Styleguide</h1>
 
-        <p className="lead text-center">Here are all the assets of your app</p>
+        <p className="lead text-center">Here are all the assets</p>
 
         <h2 className="fw-bold mt-4 pt-4">Palette</h2>
         <hr/>
         <div className="row">
           <div className="col-md-4">
-            <div className="p-3 mb-3 swatch-blue">Blue</div>
+            <div className="p-3 mb-3 swatch-bluesoft500">Bluesoft500</div>
           </div>
           <div className="col-md-4">
-            <div className="p-3 mb-3 swatch-indigo">Indigo</div>
+            <div className="p-3 mb-3 swatch-bluedark500">Bluedark500</div>
           </div>
           <div className="col-md-4">
-            <div className="p-3 mb-3 swatch-purple">Purple</div>
+            <div className="p-3 mb-3 swatch-pinksoft500">Pinksoft500</div>
           </div>
           <div className="col-md-4">
-            <div className="p-3 mb-3 swatch-pink">Pink</div>
+            <div className="p-3 mb-3 swatch-pinkdark500">Pinkdark500</div>
           </div>
           <div className="col-md-4">
-            <div className="p-3 mb-3 swatch-red">Red</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 swatch-orange">Orange</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 swatch-yellow">Yellow</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 swatch-green">Green</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 swatch-teal">Teal</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 swatch-cyan">Cyan</div>
+            <div className="p-3 mb-3 swatch-pinklight500">Pinklight500</div>
           </div>
         </div>
 
@@ -59,6 +43,7 @@ const Styleguide = () => {
           <div className="p-3 swatch-500">500</div>
           <div className="p-3 swatch-600">600</div>
           <div className="p-3 swatch-700">700</div>
+          <div className="p-3 swatch-750">750</div>
           <div className="p-3 swatch-800">800</div>
           <div className="p-3 swatch-900">900</div>
         </div>
@@ -198,172 +183,6 @@ const Styleguide = () => {
         </div>
 
 
-        <h2 className="fw-bold mt-4 pt-4">Alertes</h2>
-        <hr/>
-        <div className="bd-example">
-          <div className="alert alert-primary" role="alert">
-            A simple primary alert—check it out!
-          </div>
-          <div className="alert alert-secondary" role="alert">
-            A simple secondary alert—check it out!
-          </div>
-          <div className="alert alert-success" role="alert">
-            A simple success alert—check it out!
-          </div>
-          <div className="alert alert-danger" role="alert">
-            A simple danger alert—check it out!
-          </div>
-          <div className="alert alert-warning" role="alert">
-            A simple warning alert—check it out!
-          </div>
-          <div className="alert alert-info" role="alert">
-            A simple info alert—check it out!
-          </div>
-          <div className="alert alert-light" role="alert">
-            A simple light alert—check it out!
-          </div>
-          <div className="alert alert-dark" role="alert">
-            A simple dark alert—check it out!
-          </div>
-        </div>
-
-        <h2 className="fw-bold mt-4 pt-4">Tables</h2>
-        <hr/>
-        <div className="row">
-          <div className="col-md">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Username</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="col-md">
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Username</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div className="row">NameName
-          <div class="col-md">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Username</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td rowspan="2">1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@TwBootstrap</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="col-md">
-           <table class="table table-sm">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Username</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
 
 

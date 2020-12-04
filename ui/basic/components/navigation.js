@@ -45,7 +45,7 @@ const Navigation = (props) => {
               <NavItem>
                 <NavLink href="#">Accès recruteur</NavLink>
               </NavItem>
-              <NavItem className="ml-5">
+              <NavItem className="ml-md-5">
                 <div className="d-flex cursor-pointer">
                   <img src='/images/square_link.svg' alt="Lien organisme de formation"/>
                   <NavLink href="#" className="ml-1">Accès organisme de formation</NavLink>
