@@ -57,7 +57,7 @@ const SearchForm = (props) => {
   };
 
   // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
-  const autoCompleteToStringFunction = (item) => {    
+  const autoCompleteToStringFunction = (item) => {
     return item ? item.label : "";
   };
 
@@ -122,7 +122,7 @@ const SearchForm = (props) => {
         setDiplomaError(true);
       });
     }
-    
+
     setTimeout(() => {
       setDiplomas(diplomas);
     }, 0);
@@ -141,7 +141,6 @@ const SearchForm = (props) => {
           }
           return errors;
         }}
-        
         initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={props.handleSubmit}
       >
@@ -171,7 +170,12 @@ const SearchForm = (props) => {
                 <div className="formGroup">
                   <label htmlFor="diplomaField">Le diplôme que vous souhaitez obtenir ...</label>
                   <div className="fieldContainer">
-                    <Input onChange={(evt) => handleDiplomaChange(evt, setFieldValue)} value={diploma} type="select" name="diploma">
+                    <Input
+                      onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
+                      value={diploma}
+                      type="select"
+                      name="diploma"
+                    >
                       {buildAvailableDiplomas()}
                     </Input>
                   </div>

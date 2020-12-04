@@ -38,18 +38,15 @@ const technicalErrorText = "Error technique momentanée";
 const trainingsApi = baseUrl + "/api/v1/formations";
 const jobsApi = baseUrl + "/api/v1/jobs";
 
-const RightColumn = ({
-  showResultList,
-  unSelectItem,
-  showSearchForm,
-  isTrainingOnly,
-}) => {
+const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingOnly }) => {
   const dispatch = useDispatch();
 
-  const { hasSearch, trainings, jobs, selectedItem, itemToScrollTo, formValues } = useSelector((state) => state.trainings);
-  const [isLoading, setIsLoading] = useState(hasSearch?false:true);
-  const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch?false:true);
-  const [isJobSearchLoading, setIsJobSearchLoading] = useState(hasSearch?false:true);
+  const { hasSearch, trainings, jobs, selectedItem, itemToScrollTo, formValues } = useSelector(
+    (state) => state.trainings
+  );
+  const [isLoading, setIsLoading] = useState(hasSearch ? false : true);
+  const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
+  const [isJobSearchLoading, setIsJobSearchLoading] = useState(hasSearch ? false : true);
   const [searchRadius, setSearchRadius] = useState(30);
   const [jobSearchError, setJobSearchError] = useState("");
   const [allJobSearchError, setAllJobSearchError] = useState(false);
@@ -350,13 +347,7 @@ const RightColumn = ({
   };
 
   const getSearchForm = () => {
-    return (
-      <SearchForm
-        selectedItem={selectedItem}
-        showResultList={showResultList}
-        handleSubmit={handleSubmit}
-      />
-    );
+    return <SearchForm selectedItem={selectedItem} showResultList={showResultList} handleSubmit={handleSubmit} />;
   };
 
   const getSelectedItemDetail = () => {

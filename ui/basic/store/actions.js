@@ -67,7 +67,7 @@ export const setVisiblePane = (visiblePane = "resultList") => {
     visiblePane,
   };
 };
-  
+
 export const setHasSearch = (hasSearch = false) => {
   return {
     type: types.SET_HAS_SEARCH,
@@ -81,4 +81,3 @@ export const setIsFormVisible = (isFormVisible = true) => {
     isFormVisible,
   };
 };
-

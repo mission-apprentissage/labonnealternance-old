@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useFormikContext } from "formik";
-import { useSelector } from "react-redux";
 import { useCombobox } from "downshift";
-import {debounce} from "lodash";
-import onInputValueChangeService from "./onInputValueChangeService"
+import { debounce } from "lodash";
+import onInputValueChangeService from "./onInputValueChangeService";
 
 let debouncedOnInputValueChange = null;
 
@@ -19,14 +18,20 @@ export const AutoCompleteField = ({
   previouslySelectedItem,
   ...props
 }) => {
-
   useEffect(() => {
-    if(!initialized && previouslySelectedItem)
-    {
+    if (!initialized && previouslySelectedItem) {
       setInitialized(true);
-      onInputValueChangeService(inputValue, inputItems, items, setInputItems, selectItem, onInputValueChangeFunction, compareItemFunction);
+      onInputValueChangeService(
+        inputValue,
+        inputItems,
+        items,
+        setInputItems,
+        selectItem,
+        onInputValueChangeFunction,
+        compareItemFunction
+      );
     }
-  });
+  }, []);
 
   const { setFieldValue } = useFormikContext();
 
@@ -44,8 +49,8 @@ export const AutoCompleteField = ({
 
     if (ancestor) {
       setTimeout(() => {
-        if (typeof window !== 'undefined') {
-         if (window.innerHeight < 650) ancestor.scrollTop = ancestor.scrollTop + 150;
+        if (typeof window !== "undefined") {
+          if (window.innerHeight < 650) ancestor.scrollTop = ancestor.scrollTop + 150;
         }
       }, 350);
     }
@@ -73,9 +78,17 @@ export const AutoCompleteField = ({
     },
     onInputValueChange: async ({ inputValue }) => {
       if (!debouncedOnInputValueChange) {
-        debouncedOnInputValueChange = debounce(onInputValueChangeService, 300)
-      } 
-      debouncedOnInputValueChange(inputValue, inputItems, items, setInputItems, selectItem, onInputValueChangeFunction, compareItemFunction)
+        debouncedOnInputValueChange = debounce(onInputValueChangeService, 300);
+      }
+      debouncedOnInputValueChange(
+        inputValue,
+        inputItems,
+        items,
+        setInputItems,
+        selectItem,
+        onInputValueChangeFunction,
+        compareItemFunction
+      );
     },
   });
 

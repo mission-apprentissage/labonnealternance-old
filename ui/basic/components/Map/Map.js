@@ -15,10 +15,10 @@ const Map = ({ showResultList }) => {
   };
 
   useEffect(() => {
-    if (!map || (map && !document.getElementsByClassName("mapContainer")[0].innerHTML.length )) 
-    {
-      initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });      
-    };});
+    if (!map || (map && !document.getElementsByClassName("mapContainer")[0].innerHTML.length)) {
+      initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });
+    }
+  });
 
   return <div ref={(el) => (mapContainer.current = el)} className="mapContainer" />;
 };
