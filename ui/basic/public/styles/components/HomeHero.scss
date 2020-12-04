@@ -1,6 +1,6 @@
 .c-home-hero {
   background: url('/images/hero2.svg'), #FFF8F8;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -8,7 +8,16 @@
   max-width: 445px;
 }
 
+.c-home-hero__input {
+  width: 314px;
+}
+
 .c-home-hero__title {
   font-family: 'Marianne';
   font-weight: 700;
+  font-size: 32px;
+}
+
+.c-home-hero__title2 {
+  color: #3b56d1;
 }
