@@ -1,12 +1,5 @@
-import React from "react";
-
-const HomeHero = ({ type, message }) => {
-  return (
-    <>
-      <div className="HomeHero">
-      </div>
-    </>
-  );
-};
-
-export default HomeHero;
+.root {
+  background-image: url('../../public/images/home_hero_background.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
