@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.2.1 [04/12/2020]
+[226] Tracker les mots clefs de métiers cherchés
+
 ## 0.1.1 [03/12/2020]
 [234] Tracker les mots clefs de métiers cherchés
 
