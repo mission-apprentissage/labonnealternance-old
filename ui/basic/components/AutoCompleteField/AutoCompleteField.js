@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormikContext } from "formik";
 import { useCombobox } from "downshift";
-import {debounce} from "lodash";
-import onInputValueChangeService from "./onInputValueChangeService"
+import { debounce } from "lodash";
+import onInputValueChangeService from "./onInputValueChangeService";
 
 let debouncedOnInputValueChange = null;
 
@@ -15,12 +15,28 @@ export const AutoCompleteField = ({
   items,
   initialIsOpen,
   scrollParentId,
+  previouslySelectedItem,
   ...props
 }) => {
+  useEffect(() => {
+    if (!initialized && previouslySelectedItem) {
+      setInitialized(true);
+      onInputValueChangeService(
+        inputValue,
+        inputItems,
+        items,
+        setInputItems,
+        selectItem,
+        onInputValueChangeFunction,
+        compareItemFunction
+      );
+    }
+  }, []);
 
   const { setFieldValue } = useFormikContext();
 
   const [inputItems, setInputItems] = useState(items);
+  const [initialized, setInitialized] = useState(false);
 
   const itemToString = (item) => {
     if (itemToStringFunction) return item ? itemToStringFunction(item) : "";
@@ -33,8 +49,8 @@ export const AutoCompleteField = ({
 
     if (ancestor) {
       setTimeout(() => {
-        if (typeof window !== 'undefined') {
-         if (window.innerHeight < 650) ancestor.scrollTop = ancestor.scrollTop + 150;
+        if (typeof window !== "undefined") {
+          if (window.innerHeight < 650) ancestor.scrollTop = ancestor.scrollTop + 150;
         }
       }, 350);
     }
@@ -52,7 +68,7 @@ export const AutoCompleteField = ({
   } = useCombobox({
     items: inputItems,
     itemToString,
-    initialSelectedItem: initialItem,
+    initialSelectedItem: previouslySelectedItem,
     initialIsOpen,
     onSelectedItemChange: ({ selectedItem }) => {
       // modifie les valeurs sélectionnées du formulaire en fonction de l'item sélectionné
@@ -62,9 +78,17 @@ export const AutoCompleteField = ({
     },
     onInputValueChange: async ({ inputValue }) => {
       if (!debouncedOnInputValueChange) {
-        debouncedOnInputValueChange = debounce(onInputValueChangeService, 300)
-      } 
-      debouncedOnInputValueChange(inputValue, inputItems, items, setInputItems, selectItem, onInputValueChangeFunction, compareItemFunction)
+        debouncedOnInputValueChange = debounce(onInputValueChangeService, 300);
+      }
+      debouncedOnInputValueChange(
+        inputValue,
+        inputItems,
+        items,
+        setInputItems,
+        selectItem,
+        onInputValueChangeFunction,
+        compareItemFunction
+      );
     },
   });
 

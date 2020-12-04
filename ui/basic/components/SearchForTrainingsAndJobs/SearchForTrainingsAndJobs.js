@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col } from "reactstrap";
 
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 import { MapListSwitchButton, RightColumn } from "./components";
 import { setSelectedItem, setItemToScrollTo, setIsFormVisible, setVisiblePane } from "../../store/actions";
@@ -9,13 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { map } from "../../utils/mapTools";
 import Map from "../../components/Map";
 
-
 const SearchForTrainingsAndJobs = ({ isTrainingOnly }) => {
   const dispatch = useDispatch();
 
-  const { selectedItem, trainings, visiblePane, isFormVisible } = useSelector((state) => state.trainings);
-
-  console.log("VISIBLEPANE ",visiblePane, isFormVisible, trainings);
+  const { selectedItem, visiblePane } = useSelector((state) => state.trainings);
 
   const showSearchForm = (e) => {
     if (e) {
