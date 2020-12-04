@@ -19,6 +19,9 @@ import Router from 'next/router'
 import { push, replace, goBack, goForward, prefetch } from 'connected-next-router'
 import { useDispatch } from 'react-redux'
 
+import styles from "./navigation.module.scss";
+
+
 /*
  Different kind of navigation are available here :
  https://raw.githubusercontent.com/danielr18/connected-next-router/master/Navigations/basic/components/navigation.js
@@ -32,8 +35,10 @@ const Navigation = (props) => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <Navbar color="light" light expand="md" className={styles.root}>
+        <NavbarBrand href="/">
+          <img src='/images/logo_lba.svg' alt="Logo LBA" className={styles['c-navbar-brand']}/>
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
