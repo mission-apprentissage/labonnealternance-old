@@ -14,14 +14,14 @@ const HomeHero = () => {
               <span className="d-block c-home-hero__title c-home-hero__title1">Se former et travailler</span>
               <span className="d-block c-home-hero__title c-home-hero__title2">en alternance</span>
             </h1>
-            <p className="card-text mb-5">
+            <p className="card-text mb-sm-5">
               <span className="d-block c-home-hero__subtitle">Trouvez la formation et l’entreprise pour</span>
               <span className="d-block c-home-hero__subtitle">réaliser votre projet d'alternance</span>
             </p>
             <div className="form-group" className="c-home-hero__input mb-2">
               <input type="text" required="required" value="" className="form-control form-control-lg w-100" aria-describedby="name" placeholder="ex : boulanger" />
             </div>
-            <div className="form-group" className="c-home-hero__input mb-4">
+            <div className="form-group" className="c-home-hero__input mb-3 mb-sm-4">
               <input type="text" required="required" value="" className="form-control form-control-lg w-100" aria-describedby="name" placeholder="ex : France, Paris, 75000" />
             </div>
             <div className="form-group" className="c-home-hero__input">
