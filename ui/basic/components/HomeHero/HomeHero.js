@@ -18,14 +18,14 @@ const HomeHero = () => {
               <span className="d-block">Trouvez la formation et l’entreprise pour</span>
               <span className="d-block">réaliser votre projet d'alternance</span>
             </p>
-            <div class="form-group mb-2" className="c-home-hero__input">
-              <input type="text" required="required" value="" class="form-control form-control-lg w-100" aria-describedby="name" placeholder="ex : boulanger" />
+            <div className="form-group mb-2" className="c-home-hero__input">
+              <input type="text" required="required" value="" className="form-control form-control-lg w-100" aria-describedby="name" placeholder="ex : boulanger" />
             </div>
-            <div class="form-group" className="c-home-hero__input">
-              <input type="text" required="required" value="" class="form-control form-control-lg w-100" aria-describedby="name" placeholder="ex : France, Paris, 75000" />
+            <div className="form-group" className="c-home-hero__input">
+              <input type="text" required="required" value="" className="form-control form-control-lg w-100" aria-describedby="name" placeholder="ex : France, Paris, 75000" />
             </div>
-            <div class="form-group" className="c-home-hero__input">
-              <input type="submit" value="C'est parti !" class="d-block btn btn-lg btn-dark w-100 font-weight-bold c-home-hero__submit" data-disable-with="C'est parti !"/>
+            <div className="form-group" className="c-home-hero__input">
+              <input type="submit" value="C'est parti !" className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-home-hero__submit" data-disable-with="C'est parti !"/>
             </div>
             <p>&nbsp;</p>
           </div>
