@@ -141,7 +141,8 @@ const SearchForm = (props) => {
           }
           return errors;
         }}
-        initialValues={{ job: {}, location: {}, radius: 30, diploma: "" }}
+        
+        initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={props.handleSubmit}
       >
         {({ isSubmitting, setFieldValue }) => (
@@ -157,6 +158,7 @@ const SearchForm = (props) => {
                       onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
                       compareItemFunction={compareAutoCompleteValues}
                       onInputValueChangeFunction={domainChanged}
+                      previouslySelectedItem={formValues?.job ?? null}
                       name="jobField"
                       placeholder="ex: plomberie"
                     />
@@ -186,6 +188,7 @@ const SearchForm = (props) => {
                       onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
                       compareItemFunction={compareAutoCompleteValues}
                       onInputValueChangeFunction={fetchAddresses}
+                      previouslySelectedItem={formValues?.location ?? null}
                       scrollParentId="rightColumn"
                       name="placeField"
                       placeholder="Adresse ou ville ou code postal"

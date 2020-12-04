@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormikContext } from "formik";
+import { useSelector } from "react-redux";
 import { useCombobox } from "downshift";
 import {debounce} from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService"
@@ -15,12 +16,22 @@ export const AutoCompleteField = ({
   items,
   initialIsOpen,
   scrollParentId,
+  previouslySelectedItem,
   ...props
 }) => {
+
+  useEffect(() => {
+    if(!initialized && previouslySelectedItem)
+    {
+      console.log("effect ",initialized,previouslySelectedItem);
+      setInitialized(true);
+    }
+  });
 
   const { setFieldValue } = useFormikContext();
 
   const [inputItems, setInputItems] = useState(items);
+  const [initialized, setInitialized] = useState(false);
 
   const itemToString = (item) => {
     if (itemToStringFunction) return item ? itemToStringFunction(item) : "";
@@ -52,7 +63,7 @@ export const AutoCompleteField = ({
   } = useCombobox({
     items: inputItems,
     itemToString,
-    initialSelectedItem: initialItem,
+    initialSelectedItem: previouslySelectedItem,
     initialIsOpen,
     onSelectedItemChange: ({ selectedItem }) => {
       // modifie les valeurs sélectionnées du formulaire en fonction de l'item sélectionné
