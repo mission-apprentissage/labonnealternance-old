@@ -18,10 +18,10 @@ const HomeHero = () => {
               <span className="d-block c-home-hero__subtitle">Trouvez la formation et l’entreprise pour</span>
               <span className="d-block c-home-hero__subtitle">réaliser votre projet d'alternance</span>
             </p>
-            <div className="form-group mb-2" className="c-home-hero__input">
+            <div className="form-group" className="c-home-hero__input mb-2">
               <input type="text" required="required" value="" className="form-control form-control-lg w-100" aria-describedby="name" placeholder="ex : boulanger" />
             </div>
-            <div className="form-group" className="c-home-hero__input">
+            <div className="form-group" className="c-home-hero__input mb-4">
               <input type="text" required="required" value="" className="form-control form-control-lg w-100" aria-describedby="name" placeholder="ex : France, Paris, 75000" />
             </div>
             <div className="form-group" className="c-home-hero__input">
