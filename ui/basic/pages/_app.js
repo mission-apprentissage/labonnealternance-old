@@ -5,14 +5,6 @@ import { wrapper } from '../store/configure-store'
 import Head from 'next/head'
 
 import 'public/styles/application.scss';
-// import 'public/styles/custom-bootstrap.scss';
-// import 'bootstrap/scss/bootstrap.scss';
-
-// import our own components
-// import 'public/styles/components/navigation.scss';
-// import "public/styles/components/all_components.scss";
-
-
 
 
 class ExampleApp extends App {
