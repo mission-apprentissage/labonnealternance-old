@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.2.0 [03/12/2020]
+[233] Styleguide
+
 ## 0.1.1 [03/12/2020]
 [234] Tracker les mots clefs de métiers cherchés
 
