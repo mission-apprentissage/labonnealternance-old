@@ -1,0 +1,30 @@
+.c-navbar-brand-img {
+ @include media-breakpoint-down(sm) { 
+   width: 110px;
+ }
+}
+
+
+.c-navigation {
+  .navbar-toggler:after {
+    content: 'Menu';
+    display: block;
+    font-size: 12px; // can't find proper variable here
+    margin-top: -6px;
+    color: $black;
+  }
+
+  // Override bootstrap color
+  .navbar-light .navbar-nav .nav-link {
+    color: $gray-750;
+  }
+
+  .navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4'/%3E%3C/svg%3E");
+  }
+
+  .navbar-light .navbar-toggler {
+    border: none;
+  }
+}
+

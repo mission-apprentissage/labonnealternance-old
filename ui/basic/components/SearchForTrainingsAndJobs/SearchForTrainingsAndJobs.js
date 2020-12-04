@@ -1,7 +1,6 @@
 import React from "react";
-import { Row, Col } from "reactstrap";
 
-import dynamic from "next/dynamic";
+import { Row, Col } from "reactstrap";
 
 import { MapListSwitchButton, RightColumn } from "./components";
 import { setSelectedItem, setItemToScrollTo, setIsFormVisible, setVisiblePane } from "../../store/actions";

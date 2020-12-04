@@ -1,11 +1,12 @@
 import React from 'react'
-import Navigation from '../components/navigation'
+import Navigation from 'components/navigation'
+import HomeHero from 'components/HomeHero'
 
 const Home = () => (
   <div>
-    <h1>Home</h1>
     <Navigation />
-  </div>
-)
+    <HomeHero />
+    </div>
+    )
 
 export default Home
