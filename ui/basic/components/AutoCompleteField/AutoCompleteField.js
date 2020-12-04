@@ -23,8 +23,8 @@ export const AutoCompleteField = ({
   useEffect(() => {
     if(!initialized && previouslySelectedItem)
     {
-      console.log("effect ",initialized,previouslySelectedItem);
       setInitialized(true);
+      onInputValueChangeService(inputValue, inputItems, items, setInputItems, selectItem, onInputValueChangeFunction, compareItemFunction);
     }
   });
 
