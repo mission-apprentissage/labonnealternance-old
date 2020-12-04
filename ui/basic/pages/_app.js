@@ -18,6 +18,7 @@ import "public/styles/errorMessage.scss";
 import "public/styles/AutoCompleteField.scss";
 import "public/styles/DomainError.scss";
 
+import 'public/styles/custom-bootstrap.scss';
 import 'bootstrap/scss/bootstrap.scss';
 
 
@@ -25,7 +26,7 @@ class ExampleApp extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
-      <ConnectedRouter>
+      <ConnectedRouter className="c-app">
         <Component {...pageProps} />
       </ConnectedRouter>
     )
