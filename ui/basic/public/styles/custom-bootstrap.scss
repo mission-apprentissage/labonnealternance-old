@@ -9,7 +9,11 @@
 
 
 /** 
+*
+* PART 1
+*
 * Some variables needs to be defined before bootstrap's definitions
+*
 */
 $white:    #fff;
 $gray-100: #f8f8f8;
@@ -75,20 +79,23 @@ $light:         $gray-100;
 $dark:          $gray-800;
 
 /** 
-* Bootstrap settings. It will overrides
-* any bootstrap variable defined in bootstrap/scss/_variables.scss
+*
+* PART 2
+*
+* Import the necessary Bootstrap files
+*
 */
-// $btn-border-radius: 5px;
-
-/* import the necessary Bootstrap files */
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
 
-//
-// Docs color palette classes
-//
-
+/** 
+*
+* PART 3
+*
+* Define classes that relies on existing variables
+*
+*/
 @each $color, $value in $colors {
   .swatch-#{$color} {
     color: color-yiq($value);
@@ -105,22 +112,29 @@ $dark:          $gray-800;
 
 
 /** 
-* Some variables relies on others 
+*
+* PART 4
+*
+* Overrides an existing Bootstrap class.
+* Try to override per component first, then override here,
+* only if the class is required by many components.
+*
 */
-// $toast-font-size: $font-size-base;
-
-
-/** 
-* Overrides an existing Bootstrap class 
-* .c-app must be used as prefix to avoid conflict
-*/
-// .c-app {
+.c-app {
   // .btn-dark:hover, .btn-dark:focus, .btn-dark:active {
       // Override here btn-dark from Bootstrap
   // }
-// }
+}
 
-
+/** 
+*
+* PART 5
+*
+* Extend Bootstrap here.
+* Try to extend per component first, then override here,
+* only if the class is required by many components.
+*
+*/
 .cursor-pointer {
   cursor: pointer;
 }
