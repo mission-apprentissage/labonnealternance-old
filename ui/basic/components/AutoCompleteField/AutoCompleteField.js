@@ -97,10 +97,13 @@ export const AutoCompleteField = ({
       <div {...getComboboxProps()}>
         <input
           {...getInputProps()}
-          className={inputValue && inputValue.length > 20 ? "autoCompleteSmallFont" : ""}
+          className={`form-control form-control-lg w-100 ${
+            inputValue && inputValue.length > 20 ? "autoCompleteSmallFont" : ""
+          }`}
           placeholder={props.placeholder}
           onFocus={onFocus}
           name={props.name}
+          aria-describedby="name"
         />
       </div>
       <ul {...getMenuProps()} className="autoCompleteMenu">
