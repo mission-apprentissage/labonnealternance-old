@@ -10,15 +10,15 @@ const initialState = {
   visiblePane: "resultList",
   isFormVisible: true,
   hasSearch: false,
+  shouldExecuteSearch: false,
 };
 
 const mainReducer = (state = initialState, action) => {
-
-  console.log("state : ",state);
+  console.log("state : ", state);
 
   // deep copy arg state
-  let state_copy = JSON.parse(JSON.stringify(state))
-  let res = {}
+  let state_copy = JSON.parse(JSON.stringify(state));
+  let res = {};
 
   if (action.type === actionsTypes.SET_RESULTS) {
     res = {
@@ -36,46 +36,50 @@ const mainReducer = (state = initialState, action) => {
       jobs: action.jobs,
     };
   } else if (action.type === actionsTypes.SET_SELECTED_ITEM) {
-    res =  {
+    res = {
       ...state_copy,
       selectedItem: action.selectedItem,
     };
   } else if (action.type === actionsTypes.SET_ITEM_TO_SCROLL_TO) {
-    res =  {
+    res = {
       ...state_copy,
       itemToScrollTo: action.itemToScrollTo,
     };
   } else if (action.type === actionsTypes.SET_FORM_VALUES) {
-    res =  {
+    res = {
       ...state_copy,
       formValues: action.formValues,
     };
   } else if (action.type === actionsTypes.SET_EXTENDED_SEARCH) {
-    res =  {
+    res = {
       ...state_copy,
       extendedSearch: action.extendedSearch,
     };
   } else if (action.type === actionsTypes.SET_VISIBLE_PANE) {
-    res =  {
+    res = {
       ...state_copy,
       visiblePane: action.visiblePane,
     };
   } else if (action.type === actionsTypes.SET_HAS_SEARCH) {
-    res =  {
+    res = {
       ...state_copy,
       hasSearch: action.hasSearch,
     };
   } else if (action.type === actionsTypes.SET_IS_FORM_VISIBLE) {
-    res =  {
+    res = {
       ...state_copy,
       isFormVisible: action.isFormVisible,
-    };      
+    };
+  } else if (action.type === actionsTypes.SET_SHOULD_EXECUTE_SEARCH) {
+    res = {
+      ...state_copy,
+      shouldExecuteSearch: action.shouldExecuteSearch,
+    };
   } else {
-    res = state_copy
+    res = state_copy;
   }
 
-  return res
-
+  return res;
 };
 
-export { mainReducer,  initialState};
+export { mainReducer, initialState };

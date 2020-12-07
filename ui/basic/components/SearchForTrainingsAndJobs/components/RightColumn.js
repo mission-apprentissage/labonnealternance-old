@@ -41,7 +41,7 @@ const jobsApi = baseUrl + "/api/v1/jobs";
 const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingOnly }) => {
   const dispatch = useDispatch();
 
-  const { hasSearch, trainings, jobs, selectedItem, itemToScrollTo, formValues } = useSelector(
+  const { hasSearch, trainings, jobs, selectedItem, itemToScrollTo, formValues, shouldExecuteSearch } = useSelector(
     (state) => state.trainings
   );
   const [isLoading, setIsLoading] = useState(hasSearch ? false : true);
@@ -70,6 +70,32 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingO
       setWidgetApplied(); // action one shot
     } else setIsLoading(false);
   });
+
+  useEffect(() => {
+    if (shouldExecuteSearch) {
+      executeSearch(formValues);
+    }
+  }, []);
+
+  const executeSearch = (values) => {
+    setIsLoading(true);
+    try {
+      executeSearchWhenMapIsReady(values);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      logError("Search error", err);
+    }
+  };
+
+  const executeSearchWhenMapIsReady = async (values) => {
+    while (
+      !map.getSource("job-points") ||
+      !map.getSource("training-points") // attente que la map soit prête
+    )
+      await new Promise((resolve) => setTimeout(resolve, 350));
+    await handleSubmit(values);
+  };
 
   const handleSelectItem = (item, type) => {
     flyToMarker(item, 12);
@@ -104,12 +130,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingO
           ...addresses[0],
         };
 
-        while (
-          !map.getSource("job-points") ||
-          !map.getSource("training-points") // attente que la map soit prête
-        )
-          await new Promise((resolve) => setTimeout(resolve, 350));
-        await handleSubmit(values);
+        executeSearchWhenMapIsReady(values);
       } else console.log("aucun lieu trouvé");
 
       setIsLoading(false);

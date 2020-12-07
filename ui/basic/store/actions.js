@@ -9,6 +9,7 @@ export const types = {
   SET_VISIBLE_PANE: "trainings/SET_VISIBLE_PANE",
   SET_HAS_SEARCH: "trainings/SET_HAS_SEARCH",
   SET_IS_FORM_VISIBLE: "trainings/SET_IS_FORM_VISIBLE",
+  SET_SHOULD_EXECUTE_SEARCH: "trainings/SET_SHOULD_EXECUTE_SEARCH",
 };
 
 export const setResults = (trainings = [], jobs = []) => {
@@ -79,5 +80,12 @@ export const setIsFormVisible = (isFormVisible = true) => {
   return {
     type: types.SET_IS_FORM_VISIBLE,
     isFormVisible,
+  };
+};
+
+export const setShouldExecuteSearch = (shouldExecuteSearch = true) => {
+  return {
+    type: types.SET_SHOULD_EXECUTE_SEARCH,
+    shouldExecuteSearch,
   };
 };

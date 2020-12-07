@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, ErrorMessage } from "formik";
 import { AutoCompleteField } from "../";
 import { fetchAddresses } from "../../services/baseAdresse";
 import fetchRomes from "../../services/fetchRomes";
 import { DomainError } from "../";
+import { push } from "connected-next-router";
+import { setFormValues, setShouldExecuteSearch } from "store/actions";
 
 const StartForm = (props) => {
+  const dispatch = useDispatch();
   const { formValues } = useSelector((state) => state.trainings);
 
   const [domainError, setDomainError] = useState(false);
@@ -16,6 +19,12 @@ const StartForm = (props) => {
       setDomainError(true);
     });
     return res;
+  };
+
+  const handleSubmit = (values) => {
+    dispatch(setFormValues({ ...values }));
+    dispatch(setShouldExecuteSearch(true));
+    dispatch(push({ pathname: "/recherche-apprentissage" }));
   };
 
   // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
@@ -70,7 +79,7 @@ const StartForm = (props) => {
             return errors;
           }}
           initialValues={formValues ?? { job: {}, location: {} }}
-          onSubmit={props.handleSubmit}
+          onSubmit={handleSubmit}
         >
           {({ isSubmitting, setFieldValue }) => (
             <Form>
