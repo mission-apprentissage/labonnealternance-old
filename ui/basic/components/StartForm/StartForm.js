@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Button, Container, Row, Col, Input } from "reactstrap";
+import { Button, Row, Col, Input } from "reactstrap";
 import mapMarker from "../../public/images/icons/pin.svg";
 import { Formik, Form, ErrorMessage } from "formik";
 import { AutoCompleteField } from "../";
 import { fetchAddresses } from "../../services/baseAdresse";
 import fetchRomes from "../../services/fetchRomes";
-import {DomainError} from "../";
+import { DomainError } from "../";
 
 const StartForm = (props) => {
   const { formValues } = useSelector((state) => state.trainings);
