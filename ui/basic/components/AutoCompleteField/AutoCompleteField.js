@@ -98,7 +98,7 @@ export const AutoCompleteField = ({
         <input
           {...getInputProps()}
           className={`form-control form-control-lg w-100 ${
-            inputValue && inputValue.length > 20 ? "autoCompleteSmallFont" : ""
+            inputValue && inputValue.length > 20 ? "c-autocomplete__input--small-font" : ""
           }`}
           placeholder={props.placeholder}
           onFocus={onFocus}
@@ -106,11 +106,11 @@ export const AutoCompleteField = ({
           aria-describedby="name"
         />
       </div>
-      <ul {...getMenuProps()} className="autoCompleteMenu">
+      <ul {...getMenuProps()} className="c-autocomplete__menu">
         {isOpen &&
           inputItems.map((item, index) => (
             <li
-              className={highlightedIndex === index ? "highlightedMenuItem" : ""}
+              className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
               key={`${index}`}
               {...getItemProps({ item: item.label, index })}
             >
