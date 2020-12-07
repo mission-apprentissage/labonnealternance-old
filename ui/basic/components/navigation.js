@@ -34,7 +34,7 @@ const Navigation = (props) => {
 
   return (
     <div className="c-navigation">
-      <Navbar expand="md" className="bg-transparent navbar-light">
+      <Navbar expand="md" className="navbar-light">
         <div className="container">
           <NavbarBrand href="/">
             <img src='/images/logo_lba.svg' alt="Logo LBA" className="c-navbar-brand-img"/>

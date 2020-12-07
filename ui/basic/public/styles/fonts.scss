@@ -1,0 +1,87 @@
+/**
+*
+* MARIANNE (titres)
+*
+*/
+@font-face {
+  font-family: 'Marianne';
+  src: url('../fonts/Marianne/Marianne-ExtraBold.woff2') format('woff2'), url('../fonts/Marianne/Marianne-ExtraBold.woff') format('woff');
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('../fonts/Marianne/Marianne-Bold.woff2') format('woff2'), url('../fonts/Marianne/Marianne-Bold.woff') format('woff');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('../fonts/Marianne/Marianne-Medium.woff2') format('woff2'), url('../fonts/Marianne/Marianne-Medium.woff') format('woff');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('../fonts/Marianne/Marianne-Regular.woff2') format('woff2'), url('../fonts/Marianne/Marianne-Regular.woff') format('woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('../fonts/Marianne/Marianne-Light.woff2') format('woff2'), url('../fonts/Marianne/Marianne-Light.woff') format('woff');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Marianne';
+  src: url('../fonts/Marianne/Marianne-Thin.woff2') format('woff2'), url('../fonts/Marianne/Marianne-Thin.woff') format('woff');
+  font-weight: 200;
+}
+
+
+/**
+*
+* INTER (corps de texte)
+*
+*/
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Thin.ttf');
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-ExtraLight.ttf');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Light.ttf');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Regular.ttf');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-SemiBold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Bold.ttf');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-ExtraBold.ttf');
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Black.ttf');
+  font-weight: 900;
+}

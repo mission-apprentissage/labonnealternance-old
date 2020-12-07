@@ -1,0 +1,42 @@
+.c-home-hero {
+ @include media-breakpoint-up(sm) { 
+   background: url('/images/hero2.svg'), #FFF8F8;
+   background-size: cover;
+   background-repeat: no-repeat;
+ }
+}
+
+.c-home-hero__card {
+  border: none;
+  @include media-breakpoint-up(sm) {
+    max-width: 445px;
+    box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.21);
+    border-radius: 10px;    
+  } 
+}
+
+.c-home-hero__submit {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.c-home-hero__title {
+  font-size: 26px;
+  text-align: center;
+  @include media-breakpoint-up(sm) {
+    font-size: 32px;
+    text-align: left;
+  }
+}
+
+.c-home-hero__subtitle {
+  text-align: center;
+  @include media-breakpoint-up(sm) {
+    text-align: left;
+  }
+}
+
+
+.c-home-hero__title2 {
+  color: #3b56d1;
+}
