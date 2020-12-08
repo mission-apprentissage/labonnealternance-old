@@ -1,10 +1,16 @@
 # CHANGELOG
 
+## 0.5.0 [08/12/2020]
+[238] Formulaire de démarrage et navigation vers et depuis les résultats 
+
 ## 0.4.0 [04/12/2020]
 [237] Home hero improved 
 
 ## 0.3.0 [04/12/2020]
 [236] Home header
+
+## 0.2.1 [04/12/2020]
+[226] Tracker les mots clefs de métiers cherchés
 
 ## 0.2.0 [03/12/2020]
 [233] Styleguide
