@@ -21,15 +21,18 @@ export const AutoCompleteField = ({
   useEffect(() => {
     if (!initialized && previouslySelectedItem) {
       setInitialized(true);
-      onInputValueChangeService(
+      onInputValueChangeService({
         inputValue,
         inputItems,
         items,
         setInputItems,
         selectItem,
         onInputValueChangeFunction,
-        compareItemFunction
-      );
+        compareItemFunction,
+        onSelectedItemChangeFunction,
+        previouslySelectedItem,
+        setFieldValue,
+      });
     }
   }, []);
 
@@ -80,15 +83,15 @@ export const AutoCompleteField = ({
       if (!debouncedOnInputValueChange) {
         debouncedOnInputValueChange = debounce(onInputValueChangeService, 300);
       }
-      debouncedOnInputValueChange(
+      debouncedOnInputValueChange({
         inputValue,
         inputItems,
         items,
         setInputItems,
         selectItem,
         onInputValueChangeFunction,
-        compareItemFunction
-      );
+        compareItemFunction,
+      });
     },
   });
 
@@ -97,17 +100,20 @@ export const AutoCompleteField = ({
       <div {...getComboboxProps()}>
         <input
           {...getInputProps()}
-          className={inputValue && inputValue.length > 20 ? "autoCompleteSmallFont" : ""}
+          className={`form-control form-control-lg w-100 ${
+            inputValue && inputValue.length > 20 ? "c-autocomplete__input--small-font" : ""
+          }`}
           placeholder={props.placeholder}
           onFocus={onFocus}
           name={props.name}
+          aria-describedby="name"
         />
       </div>
-      <ul {...getMenuProps()} className="autoCompleteMenu">
+      <ul {...getMenuProps()} className="c-autocomplete__menu">
         {isOpen &&
           inputItems.map((item, index) => (
             <li
-              className={highlightedIndex === index ? "highlightedMenuItem" : ""}
+              className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
               key={`${index}`}
               {...getItemProps({ item: item.label, index })}
             >

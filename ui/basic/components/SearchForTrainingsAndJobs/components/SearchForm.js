@@ -7,7 +7,7 @@ import { AutoCompleteField, LogoIdea, RadioButton } from "../../";
 import { fetchAddresses } from "../../../services/baseAdresse";
 import fetchRomes from "../../../services/fetchRomes";
 import fetchDiplomas from "../../../services/fetchDiplomas";
-import DomainError from "./DomainError/DomainError";
+import { DomainError } from "../../";
 
 const SearchForm = (props) => {
   const { isFormVisible, hasSearch, formValues } = useSelector((state) => state.trainings);
