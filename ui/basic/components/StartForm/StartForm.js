@@ -22,7 +22,7 @@ const StartForm = (props) => {
   };
 
   const handleSubmit = (values) => {
-    dispatch(setFormValues({ ...values }));
+    dispatch(setFormValues({ job: values.job, location: values.location }));
     dispatch(setShouldExecuteSearch(true));
     dispatch(push({ pathname: "/recherche-apprentissage" }));
   };
