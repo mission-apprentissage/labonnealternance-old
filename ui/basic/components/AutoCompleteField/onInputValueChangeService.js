@@ -8,11 +8,20 @@ export default async function onInputValueChangeService({
   selectItem = noop,
   onInputValueChangeFunction = null,
   compareItemFunction = null,
+  onSelectedItemChangeFunction = null,
+  previouslySelectedItem = null,
+  setFieldValue = null,
 }) {
   // fixe la liste d'items en fonction de la valeur courante du champ input. S'il y a appel à une API c'est ici
   if (onInputValueChangeFunction) {
     const newItems = await onInputValueChangeFunction(inputValue);
     setInputItems(newItems);
+
+    if (previouslySelectedItem) { // uniquement appelé lors d'une réinitialisation de l'input après navigation
+      setTimeout(() => {
+        onSelectedItemChangeFunction(previouslySelectedItem, setFieldValue);
+      }, 0); // hack timeout pour passer après le changement de valeurs suite au fetch
+    }
   } else {
     setInputItems(items.filter((item) => item.label.toLowerCase().startsWith(inputValue.toLowerCase())));
   }

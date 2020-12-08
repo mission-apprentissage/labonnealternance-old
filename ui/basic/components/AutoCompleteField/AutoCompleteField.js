@@ -29,11 +29,10 @@ export const AutoCompleteField = ({
         selectItem,
         onInputValueChangeFunction,
         compareItemFunction,
+        onSelectedItemChangeFunction,
+        previouslySelectedItem,
+        setFieldValue,
       });
-
-      setTimeout(() => {
-        onSelectedItemChangeFunction(previouslySelectedItem, setFieldValue);
-      }, 200); // hack timeout pour passer après le changement de valeurs suite au fetch ... pas assez ... think again
     }
   }, []);
 

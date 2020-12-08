@@ -14,7 +14,7 @@ const initialState = {
 };
 
 const mainReducer = (state = initialState, action) => {
-  console.log("state : ", state);
+  //console.log("state : ", state);
 
   // deep copy arg state
   let state_copy = JSON.parse(JSON.stringify(state));
