@@ -21,15 +21,15 @@ export const AutoCompleteField = ({
   useEffect(() => {
     if (!initialized && previouslySelectedItem) {
       setInitialized(true);
-      onInputValueChangeService(
+      onInputValueChangeService({
         inputValue,
         inputItems,
         items,
         setInputItems,
         selectItem,
         onInputValueChangeFunction,
-        compareItemFunction
-      );
+        compareItemFunction,
+      });
 
       setTimeout(() => {
         onSelectedItemChangeFunction(previouslySelectedItem, setFieldValue);
@@ -84,15 +84,15 @@ export const AutoCompleteField = ({
       if (!debouncedOnInputValueChange) {
         debouncedOnInputValueChange = debounce(onInputValueChangeService, 300);
       }
-      debouncedOnInputValueChange(
+      debouncedOnInputValueChange({
         inputValue,
         inputItems,
         items,
         setInputItems,
         selectItem,
         onInputValueChangeFunction,
-        compareItemFunction
-      );
+        compareItemFunction,
+      });
     },
   });
 
