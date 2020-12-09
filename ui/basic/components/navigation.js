@@ -7,10 +7,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
 } from "reactstrap";
 
 import Link from "next/link";
@@ -33,7 +29,7 @@ const Navigation = (props) => {
 
   return (
     <div className="c-navigation">
-      <Navbar expand="md" className="navbar-light">
+      <Navbar expand="lg" className="navbar-light">
         <div className="container">
           <NavbarBrand href="/">
             <img src="/images/logo_lba.svg" alt="Logo LBA" className="c-navbar-brand-img" />
