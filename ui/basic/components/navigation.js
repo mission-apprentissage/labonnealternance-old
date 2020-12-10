@@ -50,7 +50,7 @@ const Navigation = (props) => {
           </Collapse>
         </div>
       </Navbar>
-      </div>
+    </div>
       );
 };
 
