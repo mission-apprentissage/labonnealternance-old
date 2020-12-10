@@ -40,3 +40,22 @@
 .c-home-hero__title2 {
   color: $home-color;
 }
+
+.c-input-work {
+  padding-left: 2rem;
+  font-size: $small-font-size;
+}
+
+.c-input-work::placeholder {
+  color: $gray-500;
+}
+
+.c-input-work-container {
+  position: relative;
+}
+
+.c-input-work-img {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}

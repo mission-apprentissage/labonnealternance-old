@@ -4,6 +4,9 @@ import { useCombobox } from "downshift";
 import { debounce } from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService";
 
+import loop from "public/images/loop.svg";
+
+
 let debouncedOnInputValueChange = null;
 
 export const AutoCompleteField = ({
@@ -97,16 +100,21 @@ export const AutoCompleteField = ({
 
   return (
     <div className="autoCompleteContainer">
-      <div {...getComboboxProps()}>
+      <div className={`c-input-work-container`} {...getComboboxProps()}>
         <input
           {...getInputProps()}
-          className={`form-control form-control-lg w-100 ${
+          className={`form-control form-control-lg w-100 c-input-work ${
             inputValue && inputValue.length > 20 ? "c-autocomplete__input--small-font" : ""
           }`}
           placeholder={props.placeholder}
           onFocus={onFocus}
           name={props.name}
           aria-describedby="name"
+        />
+        <img
+          className="c-input-work-img"
+          src={loop}
+          alt="Icône loupe"
         />
       </div>
       <ul {...getMenuProps()} className="c-autocomplete__menu">
