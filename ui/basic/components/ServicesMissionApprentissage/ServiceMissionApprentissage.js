@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./ServicesMissionApprentissage.module.scss";
 
 const ServiceMissionApprentissage = ({ logo, title, text, url }) => {
   return (

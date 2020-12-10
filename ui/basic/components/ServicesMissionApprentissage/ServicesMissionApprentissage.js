@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./ServicesMissionApprentissage.module.scss";
 import ServiceMissionApprentissage from "./ServiceMissionApprentissage";
 
 const ServicesMissionApprentissage = () => {
