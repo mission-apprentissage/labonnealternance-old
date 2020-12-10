@@ -19,6 +19,7 @@ export const AutoCompleteField = ({
   initialIsOpen,
   scrollParentId,
   previouslySelectedItem,
+  illustration,
   ...props
 }) => {
   useEffect(() => {
@@ -113,7 +114,7 @@ export const AutoCompleteField = ({
         />
         <img
           className="c-input-work-img"
-          src={loop}
+          src={illustration}
           alt="Icône loupe"
         />
       </div>
