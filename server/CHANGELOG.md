@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.6.0 [09/12/2020]
+[242] Footer
+
 ## 0.5.0 [08/12/2020]
 [238] Formulaire de démarrage et navigation vers et depuis les résultats 
 

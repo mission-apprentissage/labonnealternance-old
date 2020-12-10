@@ -1,0 +1,29 @@
+   
+   .c-navbar-brand-img--footer {
+    @include media-breakpoint-down(md) { 
+      width: 110px;
+    }
+   }
+
+   .c-footer-links
+   {
+        list-style-type: none;
+   }
+   
+   .c-footer-links__link {
+        color: $gray-700;
+    }
+
+    .c-footer-links__link-img
+    {
+        margin-right: 5px;
+    }
+
+    .c-footer-links__link:hover {
+        text-decoration: none;
+        color: $gray-700;
+    }
+
+    .c-footer--partner-logo {
+        max-width: 60px;
+    }
