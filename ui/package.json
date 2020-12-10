@@ -11,7 +11,8 @@
     "test": "run-s -n build-css test-js",
     "test-js": "react-app-rewired test --env=jsdom",
     "build-css": "node-less-chokidar src",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "serve": "./node_modules/next/dist/bin/next start -p 3000"
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.11.7",
