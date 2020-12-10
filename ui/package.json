@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "./node_modules/next/dist/bin/next dev -p 3003",
     "build": "./node_modules/next/dist/bin/next build",
-    "start": "./node_modules/next/dist/bin/next start -p 3003"
+    "start2": "./node_modules/next/dist/bin/next start -p 3003",
+    "start": "./node_modules/next/dist/bin/next dev -p 3003"
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.11.7",
