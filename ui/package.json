@@ -7,7 +7,11 @@
     "dev": "./node_modules/next/dist/bin/next dev -p 3003",
     "build": "./node_modules/next/dist/bin/next build",
     "start2": "./node_modules/next/dist/bin/next start -p 3003",
-    "start": "./node_modules/next/dist/bin/next start -p 3000"
+    "start": "./node_modules/next/dist/bin/next start -p 3000",
+    "test": "run-s -n build-css test-js",
+    "test-js": "react-app-rewired test --env=jsdom",
+    "build-css": "node-less-chokidar src",
+    "lint": "eslint ./src"
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.11.7",
