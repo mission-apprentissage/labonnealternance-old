@@ -29,7 +29,7 @@ const Footer = (props) => {
             </Col>
             <Col xs="6" sm="6" md="3" lg="2" className="ml-md-5">
               <ul className="c-footer-links">
-                <li>
+                <li className="c-footer-links__line">
                   <a
                     className="c-footer-links__link"
                     onClick={(e) => {
@@ -41,7 +41,7 @@ const Footer = (props) => {
                     A propos
                   </a>
                 </li>
-                <li>
+                <li className="c-footer-links__line">
                   <a
                     className="c-footer-links__link"
                     onClick={(e) => {
@@ -53,7 +53,7 @@ const Footer = (props) => {
                     FAQ
                   </a>
                 </li>
-                <li>
+                <li className="c-footer-links__line">
                   <a
                     className="c-footer-links__link"
                     onClick={(e) => {
@@ -65,7 +65,7 @@ const Footer = (props) => {
                     RGPD
                   </a>
                 </li>
-                <li>
+                <li className="c-footer-links__line">
                   <a
                     className="c-footer-links__link"
                     onClick={(e) => {
@@ -81,18 +81,13 @@ const Footer = (props) => {
             </Col>
             <Col xs="6" sm="6" md="2" className="ml-md-5">
               <ul className="c-footer-links">
-                <li>
+                <li className="c-footer-links__line">
                   <a className="c-footer-links__link" href="#">
                     Contact
                   </a>
                 </li>
-                <li>
+                <li className="c-footer-links__line">
                   <div className="d-flex cursor-pointer">
-                    <img
-                      className="c-footer-links__link-img"
-                      src="/images/square_link.svg"
-                      alt="Lien vers la documentation à l'usage des développeurs"
-                    />
                     <a
                       className="c-footer-links__link"
                       target="_blank"
@@ -104,13 +99,8 @@ const Footer = (props) => {
                   </div>
                 </li>
 
-                <li>
+                <li className="c-footer-links__line">
                   <div className="d-flex cursor-pointer">
-                    <img
-                      className="c-footer-links__link-img"
-                      src="/images/square_link.svg"
-                      alt="Statistiques d'usage de La Bonne Alternance"
-                    />
                     <a
                       className="c-footer-links__link"
                       target="_blank"

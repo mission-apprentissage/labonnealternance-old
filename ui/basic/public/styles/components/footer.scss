@@ -12,6 +12,10 @@
   list-style-type: none;
 }
 
+.c-footer-links__line {
+  @extend .mb-1;
+}
+
 .c-footer-links__link {
   color: $gray-700;
 }
