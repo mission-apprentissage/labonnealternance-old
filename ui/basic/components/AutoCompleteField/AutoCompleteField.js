@@ -4,9 +4,6 @@ import { useCombobox } from "downshift";
 import { debounce } from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService";
 
-import loop from "public/images/loop.svg";
-
-
 let debouncedOnInputValueChange = null;
 
 export const AutoCompleteField = ({
