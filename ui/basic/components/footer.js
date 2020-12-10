@@ -18,7 +18,7 @@ const Footer = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="c-navigation">
+    <div className="c-footer">
       <Navbar expand="lg" className="footer-light">
         <div className="container">
           <Row>
