@@ -15,7 +15,7 @@ const DescriptionMissionApprentissage = () => {
           nationale pour l'emploi et la transition écologique.
         </p>
 
-        <a className="btn btn-outline-primary c-home-descr__more mb-5">En savoir plus sur la mission apprentissage</a>
+        <a className="btn btn-outline-primary c-home-descr__more mb-5" href="https://mission-apprentissage.gitbook.io/general/" target="_blank">En savoir plus sur la mission apprentissage</a>
         <div className="mb-5">&nbsp;</div>
       </div>
     </section>
