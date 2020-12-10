@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.7.0 [10/12/2020]
+[241] Nouvelle home : bloc mission apprentissage
+
 ## 0.6.0 [09/12/2020]
 [242] Footer
 
