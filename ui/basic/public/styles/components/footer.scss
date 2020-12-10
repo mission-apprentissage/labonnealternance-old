@@ -2,7 +2,7 @@
   background-color: $home-background-color;
 }   
 
-.c-navbar-brand-img--footer {
+.c-footer__brand-img {
   @include media-breakpoint-down(md) { 
     width: 110px;
   }

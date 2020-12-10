@@ -23,7 +23,7 @@ const Footer = (props) => {
         <div className="container">
           <Row>
             <Col className="d-none d-md-block" md="3">
-              <img src="/images/logo_lba.svg" alt="Logo LBA" className="c-navbar-brand-img--footer" />
+              <img src="/images/logo_lba.svg" alt="Logo LBA" className="c-footer__brand-img" />
               <br />
               <small>Trouvez la formation et l'entreprise pour réaliser votre projet</small>
             </Col>
