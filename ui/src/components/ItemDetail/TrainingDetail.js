@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import FakeFeature from "../FakeFeature/FakeFeature";
+//import FakeFeature from "../FakeFeature/FakeFeature";
 import infoIcon from "../../assets/icons/info.svg";
-import thumbUpIcon from "../../assets/icons/fake_feature_thumbup.svg";
-import wipIcon from "../../assets/icons/fake_feature_wip.svg";
+//import thumbUpIcon from "../../assets/icons/fake_feature_thumbup.svg";
+//import wipIcon from "../../assets/icons/fake_feature_wip.svg";
 
 const TrainingDetail = ({ training }) => {
   useEffect(() => {
@@ -47,7 +47,7 @@ const TrainingDetail = ({ training }) => {
             D'autres informations seront disponibles sur cette page prochainement
           </div>
         </div>
-        {
+        {/*
           <FakeFeature
             buttonText="Prendre rendez-vous"
             tagName="tmsPriseDeRendezVous"
@@ -98,8 +98,7 @@ const TrainingDetail = ({ training }) => {
                 )}
               </>
             }
-          />
-        }
+          />*/}
       </div>
     </>
   );
