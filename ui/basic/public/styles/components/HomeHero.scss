@@ -42,9 +42,10 @@
 }
 
 .c-input-work {
-  padding-left: 3rem;
+  padding-left: 2rem;
   font-size: 14px;
   @include media-breakpoint-up(sm) {
+    padding-left: 3rem;
     font-size: 16px;
     text-align: left;
   }
@@ -61,7 +62,7 @@
 .c-input-work-img {
   position: absolute;
   top: 9px;
-  left: 14px;
+  left: 8px;
   @include media-breakpoint-up(sm) {
     top: 9px;
     left: 14px;
