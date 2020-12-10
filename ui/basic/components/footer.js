@@ -115,7 +115,10 @@ const Footer = (props) => {
             </Col>
 
             <Col xs="12" sm="12" md="6" lg="3" className="ml-sm-5 ml-lg-5 ml-md-0 mt-md-3 mt-lg-0">
-              <img className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2" src={logoFSE} alt="Logo du FSE" />
+              <img 
+                className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2" 
+                src={logoFSE} 
+                alt="Logo du FSE" />
               <img
                 className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
                 src={logoFranceRelance}
