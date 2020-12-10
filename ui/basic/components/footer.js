@@ -30,22 +30,50 @@ const Footer = (props) => {
             <Col xs="6" sm="6" md="3" lg="2" className="ml-md-5">
               <ul className="c-footer-links">
                 <li>
-                  <a className="c-footer-links__link" href="#">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/apropos" }));
+                    }}
+                    href="/apropos"
+                  >
                     A propos
                   </a>
                 </li>
                 <li>
-                  <a className="c-footer-links__link" href="#">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/faq" }));
+                    }}
+                    href="/faq"
+                  >
                     FAQ
                   </a>
                 </li>
                 <li>
-                  <a className="c-footer-links__link" href="#">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/rgpd" }));
+                    }}
+                    href="/rgpd"
+                  >
                     RGPD
                   </a>
                 </li>
                 <li>
-                  <a className="c-footer-links__link" href="#">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/accessibilite" }));
+                    }}
+                    href="/accessibilite"
+                  >
                     Accessibilité
                   </a>
                 </li>
