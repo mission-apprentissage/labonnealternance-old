@@ -1,0 +1,20 @@
+.c-home-descr {
+  background-color: $home-background-color;
+}
+
+.c-home-descr__title {
+  font-size: 54px;
+  font-weight: 700;
+  color: $home-color;
+}
+
+.c-home-descr__subtitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: $black;
+}
+
+.c-home-descr__text {
+  line-height: 1;
+  max-width: 730px;
+}
