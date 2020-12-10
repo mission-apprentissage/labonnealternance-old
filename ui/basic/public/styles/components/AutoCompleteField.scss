@@ -30,7 +30,12 @@
 .c-autocomplete__option--highlighted {
   background-color: #aaaaaa;
 }
-.c-autocomplete__input--small-font {
-  font-size: $small-font-size;
+
+.c-autocomplete__input--text {
   color: #2A2A2A;
+  font-size: $small-font-size;
+  @include media-breakpoint-up(sm) {
+    font-size: $font-size-base;
+    text-align: left;
+  }
 }
