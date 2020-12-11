@@ -16,6 +16,12 @@
 *
 */
 
+$line-height-lg:              1.75;
+
+$btn-border-radius:           8px;
+$btn-border-radius-lg:        8px;
+$btn-border-radius-sm:        8px;
+
 $headings-font-family: 'Marianne', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
@@ -49,16 +55,14 @@ $grays: map-merge(
   $grays
   );
 
-// kept for Bootstrap's needs, but not used by the project
-$blue:    blue;
-$purple:  purple;
-$red:     red;
-
 $bluesoft500: #5770be;
 $bluedark500: #484d7a;
 $pinksoft500: #ff8d7e;
 $pinkdark500: #d08a77;
 $pinklight500: #ffc29e;
+$home-color: #3b56d1;
+$home-background-color: #FFF8F8;
+
 
 $colors: ();
 $colors: map-merge(
@@ -81,6 +85,8 @@ $warning:       #fa5c00;
 $danger:        #b60000;
 $light:         $gray-100;
 $dark:          $gray-800;
+
+$small-font-size: 85%;
 
 /** 
 *
