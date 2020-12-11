@@ -1,8 +1,8 @@
 import App from "next/app";
 import React from "react";
 import { ConnectedRouter } from "connected-next-router";
-import { wrapper } from "../store/configure-store";
-import HeadLaBonneAlternance from "../components/head";
+import { wrapper } from "store/configure-store";
+import HeadLaBonneAlternance from "components/head";
 
 import "public/styles/application.scss";
 
