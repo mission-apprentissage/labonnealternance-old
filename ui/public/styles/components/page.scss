@@ -1,6 +1,9 @@
 .c-page-container {
   background-color: $gray-100;
-  border-radius: 10px;
+  border-radius: 0px;
+  @include media-breakpoint-up(md) { 
+    border-radius: 10px;
+  }
 }
 
 .c-page-title {

@@ -4,8 +4,8 @@ import Navigation from "components/navigation";
 import Footer from "components/footer";
 const FAQ = () => (
   <div>
-    <Navigation />
-      <div className="container c-page-container my-5 p-5">
+    <Navigation bgcolor="is-white"/>
+      <div className="c-page-container container my-0 my-sm-5 p-5">
         <div className="row">
           <div className="col-12 col-md-5">
             <h1>
