@@ -6,6 +6,7 @@ import separator from "public/images/breadcrumb_separator.svg";
 
 const Breadcrumb = (props) => {
   let prepender = <div></div>
+
   if (props.forPage === 'faq') {
     prepender = <Link href={{ pathname: '/faq' }}><a>FAQ</a></Link>
   } else if (props.forPage === 'organisme') {
@@ -25,10 +26,10 @@ const Breadcrumb = (props) => {
         </div>
 
         {prepender}
-        
+
       </div>
     </div>
-        );
+  );
 }
 
 export default Breadcrumb;

@@ -18,7 +18,7 @@ const Footer = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="c-footer pb-5">
+    <div className="c-footer py-5">
       <Navbar expand="lg" className="footer-light">
         <div className="container">
           <Row>
