@@ -5,12 +5,12 @@ import separator from "public/images/breadcrumb_separator.svg";
 
 
 const Breadcrumb = (props) => {
-  let prepender = <div></div>
+  let suffix = <div></div>
 
   if (props.forPage === 'faq') {
-    prepender = <Link href={{ pathname: '/faq' }}><a>FAQ</a></Link>
+    suffix = <Link href={{ pathname: '/faq' }}><a>FAQ</a></Link>
   } else if (props.forPage === 'organisme') {
-    prepender = <Link href={{ pathname: '/organisme' }}><a>Organisme de formation</a></Link>
+    suffix = <Link href={{ pathname: '/organisme' }}><a>Organisme de formation</a></Link>
   }
 
   return (
@@ -25,7 +25,7 @@ const Breadcrumb = (props) => {
           <img className="c-breadcrumb-separator-img" src={separator} alt="Separateur du fil d'ariane" />
         </div>
 
-        {prepender}
+        {suffix}
 
       </div>
     </div>

@@ -30,11 +30,20 @@ const Organisme = (props) => {
             <p>
               Pour référencer votre formation, rendez-vous sur le site du Carif-Oref : 
             </p>
-            <p>
+            <p className="c-organisme-link">
               <img className="mt-n1 mr-2" src="/images/square_link.svg" alt="Lien relancer son offre de formation" />
-              <a href="https://reseau.intercariforef.org/referencer-son-offre-de-formation" className="c-organisme-link">https://reseau.intercariforef.org/referencer-son-offre-de-formation.</a>
+              <a href="https://reseau.intercariforef.org/referencer-son-offre-de-formation">https://reseau.intercariforef.org/referencer-son-offre-de-formation.</a>
             </p>
+            <p>
+               Veuillez noter que pour le moment, seules les formations en apprentissage sont référencées sur La Bonne Alternance.
+            </p>
+            <div className="text-center">
+              <p className="c-organisme-help">
+                 Vous êtes perdu(e) ? Nous sommes là pour vous aider.
+              </p>
 
+              <a className="c-organisme-contact-link" href="" mailto="labonnealternance@pole-emploi.fr">Contacter notre service support</a>              
+            </div>
 
           </div>
         </div>
