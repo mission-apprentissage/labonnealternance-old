@@ -1,0 +1,14 @@
+.c-faq-question {
+  font-weight: 700;
+  font-size: 18px;
+  color: $gray-750;
+  @extend .mb-3;
+  @extend .mt-4;
+}
+.c-faq-question.is-first {
+  @extend .mt-0;
+}
+
+.c-faq-answer {
+  @extend .m-0;
+}

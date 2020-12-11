@@ -17,7 +17,7 @@ const FAQ = () => (
           </div>
           <div className="col-12 col-md-7">
             <div className="c-faq-question-block">
-              <h2 className="c-faq-question">Il manque des entreprises dans la liste.</h2>
+              <h2 className="c-faq-question is-first">Il manque des entreprises dans la liste.</h2>
               <p className="c-faq-answer">La Bonne Alternance est bien plus qu’un simple annuaire. La Bonne Alternance effectue un ciblage spécifique des entreprises à fort potentiel d’embauche afin de vous faire gagner du temps dans la sélection des entreprises à démarcher. Toutes les entreprises ne sont donc pas indiquées.</p>
             </div>
             <div className="c-faq-question-block">
