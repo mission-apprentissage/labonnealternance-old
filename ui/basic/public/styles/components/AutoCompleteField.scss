@@ -31,11 +31,17 @@
   background-color: #aaaaaa;
 }
 
-.c-autocomplete__input--text-too-long {
+.c-input-work {
   color: #2A2A2A;
-  font-size: $small-font-size;
-  @include media-breakpoint-up(sm) {
-    font-size: $font-size-base;
-    text-align: left;
+  text-align: left;
+  &.is-text-too-long {
+    font-size: $small-font-size;
+  }
+  &.is-text-not-too-long {
+    font-size: $small-font-size;
+    @include media-breakpoint-up(sm) {
+      font-size: $font-size-base;
+    }
   }
 }
+
