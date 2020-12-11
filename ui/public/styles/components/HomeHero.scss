@@ -1,6 +1,6 @@
 .c-home-hero {
  @include media-breakpoint-up(sm) { 
-   background: url('/images/hero2.svg'), #FFF8F8;
+   background: url('/images/hero2.svg'), $home-background-color;
    background-size: cover;
    background-repeat: no-repeat;
  }
@@ -38,5 +38,33 @@
 
 
 .c-home-hero__title2 {
-  color: #3b56d1;
+  color: $home-color;
+}
+
+.c-input-work {
+  padding-left: 2rem;
+  font-size: 14px;
+  @include media-breakpoint-up(sm) {
+    padding-left: 3rem;
+    font-size: 16px;
+    text-align: left;
+  }
+}
+
+.c-input-work::placeholder {
+  color: $gray-500;
+}
+
+.c-input-work-container {
+  position: relative;
+}
+
+.c-input-work-img {
+  position: absolute;
+  top: 9px;
+  left: 8px;
+  @include media-breakpoint-up(sm) {
+    top: 9px;
+    left: 14px;
+  }
 }

@@ -3,6 +3,9 @@
 ## 0.7.1 [11/12/2020]
 Scripts de lancement adaptés pour Nextjs
 
+## 0.7.0 [10/12/2020]
+[241] Nouvelle home : bloc mission apprentissage
+
 ## 0.6.1 [10/12/2020]
 Retrait du bouton d'essai prise de rendez-vous
 
