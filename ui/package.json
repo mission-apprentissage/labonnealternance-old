@@ -4,11 +4,11 @@
   "description": "S",
   "license": "MIT",
   "scripts": {
-    "dev": "./node_modules/next/dist/bin/next dev -p 3003",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3000",
+    "start": "next start",
     "test": "react-scripts test",
-    "serve": "next start -p 3000"
+    "serve": "next start"
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.11.7",
