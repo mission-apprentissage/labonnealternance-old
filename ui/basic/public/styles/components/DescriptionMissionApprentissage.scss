@@ -3,13 +3,20 @@
 }
 
 .c-home-descr__title {
-  font-size: 54px;
+  font-size: 26px;
+  @include media-breakpoint-up(sm) {
+    font-size: 54px;
+  } 
+
   font-weight: 700;
   color: $home-color;
 }
 
 .c-home-descr__subtitle {
   font-size: 22px;
+  @include media-breakpoint-up(sm) {
+    font-size: 22px;
+  } 
   font-weight: 700;
   color: $black;
 }
@@ -21,4 +28,5 @@
 
 .c-home-descr__more {
   background-color: $white;
+  
 }
