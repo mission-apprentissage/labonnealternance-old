@@ -10,12 +10,13 @@
   }
 }
 
-a.c-organisme-contact-link {
-  @extend .btn, .btn-outline-primary, .px-3;
-}
-
 .c-organisme-help {
   @extend .pt-4, .pb-3;
   font-size: 18px;
   font-weight: 700;
 }
+
+a.c-organisme-contact-link {
+  @extend .btn, .btn-outline-primary, .px-3;
+}
+
