@@ -8,9 +8,9 @@ const Breadcrumb = (props) => {
   let suffix = <div></div>
 
   if (props.forPage === 'faq') {
-    suffix = <Link href={{ pathname: '/faq' }}><a>FAQ</a></Link>
+    suffix = <Link href={{ pathname: '/faq' }}>FAQ</Link>
   } else if (props.forPage === 'organisme') {
-    suffix = <Link href={{ pathname: '/organisme' }}><a>Organisme de formation</a></Link>
+    suffix = <Link href={{ pathname: '/organisme' }}>Organisme de formation</Link>
   }
 
   return (
