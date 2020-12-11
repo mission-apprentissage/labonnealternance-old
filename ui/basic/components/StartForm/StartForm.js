@@ -7,7 +7,7 @@ import fetchRomes from "../../services/fetchRomes";
 import { DomainError } from "../";
 import { push } from "connected-next-router";
 import { setFormValues, setShouldExecuteSearch } from "store/actions";
-import loopImage from "public/images/loop.svg";
+import glassImage from "public/images/glass.svg";
 import localisationImage from "public/images/localisation.svg";
 
 const StartForm = (props) => {
@@ -95,7 +95,7 @@ const StartForm = (props) => {
                     previouslySelectedItem={formValues?.job ?? null}
                     name="jobField"
                     placeholder="ex : boulanger"
-                    illustration={loopImage}
+                    illustration={glassImage}
                   />
                   <ErrorMessage name="job" className="u-error-text-color" component="div" />
                 </div>
