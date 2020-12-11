@@ -32,3 +32,9 @@
 .c-footer--partner-logo {
   max-width: 60px;
 }
+
+.c-footer-imgs {
+  @include media-breakpoint-down(sm) { 
+    text-align: center;
+  }
+}

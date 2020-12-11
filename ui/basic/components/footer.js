@@ -29,7 +29,7 @@ const Footer = (props) => {
               <br />
               <small>Trouvez la formation et l'entreprise pour réaliser votre projet</small>
             </Col>
-            <Col xs="6" sm="6" md="3" lg="2" className="ml-md-5">
+            <Col xs="12" sm="6" md="3" lg="2" className="ml-md-5">
               <ul className="c-footer-links">
                 <li className="c-footer-links__line">
                   <a
@@ -81,7 +81,7 @@ const Footer = (props) => {
                         </li>
                       </ul>
                     </Col>
-                    <Col xs="6" sm="6" md="2" className="ml-md-5">
+                    <Col xs="12" sm="6" md="3" lg="2" className="ml-md-5">
                       <ul className="c-footer-links">
                         <li className="c-footer-links__line">
                           <a className="c-footer-links__link" href="#">
@@ -116,7 +116,7 @@ const Footer = (props) => {
                       </ul>
                     </Col>
 
-                    <Col xs="12" sm="12" md="6" lg="3" className="ml-sm-5 ml-lg-5 ml-md-0 mt-md-3 mt-lg-0">
+                    <Col xs="12" sm="6" md="6" lg="3" className="ml-sm-5 ml-lg-5 ml-md-0 mt-md-3 mt-lg-0 c-footer-imgs">
                       <img 
                         className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2" 
                         src={logoFSE} 
