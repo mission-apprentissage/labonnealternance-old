@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.7.2 [11/12/2020]
+[272] Balises dans le Head
+
 ## 0.7.1 [11/12/2020]
 Scripts de lancement adaptés pour Nextjs
 
