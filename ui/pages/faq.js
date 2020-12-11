@@ -5,7 +5,7 @@ import Footer from "components/footer";
 const FAQ = () => (
   <div>
     <Navigation />
-      <div className="container">
+      <div className="container c-page-container">
         <div className="row">
           <div className="col-12 col-md-5">
             <h1>
@@ -13,7 +13,7 @@ const FAQ = () => (
               <span className="d-block c-page-title is-color-2">fréquemment</span>
               <span className="d-block">posées</span>
             </h1>
-            <hr/>
+            <hr className="c-page-title-separator"/>
           </div>
           <div className="col-12 col-md-7">
             <h2 className="c-faq-question">Il manque des entreprises dans la liste.</h2>
