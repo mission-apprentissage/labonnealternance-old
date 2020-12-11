@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.8.0 [11/12/2020]
+[244] Nouvelle FAQ
+
 ## 0.7.0 [10/12/2020]
 [241] Nouvelle home : bloc mission apprentissage
 
