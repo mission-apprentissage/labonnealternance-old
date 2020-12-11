@@ -47,7 +47,7 @@ const TrainingDetail = ({ training }) => {
             D'autres informations seront disponibles sur cette page prochainement
           </div>
         </div>
-        {
+        {/*
           <FakeFeature
             buttonText="Prendre rendez-vous"
             tagName="tmsPriseDeRendezVous"
@@ -98,7 +98,7 @@ const TrainingDetail = ({ training }) => {
                 )}
               </>
             }
-          />
+          />*/
         }
       </div>
     </>
