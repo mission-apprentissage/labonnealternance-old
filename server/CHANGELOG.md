@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.8.0 [11/12/2020]
+[244][FEATURE][DESIGN] FAQ
+
 ## 0.7.2 [11/12/2020]
 [272] Balises dans le Head
 
