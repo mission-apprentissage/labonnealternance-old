@@ -11,7 +11,7 @@ const FAQ = () => (
             <h1>
               <span className="d-block c-page-title is-color-1">Questions</span>
               <span className="d-block c-page-title is-color-2">fréquemment</span>
-              <span className="d-block">posées</span>
+              <span className="d-block c-page-title is-color-2">posées</span>
             </h1>
             <hr className="c-page-title-separator"/>
           </div>
