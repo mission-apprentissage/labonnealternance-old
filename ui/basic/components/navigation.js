@@ -36,10 +36,10 @@ const Navigation = (props) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="c-navbar-links ml-auto" navbar>
               <NavItem>
-                <div className="d-flex cursor-pointer">
-                  <img src="/images/square_link.svg" alt="Lien organisme de formation" />
-                  <NavLink href="#">Recruteur</NavLink>
-                </div>
+                <NavLink href="#">
+                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien organisme de formation" />
+                  <span className="ml-2">Recruteur</span>
+                </NavLink>
               </NavItem>
               <NavItem className="ml-md-5">
                 <NavLink href="#" className="ml-1">

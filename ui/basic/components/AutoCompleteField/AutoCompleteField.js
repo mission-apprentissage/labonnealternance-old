@@ -102,7 +102,7 @@ export const AutoCompleteField = ({
         <input
           {...getInputProps()}
           className={`form-control form-control-lg w-100 c-input-work ${
-            inputValue && inputValue.length > 20 ? "c-autocomplete__input--text" : ""
+            inputValue && inputValue.length > 20 ? "c-autocomplete__input--text-too-long" : ""
           }`}
           placeholder={props.placeholder}
           onFocus={onFocus}

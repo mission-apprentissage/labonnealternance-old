@@ -31,7 +31,7 @@
   background-color: #aaaaaa;
 }
 
-.c-autocomplete__input--text {
+.c-autocomplete__input--text-too-long {
   color: #2A2A2A;
   font-size: $small-font-size;
   @include media-breakpoint-up(sm) {
