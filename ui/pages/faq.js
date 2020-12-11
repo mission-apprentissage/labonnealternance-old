@@ -5,7 +5,7 @@ import Footer from "components/footer";
 const FAQ = () => (
   <div>
     <Navigation />
-      <div className="container c-page-container">
+      <div className="container c-page-container my-5 p-5">
         <div className="row">
           <div className="col-12 col-md-5">
             <h1>
@@ -13,7 +13,7 @@ const FAQ = () => (
               <span className="d-block c-page-title is-color-2">fréquemment</span>
               <span className="d-block c-page-title is-color-2">posées</span>
             </h1>
-            <hr className="c-page-title-separator"/>
+            <hr className="c-page-title-separator" align="left"/>
           </div>
           <div className="col-12 col-md-7">
             <div className="c-faq-question-block">
@@ -62,6 +62,9 @@ const FAQ = () => (
             </div>
           </div>
         </div>
+      </div>
+      <div className="mb-3">
+        &nbsp;
       </div>
     <Footer />
   </div>
