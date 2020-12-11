@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from "reactstrap";
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
 
 import Link from "next/link";
 import Router from "next/router";
@@ -51,7 +43,7 @@ const Navigation = (props) => {
         </div>
       </Navbar>
     </div>
-      );
+  );
 };
 
 export default Navigation;
