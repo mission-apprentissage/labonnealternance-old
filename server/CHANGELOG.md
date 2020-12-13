@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.9.0 [11/12/2020]
+[158][FEATURE][DESIGN] Accès Organisme de formation
+
 ## 0.8.0 [11/12/2020]
 [244][FEATURE][DESIGN] FAQ
 
