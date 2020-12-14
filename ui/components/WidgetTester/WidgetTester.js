@@ -107,6 +107,8 @@ const WidgetTester = () => {
     let ideaUrl =
       typeof window !== "undefined" ? window.location.origin : "https://labonnealternance.apprentissage.beta.gouv.fr";
 
+    ideaUrl = `${ideaUrl}/recherche-apprentissage`;
+
     if (widgetParams) {
       //console.log("widgetParams  : ",widgetParams);
       ideaUrl += "?";
