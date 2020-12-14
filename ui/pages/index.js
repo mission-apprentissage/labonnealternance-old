@@ -9,12 +9,13 @@ import { push } from "connected-next-router";
 import { useDispatch } from "react-redux";
 import { setWidgetParameters } from "store/actions";
 
-const Home = (props) => {
+const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (props.applyWidgetParameters) {
-      dispatch(setWidgetParameters(props));
+    const widgetParameters = getWidgetParameters();
+    if (widgetParameters && widgetParameters.applyWidgetParameters) {
+      dispatch(setWidgetParameters(widgetParameters));
       dispatch(push({ pathname: "/recherche-apprentissage" }));
     }
   }, []);
@@ -28,9 +29,5 @@ const Home = (props) => {
     </div>
   );
 };
-
-export async function getServerSideProps({ query }) {
-  return { props: getWidgetParameters(query) };
-}
 
 export default Home;

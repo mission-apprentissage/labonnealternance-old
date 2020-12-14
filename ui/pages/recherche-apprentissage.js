@@ -6,12 +6,13 @@ import { getWidgetParameters } from "services/config";
 
 import Head from "next/head";
 
-const RechercheApprentissage = (props) => {
+const RechercheApprentissage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (props && props.applyWidgetParameters) {
-      dispatch(setWidgetParameters(props));
+    const widgetParameters = getWidgetParameters();
+    if (widgetParameters && widgetParameters.applyWidgetParameters) {
+      dispatch(setWidgetParameters(widgetParameters));
     }
   }, []);
 
@@ -24,9 +25,5 @@ const RechercheApprentissage = (props) => {
     </>
   );
 };
-
-export async function getServerSideProps({ query }) {
-  return { props: getWidgetParameters(query) };
-}
 
 export default RechercheApprentissage;
