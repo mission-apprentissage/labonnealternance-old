@@ -18,6 +18,7 @@ import {
   setExtendedSearch,
   setHasSearch,
   setIsFormVisible,
+  setWidgetParameters,
 } from "store/actions";
 import {
   map,
@@ -27,7 +28,7 @@ import {
   factorJobsForMap,
   computeMissingPositionAndDistance,
 } from "utils/mapTools";
-import { widgetParameters, applyWidgetParameters, setWidgetApplied } from "services/config";
+
 import { fetchAddressFromCoordinates } from "services/baseAdresse";
 
 const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
@@ -41,9 +42,17 @@ const jobsApi = baseUrl + "/api/v1/jobs";
 const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingOnly }) => {
   const dispatch = useDispatch();
 
-  const { hasSearch, trainings, jobs, selectedItem, itemToScrollTo, formValues, shouldExecuteSearch } = useSelector(
-    (state) => state.trainings
-  );
+  const {
+    hasSearch,
+    trainings,
+    jobs,
+    selectedItem,
+    itemToScrollTo,
+    formValues,
+    widgetParameters,
+    shouldExecuteSearch,
+  } = useSelector((state) => state.trainings);
+
   const [isLoading, setIsLoading] = useState(hasSearch ? false : true);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
   const [isJobSearchLoading, setIsJobSearchLoading] = useState(hasSearch ? false : true);
@@ -64,12 +73,14 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingO
         dispatch(setItemToScrollTo(null));
       }
     }
-
-    if (applyWidgetParameters) {
-      launchWidgetSearch(widgetParameters);
-      setWidgetApplied(); // action one shot
-    } else setIsLoading(false);
   });
+
+  useEffect(() => {
+    if (widgetParameters && widgetParameters.applyWidgetParameters) {
+      launchWidgetSearch(widgetParameters);
+      dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
+    } else setIsLoading(false);
+  }, []);
 
   useEffect(() => {
     if (shouldExecuteSearch) {
@@ -109,24 +120,24 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingO
 
   const launchWidgetSearch = async () => {
     setIsLoading(true);
-
+    const p = widgetParameters.parameters;
     try {
       // récupération du code insee depuis la base d'adresse
-      const addresses = await fetchAddressFromCoordinates([widgetParameters.lon, widgetParameters.lat]);
+      const addresses = await fetchAddressFromCoordinates([p.lon, p.lat]);
 
       if (addresses.length) {
         let values = {
           location: {
             value: {
               type: "Point",
-              coordinates: [widgetParameters.lon, widgetParameters.lat],
+              coordinates: [p.lon, p.lat],
             },
             insee: addresses[0].insee,
           },
           job: {
-            romes: widgetParameters.romes.split(","),
+            romes: p.romes.split(","),
           },
-          radius: widgetParameters.radius || 30,
+          radius: p.radius || 30,
           ...addresses[0],
         };
 
