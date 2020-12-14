@@ -1,4 +1,5 @@
-import { getValueFromPath } from "../utils/tools";
+export const getWidgetParameters = (query) => {
+  let widgetParameters = { parameters: null, applyWidgetParameters: false };
 
 export const getWidgetParameters = () => {
   let widgetParameters = { parameters: null, applyWidgetParameters: false };
