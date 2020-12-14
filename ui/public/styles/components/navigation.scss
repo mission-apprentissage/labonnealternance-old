@@ -4,6 +4,12 @@
  }
 }
 
+.c-navigation.is-filled .navbar {
+  background-color: $home-background-color;
+}
+.c-navigation.is-white .navbar {
+  background-color: $white;
+}
 
 // Nesting class is mandatory to
 // override Boostrap's classes.

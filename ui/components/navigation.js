@@ -25,8 +25,11 @@ const Navigation = (props) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  let main_class_name = 'c-navigation '
+  main_class_name += props.bgcolor ?? 'is-filled'
+
   return (
-    <div className="c-navigation">
+    <div className={main_class_name}>
       <Navbar expand="lg" className="navbar-light">
         <div className="container">
           <NavbarBrand href="/">
