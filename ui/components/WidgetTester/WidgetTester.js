@@ -104,7 +104,8 @@ const WidgetTester = () => {
   };
 
   const getIdeaUrlWithParams = () => {
-    let ideaUrl = typeof window !== "undefined" ? window.location.origin : "https://labonnealternance.apprentissage.beta.gouv.fr";
+    let ideaUrl =
+      typeof window !== "undefined" ? window.location.origin : "https://labonnealternance.apprentissage.beta.gouv.fr";
 
     if (widgetParams) {
       //console.log("widgetParams  : ",widgetParams);

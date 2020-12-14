@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from "reactstrap";
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
 
 import Link from "next/link";
 import Router from "next/router";
@@ -25,8 +17,8 @@ const Navigation = (props) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
-  let main_class_name = 'c-navigation '
-  main_class_name += props.bgcolor ?? 'is-filled'
+  let main_class_name = "c-navigation ";
+  main_class_name += props.bgcolor ?? "is-filled";
 
   return (
     <div className={main_class_name}>
@@ -54,7 +46,7 @@ const Navigation = (props) => {
         </div>
       </Navbar>
     </div>
-      );
+  );
 };
 
 export default Navigation;
