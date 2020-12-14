@@ -80,7 +80,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingO
       launchWidgetSearch(widgetParameters);
       dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
     } else setIsLoading(false);
-  }, []);
+  });
 
   useEffect(() => {
     if (shouldExecuteSearch) {
