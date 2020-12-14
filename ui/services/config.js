@@ -1,33 +1,37 @@
 export const getWidgetParameters = (query) => {
   let widgetParameters = { parameters: null, applyWidgetParameters: false };
 
-  if (query.caller) {
+export const getWidgetParameters = () => {
+  let widgetParameters = { parameters: null, applyWidgetParameters: false };
+
+
+  if (getValueFromPath("caller")) {
     let parameters = {};
     let applyWidgetParameters = true;
 
     parameters = {
-      caller: query.caller,
+      caller: getValueFromPath("caller"),
     };
 
-    let p = query.lat;
+    let p = getValueFromPath("lat");
     if (p && !isNaN(p)) parameters.lat = parseFloat(p);
     else applyWidgetParameters = false;
 
-    p = query.lon;
+    p = getValueFromPath("lon");
     if (p && !isNaN(p)) parameters.lon = parseFloat(p);
     else applyWidgetParameters = false;
 
-    p = query.romes; // todo appliquer un ctrl regexp sur romes, max 3
+    p = getValueFromPath("romes"); // todo appliquer un ctrl regexp sur romes, max 3
     if (p) parameters.romes = p;
     else applyWidgetParameters = false;
 
-    p = query.radius; //todo: vérifier les valeurs légitimes
+    p = getValueFromPath("radius"); //todo: vérifier les valeurs légitimes
     if (p && !isNaN(p) && (p === "10" || p === "30" || p === "60" || p === "100")) parameters.radius = parseInt(p);
 
-    p = query.return_uri;
+    p = getValueFromPath("return_uri");
     if (p) parameters.returnURI = p;
 
-    p = query.return_logo_url;
+    p = getValueFromPath("return_logo_url");
     if (p) parameters.returnLogoURL = p;
     /*
         radius : Optionnel . Valeur numérique. Valeurs autorisées : 10 | 30 | 60 | 100. Le rayon de recherche autour du lieu en km. Valeur par défaut 30.
