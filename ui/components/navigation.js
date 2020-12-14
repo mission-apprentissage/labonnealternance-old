@@ -42,7 +42,7 @@ const Navigation = (props) => {
                 </NavLink>
               </NavItem>
               <NavItem className="ml-md-5">
-                <NavLink href="#" className="ml-1">
+                <NavLink href="/organisme" className="ml-1">
                   Organisme de formation
                 </NavLink>
               </NavItem>

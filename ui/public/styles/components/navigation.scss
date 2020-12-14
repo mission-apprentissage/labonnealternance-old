@@ -8,10 +8,6 @@
 // Nesting class is mandatory to
 // override Boostrap's classes.
 .c-navigation {
-
-  .navbar {
-    background-color: $home-background-color;
-  }
   
   .navbar-toggler:after {
     content: 'Menu';

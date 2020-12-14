@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.9.0 [11/12/2020]
+[158][FEATURE][DESIGN] Accès Organisme de formation
+
+## 0.8.0 [11/12/2020]
+[244][FEATURE][DESIGN] FAQ
+
+## 0.7.2 [11/12/2020]
+[272] Balises dans le Head
+
 ## 0.7.1 [11/12/2020]
 Scripts de lancement adaptés pour Nextjs
 
