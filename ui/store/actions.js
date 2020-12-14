@@ -10,6 +10,7 @@ export const types = {
   SET_HAS_SEARCH: "trainings/SET_HAS_SEARCH",
   SET_IS_FORM_VISIBLE: "trainings/SET_IS_FORM_VISIBLE",
   SET_SHOULD_EXECUTE_SEARCH: "trainings/SET_SHOULD_EXECUTE_SEARCH",
+  SET_WIDGET_PARAMETERS: "trainings/SET_WIDGET_PARAMETERS",
 };
 
 export const setResults = (trainings = [], jobs = []) => {
@@ -87,5 +88,12 @@ export const setShouldExecuteSearch = (shouldExecuteSearch = true) => {
   return {
     type: types.SET_SHOULD_EXECUTE_SEARCH,
     shouldExecuteSearch,
+  };
+};
+
+export const setWidgetParameters = (widgetParameters = true) => {
+  return {
+    type: types.SET_WIDGET_PARAMETERS,
+    widgetParameters,
   };
 };
