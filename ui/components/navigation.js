@@ -37,12 +37,12 @@ const Navigation = (props) => {
             <Nav className="c-navbar-links ml-auto" navbar>
               <NavItem>
                 <NavLink href="#">
-                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien organisme de formation" />
+                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien organisme recruteur" />
                   <span className="ml-2">Recruteur</span>
                 </NavLink>
               </NavItem>
               <NavItem className="ml-md-5">
-                <NavLink href="/organisme" className="ml-1">
+                <NavLink href="/organisme-de-formation" className="ml-1">
                   Organisme de formation
                 </NavLink>
               </NavItem>

@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.9.1 [11/12/2020]
+[158] Accès Organisme de formation changement de chemin de la page 
+
 ## 0.9.0 [11/12/2020]
 [158][FEATURE][DESIGN] Accès Organisme de formation
 
