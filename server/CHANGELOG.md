@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.9.2 [14/12/2020]
+[228] Adaptation pour next.js du widget 
+
 ## 0.9.1 [11/12/2020]
 [158] Accès Organisme de formation changement de chemin de la page 
 

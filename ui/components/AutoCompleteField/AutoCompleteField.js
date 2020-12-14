@@ -109,11 +109,7 @@ export const AutoCompleteField = ({
           name={props.name}
           aria-describedby="name"
         />
-        <img
-          className="c-input-work-img"
-          src={illustration}
-          alt="Icône loupe"
-        />
+        {illustration && <img className="c-input-work-img" src={illustration} alt="" />}
       </div>
       <ul {...getMenuProps()} className="c-autocomplete__menu">
         {isOpen &&

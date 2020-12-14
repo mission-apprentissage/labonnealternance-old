@@ -11,6 +11,7 @@ const initialState = {
   isFormVisible: true,
   hasSearch: false,
   shouldExecuteSearch: false,
+  widgetParameters: null,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -74,6 +75,11 @@ const mainReducer = (state = initialState, action) => {
     res = {
       ...state_copy,
       shouldExecuteSearch: action.shouldExecuteSearch,
+    };
+  } else if (action.type === actionsTypes.SET_WIDGET_PARAMETERS) {
+    res = {
+      ...state_copy,
+      widgetParameters: action.widgetParameters,
     };
   } else {
     res = state_copy;

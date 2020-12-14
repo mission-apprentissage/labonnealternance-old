@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, Container, Row, Col } from "reactstrap";
 import { Formik, Form, ErrorMessage, Field } from "formik";
-import { AutoCompleteField, RadioButton } from "../../components";
-import { fetchAddresses } from "../services/baseAdresse";
-import mapMarker from "../public/images/icons/pin.svg";
+import { AutoCompleteField, RadioButton } from "components";
+import { fetchAddresses } from "services/baseAdresse";
+import mapMarker from "public/images/icons/pin.svg";
 //import { fetchRomes } from "../SearchForTrainingsAndJobs/components/SearchForm";
-import fetchRomes from "../services/fetchRomes";
+import fetchRomes from "services/fetchRomes";
 
 const WidgetTester = () => {
   const [locationRadius, setLocationRadius] = useState(0);
@@ -104,7 +104,10 @@ const WidgetTester = () => {
   };
 
   const getIdeaUrlWithParams = () => {
-    let ideaUrl = window.location.origin;
+    let ideaUrl =
+      typeof window !== "undefined" ? window.location.origin : "https://labonnealternance.apprentissage.beta.gouv.fr";
+
+    ideaUrl = `${ideaUrl}/recherche-apprentissage`;
 
     if (widgetParams) {
       //console.log("widgetParams  : ",widgetParams);

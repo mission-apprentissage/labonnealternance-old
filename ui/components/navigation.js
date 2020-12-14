@@ -17,8 +17,8 @@ const Navigation = (props) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
-  let main_class_name = 'c-navigation '
-  main_class_name += props.bgcolor ?? 'is-filled'
+  let main_class_name = "c-navigation ";
+  main_class_name += props.bgcolor ?? "is-filled";
 
   return (
     <div className={main_class_name}>

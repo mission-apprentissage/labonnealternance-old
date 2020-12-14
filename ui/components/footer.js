@@ -37,106 +37,103 @@ const Footer = (props) => {
                     onClick={(e) => {
                       e.preventDefault();
                       dispatch(push({ pathname: "/apropos" }));
-                      }}
-                      href="/apropos"
-                      >
-                      A propos
-                    </a>
-                  </li>
-                  <li className="c-footer-links__line">
+                    }}
+                    href="/apropos"
+                  >
+                    A propos
+                  </a>
+                </li>
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/faq" }));
+                    }}
+                    href="/faq"
+                  >
+                    FAQ
+                  </a>
+                </li>
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/rgpd" }));
+                    }}
+                    href="/rgpd"
+                  >
+                    RGPD
+                  </a>
+                </li>
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/accessibilite" }));
+                    }}
+                    href="/accessibilite"
+                  >
+                    Accessibilité
+                  </a>
+                </li>
+              </ul>
+            </Col>
+            <Col xs="12" sm="6" md="3" lg="2" className="ml-md-5">
+              <ul className="c-footer-links">
+                <li className="c-footer-links__line">
+                  <a className="c-footer-links__link" href="#">
+                    Contact
+                  </a>
+                </li>
+                <li className="c-footer-links__line">
+                  <div className="d-flex cursor-pointer">
                     <a
                       className="c-footer-links__link"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(push({ pathname: "/faq" }));
-                        }}
-                        href="/faq"
-                        >
-                        FAQ
-                      </a>
-                    </li>
-                    <li className="c-footer-links__line">
-                      <a
-                        className="c-footer-links__link"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          dispatch(push({ pathname: "/rgpd" }));
-                          }}
-                          href="/rgpd"
-                          >
-                          RGPD
-                        </a>
-                      </li>
-                      <li className="c-footer-links__line">
-                        <a
-                          className="c-footer-links__link"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            dispatch(push({ pathname: "/accessibilite" }));
-                            }}
-                            href="/accessibilite"
-                            >
-                            Accessibilité
-                          </a>
-                        </li>
-                      </ul>
-                    </Col>
-                    <Col xs="12" sm="6" md="3" lg="2" className="ml-md-5">
-                      <ul className="c-footer-links">
-                        <li className="c-footer-links__line">
-                          <a className="c-footer-links__link" href="#">
-                            Contact
-                          </a>
-                        </li>
-                        <li className="c-footer-links__line">
-                          <div className="d-flex cursor-pointer">
-                            <a
-                              className="c-footer-links__link"
-                              target="_blank"
-                              rel="noopener noreferer"
-                              href="https://mission-apprentissage.gitbook.io/la-bonne-alternance/"
-                              >
-                              Développeurs
-                            </a>
-                          </div>
-                        </li>
-
-                        <li className="c-footer-links__line">
-                          <div className="d-flex cursor-pointer">
-                            <a
-                              className="c-footer-links__link"
-                              target="_blank"
-                              rel="noopener noreferer"
-                              href="https://labonnealternance.pole-emploi.fr/stats"
-                              >
-                              Statistiques
-                            </a>
-                          </div>
-                        </li>
-                      </ul>
-                    </Col>
-
-                    <Col xs="12" sm="6" md="6" lg="3" className="ml-sm-5 ml-lg-5 ml-md-0 mt-md-3 mt-lg-0 c-footer-imgs">
-                      <img 
-                        className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2" 
-                        src={logoFSE} 
-                        alt="Logo du FSE" />
-                        <img
-                          className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
-                          src={logoFranceRelance}
-                          alt="Logo France Relance"
-                        />
-                        <img
-                          className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
-                          src={logoPoleEmploi}
-                          alt="Logo de Pôle emploi"
-                        />
-                      </Col>
-                    </Row>
+                      target="_blank"
+                      rel="noopener noreferer"
+                      href="https://mission-apprentissage.gitbook.io/la-bonne-alternance/"
+                    >
+                      Développeurs
+                    </a>
                   </div>
-                </Navbar>
-                </div>
-                );
+                </li>
+
+                <li className="c-footer-links__line">
+                  <div className="d-flex cursor-pointer">
+                    <a
+                      className="c-footer-links__link"
+                      target="_blank"
+                      rel="noopener noreferer"
+                      href="https://labonnealternance.pole-emploi.fr/stats"
+                    >
+                      Statistiques
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </Col>
+
+            <Col xs="12" sm="6" md="6" lg="3" className="ml-sm-5 ml-lg-5 ml-md-0 mt-md-3 mt-lg-0 c-footer-imgs">
+              <img className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2" src={logoFSE} alt="Logo du FSE" />
+              <img
+                className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
+                src={logoFranceRelance}
+                alt="Logo France Relance"
+              />
+              <img
+                className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
+                src={logoPoleEmploi}
+                alt="Logo de Pôle emploi"
+              />
+            </Col>
+          </Row>
+        </div>
+      </Navbar>
+    </div>
+  );
 };
 
 export default Footer;
