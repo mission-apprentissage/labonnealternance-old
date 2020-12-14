@@ -1,21 +1,22 @@
 const config = {
   local: {
     urls: [/^"localhost"$/g],
-    baseUrl: "http://localhost:5000",    
+    baseUrl: "http://localhost:5000",
   },
   dev: {
-    urls: [/^labonnealternance-recette.apprentissage.beta.gouv.fr$/g],
+    urls: [/^labonnealternance-recette.apprentissage.beta.gouv.fr$/g,/^labonnealternance.beta.pole-emploi.fr$/g],
     baseUrl: "https://labonnealternance-recette.apprentissage.beta.gouv.fr",
   },
+
   prod: {
-    urls: [/^labonnealternance.apprentissage.beta.gouv.fr$/g],
+    urls: [/^labonnealternance.apprentissage.beta.gouv.fr$/g,/^labonnealternance.pole-emploi.fr$/g],
     baseUrl: "https://labonnealternance.apprentissage.beta.gouv.fr",
   },
 };
 
 export const getEnvName = () => {
-  let hostname = ''
-  if (typeof window !== 'undefined') {
+  let hostname = "";
+  if (typeof window !== "undefined") {
     hostname = window.location.hostname;
   }
 
@@ -29,13 +30,14 @@ export const getEnvName = () => {
 };
 
 export const getConfig = (envName) => {
+  console.log("envName=", envName);
   switch (envName) {
     case "prod":
-    return config.prod;
+      return config.prod;
     case "dev":
-    return config.dev;
+      return config.dev;
     default:
-    return config.local;
+      return config.local;
   }
 };
 
