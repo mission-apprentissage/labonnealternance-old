@@ -50,7 +50,6 @@ const Organisme = (props) => {
         </div>
       </div>
       <div className="mb-3">&nbsp;</div>
-
       <Footer />
     </div>
   );
