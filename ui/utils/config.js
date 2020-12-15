@@ -30,7 +30,6 @@ export const getEnvName = () => {
 };
 
 export const getConfig = (envName) => {
-  console.log("envName=", envName);
   switch (envName) {
     case "prod":
       return config.prod;
