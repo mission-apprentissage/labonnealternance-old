@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.9.3 [15/12/2020]
+[278] Appel des routes API depuis LBA PE
+
 ## 0.9.2 [14/12/2020]
 [228] Adaptation pour next.js du widget 
 
