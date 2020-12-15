@@ -8,6 +8,7 @@ import Footer from "components/footer";
 import { push } from "connected-next-router";
 import { useDispatch } from "react-redux";
 import { setWidgetParameters } from "store/actions";
+import ScrollToTop from "components/ScrollToTop";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Home = () => {
 
   return (
     <div>
+      <ScrollToTop />
       <Navigation />
       <HomeHero />
       <DescriptionMissionApprentissage />

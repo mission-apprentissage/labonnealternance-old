@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navigation from "components/navigation";
 import Breadcrumb from "components/breadcrumb";
+import ScrollToTop from "components/ScrollToTop";
 
 import Footer from "components/footer";
 
 const FAQ = (props) => {
+
   return (
     <div>
+      <ScrollToTop />
       <Navigation bgcolor="is-white" />
 
       <Breadcrumb forPage="faq" label="FAQ" />

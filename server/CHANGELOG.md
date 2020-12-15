@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.9.4 [15/12/2020]
+[276] Scrolltops sur les pages et réduction logos sponsors
+
 ## 0.9.3 [15/12/2020]
 [278] Appel des routes API depuis LBA PE
 

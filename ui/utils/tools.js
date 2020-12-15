@@ -12,10 +12,16 @@ const getValueFromPath = (key) => {
 };
 
 const scrollToTop = (elementId) => {
-  document.getElementById(elementId).scrollTo({
-    top: 0,
-    left: 0,
-  });
+  if (elementId) {
+    document.getElementById(elementId).scrollTo({
+      top: 0,
+      left: 0,
+    });
+  } else {
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
+  }
 };
 
 const scrollToElementInContainer = (containerId, el, yOffsett, behavior) => {
