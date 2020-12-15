@@ -6,9 +6,9 @@ import Router from "next/router";
 import { push, replace, goBack, goForward, prefetch } from "connected-next-router";
 import { useDispatch } from "react-redux";
 
-import logoFSE from "../public/images/logo_fse.svg";
-import logoFranceRelance from "../public/images/logo_france_relance.svg";
-import logoPoleEmploi from "../public/images/logo_pole_emploi.svg";
+import logoFSE from "public/images/logo_fse.png";
+import logoFranceRelance from "public/images/logo_france_relance.svg";
+import logoPoleEmploi from "public/images/logo_pole_emploi.svg";
 
 /*
  Different kind of navigation are available here :
