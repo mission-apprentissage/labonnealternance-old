@@ -1,27 +1,11 @@
 import React, { useEffect } from "react";
-import { withRouter } from "react-router";
-import { useSelector } from "react-redux";
+import { scrollToTop } from "utils/tools";
 
-const ScrollToTop = () => {
-  const { location, action } = useSelector(state => state.router);
+const ScrollToTop = ({ elementId }) => {
   useEffect(() => {
-    if (action === "POP") { //TODO: check usefullness
-      return;
-    }
-    // In all other cases, check fragment/scroll to top
-    let hash = location.hash;
-    if (hash) {
-      let element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ block: "start", behavior: "smooth" });
-      }
-    } else {
-      if (typeof window !== 'undefined') {
-        window.scrollTo(0, 0);
-      }
-    }
+    scrollToTop(elementId);
   });
-  return <div className="scrollToTopElement" />;
+  return <></>;
 };
 
-export default withRouter(ScrollToTop);
+export default ScrollToTop;
