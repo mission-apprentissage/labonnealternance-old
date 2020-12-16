@@ -131,9 +131,12 @@ $small-font-size: 85%;
 *
 */
 .c-app {
-  // .btn-dark:hover, .btn-dark:focus, .btn-dark:active {
-      // Override here btn-dark from Bootstrap
-  // }
+
+  .btn-outline-primary:hover {
+      color: inherit;
+      background-color: inherit;
+  }
+
 }
 
 /** 
