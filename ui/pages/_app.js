@@ -19,10 +19,9 @@ class ExampleApp extends App {
 
   render() {
     const { Component, pageProps } = this.props;
-    const gtmId = process.env.GTM_ID
     return (
       <>
-        <HeadLaBonneAlternance gtmId={gtmId}/>
+        <HeadLaBonneAlternance/>
         <ConnectedRouter className="c-app">
           <Component {...pageProps} />
         </ConnectedRouter>
