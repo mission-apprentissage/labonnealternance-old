@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.10.2 [16/12/2020]
+[281] Fix bug emploi qui ne remontent pas sur la map
+
 ## 0.10.1 [16/12/2020]
 [274a] Corrections de présentation 
 
