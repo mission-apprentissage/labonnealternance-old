@@ -84,7 +84,7 @@ const Footer = (props) => {
             <Col xs="12" sm="6" md="3" lg="2" className="ml-md-5">
               <ul className="c-footer-links">
                 <li className="c-footer-links__line">
-                  <a className="c-footer-links__link" href="#">
+                  <a className="c-footer-links__link" href="mailto:labonnealternance@pole-emploi.fr">
                     Contact
                   </a>
                 </li>
