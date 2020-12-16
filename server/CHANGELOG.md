@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.11.0 [16/12/2020]
+[279] Ajout Analytics
+
 ## 0.10.2 [16/12/2020]
 [281] Fix bug emploi qui ne remontent pas sur la map
 
