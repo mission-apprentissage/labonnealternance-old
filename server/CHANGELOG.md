@@ -1,13 +1,7 @@
 # CHANGELOG
 
-## 0.11.0 [16/12/2020]
-[279] Ajout Analytics
-
-## 0.10.2 [16/12/2020]
-[281] Fix bug emploi qui ne remontent pas sur la map
-
-## 0.10.1 [16/12/2020]
-[274a] Corrections de présentation 
+## 0.11.1 [16/12/2020]
+[274] Hover
 
 ## 0.10.0 [16/12/2020]
 [280] Ajout Sentry
