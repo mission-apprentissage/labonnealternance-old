@@ -6,6 +6,16 @@ import HeadLaBonneAlternance from "components/head";
 
 import "public/styles/application.scss";
 
+
+import * as Sentry from '@sentry/node';
+
+if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+  Sentry.init({
+    enabled: process.env.NODE_ENV === 'production',
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN
+  });
+}
+
 class ExampleApp extends App {
   render() {
     const { Component, pageProps } = this.props;
