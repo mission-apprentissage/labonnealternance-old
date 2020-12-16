@@ -5,6 +5,7 @@ import Breadcrumb from "components/breadcrumb";
 import Footer from "components/footer";
 
 const Organisme = (props) => {
+  throw new Error('k-boom ! test error :)')
   return (
     <div>
       <Navigation bgcolor="is-white" />
