@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.10.2 [16/12/2020]
+[281] Fix bug emploi qui ne remontent pas sur la map
+
 ## 0.10.0 [16/12/2020]
 [280] Ajout Sentry
 
