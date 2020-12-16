@@ -31,12 +31,17 @@ const Navigation = (props) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="c-navbar-links ml-auto" navbar>
               <NavItem>
-                <NavLink href="#">
+                <a
+                  href="https://labonneboite.pole-emploi.fr/informations-entreprise/action"
+                  target="_blank"
+                  className="nav-link"
+                  rel="noopener noreferer"
+                >
                   <img className="mt-n1" src="/images/square_link.svg" alt="Lien organisme recruteur" />
                   <span className="ml-2">Recruteur</span>
-                </NavLink>
+                </a>
               </NavItem>
-              <NavItem className="ml-md-5">
+              <NavItem className="ml-lg-5">
                 <NavLink href="/organisme-de-formation" className="ml-1">
                   Organisme de formation
                 </NavLink>
