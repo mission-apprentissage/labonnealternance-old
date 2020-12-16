@@ -93,6 +93,7 @@
 }
 .demoPage .inFormIcon {
   margin-top: 13px;
+  margin-left: 15px;
 }
 .demoPage .rightCol {
   height: 100vh;
@@ -224,14 +225,14 @@
   background: #066EE7;
 }
 .demoPage .rightCol .filterButton {
-  background-image: url(/pic/icons/filter.svg);
+  background-image: url(/images/icons/filter.svg);
   background-position: 4px;
   background-repeat: no-repeat;
   width: 80px;
   text-align: right;
 }
 .demoPage .rightCol .filterButton:hover {
-  background-image: url("/pic/icons/filter_white.svg");
+  background-image: url("/images/icons/filter_white.svg");
   background-position: 4px;
   background-repeat: no-repeat;
 }
@@ -338,11 +339,11 @@
   height: 30px;
 }
 .demoPage .jobMarkerIcon {
-  background-image: url(/pic/icons/job.svg);
+  background-image: url(/images/icons/job.svg);
   background-repeat: no-repeat;
 }
 .demoPage .trainingMarkerIcon {
-  background-image: url(/pic/icons/school.svg);
+  background-image: url(/images/icons/school.svg);
   background-repeat: no-repeat;
 }
 .demoPage .markerIcon > div {

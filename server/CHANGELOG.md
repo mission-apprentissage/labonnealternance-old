@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.9.5 [16/12/2020]
+[227] Corrections css portage vers version nextjs
+
 ## 0.9.4 [15/12/2020]
 [276] Scrolltops sur les pages et réduction logos sponsors
 
