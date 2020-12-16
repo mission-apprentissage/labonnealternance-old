@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.11.0 [16/12/2020]
+[279] Ajout Analytics
+
 ## 0.10.0 [16/12/2020]
 [280] Ajout Sentry
 
