@@ -3,6 +3,9 @@
 ## 0.10.1 [16/12/2020]
 [274a] Corrections de présentation 
 
+## 0.10.0 [16/12/2020]
+[280] Ajout Sentry
+
 ## 0.9.5 [16/12/2020]
 [227] Corrections css portage vers version nextjs
 
