@@ -1,7 +1,6 @@
 const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
 const path = require('path')
-// const withCSS = require('@zeit/next-css')
 
 /*
 * BEGIN OF SENTRY---------------------------
@@ -38,7 +37,7 @@ process.env.SENTRY_DSN = SENTRY_DSN;
 module.exports = withPlugins(
   [
     [withImages, { /* plugin config here ... */ }],
-    
+
     [withSourceMaps, { 
       webpack: (config, options) => {
           config.module.rules.push({
