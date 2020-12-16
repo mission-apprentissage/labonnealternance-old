@@ -1,6 +1,5 @@
 import React from "react";
 import StartForm from "../StartForm";
-import styles from "./HomeHero.module.scss";
 
 const HomeHero = () => {
   return (
