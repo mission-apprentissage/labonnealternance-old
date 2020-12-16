@@ -79,56 +79,56 @@ const StartForm = (props) => {
               errors.location = "Sélectionnez un lieu proposé";
             }
             return errors;
-            }}
-            initialValues={formValues ?? { job: {}, location: {} }}
-            onSubmit={handleSubmit}
-            >
-            {({ isSubmitting, setFieldValue }) => (
-              <Form>
-                <div className="form-group c-home-hero__input mb-2">
-                  <AutoCompleteField
-                    items={[]}
-                    itemToStringFunction={autoCompleteToStringFunction}
-                    onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
-                    compareItemFunction={compareAutoCompleteValues}
-                    onInputValueChangeFunction={domainChanged}
-                    previouslySelectedItem={formValues?.job ?? null}
-                    name="jobField"
-                    placeholder="ex : boulanger"
-                    illustration={glassImage}
-                  />
-                  <ErrorMessage name="job" className="u-error-text-color" component="div" />
-                </div>
-                <div className="form-group c-home-hero__input mb-3 mb-sm-4">
-                  <AutoCompleteField
-                    items={[]}
-                    itemToStringFunction={autoCompleteToStringFunction}
-                    onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
-                    compareItemFunction={compareAutoCompleteValues}
-                    onInputValueChangeFunction={fetchAddresses}
-                    previouslySelectedItem={formValues?.location ?? null}
-                    scrollParentId="rightColumn"
-                    name="placeField"
-                    placeholder="ex : France, Paris, 75000"
-                    illustration={localisationImage}
-                  />
-                  <ErrorMessage name="location" className="u-error-text-color" component="div" />
-                </div>
-                <div className="form-group c-home-hero__input">
-                  <input
-                    type="submit"
-                    value="C'est parti !"
-                    className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-home-hero__submit"
-                    data-disable-with="C'est parti !"
-                    disabled={isSubmitting}
-                  />
-                </div>
-                </Form>
-                )}
-          </Formik>
-          <p>&nbsp;</p>
-          </div>
-          );
+          }}
+          initialValues={formValues ?? { job: {}, location: {} }}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting, setFieldValue }) => (
+            <Form>
+              <div className="form-group c-home-hero__input mb-2">
+                <AutoCompleteField
+                  items={[]}
+                  itemToStringFunction={autoCompleteToStringFunction}
+                  onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
+                  compareItemFunction={compareAutoCompleteValues}
+                  onInputValueChangeFunction={domainChanged}
+                  previouslySelectedItem={formValues?.job ?? null}
+                  name="jobField"
+                  placeholder="Ex : boulangerie"
+                  illustration={glassImage}
+                />
+                <ErrorMessage name="job" className="u-error-text-color" component="div" />
+              </div>
+              <div className="form-group c-home-hero__input mb-3 mb-sm-4">
+                <AutoCompleteField
+                  items={[]}
+                  itemToStringFunction={autoCompleteToStringFunction}
+                  onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
+                  compareItemFunction={compareAutoCompleteValues}
+                  onInputValueChangeFunction={fetchAddresses}
+                  previouslySelectedItem={formValues?.location ?? null}
+                  scrollParentId="rightColumn"
+                  name="placeField"
+                  placeholder="Adresse, ville ou code postal"
+                  illustration={localisationImage}
+                />
+                <ErrorMessage name="location" className="u-error-text-color" component="div" />
+              </div>
+              <div className="form-group c-home-hero__input">
+                <input
+                  type="submit"
+                  value="C'est parti !"
+                  className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-home-hero__submit"
+                  data-disable-with="C'est parti !"
+                  disabled={isSubmitting}
+                />
+              </div>
+            </Form>
+          )}
+        </Formik>
+        <p>&nbsp;</p>
+      </div>
+    );
   };
 
   return <>{domainError ? <DomainError></DomainError> : renderFormik()}</>;
