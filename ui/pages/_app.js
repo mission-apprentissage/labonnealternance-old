@@ -21,10 +21,12 @@ class ExampleApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <>
-        <HeadLaBonneAlternance />
-        <ConnectedRouter className="c-app">
-          <Component {...pageProps} />
-        </ConnectedRouter>
+        <main className="c-app">
+          <HeadLaBonneAlternance />
+          <ConnectedRouter>
+            <Component {...pageProps} />
+          </ConnectedRouter>          
+        </main>
       </>
     );
   }

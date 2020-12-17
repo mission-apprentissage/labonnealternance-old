@@ -1,7 +1,11 @@
 # CHANGELOG
 
-## 0.10.3 [16/12/2020]
+## 0.12.0 [17/12/2020]
 [274b] Corrections de présentation
+[245] Page accessibilité
+
+## 0.11.1 [16/12/2020]
+[274] Hover
 
 ## 0.11.0 [16/12/2020]
 [279] Ajout Analytics
