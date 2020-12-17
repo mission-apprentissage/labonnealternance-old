@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.14.1 [17/12/2020]
+[274c] Ajustements typo et style
+
 ## 0.14.0 [17/12/2020]
 [288] Page à propos
 
