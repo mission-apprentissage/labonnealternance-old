@@ -34,14 +34,11 @@ const LbbCompanyDetail = ({ company }) => {
         ) : (
           ""
         )}
-        <div className="sectionTitle">
-          Voir la fiche entreprise sur le site {company.ideaType === "lba" ? "La Bonne Alternance" : "La Bonne Boîte"}
-        </div>
+        <div className="sectionTitle">Voir la fiche entreprise sur le site La Bonne Boîte</div>
         <div className="ellipsisLink">
           <img className="linkIcon" src={linkIcon} alt="" />
-          <a target="lbb" href={company.url} className={`gtmFiche${company.ideaType}`}>
-            https://{company.ideaType === "lba" ? "labonnealternance" : "labonneboite"}
-            .pole-emploi.fr/details-entreprises
+          <a target="lbb" href={`https://labonneboite.pole-emploi.fr/${company.company.siret}/details`} className={`gtmFiche${company.ideaType}`}>
+            https://labonneboite.pole-emploi.fr/details-entreprises
           </a>
         </div>
         <div className="blueAdvice">
