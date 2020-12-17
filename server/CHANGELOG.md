@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.13.0 [17/12/2020]
+[243] Page RGPD
+
 ## 0.12.0 [17/12/2020]
 [274b] Corrections de présentation, favicon
 [245] Page accessibilité
