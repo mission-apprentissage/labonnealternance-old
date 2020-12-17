@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.12.0 [17/12/2020]
+[274b] Corrections de présentation, favicon
+[245] Page accessibilité
+
 ## 0.11.1 [16/12/2020]
 [274] Hover
 
