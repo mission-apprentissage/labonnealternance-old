@@ -197,7 +197,6 @@ const SearchForm = (props) => {
                       name="placeField"
                       placeholder="Adresse ou ville ou code postal"
                     />
-                    <img className="inFormIcon" src={mapMarker} alt="" />
                   </div>
                   <ErrorMessage name="location" className="errorField" component="div" />
                 </div>

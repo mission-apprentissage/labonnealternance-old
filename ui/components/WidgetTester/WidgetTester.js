@@ -195,7 +195,6 @@ const WidgetTester = () => {
                       name="placeField"
                       placeholder="Adresse ou ville ou code postal"
                     />
-                    <img className="inFormIcon" src={mapMarker} alt="" />
                   </div>
                   {showSearchCenter()}
                   <ErrorMessage name="location" className="errorField" component="div" />
