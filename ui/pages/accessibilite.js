@@ -1,11 +1,12 @@
 import React from "react";
 import Navigation from "components/navigation";
-
+import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
 
 import Footer from "components/footer";
 const Accessibilite = () => (
   <div>
+    <ScrollToTop />
     <Navigation />
     <Breadcrumb forPage="accessibilite" label="Accessibilité" />
 
@@ -71,10 +72,15 @@ const Accessibilite = () => (
 
           <p>
             Vous pouvez nous aider à améliorer l'accessibilité du site en nous signalant les problèmes éventuels que
-            vous rencontrez : Contactez-nous
+            vous rencontrez : <a href="mailto:labonnealternance@pole-emploi.fr">Contactez-nous</a>
           </p>
 
-          <p>Vous pouvez également soumettre vos demandes de modification sur la plate-forme Github</p>
+          <p>
+            Vous pouvez également soumettre vos demandes de modification sur la plate-forme{" "}
+            <a href="https://github.com/mission-apprentissage/labonnealternance" target="_blank" rel="noreferer noopener">
+              Github
+            </a>
+          </p>
         </div>
       </div>
     </div>
