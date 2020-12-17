@@ -48,7 +48,7 @@ const Accessibilite = () => (
             <a href="http://references.modernisation.gouv.fr/referentiel/" rel="noopener noreferer" target="_blank">
               RGAA v3
             </a>
-            déclaration de conformité sera publiée ultérieurement.
+            . La déclaration de conformité sera publiée ultérieurement.
           </p>
 
           <h3>Nos engagements</h3>
@@ -80,9 +80,14 @@ const Accessibilite = () => (
 
           <p>
             Vous pouvez également soumettre vos demandes de modification sur la plate-forme{" "}
-            <a href="https://github.com/mission-apprentissage/labonnealternance" target="_blank" rel="noreferer noopener">
+            <a
+              href="https://github.com/mission-apprentissage/labonnealternance"
+              target="_blank"
+              rel="noreferer noopener"
+            >
               Github
-            </a>.
+            </a>
+            .
           </p>
         </div>
       </div>
