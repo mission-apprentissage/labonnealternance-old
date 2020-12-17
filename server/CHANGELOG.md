@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.14.2 [17/12/2020]
+[274d] Fix lien stats
+
 ## 0.14.1 [17/12/2020]
 [274c] Ajustements typo et style
 
