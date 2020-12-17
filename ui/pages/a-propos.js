@@ -15,37 +15,46 @@ const APROPOS = () => (
       <div className="row">
         <div className="col-12 col-md-5">
           <h1>
-            <span className="d-block c-page-title is-color-1">Comment</span>
-            <span className="d-block c-page-title is-color-1">
-              référencer <span className="c-page-title is-color-2">ma </span>
-            </span>
-            <span className="d-block c-page-title is-color-2">formation ?</span>
+            <span className="d-block c-page-title is-color-1">A propos de</span>
+            <span className="d-block c-page-title is-color-2">La bonne alternance</span>
           </h1>
           <hr className="c-page-title-separator" align="left" />
         </div>
         <div className="col-12 col-md-7">
-          <p>La Bonne Alternance expose des données provenant du réseau Carif-oref.</p>
-          <p>Pour référencer votre formation, rendez-vous sur le site du Carif-Oref :</p>
-          <p className="c-organisme-link">
-            <img className="mt-n1 mr-2" src="/images/square_link.svg" alt="Lien relancer son offre de formation" />
-            <a
-              href="https://reseau.intercariforef.org/referencer-son-offre-de-formation"
-              target="_blank"
-              rel="noreferer noopener"
-            >
-              https://reseau.intercariforef.org/referencer-son-offre-de-formation.
-            </a>
+          <h3>Le saviez-vous ?</h3>
+          <p>
+            7 employeurs sur 10 recrutent sans déposer d’offre d’emploi.
+            <br />
+            Il est essentiel dans votre recherche de proposer votre candidature à des entreprises n’ayant pas forcément
+            déposé d’offre d’emploi en alternance.
           </p>
           <p>
-            Veuillez noter que pour le moment, seules les formations en apprentissage sont référencées sur La Bonne
-            Alternance.
+            Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 6 dernières années pour vous
+            proposer les entreprises qui recrutent régulièrement en alternance (contrat d'apprentissage ou contrat de
+            professionnalisation).
           </p>
-          <div className="text-center">
-            <p className="c-organisme-help">Vous êtes perdu(e) ? Nous sommes là pour vous aider.</p>
-            <a className="c-organisme-contact-link" href="mailto:labonnealternance@pole-emploi.fr">
-              Contacter notre service support
-            </a>
-          </div>
+
+          <p>En complément, le service La Bonne Alternance expose les formations disponibles en apprentissage.</p>
+
+          <p>
+            Pour une meilleure lisibilité, les résultats sont affichés sur une carte et en liste.
+            <br />
+            En cliquant sur une entreprise, vous accédez à sa description, ses coordonnées lorsqu’elles sont
+            disponibles, ainsi qu’à des conseils pour postuler.
+          </p>
+
+          <h3>Qui sommes-nous ?</h3>
+
+          <p>
+            La Bonne Alternance est d’abord une start-up interne de Pôle emploi créée et développée par des conseillers.{" "}
+            <br />
+            Reprise par la{" "}
+            <a href="https://mission-apprentissage.gitbook.io/general/" rel="nooepener noreferer" target="_blank">
+              Mission apprentissage
+            </a>{" "}
+            en 2020, le site ajoute désormais des informations sur les formations et les offres d’emploi en
+            apprentissage.
+          </p>
         </div>
       </div>
     </div>
