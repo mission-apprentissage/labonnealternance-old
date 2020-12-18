@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.0.1 [18/12/2020]
+[274] Se former et travailler
+
 ## 1.0.0 [18/12/2020]
 V1 :)
 
