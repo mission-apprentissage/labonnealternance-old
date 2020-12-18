@@ -7,13 +7,13 @@ const HomeServices = () => {
   return (
     <section className="c-home-services">
 
-        <h2 className="c-home-services__main-title pt-5">
-          <span className="c-home-services__main-title--dark">Les services de </span> 
-          <span className="d-block c-home-services__main-title--colored"> La Bonne Alternance</span>
-        </h2>
+      <h2 className="c-home-services__main-title py-4 pt-md-4 mt-md-4 pt-lg-5 mt-lg-5">
+        <span className="c-home-services__main-title--dark">Les services de </span> 
+        <span className="d-block c-home-services__main-title--colored"> La Bonne Alternance</span>
+      </h2>
 
 
-      <div className="card-deck c-home-services__container">
+      <div className="card-deck c-home-services__container pt-md-4 mt-md-4 pt-lg-5 mt-lg-5">
 
         <div className="card c-home-services__card mb-4">
           <div className="card-body c-home-services__card-body">
