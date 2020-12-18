@@ -1,5 +1,21 @@
 .c-home-services {}
 
+.c-home-services__main-title {
+  text-align: center;
+  font-size: 28px;
+  @include media-breakpoint-up(sm) {
+    font-size: 40px;
+  } 
+  font-weight: 700;
+}
+
+.c-home-services__main-title--dark {
+  color: $gray-700;
+}
+.c-home-services__main-title--colored {
+  color: $info;
+}
+
 .c-home-services__card {
   min-width: 254px;
   max-width: 254px;
@@ -42,10 +58,10 @@
 
 
 .c-home-services__circle { 
-   width: 68px;
-   height: 68px;
-   background: #EDEDED; 
-   border-radius: 70px;
+ width: 68px;
+ height: 68px;
+ background: #EDEDED; 
+ border-radius: 70px;
 }
 
 .c-home-services__title {

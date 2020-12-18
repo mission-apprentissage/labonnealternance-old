@@ -7,6 +7,12 @@ const HomeServices = () => {
   return (
     <section className="c-home-services">
 
+        <h2 className="c-home-services__main-title pt-5">
+          <span className="c-home-services__main-title--dark">Les services de </span> 
+          <span className="d-block c-home-services__main-title--colored"> La Bonne Alternance</span>
+        </h2>
+
+
       <div className="card-deck c-home-services__container">
 
         <div className="card c-home-services__card mb-4">
@@ -14,7 +20,7 @@ const HomeServices = () => {
             <div className="c-home-services__circle mx-auto mt-3">
               <img aria-hidden="true" className="c-home-services__img--sirius" src={logoSirius} alt="Logo Sirius" />
             </div>
-            <h2 className="c-home-services__title mt-3 mb-5">Sirius</h2>
+            <h3 className="c-home-services__title mt-3 mb-5">Sirius</h3>
             <p className="c-home-services__text mb-4">Avis et témoignages d'apprentis</p>
           </div>
           <footer className="card-footer c-home-services__footer">
@@ -27,7 +33,7 @@ const HomeServices = () => {
             <div className="c-home-services__circle mx-auto mt-3">
               <img aria-hidden="true" className="c-home-services__img--matcha" src={logoMatcha} alt="Logo Sirius" />
             </div>
-            <h2 className="c-home-services__title mt-3 mb-5">Matcha</h2>
+            <h3 className="c-home-services__title mt-3 mb-5">Matcha</h3>
             <p className="c-home-services__text mb-4">Service bientôt disponible</p>
           </div>
           <footer className="card-footer c-home-services__footer">
@@ -40,7 +46,7 @@ const HomeServices = () => {
             <div className="c-home-services__circle mx-auto mt-3">
               <img aria-hidden="true" className="c-home-services__img--catalog" src={logoCatalogue} alt="Logo Sirius" />
             </div>
-            <h2 className="c-home-services__title mt-3 mb-3">Catalogue des formations</h2>
+            <h3 className="c-home-services__title mt-3 mb-3">Catalogue des formations</h3>
             <p className="c-home-services__text mb-4">Un catalogue élargi de formations en apprentissage</p>
           </div>
           <footer className="card-footer c-home-services__footer">
