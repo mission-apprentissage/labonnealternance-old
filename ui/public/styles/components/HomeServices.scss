@@ -67,6 +67,17 @@
   line-height: 27px;
   text-align: center;
   color: #373F41;
+  @extend .mt-3;
+}
+
+.c-home-services__title--sirius {
+  @extend .mb-5;
+}
+.c-home-services__title--matcha {
+  @extend .mb-5;
+}
+.c-home-services__title--catalog {
+  @extend .mb-3;
 }
 
 .c-home-services__text {
