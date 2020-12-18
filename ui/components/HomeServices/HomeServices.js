@@ -8,11 +8,10 @@ const HomeServices = () => {
     <section className="c-home-services">
 
       <h2 className="c-home-services__main-title py-4 my-md-4 mt-lg-5 mb-lg-5">
-        <span className="c-home-services__main-title--dark">Les services de </span> 
-        <span className="d-block c-home-services__main-title--colored"> La Bonne Alternance</span>
+        <span className="c-home-services__main-title--dark">Les services de </span>
+        <span className="c-home-services__main-title--colored">La Bonne Alternance </span>
       </h2>
-
-
+      
       <div className="card-deck c-home-services__container">
 
         <div className="card c-home-services__card mb-4">
