@@ -1,9 +1,17 @@
 import React from 'react'
 import Navigation from '../components/navigation'
 import { useSelector } from 'react-redux'
+import microAjax from "utils/microAjax";
+import baseUrl from "utils/baseUrl";
 
 const Styleguide = () => {
   const routerState = useSelector(state => state.router)
+  if (typeof window !== 'undefined') {
+    microAjax({ 
+      url: baseUrl + '/api/version', 
+      success: (res) => console.log(`version : ${JSON.parse(res).version}`)
+    });    
+  }
   return (
     <div className="c-styleguide">
       <Navigation />
@@ -11,9 +19,9 @@ const Styleguide = () => {
       <div className="container mt-5">
         <h1 className="text-center">Styleguide</h1>
 
-        <p className="lead text-center">Here are all the assets</p>
+        <p className="lead text-center">Ensemble des styles utilisés dans l'application</p>
 
-        <h2 className="fw-bold mt-4 pt-4">Palette</h2>
+        <h2 className="fw-bold mt-4 pt-4">Couleurs illustratives</h2>
         <hr/>
         <div className="row">
           <div className="col-md-4">
@@ -33,45 +41,111 @@ const Styleguide = () => {
           </div>
         </div>
 
-        <h2 className="fw-bold mt-4 pt-4">Grayscale</h2>
+        <h2 className="fw-bold mt-4 pt-4">Couleurs fonctionnelles</h2>
         <hr/>
-        <div className="col-md-4">
-          <div className="p-3 swatch-100">100</div>
-          <div className="p-3 swatch-200">200</div>
-          <div className="p-3 swatch-300">300</div>
-          <div className="p-3 swatch-400">400</div>
-          <div className="p-3 swatch-500">500</div>
-          <div className="p-3 swatch-600">600</div>
-          <div className="p-3 swatch-700">700</div>
-          <div className="p-3 swatch-750">750</div>
-          <div className="p-3 swatch-800">800</div>
-          <div className="p-3 swatch-900">900</div>
+
+        <div className="row">
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-primary text-white">Primary</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-secondary text-white">Secondary</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-success text-white">Success</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-danger text-white">Danger (=Error)</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-warning text-dark">Warning</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-info text-white">Info</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-light text-dark">Light</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 bg-dark text-white">Dark</div>
+          </div>
         </div>
 
-        <h2 className="fw-bold mt-4 pt-4">Spacing</h2>
+        <h2 className="fw-bold mt-4 pt-4">Les fonds</h2>
         <hr/>
-        <div className="d-flex">
-          <div className=""><div className="border bg-light">First box</div></div>
-          <div className="ml-1"><div className="border bg-light">2nd box, margin-left-1</div></div>
-        </div>
-        <div className="d-flex">
-          <div className=""><div className="border bg-light">First box</div></div>
-          <div className="ml-2"><div className="border bg-light">2nd box, margin-left-2</div></div>
-        </div>
-        <div className="d-flex">
-          <div className=""><div className="border bg-light">First box</div></div>
-          <div className="ml-3"><div className="border bg-light">2nd box, margin-left-3</div></div>
-        </div>
-        <div className="d-flex">
-          <div className=""><div className="border bg-light">First box</div></div>
-          <div className="ml-4"><div className="border bg-light">2nd box, margin-left-4</div></div>
-        </div>
-        <div className="d-flex">
-          <div className=""><div className="border bg-light">First box</div></div>
-          <div className="ml-5"><div className="border bg-light">2nd box, margin-left-5</div></div>
+
+        <div className="row">
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-100">gray-100</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-200">gray-200</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-300">gray-300</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-400">gray-400</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-500">gray-500</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-600">gray-600</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-700">gray-700</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-750">gray-750</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-800">gray-800</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-900">gray-900</div>
+          </div>
         </div>
 
-        <h2 className="fw-bold mt-4 pt-4">Typography</h2>
+        <h2 className="fw-bold mt-4 pt-4">Boutons</h2>
+        <hr/>
+        <p>
+          <button type="button" className="btn btn-primary ml-1">Primary</button>
+          <button type="button" className="btn btn-primary hover ml-1">Primary (Hover)</button>
+        </p>
+        <p>
+          <button type="button" className="btn btn-outline-primary ml-1">Primary Outline</button>
+          <button type="button" className="btn btn-outline-primary hover ml-1">Primary Outline (Hover)</button>
+        </p>
+        <p>
+          <button type="button" className="btn btn-dark ml-1">Dark</button>
+          <button type="button" className="btn btn-dark hover ml-1">Dark (Hover)</button>
+        </p>
+
+        <h2 className="fw-bold mt-4 pt-4">Grille, espacements</h2>
+        <hr/>
+        <div className="d-flex">
+          <div className=""><div className="border bg-light">Référence</div></div>
+          <div className="ml-1"><div className="border bg-light">ml-1 = margin-left-1 = espacement de 4px</div></div>
+        </div>
+        <div className="d-flex">
+          <div className=""><div className="border bg-light">Référence</div></div>
+          <div className="ml-2"><div className="border bg-light">ml-2 = margin-left-2 = espacement de 8px</div></div>
+        </div>
+        <div className="d-flex">
+          <div className=""><div className="border bg-light">Référence</div></div>
+          <div className="ml-3"><div className="border bg-light">ml-3 = margin-left-3 = espacement de 16px</div></div>
+        </div>
+        <div className="d-flex">
+          <div className=""><div className="border bg-light">Référence</div></div>
+          <div className="ml-4"><div className="border bg-light">ml-4 = margin-left-4 = espacement de 24px</div></div>
+        </div>
+        <div className="d-flex">
+          <div className=""><div className="border bg-light">Référence</div></div>
+          <div className="ml-5"><div className="border bg-light">ml-5 = margin-left-5 = espacement de 48px</div></div>
+        </div>
+
+        <h2 className="fw-bold mt-4 pt-4">Typographie</h2>
         <hr/>
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
@@ -98,90 +172,6 @@ const Styleguide = () => {
           <p className="mb-0">Ceci est une citation. Rendons hommage à celui qui l'a formulée.</p>
           <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
         </blockquote>
-
-
-        <h2 className="fw-bold mt-4 pt-4">Displays</h2>
-        <hr/>
-        <div className="display-1">This is display 1</div>
-        <div className="display-2">This is display 2</div>
-        <div className="display-3">This is display 3</div>
-        <div className="display-4">This is display 4</div>
-
-
-        <h2 className="fw-bold mt-4 pt-4">Buttons</h2>
-        <hr/>
-        <p>
-          <button type="button" className="btn btn-primary btn-lg ml-1">Primary</button>
-          <button type="button" className="btn btn-secondary btn-lg ml-1">Secondary</button>
-          <button type="button" className="btn btn-success btn-lg ml-1">Success</button>
-          <button type="button" className="btn btn-danger btn-lg ml-1">Danger</button>
-          <button type="button" className="btn btn-warning btn-lg ml-1">Warning</button>
-          <button type="button" className="btn btn-info btn-lg ml-1">Info</button>
-          <button type="button" className="btn btn-light btn-lg ml-1">Light</button>
-          <button type="button" className="btn btn-dark btn-lg ml-1">Dark</button>
-        </p>
-        <p>
-          <button type="button" className="btn btn-primary ml-1">Primary</button>
-          <button type="button" className="btn btn-secondary ml-1">Secondary</button>
-          <button type="button" className="btn btn-success ml-1">Success</button>
-          <button type="button" className="btn btn-danger ml-1">Danger</button>
-          <button type="button" className="btn btn-warning ml-1">Warning</button>
-          <button type="button" className="btn btn-info ml-1">Info</button>
-          <button type="button" className="btn btn-light ml-1">Light</button>
-          <button type="button" className="btn btn-dark ml-1">Dark</button>
-        </p>
-        <p>
-          <button type="button" className="btn btn-primary btn-sm ml-1">Primary</button>
-          <button type="button" className="btn btn-secondary btn-sm ml-1">Secondary</button>
-          <button type="button" className="btn btn-success btn-sm ml-1">Success</button>
-          <button type="button" className="btn btn-danger btn-sm ml-1">Danger</button>
-          <button type="button" className="btn btn-warning btn-sm ml-1">Warning</button>
-          <button type="button" className="btn btn-info btn-sm ml-1">Info</button>
-          <button type="button" className="btn btn-light btn-sm ml-1">Light</button>
-          <button type="button" className="btn btn-dark btn-sm ml-1">Dark</button>
-        </p>
-        <p>
-          <button type="button" className="btn btn-outline-primary ml-1">Primary</button>
-          <button type="button" className="btn btn-outline-secondary ml-1">Secondary</button>
-          <button type="button" className="btn btn-outline-success ml-1">Success</button>
-          <button type="button" className="btn btn-outline-danger ml-1">Danger</button>
-          <button type="button" className="btn btn-outline-warning ml-1">Warning</button>
-          <button type="button" className="btn btn-outline-info ml-1">Info</button>
-          <button type="button" className="btn btn-outline-light ml-1">Light</button>
-          <button type="button" className="btn btn-outline-dark ml-1">Dark</button>
-        </p>
-
-
-        <h2 className="fw-bold mt-4 pt-4">Background Colors</h2>
-        <hr/>
-
-        <div className="row">
-          <div className="col-md-4">
-            <div className="p-3 mb-3 bg-primary text-white">Primary</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 bg-secondary text-white">Secondary</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 bg-success text-white">Success</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 bg-danger text-white">Danger</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 bg-warning text-dark">Warning</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 bg-info text-white">Info</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 bg-light text-dark">Light</div>
-          </div>
-          <div className="col-md-4">
-            <div className="p-3 mb-3 bg-dark text-white">Dark</div>
-          </div>
-        </div>
-
 
     </div>
 
