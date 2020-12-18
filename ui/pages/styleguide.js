@@ -65,18 +65,54 @@ const Styleguide = () => {
 
         <h2 className="fw-bold mt-4 pt-4">Les fonds</h2>
         <hr/>
-        <div className="col-md-4">
-          <div className="p-3 swatch-100">gray-100</div>
-          <div className="p-3 swatch-200">gray-200</div>
-          <div className="p-3 swatch-300">gray-300</div>
-          <div className="p-3 swatch-400">gray-400</div>
-          <div className="p-3 swatch-500">gray-500</div>
-          <div className="p-3 swatch-600">gray-600</div>
-          <div className="p-3 swatch-700">gray-700</div>
-          <div className="p-3 swatch-750">gray-750</div>
-          <div className="p-3 swatch-800">gray-800</div>
-          <div className="p-3 swatch-900">gray-900</div>
+
+        <div className="row">
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-100">gray-100</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-200">gray-200</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-300">gray-300</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-400">gray-400</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-500">gray-500</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-600">gray-600</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-700">gray-700</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-750">gray-750</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-800">gray-800</div>
+          </div>
+          <div className="col-md-4">
+            <div className="p-3 mb-3 swatch-900">gray-900</div>
+          </div>
         </div>
+
+        <h2 className="fw-bold mt-4 pt-4">Boutons</h2>
+        <hr/>
+        <p>
+          <button type="button" className="btn btn-primary ml-1">Primary</button>
+          <button type="button" className="btn btn-primary hover ml-1">Primary (Hover)</button>
+        </p>
+        <p>
+          <button type="button" className="btn btn-outline-primary ml-1">Primary Outline</button>
+          <button type="button" className="btn btn-outline-primary hover ml-1">Primary Outline (Hover)</button>
+        </p>
+        <p>
+          <button type="button" className="btn btn-dark ml-1">Dark</button>
+          <button type="button" className="btn btn-dark hover ml-1">Dark (Hover)</button>
+        </p>
 
         <h2 className="fw-bold mt-4 pt-4">Grille, espacements</h2>
         <hr/>
@@ -128,31 +164,6 @@ const Styleguide = () => {
           <p className="mb-0">Ceci est une citation. Rendons hommage à celui qui l'a formulée.</p>
           <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
         </blockquote>
-
-        <h2 className="fw-bold mt-4 pt-4">Boutons</h2>
-        <hr/>
-        <p>
-          <button type="button" className="btn btn-primary btn-lg ml-1">Primary (Large)</button>
-          <button type="button" className="btn btn-secondary btn-lg ml-1">Secondary (Large)</button>
-          <button type="button" className="btn btn-dark btn-lg ml-1">Dark (Large)</button>
-        </p>
-        <p>
-          <button type="button" className="btn btn-primary ml-1">Primary (Regular)</button>
-          <button type="button" className="btn btn-secondary ml-1">Secondary (Regular)</button>
-          <button type="button" className="btn btn-dark ml-1">Dark (Regular)</button>
-        </p>
-        <p>
-          <button type="button" className="btn btn-primary btn-sm ml-1">Primary (Small)</button>
-          <button type="button" className="btn btn-secondary btn-sm ml-1">Secondary (Small)</button>
-          <button type="button" className="btn btn-dark btn-sm ml-1">Dark (Small)</button>
-        </p>
-        <p>
-          <button type="button" className="btn btn-outline-primary ml-1">Primary Outline</button>
-        </p>
-
-
-
-
 
     </div>
 
