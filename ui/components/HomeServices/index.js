@@ -1,3 +1,3 @@
-import HomeHero from "./HomeHero";
+import HomeServices from "./HomeServices";
 
-export default HomeHero;
+export default HomeServices;
