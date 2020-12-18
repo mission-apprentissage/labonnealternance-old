@@ -7,7 +7,6 @@
 */
 // $my-navbar-height: 100px;
 
-
 /** 
 *
 * PART 1
@@ -60,7 +59,6 @@ $bluedark500: #484d7a;
 $pinksoft500: #ff8d7e;
 $pinkdark500: #d08a77;
 $pinklight500: #ffc29e;
-$home-color: #3b56d1;
 $home-background-color: #FFF8F8;
 
 
@@ -77,12 +75,12 @@ $colors: map-merge(
   $colors
   );
 
-$primary:       $bluesoft500;
-$secondary:     $gray-600;
 $success:       #0d6635;
 $info:          #3a55d1;
 $warning:       #fa5c00;
 $danger:        #b60000;
+$primary:       $info;
+$secondary:     $gray-600;
 $light:         $gray-100;
 $dark:          $gray-800;
 
@@ -97,6 +95,7 @@ $small-font-size: 85%;
 */
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 
 /** 
@@ -133,9 +132,9 @@ $small-font-size: 85%;
 .c-app {
 
   .btn-outline-primary:hover {
-      color: $bluesoft500;
+      color: $info;
       background-color: white;
-      border-color: $bluesoft500;
+      border-color: $info;
       box-shadow: 0px -3px 12px 2px rgba(0, 0, 0, 0.21);
   }
 
