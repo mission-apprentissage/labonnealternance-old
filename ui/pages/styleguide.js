@@ -11,7 +11,7 @@ const Styleguide = () => {
       <div className="container mt-5">
         <h1 className="text-center">Styleguide</h1>
 
-        <p className="lead text-center">Here are all the assets</p>
+        <p className="lead text-center">Ensemble des styles utilisés dans l'application</p>
 
         <h2 className="fw-bold mt-4 pt-4">Palette</h2>
         <hr/>
