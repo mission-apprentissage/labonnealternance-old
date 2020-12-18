@@ -6,6 +6,7 @@
  }
 }
 
+// custom breakpoint, sm (=576) is too large.
 @media (max-width: 375px) { 
   .c-home-hero__card-body {
     padding: 0;
