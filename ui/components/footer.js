@@ -7,7 +7,7 @@ import { push, replace, goBack, goForward, prefetch } from "connected-next-route
 import { useDispatch } from "react-redux";
 
 import logoFSE from "public/images/logo_fse.svg";
-import logoFranceRelance from "public/images/francerelance.png";
+import logoFranceRelance from "public/images/logo_relance.svg";
 import logoPoleEmploi from "public/images/logo_pole_emploi.svg";
 
 /*
