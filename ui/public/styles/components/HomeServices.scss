@@ -4,6 +4,8 @@
   min-width: 254px;
   max-width: 254px;
   border-radius: 10px;
+  border: none;
+  box-shadow: 0px -3px 12px rgba(0, 0, 0, 0.21);
 }
 
 .c-home-services__container {
@@ -16,3 +18,46 @@
     flex-direction: row;
   } 
 }
+
+.c-home-services__card-body {
+  text-align: center;
+  padding-bottom: 0;
+}
+
+.c-home-services__footer {
+  background-color: $white;
+  border: none;
+}
+
+
+.c-home-services__img--sirius {
+  margin-top: 17px;
+}
+.c-home-services__img--matcha {
+  margin-top: -5px;
+}
+.c-home-services__img--catalog {
+  margin-top: 20px;
+}
+
+
+.c-home-services__circle { 
+   width: 68px;
+   height: 68px;
+   background: #EDEDED; 
+   border-radius: 70px;
+}
+
+.c-home-services__title {
+  font-size: 22px;
+  line-height: 27px;
+  text-align: center;
+  color: #373F41;
+}
+
+.c-home-services__text {
+  line-height: 148%;
+  text-align: center;
+  color: $gray-600;
+}
+
