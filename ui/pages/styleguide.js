@@ -1,9 +1,17 @@
 import React from 'react'
 import Navigation from '../components/navigation'
 import { useSelector } from 'react-redux'
+import microAjax from "utils/microAjax";
+import baseUrl from "utils/baseUrl";
 
 const Styleguide = () => {
   const routerState = useSelector(state => state.router)
+  if (typeof window !== 'undefined') {
+    microAjax({ 
+      url: baseUrl + '/api/version', 
+      success: (res) => console.log(`version : ${JSON.parse(res).version}`)
+    });    
+  }
   return (
     <div className="c-styleguide">
       <Navigation />
