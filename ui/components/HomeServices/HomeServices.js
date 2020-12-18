@@ -7,13 +7,13 @@ const HomeServices = () => {
   return (
     <section className="c-home-services">
 
-      <h2 className="c-home-services__main-title py-4 pt-md-4 mt-md-4 pt-lg-5 mt-lg-5">
+      <h2 className="c-home-services__main-title py-4 my-md-4 mt-lg-5 mb-lg-5">
         <span className="c-home-services__main-title--dark">Les services de </span> 
         <span className="d-block c-home-services__main-title--colored"> La Bonne Alternance</span>
       </h2>
 
 
-      <div className="card-deck c-home-services__container pt-md-4 mt-md-4 pt-lg-5 mt-lg-5">
+      <div className="card-deck c-home-services__container">
 
         <div className="card c-home-services__card mb-4">
           <div className="card-body c-home-services__card-body">
@@ -24,7 +24,7 @@ const HomeServices = () => {
             <p className="c-home-services__text mb-4">Avis et témoignages d'apprentis</p>
           </div>
           <footer className="card-footer c-home-services__footer">
-            <button type="button" className="c-home-services__btn btn btn-lg btn-block btn-primary mb-2">Découvrir</button>
+            <button type="button" className="c-home-services__btn btn btn-block btn-primary mb-2 mx-auto">Découvrir</button>
           </footer>
         </div>
 
@@ -37,7 +37,7 @@ const HomeServices = () => {
             <p className="c-home-services__text mb-4">Service bientôt disponible</p>
           </div>
           <footer className="card-footer c-home-services__footer">
-            <button type="button" className="c-home-services__btn btn btn-lg btn-block btn-primary mb-2">Découvrir</button>
+            <button type="button" className="c-home-services__btn btn btn-block btn-primary mb-2 mx-auto">Découvrir</button>
           </footer>
         </div>
 
@@ -50,13 +50,19 @@ const HomeServices = () => {
             <p className="c-home-services__text mb-4">Un catalogue élargi de formations en apprentissage</p>
           </div>
           <footer className="card-footer c-home-services__footer">
-            <button type="button" className="c-home-services__btn btn btn-lg btn-block btn-primary mb-2">Découvrir</button>
+            <button type="button" className="c-home-services__btn btn btn-block btn-primary mb-2 mx-auto">Découvrir</button>
           </footer>
         </div>
 
-
-
       </div>
+
+      <div className="text-center my-2 my-md-5">
+        <a className="btn btn-outline-primary mb-5 px-1 px-sm-5 c-home-descr__more" rel="noopener noreferer" href="#" target="_blank">
+          <span className="d-block d-sm-inline">En savoir plus sur nos services</span>
+        </a>
+      </div>
+
+
       </section>
       );
 };

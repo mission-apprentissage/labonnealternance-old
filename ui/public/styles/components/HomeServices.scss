@@ -1,5 +1,3 @@
-.c-home-services {}
-
 .c-home-services__main-title {
   text-align: center;
   font-size: 28px;
@@ -75,5 +73,10 @@
   line-height: 148%;
   text-align: center;
   color: $gray-600;
+}
+
+.c-home-services__btn {
+  height: 41px;
+  max-width: 154px;
 }
 
