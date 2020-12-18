@@ -6,7 +6,7 @@ const HomeCard = (props) => {
         <div className="card c-home-services__card mb-4">
           <div className="card-body c-home-services__card-body">
             <div className="c-home-services__circle mx-auto mt-3">
-              <img aria-hidden="true" className={'c-home-services__img--' + props.kind} src={props.logo} alt="Logo Sirius" />
+              <img aria-hidden="true" className={'c-home-services__img--' + props.kind} src={props.logo} alt={'Logo ' + props.kind} />
             </div>
             <h3 className="c-home-services__title mt-3 mb-5">{props.title}</h3>
             <p className="c-home-services__text mb-4">{props.text}</p>
