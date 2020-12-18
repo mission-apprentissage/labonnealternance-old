@@ -6,6 +6,16 @@
  }
 }
 
+
+@media (max-width: 375px) { 
+  .c-home-hero__card-body {
+    padding: 0;
+  }
+  .c-home-hero__container {
+    padding: 0.5rem;
+  }
+}
+
 .c-home-hero__card {
   border: none;
   @include media-breakpoint-up(sm) {
