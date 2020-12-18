@@ -107,7 +107,7 @@ const Footer = (props) => {
                       className="c-footer-links__link"
                       target="_blank"
                       rel="noopener noreferer"
-                      href="https://labonnealternance.pole-emploi.fr/stats"
+                      href="https://datastudio.google.com/u/0/reporting/1v-Sim2qMlFSMn4n9JJWaMk8PIONvM757/page/3CME"
                     >
                       Statistiques
                     </a>
