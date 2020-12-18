@@ -1,1 +1,18 @@
 .c-home-services {}
+
+.c-home-services__card {
+  min-width: 254px;
+  max-width: 254px;
+  border-radius: 10px;
+}
+
+.c-home-services__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @include media-breakpoint-up(lg) {
+    align-items: inherit;
+    flex-direction: row;
+  } 
+}
