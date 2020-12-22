@@ -307,16 +307,16 @@ const transformFormationForIdea = (formation) => {
     headquarter: {
       // uniquement pour formation
       place: {
-        address: `${formation.source.etablissement_responsable_adresse}${
-          formation.source.etablissement_responsable_complement_adresse
-            ? ", " + formation.source.etablissement_responsable_complement_adresse
+        address: `${formation.source.etablissement_gestionnaire_adresse}${
+          formation.source.etablissement_gestionnaire_complement_adresse
+            ? ", " + formation.source.etablissement_gestionnaire_complement_adresse
             : ""
         }`,
-        cedex: formation.source.etablissement_responsable_cedex,
-        zipCode: formation.source.etablissement_responsable_code_postal,
-        city: formation.source.etablissement_responsable_localite,
+        cedex: formation.source.etablissement_gestionnaire_cedex,
+        zipCode: formation.source.etablissement_gestionnaire_code_postal,
+        city: formation.source.etablissement_gestionnaire_localite,
       },
-      name: formation.source.etablissement_responsable_entreprise_raison_sociale,
+      name: formation.source.etablissement_gestionnaire_entreprise_raison_sociale,
     },
   };
 
@@ -339,13 +339,13 @@ const getTrainingAddress = (school) => {
         school.etablissement_formateur_code_postal ? school.etablissement_formateur_code_postal : ""
       }${school.etablissement_formateur_cedex ? ` CEDEX ${school.etablissement_formateur_cedex}` : ""}
         `
-    : `${school.etablissement_responsable_adresse}${
-        school.etablissement_responsable_complement_adresse
-          ? `, ${school.etablissement_responsable_complement_adresse}`
+    : `${school.etablissement_gestionnaire_adresse}${
+        school.etablissement_gestionnaire_complement_adresse
+          ? `, ${school.etablissement_gestionnaire_complement_adresse}`
           : ""
-      } ${school.etablissement_responsable_localite ? school.etablissement_responsable_localite : ""} ${
-        school.etablissement_responsable_code_postal ? school.etablissement_responsable_code_postal : ""
-      }${school.etablissement_responsable_cedex ? ` CEDEX ${school.etablissement_responsable_cedex}` : ""}
+      } ${school.etablissement_gestionnaire_localite ? school.etablissement_gestionnaire_localite : ""} ${
+        school.etablissement_gestionnaire_code_postal ? school.etablissement_gestionnaire_code_postal : ""
+      }${school.etablissement_gestionnaire_cedex ? ` CEDEX ${school.etablissement_gestionnaire_cedex}` : ""}
         `;
 
   return schoolAddress;
@@ -354,7 +354,7 @@ const getTrainingAddress = (school) => {
 const getTrainingSchoolName = (school) => {
   let schoolName = school.etablissement_formateur_entreprise_raison_sociale
     ? school.etablissement_formateur_entreprise_raison_sociale
-    : school.etablissement_responsable_entreprise_raison_sociale;
+    : school.etablissement_gestionnaire_entreprise_raison_sociale;
 
   return schoolName;
 };
