@@ -299,6 +299,8 @@ const transformFormationForIdea = (formation) => {
     cedex: formation.source.etablissement_formateur_cedex,
     zipCode: formation.source.etablissement_formateur_code_postal,
     trainingZipCode: formation.source.code_postal,
+    departementNumber: formation.source.num_departement,
+    region: formation.source.region,
   };
 
   resultFormation.company = {
@@ -439,7 +441,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "nom",
       "code_postal",
       "num_departement",
-      "num_region",
+      "region",
       "diplome",
       "created_at",
       "last_update_at",

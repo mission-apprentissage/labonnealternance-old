@@ -27,6 +27,8 @@ const itemModel = (type) => {
       cedex: null, // formation -> etablissement_formateur_cedex
       zipCode: null, // formation -> etablissement_formateur_code_postal | pe -> lieuTravail.codePostal
       insee: null, // pe -> lieuTravail.commune
+      departementNumber: null, // formation -> num_departement
+      region: null, // formation -> region
     },
 
     company: {
@@ -37,6 +39,7 @@ const itemModel = (type) => {
       description: null, // pe -> entreprise.description
       socialNetwork: null, // lbb / lba -> social_network
       url: null, // lbb / lba -> website
+
       headquarter: null /*{    // uniquement pour formation
                 place : {
                     fullAddress,   // reconstruction

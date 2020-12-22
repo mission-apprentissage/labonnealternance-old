@@ -817,6 +817,18 @@
                     "type": "string",
                     "example": null,
                     "description": "L'éventuel code Insee de la commune du lieu"
+                },
+                "departementNumber":
+                {
+                    "type": "string",
+                    "example": "44",
+                    "description": "Numéro de département"
+                },
+                "region":
+                {
+                    "type": "string",
+                    "example": "11",
+                    "description": "Région administrative"
                 }
             }      
         },
