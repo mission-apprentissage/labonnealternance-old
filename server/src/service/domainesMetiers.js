@@ -1,5 +1,5 @@
 const logger = require("../common/logger");
-const { getElasticInstance } = require("../common/esClient");
+const { getDomainesMetiersES } = require("../common/esClient");
 const _ = require("lodash");
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
 
@@ -13,8 +13,7 @@ const getRomesAndLabelsFromTitleQuery = async (query) => {
 
 const getLabelsAndRomes = async (searchKeyword) => {
   try {
-    const esClient = getElasticInstance();
-
+    const esClient = getDomainesMetiersES();
     const response = await esClient.search({
       index: "domainesmetiers",
       size: 10,
