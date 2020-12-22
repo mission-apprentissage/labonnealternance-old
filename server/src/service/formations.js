@@ -1,4 +1,4 @@
-const { getElasticInstance } = require("../common/esClient");
+const { getCatalogueES } = require("../common/esClient");
 const Sentry = require("@sentry/node");
 const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
@@ -11,7 +11,7 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
   //console.log(romes, coords, radius, diploma);
 
   try {
-    const esClient = getElasticInstance();
+    const esClient = getCatalogueES();
 
     const distance = radius || 30;
 
@@ -101,7 +101,7 @@ const getRegionFormations = async ({
   //console.log(romes, coords, radius, diploma);
 
   try {
-    const esClient = getElasticInstance();
+    const esClient = getCatalogueES();
 
     let mustTerm = [];
 
@@ -424,7 +424,8 @@ const getFormationsParRegionQuery = async (query) => {
 
 const getFormationEsQueryIndexFragment = (limit) => {
   return {
-    index: "formations",
+    //index: "formations",
+    index: "mnaformation",
     size: limit,
     _sourceIncludes: [
       "etablissement_formateur_siret",
