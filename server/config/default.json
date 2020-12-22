@@ -26,13 +26,14 @@
         "jwtSecret": "91011",
         "expiresIn": "1h"
       }
-    },
+    }, 
     "mongodb": {
       "uri": "mongodb://127.0.0.1:27017/labonnealternance?retryWrites=true&w=majority"
     },
     "awsAccessKeyId": "1234",
     "awsSecretAccessKey": "1234",
-    "esUrl": "localhost:9200",
+    "esUrl": "https://catalogue.apprentissage.beta.gouv.fr/es",
+    "domainesMetiersEsUrl": "http://localhost:9200",
     "mongodbUrl": "1234",
     "mongodbDbname": "1234",
     "apiEntrepriseKey": "1234",
