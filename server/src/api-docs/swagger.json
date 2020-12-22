@@ -941,6 +941,26 @@
                             "example": "ECOLE DE TRAVAIL ORT",
                             "description": "La raison sociale du centre de formation auquel est affilié la formation"
                         },
+                        "id":
+                        {
+                            "type": "string",
+                            "description": "Lieu de formation seulement : l'identifiant de l'établissement gestionnaire"
+                        },
+                        "uai":
+                        {
+                            "type": "string",
+                            "description": "Lieu de formation seulement : l'uai de l'établissement gestionnaire"
+                        },
+                        "type":
+                        {
+                            "type": "string",
+                            "description": "Lieu de formation seulement : le type de l'établissement gestionnaire"
+                        },
+                        "hasConvention":
+                        {
+                            "type": "string",
+                            "description": "Lieu de formation seulement : indique si l'établissement gestionnaire est conventionné"
+                        },
                         "place":
                         {
                             "$ref": "#/definitions/Place"

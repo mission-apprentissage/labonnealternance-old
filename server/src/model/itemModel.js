@@ -43,14 +43,18 @@ const itemModel = (type) => {
       uai: null, // formation -> etablissement_formateur_uai
 
       headquarter: null /*{    // uniquement pour formation
+                id, // formation -> etablissement_gestionnaire_id
+                uai,// formation -> etablissement_gestionnaire_uai
+                type,// formation -> etablissement_gestionnaire_type
+                hasConvention,// formation -> etablissement_gestionnaire_conventionne
                 place : {
                     fullAddress,   // reconstruction
-                    address,       // formation -> etablissement_responsable_adresse, etablissement_responsable_complement_adresse
-                    cedex,         // formation -> etablissement_responsable_cedex
-                    zipCode,       // formation -> etablissement_responsable_code_postal
-                    city,          // formation -> etablissement_responsable_localite          
+                    address,       // formation -> etablissement_gestionnaire_adresse, etablissement_gestionnaire_complement_adresse
+                    cedex,         // formation -> etablissement_gestionnaire_cedex
+                    zipCode,       // formation -> etablissement_gestionnaire_code_postal
+                    city,          // formation -> etablissement_gestionnaire_localite          
                 },
-                name,              // formation -> etablissement_responsable_entreprise_raison_sociale
+                name,              // formation -> etablissement_gestionnaire_entreprise_raison_sociale
             },*/,
     },
 

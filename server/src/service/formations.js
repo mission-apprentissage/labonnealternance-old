@@ -310,6 +310,10 @@ const transformFormationForIdea = (formation) => {
     uai: formation.source.etablissement_formateur_uai,
     headquarter: {
       // uniquement pour formation
+      id: formation.source.etablissement_gestionnaire_id,
+      uai: formation.source.etablissement_gestionnaire_uai,
+      type: formation.source.etablissement_gestionnaire_type,
+      hasConvention: formation.source.etablissement_gestionnaire_conventionne,
       place: {
         address: `${formation.source.etablissement_gestionnaire_adresse}${
           formation.source.etablissement_gestionnaire_complement_adresse
