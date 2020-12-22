@@ -39,6 +39,8 @@ const itemModel = (type) => {
       description: null, // pe -> entreprise.description
       socialNetwork: null, // lbb / lba -> social_network
       url: null, // lbb / lba -> website
+      id: null, // formation -> etablissement_formateur_id
+      uai: null, // formation -> etablissement_formateur_uai
 
       headquarter: null /*{    // uniquement pour formation
                 place : {

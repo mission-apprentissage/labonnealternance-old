@@ -922,6 +922,16 @@
                     "type": "string",
                     "description": "Un lien vers le site de l'entreprise"
                 },
+                "id":
+                {
+                    "type": "string",
+                    "description": "Lieu de formation seulement : l'identifiant du lieu de formation"
+                },
+                "uai":
+                {
+                    "type": "string",
+                    "description": "Lieu de formation seulement : l'uai du lieu de formation"
+                },
                 "headquarter":
                 {
                     "type": "object",

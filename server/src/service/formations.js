@@ -306,6 +306,8 @@ const transformFormationForIdea = (formation) => {
   resultFormation.company = {
     name: getTrainingSchoolName(formation.source), // pe -> entreprise.nom | formation -> etablissement_formateur_entreprise_raison_sociale | lbb/lba -> name
     siret: formation.source.etablissement_formateur_siret,
+    id: formation.source.etablissement_formateur_id,
+    uai: formation.source.etablissement_formateur_uai,
     headquarter: {
       // uniquement pour formation
       place: {
