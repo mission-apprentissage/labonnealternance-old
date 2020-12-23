@@ -274,6 +274,15 @@ const transformFormationForIdea = (formation) => {
   resultFormation.diplomaLevel = formation.source.niveau;
   resultFormation.onisepUrl = formation.source.onisep_url;
   resultFormation.id = formation.id;
+  resultFormation.diploma = formation.source.diplome;
+  resultFormation.cfd = formation.source.cfd;
+  resultFormation.rncpCode = formation.source.rncp_code;
+  resultFormation.rncpLabel = formation.source.rncp_intitule;
+  resultFormation.rncpEligibleApprentissage = formation.source.rncp_eligible_apprentissage;
+  resultFormation.period = formation.source.periode;
+  resultFormation.capacity = formation.source.capacite;
+  resultFormation.createdAt = formation.source.created_at;
+  resultFormation.lastUpdateAt = formation.source.last_update_at;
 
   if (formation.source.email) {
     resultFormation.contact = {

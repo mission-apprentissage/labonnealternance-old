@@ -59,6 +59,15 @@ const itemModel = (type) => {
     },
 
     diplomaLevel: null, // formation -> niveau
+    diploma: null, // formation -> diplome
+    cfd: null, // formation -> cfd
+    rncpCode: null, // formation -> rncp_code
+    rncpLabel: null, // formation -> rncp_intitule
+    rncpEligibleApprentissage: null, // formation -> rncp_eligible_apprentissage
+    period: null, // formation -> periode
+    capacity: null, // formation -> capacite
+    createdAt: null, // formation -> created_at
+    lastUpdateAt: null, // formation -> last_update_at
     onisepUrl: null, // formation -> onisep_url
     url: null, // pe -> reconstruction depuis id | lbb/lba url
 
