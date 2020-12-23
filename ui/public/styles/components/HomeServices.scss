@@ -47,6 +47,9 @@
 .c-home-services__img--sirius {
   margin-top: 17px;
 }
+.c-home-services__img--prdv {
+  margin-top: 17px;
+}
 .c-home-services__img--matcha {
   margin-top: -5px;
 }
@@ -73,7 +76,8 @@
 .c-home-services__title--sirius {
   @extend .mb-5;
 }
-.c-home-services__title--matcha {
+.c-home-services__title--matcha,
+.c-home-services__title--prdv {
   @extend .mb-5;
 }
 .c-home-services__title--catalog {
