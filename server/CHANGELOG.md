@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.1.0 [18/12/2020]
+[240] Home : services
+
 ## 1.0.1 [18/12/2020]
 [274] Se former et travailler
 
