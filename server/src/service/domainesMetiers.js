@@ -1,5 +1,5 @@
 const logger = require("../common/logger");
-const { getElasticInstance } = require("../common/esClient");
+const { getDomainesMetiersES } = require("../common/esClient");
 const _ = require("lodash");
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
 
@@ -13,8 +13,7 @@ const getRomesAndLabelsFromTitleQuery = async (query) => {
 
 const getLabelsAndRomes = async (searchKeyword) => {
   try {
-    const esClient = getElasticInstance();
-
+    const esClient = getDomainesMetiersES();
     const response = await esClient.search({
       index: "domainesmetiers",
       size: 10,
@@ -48,12 +47,14 @@ const getLabelsAndRomes = async (searchKeyword) => {
       labelsAndRomes.push({ label: labelAndRome._source.sous_domaine, romes: labelAndRome._source.codes_romes });
     });
 
-    trackEvent({
-      action: "Custom event",
-      label: searchKeyword,
-      category: "Moteur de recherche - Metier",
-      value: labelsAndRomes.length,
-    });
+    if (searchKeyword.length > 3) {
+      trackEvent({
+        action: "Custom event",
+        label: searchKeyword,
+        category: "Moteur de recherche - Metier",
+        value: labelsAndRomes.length,
+      });
+    }
 
     return { labelsAndRomes };
   } catch (err) {

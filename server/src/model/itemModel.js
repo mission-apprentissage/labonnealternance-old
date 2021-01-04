@@ -27,6 +27,8 @@ const itemModel = (type) => {
       cedex: null, // formation -> etablissement_formateur_cedex
       zipCode: null, // formation -> etablissement_formateur_code_postal | pe -> lieuTravail.codePostal
       insee: null, // pe -> lieuTravail.commune
+      departementNumber: null, // formation -> num_departement
+      region: null, // formation -> region
     },
 
     company: {
@@ -37,19 +39,35 @@ const itemModel = (type) => {
       description: null, // pe -> entreprise.description
       socialNetwork: null, // lbb / lba -> social_network
       url: null, // lbb / lba -> website
+      id: null, // formation -> etablissement_formateur_id
+      uai: null, // formation -> etablissement_formateur_uai
+
       headquarter: null /*{    // uniquement pour formation
+                id, // formation -> etablissement_gestionnaire_id
+                uai,// formation -> etablissement_gestionnaire_uai
+                type,// formation -> etablissement_gestionnaire_type
+                hasConvention,// formation -> etablissement_gestionnaire_conventionne
                 place : {
                     fullAddress,   // reconstruction
-                    address,       // formation -> etablissement_responsable_adresse, etablissement_responsable_complement_adresse
-                    cedex,         // formation -> etablissement_responsable_cedex
-                    zipCode,       // formation -> etablissement_responsable_code_postal
-                    city,          // formation -> etablissement_responsable_localite          
+                    address,       // formation -> etablissement_gestionnaire_adresse, etablissement_gestionnaire_complement_adresse
+                    cedex,         // formation -> etablissement_gestionnaire_cedex
+                    zipCode,       // formation -> etablissement_gestionnaire_code_postal
+                    city,          // formation -> etablissement_gestionnaire_localite          
                 },
-                name,              // formation -> etablissement_responsable_entreprise_raison_sociale
+                name,              // formation -> etablissement_gestionnaire_entreprise_raison_sociale
             },*/,
     },
 
     diplomaLevel: null, // formation -> niveau
+    diploma: null, // formation -> diplome
+    cfd: null, // formation -> cfd
+    rncpCode: null, // formation -> rncp_code
+    rncpLabel: null, // formation -> rncp_intitule
+    rncpEligibleApprentissage: null, // formation -> rncp_eligible_apprentissage
+    period: null, // formation -> periode
+    capacity: null, // formation -> capacite
+    createdAt: null, // formation -> created_at
+    lastUpdateAt: null, // formation -> last_update_at
     onisepUrl: null, // formation -> onisep_url
     url: null, // pe -> reconstruction depuis id | lbb/lba url
 

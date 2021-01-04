@@ -1,28 +1,37 @@
 const { Client } = require("@elastic/elasticsearch");
 const { AmazonConnection } = require("aws-elasticsearch-connector");
 const config = require("config");
-const getClientOptions = (envName) => {
+const getClientOptions = (envName, index) => {
   switch (envName) {
     case "production":
     case "recette":
-      return {
-        node: `https://${config.private.esUrl}`,
-        Connection: AmazonConnection,
-        awsConfig: {
-          credentials: {
-            accessKeyId: config.private.awsAccessKeyId,
-            secretAccessKey: config.private.awsAccessSecretKey,
-          },
-        },
-      };
+      return index === "domainesmetiers"
+        ? {
+            node: config.private.esUrl,
+            Connection: AmazonConnection,
+            awsConfig: {
+              credentials: {
+                accessKeyId: config.private.awsAccessKeyId,
+                secretAccessKey: config.private.awsAccessSecretKey,
+              },
+            },
+          }
+        : {
+            node: config.private.domainesMetiersEsUrl,
+          };
     case "local":
     default:
-      return { node: `http://${config.private.esUrl}` };
+      return {
+        node: `${index === "domainesmetiers" ? config.private.domainesMetiersEsUrl : config.private.esUrl}`,
+      };
   }
 };
 
-const createEsInstance = (stage = null) => {
-  const options = getClientOptions(stage || config.env);
+const createEsInstance = (index = null) => {
+  const options = getClientOptions(config.env, index);
+
+  console.log("options: ", options);
+
   const client = new Client({
     ...options,
     maxRetries: 5,
@@ -32,40 +41,18 @@ const createEsInstance = (stage = null) => {
   return client;
 };
 
-let clientDefault = createEsInstance();
+let clientCatalogueFormations = createEsInstance("mnaformation");
+let clientDomainesMetiers = createEsInstance("domainesmetiers");
 
-// To keep singleton
-let clientProd = null;
-let clientDev = null;
-let clientLocal = null;
+const getDomainesMetiersES = () => {
+  return clientDomainesMetiers;
+};
 
-const getElasticInstance = (envName = null) => {
-  if (!envName) {
-    return clientDefault;
-  }
-  switch (envName) {
-    case "production": {
-      if (!clientProd) {
-        clientProd = createEsInstance("production");
-      }
-      return clientProd;
-    }
-    case "recette": {
-      if (!clientDev) {
-        clientDev = createEsInstance("recette");
-      }
-      return clientDev;
-    }
-    case "local":
-    default: {
-      if (!clientLocal) {
-        clientLocal = createEsInstance("local");
-      }
-      return clientLocal;
-    }
-  }
+const getCatalogueES = () => {
+  return clientCatalogueFormations;
 };
 
 module.exports = {
-  getElasticInstance,
+  getCatalogueES,
+  getDomainesMetiersES,
 };
