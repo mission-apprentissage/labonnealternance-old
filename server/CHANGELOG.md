@@ -1,8 +1,11 @@
 # CHANGELOG
 
-## 10.0.2 [18/12/2020]
+## 1.1.1 [04/01/2020]
 [216] Enrichissement informations remontées pour API formations
 Modification de l'initialisation des curseurs Elastic Search
+
+## 1.1.0 [18/12/2020]
+[240] Home : services
 
 ## 1.0.1 [18/12/2020]
 [274] Se former et travailler
