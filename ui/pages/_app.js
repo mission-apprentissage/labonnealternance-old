@@ -6,13 +6,12 @@ import HeadLaBonneAlternance from "components/head";
 
 import "public/styles/application.scss";
 
+import * as Sentry from "@sentry/node";
 
-import * as Sentry from '@sentry/node';
-
-if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+if (process.env.uiSentryDsn) {
   Sentry.init({
-    enabled: process.env.NODE_ENV === 'production',
-    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN
+    enabled: true,
+    dsn: process.env.uiSentryDsn,
   });
 }
 
@@ -25,7 +24,7 @@ class ExampleApp extends App {
           <HeadLaBonneAlternance />
           <ConnectedRouter>
             <Component {...pageProps} />
-          </ConnectedRouter>          
+          </ConnectedRouter>
         </main>
       </>
     );
