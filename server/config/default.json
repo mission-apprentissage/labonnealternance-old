@@ -1,7 +1,6 @@
 {
   "appName": "labonnealternance",
   "env": "local",
-  "stage": "local",
   "publicUrl": "http://localhost",
   "log": {
     "type": "console",
@@ -41,6 +40,6 @@
     "esdClientId": "1234",
     "esdClientSecret": "1234",
     "googleAnalyticsUA": "1234",
-    "sentryDsn": "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826"
+    "serverSentryDsn": "1234"
   }
 }
