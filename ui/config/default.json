@@ -8,7 +8,7 @@
   },
   "private":
   {
-    "uiSentryDsn": "1234",
+    "uiSentryDsn": "https://61156c2d46b54369b777900d475ee0f9@o154210.ingest.sentry.io/5562203",
     "sentryOrg": "1234",
     "sentryProject": "1234",
     "sentryAuthToken": "1234"
