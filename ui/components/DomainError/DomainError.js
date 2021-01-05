@@ -5,7 +5,7 @@ import domainErrorNoticeSvg from "./domain_error_notice.svg";
 
 export default function DomainError() {
   return (
-    <div className="c-domainerror">
+    <div className="c-domainerror px-3">
       <div className="c-domainerror-img">
         <img src={domainErrorMainSvg} alt="Ressource non trouvée" />
       </div>
