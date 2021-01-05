@@ -7,7 +7,7 @@ const getClientOptions = (envName, index) => {
     case "recette":
       return index === "domainesmetiers"
         ? {
-            node: config.private.esUrl,
+            node: config.private.domainesMetiersEsUrl,
             Connection: AmazonConnection,
             awsConfig: {
               credentials: {
@@ -17,7 +17,7 @@ const getClientOptions = (envName, index) => {
             },
           }
         : {
-            node: config.private.domainesMetiersEsUrl,
+            node: config.private.esUrl,
           };
     case "local":
     default:
@@ -29,8 +29,6 @@ const getClientOptions = (envName, index) => {
 
 const createEsInstance = (index = null) => {
   const options = getClientOptions(config.env, index);
-
-  console.log("options: ", options);
 
   const client = new Client({
     ...options,

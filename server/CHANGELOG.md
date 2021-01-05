@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.2 [05/01/2020]
+[296] Message d'erreur technique mal calibré
+Fix config es
+Utilisation config côté ui pour sentry
+
 ## 1.1.1 [04/01/2020]
 [216] Enrichissement informations remontées pour API formations
 Modification de l'initialisation des curseurs Elastic Search

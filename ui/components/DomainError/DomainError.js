@@ -5,12 +5,13 @@ import domainErrorNoticeSvg from "./domain_error_notice.svg";
 
 export default function DomainError() {
   return (
-    <div className="c-domainerror">
+    <div className="c-domainerror px-3">
       <div className="c-domainerror-img">
         <img src={domainErrorMainSvg} alt="Ressource non trouvée" />
       </div>
-      <div className="c-domainerror-notice">
-        <img src={domainErrorNoticeSvg} alt="Erreur technique momentanée" />
+      <div className="c-domainerror-notice mb-2">
+        <img className="c-domainerror-notice-img mr-2" src={domainErrorNoticeSvg} alt="Erreur technique momentanée" />
+        Erreur technique momentanée
       </div>
       <div className="c-domainerror-texttitle">Pas de panique !</div>
       <div className="c-domainerror-textline1">Il y a forcément un résultat qui vous attend,</div>
