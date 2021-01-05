@@ -1,7 +1,6 @@
 {
   "appName": "labonnealternance",
   "env": "local",
-  "stage": "local",
   "publicUrl": "http://localhost",
   "log": {
     "type": "console",
@@ -26,13 +25,14 @@
         "jwtSecret": "91011",
         "expiresIn": "1h"
       }
-    },
+    }, 
     "mongodb": {
       "uri": "mongodb://127.0.0.1:27017/labonnealternance?retryWrites=true&w=majority"
     },
     "awsAccessKeyId": "1234",
     "awsSecretAccessKey": "1234",
-    "esUrl": "localhost:9200",
+    "esUrl": "https://catalogue.apprentissage.beta.gouv.fr/es",
+    "domainesMetiersEsUrl": "http://localhost:9200",
     "mongodbUrl": "1234",
     "mongodbDbname": "1234",
     "apiEntrepriseKey": "1234",
@@ -40,6 +40,6 @@
     "esdClientId": "1234",
     "esdClientSecret": "1234",
     "googleAnalyticsUA": "1234",
-    "sentryDsn": "https://ca61634412164c598d0c583198eaa62e@o154210.ingest.sentry.io/5417826"
+    "serverSentryDsn": "https://61156c2d46b54369b777900d475ee0f9@o154210.ingest.sentry.io/5562203"
   }
 }

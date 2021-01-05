@@ -23,7 +23,7 @@ module.exports = async (components) => {
   const app = express();
 
   Sentry.init({
-    dsn: config.private.sentryDsn,
+    dsn: config.private.serverSentryDsn,
     integrations: [
       // enable HTTP calls tracing
       new Sentry.Integrations.Http({ tracing: true }),

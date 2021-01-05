@@ -25,6 +25,7 @@
     },
     "awsAccessKeyId": "AWS_ACCESS_KEY_ID",
     "awsSecretAccessKey": "AWS_SECRET_ACCESS_KEY",
+    "domainesMetiersEsUrl": "DOMAINES_METIERS_ES_URL",
     "esUrl": "ES_URL",
     "mongodbUrl": "MONGODB_URL",
     "mongodb": {
@@ -35,6 +36,7 @@
     "azureStorageConnectionString": "AZURE_STORAGE_CONNECTION_STRING",
     "esdClientId": "ESD_CLIENT_ID",
     "esdClientSecret": "ESD_CLIENT_SECRET",
+    "serverSentryDsn": "SERVER_SENTRY_DSN",
     "googleAnalyticsUA": "LABONNEALTERNANCE_GOOGLE_ANALYTICS_UA"
   }
 
