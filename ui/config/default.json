@@ -1,0 +1,16 @@
+{
+  "appName": "labonnealternance",
+  "env": "local",
+  "publicUrl": "http://localhost",
+  "log": {
+    "type": "console",
+    "level": "info"
+  },
+  "private":
+  {
+    "uiSentryDsn": "1234",
+    "sentryOrg": "1234",
+    "sentryProject": "1234",
+    "sentryAuthToken": "1234"
+  }
+}
