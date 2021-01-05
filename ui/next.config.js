@@ -1,7 +1,9 @@
 const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
-const path = require('path')
+const path = require('path');
+const config = require("config");
 
+console.log("config ",config);
 /*
 * BEGIN OF SENTRY---------------------------
 */
@@ -13,11 +15,6 @@ const withSourceMaps = require('@zeit/next-source-maps')();
 // Use the SentryWebpack plugin to upload the source maps during build step
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 const {
-  NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
-  SENTRY_ORG,
-  SENTRY_PROJECT,
-  SENTRY_AUTH_TOKEN,
-  NODE_ENV,
   VERCEL_GITHUB_COMMIT_SHA,
   VERCEL_GITLAB_COMMIT_SHA,
   VERCEL_BITBUCKET_COMMIT_SHA
@@ -28,7 +25,22 @@ VERCEL_GITHUB_COMMIT_SHA ||
 VERCEL_GITLAB_COMMIT_SHA ||
 VERCEL_BITBUCKET_COMMIT_SHA;
 
-process.env.SENTRY_DSN = SENTRY_DSN;
+/*process.env.SENTRY_DSN = SENTRY_DSN;
+NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
+  SENTRY_ORG,
+  SENTRY_PROJECT,
+  SENTRY_AUTH_TOKEN,*/
+const {
+  uiSentryDsn,
+  sentryOrg,
+  sentryProject,
+  sentryAuthToken
+} = config.private;
+
+const env = config.env;
+
+
+
 /*
 * END OF SENTRY---------------------------
 */
@@ -74,12 +86,12 @@ module.exports = withPlugins(
         // This is an alternative to manually uploading the source maps
         // Note: This is disabled in development mode.
         if (
-          SENTRY_DSN &&
-          SENTRY_ORG &&
-          SENTRY_PROJECT &&
-          SENTRY_AUTH_TOKEN &&
+          uiSentryDsn &&
+          sentryOrg &&
+          sentryProject &&
+          sentryAuthToken &&
           COMMIT_SHA &&
-          NODE_ENV === 'production'
+          (env === 'production' || env === 'recette')
         ) {
           config.plugins.push(
             new SentryWebpackPlugin({
