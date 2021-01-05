@@ -111,7 +111,7 @@ module.exports = async (components) => {
       return res.json({
         config: {
           ...config,
-          private: "",
+          //private: "",
         },
       });
     })
