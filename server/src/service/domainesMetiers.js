@@ -11,9 +11,27 @@ const getRomesAndLabelsFromTitleQuery = async (query) => {
   }
 };
 
+const getMultiMatchTerm = (term) => {
+  return {
+    bool: {
+      must: {
+        multi_match: {
+          query: term,
+          fields: ["domaine^3", "sous_domaine^20", "domaines^1", "familles^1", "mots_clefs^3", "intitules_romes^5"],
+          type: "phrase_prefix",
+          operator: "or",
+        },
+      },
+    },
+  };
+};
+
 const getLabelsAndRomes = async (searchKeyword) => {
   try {
+    let terms = searchKeyword.split(" ").map((term) => getMultiMatchTerm(term));
+
     const esClient = getDomainesMetiersES();
+
     const response = await esClient.search({
       index: "domainesmetiers",
       size: 10,
@@ -21,21 +39,7 @@ const getLabelsAndRomes = async (searchKeyword) => {
       body: {
         query: {
           bool: {
-            must: {
-              multi_match: {
-                query: searchKeyword,
-                fields: [
-                  "domaine^3",
-                  "sous_domaine^20",
-                  "domaines^1",
-                  "familles^1",
-                  "mots_clefs^3",
-                  "intitules_romes^5",
-                ],
-                type: "phrase_prefix",
-                operator: "or",
-              },
-            },
+            should: terms,
           },
         },
       },
