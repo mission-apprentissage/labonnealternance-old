@@ -1,4 +1,4 @@
-const { getElasticInstance } = require("../common/esClient");
+const { getCatalogueES } = require("../common/esClient");
 const Sentry = require("@sentry/node");
 const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
@@ -11,7 +11,7 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
   //console.log(romes, coords, radius, diploma);
 
   try {
-    const esClient = getElasticInstance();
+    const esClient = getCatalogueES();
 
     const distance = radius || 30;
 
@@ -101,7 +101,7 @@ const getRegionFormations = async ({
   //console.log(romes, coords, radius, diploma);
 
   try {
-    const esClient = getElasticInstance();
+    const esClient = getCatalogueES();
 
     let mustTerm = [];
 
@@ -274,6 +274,15 @@ const transformFormationForIdea = (formation) => {
   resultFormation.diplomaLevel = formation.source.niveau;
   resultFormation.onisepUrl = formation.source.onisep_url;
   resultFormation.id = formation.id;
+  resultFormation.diploma = formation.source.diplome;
+  resultFormation.cfd = formation.source.cfd;
+  resultFormation.rncpCode = formation.source.rncp_code;
+  resultFormation.rncpLabel = formation.source.rncp_intitule;
+  resultFormation.rncpEligibleApprentissage = formation.source.rncp_eligible_apprentissage;
+  resultFormation.period = formation.source.periode;
+  resultFormation.capacity = formation.source.capacite;
+  resultFormation.createdAt = formation.source.created_at;
+  resultFormation.lastUpdateAt = formation.source.last_update_at;
 
   if (formation.source.email) {
     resultFormation.contact = {
@@ -299,24 +308,32 @@ const transformFormationForIdea = (formation) => {
     cedex: formation.source.etablissement_formateur_cedex,
     zipCode: formation.source.etablissement_formateur_code_postal,
     trainingZipCode: formation.source.code_postal,
+    departementNumber: formation.source.num_departement,
+    region: formation.source.region,
   };
 
   resultFormation.company = {
     name: getTrainingSchoolName(formation.source), // pe -> entreprise.nom | formation -> etablissement_formateur_entreprise_raison_sociale | lbb/lba -> name
     siret: formation.source.etablissement_formateur_siret,
+    id: formation.source.etablissement_formateur_id,
+    uai: formation.source.etablissement_formateur_uai,
     headquarter: {
       // uniquement pour formation
+      id: formation.source.etablissement_gestionnaire_id,
+      uai: formation.source.etablissement_gestionnaire_uai,
+      type: formation.source.etablissement_gestionnaire_type,
+      hasConvention: formation.source.etablissement_gestionnaire_conventionne,
       place: {
-        address: `${formation.source.etablissement_responsable_adresse}${
-          formation.source.etablissement_responsable_complement_adresse
-            ? ", " + formation.source.etablissement_responsable_complement_adresse
+        address: `${formation.source.etablissement_gestionnaire_adresse}${
+          formation.source.etablissement_gestionnaire_complement_adresse
+            ? ", " + formation.source.etablissement_gestionnaire_complement_adresse
             : ""
         }`,
-        cedex: formation.source.etablissement_responsable_cedex,
-        zipCode: formation.source.etablissement_responsable_code_postal,
-        city: formation.source.etablissement_responsable_localite,
+        cedex: formation.source.etablissement_gestionnaire_cedex,
+        zipCode: formation.source.etablissement_gestionnaire_code_postal,
+        city: formation.source.etablissement_gestionnaire_localite,
       },
-      name: formation.source.etablissement_responsable_entreprise_raison_sociale,
+      name: formation.source.etablissement_gestionnaire_entreprise_raison_sociale,
     },
   };
 
@@ -339,13 +356,13 @@ const getTrainingAddress = (school) => {
         school.etablissement_formateur_code_postal ? school.etablissement_formateur_code_postal : ""
       }${school.etablissement_formateur_cedex ? ` CEDEX ${school.etablissement_formateur_cedex}` : ""}
         `
-    : `${school.etablissement_responsable_adresse}${
-        school.etablissement_responsable_complement_adresse
-          ? `, ${school.etablissement_responsable_complement_adresse}`
+    : `${school.etablissement_gestionnaire_adresse}${
+        school.etablissement_gestionnaire_complement_adresse
+          ? `, ${school.etablissement_gestionnaire_complement_adresse}`
           : ""
-      } ${school.etablissement_responsable_localite ? school.etablissement_responsable_localite : ""} ${
-        school.etablissement_responsable_code_postal ? school.etablissement_responsable_code_postal : ""
-      }${school.etablissement_responsable_cedex ? ` CEDEX ${school.etablissement_responsable_cedex}` : ""}
+      } ${school.etablissement_gestionnaire_localite ? school.etablissement_gestionnaire_localite : ""} ${
+        school.etablissement_gestionnaire_code_postal ? school.etablissement_gestionnaire_code_postal : ""
+      }${school.etablissement_gestionnaire_cedex ? ` CEDEX ${school.etablissement_gestionnaire_cedex}` : ""}
         `;
 
   return schoolAddress;
@@ -354,7 +371,7 @@ const getTrainingAddress = (school) => {
 const getTrainingSchoolName = (school) => {
   let schoolName = school.etablissement_formateur_entreprise_raison_sociale
     ? school.etablissement_formateur_entreprise_raison_sociale
-    : school.etablissement_responsable_entreprise_raison_sociale;
+    : school.etablissement_gestionnaire_entreprise_raison_sociale;
 
   return schoolName;
 };
@@ -424,7 +441,8 @@ const getFormationsParRegionQuery = async (query) => {
 
 const getFormationEsQueryIndexFragment = (limit) => {
   return {
-    index: "formations",
+    //index: "formations",
+    index: "mnaformation",
     size: limit,
     _sourceIncludes: [
       "etablissement_formateur_siret",
@@ -437,20 +455,36 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "intitule",
       "nom",
       "code_postal",
+      "num_departement",
+      "region",
       "diplome",
+      "created_at",
+      "last_update_at",
+      "etablissement_formateur_id",
+      "etablissement_formateur_uai",
       "etablissement_formateur_adresse",
       "etablissement_formateur_code_postal",
       "etablissement_formateur_localite",
       "etablissement_formateur_entreprise_raison_sociale",
       "etablissement_formateur_cedex",
       "etablissement_formateur_complement_adresse",
-      "etablissement_responsable_adresse",
-      "etablissement_responsable_code_postal",
-      "etablissement_responsable_localite",
-      "etablissement_responsable_entreprise_raison_sociale",
-      "etablissement_responsable_cedex",
-      "etablissement_responsable_complement_adresse",
+      "etablissement_gestionnaire_id",
+      "etablissement_gestionnaire_uai",
+      "etablissement_gestionnaire_conventionne",
+      "etablissement_gestionnaire_type",
+      "etablissement_gestionnaire_adresse",
+      "etablissement_gestionnaire_code_postal",
+      "etablissement_gestionnaire_localite",
+      "etablissement_gestionnaire_entreprise_raison_sociale",
+      "etablissement_gestionnaire_cedex",
+      "etablissement_gestionnaire_complement_adresse",
       "rome_codes",
+      "cfd",
+      "rncp_code",
+      "rncp_intitule",
+      "rncp_eligible_apprentissage",
+      "periode",
+      "capacite",
     ],
   };
 };

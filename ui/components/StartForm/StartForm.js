@@ -59,7 +59,7 @@ const StartForm = (props) => {
 
   const renderFormik = () => {
     return (
-      <div className="card-body">
+      <div className="card-body c-home-hero__card-body">
         <h1 className="card-title">
           <span className="d-block c-home-hero__title c-home-hero__title1">Se former et travailler</span>
           <span className="d-block c-home-hero__title c-home-hero__title2">en alternance</span>

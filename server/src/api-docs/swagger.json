@@ -595,7 +595,61 @@
                 { 
                     "type": "string",
                     "example": "3 (CAP...)",
-                    "description": "Le niveau d'étude requis ."
+                    "description": "Le niveau de la formation."
+                },
+                "diploma": 
+                { 
+                    "type": "string",
+                    "example": "CERTIFICAT D'APTITUDES PROFESSIONNELLES",
+                    "description": "Le diplôme délivré par la formation."
+                },
+                "cfd": 
+                { 
+                    "type": "string",
+                    "example": "50023324",
+                    "description": "Le code formation diplôme de l'éducation nationale."
+                },
+                "rncpCode": 
+                { 
+                    "type": "string",
+                    "example": "RNCP31899",
+                    "description": "Le code RNCP."
+                },
+                "rncpLabel": 
+                { 
+                    "type": "string",
+                    "example": "Intégrateur - Développeur Web",
+                    "description": "L'intitulé RNCP."
+                },
+                "rncpEligibleApprentissage": 
+                { 
+                    "type": "string",
+                    "example": "true",
+                    "description": "Indique si le titre RNCP est éligible en apprentissage."
+                },
+                "period": 
+                { 
+                    "type": "string",
+                    "example": "[\"Septembre\"]",
+                    "description": "Période d'inscription à la formation."
+                },
+                "capacity": 
+                { 
+                    "type": "string",
+                    "example": "15",
+                    "description": "Capacité d'accueil."
+                },
+                "createdAt": 
+                { 
+                    "type": "string",
+                    "example": "2020-11-30T21:33:23.481Z",
+                    "description": "Date d'ajout en base de données de la formation"
+                },
+                "lastUpdateAt": 
+                { 
+                    "type": "string",
+                    "example": "2020-11-30T21:33:23.481Z",
+                    "description": "Date de dernières mise à jour"
                 },
                 "onisepUrl":
                 {
@@ -817,6 +871,18 @@
                     "type": "string",
                     "example": null,
                     "description": "L'éventuel code Insee de la commune du lieu"
+                },
+                "departementNumber":
+                {
+                    "type": "string",
+                    "example": "44",
+                    "description": "Numéro de département"
+                },
+                "region":
+                {
+                    "type": "string",
+                    "example": "11",
+                    "description": "Région administrative"
                 }
             }      
         },
@@ -910,6 +976,16 @@
                     "type": "string",
                     "description": "Un lien vers le site de l'entreprise"
                 },
+                "id":
+                {
+                    "type": "string",
+                    "description": "Lieu de formation seulement : l'identifiant du lieu de formation"
+                },
+                "uai":
+                {
+                    "type": "string",
+                    "description": "Lieu de formation seulement : l'uai du lieu de formation"
+                },
                 "headquarter":
                 {
                     "type": "object",
@@ -918,6 +994,26 @@
                             "type": "string",
                             "example": "ECOLE DE TRAVAIL ORT",
                             "description": "La raison sociale du centre de formation auquel est affilié la formation"
+                        },
+                        "id":
+                        {
+                            "type": "string",
+                            "description": "Lieu de formation seulement : l'identifiant de l'établissement gestionnaire"
+                        },
+                        "uai":
+                        {
+                            "type": "string",
+                            "description": "Lieu de formation seulement : l'uai de l'établissement gestionnaire"
+                        },
+                        "type":
+                        {
+                            "type": "string",
+                            "description": "Lieu de formation seulement : le type de l'établissement gestionnaire"
+                        },
+                        "hasConvention":
+                        {
+                            "type": "string",
+                            "description": "Lieu de formation seulement : indique si l'établissement gestionnaire est conventionné"
                         },
                         "place":
                         {

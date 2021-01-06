@@ -1,6 +1,6 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
-const { getElasticInstance } = require("../../common/esClient");
+const { getCatalogueES } = require("../../common/esClient");
 const _ = require("lodash");
 
 /**
@@ -23,10 +23,11 @@ module.exports = () => {
 
   const getDiplomasForJobs = async (romes) => {
     try {
-      const esClient = getElasticInstance();
+      const esClient = getCatalogueES();
 
       const responseDiplomas = await esClient.search({
-        index: "formations",
+        //index: "formations",
+        index: "mnaformation",
         body: {
           query: {
             match: {

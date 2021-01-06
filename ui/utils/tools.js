@@ -50,6 +50,7 @@ const logError = (title, error) => {
   let err = error instanceof Error ? error : new Error(error);
   err.name = title;
   Sentry.captureException(err);
+  console.log(`Error ${title} sent to Sentry`);
 };
 
 export { getValueFromPath, scrollToTop, scrollToElementInContainer, getItemElement, logError };
