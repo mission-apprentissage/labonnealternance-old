@@ -27,7 +27,7 @@
     "@turf/distance": "^6.0.1",
     "aws-elasticsearch-connector": "^8.2.0",
     "aws-sdk": "^2.677.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-parser": "1.19.0",
     "boom": "7.3.0",
     "bunyan": "1.8.12",
