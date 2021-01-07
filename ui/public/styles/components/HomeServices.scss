@@ -73,14 +73,10 @@
   @extend .mt-3;
 }
 
-.c-home-services__title--sirius {
+.c-home-services__title--sirius, .c-home-services__title--matcha {
   @extend .mb-5;
 }
-.c-home-services__title--matcha,
-.c-home-services__title--prdv {
-  @extend .mb-5;
-}
-.c-home-services__title--catalog {
+.c-home-services__title--catalog, .c-home-services__title--prdv {
   @extend .mb-3;
 }
 

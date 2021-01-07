@@ -18,14 +18,14 @@ const HomeServices = () => {
           kind="prdv"
           url="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/prise-de-rendez-vous"
           title="Prise de rendez-vous"
-          text="Service bientôt disponible"
+          text="Pour échanger facilement avec les centres de formation"
         />
         <HomeCard
           logo={logoMatcha}
           kind="matcha"
           url="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/untitled"
           title="Matcha"
-          text="Service bientôt disponible"
+          text="Susciter des recrutements en apprentissage"
         />
         <HomeCard
           logo={logoCatalogue}
