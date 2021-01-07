@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.3 [07/01/2020]
+[316] Recherche multi mots sur domainesMetiers
+[300] Utilisation de domainesMetiers sur tables-correspondances
+
 ## 1.1.2 [05/01/2020]
 [296] Message d'erreur technique mal calibré
 Fix config es
