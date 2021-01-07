@@ -3,6 +3,7 @@ import Navigation from '../components/navigation'
 import { useSelector } from 'react-redux'
 import microAjax from "utils/microAjax";
 import baseUrl from "utils/baseUrl";
+import glassImage from "../public/images/glass.svg";
 
 const Styleguide = () => {
   const routerState = useSelector(state => state.router)
@@ -145,6 +146,20 @@ const Styleguide = () => {
           <div className="ml-5"><div className="border bg-light">ml-5 = margin-left-5 = espacement de 48px</div></div>
         </div>
 
+
+        <h2 className="fw-bold mt-4 pt-4">Dropdown</h2>
+
+        <div className="c-input-work-container" role="combobox" aria-haspopup="listbox" aria-owns="downshift-29-menu">
+          <input   className="form-control form-control-lg w-100 c-input-work" placeholder="Ex : boulangerie"/>
+          <img className="c-input-work-img" src="{glassImage}" alt=""/>
+        </div>
+        <ul id="downshift-1-menu" role="listbox" aria-labelledby="downshift-1-label" className="c-autocomplete__menu mb-5">
+          <li className="" role="option" aria-selected="false" id="downshift-1-item-0">Boulangerie, viennoiserie, pâtisserie, chocolaterie, confiserie, glacerie</li>
+          <li className="" role="option" aria-selected="false" id="downshift-1-item-1">Vente, conseil en magasin (alimentation, produits frais, boissons)</li>
+        </ul>
+
+        <div className="mt-5 pt-5">&nbsp;</div>
+        
         <h2 className="fw-bold mt-4 pt-4">Typographie</h2>
         <hr/>
         <h1>Heading 1</h1>
