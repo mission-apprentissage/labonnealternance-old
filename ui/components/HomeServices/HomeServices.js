@@ -1,5 +1,5 @@
 import React from "react";
-import logoPrdv from "public/images/logo_sirius.svg";
+import logoPrdv from "public/images/logo_prdv.svg";
 import logoMatcha from "public/images/logo_matcha.svg";
 import logoCatalogue from "public/images/logo_catalogue.svg";
 import HomeCard from "./HomeCard.js";
@@ -18,14 +18,14 @@ const HomeServices = () => {
           kind="prdv"
           url="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/prise-de-rendez-vous"
           title="Prise de rendez-vous"
-          text="Service bientôt disponible"
+          text="Pour échanger facilement avec les centres de formation"
         />
         <HomeCard
           logo={logoMatcha}
           kind="matcha"
           url="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/untitled"
           title="Matcha"
-          text="Service bientôt disponible"
+          text="Susciter des recrutements en apprentissage"
         />
         <HomeCard
           logo={logoCatalogue}
