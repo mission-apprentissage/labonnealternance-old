@@ -1,5 +1,5 @@
 import React from "react";
-import logoPrdv from "public/images/logo_sirius.svg";
+import logoPrdv from "public/images/logo_prdv.svg";
 import logoMatcha from "public/images/logo_matcha.svg";
 import logoCatalogue from "public/images/logo_catalogue.svg";
 import HomeCard from "./HomeCard.js";
