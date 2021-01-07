@@ -1,7 +1,7 @@
 .c-autocomplete__menu {
   overflow-y: auto;
   margin: 0;
-  margin-top: 4px;
+  margin-top: 5px;
   border-top: 0;
   list-style: none;
   padding: 0;
@@ -14,8 +14,20 @@
   position: absolute;
   z-index: 1000;
   top: auto;
-  /*margin-left: -35px;*/
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+}
+
+.c-autocomplete__menu li {
+  padding: .8rem;
+  padding-bottom: 0;
+  font-size: 14px;
+  line-height: 19.6px;
+  font-weight: 400;
+}
+.c-autocomplete__menu li+li {
+  padding-bottom: .8rem;
 }
 
 .widgetTestPage .c-autocomplete__menu {
@@ -34,6 +46,8 @@
 .c-input-work {
   color: #2A2A2A;
   text-align: left;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
   &.is-text-too-long {
     font-size: $small-font-size;
   }
