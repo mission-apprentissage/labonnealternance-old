@@ -1,8 +1,11 @@
 # CHANGELOG
 
-## 1.1.4 [08/01/2020]
+## 1.1.5 [08/01/2020]
 Fix variable evt Sentry
 Page /config pour connaître l'evt sans passer par /api
+
+## 1.1.4 [07/01/2020]
+[305] Reliquats
 
 ## 1.1.3 [07/01/2020]
 [316] Recherche multi mots sur domainesMetiers
