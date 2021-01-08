@@ -267,9 +267,7 @@ const transformFormationsForIdea = (formations) => {
 const transformFormationForIdea = (formation) => {
   let resultFormation = itemModel("formation");
 
-  resultFormation.title = formation.source.intitule_long
-    ? formation.source.intitule_long
-    : formation.source.intitule_court;
+  resultFormation.title = _.get(formation, "source.intitule_long", formation.source.intitule_court);
   resultFormation.longTitle = formation.source.intitule_long;
   resultFormation.diplomaLevel = formation.source.niveau;
   resultFormation.onisepUrl = formation.source.onisep_url;
