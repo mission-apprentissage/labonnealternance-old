@@ -11,5 +11,8 @@ describe('hightlightItem', () => {
     it('call : resist to multiple matching', async () => {
       expect(hightlightItem('Aaronaa', 'aa')).toEqual('<strong>Aa</strong>ron<strong>aa</strong>');
     });
-    
+    it('call : left initial String as-is if no match', async () => {
+      expect(hightlightItem('Aaron', 'bb')).toEqual('Aaron');
+    });
+
 });
