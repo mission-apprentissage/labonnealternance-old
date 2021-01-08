@@ -7,12 +7,11 @@ import HeadLaBonneAlternance from "components/head";
 import "public/styles/application.scss";
 
 import * as Sentry from "@sentry/node";
+import * as SentryReact from "@sentry/react";
 
 if (process.env.uiSentryDsn) {
-  Sentry.init({
-    enabled: true,
-    dsn: process.env.uiSentryDsn,
-  });
+  Sentry.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
+  SentryReact.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
 }
 
 class ExampleApp extends App {
