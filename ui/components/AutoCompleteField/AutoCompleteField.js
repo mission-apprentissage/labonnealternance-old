@@ -3,6 +3,7 @@ import { useFormikContext } from "formik";
 import { useCombobox } from "downshift";
 import { debounce } from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService";
+import highlightItem  from "../../services/hightlightItem";
 
 let debouncedOnInputValueChange = null;
 
@@ -119,7 +120,7 @@ export const AutoCompleteField = ({
               key={`${index}`}
               {...getItemProps({ item: item.label, index })}
             >
-              {item.label}
+              {highlightItem(item.label, inputValue)}
             </li>
           ))}
       </ul>
