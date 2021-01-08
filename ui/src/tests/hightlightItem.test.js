@@ -1,4 +1,4 @@
-import hightlightItem from './hightlightItem';
+import hightlightItem from '../../services/hightlightItem';
 
 describe('hightlightItem', () => {
 
