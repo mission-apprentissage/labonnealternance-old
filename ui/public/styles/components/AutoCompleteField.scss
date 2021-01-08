@@ -20,15 +20,18 @@
 }
 
 .c-autocomplete__menu li {
-  padding: .8rem;
-  padding-bottom: 0;
+  padding: .4rem .8rem .4rem .8rem;
   font-size: 14px;
   line-height: 19.6px;
   font-weight: 400;
+  &:hover {
+    background-color: $gray-200;
+    cursor: pointer;
+  }
 }
-.c-autocomplete__menu li+li {
-  padding-bottom: .8rem;
-}
+// .c-autocomplete__menu li+li {
+//   padding-bottom: .8rem;
+// }
 
 .widgetTestPage .c-autocomplete__menu {
   margin-left: 0px;

@@ -154,6 +154,7 @@ const Styleguide = () => {
         </div>
         <ul id="downshift-1-menu" role="listbox" aria-labelledby="downshift-1-label" className="c-autocomplete__menu mb-5">
           <li className="" role="option" aria-selected="false">Boulangerie, viennoiserie, pâtisserie, chocolaterie, confiserie, glacerie</li>
+          <li className="" role="option" aria-selected="false">Boulangerie et autres, alimentation, conserverie, pain frais, etc</li>
           <li className="" role="option" aria-selected="false">Vente, conseil en magasin (alimentation, produits frais, boissons)</li>
         </ul>
 
