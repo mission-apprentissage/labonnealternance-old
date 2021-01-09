@@ -4,6 +4,9 @@
 Fix variable evt Sentry
 Page /config pour connaître l'evt sans passer par /api
 
+## 1.1.5 [08/01/2020]
+[309] Chartage autocomplétion
+
 ## 1.1.4 [07/01/2020]
 [305] Reliquats
 

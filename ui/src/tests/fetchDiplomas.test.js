@@ -1,4 +1,4 @@
-import fetchDiplomas from './fetchDiplomas';
+import fetchDiplomas from '../../services/fetchDiplomas';
 import _ from 'lodash';
 
 describe('fetchDiplomas', () => {
