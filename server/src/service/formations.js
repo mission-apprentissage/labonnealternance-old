@@ -229,10 +229,9 @@ const deduplicateFormations = (formations) => {
   if (formations instanceof Array && formations.length > 0) {
     return formations.reduce((acc, formation) => {
       const found = acc.find((f) => {
-        //console.log(f.source.nom,formation.source.nom,"-----",f.source.intitule,formation.source.intitule,"-----",f.source.etablissement_formateur_siret,formation.source.etablissement_formateur_siret,"------",f.source.diplome,formation.source.diplome,"-----",f.source.code_postal,formation.source.code_postal);
         return (
-          f.source.nom === formation.source.nom &&
-          f.source.intitule === formation.source.intitule &&
+          f.source.intitule_long === formation.source.intitule_long &&
+          f.source.intitule_court === formation.source.intitule_court &&
           f.source.etablissement_formateur_siret === formation.source.etablissement_formateur_siret &&
           f.source.diplome === formation.source.diplome &&
           f.source.code_postal === formation.source.code_postal
@@ -240,7 +239,6 @@ const deduplicateFormations = (formations) => {
       });
 
       if (!found) {
-        //console.log(formation.source.nom,"-----",formation.source.intitule,"-----",formation.source.etablissement_formateur_siret,"------",formation.source.diplome,"-----",formation.source.code_postal);
         acc = [...acc, formation];
       }
 
@@ -269,7 +267,7 @@ const transformFormationsForIdea = (formations) => {
 const transformFormationForIdea = (formation) => {
   let resultFormation = itemModel("formation");
 
-  resultFormation.title = formation.source.nom ? formation.source.nom : formation.source.intitule;
+  resultFormation.title = _.get(formation, "source.intitule_long", formation.source.intitule_court);
   resultFormation.longTitle = formation.source.intitule_long;
   resultFormation.diplomaLevel = formation.source.niveau;
   resultFormation.onisepUrl = formation.source.onisep_url;
@@ -452,8 +450,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "niveau",
       "idea_geo_coordonnees_etablissement",
       "intitule_long",
-      "intitule",
-      "nom",
+      "intitule_court",
       "code_postal",
       "num_departement",
       "region",

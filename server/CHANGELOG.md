@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.1.6 [08/01/2020]
+[319] Utilisation intitule_long pour noms de formations
+
 ## 1.1.5 [08/01/2020]
 Fix variable evt Sentry
 Page /config pour connaître l'evt sans passer par /api
