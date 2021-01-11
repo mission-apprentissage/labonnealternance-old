@@ -13,8 +13,7 @@ import { useScopeContext } from "context/ScopeContext";
 
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
-  const scopeContext = useScopeContext();
-  const isTrainingOnly = scopeContext.isJob ? "" : "1";
+  const scopeContext = useScopeContext();  
 
   const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
 
@@ -50,7 +49,6 @@ const ResultLists = (props) => {
                 training={training}
                 handleSelectItem={props.handleSelectItem}
                 searchForJobsOnNewCenter={props.searchForJobsOnNewCenter}
-                isTrainingOnly={props.isTrainingOnly}
               />
             );
           })}
