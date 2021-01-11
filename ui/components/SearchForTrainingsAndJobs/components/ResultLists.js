@@ -9,9 +9,12 @@ import { useSelector } from "react-redux";
 import ExtendedSearchButton from "./ExtendedSearchButton";
 import NoJobResult from "./NoJobResult";
 import FilterButton from "./FilterButton";
+import { useScopeContext } from "context/ScopeContext";
 
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const scopeContext = useScopeContext();
+  const isTrainingOnly = scopeContext.isJob?"":"1";
 
   const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
 
@@ -273,7 +276,7 @@ const ResultLists = (props) => {
     let jobLoading = "";
     let jobCount = 0;
 
-    if (!props.isTrainingOnly) {
+    if (scopeContext.isJob) {
       if (props.isJobSearchLoading) {
         jobLoading = (
           <span className="jobColor">
@@ -326,7 +329,7 @@ const ResultLists = (props) => {
             ""
           )}
         </div>
-        {!trainingLoading && !jobLoading && !props.isTrainingOnly ? (
+        {!trainingLoading && !jobLoading && scopeContext.isJob ? (
           <div className="filterButtons">
             <FilterButton
               type="all"

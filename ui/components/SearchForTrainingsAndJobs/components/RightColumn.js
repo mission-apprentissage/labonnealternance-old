@@ -372,7 +372,6 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
         isJobSearchLoading={isJobSearchLoading}
         searchRadius={searchRadius}
         trainings={trainings}
-        isTrainingOnly={scopeContext.isTraining?"1":""}
         handleExtendedSearch={searchForJobsWithLooseRadius}
         searchForJobsOnNewCenter={searchForJobsOnNewCenter}
         searchForTrainingsOnNewCenter={searchForTrainingsOnNewCenter}
