@@ -1,12 +1,15 @@
 import React from "react";
 import { Button } from "reactstrap";
+import { useScopeContext } from "context/ScopeContext";
 
-const ExtendedSearchButton = ({ title, handleExtendedSearch, isTrainingOnly }) => {
+const ExtendedSearchButton = ({ title, handleExtendedSearch }) => {
   const handleClick = async () => {
     handleExtendedSearch();
   };
 
-  return !isTrainingOnly ? (
+  const scopeContext = useScopeContext();
+
+  return scopeContext.isJob ? (
     <Button className="submitButton" onClick={handleClick}>
       {title}
     </Button>

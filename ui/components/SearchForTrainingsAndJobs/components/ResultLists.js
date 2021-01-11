@@ -14,7 +14,7 @@ import { useScopeContext } from "context/ScopeContext";
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
   const scopeContext = useScopeContext();
-  const isTrainingOnly = scopeContext.isJob?"":"1";
+  const isTrainingOnly = scopeContext.isJob ? "" : "1";
 
   const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
 
@@ -84,7 +84,6 @@ const ResultLists = (props) => {
                     <ExtendedSearchButton
                       title="Voir plus de résultats"
                       handleExtendedSearch={props.handleExtendedSearch}
-                      isTrainingOnly={props.isTrainingOnly}
                     />
                   ) : (
                     ""
@@ -96,7 +95,6 @@ const ResultLists = (props) => {
                   <ExtendedSearchButton
                     title="Etendre la sélection"
                     handleExtendedSearch={props.handleExtendedSearch}
-                    isTrainingOnly={props.isTrainingOnly}
                   />
                 </>
               )}
@@ -109,11 +107,7 @@ const ResultLists = (props) => {
           return (
             <>
               <NoJobResult isTrainingOnly={props.isTrainingOnly} />
-              <ExtendedSearchButton
-                title="Etendre la sélection"
-                handleExtendedSearch={props.handleExtendedSearch}
-                isTrainingOnly={props.isTrainingOnly}
-              />
+              <ExtendedSearchButton title="Etendre la sélection" handleExtendedSearch={props.handleExtendedSearch} />
             </>
           );
       }
