@@ -346,6 +346,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
       if (jobErrorMessage) setJobSearchError(jobErrorMessage);
 
       dispatch(setJobs(results));
+      dispatch(setHasSearch(true));
 
       setJobMarkers(factorJobsForMap(results));
     } catch (err) {

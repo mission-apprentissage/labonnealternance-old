@@ -23,7 +23,7 @@ const ResultLists = (props) => {
   };
 
   const getTrainingResult = () => {
-    if (hasSearch && (activeFilter === "all" || activeFilter === "trainings")) {
+    if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
       return <div className="trainingResult">{getTrainingList()}</div>;
     } else {
       return "";
@@ -109,7 +109,9 @@ const ResultLists = (props) => {
             </>
           );
       }
-    } else return "";
+    } else {
+      return "";
+    }
   };
 
   const getJobCount = (jobs) => {
