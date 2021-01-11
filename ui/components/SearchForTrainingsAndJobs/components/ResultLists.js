@@ -13,7 +13,7 @@ import { useScopeContext } from "context/ScopeContext";
 
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
-  const scopeContext = useScopeContext();  
+  const scopeContext = useScopeContext();
 
   const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
 
@@ -239,28 +239,30 @@ const ResultLists = (props) => {
     let trainingPart = "";
     let trainingLoading = "";
 
-    if (props.isTrainingSearchLoading) {
-      trainingLoading = (
-        <span className="trainingColor">
-          <div className="searchLoading">
-            Recherche des formations en cours
-            <Spinner />
-          </div>
-        </span>
-      );
-    } else if (!props.trainingSearchError) {
-      trainingCount = props.trainings ? props.trainings.length : 0;
+    if (scopeContext.isTraining) {
+      if (props.isTrainingSearchLoading) {
+        trainingLoading = (
+          <span className="trainingColor">
+            <div className="searchLoading">
+              Recherche des formations en cours
+              <Spinner />
+            </div>
+          </span>
+        );
+      } else if (!props.trainingSearchError) {
+        trainingCount = props.trainings ? props.trainings.length : 0;
 
-      //trainingCount = 0;
+        //trainingCount = 0;
 
-      count += trainingCount;
+        count += trainingCount;
 
-      trainingPart = `${trainingCount === 0 ? "Aucune formation" : trainingCount}`;
+        trainingPart = `${trainingCount === 0 ? "Aucune formation" : trainingCount}`;
 
-      if (trainingCount === 1) {
-        trainingPart += " formation";
-      } else if (trainingCount > 1) {
-        trainingPart += " formations";
+        if (trainingCount === 1) {
+          trainingPart += " formation";
+        } else if (trainingCount > 1) {
+          trainingPart += " formations";
+        }
       }
     }
 
@@ -297,7 +299,7 @@ const ResultLists = (props) => {
     return (
       <>
         <div className="resultTitle">
-          {!trainingLoading || !jobLoading
+          {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading)
             ? `${trainingPart}${trainingPart && jobPart ? " et " : ""}${jobPart}${count === 0 ? " ne" : ""}${
                 count <= 1 ? " correspond" : " correspondent"
               } à votre recherche`
@@ -321,7 +323,7 @@ const ResultLists = (props) => {
             ""
           )}
         </div>
-        {!trainingLoading && !jobLoading && scopeContext.isJob ? (
+        {!trainingLoading && !jobLoading && scopeContext.isJob && scopeContext.isTraining ? (
           <div className="filterButtons">
             <FilterButton
               type="all"
