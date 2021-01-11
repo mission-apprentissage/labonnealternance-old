@@ -91,7 +91,7 @@ const ResultLists = (props) => {
                 </>
               ) : (
                 <>
-                  <NoJobResult isTrainingOnly={props.isTrainingOnly} />
+                  <NoJobResult />
                   <ExtendedSearchButton
                     title="Etendre la sélection"
                     handleExtendedSearch={props.handleExtendedSearch}
@@ -102,11 +102,11 @@ const ResultLists = (props) => {
           );
         }
       } else {
-        if (extendedSearch) return <NoJobResult isTrainingOnly={props.isTrainingOnly} />;
+        if (extendedSearch) return <NoJobResult />;
         else
           return (
             <>
-              <NoJobResult isTrainingOnly={props.isTrainingOnly} />
+              <NoJobResult />
               <ExtendedSearchButton title="Etendre la sélection" handleExtendedSearch={props.handleExtendedSearch} />
             </>
           );
