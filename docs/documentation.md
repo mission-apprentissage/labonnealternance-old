@@ -51,7 +51,9 @@ Ex de valeur pour le paramètre src :
 
 **Si caller, lat, lon et romes sont correctement renseignés une recherche sera lancée automatiquement en utilisant ces critères. Si radius est correctement renseigné il sera utilisé comme critère de la recherche.**
 
-#### **B /  Bouton de retour** 
+#### \*\*\*\*
+
+#### **C /  Bouton de retour** 
 
 Cliquer sur le logo en haut du formulaire ou d’une liste de résultat permet de signaler à la page appelante une instruction de changement de page.
 
