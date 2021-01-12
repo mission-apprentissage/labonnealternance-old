@@ -112,13 +112,13 @@ const WidgetTester = () => {
     if (widgetParams) {
       //console.log("widgetParams  : ",widgetParams);
       ideaUrl += "?";
-      ideaUrl += widgetParams.caller ? `&caller=${widgetParams.caller}` : "";
+      ideaUrl += widgetParams.caller ? `&caller=${encodeURIComponent(widgetParams.caller)}` : "";
       ideaUrl += widgetParams.romes ? `&romes=${widgetParams.romes}` : "";
       ideaUrl += widgetParams.location ? `&lon=${widgetParams.location[0]}&lat=${widgetParams.location[1]}` : "";
       ideaUrl += widgetParams.radius ? `&radius=${widgetParams.radius}` : "";
       ideaUrl += widgetParams.scope ? `&scope=${widgetParams.scope}` : "";
-      ideaUrl += widgetParams.returnURI ? `&return_uri=${widgetParams.returnURI}` : "";
-      ideaUrl += widgetParams.returnLogoURL ? `&return_logo_url=${widgetParams.returnLogoURL}` : "";
+      ideaUrl += widgetParams.returnURI ? `&return_uri=${encodeURIComponent(widgetParams.returnURI)}` : "";
+      ideaUrl += widgetParams.returnLogoURL ? `&return_logo_url=${encodeURIComponent(widgetParams.returnLogoURL)}` : "";
     }
 
     return ideaUrl;
