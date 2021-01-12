@@ -149,7 +149,7 @@ const WidgetTester = () => {
           location: {},
           radius: 0,
           scope: "",
-          caller: "identifiant_appelant",
+          caller: "adresse_contact@mail.com identifiant_appelant",
           returnURI: "/",
           returnLogoURL: "",
         }}
