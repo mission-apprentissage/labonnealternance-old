@@ -3,7 +3,7 @@ import SearchForTrainingsAndJobs from "../components/SearchForTrainingsAndJobs";
 import { useDispatch } from "react-redux";
 import { setWidgetParameters } from "store/actions";
 import { getWidgetParameters } from "services/config";
-
+import { ScopeContextProvider } from "context/ScopeContext.js";
 import Head from "next/head";
 
 const RechercheEmploi = () => {
@@ -21,7 +21,9 @@ const RechercheEmploi = () => {
       <Head>
         <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
       </Head>
-      <SearchForTrainingsAndJobs />
+      <ScopeContextProvider value={{ isJob: true, isTraining: false }}>
+        <SearchForTrainingsAndJobs />
+      </ScopeContextProvider>
     </>
   );
 };

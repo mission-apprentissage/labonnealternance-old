@@ -28,6 +28,7 @@ import {
   factorJobsForMap,
   computeMissingPositionAndDistance,
 } from "utils/mapTools";
+import { useScopeContext } from "context/ScopeContext";
 
 import { fetchAddressFromCoordinates } from "services/baseAdresse";
 
@@ -39,8 +40,10 @@ const technicalErrorText = "Error technique momentanée";
 const trainingsApi = baseUrl + "/api/v1/formations";
 const jobsApi = baseUrl + "/api/v1/jobs";
 
-const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingOnly }) => {
+const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const dispatch = useDispatch();
+
+  const scopeContext = useScopeContext();
 
   const {
     hasSearch,
@@ -160,9 +163,12 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingO
     dispatch(setExtendedSearch(false));
     map.flyTo({ center: searchCenter, zoom: 10 });
     dispatch(setFormValues({ ...values }));
-    searchForTrainings(values);
 
-    if (!isTrainingOnly) {
+    if (scopeContext.isTraining) {
+      searchForTrainings(values);
+    }
+
+    if (scopeContext.isJob) {
       searchForJobsWithStrictRadius(values);
     }
 
@@ -340,6 +346,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingO
       if (jobErrorMessage) setJobSearchError(jobErrorMessage);
 
       dispatch(setJobs(results));
+      dispatch(setHasSearch(true));
 
       setJobMarkers(factorJobsForMap(results));
     } catch (err) {
@@ -366,7 +373,6 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm, isTrainingO
         isJobSearchLoading={isJobSearchLoading}
         searchRadius={searchRadius}
         trainings={trainings}
-        isTrainingOnly={isTrainingOnly}
         handleExtendedSearch={searchForJobsWithLooseRadius}
         searchForJobsOnNewCenter={searchForJobsOnNewCenter}
         searchForTrainingsOnNewCenter={searchForTrainingsOnNewCenter}
