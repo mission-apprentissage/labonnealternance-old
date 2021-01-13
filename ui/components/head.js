@@ -30,10 +30,10 @@ const HeadLaBonneAlternance = (props) => {
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
       <link rel="manifest" href="/favicon/site.webmanifest" />
-      <link rel="preload" href="/fonts/Inter/Inter-Regular.ttf" />
-      <link rel="preload" href="/fonts/Inter/Inter-Bold.ttf" />
-      <link rel="preload" href="/fonts/Marianne/Marianne-Medium.ttf" />
-      <link rel="preload" href="/fonts/Marianne/Marianne-Bold.ttf" />
+      <link rel="preload" href="/fonts/Inter/Inter-Regular.ttf" as="font" type="font/woff2" />
+      <link rel="preload" href="/fonts/Inter/Inter-Bold.ttf" as="font" type="font/woff2" />
+      <link rel="preload" href="/fonts/Marianne/Marianne-Medium.ttf" as="font" type="font/woff2" />
+      <link rel="preload" href="/fonts/Marianne/Marianne-Bold.ttf" as="font" type="font/woff2" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="theme-color" content="#ffffff" />
