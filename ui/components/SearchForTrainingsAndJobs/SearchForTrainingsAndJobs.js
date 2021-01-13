@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { map } from "../../utils/mapTools";
 import Map from "../../components/Map";
 
-const SearchForTrainingsAndJobs = ({ isTrainingOnly }) => {
+const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
 
   const { selectedItem, visiblePane } = useSelector((state) => state.trainings);
@@ -61,12 +61,7 @@ const SearchForTrainingsAndJobs = ({ isTrainingOnly }) => {
           xs="12"
           md="4"
         >
-          <RightColumn
-            showResultList={showResultList}
-            showSearchForm={showSearchForm}
-            unSelectItem={unSelectItem}
-            isTrainingOnly={isTrainingOnly}
-          />
+          <RightColumn showResultList={showResultList} showSearchForm={showSearchForm} unSelectItem={unSelectItem} />
         </Col>
       </Row>
       <MapListSwitchButton

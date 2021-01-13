@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 1.2.0 [11/01/2020]
+[262] Widget emploi
+
+## 1.1.7 [08/01/2020]
+[319] Utilisation intitule_long pour noms de formations
+
+## 1.1.6 [08/01/2020]
+Fix variable evt Sentry
+Page /config pour connaître l'evt sans passer par /api
+
+## 1.1.5 [08/01/2020]
+[309] Chartage autocomplétion
+
+## 1.1.4 [07/01/2020]
+[305] Reliquats
+
 ## 1.1.3 [07/01/2020]
 [316] Recherche multi mots sur domainesMetiers
 [300] Utilisation de domainesMetiers sur tables-correspondances

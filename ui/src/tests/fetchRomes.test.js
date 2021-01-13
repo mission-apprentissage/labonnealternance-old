@@ -1,4 +1,4 @@
-import fetchRomes from './fetchRomes';
+import fetchRomes from '../../services/fetchRomes';
 
 describe('fetchRomes', () => {
 

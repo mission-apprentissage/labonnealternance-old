@@ -3,9 +3,11 @@ import trainingIcon from "../../public/images/icons/school.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
+import { useScopeContext } from "context/ScopeContext";
 
-const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter, isTrainingOnly }) => {
+const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
+  const scopeContext = useScopeContext();
 
   const onSelectItem = () => {
     handleSelectItem(training, "training");
@@ -61,7 +63,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
         ""
       ) : (
         <>
-          {Math.round(training.place.distance) > formValues.radius && !isTrainingOnly
+          {Math.round(training.place.distance) > formValues.radius && scopeContext.isJob
             ? getCenterSearchOnTrainingButton()
             : ""}
           <div className="knowMore">

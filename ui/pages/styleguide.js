@@ -145,6 +145,22 @@ const Styleguide = () => {
           <div className="ml-5"><div className="border bg-light">ml-5 = margin-left-5 = espacement de 48px</div></div>
         </div>
 
+
+        <h2 className="fw-bold mt-4 pt-4">Dropdown</h2>
+
+        <div className="c-input-work-container c-input-work-container--demo" role="combobox" aria-haspopup="listbox" aria-owns="downshift-29-menu">
+          <input   className="form-control form-control-lg w-100 c-input-work" placeholder="ex : boulangerie"/>
+          <img className="c-input-work-img" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMTAgMThDMTEuNzc1IDE3Ljk5OTYgMTMuNDk4OCAxNy40MDU0IDE0Ljg5NyAxNi4zMTJMMTkuMjkzIDIwLjcwOEwyMC43MDcgMTkuMjk0TDE2LjMxMSAxNC44OThDMTcuNDA1IDEzLjQ5OTcgMTcuOTk5NiAxMS43NzU0IDE4IDEwQzE4IDUuNTg5IDE0LjQxMSAyIDEwIDJDNS41ODkgMiAyIDUuNTg5IDIgMTBDMiAxNC40MTEgNS41ODkgMTggMTAgMThaTTEwIDRDMTMuMzA5IDQgMTYgNi42OTEgMTYgMTBDMTYgMTMuMzA5IDEzLjMwOSAxNiAxMCAxNkM2LjY5MSAxNiA0IDEzLjMwOSA0IDEwQzQgNi42OTEgNi42OTEgNCAxMCA0WiIgZmlsbD0iIzM4MzgzOCIvPgogIDxwYXRoIGQ9Ik0xMS40MTIgOC41ODYwOUMxMS43OTEgOC45NjYwOSAxMiA5LjQ2ODA5IDEyIDEwLjAwMDFIMTRDMTQuMDAwOSA5LjQ3NDUxIDEzLjg5NzYgOC45NTM5OCAxMy42OTYxIDguNDY4NTdDMTMuNDk0NiA3Ljk4MzE2IDEzLjE5ODkgNy41NDI1MSAxMi44MjYgNy4xNzIwOUMxMS4zMTIgNS42NjAwOSA4LjY4NzAxIDUuNjYwMDkgNy4xNzQwMSA3LjE3MjA5TDguNTg2MDEgOC41ODgwOUM5LjM0NjAxIDcuODMwMDkgMTAuNjU2IDcuODMyMDkgMTEuNDEyIDguNTg2MDlaIiBmaWxsPSIjMzgzODM4Ii8+Cjwvc3ZnPgo=" alt=""/>
+        </div>
+        <ul id="downshift-1-menu" role="listbox" aria-labelledby="downshift-1-label" className="c-autocomplete__menu mb-5">
+          <li className="" role="option" aria-selected="false"><strong>Bou</strong>langerie, viennoiserie, pâtisserie, chocolaterie, confiserie, glacerie</li>
+          <li className="" role="option" aria-selected="false"><strong>Bou</strong>langerie et autres, alimentation, conserverie, pain frais, etc</li>
+          <li className="" role="option" aria-selected="false">Vente, conseil en magasin (alimentation, produits frais, boissons)</li>
+        </ul>
+
+        <div className="mt-5 pt-5">&nbsp;</div>
+
+
         <h2 className="fw-bold mt-4 pt-4">Typographie</h2>
         <hr/>
         <h1>Heading 1</h1>
