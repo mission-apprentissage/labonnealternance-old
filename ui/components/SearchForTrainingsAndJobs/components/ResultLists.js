@@ -9,9 +9,11 @@ import { useSelector } from "react-redux";
 import ExtendedSearchButton from "./ExtendedSearchButton";
 import NoJobResult from "./NoJobResult";
 import FilterButton from "./FilterButton";
+import { useScopeContext } from "context/ScopeContext";
 
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const scopeContext = useScopeContext();
 
   const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
 
@@ -21,7 +23,7 @@ const ResultLists = (props) => {
   };
 
   const getTrainingResult = () => {
-    if (hasSearch && (activeFilter === "all" || activeFilter === "trainings")) {
+    if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
       return <div className="trainingResult">{getTrainingList()}</div>;
     } else {
       return "";
@@ -47,7 +49,6 @@ const ResultLists = (props) => {
                 training={training}
                 handleSelectItem={props.handleSelectItem}
                 searchForJobsOnNewCenter={props.searchForJobsOnNewCenter}
-                isTrainingOnly={props.isTrainingOnly}
               />
             );
           })}
@@ -81,7 +82,6 @@ const ResultLists = (props) => {
                     <ExtendedSearchButton
                       title="Voir plus de résultats"
                       handleExtendedSearch={props.handleExtendedSearch}
-                      isTrainingOnly={props.isTrainingOnly}
                     />
                   ) : (
                     ""
@@ -89,11 +89,10 @@ const ResultLists = (props) => {
                 </>
               ) : (
                 <>
-                  <NoJobResult isTrainingOnly={props.isTrainingOnly} />
+                  <NoJobResult />
                   <ExtendedSearchButton
                     title="Etendre la sélection"
                     handleExtendedSearch={props.handleExtendedSearch}
-                    isTrainingOnly={props.isTrainingOnly}
                   />
                 </>
               )}
@@ -101,20 +100,18 @@ const ResultLists = (props) => {
           );
         }
       } else {
-        if (extendedSearch) return <NoJobResult isTrainingOnly={props.isTrainingOnly} />;
+        if (extendedSearch) return <NoJobResult />;
         else
           return (
             <>
-              <NoJobResult isTrainingOnly={props.isTrainingOnly} />
-              <ExtendedSearchButton
-                title="Etendre la sélection"
-                handleExtendedSearch={props.handleExtendedSearch}
-                isTrainingOnly={props.isTrainingOnly}
-              />
+              <NoJobResult />
+              <ExtendedSearchButton title="Etendre la sélection" handleExtendedSearch={props.handleExtendedSearch} />
             </>
           );
       }
-    } else return "";
+    } else {
+      return "";
+    }
   };
 
   const getJobCount = (jobs) => {
@@ -244,28 +241,30 @@ const ResultLists = (props) => {
     let trainingPart = "";
     let trainingLoading = "";
 
-    if (props.isTrainingSearchLoading) {
-      trainingLoading = (
-        <span className="trainingColor">
-          <div className="searchLoading">
-            Recherche des formations en cours
-            <Spinner />
-          </div>
-        </span>
-      );
-    } else if (!props.trainingSearchError) {
-      trainingCount = props.trainings ? props.trainings.length : 0;
+    if (scopeContext.isTraining) {
+      if (props.isTrainingSearchLoading) {
+        trainingLoading = (
+          <span className="trainingColor">
+            <div className="searchLoading">
+              Recherche des formations en cours
+              <Spinner />
+            </div>
+          </span>
+        );
+      } else if (!props.trainingSearchError) {
+        trainingCount = props.trainings ? props.trainings.length : 0;
 
-      //trainingCount = 0;
+        //trainingCount = 0;
 
-      count += trainingCount;
+        count += trainingCount;
 
-      trainingPart = `${trainingCount === 0 ? "Aucune formation" : trainingCount}`;
+        trainingPart = `${trainingCount === 0 ? "Aucune formation" : trainingCount}`;
 
-      if (trainingCount === 1) {
-        trainingPart += " formation";
-      } else if (trainingCount > 1) {
-        trainingPart += " formations";
+        if (trainingCount === 1) {
+          trainingPart += " formation";
+        } else if (trainingCount > 1) {
+          trainingPart += " formations";
+        }
       }
     }
 
@@ -273,7 +272,7 @@ const ResultLists = (props) => {
     let jobLoading = "";
     let jobCount = 0;
 
-    if (!props.isTrainingOnly) {
+    if (scopeContext.isJob) {
       if (props.isJobSearchLoading) {
         jobLoading = (
           <span className="jobColor">
@@ -302,7 +301,7 @@ const ResultLists = (props) => {
     return (
       <>
         <div className="resultTitle">
-          {!trainingLoading || !jobLoading
+          {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading)
             ? `${trainingPart}${trainingPart && jobPart ? " et " : ""}${jobPart}${count === 0 ? " ne" : ""}${
                 count <= 1 ? " correspond" : " correspondent"
               } à votre recherche`
@@ -326,7 +325,7 @@ const ResultLists = (props) => {
             ""
           )}
         </div>
-        {!trainingLoading && !jobLoading && !props.isTrainingOnly ? (
+        {!trainingLoading && !jobLoading && scopeContext.isJob && scopeContext.isTraining ? (
           <div className="filterButtons">
             <FilterButton
               type="all"

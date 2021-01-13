@@ -3,6 +3,8 @@ import { useFormikContext } from "formik";
 import { useCombobox } from "downshift";
 import { debounce } from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService";
+import highlightItem  from "../../services/hightlightItem";
+import ReactHtmlParser from 'react-html-parser'; 
 
 let debouncedOnInputValueChange = null;
 
@@ -119,7 +121,7 @@ export const AutoCompleteField = ({
               key={`${index}`}
               {...getItemProps({ item: item.label, index })}
             >
-              {item.label}
+              {ReactHtmlParser(highlightItem(item.label, inputValue))}
             </li>
           ))}
       </ul>

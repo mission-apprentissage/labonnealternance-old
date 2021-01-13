@@ -107,19 +107,23 @@ const WidgetTester = () => {
     let ideaUrl =
       typeof window !== "undefined" ? window.location.origin : "https://labonnealternance.apprentissage.beta.gouv.fr";
 
-    ideaUrl = `${ideaUrl}/recherche-apprentissage`;
+    let path = "recherche-apprentissage";
 
     if (widgetParams) {
+      if (widgetParams.scope === "job") path = "recherche-emploi";
+      else if (widgetParams.scope === "training") path = "recherche-apprentissage-formation";
+
+      ideaUrl = `${ideaUrl}/${path}`;
+
       //console.log("widgetParams  : ",widgetParams);
       ideaUrl += "?";
-      ideaUrl += widgetParams.caller ? `&caller=${widgetParams.caller}` : "";
+      ideaUrl += widgetParams.caller ? `&caller=${encodeURIComponent(widgetParams.caller)}` : "";
       ideaUrl += widgetParams.romes ? `&romes=${widgetParams.romes}` : "";
       ideaUrl += widgetParams.location ? `&lon=${widgetParams.location[0]}&lat=${widgetParams.location[1]}` : "";
       ideaUrl += widgetParams.radius ? `&radius=${widgetParams.radius}` : "";
-      ideaUrl += widgetParams.scope ? `&scope=${widgetParams.scope}` : "";
-      ideaUrl += widgetParams.returnURI ? `&return_uri=${widgetParams.returnURI}` : "";
-      ideaUrl += widgetParams.returnLogoURL ? `&return_logo_url=${widgetParams.returnLogoURL}` : "";
-    }
+      ideaUrl += widgetParams.returnURI ? `&return_uri=${encodeURIComponent(widgetParams.returnURI)}` : "";
+      ideaUrl += widgetParams.returnLogoURL ? `&return_logo_url=${encodeURIComponent(widgetParams.returnLogoURL)}` : "";
+    } else ideaUrl = `${ideaUrl}/${path}`;
 
     return ideaUrl;
   };
@@ -149,7 +153,7 @@ const WidgetTester = () => {
           location: {},
           radius: 0,
           scope: "",
-          caller: "identifiant_appelant",
+          caller: "adresse_contact@mail.com identifiant_appelant",
           returnURI: "/",
           returnLogoURL: "",
         }}
@@ -265,8 +269,7 @@ const WidgetTester = () => {
                   <div className="buttons">
                     <Container>
                       <Row>
-                        {getRadioButton("scope", "", "Non défini", scope, setFieldValue, handleScopeChange)}
-                        {getRadioButton("scope", "all", "Tout", scope, setFieldValue, handleScopeChange)}
+                        {getRadioButton("scope", "", "Tout", scope, setFieldValue, handleScopeChange)}
                         {getRadioButton(
                           "scope",
                           "training",
@@ -275,6 +278,7 @@ const WidgetTester = () => {
                           setFieldValue,
                           handleScopeChange
                         )}
+                        {getRadioButton("scope", "job", "Emplois uniquement", scope, setFieldValue, handleScopeChange)}
                       </Row>
                     </Container>
                   </div>
