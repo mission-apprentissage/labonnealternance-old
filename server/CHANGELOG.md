@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ## 1.3.0 [14/01/2020]
 [303] Ajouter la route swagger.json
 
