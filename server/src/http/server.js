@@ -17,6 +17,7 @@ const job = require("./routes/job");
 const jobV1 = require("./routes/jobV1");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
 const rateLimit = require("express-rate-limit");
+var path = require('path');
 
 module.exports = async (components) => {
   const { db } = components;
@@ -59,6 +60,10 @@ module.exports = async (components) => {
   const swaggerUi = require("swagger-ui-express");
   const swaggerDocument = require("../api-docs/swagger.json");
 
+  app.get('/api-docs/swagger.json', (req, res) => {
+    res.sendFile(path.resolve('./src/api-docs/swagger.json'));
+  });
+  
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   app.use("/api/version", limiter3PerSecond, version());
@@ -78,6 +83,7 @@ module.exports = async (components) => {
   app.use("/api/jobsdiplomas", limiter10PerSecond, jobDiploma());
 
   app.use("/api/romelabels", limiter10PerSecond, rome());
+
 
   app.get(
     "/api",
