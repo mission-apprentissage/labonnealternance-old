@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.2.1 [14/01/2020]
+[330] Passe de nettoyage de code non utilisé et d'optimisation de performance
+
 ## 1.2.0 [11/01/2020]
 [262] Widget emploi
 
