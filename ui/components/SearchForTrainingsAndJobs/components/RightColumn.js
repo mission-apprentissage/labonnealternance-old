@@ -82,8 +82,6 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     if (widgetParameters && widgetParameters.applyWidgetParameters) {
       launchWidgetSearch(widgetParameters);
       dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
-    } else {
-      // setIsLoading(false);
     }
   });
 
@@ -97,9 +95,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     setIsLoading(true);
     try {
       executeSearchWhenMapIsReady(values);
-      // setIsLoading(false);
     } catch (err) {
-      // setIsLoading(false);
       logError("Search error", err);
     }
   };
