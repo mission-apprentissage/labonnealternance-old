@@ -120,7 +120,6 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   };
 
   const launchWidgetSearch = async () => {
-    console.log('launching search')
     setIsLoading(true);
     const p = widgetParameters.parameters;
     try {
@@ -148,9 +147,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
         console.log("aucun lieu trouvé");
       }
 
-      // setIsLoading(false);
     } catch (err) {
-      // setIsLoading(false);
       logError("WidgetSearch error", err);
     }
   };
