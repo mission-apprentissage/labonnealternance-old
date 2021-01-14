@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.2.1 [14/01/2020]
+[329] Spinner pour les widgets
+
 ## 1.2.0 [11/01/2020]
 [262] Widget emploi
 
