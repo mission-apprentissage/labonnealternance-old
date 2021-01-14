@@ -82,7 +82,9 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     if (widgetParameters && widgetParameters.applyWidgetParameters) {
       launchWidgetSearch(widgetParameters);
       dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
-    } else setIsLoading(false);
+    } else {
+      // setIsLoading(false);
+    }
   });
 
   useEffect(() => {
@@ -95,9 +97,9 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     setIsLoading(true);
     try {
       executeSearchWhenMapIsReady(values);
-      setIsLoading(false);
+      // setIsLoading(false);
     } catch (err) {
-      setIsLoading(false);
+      // setIsLoading(false);
       logError("Search error", err);
     }
   };
@@ -122,6 +124,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   };
 
   const launchWidgetSearch = async () => {
+    console.log('launching search')
     setIsLoading(true);
     const p = widgetParameters.parameters;
     try {
@@ -145,11 +148,13 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
         };
 
         executeSearchWhenMapIsReady(values);
-      } else console.log("aucun lieu trouvé");
+      } else {
+        console.log("aucun lieu trouvé");
+      }
 
-      setIsLoading(false);
+      // setIsLoading(false);
     } catch (err) {
-      setIsLoading(false);
+      // setIsLoading(false);
       logError("WidgetSearch error", err);
     }
   };
@@ -171,7 +176,8 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     if (scopeContext.isJob) {
       searchForJobsWithStrictRadius(values);
     }
-
+    // HERE
+    setIsLoading(false);
     dispatch(setIsFormVisible(false));
   };
 
