@@ -5,7 +5,7 @@ import distance from "@turf/distance";
 import baseUrl from "utils/baseUrl";
 import { scrollToTop, scrollToElementInContainer, logError, getItemElement } from "utils/tools";
 import ItemDetail from "components/ItemDetail/ItemDetail";
-import Spinner from "components/Spinner";
+import LoadingScreen from "components/LoadingScreen";
 import { setJobMarkers, setTrainingMarkers } from "../utils/mapTools";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
@@ -169,7 +169,6 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     if (scopeContext.isJob) {
       searchForJobsWithStrictRadius(values);
     }
-    // HERE
     setIsLoading(false);
     dispatch(setIsFormVisible(false));
   };
@@ -394,7 +393,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   return (
     <div id="rightColumn" className="rightCol">
       {isLoading ? (
-        <Spinner />
+        <LoadingScreen />
       ) : (
         <>
           {getSearchForm()}
