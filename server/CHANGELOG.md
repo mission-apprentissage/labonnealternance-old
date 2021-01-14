@@ -1,7 +1,7 @@
 # CHANGELOG
 
-## 1.2.0 [11/01/2020]
-[262] Widget emploi
+## 1.2.2 [14/01/2020]
+[291] Fix rayon de recherche LBB/LBA
 
 ## 1.1.7 [08/01/2020]
 [319] Utilisation intitule_long pour noms de formations
