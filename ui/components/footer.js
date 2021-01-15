@@ -34,9 +34,14 @@ const Footer = (props) => {
             <Col className="col-12 col-lg-3">
               <strong>ddd</strong> lreLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Col>
+            <Col className="col-12 d-flex justify-content-center c-footer-credit">
+              <small><a href="https://www.freepik.com/vectors/people">Illustration réalisée par pikisuperstar - www.freepik.com</a></small>
+            </Col>
           </Row>
           <Row>
-            
+           <div class="col d-flex justify-content-center">
+                 CenterContent
+            </div>            
           </Row>
         </div>
       </Navbar>
