@@ -117,19 +117,19 @@ const Footer = (props) => {
             </Col>
             <Col className="text-center col-12 col-lg-3">
               <a href="http://www.fse.gouv.fr" target="_blank" rel="noopener norefer">
-                <img className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2" src={logoFSE} alt="Logo du FSE" />
+                <img className="c-footer--partner-logo" src={logoFSE} alt="Logo du FSE" />
               </a>
               <a href="https://www.gouvernement.fr/france-relance" target="_blank" rel="noopener norefer">
                 <img
-                  className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
+                  className="c-footer--partner-logo"
                   src={logoFranceRelance}
-                  width="50px"
+                  width="60px"
                   alt="Logo France Relance"
                 />
               </a>
               <a href="http://www.pole-emploi.fr" target="_blank" rel="noopener norefer">
                 <img
-                  className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
+                  className="c-footer--partner-logo"
                   src={logoPoleEmploi}
                   alt="Logo de Pôle emploi"
                 />
