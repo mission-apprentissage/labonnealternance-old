@@ -8,6 +8,8 @@ import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
 
+  const currentSearchRadius = formValues.radius || 30;
+
   const onSelectItem = () => {
     handleSelectItem(company, company.ideaType);
   };
@@ -69,7 +71,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
         ""
       ) : (
         <>
-          {Math.round(company.place.distance) > formValues.radius ? getCenterSearchOnCompanyButton() : ""}
+          {Math.round(company.place.distance) > currentSearchRadius ? getCenterSearchOnCompanyButton() : ""}
           <div className="knowMore">
             <button className={`gtmSavoirPlus gtm${company.ideaType} gtmListe`} onClick={onSelectItem}>
               En savoir plus
