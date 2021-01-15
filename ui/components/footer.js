@@ -23,25 +23,121 @@ const Footer = (props) => {
         <div className="container">
           <Row>
             <Col className="d-none d-md-block col-md-4 col-lg-3">
-              <strong>aaa</strong> lreLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <a href="/">
+                <img src="/images/logo_lba.svg" alt="Logo LBA" className="c-footer__brand-img" />
+              </a>
+              <br />
+              <small>Trouvez la formation et l'entreprise pour réaliser votre projet</small>
             </Col>
             <Col className="col-md-4 col-lg-3">
-              <strong>bbb</strong> lreLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <ul className="c-footer-links">
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/a-propos" }));
+                    }}
+                    href="/a-propos"
+                  >
+                    A propos
+                  </a>
+                </li>
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/faq" }));
+                    }}
+                    href="/faq"
+                  >
+                    FAQ
+                  </a>
+                </li>
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/rgpd" }));
+                    }}
+                    href="/rgpd"
+                  >
+                    RGPD
+                  </a>
+                </li>
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/accessibilite" }));
+                    }}
+                    href="/accessibilite"
+                  >
+                    Accessibilité
+                  </a>
+                </li>
+              </ul>
             </Col>
             <Col className="col-md-4 col-lg-3">
-              <strong>ccc</strong> lreLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <ul className="c-footer-links">
+                <li className="c-footer-links__line">
+                  <a className="c-footer-links__link" href="mailto:labonnealternance@pole-emploi.fr">
+                    Contact
+                  </a>
+                </li>
+                <li className="c-footer-links__line">
+                  <div className="d-flex cursor-pointer">
+                    <a
+                      className="c-footer-links__link"
+                      target="_blank"
+                      rel="noopener noreferer"
+                      href="https://mission-apprentissage.gitbook.io/la-bonne-alternance/"
+                    >
+                      Développeurs
+                    </a>
+                  </div>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <div className="d-flex cursor-pointer">
+                    <a
+                      className="c-footer-links__link"
+                      target="_blank"
+                      rel="noopener noreferer"
+                      href="https://datastudio.google.com/u/0/reporting/1v-Sim2qMlFSMn4n9JJWaMk8PIONvM757/page/3CME"
+                    >
+                      Statistiques
+                    </a>
+                  </div>
+                </li>
+              </ul>
             </Col>
-            <Col className="col-12 col-lg-3">
-              <strong>ddd</strong> lreLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <Col className="text-center col-12 col-lg-3">
+              <a href="http://www.fse.gouv.fr" target="_blank" rel="noopener norefer">
+                <img className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2" src={logoFSE} alt="Logo du FSE" />
+              </a>
+              <a href="https://www.gouvernement.fr/france-relance" target="_blank" rel="noopener norefer">
+                <img
+                  className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
+                  src={logoFranceRelance}
+                  width="50px"
+                  alt="Logo France Relance"
+                />
+              </a>
+              <a href="http://www.pole-emploi.fr" target="_blank" rel="noopener norefer">
+                <img
+                  className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
+                  src={logoPoleEmploi}
+                  alt="Logo de Pôle emploi"
+                />
+              </a>
             </Col>
-            <Col className="col-12 d-flex justify-content-center c-footer-credit">
+            <Col className="col-12 text-center c-footer-credit pt-3">
               <small><a href="https://www.freepik.com/vectors/people">Illustration réalisée par pikisuperstar - www.freepik.com</a></small>
             </Col>
-          </Row>
-          <Row>
-           <div class="col d-flex justify-content-center">
-                 CenterContent
-            </div>            
           </Row>
         </div>
       </Navbar>
