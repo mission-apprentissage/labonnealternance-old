@@ -57,6 +57,7 @@
   border-radius: 8px;
   height: calc(1.75em + 0.7rem + 13px);
   @include media-breakpoint-up(sm) {
+    height: calc(1.75em + 0.7rem + 9px);
     padding-left: 3rem;
   }
   &.is-text-too-long {
