@@ -7,7 +7,7 @@ import AutoCompleteField from "./AutoCompleteField";
 import LogoIdea from "./LogoIdea";
 import RadioButton from "./RadioButton";
 import ErrorMessage from "./ErrorMessage";
-import Spinner from "./Spinner";
+import LoadingScreen from "./LoadingScreen";
 import StartForm from "./StartForm";
 import DomainError from "./DomainError";
 import { ItemDetail, PeJob, PeJobDetail, Training, TrainingDetail, LbbCompany, LbbCompanyDetail } from "./ItemDetail";
@@ -29,7 +29,7 @@ export {
   LbbCompany,
   LbbCompanyDetail,
   ErrorMessage,
-  Spinner,
+  LoadingScreen,
   StartForm,
   DomainError,
 };
