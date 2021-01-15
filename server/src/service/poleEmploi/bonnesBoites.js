@@ -11,7 +11,7 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, s
   let trys = 0;
 
   while (trys < 3) {
-    companySet = await getLbbCompanies({ romes, latitude, longitude, currentRadius, companyLimit, type });
+    companySet = await getLbbCompanies({ romes, latitude, longitude, radius: currentRadius, companyLimit, type });
 
     if (companySet.status === 429) {
       console.log("Lbb api quota exceeded. Retrying : ", trys + 1);

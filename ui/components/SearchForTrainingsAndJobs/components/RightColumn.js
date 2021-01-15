@@ -5,7 +5,7 @@ import distance from "@turf/distance";
 import baseUrl from "utils/baseUrl";
 import { scrollToTop, scrollToElementInContainer, logError, getItemElement } from "utils/tools";
 import ItemDetail from "components/ItemDetail/ItemDetail";
-import Spinner from "components/Spinner";
+import LoadingScreen from "components/LoadingScreen";
 import { setJobMarkers, setTrainingMarkers } from "../utils/mapTools";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
@@ -82,7 +82,9 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     if (widgetParameters && widgetParameters.applyWidgetParameters) {
       launchWidgetSearch(widgetParameters);
       dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
-    } else setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
   });
 
   useEffect(() => {
@@ -145,8 +147,9 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
         };
 
         executeSearchWhenMapIsReady(values);
-      } else console.log("aucun lieu trouvé");
-
+      } else {
+        console.log("aucun lieu trouvé");
+      }
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
@@ -171,7 +174,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     if (scopeContext.isJob) {
       searchForJobsWithStrictRadius(values);
     }
-
+    //setIsLoading(false);
     dispatch(setIsFormVisible(false));
   };
 
@@ -395,7 +398,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   return (
     <div id="rightColumn" className="rightCol">
       {isLoading ? (
-        <Spinner />
+        <LoadingScreen />
       ) : (
         <>
           {getSearchForm()}
