@@ -30,7 +30,10 @@
 }
 
 .c-footer--partner-logo {
-  max-width: 71px;
+  max-width: 73px;
+}
+
+.c-footer-logocontainer + .c-footer-logocontainer {
   margin-left: 1rem;
 }
 

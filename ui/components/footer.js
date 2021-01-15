@@ -116,10 +116,10 @@ const Footer = (props) => {
               </ul>
             </Col>
             <Col className="text-center col-12 col-lg-3">
-              <a href="http://www.fse.gouv.fr" target="_blank" rel="noopener norefer">
+              <a href="http://www.fse.gouv.fr" target="_blank" rel="noopener norefer" className="c-footer-logocontainer">
                 <img className="c-footer--partner-logo" src={logoFSE} alt="Logo du FSE" />
               </a>
-              <a href="https://www.gouvernement.fr/france-relance" target="_blank" rel="noopener norefer">
+              <a href="https://www.gouvernement.fr/france-relance" target="_blank" rel="noopener norefer" className="c-footer-logocontainer">
                 <img
                   className="c-footer--partner-logo"
                   src={logoFranceRelance}
@@ -127,7 +127,7 @@ const Footer = (props) => {
                   alt="Logo France Relance"
                 />
               </a>
-              <a href="http://www.pole-emploi.fr" target="_blank" rel="noopener norefer">
+              <a href="http://www.pole-emploi.fr" target="_blank" rel="noopener norefer" className="c-footer-logocontainer">
                 <img
                   className="c-footer--partner-logo"
                   src={logoPoleEmploi}
