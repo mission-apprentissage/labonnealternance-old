@@ -19,17 +19,15 @@ Ce service est également disponible sous forme de Widget, directement exposable
 
 * sur un domaine \(disponible dès à présent\) ou un ensemble de domaines \(disponible prochainement\),
 * et/ou sur une zone géographique donnée : localité \(disponible dès à présent\), département \(disponible prochainement\), région \(disponible prochainement\), 
-* sur la donnée formation uniquement \(disponible dès à présent\) ou entreprise uniquement \(disponible prochainement pour l'apprentissage et disponible dès à présent pour l'alternance dans son ensemble\).
+* sur la donnée formation uniquement ou entreprise uniquement \(disponible dès à présent\) 
 
 Actuellement, vous pouvez afficher le widget avec les données entreprises sur toute l'alternance, ou le widget avec les données entreprises et/ou formations sur l'apprentissage \(voir sections "Tester le widget"\).
 
-Nous travaillons à la décorrélation des différents composants, ainsi, prochainement :
+En tant que jobboard vous pouvez choisir d'y afficher seulement les offres d'emploi en apprentissage et les entreprises susceptibles de recruter en alternance.
 
-En tant que jobboard vous pourrez choisir d'y afficher seulement les offres d'emploi en apprentissage et les entreprises susceptibles de recruter en alternance.
+En tant qu'OPCO, vous pouvez choisir d'y afficher uniquement les formations et/ou les entreprises des domaines professionnels sur lesquels vous intervenez.
 
-En tant qu'OPCO, vous pourrez choisir d'y afficher uniquement les formations et/ou les entreprises des domaines professionnels sur lesquels vous intervenez.
-
-En tant que Région, vous pourrez choisir d'y afficher les formations et/ou les entreprises de votre zone géographique.
+En tant que Région, vous pouvez choisir d'y afficher les formations et/ou les entreprises de votre zone géographique.
 
 En tant que CFA, vous pourrez choisir de n'afficher que les entreprises de votre zone géographique.
 
