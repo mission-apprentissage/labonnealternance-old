@@ -8,6 +8,8 @@ import { get } from "lodash";
 const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
 
+  const currentSearchRadius = formValues.radius || 30;
+
   const onSelectItem = () => {
     handleSelectItem(job, "peJob");
   };
@@ -63,7 +65,7 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
         ""
       ) : (
         <>
-          {Math.round(job.place.distance) > formValues.radius ? getCenterSearchOnPeJobButton() : ""}
+          {Math.round(job.place.distance) > currentSearchRadius ? getCenterSearchOnPeJobButton() : ""}
           <div className="knowMore">
             <button className={`gtmSavoirPlus gtmPeJob gtmListe`} onClick={onSelectItem}>
               En savoir plus
