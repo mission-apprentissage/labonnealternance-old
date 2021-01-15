@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.2.2 [15/01/2020]
+[274] Ajustements home
+
 ## 1.2.1 [14/01/2020]
 [329] Spinner pour les widgets
 
