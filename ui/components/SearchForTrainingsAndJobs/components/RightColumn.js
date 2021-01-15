@@ -82,6 +82,8 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     if (widgetParameters && widgetParameters.applyWidgetParameters) {
       launchWidgetSearch(widgetParameters);
       dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
+    } else {
+      setIsLoading(false);
     }
   });
 
@@ -95,7 +97,9 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     setIsLoading(true);
     try {
       executeSearchWhenMapIsReady(values);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       logError("Search error", err);
     }
   };
@@ -146,8 +150,9 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
       } else {
         console.log("aucun lieu trouvé");
       }
-
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       logError("WidgetSearch error", err);
     }
   };
@@ -169,7 +174,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     if (scopeContext.isJob) {
       searchForJobsWithStrictRadius(values);
     }
-    setIsLoading(false);
+    //setIsLoading(false);
     dispatch(setIsFormVisible(false));
   };
 
