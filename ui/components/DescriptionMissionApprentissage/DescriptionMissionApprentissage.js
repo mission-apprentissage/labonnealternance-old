@@ -18,7 +18,6 @@ const DescriptionMissionApprentissage = () => {
           <span className="d-inline px-3 px-sm-0">En savoir plus </span>
           <span className="d-none d-sm-inline">sur la mission apprentissage</span>
         </a>
-        <div className="mb-5">&nbsp;</div>
       </div>
     </section>
   );
