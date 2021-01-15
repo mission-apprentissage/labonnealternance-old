@@ -15,8 +15,8 @@ const DescriptionMissionApprentissage = () => {
         </p>
 
         <a className="btn btn-outline-primary mb-5 px-1 px-sm-5 c-home-descr__more" rel="noopener noreferer" href="https://mission-apprentissage.gitbook.io/general/" target="_blank">
-          <span className="d-block d-sm-inline">En savoir plus sur </span>
-          <span className="d-block d-sm-inline">la mission apprentissage</span>
+          <span className="d-inline px-3 px-sm-0">En savoir plus </span>
+          <span className="d-none d-sm-inline">sur la mission apprentissage</span>
         </a>
         <div className="mb-5">&nbsp;</div>
       </div>
