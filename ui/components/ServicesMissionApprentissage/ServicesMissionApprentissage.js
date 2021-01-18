@@ -5,7 +5,7 @@ const ServicesMissionApprentissage = () => {
   return (
     <div className="c-servicesmna-hero">
       <div className="container py-5">
-        <div>Les services de </div>
+        <div className="d-block d-md-inline">Les services de </div>
         <div>La Bonne Alternance</div>
 
         <ServiceMissionApprentissage
