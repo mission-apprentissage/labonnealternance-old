@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.3.4 [18/01/2020]
+Ajustements recherche domainesMetiers : plus de résultats, ignore les mots courts sur une recherche multimots à partir du deuxième mot
+
 ## 1.3.3 [15/01/2020]
 [274] Ajustements home
 
