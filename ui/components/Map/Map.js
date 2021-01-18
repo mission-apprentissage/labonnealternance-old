@@ -16,11 +16,16 @@ const Map = ({ showResultList }) => {
 
   useEffect(() => {
     if (!map || (map && !document.getElementsByClassName("mapContainer")[0].innerHTML.length)) {
-      initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });
+      console.log("initialize map Map.js");
+      //initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });
     }
   });
 
-  return <div ref={(el) => (mapContainer.current = el)} className="mapContainer" />;
+  return (
+    <div ref={(el) => (mapContainer.current = el)} className="mapContainer">
+      Carte pas initialisée
+    </div>
+  );
 };
 
 export default Map;

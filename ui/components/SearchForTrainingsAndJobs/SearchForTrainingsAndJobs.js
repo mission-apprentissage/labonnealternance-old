@@ -31,7 +31,8 @@ const SearchForTrainingsAndJobs = () => {
 
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
     setTimeout(() => {
-      map.resize();
+      //map.resize();
+      console.log("map.resize SearchForTraningAndJobs.js");
     }, 50);
   };
 
