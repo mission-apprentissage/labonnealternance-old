@@ -28,6 +28,8 @@
 .c-home-hero__submit {
   font-size: 18px;
   font-weight: 700;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
 }
 
 .c-home-hero__title {
@@ -74,10 +76,10 @@
 
 .c-input-work-img {
   position: absolute;
-  top: 9px;
+  top: 12px;
   left: 8px;
   @include media-breakpoint-up(sm) {
-    top: 9px;
+    top: 14px;
     left: 14px;
   }
 }

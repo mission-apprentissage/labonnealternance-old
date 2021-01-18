@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.3.3 [15/01/2020]
+[274] Ajustements home
+
 ## 1.3.2 [15/01/2020]
 [291] Fix rayon de recherche LBB/LBA
 

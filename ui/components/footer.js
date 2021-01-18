@@ -22,14 +22,14 @@ const Footer = (props) => {
       <Navbar expand="lg" className="footer-light">
         <div className="container">
           <Row>
-            <Col className="d-none d-md-block" md="3">
+            <Col className="d-none d-md-block col-md-4 col-lg-3">
               <a href="/">
                 <img src="/images/logo_lba.svg" alt="Logo LBA" className="c-footer__brand-img" />
               </a>
               <br />
               <small>Trouvez la formation et l'entreprise pour réaliser votre projet</small>
             </Col>
-            <Col xs="12" sm="6" md="3" lg="2" className="ml-md-5">
+            <Col className="col-md-4 col-lg-3">
               <ul className="c-footer-links">
                 <li className="c-footer-links__line">
                   <a
@@ -81,7 +81,7 @@ const Footer = (props) => {
                 </li>
               </ul>
             </Col>
-            <Col xs="12" sm="6" md="3" lg="2" className="ml-md-5">
+            <Col className="col-md-4 col-lg-3">
               <ul className="c-footer-links">
                 <li className="c-footer-links__line">
                   <a className="c-footer-links__link" href="mailto:labonnealternance@pole-emploi.fr">
@@ -115,26 +115,28 @@ const Footer = (props) => {
                 </li>
               </ul>
             </Col>
-
-            <Col xs="12" sm="6" md="6" lg="3" className="ml-sm-5 ml-lg-5 ml-md-0 mt-md-3 mt-lg-0 c-footer-imgs">
-              <a href="http://www.fse.gouv.fr" target="_blank" rel="noopener norefer">
-                <img className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2" src={logoFSE} alt="Logo du FSE" />
+            <Col className="text-center col-12 col-lg-3">
+              <a href="http://www.fse.gouv.fr" target="_blank" rel="noopener norefer" className="c-footer-logocontainer">
+                <img className="c-footer--partner-logo" src={logoFSE} alt="Logo du FSE" />
               </a>
-              <a href="https://www.gouvernement.fr/france-relance" target="_blank" rel="noopener norefer">
+              <a href="https://www.gouvernement.fr/france-relance" target="_blank" rel="noopener norefer" className="c-footer-logocontainer">
                 <img
-                  className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
+                  className="c-footer--partner-logo"
                   src={logoFranceRelance}
-                  width="50px"
+                  width="60px"
                   alt="Logo France Relance"
                 />
               </a>
-              <a href="http://www.pole-emploi.fr" target="_blank" rel="noopener norefer">
+              <a href="http://www.pole-emploi.fr" target="_blank" rel="noopener norefer" className="c-footer-logocontainer">
                 <img
-                  className="c-footer--partner-logo ml-md-5 ml-lg-3 mb-lg-2"
+                  className="c-footer--partner-logo"
                   src={logoPoleEmploi}
                   alt="Logo de Pôle emploi"
                 />
               </a>
+            </Col>
+            <Col className="col-12 text-center c-footer-credit pt-3">
+              <small><a href="https://www.freepik.com/vectors/people">Illustration réalisée par pikisuperstar - www.freepik.com</a></small>
             </Col>
           </Row>
         </div>
