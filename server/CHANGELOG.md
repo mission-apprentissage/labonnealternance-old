@@ -1,7 +1,16 @@
 # CHANGELOG
 
-## 1.2.2 [15/01/2020]
+## 1.3.3 [15/01/2020]
 [274] Ajustements home
+
+## 1.3.2 [15/01/2020]
+[291] Fix rayon de recherche LBB/LBA
+
+## 1.3.1 [14/01/2020]
+[291] Fix rayon de recherche LBB/LBA
+
+## 1.3.0 [14/01/2020]
+[303] Ajouter la route swagger.json
 
 ## 1.2.1 [14/01/2020]
 [329] Spinner pour les widgets
