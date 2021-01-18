@@ -28,13 +28,19 @@ const getMultiMatchTerm = (term) => {
 
 const getLabelsAndRomes = async (searchKeyword) => {
   try {
-    let terms = searchKeyword.split(" ").map((term) => getMultiMatchTerm(term));
+    let terms = [];
+
+    searchKeyword.split(" ").forEach((term, idx) => {
+      if (idx === 0 || term.length > 2) {
+        terms.push(getMultiMatchTerm(term));
+      }
+    });
 
     const esClient = getDomainesMetiersES();
 
     const response = await esClient.search({
       index: "domainesmetiers",
-      size: 10,
+      size: 20,
       _sourceIncludes: ["sous_domaine", "codes_romes"],
       body: {
         query: {
