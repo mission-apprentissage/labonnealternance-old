@@ -34,7 +34,7 @@ const getLabelsAndRomes = async (searchKeyword) => {
 
     const response = await esClient.search({
       index: "domainesmetiers",
-      size: 10,
+      size: 20,
       _sourceIncludes: ["sous_domaine", "codes_romes"],
       body: {
         query: {
