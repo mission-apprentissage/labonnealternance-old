@@ -206,6 +206,12 @@ const flyToMarker = (item, zoom = map.getZoom()) => {
   }
 };
 
+const flyToLocation = (location) => {
+  if (isMapInitialized) {
+    map.flyTo(location);
+  }
+};
+
 const buildPopup = (item, type, store, showResultList) => {
   const popupNode = document.createElement("div");
 
@@ -388,6 +394,7 @@ export {
   buildPopup,
   initializeMap,
   flyToMarker,
+  flyToLocation,
   buildJobMarkerIcon,
   closeMapPopups,
   getZoomLevelForDistance,
