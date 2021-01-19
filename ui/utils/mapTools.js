@@ -370,6 +370,16 @@ const filterLayers = (filter) => {
   });
 };
 
+const waitForMapReadiness = async () => {
+  while (
+      !map.getSource("job-points") ||
+      !map.getSource("training-points") // attente que la map soit prête
+    )
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+  return;
+}
+
 export {
   map,
   isMapInitialized,
@@ -383,4 +393,5 @@ export {
   factorJobsForMap,
   computeMissingPositionAndDistance,
   filterLayers,
+  waitForMapReadiness,
 };
