@@ -388,9 +388,16 @@ const waitForMapReadiness = async () => {
   return;
 };
 
+const resizeMap = () => {
+  if (isMapInitialized) {
+    map.resize();
+  }
+};
+
 export {
   map,
   isMapInitialized,
+  resizeMap,
   buildPopup,
   initializeMap,
   flyToMarker,
