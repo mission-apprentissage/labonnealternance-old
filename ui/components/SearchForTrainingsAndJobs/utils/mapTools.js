@@ -1,7 +1,9 @@
-import { map, isMapInitialized, getZoomLevelForDistance } from "../../../utils/mapTools";
+import { map, isMapInitialized, getZoomLevelForDistance, waitForMapReadiness } from "../../../utils/mapTools";
 
-const setJobMarkers = (jobList) => {
+const setJobMarkers = async (jobList) => {
   if (isMapInitialized) {
+    await waitForMapReadiness();
+
     let features = [];
     jobList.map((job, idx) => {
       job.ideaType = "job";
@@ -24,8 +26,10 @@ const setJobMarkers = (jobList) => {
   }
 };
 
-const setTrainingMarkers = (trainingList) => {
+const setTrainingMarkers = async (trainingList) => {
   if (isMapInitialized) {
+    await waitForMapReadiness();
+
     if (trainingList) {
       // centrage sur formation la plus proche
       //const centerCoords = trainingList[0].coords.split(",");
