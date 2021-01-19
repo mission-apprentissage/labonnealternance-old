@@ -96,25 +96,12 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const executeSearch = (values) => {
     setIsLoading(true);
     try {
-      executeSearchWhenMapIsReady(values);
+      handleSubmit(values);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
       logError("Search error", err);
     }
-  };
-
-  const executeSearchWhenMapIsReady = async (values) => {
-    /*while (
-      !map.getSource("job-points") ||
-      !map.getSource("training-points") // attente que la map soit prête
-    )
-      await new Promise((resolve) => setTimeout(resolve, 350));*/
-    
-    console.log("executeSearchWhenMapIsReady RightColumn.js");
-
-
-    await handleSubmit(values);
   };
 
   const handleSelectItem = (item, type) => {
@@ -151,7 +138,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
           ...addresses[0],
         };
 
-        executeSearchWhenMapIsReady(values);
+        handleSubmit(values);
       } else {
         console.log("aucun lieu trouvé");
       }
