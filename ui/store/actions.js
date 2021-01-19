@@ -10,6 +10,7 @@ export const types = {
   SET_HAS_SEARCH: "trainings/SET_HAS_SEARCH",
   SET_IS_FORM_VISIBLE: "trainings/SET_IS_FORM_VISIBLE",
   SET_SHOULD_EXECUTE_SEARCH: "trainings/SET_SHOULD_EXECUTE_SEARCH",
+  SET_SHOULD_MAP_BE_VISIBLE: "trainings/SET_SHOULD_MAP_BE_VISIBLE",
   SET_WIDGET_PARAMETERS: "trainings/SET_WIDGET_PARAMETERS",
 };
 
@@ -88,6 +89,13 @@ export const setShouldExecuteSearch = (shouldExecuteSearch = true) => {
   return {
     type: types.SET_SHOULD_EXECUTE_SEARCH,
     shouldExecuteSearch,
+  };
+};
+
+export const setShouldMapBeVisible = (shouldMapBeVisible = false) => {
+  return {
+    type: types.SET_SHOULD_MAP_BE_VISIBLE,
+    shouldMapBeVisible,
   };
 };
 
