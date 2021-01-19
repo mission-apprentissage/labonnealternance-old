@@ -21,8 +21,8 @@ import {
   setWidgetParameters,
 } from "store/actions";
 import {
-  map,
   flyToMarker,
+  flyToLocation,
   closeMapPopups,
   factorTrainingsForMap,
   factorJobsForMap,
@@ -156,9 +156,8 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     dispatch(setHasSearch(false));
     setSearchRadius(values.radius || 30);
     dispatch(setExtendedSearch(false));
-    
-    //map.flyTo({ center: searchCenter, zoom: 10 });
-    console.log("map.flyTo handleSubmit RightColumn.js");
+
+    flyToLocation({ center: searchCenter, zoom: 10 });
 
     dispatch(setFormValues({ ...values }));
 
@@ -191,10 +190,11 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     dispatch(setFormValues(formValues));
 
     // mise à jour des infos de distance des formations par rapport au nouveau centre de recherche
-    if (isJobSearch) updateTrainingDistanceWithNewCenter(formValues.location.value.coordinates);
+    if (isJobSearch) {
+      updateTrainingDistanceWithNewCenter(formValues.location.value.coordinates);
+    }
 
-    //map.flyTo({ center: formValues.location.value.coordinates, zoom: 10 });
-    console.log("map.flyTo searchOnNewCenter RightColumn.js");
+    flyToLocation({ center: formValues.location.value.coordinates, zoom: 10 });
 
     searchForJobsWithStrictRadius(formValues);
 
