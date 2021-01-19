@@ -5,7 +5,7 @@ import { Row, Col } from "reactstrap";
 import { MapListSwitchButton, RightColumn } from "./components";
 import { setSelectedItem, setItemToScrollTo, setIsFormVisible, setVisiblePane } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { map } from "../../utils/mapTools";
+import { resizeMap } from "../../utils/mapTools";
 import Map from "../../components/Map";
 
 const SearchForTrainingsAndJobs = () => {
@@ -31,8 +31,7 @@ const SearchForTrainingsAndJobs = () => {
 
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
     setTimeout(() => {
-      //map.resize();
-      console.log("map.resize SearchForTraningAndJobs.js");
+      resizeMap();
     }, 50);
   };
 
