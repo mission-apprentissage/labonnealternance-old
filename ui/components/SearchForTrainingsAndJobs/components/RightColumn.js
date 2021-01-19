@@ -106,8 +106,8 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
 
   const handleSelectItem = (item, type) => {
     console.log("handleSelectItem RightColumn.js");
-    //flyToMarker(item, 12);
-    //closeMapPopups();
+    flyToMarker(item, 12);
+    closeMapPopups();
     dispatch(setSelectedItem(item));
   };
 

@@ -201,7 +201,9 @@ const onLayerClick = (e, layer, store, showResultList, unselectItem) => {
 };
 
 const flyToMarker = (item, zoom = map.getZoom()) => {
-  map.easeTo({ center: [item.place.longitude, item.place.latitude], speed: 0.2, zoom });
+  if (isMapInitialized) {
+    map.easeTo({ center: [item.place.longitude, item.place.latitude], speed: 0.2, zoom });
+  }
 };
 
 const buildPopup = (item, type, store, showResultList) => {
@@ -218,7 +220,7 @@ const buildPopup = (item, type, store, showResultList) => {
 };
 
 const closeMapPopups = () => {
-  if (currentPopup) {
+  if (isMapInitialized && currentPopup) {
     currentPopup.remove();
     currentPopup = null;
   }
@@ -372,13 +374,13 @@ const filterLayers = (filter) => {
 
 const waitForMapReadiness = async () => {
   while (
-      !map.getSource("job-points") ||
-      !map.getSource("training-points") // attente que la map soit prête
-    )
-      await new Promise((resolve) => setTimeout(resolve, 50));
+    !map.getSource("job-points") ||
+    !map.getSource("training-points") // attente que la map soit prête
+  )
+    await new Promise((resolve) => setTimeout(resolve, 50));
 
   return;
-}
+};
 
 export {
   map,
