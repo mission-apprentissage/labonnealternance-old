@@ -10,8 +10,11 @@ import { fetchAddresses } from "../services/baseAdresse";
 import { scrollToElementInContainer, getItemElement } from "./tools";
 let currentPopup = null;
 let map = null;
+let isMapInitialized = false;
 
 const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trainings, jobs }) => {
+  isMapInitialized = true;
+
   mapboxgl.accessToken = "pk.eyJ1IjoiYWxhbmxyIiwiYSI6ImNrYWlwYWYyZDAyejQzMHBpYzE0d2hoZWwifQ.FnAOzwsIKsYFRnTUwneUSA";
 
   /*lat: 47,    affichage centre France plus zoom France métropolitaine en entier
@@ -369,6 +372,7 @@ const filterLayers = (filter) => {
 
 export {
   map,
+  isMapInitialized,
   buildPopup,
   initializeMap,
   flyToMarker,
