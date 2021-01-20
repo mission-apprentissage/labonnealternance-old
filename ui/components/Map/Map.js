@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useStore, useDispatch, useSelector } from "react-redux";
 import { setSelectedItem } from "../../store/actions";
 
@@ -9,6 +9,8 @@ const Map = ({ showResultList }) => {
   const { trainings, jobs, shouldMapBeVisible } = useSelector((state) => {
     return state.trainings;
   });
+
+  const [mapInitialized, setMapInitialized] = useState(false);
   const mapContainer = useRef(null);
   const dispatch = useDispatch();
 
@@ -26,12 +28,20 @@ const Map = ({ showResultList }) => {
       (!map || (map && !document.getElementsByClassName("mapContainer")[0].innerHTML.length))
     ) {
       console.log("INITIALISATION MAP");
+      setMapInitialized(true);
       initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });
     }
   }, [trainings, jobs]);
 
   // Warning : mapContainer doit être vide sinon les onclick sur la map ne marcheront pas
-  return <div ref={(el) => (mapContainer.current = el)} className="mapContainer"></div>;
+  return (
+    <>
+      <div ref={(el) => (mapContainer.current = el)} className={`mapContainer ${mapInitialized ? "" : "d-none"}`}></div>
+      <div className={`dummyMapContainer ${mapInitialized ? "d-none" : ""}`}>
+        <img src="/images/logo_lba.svg" alt="Logo LBA" className="mt-5 c-navbar-brand-img" />
+      </div>
+    </>
+  );
 };
 
 export default Map;

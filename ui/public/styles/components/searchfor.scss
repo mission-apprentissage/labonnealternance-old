@@ -325,7 +325,8 @@
   margin-bottom: -3px;
   margin-left: 20px;
 }
-.demoPage .mapContainer {
+.demoPage .mapContainer,
+.demoPage .dummyMapContainer {
   height: 100vh;
   width: 100%;
   position: absolute;
