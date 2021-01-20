@@ -32,11 +32,8 @@ const Map = ({ showResultList }) => {
     }
   }, [trainings, jobs]);
 
-  return (
-    <div ref={(el) => (mapContainer.current = el)} className="mapContainer">
-      <img src="/images/logo_lba.svg" alt="Logo LBA" className="c-navbar-brand-img" />
-    </div>
-  );
+  // Warning : mapContainer doit être vide sinon les onclick sur la map ne marcheront pas
+  return <div ref={(el) => (mapContainer.current = el)} className="mapContainer"></div>;
 };
 
 export default Map;
