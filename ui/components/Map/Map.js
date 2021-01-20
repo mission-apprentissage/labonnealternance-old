@@ -27,7 +27,6 @@ const Map = ({ showResultList }) => {
       (shouldMapBeVisible || vw > 767) &&
       (!map || (map && !document.getElementsByClassName("mapContainer")[0].innerHTML.length))
     ) {
-      console.log("INITIALISATION MAP");
       setMapInitialized(true);
       initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });
     }
@@ -38,7 +37,19 @@ const Map = ({ showResultList }) => {
     <>
       <div ref={(el) => (mapContainer.current = el)} className={`mapContainer ${mapInitialized ? "" : "d-none"}`}></div>
       <div className={`dummyMapContainer ${mapInitialized ? "d-none" : ""}`}>
-        <img src="/images/logo_lba.svg" alt="Logo LBA" className="mt-5 c-navbar-brand-img" />
+        <div className="c-staticmapframe pr-5 py-3">
+          <table>
+            <tr>
+              <td className="px-5 c-staticmapframe__decoration"></td>
+              <td>
+                <span className="c-staticmapframe__title">Faites une recherche</span>
+                <br />
+                Renseignez les champs de recherche à droite pour trouver la formation et l'entreprise pour réaliser
+                votre projet d'alternance
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
     </>
   );
