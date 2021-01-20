@@ -23,7 +23,7 @@ const Map = ({ showResultList }) => {
 
     if (
       !isMapInitialized &&
-      (jobs.length > 0 || trainings.length > 0) &&
+      (trainings.length > 0 || jobs.peJobs || jobs.lbaCompanies || jobs.lbbCompanies) &&
       (shouldMapBeVisible || vw > 767) &&
       (!map || (map && !document.getElementsByClassName("mapContainer")[0].innerHTML.length))
     ) {
