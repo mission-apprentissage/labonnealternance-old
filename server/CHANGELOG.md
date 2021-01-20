@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.4.0 [20/01/2020]
+Chargement de mapbox seulement lorsque nécessaire
+
 ## 1.3.4 [18/01/2020]
 Ajustements recherche domainesMetiers : plus de résultats, ignore les mots courts sur une recherche multimots à partir du deuxième mot
 
