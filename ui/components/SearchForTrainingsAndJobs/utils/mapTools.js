@@ -1,4 +1,4 @@
-import { map, isMapInitialized, getZoomLevelForDistance, waitForMapReadiness } from "../../../utils/mapTools";
+/*import { map, isMapInitialized, getZoomLevelForDistance, waitForMapReadiness } from "../../../utils/mapTools";
 
 const setJobMarkers = async (jobList) => {
   if (isMapInitialized) {
@@ -67,3 +67,4 @@ const setTrainingMarkers = async (trainingList) => {
 };
 
 export { setTrainingMarkers, setJobMarkers };
+*/

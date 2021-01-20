@@ -6,7 +6,6 @@ import baseUrl from "utils/baseUrl";
 import { scrollToTop, scrollToElementInContainer, logError, getItemElement } from "utils/tools";
 import ItemDetail from "components/ItemDetail/ItemDetail";
 import LoadingScreen from "components/LoadingScreen";
-import { setJobMarkers, setTrainingMarkers } from "../utils/mapTools";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
 import {
@@ -27,6 +26,8 @@ import {
   factorTrainingsForMap,
   factorJobsForMap,
   computeMissingPositionAndDistance,
+  setJobMarkers,
+  setTrainingMarkers,
 } from "utils/mapTools";
 import { useScopeContext } from "context/ScopeContext";
 
