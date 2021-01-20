@@ -17,18 +17,16 @@ const Map = ({ showResultList }) => {
   };
 
   useEffect(() => {
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vw = document.documentElement.clientWidth;
 
     if (
       !isMapInitialized &&
       (jobs.length > 0 || trainings.length > 0) &&
-      (shouldMapBeVisible || vw > 760) &&
+      (shouldMapBeVisible || vw > 767) &&
       (!map || (map && !document.getElementsByClassName("mapContainer")[0].innerHTML.length))
     ) {
-      console.log("initialize map Map.js");
+      console.log("INITIALISATION MAP");
       initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });
-    } else {
-      console.log("pas init", isMapInitialized, shouldMapBeVisible);
     }
   }, [trainings, jobs]);
 
