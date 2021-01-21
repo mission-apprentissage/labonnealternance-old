@@ -57,8 +57,8 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
         <div className="title d-inline-block">&nbsp;{training.title ? training.title : training.longTitle}</div>
       </div>
       <div className="body">
-        {training.company.name.toLowerCase()}
-        <div className="companyAddress text-capitalize">{training.place.fullAddress.toLowerCase()}</div>
+        <div className="cardText text-capitalize">{training.company.name.toLowerCase()}</div>
+        <div className="cardText text-capitalize">{training.place.fullAddress.toLowerCase()}</div>
         <span className="cardDistance">{Math.round(training.place.distance)} km(s) du lieu de recherche</span>
       </div>
       {showTextOnly ? (

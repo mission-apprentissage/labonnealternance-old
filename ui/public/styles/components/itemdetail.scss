@@ -112,9 +112,14 @@
   }
 }
 .resultCard .cardDistance {
-  font-size: 12px;
-  font-weight: 500;
-  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: $gray-600;
+}
+.cardText {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
 }
 .resultCard .title {
   font-size: 16px;
