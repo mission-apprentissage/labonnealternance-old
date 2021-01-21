@@ -110,16 +110,16 @@ const Footer = (props) => {
                 </li>
 
                 <li className="c-footer-links__line">
-                  <div className="d-flex cursor-pointer">
-                    <a
-                      className="c-footer-links__link"
-                      target="_blank"
-                      rel="noopener noreferer"
-                      href="https://datastudio.google.com/u/0/reporting/1v-Sim2qMlFSMn4n9JJWaMk8PIONvM757/page/3CME"
-                    >
-                      Statistiques
-                    </a>
-                  </div>
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/statistiques" }));
+                    }}
+                    href="/statistiques"
+                  >
+                    Statistiques
+                  </a>
                 </li>
                 <li className="c-footer-links__line">
                   <a
