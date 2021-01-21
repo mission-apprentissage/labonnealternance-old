@@ -1,8 +1,7 @@
 # CHANGELOG
 
-
 ## 1.4.1 [21/01/2020]
-[277] Mise à jour page développeurs
+[277] Mise à jour du footer
 
 ## 1.4.0 [20/01/2020]
 Chargement de mapbox seulement lorsque nécessaire
