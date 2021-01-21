@@ -18,15 +18,26 @@ const Map = ({ showResultList }) => {
     dispatch(setSelectedItem(null));
   };
 
-  useEffect(() => {
+  const shouldMapBeInitialized = () => {
+    /*
+    Chargement de la carte si :
+    - elle n'est pas chargée
+    - il y a des résultats 
+    - le panneau carte est visible à l'écran
+     */
+
     const vw = document.documentElement.clientWidth;
 
-    if (
+    return (
       !isMapInitialized &&
       (trainings.length > 0 || jobs.peJobs || jobs.lbaCompanies || jobs.lbbCompanies) &&
       (shouldMapBeVisible || vw > 767) &&
       (!map || (map && !document.getElementsByClassName("mapContainer")[0].innerHTML.length))
-    ) {
+    );
+  };
+
+  useEffect(() => {
+    if (shouldMapBeInitialized()) {
       setMapInitialized(true);
       initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });
     }
@@ -39,15 +50,17 @@ const Map = ({ showResultList }) => {
       <div className={`dummyMapContainer ${mapInitialized ? "d-none" : ""}`}>
         <div className="c-staticmapframe pr-5 py-3">
           <table>
-            <tr>
-              <td className="px-5 c-staticmapframe__decoration"></td>
-              <td>
-                <span className="c-staticmapframe__title">Faites une recherche</span>
-                <br />
-                Renseignez les champs de recherche à droite pour trouver la formation et l'entreprise pour réaliser
-                votre projet d'alternance
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td className="px-5 c-staticmapframe__decoration"></td>
+                <td>
+                  <span className="c-staticmapframe__title">Faites une recherche</span>
+                  <br />
+                  Renseignez les champs de recherche à droite pour trouver la formation et l'entreprise pour réaliser
+                  votre projet d'alternance
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
