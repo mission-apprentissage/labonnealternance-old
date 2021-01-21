@@ -425,10 +425,7 @@ const setTrainingMarkers = async (trainingList) => {
 
     if (trainingList) {
       // centrage sur formation la plus proche
-      //const centerCoords = trainingList[0].coords.split(",");
-
       let newZoom = getZoomLevelForDistance(trainingList[0].items[0].place.distance);
-
       map.flyTo({ center: trainingList[0].coords, zoom: newZoom });
 
       let features = [];
