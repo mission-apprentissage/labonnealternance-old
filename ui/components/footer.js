@@ -89,16 +89,16 @@ const Footer = (props) => {
                   </a>
                 </li>
                 <li className="c-footer-links__line">
-                  <div className="d-flex cursor-pointer">
-                    <a
-                      className="c-footer-links__link"
-                      target="_blank"
-                      rel="noopener noreferer"
-                      href="https://mission-apprentissage.gitbook.io/la-bonne-alternance/"
-                    >
-                      Développeurs
-                    </a>
-                  </div>
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/developpeurs" }));
+                    }}
+                    href="/developpeurs"
+                  >
+                    Développeurs
+                  </a>
                 </li>
 
                 <li className="c-footer-links__line">
