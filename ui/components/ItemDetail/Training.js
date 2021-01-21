@@ -81,16 +81,18 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
         </div>
 
       </div>
+      <div>
+        {showTextOnly ? (
+          ""
+        ) : (
+          <>
+            {Math.round(training.place.distance) > currentSearchRadius && scopeContext.isJob
+              ? getCenterSearchOnTrainingButton()
+              : ""}
+          </>
+        )}        
+      </div>
 
-      {showTextOnly ? (
-        ""
-      ) : (
-        <>
-          {Math.round(training.place.distance) > currentSearchRadius && scopeContext.isJob
-            ? getCenterSearchOnTrainingButton()
-            : ""}
-        </>
-      )}
 
 
 
