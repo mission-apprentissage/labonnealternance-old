@@ -393,9 +393,14 @@ const resizeMap = () => {
   }
 };
 
-const setJobMarkers = async (jobList) => {
+const setJobMarkers = async (jobList, searchCenter) => {
   if (isMapInitialized) {
     await waitForMapReadiness();
+
+    // centrage et zoom si searchCenter est précisé (scope emploi seulement)
+    if (searchCenter) {
+      map.flyTo({ center: searchCenter, zoom: 9 });
+    }
 
     let features = [];
     jobList.map((job, idx) => {
