@@ -1,5 +1,5 @@
 import React from "react";
-import trainingIcon from "../../public/images/icons/school.svg";
+import trainingIcon from "../../public/images/icons/book.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
