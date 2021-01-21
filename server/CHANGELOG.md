@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.4.0 [20/01/2020]
+Chargement de mapbox seulement lorsque nécessaire
+
+## 1.3.4 [18/01/2020]
+Ajustements recherche domainesMetiers : plus de résultats, ignore les mots courts sur une recherche multimots à partir du deuxième mot
+
+## 1.3.3 [15/01/2020]
+[274] Ajustements home
+
 ## 1.3.2 [15/01/2020]
 [291] Fix rayon de recherche LBB/LBA
 
