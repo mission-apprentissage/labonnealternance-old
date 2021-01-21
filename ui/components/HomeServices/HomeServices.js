@@ -43,7 +43,8 @@ const HomeServices = () => {
           href="https://mission-apprentissage.gitbook.io/general/"
           target="_blank"
         >
-          <span className="d-block d-sm-inline">En savoir plus sur nos services</span>
+          <span className="d-inline px-3 px-sm-0">En savoir plus </span>
+          <span className="d-none d-sm-inline">sur nos services</span>
         </a>
       </div>
     </section>

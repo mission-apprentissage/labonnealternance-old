@@ -3,9 +3,15 @@ import React from "react";
 import { Row, Col } from "reactstrap";
 
 import { MapListSwitchButton, RightColumn } from "./components";
-import { setSelectedItem, setItemToScrollTo, setIsFormVisible, setVisiblePane } from "../../store/actions";
+import {
+  setSelectedItem,
+  setItemToScrollTo,
+  setIsFormVisible,
+  setVisiblePane,
+  setShouldMapBeVisible,
+} from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { map } from "../../utils/mapTools";
+import { resizeMap, isMapInitialized } from "../../utils/mapTools";
 import Map from "../../components/Map";
 
 const SearchForTrainingsAndJobs = () => {
@@ -27,11 +33,14 @@ const SearchForTrainingsAndJobs = () => {
       e.stopPropagation();
     }
 
+    if (!isMapInitialized) {
+      dispatch(setShouldMapBeVisible(true));
+    }
     dispatch(setVisiblePane("resultMap"));
 
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
     setTimeout(() => {
-      map.resize();
+      resizeMap();
     }, 50);
   };
 

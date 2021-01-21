@@ -6,7 +6,6 @@ import baseUrl from "utils/baseUrl";
 import { scrollToTop, scrollToElementInContainer, logError, getItemElement } from "utils/tools";
 import ItemDetail from "components/ItemDetail/ItemDetail";
 import LoadingScreen from "components/LoadingScreen";
-import { setJobMarkers, setTrainingMarkers } from "../utils/mapTools";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
 import {
@@ -21,12 +20,14 @@ import {
   setWidgetParameters,
 } from "store/actions";
 import {
-  map,
   flyToMarker,
+  flyToLocation,
   closeMapPopups,
   factorTrainingsForMap,
   factorJobsForMap,
   computeMissingPositionAndDistance,
+  setJobMarkers,
+  setTrainingMarkers,
 } from "utils/mapTools";
 import { useScopeContext } from "context/ScopeContext";
 
@@ -96,21 +97,12 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const executeSearch = (values) => {
     setIsLoading(true);
     try {
-      executeSearchWhenMapIsReady(values);
+      handleSubmit(values);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
       logError("Search error", err);
     }
-  };
-
-  const executeSearchWhenMapIsReady = async (values) => {
-    while (
-      !map.getSource("job-points") ||
-      !map.getSource("training-points") // attente que la map soit prête
-    )
-      await new Promise((resolve) => setTimeout(resolve, 350));
-    await handleSubmit(values);
   };
 
   const handleSelectItem = (item, type) => {
@@ -146,7 +138,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
           ...addresses[0],
         };
 
-        executeSearchWhenMapIsReady(values);
+        handleSubmit(values);
       } else {
         console.log("aucun lieu trouvé");
       }
@@ -164,7 +156,9 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     dispatch(setHasSearch(false));
     setSearchRadius(values.radius || 30);
     dispatch(setExtendedSearch(false));
-    map.flyTo({ center: searchCenter, zoom: 10 });
+
+    flyToLocation({ center: searchCenter, zoom: 10 });
+
     dispatch(setFormValues({ ...values }));
 
     if (scopeContext.isTraining) {
@@ -196,9 +190,11 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     dispatch(setFormValues(formValues));
 
     // mise à jour des infos de distance des formations par rapport au nouveau centre de recherche
-    if (isJobSearch) updateTrainingDistanceWithNewCenter(formValues.location.value.coordinates);
+    if (isJobSearch) {
+      updateTrainingDistanceWithNewCenter(formValues.location.value.coordinates);
+    }
 
-    map.flyTo({ center: formValues.location.value.coordinates, zoom: 10 });
+    flyToLocation({ center: formValues.location.value.coordinates, zoom: 10 });
 
     searchForJobsWithStrictRadius(formValues);
 
