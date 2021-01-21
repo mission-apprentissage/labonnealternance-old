@@ -193,4 +193,4 @@ const CGU = (props) => {
   );
 };
 
-export default FAQ;
+export default CGU;
