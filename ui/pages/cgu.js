@@ -5,7 +5,7 @@ import ScrollToTop from "components/ScrollToTop";
 
 import Footer from "components/footer";
 
-const FAQ = (props) => {
+const CGU = (props) => {
   return (
     <div>
       <ScrollToTop />
