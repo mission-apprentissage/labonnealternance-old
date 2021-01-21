@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.4.2 [21/01/2020]
+[342] Fix zoom sur centre de recherche pour widget /recherche-emploi
+
 ## 1.4.1 [21/01/2020]
 [277] Mise à jour du footer
 
