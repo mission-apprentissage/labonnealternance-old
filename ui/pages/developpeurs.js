@@ -9,7 +9,7 @@ const developpeurs = () => (
   <div>
     <ScrollToTop />
     <Navigation />
-    <Breadcrumb forPage="developpeurs" label="developpeurs" />
+    <Breadcrumb forPage="developpeurs" label="développeurs" />
 
     <div className="c-page-container container my-0 mb-sm-5 p-5">
       <div className="row">
