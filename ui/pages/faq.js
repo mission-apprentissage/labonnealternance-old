@@ -105,6 +105,14 @@ const FAQ = (props) => {
             </div>
             <div className="c-faq-question-block">
               <h2 className="c-faq-question">
+                Toutes les formations disponibles dans La Bonne Alternance sont-elles aussi référencées sur Parcoursup et/ou Affelnet ?
+              </h2>
+              <p className="c-faq-answer">
+                Pour figurer sur La Bonne Alternance, les organismes doivent référencer leurs formations auprès du Carif-Oref. Les conditions d'inscription sur Parcoursup ou Affelnet sont propres à ces plateformes et consultables <a href="https://catalogue.apprentissage.beta.gouv.fr/guide-reglementaire">ici</a>
+              </p>
+            </div>
+            <div className="c-faq-question-block">
+              <h2 className="c-faq-question">
                 Pourquoi les formations proposées ne correspondent pas au lieu de ma recherche ?
               </h2>
               <p className="c-faq-answer">
