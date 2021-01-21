@@ -54,7 +54,6 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
     <div className="resultCard trainingCard">
       <div id={`id${training.id}`}>
         <img className="cardIcon" src={trainingIcon} alt="" />
-        <span className="cardDistance">{Math.round(training.place.distance)} km(s) du lieu de recherche</span>
       </div>
       <div className="title">{training.title ? training.title : training.longTitle}</div>
       <div className="body">
