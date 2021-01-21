@@ -84,10 +84,18 @@ const Footer = (props) => {
             <Col className="col-md-4 col-lg-3">
               <ul className="c-footer-links">
                 <li className="c-footer-links__line">
-                  <a className="c-footer-links__link" href="mailto:labonnealternance@pole-emploi.fr">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/contact" }));
+                    }}
+                    href="/contact"
+                  >
                     Contact
                   </a>
                 </li>
+
                 <li className="c-footer-links__line">
                   <a
                     className="c-footer-links__link"

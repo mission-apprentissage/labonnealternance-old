@@ -4,6 +4,7 @@ import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
 
 import Footer from "components/footer";
+
 const developpeurs = () => (
   <div>
     <ScrollToTop />
