@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ## 1.4.2 [21/01/2020]
 [273] Addendum FAQ
 
