@@ -1,7 +1,6 @@
 import React from "react";
 import distance from "@turf/distance";
 import { Marker, MapPopup } from "../components/SearchForTrainingsAndJobs/components";
-import { setJobMarkers, setTrainingMarkers } from "../components/SearchForTrainingsAndJobs/utils/mapTools";
 import ReactDOM from "react-dom";
 // import mapboxgl from "mapbox-gl";
 import * as mapboxgl from "mapbox-gl";
@@ -10,8 +9,11 @@ import { fetchAddresses } from "../services/baseAdresse";
 import { scrollToElementInContainer, getItemElement } from "./tools";
 let currentPopup = null;
 let map = null;
+let isMapInitialized = false;
 
 const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trainings, jobs }) => {
+  isMapInitialized = true;
+
   mapboxgl.accessToken = "pk.eyJ1IjoiYWxhbmxyIiwiYSI6ImNrYWlwYWYyZDAyejQzMHBpYzE0d2hoZWwifQ.FnAOzwsIKsYFRnTUwneUSA";
 
   /*lat: 47,    affichage centre France plus zoom France métropolitaine en entier
@@ -198,7 +200,15 @@ const onLayerClick = (e, layer, store, showResultList, unselectItem) => {
 };
 
 const flyToMarker = (item, zoom = map.getZoom()) => {
-  map.easeTo({ center: [item.place.longitude, item.place.latitude], speed: 0.2, zoom });
+  if (isMapInitialized) {
+    map.easeTo({ center: [item.place.longitude, item.place.latitude], speed: 0.2, zoom });
+  }
+};
+
+const flyToLocation = (location) => {
+  if (isMapInitialized) {
+    map.flyTo(location);
+  }
 };
 
 const buildPopup = (item, type, store, showResultList) => {
@@ -215,7 +225,7 @@ const buildPopup = (item, type, store, showResultList) => {
 };
 
 const closeMapPopups = () => {
-  if (currentPopup) {
+  if (isMapInitialized && currentPopup) {
     currentPopup.remove();
     currentPopup = null;
   }
@@ -367,11 +377,91 @@ const filterLayers = (filter) => {
   });
 };
 
+const waitForMapReadiness = async () => {
+  while (
+    !map.getSource("job-points") ||
+    !map.getSource("training-points") // attente que la map soit prête
+  )
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+  return;
+};
+
+const resizeMap = () => {
+  if (isMapInitialized) {
+    map.resize();
+  }
+};
+
+const setJobMarkers = async (jobList) => {
+  if (isMapInitialized) {
+    await waitForMapReadiness();
+
+    let features = [];
+    jobList.map((job, idx) => {
+      job.ideaType = "job";
+      features.push({
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: job.coords,
+        },
+        properties: {
+          id: idx,
+          job,
+        },
+      });
+    });
+
+    let results = { type: "FeatureCollection", features };
+
+    map.getSource("job-points").setData(results);
+  }
+};
+
+const setTrainingMarkers = async (trainingList) => {
+  if (isMapInitialized) {
+    await waitForMapReadiness();
+
+    if (trainingList) {
+      // centrage sur formation la plus proche
+      let newZoom = getZoomLevelForDistance(trainingList[0].items[0].place.distance);
+      map.flyTo({ center: trainingList[0].coords, zoom: newZoom });
+
+      let features = [];
+
+      trainingList.map((training, idx) => {
+        training.ideaType = "formation";
+        features.push({
+          type: "Feature",
+          geometry: {
+            type: "Point",
+            coordinates: training.coords,
+          },
+          properties: {
+            id: idx,
+            training,
+          },
+        });
+      });
+
+      let results = { type: "FeatureCollection", features };
+
+      map.getSource("training-points").setData(results);
+    } else {
+      map.getSource("training-points").setData({ type: "FeatureCollection", features: [] });
+    }
+  }
+};
+
 export {
   map,
+  isMapInitialized,
+  resizeMap,
   buildPopup,
   initializeMap,
   flyToMarker,
+  flyToLocation,
   buildJobMarkerIcon,
   closeMapPopups,
   getZoomLevelForDistance,
@@ -379,4 +469,7 @@ export {
   factorJobsForMap,
   computeMissingPositionAndDistance,
   filterLayers,
+  waitForMapReadiness,
+  setTrainingMarkers,
+  setJobMarkers,
 };

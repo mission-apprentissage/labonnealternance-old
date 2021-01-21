@@ -3,7 +3,7 @@ import { createRouterMiddleware, initialRouterState, routerReducer } from "conne
 import { HYDRATE, createWrapper } from "next-redux-wrapper";
 import Router from "next/router";
 import { mainReducer } from "./reducer";
-import { GTMPageView } from 'utils/gtm';
+import { GTMPageView } from "utils/gtm";
 
 const handleRouteChange = (url) => GTMPageView(url);
 
@@ -30,8 +30,8 @@ const reducer = (state, action) => {
     if (typeof window !== "undefined" && state?.router) {
       // preserve router value on client side navigation
       nextState.router = state.router;
-      // trigger 
-      handleRouteChange(state.router.location.pathname)
+      // trigger
+      handleRouteChange(state.router.location.pathname);
     }
     return nextState;
   } else {
