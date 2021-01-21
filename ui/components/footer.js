@@ -121,6 +121,18 @@ const Footer = (props) => {
                     </a>
                   </div>
                 </li>
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/cgu" }));
+                    }}
+                    href="/cgu"
+                  >
+                    CGU
+                  </a>
+                </li>
               </ul>
             </Col>
             <Col className="text-center col-12 col-lg-3">
