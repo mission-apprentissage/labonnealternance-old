@@ -431,8 +431,6 @@ const setTrainingMarkers = async (trainingList) => {
       let features = [];
 
       trainingList.map((training, idx) => {
-        //const coords = training.coords.split(",");
-
         training.ideaType = "formation";
         features.push({
           type: "Feature",
@@ -472,6 +470,6 @@ export {
   computeMissingPositionAndDistance,
   filterLayers,
   waitForMapReadiness,
-  setTrainingMarkers, 
+  setTrainingMarkers,
   setJobMarkers,
 };
