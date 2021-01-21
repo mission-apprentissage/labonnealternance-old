@@ -52,15 +52,36 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
   return (
     <div className="resultCard trainingCard">
-      <div id={`id${training.id}`}>
-        <img className="cardIcon" src={trainingIcon} alt="" />
-        <div className="title d-inline-block">&nbsp;{training.title ? training.title : training.longTitle}</div>
+
+      <div className="c-media" id={`id${training.id}`}>
+
+        <div className="c-media-figure">
+          <img className="cardIcon" src={trainingIcon} alt="" />
+        </div>
+
+        <div className="c-media-body">
+          <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
+          <div className="cardText text-capitalize">{training.company.name.toLowerCase()}</div>
+          <div className="cardText text-capitalize">{training.place.fullAddress.toLowerCase()}</div>
+          <span className="cardDistance">
+            {Math.round(training.place.distance)} km(s) du lieu de recherche
+
+            {showTextOnly ? (
+              ""
+            ) : (
+              <>
+                <span className="knowMore">
+                  <button className="c-resultcard-knowmore" onClick={onSelectItem}>
+                    En savoir plus
+                  </button>
+                </span>
+              </>
+            )}
+          </span>          
+        </div>
+
       </div>
-      <div className="body">
-        <div className="cardText text-capitalize">{training.company.name.toLowerCase()}</div>
-        <div className="cardText text-capitalize">{training.place.fullAddress.toLowerCase()}</div>
-        <span className="cardDistance">{Math.round(training.place.distance)} km(s) du lieu de recherche</span>
-      </div>
+
       {showTextOnly ? (
         ""
       ) : (
@@ -68,14 +89,12 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
           {Math.round(training.place.distance) > currentSearchRadius && scopeContext.isJob
             ? getCenterSearchOnTrainingButton()
             : ""}
-          <div className="knowMore">
-            <button className={`gtmSavoirPlus gtmFormation gtmListe`} onClick={onSelectItem}>
-              En savoir plus
-            </button>
-          </div>
-          <div style={{ clear: "both" }} />
         </>
       )}
+
+
+
+
     </div>
   );
 };
