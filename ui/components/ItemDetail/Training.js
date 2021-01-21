@@ -48,17 +48,18 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
     searchForJobsOnNewCenter(newCenter);
   };
 
-  //console.log("training : ",training);
+  console.log("training company : ",training.company);
 
   return (
     <div className="resultCard trainingCard">
       <div id={`id${training.id}`}>
         <img className="cardIcon" src={trainingIcon} alt="" />
+        <div className="title d-inline-block">&nbsp;{training.title ? training.title : training.longTitle}</div>
       </div>
-      <div className="title">{training.title ? training.title : training.longTitle}</div>
       <div className="body">
-        {training.company.name}
-        <div className="companyAddress">{training.place.fullAddress}</div>
+        {training.company.name.toLowerCase()}
+        <div className="companyAddress text-capitalize">{training.place.fullAddress.toLowerCase()}</div>
+        <span className="cardDistance">{Math.round(training.place.distance)} km(s) du lieu de recherche</span>
       </div>
       {showTextOnly ? (
         ""
