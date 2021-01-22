@@ -9,7 +9,8 @@ import PeJob from "./PeJob";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import CommonDetail from "./CommonDetail";
-import _ from "lodash";
+import { get } from "lodash";
+
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 
 const ItemDetail = ({ selectedItem, handleClose }) => {
@@ -21,7 +22,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
             ← Retour aux résultats
           </button>          
           <p className="c-detail-title">
-            {_.get(selectedItem, 'company.name', '')}
+            {get(selectedItem, 'company.name', '')}
           </p>
           <p className="c-detail-activity">
             Activité non renseignée
@@ -31,10 +32,19 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
               <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
             </span>
             <span className="c-detail-address">
-              {_.get(selectedItem, 'place.fullAddress', '').toLowerCase()}
+              {get(selectedItem, 'place.fullAddress', '').toLowerCase()}
             </span>
           </p>
+          <p>
+            <div className="c-detail-sizetitle">
+              Taille de l'entreprise
+            </div>
+            <div className="c-detail-sizetext">
+              {get(selectedItem, 'company.size', 'Non renseigné').toLowerCase()}
+            </div>
+          </p>
         </div>
+        <hr className="c-detail-header-separator"/>
       </header>
 
 
