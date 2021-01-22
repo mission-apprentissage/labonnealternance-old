@@ -40,40 +40,35 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
 
   return (
     <div className="resultCard">
-      <div id={`peJob${job.job.id}`}>
-        <img className="cardIcon" src={jobIcon} alt="" />
-        <span className="cardDistance">{job.place.distance} km(s) du lieu de recherche</span>
+      <div className="c-media" id={`id${job.job.id}`}>
+      
+        <div className="c-media-figure">
+          <img className="cardIcon" src={jobIcon} alt="" />
+        </div>
+
+        <div className="c-media-body">
+          <div className="title d-inline-block">{job.company && job.company.name ? job.company.name : "Nom Manquant"}</div>
+          <div className="cardText text-capitalize pt-2">{job.place.fullAddress.toLowerCase()}</div>
+
+          <span className="cardDistance pt-1">
+              {Math.round(job.place.distance)} km(s) du lieu de recherche
+
+              {showTextOnly ? (
+                ""
+              ) : (
+                <>
+                  <span className="knowMore">
+                    <button className="c-resultcard-knowmore" onClick={onSelectItem}>
+                      En savoir plus
+                    </button>
+                  </span>
+                </>
+              )}
+            </span> 
+            {Math.round(job.place.distance) > currentSearchRadius ? getCenterSearchOnPeJobButton() : ""}
+        </div>
+        
       </div>
-
-      <div className="title">{job.company ? job.company.name : ""}</div>
-      <div className="body">
-        {job.title}
-        <div className="companyAddress">{job.place.fullAddress}</div>
-        {get(job.company.size) ? (
-          <div className="companySize">
-            <img src={companySizeIcon} alt="" />
-            {job.company.size === "0 salarié" ? "petite entreprise" : job.company.size}
-          </div>
-        ) : (
-          ""
-        )}
-
-        <div className="hasJob">L'entreprise propose 1 offre d'emploi pour cette formation</div>
-      </div>
-
-      {showTextOnly ? (
-        ""
-      ) : (
-        <>
-          {Math.round(job.place.distance) > currentSearchRadius ? getCenterSearchOnPeJobButton() : ""}
-          <div className="knowMore">
-            <button className={`gtmSavoirPlus gtmPeJob gtmListe`} onClick={onSelectItem}>
-              En savoir plus
-            </button>
-          </div>
-          <div style={{ clear: "both" }} />
-        </>
-      )}
     </div>
   );
 };
