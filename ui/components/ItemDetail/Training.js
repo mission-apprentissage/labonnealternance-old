@@ -90,13 +90,6 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
         </div>
 
       </div>
-      <div>
-      </div>
-
-
-
-
-
     </div>
   );
 };
