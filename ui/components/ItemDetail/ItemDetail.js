@@ -14,7 +14,11 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
   return (
     <div className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
       <header>
-        header
+        <div className='text-left'>
+          <button className="c-detail-back" onClick={handleClose}>
+            ← Retour aux résultats
+          </button>          
+        </div>
       </header>
 
 
