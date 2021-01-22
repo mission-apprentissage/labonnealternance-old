@@ -3,7 +3,7 @@ import moment from "moment";
 import infoIcon from "../../public/images/icons/info.svg";
 import linkIcon from "../../public/images/icons/link.svg";
 
-const CommonDetail = ({ job }) => {
+const CommonDetail = ({ thing }) => {
   useEffect(() => {
     try {
       document.getElementsByClassName("rightCol")[0].scrollTo(0, 0);
@@ -13,7 +13,7 @@ const CommonDetail = ({ job }) => {
   return (
     <>
       <div className="itemDetailBody">
-        hello
+        {thing.ideaType}
       </div>
     </>
   );

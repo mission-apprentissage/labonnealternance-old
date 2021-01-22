@@ -14,23 +14,9 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
   return (
     <div className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
       <header>
-        <Button className="closeButton" onClick={handleClose}>
-          <FontAwesomeIcon icon={faTimes} />
-        </Button>
-        {selectedItem && selectedItem.ideaType === "peJob" ? <PeJob job={selectedItem} showTextOnly={true} /> : ""}
-        {selectedItem && (selectedItem.ideaType === "lbb" || selectedItem.ideaType === "lba") ? (
-          <LbbCompany company={selectedItem} showTextOnly={true} />
-        ) : (
-          ""
-        )}
-        {selectedItem && selectedItem.ideaType === "formation" ? (
-          <Training training={selectedItem} showTextOnly={true} />
-        ) : (
-          ""
-        )}
+        header
       </header>
 
-      <div className="clearBoth" />
 
       {selectedItem ? <CommonDetail thing={selectedItem} /> : ""}
 
