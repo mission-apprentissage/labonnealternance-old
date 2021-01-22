@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.4.4 [22/01/2020]
+[360] Augmentation des quotas de requêtes sur la conf nginx
+
 ## 1.4.3 [21/01/2020]
 [342] Fix zoom sur centre de recherche pour widget /recherche-emploi
 
