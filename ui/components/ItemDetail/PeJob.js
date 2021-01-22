@@ -4,6 +4,7 @@ import companySizeIcon from "../../public/images/icons/employees.svg";
 import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import { get } from "lodash";
+import ReactHtmlParser from 'react-html-parser'; 
 
 const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
@@ -47,7 +48,7 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
         </div>
 
         <div className="c-media-body">
-          <div className="title d-inline-block">{job.company && job.company.name ? job.company.name : "Nom Manquant"}</div>
+          <div className="title d-inline-block">{job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Entreprise</i>")}</div>
           <div className="cardText text-capitalize pt-2">{job.place.fullAddress.toLowerCase()}</div>
 
           <span className="cardDistance pt-1">
