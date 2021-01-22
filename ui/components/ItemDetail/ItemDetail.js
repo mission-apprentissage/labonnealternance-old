@@ -36,12 +36,12 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
             </span>
           </p>
           <p>
-            <div className="c-detail-sizetitle">
+            <span className="c-detail-sizetitle d-block">
               Taille de l'entreprise
-            </div>
-            <div className="c-detail-sizetext">
+            </span>
+            <span className="c-detail-sizetext d-block">
               {get(selectedItem, 'company.size', 'Non renseigné').toLowerCase()}
-            </div>
+            </span>
           </p>
         </div>
         <hr className="c-detail-header-separator"/>

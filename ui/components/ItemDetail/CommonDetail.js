@@ -12,7 +12,7 @@ const CommonDetail = ({ thing }) => {
 
   return (
     <>
-      <div className="itemDetailBody">
+      <div className="c-detail-body">
         {thing.ideaType}
       </div>
     </>
