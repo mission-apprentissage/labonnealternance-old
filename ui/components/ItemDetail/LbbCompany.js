@@ -56,7 +56,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
         </div>
 
         <div className="c-media-body">
-          <div className="title text-capitalize d-inline-block">{company.company.name.toLowerCase()}</div>
+          <div className="title d-inline-block">{company.company.name.toLowerCase()}</div>
           <div className="cardText pt-1">
             {company.company.size ? (
               <div className="companySize">
@@ -67,7 +67,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
               ""
             )}
           </div>
-          <div className="cardText text-capitalize pt-2">{company.place.fullAddress.toLowerCase()}</div>
+          <div className="cardText pt-2">{company.place.fullAddress.toLowerCase()}</div>
           <span className="cardDistance pt-1">
             {company.place.distance} km(s) du lieu de recherche
             {showTextOnly ? (

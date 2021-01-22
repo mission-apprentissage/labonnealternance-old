@@ -49,7 +49,8 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
 
         <div className="c-media-body">
           <div className="title d-inline-block">{job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Entreprise</i>")}</div>
-          <div className="cardText text-capitalize pt-2">{job.place.fullAddress.toLowerCase()}</div>
+          <div className="cardText pt-0">{job.title}</div>
+          <div className="cardText pt-2">{job.place.fullAddress.toLowerCase()}</div>
 
           <span className="cardDistance pt-1">
               {Math.round(job.place.distance)} km(s) du lieu de recherche
