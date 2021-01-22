@@ -8,6 +8,7 @@ import PeJobDetail from "./PeJobDetail";
 import PeJob from "./PeJob";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
+import CommonDetail from "./CommonDetail";
 
 const ItemDetail = ({ selectedItem, handleClose }) => {
   return (
@@ -28,14 +29,11 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
           ""
         )}
       </header>
+
       <div className="clearBoth" />
-      {selectedItem && selectedItem.ideaType === "peJob" ? <PeJobDetail job={selectedItem} /> : ""}
-      {selectedItem && (selectedItem.ideaType === "lbb" || selectedItem.ideaType === "lba") ? (
-        <LbbCompanyDetail company={selectedItem} />
-      ) : (
-        ""
-      )}
-      {selectedItem && selectedItem.ideaType === "formation" ? <TrainingDetail training={selectedItem} /> : ""}
+
+      {selectedItem ? <CommonDetail thing={selectedItem} /> : ""}
+
     </div>
   );
 };
