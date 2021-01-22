@@ -1,7 +1,5 @@
-location / { 
-    
+location / {
     limit_req               zone=flood burst=200 nodelay;
-    
     proxy_pass              http://ui:3000;
 
     proxy_redirect          off;
