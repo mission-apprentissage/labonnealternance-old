@@ -30,8 +30,8 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
             <span>
               <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
             </span>
-            <span>
-              {selectedItem.place.fullAddress}
+            <span className="c-detail-address">
+              {_.get(selectedItem, 'place.fullAddress', '').toLowerCase()}
             </span>
           </p>
         </div>
