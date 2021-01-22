@@ -48,8 +48,6 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
     searchForJobsOnNewCenter(newCenter);
   };
 
-  console.log("training company : ",training.company);
-
   return (
     <div className="resultCard trainingCard">
 
