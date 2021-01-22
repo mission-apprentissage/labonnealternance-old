@@ -1,5 +1,5 @@
 import React from "react";
-import trainingIcon from "../../public/images/icons/school.svg";
+import trainingIcon from "../../public/images/icons/book.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
@@ -48,34 +48,53 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
     searchForJobsOnNewCenter(newCenter);
   };
 
-  //console.log("training : ",training);
-
   return (
     <div className="resultCard trainingCard">
-      <div id={`id${training.id}`}>
-        <img className="cardIcon" src={trainingIcon} alt="" />
-        <span className="cardDistance">{Math.round(training.place.distance)} km(s) du lieu de recherche</span>
+
+      <div className="c-media" id={`id${training.id}`}>
+
+        <div className="c-media-figure">
+          <img className="cardIcon" src={trainingIcon} alt="" />
+        </div>
+
+        <div className="c-media-body">
+          <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
+          <div className="cardText text-capitalize pt-1">{training.company.name}</div>
+          <div className="cardText text-capitalize pt-2">{training.place.fullAddress}</div>
+          <span className="cardDistance pt-1">
+            {Math.round(training.place.distance)} km(s) du lieu de recherche
+
+            {showTextOnly ? (
+              ""
+            ) : (
+              <>
+                <span className="knowMore">
+                  <button className="c-resultcard-knowmore" onClick={onSelectItem}>
+                    En savoir plus
+                  </button>
+                </span>
+              </>
+            )}
+          </span>          
+          {showTextOnly ? (
+            ""
+          ) : (
+            <>
+              {Math.round(training.place.distance) > currentSearchRadius && scopeContext.isJob
+                ? getCenterSearchOnTrainingButton()
+                : ""}
+            </>
+          )}
+        </div>
+
       </div>
-      <div className="title">{training.title ? training.title : training.longTitle}</div>
-      <div className="body">
-        {training.company.name}
-        <div className="companyAddress">{training.place.fullAddress}</div>
+      <div>
       </div>
-      {showTextOnly ? (
-        ""
-      ) : (
-        <>
-          {Math.round(training.place.distance) > currentSearchRadius && scopeContext.isJob
-            ? getCenterSearchOnTrainingButton()
-            : ""}
-          <div className="knowMore">
-            <button className={`gtmSavoirPlus gtmFormation gtmListe`} onClick={onSelectItem}>
-              En savoir plus
-            </button>
-          </div>
-          <div style={{ clear: "both" }} />
-        </>
-      )}
+
+
+
+
+
     </div>
   );
 };
