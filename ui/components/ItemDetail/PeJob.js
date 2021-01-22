@@ -47,8 +47,7 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
         </div>
 
         <div className="c-media-body">
-          <div className="title d-inline-block">{job.company && job.company.name ? job.company.name : ""}</div>
-          <div className="cardText text-capitalize pt-1">{job.company && job.company.name ? job.company.name.toLowerCase() : ""}</div>
+          <div className="title d-inline-block">{job.company && job.company.name ? job.company.name : "Nom Manquant"}</div>
           <div className="cardText text-capitalize pt-2">{job.place.fullAddress.toLowerCase()}</div>
 
           <span className="cardDistance pt-1">
@@ -66,6 +65,7 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
                 </>
               )}
             </span> 
+            {Math.round(job.place.distance) > currentSearchRadius ? getCenterSearchOnPeJobButton() : ""}
         </div>
         
       </div>

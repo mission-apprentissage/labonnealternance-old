@@ -86,7 +86,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
             ""
           ) : (
             <>
-              {Math.round(company.place.distance) <= currentSearchRadius ? getCenterSearchOnCompanyButton() : ""}
+              {Math.round(company.place.distance) > currentSearchRadius ? getCenterSearchOnCompanyButton() : ""}
             </>
           )}
         </div>
