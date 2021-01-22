@@ -9,6 +9,8 @@ import PeJob from "./PeJob";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import CommonDetail from "./CommonDetail";
+import _ from "lodash";
+import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 
 const ItemDetail = ({ selectedItem, handleClose }) => {
   return (
@@ -18,6 +20,20 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
           <button className="c-detail-back" onClick={handleClose}>
             ← Retour aux résultats
           </button>          
+          <p className="c-detail-title">
+            {_.get(selectedItem, 'company.name', '')}
+          </p>
+          <p className="c-detail-activity">
+            Activité non renseignée
+          </p>
+          <p>
+            <span>
+              <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
+            </span>
+            <span>
+              {selectedItem.place.fullAddress}
+            </span>
+          </p>
         </div>
       </header>
 
