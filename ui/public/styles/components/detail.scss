@@ -1,3 +1,6 @@
+.c-detail-header {
+
+}
 .c-detail-back {
   background: white;
   border: 1px solid #E0E0E0;
@@ -6,7 +9,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: 15px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   text-align: center;
   margin-bottom: 15px;
 }
@@ -27,7 +30,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   margin-bottom: 12px;
   padding-bottom: 0;
 }
@@ -36,7 +39,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   text-transform: capitalize;
   margin-left: 20px;
   margin-bottom: 19px;
@@ -47,7 +50,7 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 19px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   margin-bottom: 16px;
   padding-bottom: 0;
 }
@@ -55,11 +58,36 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   margin-bottom: 20px;
   padding-bottom: 0;
 }
 
+.c-detail-header-separator {
+  margin-bottom: 0;
+}
+
 .c-detail-body {
   background-color: white;
+  padding-left: 30px;
+}
+.c-detail-company {
+  background-color: white;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-align: left;
+  margin-top: 23px;
+}
+.c-detail-proposal {
+  font-weight: 400;
+  color: $gray-700;
+}
+.c-detail-jobname {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0;
+  text-align: left;
 }
