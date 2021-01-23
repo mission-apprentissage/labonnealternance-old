@@ -15,8 +15,8 @@ import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 
 const ItemDetail = ({ selectedItem, handleClose }) => {
   return (
-    <div className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
-      <header>
+    <section className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
+      <header className='c-detail-header'>
         <div className='text-left'>
           <button className="c-detail-back" onClick={handleClose}>
             ← Retour aux résultats
@@ -50,7 +50,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
 
       {selectedItem ? <CommonDetail thing={selectedItem} /> : ""}
 
-    </div>
+    </section>
   );
 };
 
