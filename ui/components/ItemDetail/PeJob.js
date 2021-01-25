@@ -4,6 +4,7 @@ import companySizeIcon from "../../public/images/icons/employees.svg";
 import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import { get } from "lodash";
+import ReactHtmlParser from "react-html-parser";
 
 const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
@@ -40,40 +41,35 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
 
   return (
     <div className="resultCard">
-      <div id={`peJob${job.job.id}`}>
-        <img className="cardIcon" src={jobIcon} alt="" />
-        <span className="cardDistance">{job.place.distance} km(s) du lieu de recherche</span>
-      </div>
+      <div className="c-media" id={`id${job.job.id}`}>
+        <div className="c-media-figure">
+          <img className="cardIcon" src={jobIcon} alt="" />
+        </div>
 
-      <div className="title">{job.company ? job.company.name : ""}</div>
-      <div className="body">
-        {job.title}
-        <div className="companyAddress">{job.place.fullAddress}</div>
-        {get(job.company.size) ? (
-          <div className="companySize">
-            <img src={companySizeIcon} alt="" />
-            {job.company.size === "0 salarié" ? "petite entreprise" : job.company.size}
+        <div className="c-media-body">
+          <div className="title d-inline-block">
+            {job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Offre anonyme</i>")}
           </div>
-        ) : (
-          ""
-        )}
+          <div className="cardText pt-0">{job.title}</div>
+          <div className="cardText pt-2">{job.place.fullAddress}</div>
 
-        <div className="hasJob">L'entreprise propose 1 offre d'emploi pour cette formation</div>
-      </div>
-
-      {showTextOnly ? (
-        ""
-      ) : (
-        <>
+          <span className="cardDistance pt-1">
+            {Math.round(job.place.distance)} km(s) du lieu de recherche
+            {showTextOnly ? (
+              ""
+            ) : (
+              <>
+                <span className="knowMore">
+                  <button className="c-resultcard-knowmore" onClick={onSelectItem}>
+                    En savoir plus
+                  </button>
+                </span>
+              </>
+            )}
+          </span>
           {Math.round(job.place.distance) > currentSearchRadius ? getCenterSearchOnPeJobButton() : ""}
-          <div className="knowMore">
-            <button className={`gtmSavoirPlus gtmPeJob gtmListe`} onClick={onSelectItem}>
-              En savoir plus
-            </button>
-          </div>
-          <div style={{ clear: "both" }} />
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 };
