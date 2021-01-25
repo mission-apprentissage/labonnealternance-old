@@ -34,7 +34,7 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trai
   map.on("load", async () => {
     map.resize();
 
-    map.loadImage("/images/icons/school.png", function (error, image) {
+    map.loadImage("/images/icons/book.png", function (error, image) {
       if (error) throw error;
       map.addImage("training", image);
     });
