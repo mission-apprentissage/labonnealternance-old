@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 1.6.0 [25/01/2020]
+[346] Adaptation fond de carte et pictos de carte
 
 ## 1.5.1 [22/01/2020]
 [344] Recharter peJob.js
