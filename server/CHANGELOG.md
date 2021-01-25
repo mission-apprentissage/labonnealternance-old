@@ -4,6 +4,9 @@
 ## 1.5.2 [22/01/2020]
 [351] Recharter Detail
 
+## 1.5.1 [22/01/2020]
+[344] Recharter peJob.js
+
 ## 1.5.0 [22/01/2020]
 [343] Recharter Training.js
 
