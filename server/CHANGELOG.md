@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.6.1 [25/01/2020]
+[360] Augmentation des quotas de requêtes sur la conf nginx
+
 ## 1.6.0 [25/01/2020]
 [346] Adaptation fond de carte et pictos de carte
 
