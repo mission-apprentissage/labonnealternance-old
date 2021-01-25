@@ -22,7 +22,7 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trai
 
   map = new mapboxgl.Map({
     container: mapContainer.current,
-    style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+    style: "mapbox://styles/alanlr/ckkcqqf4e0dxz17r5xa3fkn1f", // stylesheet location
     center: [2.2, 47],
     zoom: 5,
     maxZoom: 15,
