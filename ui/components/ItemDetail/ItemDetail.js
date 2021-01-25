@@ -8,35 +8,49 @@ import PeJobDetail from "./PeJobDetail";
 import PeJob from "./PeJob";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
+import CommonDetail from "./CommonDetail";
+import { get } from "lodash";
+
+import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 
 const ItemDetail = ({ selectedItem, handleClose }) => {
   return (
-    <div className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
-      <header>
-        <Button className="closeButton" onClick={handleClose}>
-          <FontAwesomeIcon icon={faTimes} />
-        </Button>
-        {selectedItem && selectedItem.ideaType === "peJob" ? <PeJob job={selectedItem} showTextOnly={true} /> : ""}
-        {selectedItem && (selectedItem.ideaType === "lbb" || selectedItem.ideaType === "lba") ? (
-          <LbbCompany company={selectedItem} showTextOnly={true} />
-        ) : (
-          ""
-        )}
-        {selectedItem && selectedItem.ideaType === "formation" ? (
-          <Training training={selectedItem} showTextOnly={true} />
-        ) : (
-          ""
-        )}
+    <section className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
+      <header className='c-detail-header'>
+        <div className='text-left'>
+          <button className="c-detail-back" onClick={handleClose}>
+            ← Retour aux résultats
+          </button>          
+          <p className="c-detail-title">
+            {get(selectedItem, 'company.name', '')}
+          </p>
+          <p className="c-detail-activity">
+            Activité non renseignée
+          </p>
+          <p>
+            <span>
+              <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
+            </span>
+            <span className="c-detail-address">
+              {get(selectedItem, 'place.fullAddress', '').toLowerCase()}
+            </span>
+          </p>
+          <p>
+            <span className="c-detail-sizetitle d-block">
+              Taille de l'entreprise
+            </span>
+            <span className="c-detail-sizetext d-block">
+              {get(selectedItem, 'company.size', 'Non renseigné').toLowerCase()}
+            </span>
+          </p>
+        </div>
+        <hr className="c-detail-header-separator"/>
       </header>
-      <div className="clearBoth" />
-      {selectedItem && selectedItem.ideaType === "peJob" ? <PeJobDetail job={selectedItem} /> : ""}
-      {selectedItem && (selectedItem.ideaType === "lbb" || selectedItem.ideaType === "lba") ? (
-        <LbbCompanyDetail company={selectedItem} />
-      ) : (
-        ""
-      )}
-      {selectedItem && selectedItem.ideaType === "formation" ? <TrainingDetail training={selectedItem} /> : ""}
-    </div>
+
+
+      {selectedItem ? <CommonDetail thing={selectedItem} /> : ""}
+
+    </section>
   );
 };
 
