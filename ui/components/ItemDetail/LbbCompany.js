@@ -48,38 +48,48 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
   };
 
   return (
-    <div className="resultCard">
-      <div id={`${company.ideaType}${company.company.siret}`}>
-        <img className="cardIcon" src={jobIcon} alt="" />
-        <span className="cardDistance">{company.place.distance} km(s) du lieu de recherche</span>
-      </div>
+    <div className="resultCard resultCardLbb">
+      <div className="c-media" id={`${company.ideaType}${company.company.siret}`}>
+        <div className="c-media-figure">
+          <img className="cardIcon" src={jobIcon} alt="" />
+        </div>
 
-      <div className="title">{company.company.name}</div>
-      <div className="body">
-        <div className="companyAddress">{company.place.fullAddress}</div>
-        {company.company.size ? (
-          <div className="companySize">
-            <img src={companySizeIcon} alt="" />{" "}
-            {company.company.size && company.company.size === "0 salarié" ? "petite entreprise" : company.company.size}
+        <div className="c-media-body">
+          <div className="title d-inline-block">{company.company.name}</div>
+          <div className="cardText pt-1">
+            {company.company.size ? (
+              <div className="companySize">
+                <img src={companySizeIcon} alt="" />{" "}
+                {company.company.size && company.company.size === "0 salarié"
+                  ? "petite entreprise"
+                  : company.company.size}
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-        ) : (
-          ""
-        )}
+          <div className="cardText pt-2">{company.place.fullAddress}</div>
+          <span className="cardDistance pt-1">
+            {company.place.distance} km(s) du lieu de recherche
+            {showTextOnly ? (
+              ""
+            ) : (
+              <>
+                <div className="knowMore">
+                  <button className="c-resultcard-knowmore" onClick={onSelectItem}>
+                    En savoir plus
+                  </button>
+                </div>
+              </>
+            )}
+          </span>
+          {showTextOnly ? (
+            ""
+          ) : (
+            <>{Math.round(company.place.distance) > currentSearchRadius ? getCenterSearchOnCompanyButton() : ""}</>
+          )}
+        </div>
       </div>
-
-      {showTextOnly ? (
-        ""
-      ) : (
-        <>
-          {Math.round(company.place.distance) > currentSearchRadius ? getCenterSearchOnCompanyButton() : ""}
-          <div className="knowMore">
-            <button className={`gtmSavoirPlus gtm${company.ideaType} gtmListe`} onClick={onSelectItem}>
-              En savoir plus
-            </button>
-          </div>
-          <div style={{ clear: "both" }} />
-        </>
-      )}
     </div>
   );
 };

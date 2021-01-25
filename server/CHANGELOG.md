@@ -1,7 +1,16 @@
 # CHANGELOG
 
-## 1.4.4 [22/01/2020]
+## 1.6.1 [25/01/2020]
 [360] Augmentation des quotas de requêtes sur la conf nginx
+
+## 1.6.0 [25/01/2020]
+[346] Adaptation fond de carte et pictos de carte
+
+## 1.5.1 [22/01/2020]
+[344] Recharter peJob.js
+
+## 1.5.0 [22/01/2020]
+[343] Recharter Training.js
 
 ## 1.4.3 [21/01/2020]
 [342] Fix zoom sur centre de recherche pour widget /recherche-emploi

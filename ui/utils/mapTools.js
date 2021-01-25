@@ -22,10 +22,10 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trai
 
   map = new mapboxgl.Map({
     container: mapContainer.current,
-    style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+    style: "mapbox://styles/alanlr/ckkcqqf4e0dxz17r5xa3fkn1f", // stylesheet location
     center: [2.2, 47],
     zoom: 5,
-    maxZoom: 15,
+    maxZoom: 17,
     minZoom: 3,
     dragRotate: false,
     touchZoomRotate: false,
@@ -34,7 +34,7 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trai
   map.on("load", async () => {
     map.resize();
 
-    map.loadImage("/images/icons/school.png", function (error, image) {
+    map.loadImage("/images/icons/book.png", function (error, image) {
       if (error) throw error;
       map.addImage("training", image);
     });
