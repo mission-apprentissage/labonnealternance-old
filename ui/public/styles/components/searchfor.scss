@@ -336,6 +336,12 @@
   bottom: 0;
 }
 
+.mapContainer:focus,
+.dummyMapContainer:focus
+{
+  outline:none;
+}
+
 .demoPage .dummyMapContainer {
   background: center / contain no-repeat url(/images/static_map.svg), #F9F8F6;  
 
