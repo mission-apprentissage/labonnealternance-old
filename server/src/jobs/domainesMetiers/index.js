@@ -1,6 +1,7 @@
-const domainesMetiers = require("./domainesMetiers");
+const updateDomainesMetiers = require("./updateDomainesMetiers");
 const { runScript } = require("../scriptWrapper");
 
 runScript(async () => {
-  await domainesMetiers();
+  console.log("BEH");
+  await updateDomainesMetiers();
 });
