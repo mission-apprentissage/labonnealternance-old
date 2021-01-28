@@ -3,7 +3,7 @@ import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { get, includes, defaultTo } from "lodash";
-import ReactHtmlParser from 'react-html-parser'; 
+import ReactHtmlParser from "react-html-parser"; 
 
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 
