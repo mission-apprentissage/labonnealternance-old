@@ -4,7 +4,7 @@ import infoIcon from "../../public/images/icons/info.svg";
 import linkIcon from "../../public/images/icons/link.svg";
 import { get, defaultTo } from "lodash";
 import ReactHtmlParser from 'react-html-parser'; 
-
+let md = require('markdown-it')().disable([ 'link', 'image' ]);
 
 const PeJobDetail = ({ job }) => {
   useEffect(() => {
@@ -48,9 +48,9 @@ const PeJobDetail = ({ job }) => {
             <h3 className="c-detail-description-title">
               Description de l'offre
             </h3>            
-            <p>
-              {description}
-            </p>
+            <div className="text-left">
+              {ReactHtmlParser(md.render(description))}
+            </div>
           </div>
         ) : (
           ""
