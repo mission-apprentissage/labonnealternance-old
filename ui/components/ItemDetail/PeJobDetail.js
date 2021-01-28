@@ -48,7 +48,7 @@ const PeJobDetail = ({ job }) => {
             <h3 className="c-detail-description-title">
               Description de l'offre
             </h3>            
-            <div className="text-left">
+            <div className="c-detail-description-text">
               {ReactHtmlParser(md.render(description))}
             </div>
           </div>
