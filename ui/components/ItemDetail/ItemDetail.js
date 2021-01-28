@@ -9,13 +9,17 @@ import PeJob from "./PeJob";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import CommonDetail from "./CommonDetail";
-import { get } from "lodash";
+import { get, includes } from "lodash";
 
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 
 const ItemDetail = ({ selectedItem, handleClose }) => {
+
+  const kind = selectedItem?.ideaType
+
   return (
     <section className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
+
       <header className='c-detail-header'>
         <div className='text-left'>
           <button className="c-detail-back" onClick={handleClose}>
@@ -47,8 +51,12 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
         <hr className="c-detail-header-separator"/>
       </header>
 
+      <div>
+        { kind === "peJob" ? <PeJobDetail job={selectedItem} /> : ""}
+        { includes(['lbb', 'lba'], kind) ? <LbbCompanyDetail  company={selectedItem} /> : ""}
+        { kind === "formation" ? <TrainingDetail training={selectedItem}  /> : ""}        
+      </div>
 
-      {selectedItem ? <CommonDetail thing={selectedItem} /> : ""}
 
     </section>
   );

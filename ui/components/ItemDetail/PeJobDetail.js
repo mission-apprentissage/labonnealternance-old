@@ -10,6 +10,7 @@ const PeJobDetail = ({ job }) => {
     } catch (err) {}
   });
 
+
   return (
     <>
       <div className="itemDetailBody">

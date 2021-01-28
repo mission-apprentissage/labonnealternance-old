@@ -11,6 +11,10 @@ const CommonDetail = ({ thing }) => {
     } catch (err) {}
   });
 
+  
+  console.log('the thing is..')
+  console.log(thing)
+
 
   return (
     <>
