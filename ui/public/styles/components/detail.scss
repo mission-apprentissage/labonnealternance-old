@@ -86,6 +86,8 @@
   line-height: 27px;
   letter-spacing: 0px;
   text-align: left;
+  margin-bottom: 0;
+  margin-top: 21px;
 }
 .c-detail-meta {
   font-size: 16px;
@@ -93,10 +95,12 @@
   line-height: 19px;
   letter-spacing: 0px;
   text-align: left;
+  margin-top: 24px;
 }
 .c-detail-proposal {
   font-weight: 400;
   color: $gray-700;
+  margin-bottom: 0;
 }
 .c-detail-jobname {
   font-size: 22px;
@@ -112,4 +116,16 @@
   line-height: 19px;
   letter-spacing: 0px;
   text-align: left;
+  margin-bottom: 0;
+  margin-top: 21px;
+}
+
+.c-detail-description-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin-bottom: 0;
+  margin-top: 24px;
 }
