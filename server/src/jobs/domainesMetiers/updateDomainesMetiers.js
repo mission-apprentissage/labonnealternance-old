@@ -15,7 +15,7 @@ const emptyMongo = async () => {
 
 const clearIndex = async () => {
   try {
-    let client = getElasticInstance();
+    let client = getElasticInstance("domainesmetiers");
     console.log(`Removing domainesmetiers index...`);
     await client.indices.delete({ index: "domainesmetiers" });
   } catch (err) {
