@@ -5,26 +5,27 @@ const mongoosastic = require("./mongoosastic");
 const config = require("config");
 
 const getClientOptions = (envName, index) => {
-  switch (envName) {
-    case "production":
-    case "recette":
-      return index === "domainesmetiers"
-        ? {
-            node: config.private.domainesMetiersEsUrl,
-          }
-        : {
-            node: config.private.esUrl,
-          };
-    case "local":
-    default:
-      return {
-        node: `${index === "domainesmetiers" ? config.private.domainesMetiersEsUrl : config.private.esUrl}`,
-      };
-  }
+  let node = { node: "http://localhost:9200" };
+
+  if (index === "mnaformation")
+    node = {
+      node: config.private.esUrl,
+    };
+  else if (index === "domainesmetiers")
+    node = {
+      node: config.private.domainesMetiersEsUrl,
+    };
+
+  console.log("NODE : ", node);
+
+  return node;
 };
 
 const createEsInstance = (index = null) => {
   const options = getClientOptions(config.env, index);
+
+  console.log("OPTIONS : ", index, options);
+
   const client = new Client({
     ...options,
     maxRetries: 5,
