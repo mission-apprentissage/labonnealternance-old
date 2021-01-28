@@ -26,7 +26,7 @@ const PeJobDetail = ({ job }) => {
     <>
       <div className="c-detail-body">
         <div className="c-detail-company">
-          {get(job, 'company.nsame', ReactHtmlParser('<em>Entreprise non précisée</em>'))} <span className="c-detail-proposal"> propose actuellement cette offre</span>
+          {get(job, 'company.name', ReactHtmlParser('<em>Entreprise non précisée</em>'))} <span className="c-detail-proposal"> propose actuellement cette offre</span>
         </div>
         <h2 className="c-detail-jobtitle">
           {get(job, 'title', ReactHtmlParser('<em>Titre non précisé</em>'))}
