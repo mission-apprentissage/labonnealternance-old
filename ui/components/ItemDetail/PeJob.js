@@ -44,7 +44,6 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
       <div className="c-media" id={`id${job.job.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
-          PeJob.js
         </div>
 
         <div className="c-media-body">

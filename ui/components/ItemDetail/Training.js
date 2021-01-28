@@ -55,7 +55,6 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
         <div className="c-media-figure">
           <img className="cardIcon" src={trainingIcon} alt="" />
-          Training.js
         </div>
 
         <div className="c-media-body">
