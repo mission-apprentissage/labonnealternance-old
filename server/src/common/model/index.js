@@ -1,13 +1,21 @@
-const mongoose = require("mongoose");
+const { mongooseInstance } = require("../mongodb");
+const { mongoosastic, getElasticInstance } = require("../esClient");
+const schema = require("../model/schema");
 
-const getModel = (modelName, callback = () => ({})) => {
-  const Schema = require(`./schema/${modelName}`);
-  callback(Schema);
-  return mongoose.model(modelName, Schema, modelName);
+const createModel = (modelName, descriptor, options = {}) => {
+  const schema = new mongooseInstance.Schema(descriptor);
+  if (options.esIndexName) {
+    schema.plugin(mongoosastic, { esClient: getElasticInstance(), index: options.esIndexName });
+    schema.plugin(require("mongoose-paginate"));
+  }
+  if (options.createMongoDBIndexes) {
+    options.createMongoDBIndexes(schema);
+  }
+  return mongooseInstance.model(modelName, schema);
 };
 
 module.exports = {
-  SampleEntity: getModel("sampleEntity"),
-  User: getModel("users"),
-  Log: getModel("logs"),
+  DomainesMetiers: createModel("domainesmetiers", schema.domainesMetiersSchema, {
+    esIndexName: "domainesmetiers",
+  }),
 };

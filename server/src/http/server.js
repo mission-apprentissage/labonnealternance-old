@@ -40,9 +40,10 @@ module.exports = async (components) => {
   // TracingHandler creates a trace for every incoming request
   app.use(Sentry.Handlers.tracingHandler());
 
-  app.use(bodyParser.json());
+  app.use(bodyParser.json({ limit: "50mb" }));
+  // Parse the ndjson as text for ES proxy
+  app.use(bodyParser.text({ type: "application/x-ndjson" }));
   app.use(corsMiddleware());
-  //app.use(logMiddleware());
 
   const limiter3PerSecond = rateLimit({
     windowMs: 1000, // 1 second

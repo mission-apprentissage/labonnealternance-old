@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.7.0 [28/01/2020]
+[366] Rappatrier ES domainesMetiers
+
 ## 1.6.1 [25/01/2020]
 [360] Augmentation des quotas de requêtes sur la conf nginx
 
