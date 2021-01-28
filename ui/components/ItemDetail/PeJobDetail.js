@@ -4,6 +4,7 @@ import bulbIcon from "../../public/images/icons/bulb.svg";
 import { get, defaultTo } from "lodash";
 import ReactHtmlParser from 'react-html-parser'; 
 let md = require('markdown-it')().disable([ 'link', 'image' ]);
+import MobileNavbar from "./MobileNavbar";
 
 const PeJobDetail = ({ job }) => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const PeJobDetail = ({ job }) => {
 
   return (
     <>
+      <MobileNavbar/>
       <div className="c-detail-body">
         <div className="c-detail-company">
           {get(job, 'company.name', ReactHtmlParser('<em>Entreprise non précisée</em>'))} <span className="c-detail-proposal"> propose actuellement cette offre</span>
