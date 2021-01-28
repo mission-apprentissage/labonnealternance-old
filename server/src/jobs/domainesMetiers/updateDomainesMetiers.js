@@ -5,7 +5,6 @@ const logger = require("../../common/logger");
 const { DomainesMetiers } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
 const { getFileFromS3 } = require("../../common/utils/awsUtils");
-const { connectToMongo } = require("../../common/mongodb");
 
 const FILE_LOCAL_PATH = path.join(__dirname, "./assets/domainesMetiers_S3.xlsx");
 
@@ -51,7 +50,6 @@ module.exports = async () => {
   try {
     console.log(" -- Start of DomainesMetiers initializer -- ");
 
-    await connectToMongo();
     await emptyMongo();
     await clearIndex();
     await createIndex();
@@ -126,7 +124,6 @@ module.exports = async () => {
       }
     }
   } catch (err) {
-    console.log("ICICICICI");
     logger.error(err);
   }
 };
