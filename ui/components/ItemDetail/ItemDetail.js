@@ -8,22 +8,18 @@ import ReactHtmlParser from 'react-html-parser';
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 
 const ItemDetail = ({ selectedItem, handleClose }) => {
-
-  const kind = selectedItem?.ideaType
-  const companySize = selectedItem?.company?.size?.toLowerCase()
+  const kind = selectedItem?.ideaType;
+  const companySize = selectedItem?.company?.size?.toLowerCase();
 
   return (
     <>
       <section className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
-
-        <header className='c-detail-header'>
-          <div className='text-left'>
+        <header className="c-detail-header">
+          <div className="text-left">
             <button className="c-detail-back" onClick={handleClose}>
               ← Retour aux résultats
-            </button>          
-            <p className="c-detail-title">
-              {get(selectedItem, 'company.name', '')}
-            </p>
+            </button>
+            <p className="c-detail-title">{get(selectedItem, "company.name", "")}</p>
             <p className="c-detail-activity">
               <em>Activité non renseignée</em>
             </p>
@@ -31,16 +27,12 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
               <span>
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
               </span>
-              <span className="c-detail-address">
-                {get(selectedItem, 'place.fullAddress', '').toLowerCase()}
-              </span>
+              <span className="c-detail-address">{get(selectedItem, "place.fullAddress", "").toLowerCase()}</span>
             </p>
             <p>
-              <span className="c-detail-sizetitle d-block">
-                Taille de l'entreprise
-              </span>
+              <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
               <span className="c-detail-sizetext d-block">
-                {defaultTo(companySize, ReactHtmlParser('<em>Non renseigné</em>'))}
+                {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
               </span>
             </p>
           </div>
@@ -48,12 +40,10 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
         </header>
 
         <div>
-          {kind === "peJob" ? <PeJobDetail job={selectedItem}/> : ""}
-          { includes(['lbb', 'lba'], kind) ? <LbbCompanyDetail  company={selectedItem} /> : ""}
-          { kind === "formation" ? <TrainingDetail training={selectedItem}  /> : ""}        
+          {kind === "peJob" ? <PeJobDetail job={selectedItem} /> : ""}
+          {includes(["lbb", "lba"], kind) ? <LbbCompanyDetail lbb={selectedItem} /> : ""}
+          {kind === "formation" ? <TrainingDetail training={selectedItem} /> : ""}
         </div>
-
-
       </section>
     </>
   );
