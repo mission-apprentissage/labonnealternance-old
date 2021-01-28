@@ -17,7 +17,6 @@ const PeJobDetail = ({ job }) => {
   console.log(job)
 
   const description = get(job, 'job.description', undefined)
-  console.log(description)
   const contractDuration = get(job, 'job.contractDescription', undefined)
   const contractRythm = get(job, 'job.duration', undefined)
   const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined 
@@ -55,7 +54,29 @@ const PeJobDetail = ({ job }) => {
         ) : (
           ""
         )}
-    
+
+        <hr className="c-detail-header-separator mt-5"/>
+
+        <h3 className="c-detail-description-title">
+          Postuler
+        </h3>            
+
+        <div className="c-detail-pelink mt-3">
+          <a target="poleemploi" href={job.url}>
+            Contactez le recruteur sur Pôle emploi
+          </a>
+        </div>
+
+        <div className="blueAdvice">
+          <div className="floatLeft">
+            <img src={infoIcon} alt="" />
+          </div>
+          <div className="paragraph">
+            Optimisez votre recherche en envoyant aussi des candidatures spontanées aux entreprises qui n’ont pas
+            diffusé d’offre !
+          </div>
+        </div>
+
       </div>
     </>
   );
