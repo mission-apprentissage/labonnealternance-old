@@ -5,7 +5,7 @@ const mongoosastic = require("./mongoosastic");
 const config = require("config");
 
 const getClientOptions = (envName, index) => {
-  let node = { node: "http://localhost:9200" };
+  let node = { node: "http://elasticsearch:9200" };
 
   if (index === "mnaformation")
     node = {
