@@ -44,3 +44,5 @@ En tant que CFA, vous pourrez choisir de n'afficher que les entreprises de votre
 
 -          /api/V1/jobsEtFormations, pour rechercher des formations en apprentissage et des entreprises recrutant ou susceptibles de recruter en apprentissage référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique
 
+Retrouvez la documentation technique dans les sections suivantes ou sur [API.gouv.fr.](https://api.gouv.fr/les-api/api-la-bonne-alternance)
+
