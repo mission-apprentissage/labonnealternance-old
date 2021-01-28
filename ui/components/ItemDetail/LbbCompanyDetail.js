@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import bulbIcon from "../../public/images/icons/bulb.svg";
+import gotoIcon from "../../public/images/icons/goto.svg";
 
 const LbbCompanyDetail = ({ lbb }) => {
   console.log("lbb : ", lbb);
@@ -48,20 +49,20 @@ const LbbCompanyDetail = ({ lbb }) => {
           </li>
         </ul>
 
-        <div className="c-detail-lbb-siretzone">
-          <div className="c-detail-lbb-siretno p-0 m-0">N° de siret</div>
-          <div className="c-detail-lbb-siretactual p-0 m-0">{}</div>
-          <div className="c-detail-lbb-siretaction">
-            <a
-              className="btn btn-outline-primary px-1 px-sm-5 c-home-descr__more"
-              rel="noopener noreferer"
-              href="https://mission-apprentissage.gitbook.io/general/"
-              target="_blank"
-            >
-              <span className="d-inline px-3 px-sm-0">En savoir plus </span>
-              <span className="d-none d-sm-inline">sur la mission apprentissage</span>
-            </a>
-          </div>
+      </div>
+      <div className="c-detail-lbb-siretzone">
+        <div className="c-detail-lbb-siretno p-0 m-0">N° de siret</div>
+        <div className="c-detail-lbb-siretactual p-0 m-0">{lbb.company.siret}</div>
+        <div className="c-detail-lbb-siretaction">
+          <a
+            className="btn btn-outline-primary c-detail-lbb-siretbutton px-1 px-sm-5 c-home-descr__more"
+            rel="noopener noreferer"
+            href="https://mission-apprentissage.gitbook.io/general/"
+            target="_blank"
+          >
+            <img src={gotoIcon} alt="Aller à" />
+            <span className="c-detail-lbb-siretbutton d-inline px-3 px-sm-0 ml-2">Modifier les informations </span>
+          </a>
         </div>
       </div>
     </>
