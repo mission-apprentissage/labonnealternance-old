@@ -16,6 +16,8 @@ const PeJobDetail = ({ job }) => {
   console.log('the job is..')
   console.log(job)
 
+  const contractDuration = get(job, 'job.contractDescription', undefined)
+  const contractRythm = get(job, 'job.duration', undefined)
   const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined 
 
   return (
@@ -32,10 +34,10 @@ const PeJobDetail = ({ job }) => {
             Publiée le  : {defaultTo(creationDate, ReactHtmlParser('<em>Donnée manquante</em>'))}
           </div>                  
           <div className="c-detail-metaduration">
-            Durée : {get(job, 'job.contractDescription', ReactHtmlParser('<em>Donnée manquante</em>'))}
+            Durée  : {defaultTo(contractDuration, ReactHtmlParser('<em>Donnée manquante</em>'))}
           </div>                  
           <div className="c-detail-metarythm">
-            Rythme :  {get(job, 'job.duration', ReactHtmlParser('<em>Donnée manquante</em>'))}          
+            Rythme  : {defaultTo(contractRythm, ReactHtmlParser('<em>Donnée manquante</em>'))}
           </div>                  
         </div>        
       </div>
