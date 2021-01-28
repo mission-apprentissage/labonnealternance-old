@@ -4,7 +4,6 @@ import bulbIcon from "../../public/images/icons/bulb.svg";
 import { get, defaultTo } from "lodash";
 import ReactHtmlParser from 'react-html-parser'; 
 let md = require('markdown-it')().disable([ 'link', 'image' ]);
-import MobileNavbar from "./MobileNavbar";
 
 const PeJobDetail = ({ job }) => {
   useEffect(() => {
