@@ -11,11 +11,11 @@ const getClientOptions = (envName, index) => {
     node = {
       node: config.private.esUrl,
     };
-  else if (index === "domainesmetiers")
+  /*else if (index === "domainesmetiers")
     node = {
       node: config.private.domainesMetiersEsUrl,
     };
-
+*/
   console.log("NODE : ", node);
 
   return node;
