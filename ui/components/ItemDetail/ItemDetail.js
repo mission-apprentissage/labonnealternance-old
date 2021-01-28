@@ -9,14 +9,15 @@ import PeJob from "./PeJob";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import CommonDetail from "./CommonDetail";
-import { get, includes } from "lodash";
+import { get, includes, defaultTo } from "lodash";
+import ReactHtmlParser from 'react-html-parser'; 
 
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 
 const ItemDetail = ({ selectedItem, handleClose }) => {
 
   const kind = selectedItem?.ideaType
-
+  const companySize = selectedItem?.company?.size?.toLowerCase()
   return (
     <section className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
 
@@ -29,7 +30,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
             {get(selectedItem, 'company.name', '')}
           </p>
           <p className="c-detail-activity">
-            Activité non renseignée
+            <em>Activité non renseignée</em>
           </p>
           <p>
             <span>
@@ -44,7 +45,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
               Taille de l'entreprise
             </span>
             <span className="c-detail-sizetext d-block">
-              {get(selectedItem, 'company.size', 'Non renseigné').toLowerCase()}
+              {defaultTo(companySize, ReactHtmlParser('<em>Non renseigné</em>'))}
             </span>
           </p>
         </div>
