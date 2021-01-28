@@ -42,12 +42,15 @@ const PeJobDetail = ({ job }) => {
             Rythme  : {defaultTo(contractRythm, ReactHtmlParser('<em>Donnée manquante</em>'))}
           </div>                  
         </div>        
+
         {description ? (
           <div className="c-detail-description">
+            <h3 className="c-detail-description-title">
+              Description de l'offre
+            </h3>            
             <p>
               {description}
             </p>
-            Il y a forcément un résultat qui vous attend, veuillez revenir ultérieurement
           </div>
         ) : (
           ""
