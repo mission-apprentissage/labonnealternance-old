@@ -17,6 +17,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@material-ui/lab": "^4.0.0-alpha.50",
+    "@n8tb1t/use-scroll-position": "2.0.3",
     "@sentry/browser": "^5.15.5",
     "@sentry/node": "^5.15.5",
     "@sentry/react": "^5.22.3",
