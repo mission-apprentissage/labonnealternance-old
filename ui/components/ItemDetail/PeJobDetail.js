@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import moment from "moment";
-import infoIcon from "../../public/images/icons/info.svg";
-import linkIcon from "../../public/images/icons/link.svg";
+import bulbIcon from "../../public/images/icons/bulb.svg";
 import { get, defaultTo } from "lodash";
 import ReactHtmlParser from 'react-html-parser'; 
 let md = require('markdown-it')().disable([ 'link', 'image' ]);
@@ -67,13 +66,10 @@ const PeJobDetail = ({ job }) => {
           </a>
         </div>
 
-        <div className="blueAdvice">
-          <div className="floatLeft">
-            <img src={infoIcon} alt="" />
-          </div>
-          <div className="paragraph">
-            Optimisez votre recherche en envoyant aussi des candidatures spontanées aux entreprises qui n’ont pas
-            diffusé d’offre !
+        <div className="c-detail-advice p-2">
+          <img src={bulbIcon} alt="" />
+          <div className="c-detail-advice-text">
+            Diversifiez vos démarches en envoyant aussi des candidatures spontanées aux entreprises qui n'ont pas diffusé d'offre !
           </div>
         </div>
 
