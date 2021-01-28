@@ -16,6 +16,8 @@ const PeJobDetail = ({ job }) => {
   console.log('the job is..')
   console.log(job)
 
+  const description = get(job, 'job.description', undefined)
+  console.log(description)
   const contractDuration = get(job, 'job.contractDescription', undefined)
   const contractRythm = get(job, 'job.duration', undefined)
   const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined 
@@ -24,7 +26,7 @@ const PeJobDetail = ({ job }) => {
     <>
       <div className="c-detail-body">
         <div className="c-detail-company">
-          {get(job, 'company.name', 'Une entreprise')} <span className="c-detail-proposal"> propose actuellement cette offre</span>
+          {get(job, 'company.nsame', ReactHtmlParser('<em>Entreprise non précisée</em>'))} <span className="c-detail-proposal"> propose actuellement cette offre</span>
         </div>
         <h2 className="c-detail-jobtitle">
           {get(job, 'title', ReactHtmlParser('<em>Titre non précisé</em>'))}
@@ -40,6 +42,17 @@ const PeJobDetail = ({ job }) => {
             Rythme  : {defaultTo(contractRythm, ReactHtmlParser('<em>Donnée manquante</em>'))}
           </div>                  
         </div>        
+        {description ? (
+          <div className="c-detail-description">
+            <p>
+              {description}
+            </p>
+            Il y a forcément un résultat qui vous attend, veuillez revenir ultérieurement
+          </div>
+        ) : (
+          ""
+        )}
+    
       </div>
     </>
   );
