@@ -8,9 +8,6 @@
   },
   "slackWebhookUrl": null,
   "outputDir": ".local/output",
-  "elasticSearch": {
-    "node": "http://localhost:9200"
-  },
   "private":
   {
     "apiKey": "12345",
