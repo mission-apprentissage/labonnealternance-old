@@ -52,6 +52,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
       <div className="c-media" id={`${company.ideaType}${company.company.siret}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
+          LbbCompany.js
         </div>
 
         <div className="c-media-body">
