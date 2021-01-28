@@ -23,7 +23,6 @@ const PeJobDetail = ({ job }) => {
 
   return (
     <>
-      <MobileNavbar/>
       <div className="c-detail-body">
         <div className="c-detail-company">
           {get(job, 'company.name', ReactHtmlParser('<em>Entreprise non précisée</em>'))} <span className="c-detail-proposal"> propose actuellement cette offre</span>

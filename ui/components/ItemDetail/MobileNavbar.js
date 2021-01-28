@@ -13,21 +13,14 @@ const MobileNavbar = () => {
     } else {
       setScrolled(false);
     }
-    
-  }
-  
-  useEffect(() => {
-    const onScroll = e => {
-      setScrollTop(e.target.documentElement.scrollTop);
-      setScrolling(e.target.documentElement.scrollTop > scrollTop);
-    };
-    window.addEventListener("scroll", onScroll);
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [scrollTop]);
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+  })
 
   let navbarClasses = ['navbar'];
-
   if (scrolled) {
     navbarClasses.push('scrolled');
   }
@@ -45,5 +38,4 @@ const MobileNavbar = () => {
     </header>
   )
 };
-
 export default MobileNavbar;
