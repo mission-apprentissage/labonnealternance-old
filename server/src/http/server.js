@@ -44,7 +44,6 @@ module.exports = async (components) => {
   // Parse the ndjson as text for ES proxy
   app.use(bodyParser.text({ type: "application/x-ndjson" }));
   app.use(corsMiddleware());
-  //app.use(logMiddleware());
 
   const limiter3PerSecond = rateLimit({
     windowMs: 1000, // 1 second

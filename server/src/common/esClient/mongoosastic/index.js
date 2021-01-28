@@ -49,7 +49,7 @@ function getMapping(schema, requireAsciiFolding = false) {
     if (/geo_/.test(key)) {
       properties[key] = { type: "geo_point" };
       isMappingNeedingGeoPoint = true;
-    } else
+    } else {
       switch (mongooseType) {
         case "ObjectID":
         case "String": {
@@ -83,6 +83,7 @@ function getMapping(schema, requireAsciiFolding = false) {
         default:
           break;
       }
+    }
   }
 
   return { properties };
@@ -134,8 +135,6 @@ function Mongoosastic(schema, options) {
         body: completeMapping,
         ...includeTypeNameParameters,
       });
-
-      //console.log("result put : ",a);
     } catch (e) {
       let errorMsg = e.message;
       if (e.meta && e.meta.body) errorMsg = e.meta.body.error;
