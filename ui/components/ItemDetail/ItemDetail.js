@@ -19,6 +19,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
 
   const kind = selectedItem?.ideaType
   const companySize = selectedItem?.company?.size?.toLowerCase()
+
   return (
     <>
       <section className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
@@ -55,7 +56,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
         </header>
 
         <div>
-          { kind === "peJob" ? <PeJobDetail job={selectedItem} /> : ""}
+          {kind === "peJob" ? <PeJobDetail job={selectedItem}/> : ""}
           { includes(['lbb', 'lba'], kind) ? <LbbCompanyDetail  company={selectedItem} /> : ""}
           { kind === "formation" ? <TrainingDetail training={selectedItem}  /> : ""}        
         </div>

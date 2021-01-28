@@ -21,26 +21,8 @@ const PeJobDetail = ({ job }) => {
   const contractRythm = get(job, 'job.duration', undefined)
   const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined 
 
-  const [scrolled, setScrolled] = React.useState(false);
-
-  const handleScroll = () => {
-    const offset = window.scrollY;
-    if (offset > 50) {
-      setScrolled(true);
-    }
-    else {
-      setScrolled(false);
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll);
-  })
-
   return (
     <>
-      <MobileNavbar scrolled={scrolled}/>
       <div className="c-detail-body">
         <div className="c-detail-company">
           {get(job, 'company.name', ReactHtmlParser('<em>Entreprise non précisée</em>'))} <span className="c-detail-proposal"> propose actuellement cette offre</span>
