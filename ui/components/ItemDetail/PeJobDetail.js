@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import moment from "moment";
 import infoIcon from "../../public/images/icons/info.svg";
 import linkIcon from "../../public/images/icons/link.svg";
-import { get } from "lodash";
+import { get, defaultTo } from "lodash";
 import ReactHtmlParser from 'react-html-parser'; 
 
 
@@ -16,6 +16,8 @@ const PeJobDetail = ({ job }) => {
   console.log('the job is..')
   console.log(job)
 
+  const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined 
+
   return (
     <>
       <div className="c-detail-body">
@@ -23,17 +25,17 @@ const PeJobDetail = ({ job }) => {
           {get(job, 'company.name', 'Une entreprise')} <span className="c-detail-proposal"> propose actuellement cette offre</span>
         </div>
         <h2 className="c-detail-jobtitle">
-          {get(job, 'title', 'Titre non précisé')}
+          {get(job, 'title', ReactHtmlParser('<em>Titre non précisé</em>'))}
         </h2>        
         <div className="c-detail-meta">
           <div className="c-detail-metadate">
-            Publiée le {get(job, 'aaa', ReactHtmlParser('<em>Donnée manquante</em>'))}
+            Publiée le  : {defaultTo(creationDate, ReactHtmlParser('<em>Donnée manquante</em>'))}
           </div>                  
           <div className="c-detail-metaduration">
-            Durée : {get(job, 'bbb', ReactHtmlParser('<em>Donnée manquante</em>'))}
+            Durée : {get(job, 'job.contractDescription', ReactHtmlParser('<em>Donnée manquante</em>'))}
           </div>                  
           <div className="c-detail-metarythm">
-            Rythme :  {get(job, 'bbb', ReactHtmlParser('<em>Donnée manquante</em>'))}          
+            Rythme :  {get(job, 'job.duration', ReactHtmlParser('<em>Donnée manquante</em>'))}          
           </div>                  
         </div>        
       </div>
