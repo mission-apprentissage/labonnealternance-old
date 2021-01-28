@@ -8,29 +8,38 @@ const { getFileFromS3 } = require("../../common/utils/awsUtils");
 
 const FILE_LOCAL_PATH = path.join(__dirname, "./assets/domainesMetiers_S3.xlsx");
 
+const logMessage = (level, msg) => {
+  console.log(msg);
+  if (level === "info") {
+    logger.info(msg);
+  } else {
+    logger.error(msg);
+  }
+};
+
 const emptyMongo = async () => {
-  console.log(`Clearing domainesmetiers db...`);
+  logMessage("info", `Clearing domainesmetiers db...`);
   await DomainesMetiers.deleteMany({});
 };
 
 const clearIndex = async () => {
   try {
     let client = getElasticInstance();
-    console.log(`Removing domainesmetiers index...`);
+    logMessage("info", `Removing domainesmetiers index...`);
     await client.indices.delete({ index: "domainesmetiers" });
   } catch (err) {
-    console.log(`Error emptying es index : ${err.message}`);
+    logMessage("error", `Error emptying es index : ${err.message}`);
   }
 };
 
 const createIndex = async () => {
   let requireAsciiFolding = true;
-  console.log(`Creating domainesmetiers index...`);
+  logMessage("info", `Creating domainesmetiers index...`);
   await DomainesMetiers.createMapping(requireAsciiFolding);
 };
 
 const downloadAndSaveFile = () => {
-  console.log(`Downloading and save file from S3 Bucket...`);
+  logMessage("info", `Downloading and save file from S3 Bucket...`);
 
   return new Promise((r) => {
     getFileFromS3("mna-services/features/domainesMetiers/currentDomainesMetiers.xlsx")
@@ -48,7 +57,7 @@ const readXLSXFile = (filePath) => {
 
 module.exports = async () => {
   try {
-    console.log(" -- Start of DomainesMetiers initializer -- ");
+    logMessage("info", " -- Start of DomainesMetiers initializer -- ");
 
     await emptyMongo();
     await clearIndex();
@@ -70,7 +79,7 @@ module.exports = async () => {
     };
 
     for (let i = 0; i < workbookDomainesMetiers.sheet_name_list.length; ++i) {
-      console.log(`Début traitement lettre : ${workbookDomainesMetiers.sheet_name_list[i]}`);
+      logMessage("info", `Début traitement lettre : ${workbookDomainesMetiers.sheet_name_list[i]}`);
 
       let onglet = XLSX.utils.sheet_to_json(
         workbookDomainesMetiers.workbook.Sheets[workbookDomainesMetiers.sheet_name_list[i]]
@@ -95,7 +104,7 @@ module.exports = async () => {
 
           await domainesMetier.save();
 
-          console.log(`Added ${domainesMetier.sous_domaine} ${domainesMetier._id} to collection `);
+          logMessage("info", `Added ${domainesMetier.sous_domaine} ${domainesMetier._id} to collection `);
 
           reset();
         } else {
@@ -125,6 +134,6 @@ module.exports = async () => {
       }
     }
   } catch (err) {
-    logger.error(err);
+    logMessage("error", err);
   }
 };
