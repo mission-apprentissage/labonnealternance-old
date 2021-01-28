@@ -73,6 +73,9 @@ const PeJobDetail = ({ job }) => {
           </div>
         </div>
 
+        <div className="mt-3">
+          &nbsp;
+        </div>
       </div>
     </>
   );
