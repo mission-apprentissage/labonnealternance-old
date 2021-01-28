@@ -11,20 +11,12 @@ const getClientOptions = (envName, index) => {
     node = {
       node: config.private.esUrl,
     };
-  /*else if (index === "domainesmetiers")
-    node = {
-      node: config.private.domainesMetiersEsUrl,
-    };
-*/
-  console.log("NODE : ", node);
 
   return node;
 };
 
 const createEsInstance = (index = null) => {
   const options = getClientOptions(config.env, index);
-
-  console.log("OPTIONS : ", index, options);
 
   const client = new Client({
     ...options,
