@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.6.2 [28/01/2020]
+[351] Rechartage formation
+
 ## 1.6.1 [25/01/2020]
 [360] Augmentation des quotas de requêtes sur la conf nginx
 
