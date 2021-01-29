@@ -387,12 +387,14 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     return <SearchForm selectedItem={selectedItem} showResultList={showResultList} handleSubmit={handleSubmit} />;
   };
 
-  const getSelectedItemDetail = () => {
-    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} />;
+  const getSelectedItemDetail = (displayNavbar) => {
+    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} displayNavbar={displayNavbar} />;
   };
 
+  const [displayNavbar, setDisplayNavbar] = useState(false);
+
   const handleScroll = () => {
-    console.log('handleScroll ' + window.scrollY);
+    setDisplayNavbar(document.querySelector('#choiceColumn').scrollTop > 0)
   };
 
   return (
@@ -403,7 +405,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
         <>
           {getSearchForm()}
           {getResultLists()}
-          {getSelectedItemDetail()}
+          {getSelectedItemDetail(displayNavbar)}
         </>
       )}
     </div>
