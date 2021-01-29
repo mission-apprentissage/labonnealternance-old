@@ -58,7 +58,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
               <>
                 <div className="c-detail-km c-detail-pelink">
                   <img src={linkIcon} alt="Lien" />
-                  <a href="http://www.ecoledetravail.fr" className="ml-3">
+                  <a href="http://www.ecoledetravail.fr" className="ml-3" target="_blank" rel="noopener noreferer">
                     www.ecoledetravail.fr
                   </a>
                 </div>
