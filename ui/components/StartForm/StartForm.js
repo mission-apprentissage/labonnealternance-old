@@ -118,7 +118,7 @@ const StartForm = (props) => {
                 <input
                   type="submit"
                   value="C'est parti !"
-                  className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-home-hero__submit"
+                  className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn"
                   data-disable-with="C'est parti !"
                   disabled={isSubmitting}
                 />

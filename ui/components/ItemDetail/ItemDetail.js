@@ -42,10 +42,18 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
             </p>
 
             {kind === "formation" ? (
-              <div className="c-detail-km c-detail-pelink">
-                <img src={linkIcon} alt="Lien" />
-                <a href="www.ecoledetravail.fr" className="ml-3">www.ecoledetravail.fr</a>
-              </div>
+              <>
+                <div className="c-detail-km c-detail-pelink">
+                  <img src={linkIcon} alt="Lien" />
+                  <a href="www.ecoledetravail.fr" className="ml-3">www.ecoledetravail.fr</a>
+                </div>
+                <div className="pt-3 pl-3">
+                  <a href="#"
+                    className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3">
+                    Voir les informations de contact
+                  </a>
+                </div>
+              </>
             ) : (
               <p>
                 <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
