@@ -255,3 +255,18 @@ a.c-detail-lbb-siretbutton {
   letter-spacing: 0px;
   text-align: left;
 }
+.c-detail-traininglink {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  border-bottom: 2px solid $gray-750;
+  a {
+    color: $gray-700;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
