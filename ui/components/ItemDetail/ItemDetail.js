@@ -24,7 +24,13 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
       <section className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
         <header className="c-detail-header">
           <div className="text-left">
-            <button className="c-detail-back" onClick={() => { setSeeInfo(false); handleClose(); }}>
+            <button
+              className="c-detail-back"
+              onClick={() => {
+                setSeeInfo(false);
+                handleClose();
+              }}
+            >
               ← Retour aux résultats
             </button>
             <p className={"c-detail-title c-detail-title--" + kind}>{get(selectedItem, "company.name", "")}</p>
@@ -52,18 +58,21 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
               <>
                 <div className="c-detail-km c-detail-pelink">
                   <img src={linkIcon} alt="Lien" />
-                  <a href="http://www.ecoledetravail.fr" className="ml-3">www.ecoledetravail.fr</a>
+                  <a href="http://www.ecoledetravail.fr" className="ml-3">
+                    www.ecoledetravail.fr
+                  </a>
                 </div>
                 <div className="pt-5 pl-3">
                   {seeInfo ? (
                     contactInfo
                   ) : (
-                    <button className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
-                      onClick={() => setSeeInfo(true)}>
+                    <button
+                      className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
+                      onClick={() => setSeeInfo(true)}
+                    >
                       Voir les informations de contact
                     </button>
-                  )
-                  }
+                  )}
                 </div>
               </>
             ) : (
