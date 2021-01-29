@@ -45,11 +45,11 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
               <>
                 <div className="c-detail-km c-detail-pelink">
                   <img src={linkIcon} alt="Lien" />
-                  <a href="www.ecoledetravail.fr" className="ml-3">www.ecoledetravail.fr</a>
+                  <a href="http://www.ecoledetravail.fr" className="ml-3">www.ecoledetravail.fr</a>
                 </div>
-                <div className="pt-3 pl-3">
+                <div className="pt-5 pl-3">
                   <a href="#"
-                    className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3">
+                    className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3">
                     Voir les informations de contact
                   </a>
                 </div>
@@ -63,7 +63,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
               </p>
             )}
           </div>
-          <hr className="c-detail-header-separator" />
+          <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
         </header>
 
         <div>
