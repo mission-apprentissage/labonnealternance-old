@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## 1.7.1 [28/01/2020]
-[351] Rechartage formation
+[351] Rechartage formation et entreprise LBB
 
 ## 1.7.0 [28/01/2020]
 [366] Rappatrier ES domainesMetiers
