@@ -193,7 +193,7 @@ const SearchForm = (props) => {
                       compareItemFunction={compareAutoCompleteValues}
                       onInputValueChangeFunction={fetchAddresses}
                       previouslySelectedItem={formValues?.location ?? null}
-                      scrollParentId="leftColumn"
+                      scrollParentId="choiceColumn"
                       name="placeField"
                       placeholder="Adresse ou ville ou code postal"
                     />

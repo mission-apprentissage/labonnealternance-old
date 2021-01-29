@@ -41,7 +41,7 @@ const technicalErrorText = "Error technique momentanée";
 const trainingsApi = baseUrl + "/api/v1/formations";
 const jobsApi = baseUrl + "/api/v1/jobs";
 
-const LeftColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
+const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const dispatch = useDispatch();
 
   const scopeContext = useScopeContext();
@@ -73,7 +73,7 @@ const LeftColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
       const itemElement = getItemElement(itemToScrollTo);
 
       if (itemElement) {
-        scrollToElementInContainer("leftColumn", itemElement, 50, "auto");
+        scrollToElementInContainer("choiceColumn", itemElement, 50, "auto");
         dispatch(setItemToScrollTo(null));
       }
     }
@@ -183,7 +183,7 @@ const LeftColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const searchOnNewCenter = async (newCenter, isTrainingSearch, isJobSearch) => {
     dispatch(setExtendedSearch(false));
 
-    scrollToTop("leftColumn");
+    scrollToTop("choiceColumn");
 
     formValues.location = newCenter;
 
@@ -262,7 +262,7 @@ const LeftColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
 
   const searchForJobsWithLooseRadius = async () => {
     dispatch(setExtendedSearch(true));
-    scrollToTop("leftColumn");
+    scrollToTop("choiceColumn");
 
     dispatch(setJobs([]));
     searchForJobs(formValues, null);
@@ -392,7 +392,7 @@ const LeftColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   };
 
   return (
-    <div id="leftColumn" className="rightCol">
+    <div id="choiceColumn" className="choiceCol">
       {isLoading ? (
         <LoadingScreen />
       ) : (
@@ -406,4 +406,4 @@ const LeftColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   );
 };
 
-export default LeftColumn;
+export default ChoiceColumn;

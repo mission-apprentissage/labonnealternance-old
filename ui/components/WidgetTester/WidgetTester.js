@@ -195,7 +195,7 @@ const WidgetTester = () => {
                       onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
                       compareItemFunction={compareAutoCompleteValues}
                       onInputValueChangeFunction={fetchAddresses}
-                      scrollParentId="leftColumn"
+                      scrollParentId="choiceColumn"
                       name="placeField"
                       placeholder="Adresse ou ville ou code postal"
                     />

@@ -4,7 +4,7 @@ import { get } from "lodash";
 const CommonDetail = ({ thing }) => {
   useEffect(() => {
     try {
-      document.getElementsByClassName("rightCol")[0].scrollTo(0, 0);
+      document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
     } catch (err) {}
   });
 

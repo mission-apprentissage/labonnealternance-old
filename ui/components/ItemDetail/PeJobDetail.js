@@ -8,7 +8,7 @@ let md = require("markdown-it")().disable(["link", "image"]);
 const PeJobDetail = ({ job }) => {
   useEffect(() => {
     try {
-      document.getElementsByClassName("rightCol")[0].scrollTo(0, 0);
+      document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
     } catch (err) {}
   });
 
