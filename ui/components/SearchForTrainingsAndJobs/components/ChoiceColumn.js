@@ -391,8 +391,12 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} />;
   };
 
+  const handleScroll = () => {
+    console.log('handleScroll ' + window.scrollY);
+  };
+
   return (
-    <div id="choiceColumn" className="choiceCol">
+    <div id="choiceColumn" className="choiceCol" onScroll={handleScroll}>
       {isLoading ? (
         <LoadingScreen />
       ) : (

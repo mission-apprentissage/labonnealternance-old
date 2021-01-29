@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
@@ -42,12 +42,12 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
               </span>
               <span className="ml-2 d-block">
-                <div className="c-detail-address">{get(selectedItem, "place.fullAddress", "").toLowerCase()}</div>
+                <span className="c-detail-address d-block">{get(selectedItem, "place.fullAddress", "").toLowerCase()}</span>
                 {distance ? (
-                  <div className="c-detail-km">
+                  <span className="c-detail-km d-block">
                     {round(distance, 1) + " "}
                     km(s) du lieu de recherche
-                  </div>
+                  </span>
                 ) : (
                   ""
                 )}
