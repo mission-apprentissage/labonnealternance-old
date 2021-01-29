@@ -14,7 +14,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
 
   const [seeInfo, setSeeInfo] = useState(false);
 
-  let contactEmail = selectedItem?.contact?.email
+  let contactEmail = selectedItem?.contact?.email;
   let contactInfo = contactEmail ? `écrire à ${contactEmail}` : "informations non communiquées";
 
   let siret = selectedItem?.company?.siret;
