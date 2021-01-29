@@ -7,7 +7,8 @@ import ReactHtmlParser from "react-html-parser";
 const LbbCompanyDetail = ({ lbb }) => {
   console.log("lbb : ", lbb);
 
-  let siret = lbb?.company?.siret;
+  let siret = lbb?.ceompany?.siret;
+  let modificationLink = `https://labonneboite.pole-emploi.fr/verification-informations-entreprise/${siret}`;
 
   useEffect(() => {
     try {
@@ -63,7 +64,7 @@ const LbbCompanyDetail = ({ lbb }) => {
             className="btn btn-outline-primary c-detail-lbb-siretbutton px-1 px-sm-3 c-home-descr__more"
             target="_blank"
             rel="noopener noreferer"
-            href="https://mission-apprentissage.gitbook.io/general/"
+            href={modificationLink}
           >
             <img src={gotoIcon} alt="Aller à" />
             <span className="c-detail-lbb-siretbutton d-inline px-1 px-sm-0 ml-2">Modifier les informations </span>
