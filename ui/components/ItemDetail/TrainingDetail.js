@@ -13,13 +13,11 @@ const TrainingDetail = ({ training }) => {
       <div className="c-detail-training">
         {training.onisepUrl ? (
           <div className="">
-            <span>
-              Descriptif du {training.title ? training.title : training.longTitle} sur{" "}
-            </span>
+            <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
             <span className="c-detail-traininglink">
               <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
                 <img src={gotoIcon} alt="Lien" />
-                {" "}le site Onisep
+                &nbsp;le site Onisep
               </a>
             </span>
           </div>
