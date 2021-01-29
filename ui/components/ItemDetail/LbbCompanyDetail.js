@@ -7,7 +7,7 @@ import ReactHtmlParser from "react-html-parser";
 const LbbCompanyDetail = ({ lbb }) => {
   console.log("lbb : ", lbb);
 
-  let siret = lbb?.ceompany?.siret;
+  let siret = lbb?.company?.siret;
   let modificationLink = `https://labonneboite.pole-emploi.fr/verification-informations-entreprise/${siret}`;
 
   useEffect(() => {
@@ -60,16 +60,19 @@ const LbbCompanyDetail = ({ lbb }) => {
           {defaultTo(siret, ReactHtmlParser("<em>Non renseigné</em>"))}
         </div>
         {siret ? (
-          <div className="c-detail-lbb-siretaction">
-            <a
-              className="btn btn-outline-primary c-detail-lbb-siretbutton px-1 px-sm-3 c-home-descr__more"
-              target="_blank"
-              rel="noopener noreferer"
-              href={modificationLink}
-            >
-              <img src={gotoIcon} alt="Aller à" />
-              <span className="c-detail-lbb-siretbutton d-inline px-1 px-sm-0 ml-2">Modifier les informations </span>
-            </a>
+          <div className="c-detail-lbb-siretok">
+            <div className="c-detail-lbb-siretno">C'est mon entreprise</div>
+            <div className="c-detail-lbb-siretaction">
+              <a
+                className="btn btn-outline-primary c-detail-lbb-siretbutton px-1 px-sm-3 c-home-descr__more"
+                target="_blank"
+                rel="noopener noreferer"
+                href={modificationLink}
+              >
+                <img src={gotoIcon} alt="Aller à" />
+                <span className="c-detail-lbb-siretbutton d-inline px-1 px-sm-0 ml-2">Modifier les informations </span>
+              </a>
+            </div>
           </div>
         ) : (
           ""
