@@ -38,10 +38,10 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
               <em>Activité non renseignée</em>
             </p>
             <p className="d-flex">
-              <div>
+              <span className="d-block">
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
-              </div>
-              <div className="ml-2">
+              </span>
+              <span className="ml-2 d-block">
                 <div className="c-detail-address">{get(selectedItem, "place.fullAddress", "").toLowerCase()}</div>
                 {distance ? (
                   <div className="c-detail-km">
@@ -51,7 +51,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
                 ) : (
                   ""
                 )}
-              </div>
+              </span>
             </p>
 
             {kind === "formation" ? (
