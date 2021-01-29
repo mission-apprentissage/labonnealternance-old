@@ -5,8 +5,6 @@ import { get, includes, defaultTo } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 
 const LbbCompanyDetail = ({ lbb }) => {
-  console.log("lbb : ", lbb);
-
   let siret = lbb?.company?.siret;
   let modificationLink = `https://labonneboite.pole-emploi.fr/verification-informations-entreprise/${siret}`;
 
