@@ -2,7 +2,7 @@ import React from "react";
 
 import { Row, Col } from "reactstrap";
 
-import { MapListSwitchButton, RightColumn } from "./components";
+import { MapListSwitchButton, LeftColumn } from "./components";
 import {
   setSelectedItem,
   setItemToScrollTo,
@@ -67,7 +67,7 @@ const SearchForTrainingsAndJobs = () => {
           xs="12"
           md="5"
         >
-          <RightColumn showResultList={showResultList} showSearchForm={showSearchForm} unSelectItem={unSelectItem} />
+          <LeftColumn showResultList={showResultList} showSearchForm={showSearchForm} unSelectItem={unSelectItem} />
         </Col>
         <Col className={visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"} xs="12" md="7">
           <Map showResultList={showResultList} />
