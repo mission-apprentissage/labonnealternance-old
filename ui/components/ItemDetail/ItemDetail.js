@@ -36,7 +36,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
               </span>
             </p>
           </div>
-          <hr className="c-detail-header-separator"/>
+          <hr className="c-detail-header-separator" />
         </header>
 
         <div>

@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import moment from "moment";
 import bulbIcon from "../../public/images/icons/bulb.svg";
 import { get, defaultTo } from "lodash";
-import ReactHtmlParser from 'react-html-parser'; 
-let md = require('markdown-it')().disable([ 'link', 'image' ]);
+import ReactHtmlParser from "react-html-parser";
+let md = require("markdown-it")().disable(["link", "image"]);
 
 const PeJobDetail = ({ job }) => {
   useEffect(() => {
@@ -12,11 +12,10 @@ const PeJobDetail = ({ job }) => {
     } catch (err) {}
   });
 
-  const description = get(job, "job.description", undefined)
-  const contractDuration = get(job, "job.contractDescription", undefined)
-  const contractRythm = get(job, "job.duration", undefined)
-  const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined 
-
+  const description = get(job, "job.description", undefined);
+  const contractDuration = get(job, "job.contractDescription", undefined);
+  const contractRythm = get(job, "job.duration", undefined);
+  const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined;
   return (
     <>
       <div className="c-detail-body">

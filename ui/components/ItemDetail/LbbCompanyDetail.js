@@ -52,7 +52,6 @@ const LbbCompanyDetail = ({ lbb }) => {
             capacité de transmettre un métier
           </li>
         </ul>
-
       </div>
       <div className="c-detail-lbb-siretzone">
         <div className="c-detail-lbb-siretno p-0 m-0">N° de siret</div>
