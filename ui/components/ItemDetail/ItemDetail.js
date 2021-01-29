@@ -18,7 +18,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
             <button className="c-detail-back" onClick={handleClose}>
               ← Retour aux résultats
             </button>
-            <p className="c-detail-title">{get(selectedItem, "company.name", "")}</p>
+            <p className={"c-detail-title c-detail-title--" + kind}>{get(selectedItem, "company.name", "")}</p>
             <p className="c-detail-activity">
               <em>Activité non renseignée</em>
             </p>
@@ -27,6 +27,7 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
               </span>
               <span className="c-detail-address">{get(selectedItem, "place.fullAddress", "").toLowerCase()}</span>
+              <div>{selectedItem?.place?.distance} km(s) du lieu de recherche</div>
             </p>
             <p>
               <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>

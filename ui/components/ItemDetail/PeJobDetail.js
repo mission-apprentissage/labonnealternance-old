@@ -27,7 +27,7 @@ const PeJobDetail = ({ job }) => {
         <h2 className="c-detail-jobtitle">{get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))}</h2>
         <div className="c-detail-meta">
           <div className="c-detail-metadate">
-            Publiée le  : {defaultTo(creationDate, ReactHtmlParser("<em>Donnée manquante</em>"))}
+            Publiée le : {defaultTo(creationDate, ReactHtmlParser("<em>Donnée manquante</em>"))}
           </div>
           <div className="c-detail-metaduration">
             Durée : {defaultTo(contractDuration, ReactHtmlParser("<em>Donnée manquante</em>"))}
