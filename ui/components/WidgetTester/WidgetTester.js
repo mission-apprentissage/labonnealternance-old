@@ -16,7 +16,7 @@ const WidgetTester = () => {
 
   const getRadioButton = (inputName, value, label, selectedValue, setFieldValue, handleChange) => {
     return (
-      <Col xs="2" className="radioButton">
+      <Col xs="4" className="radioButton">
         <RadioButton
           inputName={inputName}
           handleChange={handleChange}
