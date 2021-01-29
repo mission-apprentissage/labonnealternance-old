@@ -23,11 +23,17 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
     <>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
         {displayNavbar ? (
-          <nav className="c-detail-stickynav">
+          <nav
+            className="c-detail-stickynav"
+            onClick={() => {
+              setSeeInfo(false);
+              handleClose();
+            }}
+          >
             <span className="mr-3">←</span> {get(selectedItem, "company.name", "Retour")}
           </nav>
         ) : (
-            ""
+          ""
         )}
         <header className="c-detail-header">
           <div className="text-left">
