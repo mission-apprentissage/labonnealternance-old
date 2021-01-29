@@ -2,14 +2,15 @@ import React from "react";
 import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { get, includes, defaultTo } from "lodash";
+import { get, includes, defaultTo, round } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 
 const ItemDetail = ({ selectedItem, handleClose }) => {
   const kind = selectedItem?.ideaType;
   const companySize = selectedItem?.company?.size?.toLowerCase();
-
+  const distance = selectedItem?.place?.distance;
+  console.log('selectedItem ', selectedItem);
   return (
     <>
       <section className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
@@ -22,12 +23,21 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
             <p className="c-detail-activity">
               <em>Activité non renseignée</em>
             </p>
-            <p>
-              <span>
+            <p className="d-flex">
+              <div>
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
-              </span>
-              <span className="c-detail-address">{get(selectedItem, "place.fullAddress", "").toLowerCase()}</span>
-              <div>{selectedItem?.place?.distance} km(s) du lieu de recherche</div>
+              </div>
+              <div className="ml-2">
+                <div className="c-detail-address">{get(selectedItem, "place.fullAddress", "").toLowerCase()}</div>
+                {distance ? (
+                  <div className="c-detail-km">
+                    {round(distance, 1) + " "}
+                    km(s) du lieu de recherche
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </p>
             <p>
               <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>

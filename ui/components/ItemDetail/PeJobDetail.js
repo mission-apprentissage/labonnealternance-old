@@ -58,7 +58,8 @@ const PeJobDetail = ({ job }) => {
         <div className="c-detail-advice p-2">
           <img src={bulbIcon} alt="" />
           <div className="c-detail-advice-text">
-            Diversifiez vos démarches en envoyant aussi des candidatures spontanées aux entreprises qui n'ont pas diffusé d'offre !
+            Diversifiez vos démarches en envoyant aussi des candidatures spontanées aux entreprises qui n'ont pas
+            diffusé d'offre !
           </div>
         </div>
 
