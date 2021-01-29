@@ -17,6 +17,8 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
   let contactEmail = selectedItem?.contact?.email
   let contactInfo = contactEmail ? `écrire à ${contactEmail}` : "informations non communiquées";
 
+  let siret = selectedItem?.company?.siret;
+
   return (
     <>
       <section className={`itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
@@ -70,10 +72,17 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
                 <span className="c-detail-sizetext d-block">
                   {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
                 </span>
-                  <a target="lbb" href={`https://labonneboite.pole-emploi.fr/${selectedItem?.company?.siret}/details`}
-                    className="d-block btn btn-outline-primary w-50 mt-3 c-detail-seeinfo">
+                {siret ? (
+                  <a
+                    target="lbb"
+                    href={`https://labonneboite.pole-emploi.fr/${siret}/details`}
+                    className="d-block btn btn-outline-primary w-50 mt-3 c-detail-seeinfo"
+                  >
                     Voir les informations de contact
-                </a>
+                  </a>
+                ) : (
+                  ""
+                )}
               </p>
             )}
           </div>
