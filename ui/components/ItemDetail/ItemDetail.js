@@ -5,6 +5,7 @@ import TrainingDetail from "./TrainingDetail";
 import { get, includes, defaultTo, round } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
+import linkIcon from "../../public/images/icons/link.svg";
 
 const ItemDetail = ({ selectedItem, handleClose }) => {
   const kind = selectedItem?.ideaType;
@@ -39,12 +40,19 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
                 )}
               </div>
             </p>
-            <p>
-              <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
-              <span className="c-detail-sizetext d-block">
-                {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
-              </span>
-            </p>
+
+            {kind === "formation" ? (
+              <div className="c-detail-km">
+                <img src={linkIcon} alt="Lien" />
+              </div>
+            ) : (
+              <p>
+                <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
+                <span className="c-detail-sizetext d-block">
+                  {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
+                </span>
+              </p>
+            )}
           </div>
           <hr className="c-detail-header-separator" />
         </header>
