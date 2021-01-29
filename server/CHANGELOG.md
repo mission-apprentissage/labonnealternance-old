@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.7.2 [29/01/2020]
+[351c] Sticky Navbar sur l'écran de détail
+
 ## 1.7.1 [28/01/2020]
 [351] Rechartage formation et entreprise LBB
 
