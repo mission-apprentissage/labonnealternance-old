@@ -65,11 +65,15 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
                 </div>
               </>
             ) : (
-              <p>
+              <p className="mb-4">
                 <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
                 <span className="c-detail-sizetext d-block">
                   {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
                 </span>
+                  <a target="lbb" href={`https://labonneboite.pole-emploi.fr/${selectedItem?.company?.siret}/details`}
+                    className="d-block btn btn-outline-primary w-50 mt-3 c-detail-seeinfo">
+                    Voir les informations de contact
+                </a>
               </p>
             )}
           </div>

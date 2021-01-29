@@ -59,17 +59,21 @@ const LbbCompanyDetail = ({ lbb }) => {
         <div className="c-detail-lbb-siretactual p-0 m-0">
           {defaultTo(siret, ReactHtmlParser("<em>Non renseigné</em>"))}
         </div>
-        <div className="c-detail-lbb-siretaction">
-          <a
-            className="btn btn-outline-primary c-detail-lbb-siretbutton px-1 px-sm-3 c-home-descr__more"
-            target="_blank"
-            rel="noopener noreferer"
-            href={modificationLink}
-          >
-            <img src={gotoIcon} alt="Aller à" />
-            <span className="c-detail-lbb-siretbutton d-inline px-1 px-sm-0 ml-2">Modifier les informations </span>
-          </a>
-        </div>
+        {siret ? (
+          <div className="c-detail-lbb-siretaction">
+            <a
+              className="btn btn-outline-primary c-detail-lbb-siretbutton px-1 px-sm-3 c-home-descr__more"
+              target="_blank"
+              rel="noopener noreferer"
+              href={modificationLink}
+            >
+              <img src={gotoIcon} alt="Aller à" />
+              <span className="c-detail-lbb-siretbutton d-inline px-1 px-sm-0 ml-2">Modifier les informations </span>
+            </a>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

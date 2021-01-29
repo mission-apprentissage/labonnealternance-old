@@ -270,3 +270,10 @@ a.c-detail-lbb-siretbutton {
     text-decoration: none;
   }
 }
+
+.c-detail-seeinfo {
+  font-size: 14px;
+  @include media-breakpoint-up(lg) {
+    font-size: 16px;
+  }
+}
