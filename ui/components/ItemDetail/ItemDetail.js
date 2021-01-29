@@ -42,8 +42,9 @@ const ItemDetail = ({ selectedItem, handleClose }) => {
             </p>
 
             {kind === "formation" ? (
-              <div className="c-detail-km">
+              <div className="c-detail-km c-detail-pelink">
                 <img src={linkIcon} alt="Lien" />
+                <a href="www.ecoledetravail.fr" className="ml-3">www.ecoledetravail.fr</a>
               </div>
             ) : (
               <p>

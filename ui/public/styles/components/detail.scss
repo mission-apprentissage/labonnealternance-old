@@ -189,7 +189,6 @@
 
 .c-detail-lbb-ul {  
   text-align: left;
-  // list-style-position: inside;
 }
 
 .c-detail-lbb-li::marker {
@@ -206,14 +205,12 @@
   content: '⬤';
   color: $pinksoft500;
   position: absolute;
-  left: -2em;          /* Adjust this value so that it appears where you want. */
+  left: -2em;
   font-size: 1em; 
 }
 
 .c-detail-lbb-siretzone {
   background-color: $gray-200;
-  // padding-left: 30px;
-  // padding-right: 30px;
   padding: 30px;
   text-align: left;
 }
