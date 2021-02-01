@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.7.X [29/01/2020]
+## 1.7.1 [29/01/2020]
 [373] Fix clignotement sur le formulaire
 
 ## 1.7.0 [28/01/2020]
