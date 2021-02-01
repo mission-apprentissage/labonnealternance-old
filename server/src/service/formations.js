@@ -439,8 +439,8 @@ const getFormationsParRegionQuery = async (query) => {
 
 const getFormationEsQueryIndexFragment = (limit) => {
   return {
-    //index: "formations",
-    index: "mnaformation",
+    //index: "mnaformation",
+    index: "convertedformation",
     size: limit,
     _sourceIncludes: [
       "etablissement_formateur_siret",
