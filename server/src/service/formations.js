@@ -297,15 +297,12 @@ const transformFormationForIdea = (formation) => {
     longitude: formation.source.lieu_formation_geo_coordonnees
       ? formation.source.lieu_formation_geo_coordonnees.split(",")[1]
       : null,
-    city: formation.source.etablissement_formateur_localite,
-    address: `${formation.source.etablissement_formateur_adresse}${
-      formation.source.etablissement_formateur_complement_adresse
-        ? ", " + formation.source.etablissement_formateur_complement_adresse
-        : ""
-    }`,
+    //city: formation.source.etablissement_formateur_localite,
+    city: formation.source.localite,
+    address: `${formation.source.lieu_formation_adresse}`,
     cedex: formation.source.etablissement_formateur_cedex,
-    zipCode: formation.source.etablissement_formateur_code_postal,
-    trainingZipCode: formation.source.code_postal,
+    zipCode: formation.source.code_postal,
+    //trainingZipCode: formation.source.code_postal,
     departementNumber: formation.source.num_departement,
     region: formation.source.region,
   };
@@ -345,24 +342,29 @@ const transformFormationForIdea = (formation) => {
 };
 
 const getTrainingAddress = (school) => {
-  let schoolAddress = school.etablissement_formateur_adresse
-    ? `${school.etablissement_formateur_adresse}${
-        school.etablissement_formateur_complement_adresse
-          ? `, ${school.etablissement_formateur_complement_adresse}`
-          : ""
-      } ${school.etablissement_formateur_localite ? school.etablissement_formateur_localite : ""} ${
-        school.etablissement_formateur_code_postal ? school.etablissement_formateur_code_postal : ""
-      }${school.etablissement_formateur_cedex ? ` CEDEX ${school.etablissement_formateur_cedex}` : ""}
-        `
-    : `${school.etablissement_gestionnaire_adresse}${
-        school.etablissement_gestionnaire_complement_adresse
-          ? `, ${school.etablissement_gestionnaire_complement_adresse}`
-          : ""
-      } ${school.etablissement_gestionnaire_localite ? school.etablissement_gestionnaire_localite : ""} ${
-        school.etablissement_gestionnaire_code_postal ? school.etablissement_gestionnaire_code_postal : ""
-      }${school.etablissement_gestionnaire_cedex ? ` CEDEX ${school.etablissement_gestionnaire_cedex}` : ""}
-        `;
+  let schoolAddress = "";
 
+  if (school.lieu_formation_adresse) {
+    schoolAddress = `${school.lieu_formation_adresse} ${school.code_postal} ${school.localite}`;
+  } else {
+    schoolAddress = school.etablissement_formateur_adresse
+      ? `${school.etablissement_formateur_adresse}${
+          school.etablissement_formateur_complement_adresse
+            ? `, ${school.etablissement_formateur_complement_adresse}`
+            : ""
+        } ${school.etablissement_formateur_localite ? school.etablissement_formateur_localite : ""} ${
+          school.etablissement_formateur_code_postal ? school.etablissement_formateur_code_postal : ""
+        }${school.etablissement_formateur_cedex ? ` CEDEX ${school.etablissement_formateur_cedex}` : ""}
+        `
+      : `${school.etablissement_gestionnaire_adresse}${
+          school.etablissement_gestionnaire_complement_adresse
+            ? `, ${school.etablissement_gestionnaire_complement_adresse}`
+            : ""
+        } ${school.etablissement_gestionnaire_localite ? school.etablissement_gestionnaire_localite : ""} ${
+          school.etablissement_gestionnaire_code_postal ? school.etablissement_gestionnaire_code_postal : ""
+        }${school.etablissement_gestionnaire_cedex ? ` CEDEX ${school.etablissement_gestionnaire_cedex}` : ""}
+        `;
+  }
   return schoolAddress;
 };
 
@@ -451,6 +453,8 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "lieu_formation_geo_coordonnees",
       "intitule_long",
       "intitule_court",
+      "lieu_formation_adresse",
+      "localite",
       "code_postal",
       "num_departement",
       "region",
