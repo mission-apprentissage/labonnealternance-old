@@ -50,9 +50,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
   return (
     <div className="resultCard trainingCard">
-
       <div className="c-media" id={`id${training.id}`}>
-
         <div className="c-media-figure">
           <img className="cardIcon" src={trainingIcon} alt="" />
         </div>
@@ -63,19 +61,18 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
           <div className="cardText pt-2">{training.place.fullAddress}</div>
           <span className="cardDistance pt-1">
             {Math.round(training.place.distance)} km(s) du lieu de recherche
-
             {showTextOnly ? (
               ""
             ) : (
               <>
                 <span className="knowMore">
-                  <button className="c-resultcard-knowmore" onClick={onSelectItem}>
+                  <button className="c-resultcard-knowmore gtmSavoirPlus gtmFormation gtmListe" onClick={onSelectItem}>
                     En savoir plus
                   </button>
                 </span>
               </>
             )}
-          </span>          
+          </span>
           {showTextOnly ? (
             ""
           ) : (
@@ -86,15 +83,8 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
             </>
           )}
         </div>
-
       </div>
-      <div>
-      </div>
-
-
-
-
-
+      <div></div>
     </div>
   );
 };

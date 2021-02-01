@@ -62,7 +62,7 @@ const SearchForTrainingsAndJobs = () => {
   return (
     <div className="page demoPage">
       <Row>
-        <Col className={visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"} xs="12" md="8">
+        <Col className={`vh-100 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="8">
           <Map showResultList={showResultList} />
         </Col>
         <Col

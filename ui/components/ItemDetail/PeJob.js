@@ -60,7 +60,7 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
             ) : (
               <>
                 <span className="knowMore">
-                  <button className="c-resultcard-knowmore" onClick={onSelectItem}>
+                  <button className={`c-resultcard-knowmore gtmSavoirPlus gtmPeJob gtmListe`} onClick={onSelectItem}>
                     En savoir plus
                   </button>
                 </span>

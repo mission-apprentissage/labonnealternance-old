@@ -19,7 +19,7 @@ class ExampleApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <>
-        <main className="c-app">
+        <main className="c-app overflow-hidden">
           <HeadLaBonneAlternance />
           <ConnectedRouter>
             <Component {...pageProps} />
