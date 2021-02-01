@@ -26,8 +26,8 @@ module.exports = () => {
       const esClient = getCatalogueES();
 
       const responseDiplomas = await esClient.search({
-        //index: "formations",
-        index: "mnaformation",
+        //index: "mnaformation",
+        index: "convertedformation",
         body: {
           query: {
             match: {
