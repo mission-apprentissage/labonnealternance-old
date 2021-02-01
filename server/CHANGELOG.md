@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 1.8.0 [01/02/2020]
+[377] Bascule sur le catalogue 2021
+
+## 1.7.1 [29/01/2020]
+[373] Fix clignotement sur le formulaire
+
+## 1.7.0 [28/01/2020]
+[366] Rappatrier ES domainesMetiers
+
+## 1.6.1 [25/01/2020]
+[360] Augmentation des quotas de requêtes sur la conf nginx
+
+## 1.6.0 [25/01/2020]
+[346] Adaptation fond de carte et pictos de carte
+
+## 1.5.1 [22/01/2020]
+[344] Recharter peJob.js
+
+## 1.5.0 [22/01/2020]
+[343] Recharter Training.js
+
+## 1.4.3 [21/01/2020]
+[342] Fix zoom sur centre de recherche pour widget /recherche-emploi
+
+## 1.4.2 [21/01/2020]
+[273] Addendum FAQ
+
+## 1.4.1 [21/01/2020]
+[277] Mise à jour du footer
+
 ## 1.4.0 [20/01/2020]
 Chargement de mapbox seulement lorsque nécessaire
 

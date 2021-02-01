@@ -125,22 +125,32 @@
 }
 .widgetTestPage form input[type="radio"] {
   height: 16px;
-  margin-left: -44px;
+  margin-left: -90px;
   margin-top: 3px;
+}
+@media only screen and (max-width: 450px) {
+  .widgetTestPage form input[type="radio"] {
+    margin-left: -50px;
+  }
+}
+@media only screen and (min-width: 451px) and (max-width: 767px) {
+  .widgetTestPage form input[type="radio"] {
+    margin-left: -60px;
+  }
 }
 @media only screen and (min-width: 768px) and (max-width: 870px) {
   .widgetTestPage form input[type="radio"] {
-    margin-left: -25px;
+    margin-left: -80px;
   }
 }
 @media only screen and (min-width: 871px) and (max-width: 1000px) {
   .widgetTestPage form input[type="radio"] {
-    margin-left: -30px;
+    margin-left: -85px;
   }
 }
 @media only screen and (min-width: 1001px) and (max-width: 1150px) {
   .widgetTestPage form input[type="radio"] {
-    margin-left: -35px;
+    margin-left: -90px;
   }
 }
 .widgetTestPage form input:focus,

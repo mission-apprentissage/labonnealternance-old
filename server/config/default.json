@@ -32,7 +32,6 @@
     "awsAccessKeyId": "1234",
     "awsSecretAccessKey": "1234",
     "esUrl": "https://catalogue.apprentissage.beta.gouv.fr/es",
-    "domainesMetiersEsUrl": "http://localhost:9200",
     "mongodbUrl": "1234",
     "mongodbDbname": "1234",
     "apiEntrepriseKey": "1234",

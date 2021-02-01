@@ -25,7 +25,6 @@
     },
     "awsAccessKeyId": "AWS_ACCESS_KEY_ID",
     "awsSecretAccessKey": "AWS_SECRET_ACCESS_KEY",
-    "domainesMetiersEsUrl": "DOMAINES_METIERS_ES_URL",
     "esUrl": "ES_URL",
     "mongodbUrl": "MONGODB_URL",
     "mongodb": {

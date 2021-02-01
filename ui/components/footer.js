@@ -84,34 +84,54 @@ const Footer = (props) => {
             <Col className="col-md-4 col-lg-3">
               <ul className="c-footer-links">
                 <li className="c-footer-links__line">
-                  <a className="c-footer-links__link" href="mailto:labonnealternance@pole-emploi.fr">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/contact" }));
+                    }}
+                    href="/contact"
+                  >
                     Contact
                   </a>
                 </li>
+
                 <li className="c-footer-links__line">
-                  <div className="d-flex cursor-pointer">
-                    <a
-                      className="c-footer-links__link"
-                      target="_blank"
-                      rel="noopener noreferer"
-                      href="https://mission-apprentissage.gitbook.io/la-bonne-alternance/"
-                    >
-                      Développeurs
-                    </a>
-                  </div>
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/developpeurs" }));
+                    }}
+                    href="/developpeurs"
+                  >
+                    Développeurs
+                  </a>
                 </li>
 
                 <li className="c-footer-links__line">
-                  <div className="d-flex cursor-pointer">
-                    <a
-                      className="c-footer-links__link"
-                      target="_blank"
-                      rel="noopener noreferer"
-                      href="https://datastudio.google.com/u/0/reporting/1v-Sim2qMlFSMn4n9JJWaMk8PIONvM757/page/3CME"
-                    >
-                      Statistiques
-                    </a>
-                  </div>
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/statistiques" }));
+                    }}
+                    href="/statistiques"
+                  >
+                    Statistiques
+                  </a>
+                </li>
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/cgu" }));
+                    }}
+                    href="/cgu"
+                  >
+                    CGU
+                  </a>
                 </li>
               </ul>
             </Col>

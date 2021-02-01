@@ -16,7 +16,7 @@ const WidgetTester = () => {
 
   const getRadioButton = (inputName, value, label, selectedValue, setFieldValue, handleChange) => {
     return (
-      <Col xs="2" className="radioButton">
+      <Col xs="4" className="radioButton">
         <RadioButton
           inputName={inputName}
           handleChange={handleChange}
@@ -327,11 +327,11 @@ const WidgetTester = () => {
       <Container>
         <Row>
           <Col xs="12">
-            <h1>Test du Widget Idea</h1>
+            <h1>Test du Widget La Bonne Alternance</h1>
             <div>
               La documentation est ici :{" "}
-              <a href="https://mission-apprentissage.gitbook.io/idea/documentation" target="docIdea">
-                https://mission-apprentissage.gitbook.io/idea/documentation
+              <a href="https://mission-apprentissage.gitbook.io/la-bonne-alternance/documentation" target="docIdea">
+              https://mission-apprentissage.gitbook.io/la-bonne-alternance/documentation
               </a>
             </div>
             {getForm()}

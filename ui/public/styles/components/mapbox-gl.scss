@@ -1,3 +1,6 @@
+canvas.mapboxgl-canvas:focus {
+  outline: none;
+}
 .mapboxgl-popup {
   max-width: 400px !important;
 }
@@ -35,9 +38,7 @@
   font-weight: bold;
   font-size: 16px;
 }
-.mapboxgl-popup-content .mapboxPopupAddress {
-  text-transform: capitalize;
-}
+
 .mapboxgl-popup-content .knowMore {
   margin-top: 10px;
   text-align: right;

@@ -347,7 +347,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
       dispatch(setJobs(results));
       dispatch(setHasSearch(true));
 
-      setJobMarkers(factorJobsForMap(results));
+      setJobMarkers(factorJobsForMap(results), scopeContext.isTraining ? null : searchCenter);
     } catch (err) {
       console.log(
         `Erreur interne lors de la recherche d'emplois (${
