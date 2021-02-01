@@ -76,7 +76,10 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
             ) : (
               <>
                 <div className="knowMore">
-                  <button className="c-resultcard-knowmore" onClick={onSelectItem}>
+                  <button
+                    className={`c-resultcard-knowmore gtmSavoirPlus gtm${company.ideaType} gtmListe`}
+                    onClick={onSelectItem}
+                  >
                     En savoir plus
                   </button>
                 </div>

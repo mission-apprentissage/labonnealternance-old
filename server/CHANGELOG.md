@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.8.0 [01/02/2020]
+[377] Bascule sur le catalogue 2021
+
 ## 1.7.1 [29/01/2020]
 [373] Fix clignotement sur le formulaire
 
