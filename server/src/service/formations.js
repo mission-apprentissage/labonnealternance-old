@@ -50,7 +50,7 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
             filter: {
               geo_distance: {
                 distance: `${distance}km`,
-                idea_geo_coordonnees_etablissement: {
+                lieu_formation_geo_coordonnees: {
                   lat: coords[1],
                   lon: coords[0],
                 },
@@ -61,7 +61,7 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
         sort: [
           {
             _geo_distance: {
-              idea_geo_coordonnees_etablissement: [parseFloat(coords[0]), parseFloat(coords[1])],
+              lieu_formation_geo_coordonnees: [parseFloat(coords[0]), parseFloat(coords[1])],
               order: "asc",
               unit: "km",
               mode: "min",
@@ -291,11 +291,11 @@ const transformFormationForIdea = (formation) => {
   resultFormation.place = {
     distance: formation.sort ? formation.sort[0] : null,
     fullAddress: getTrainingAddress(formation.source), // adresse postale reconstruite à partir des éléments d'adresse fournis
-    latitude: formation.source.idea_geo_coordonnees_etablissement
-      ? formation.source.idea_geo_coordonnees_etablissement.split(",")[0]
+    latitude: formation.source.lieu_formation_geo_coordonnees
+      ? formation.source.lieu_formation_geo_coordonnees.split(",")[0]
       : null,
-    longitude: formation.source.idea_geo_coordonnees_etablissement
-      ? formation.source.idea_geo_coordonnees_etablissement.split(",")[1]
+    longitude: formation.source.lieu_formation_geo_coordonnees
+      ? formation.source.lieu_formation_geo_coordonnees.split(",")[1]
       : null,
     city: formation.source.etablissement_formateur_localite,
     address: `${formation.source.etablissement_formateur_adresse}${
@@ -448,7 +448,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "_id",
       "email",
       "niveau",
-      "idea_geo_coordonnees_etablissement",
+      "lieu_formation_geo_coordonnees",
       "intitule_long",
       "intitule_court",
       "code_postal",
