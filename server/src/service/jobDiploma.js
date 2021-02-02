@@ -1,39 +1,41 @@
-const { getCatalogueES } = require("../common/esClient");
 const _ = require("lodash");
+const Sentry = require("@sentry/node");
+const axios = require("axios");
+
+const urlCatalogueSearch =
+  "https://catalogue-recette.apprentissage.beta.gouv.fr/api/v1/es/search/convertedformation/_search/";
 
 const getDiplomasForJobs = async (romes) => {
   try {
-    const esClient = getCatalogueES();
-
-    const responseDiplomas = await esClient.search({
-      //index: "mnaformation",
-      index: "convertedformation",
-      body: {
-        query: {
-          match: {
-            rome_codes: romes,
-          },
+    const body = {
+      query: {
+        match: {
+          rome_codes: romes,
         },
-        aggs: {
-          niveaux: {
-            terms: {
-              field: "niveau.keyword",
-              size: 10,
-            },
-          },
-        },
-        size: 0,
       },
-    });
+      aggs: {
+        niveaux: {
+          terms: {
+            field: "niveau.keyword",
+            size: 10,
+          },
+        },
+      },
+      size: 0,
+    };
+
+    const responseDiplomas = await axios.post(urlCatalogueSearch, body);
 
     let diplomas = [];
 
-    responseDiplomas.body.aggregations.niveaux.buckets.forEach((diploma) => {
+    responseDiplomas.data.aggregations.niveaux.buckets.forEach((diploma) => {
       diplomas.push(diploma.key);
     });
 
     return diplomas;
   } catch (err) {
+    Sentry.captureException(err);
+
     let error_msg = _.get(err, "meta.body") ? err.meta.body : err;
     console.log("Error getting jobDiplomas from romes ", error_msg);
     if (_.get(err, "meta.meta.connection.status") === "dead") {
