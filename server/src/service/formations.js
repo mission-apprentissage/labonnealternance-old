@@ -1,4 +1,5 @@
 const axios = require("axios");
+const config = require("config");
 const Sentry = require("@sentry/node");
 const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
@@ -6,8 +7,7 @@ const { formationsQueryValidator, formationsRegionQueryValidator } = require("./
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
 
 const formationResultLimit = 500;
-const urlCatalogueSearch =
-  "https://catalogue-recette.apprentissage.beta.gouv.fr/api/v1/es/search/convertedformation/_search/";
+const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
 
 const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit }) => {
   //console.log(romes, coords, radius, diploma);

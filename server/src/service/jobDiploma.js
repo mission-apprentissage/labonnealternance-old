@@ -1,9 +1,9 @@
 const _ = require("lodash");
+const config = require("config");
 const Sentry = require("@sentry/node");
 const axios = require("axios");
 
-const urlCatalogueSearch =
-  "https://catalogue-recette.apprentissage.beta.gouv.fr/api/v1/es/search/convertedformation/_search/";
+const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
 
 const getDiplomasForJobs = async (romes) => {
   try {
