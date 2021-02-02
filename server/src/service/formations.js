@@ -1,5 +1,4 @@
 const axios = require("axios");
-const { getCatalogueES } = require("../common/esClient");
 const Sentry = require("@sentry/node");
 const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
@@ -103,8 +102,6 @@ const getRegionFormations = async ({
   //console.log(romes, coords, radius, diploma);
 
   try {
-    const esClient = getCatalogueES();
-
     let mustTerm = [];
 
     if (departement)
@@ -145,22 +142,21 @@ const getRegionFormations = async ({
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
-    //  console.log(mustTerm);
-
-    const responseFormations = await esClient.search({
-      ...esQueryIndexFragment,
-      body: {
-        query: {
-          bool: {
-            must: mustTerm,
-          },
+    const body = {
+      query: {
+        bool: {
+          must: mustTerm,
         },
       },
+    };
+
+    const responseFormations = await axios.post(urlCatalogueSearch, body, {
+      params: esQueryIndexFragment,
     });
 
     let formations = [];
 
-    responseFormations.body.hits.hits.forEach((formation) => {
+    responseFormations.data.hits.hits.forEach((formation) => {
       formations.push({ source: formation._source, sort: formation.sort, id: formation._id });
     });
 
