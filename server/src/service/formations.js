@@ -1,3 +1,4 @@
+const axios = require("axios");
 const { getCatalogueES } = require("../common/esClient");
 const Sentry = require("@sentry/node");
 const _ = require("lodash");
@@ -6,13 +7,13 @@ const { formationsQueryValidator, formationsRegionQueryValidator } = require("./
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
 
 const formationResultLimit = 500;
+const urlCatalogueSearch =
+  "https://catalogue-recette.apprentissage.beta.gouv.fr/api/v1/es/search/convertedformation/_search/";
 
 const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit }) => {
   //console.log(romes, coords, radius, diploma);
 
   try {
-    const esClient = getCatalogueES();
-
     const distance = radius || 30;
 
     let mustTerm = [
@@ -41,41 +42,42 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
-    const responseFormations = await esClient.search({
-      ...esQueryIndexFragment,
-      body: {
-        query: {
-          bool: {
-            must: mustTerm,
-            filter: {
-              geo_distance: {
-                distance: `${distance}km`,
-                lieu_formation_geo_coordonnees: {
-                  lat: coords[1],
-                  lon: coords[0],
-                },
+    const body = {
+      query: {
+        bool: {
+          must: mustTerm,
+          filter: {
+            geo_distance: {
+              distance: `${distance}km`,
+              lieu_formation_geo_coordonnees: {
+                lat: coords[1],
+                lon: coords[0],
               },
             },
           },
         },
-        sort: [
-          {
-            _geo_distance: {
-              lieu_formation_geo_coordonnees: [parseFloat(coords[0]), parseFloat(coords[1])],
-              order: "asc",
-              unit: "km",
-              mode: "min",
-              distance_type: "arc",
-              ignore_unmapped: true,
-            },
-          },
-        ],
       },
+      sort: [
+        {
+          _geo_distance: {
+            lieu_formation_geo_coordonnees: [parseFloat(coords[0]), parseFloat(coords[1])],
+            order: "asc",
+            unit: "km",
+            mode: "min",
+            distance_type: "arc",
+            ignore_unmapped: true,
+          },
+        },
+      ],
+    };
+
+    const responseFormations = await axios.post(urlCatalogueSearch, body, {
+      params: esQueryIndexFragment,
     });
 
     let formations = [];
 
-    responseFormations.body.hits.hits.forEach((formation) => {
+    responseFormations.data.hits.hits.forEach((formation) => {
       formations.push({ source: formation._source, sort: formation.sort, id: formation._id });
     });
 
