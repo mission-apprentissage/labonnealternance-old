@@ -25,7 +25,7 @@
     },
     "awsAccessKeyId": "AWS_ACCESS_KEY_ID",
     "awsSecretAccessKey": "AWS_SECRET_ACCESS_KEY",
-    "esUrl": "ES_URL",
+    "catalogueUrl": "CATALOGUE_URL",
     "mongodbUrl": "MONGODB_URL",
     "mongodb": {
       "uri": "LABONNEALTERNANCE_MONGODB_URI"

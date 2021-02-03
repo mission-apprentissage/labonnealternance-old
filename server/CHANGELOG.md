@@ -1,82 +1,85 @@
 # CHANGELOG
 
-## 1.8.0 [01/02/2020]
+## 1.8.1 [02/02/2021]
+[371] Utilisation API Catalogue ES au lieu d'accès direct
+
+## 1.8.0 [01/02/2021]
 [377] Bascule sur le catalogue 2021
 
-## 1.7.1 [29/01/2020]
+## 1.7.1 [29/01/2021]
 [373] Fix clignotement sur le formulaire
 
-## 1.7.0 [28/01/2020]
+## 1.7.0 [28/01/2021]
 [366] Rappatrier ES domainesMetiers
 
-## 1.6.1 [25/01/2020]
+## 1.6.1 [25/01/2021]
 [360] Augmentation des quotas de requêtes sur la conf nginx
 
-## 1.6.0 [25/01/2020]
+## 1.6.0 [25/01/2021]
 [346] Adaptation fond de carte et pictos de carte
 
-## 1.5.1 [22/01/2020]
+## 1.5.1 [22/01/2021]
 [344] Recharter peJob.js
 
-## 1.5.0 [22/01/2020]
+## 1.5.0 [22/01/2021]
 [343] Recharter Training.js
 
-## 1.4.3 [21/01/2020]
+## 1.4.3 [21/01/2021]
 [342] Fix zoom sur centre de recherche pour widget /recherche-emploi
 
-## 1.4.2 [21/01/2020]
+## 1.4.2 [21/01/2021]
 [273] Addendum FAQ
 
-## 1.4.1 [21/01/2020]
+## 1.4.1 [21/01/2021]
 [277] Mise à jour du footer
 
-## 1.4.0 [20/01/2020]
+## 1.4.0 [20/01/2021]
 Chargement de mapbox seulement lorsque nécessaire
 
-## 1.3.4 [18/01/2020]
+## 1.3.4 [18/01/2021]
 Ajustements recherche domainesMetiers : plus de résultats, ignore les mots courts sur une recherche multimots à partir du deuxième mot
 
-## 1.3.3 [15/01/2020]
+## 1.3.3 [15/01/2021]
 [274] Ajustements home
 
-## 1.3.2 [15/01/2020]
+## 1.3.2 [15/01/2021]
 [291] Fix rayon de recherche LBB/LBA
 
-## 1.3.1 [14/01/2020]
+## 1.3.1 [14/01/2021]
 [291] Fix rayon de recherche LBB/LBA
 
-## 1.3.0 [14/01/2020]
+## 1.3.0 [14/01/2021]
 [303] Ajouter la route swagger.json
 
-## 1.2.1 [14/01/2020]
+## 1.2.1 [14/01/2021]
 [329] Spinner pour les widgets
 
-## 1.2.0 [11/01/2020]
+## 1.2.0 [11/01/2021]
 [262] Widget emploi
 
-## 1.1.7 [08/01/2020]
+## 1.1.7 [08/01/2021]
 [319] Utilisation intitule_long pour noms de formations
 
-## 1.1.6 [08/01/2020]
+## 1.1.6 [08/01/2021]
 Fix variable evt Sentry
 Page /config pour connaître l'evt sans passer par /api
 
-## 1.1.5 [08/01/2020]
+## 1.1.5 [08/01/2021]
 [309] Chartage autocomplétion
 
-## 1.1.4 [07/01/2020]
+## 1.1.4 [07/01/2021]
 [305] Reliquats
 
-## 1.1.3 [07/01/2020]
+## 1.1.3 [07/01/2021]
 [316] Recherche multi mots sur domainesMetiers
 [300] Utilisation de domainesMetiers sur tables-correspondances
 
-## 1.1.2 [05/01/2020]
+## 1.1.2 [05/01/2021]
 [296] Message d'erreur technique mal calibré
 Fix config es
 Utilisation config côté ui pour sentry
 
-## 1.1.1 [04/01/2020]
+## 1.1.1 [04/01/2021]
 [216] Enrichissement informations remontées pour API formations
 Modification de l'initialisation des curseurs Elastic Search
 
