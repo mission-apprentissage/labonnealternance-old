@@ -69,7 +69,7 @@ const SearchForTrainingsAndJobs = () => {
         >
           <ChoiceColumn showResultList={showResultList} showSearchForm={showSearchForm} unSelectItem={unSelectItem} />
         </Col>
-        <Col className={visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"} xs="12" md="7">
+        <Col className={`vh-100 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
           <Map showResultList={showResultList} />
         </Col>
       </Row>
