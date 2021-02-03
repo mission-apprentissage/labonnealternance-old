@@ -87,7 +87,7 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
     if (_.get(err, "meta.meta.connection.status") === "dead") {
       console.error("Elastic search is down or unreachable");
     }
-    return { error: error_msg };
+    return { result: "error", results: [], error: error_msg, message: error_msg };
   }
 };
 
