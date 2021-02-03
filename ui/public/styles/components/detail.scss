@@ -1,0 +1,304 @@
+.c-detail-header {
+
+}
+.c-detail-back {
+  background: white;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.c-detail-title {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0em;
+  color: $pinksoft500;
+  margin-bottom: 11px;
+  padding-bottom: 0;
+}
+
+.c-detail-title--formation {
+  color: #00AC8C;
+}
+
+.c-detail-activity {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0;
+  margin-bottom: 12px;
+  padding-bottom: 0;
+}
+
+.c-detail-address {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-transform: capitalize;
+}
+
+.c-detail-km {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: $gray-600;
+}
+
+.c-detail-sizetitle {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0;
+  margin-bottom: 16px;
+  padding-bottom: 0;
+}
+
+.c-detail-sizetext {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0;
+  margin-bottom: 20px;
+  padding-bottom: 0;
+}
+
+.c-detail-header-separator {
+  margin-bottom: 0;
+}
+.c-detail-header-separator--formation {
+  margin-top: 2.3rem;
+}
+
+.c-detail-body {
+  background-color: white;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.c-detail-company {
+  background-color: white;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-align: left;
+  margin-top: 23px;
+}
+.c-detail-jobtitle {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin-bottom: 0;
+  margin-top: 21px;
+}
+.c-detail-meta {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin-top: 24px;
+}
+.c-detail-proposal {
+  font-weight: 400;
+  color: $gray-700;
+  margin-bottom: 0;
+}
+.c-detail-jobname {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.c-detail-description-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin-bottom: 0;
+  margin-top: 21px;
+}
+
+.c-detail-description-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin-bottom: 0;
+  margin-top: 24px;
+}
+
+.c-detail-pelink {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  a {
+    color: $gray-700;
+    text-decoration: underline solid $gray-750;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+}
+
+.c-detail-advice {
+  background-color: #FFE2DF;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.c-detail-advice-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.c-detail-lbb-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.c-detail-lbb-paragraph {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.c-detail-lbb-ul {  
+  text-align: left;
+}
+
+.c-detail-lbb-li::marker {
+  color: $pinksoft500;
+  font-size: 31px;
+}
+
+.c-detail-lbb-li {
+  list-style-type: none;
+  position: relative;
+  margin-bottom: 1rem;
+}
+.c-detail-lbb-li::before {
+  content: '⬤';
+  color: $pinksoft500;
+  position: absolute;
+  left: -2em;
+  font-size: 1em; 
+}
+
+.c-detail-lbb-siretzone {
+  background-color: $gray-200;
+  padding: 30px;
+  text-align: left;
+}
+
+.c-detail-lbb-siretok {
+  margin-top: 27px;
+}
+
+a.c-detail-lbb-siretbutton {
+  border: 1px solid #383838;
+  color: #383838;
+}
+
+.btn-outline-primary.c-detail-lbb-siretbutton:hover {
+  color: #383838;
+  border: 1px solid #383838;
+  background-color: white;
+  box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.21);
+}
+
+.btn-outline-primary.c-detail-lbb-siretbutton:not(:disabled):not(.disabled):active {
+  color: #383838;
+  background-color: whitesmoke;
+  border-color: inherit;
+}
+
+.c-detail-lbb-siretactual, .c-detail-lbb-siretno {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+.c-detail-lbb-siretno {
+  color: $gray-600;
+}
+.c-detail-training {
+  padding: 28px 20px 0px 30px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+.c-detail-traininglink {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  border-bottom: 2px solid $gray-750;
+  a {
+    color: $gray-700;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.c-detail-seeinfo {
+  font-size: 14px;
+  @include media-breakpoint-up(lg) {
+    font-size: 16px;
+  }
+}
+
+.c-detail-stickynav {
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  height: 60px;
+  width: 103%;
+  padding-left: 30px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  box-shadow: 0px 2px 4px #E0E0E0;
+}
+
+.c-detail {
+  position: relative;
+}

@@ -41,7 +41,7 @@ const technicalErrorText = "Error technique momentanée";
 const trainingsApi = baseUrl + "/api/v1/formations";
 const jobsApi = baseUrl + "/api/v1/jobs";
 
-const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
+const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const dispatch = useDispatch();
 
   const scopeContext = useScopeContext();
@@ -73,7 +73,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
       const itemElement = getItemElement(itemToScrollTo);
 
       if (itemElement) {
-        scrollToElementInContainer("rightColumn", itemElement, 50, "auto");
+        scrollToElementInContainer("choiceColumn", itemElement, 50, "auto");
         dispatch(setItemToScrollTo(null));
       }
     }
@@ -183,7 +183,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const searchOnNewCenter = async (newCenter, isTrainingSearch, isJobSearch) => {
     dispatch(setExtendedSearch(false));
 
-    scrollToTop("rightColumn");
+    scrollToTop("choiceColumn");
 
     formValues.location = newCenter;
 
@@ -262,7 +262,7 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
 
   const searchForJobsWithLooseRadius = async () => {
     dispatch(setExtendedSearch(true));
-    scrollToTop("rightColumn");
+    scrollToTop("choiceColumn");
 
     dispatch(setJobs([]));
     searchForJobs(formValues, null);
@@ -387,23 +387,29 @@ const RightColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     return <SearchForm selectedItem={selectedItem} showResultList={showResultList} handleSubmit={handleSubmit} />;
   };
 
-  const getSelectedItemDetail = () => {
-    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} />;
+  const getSelectedItemDetail = (displayNavbar) => {
+    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} displayNavbar={displayNavbar} />;
+  };
+
+  const [displayNavbar, setDisplayNavbar] = useState(false);
+
+  const handleScroll = () => {
+    setDisplayNavbar(document.querySelector('#choiceColumn').scrollTop > 0)
   };
 
   return (
-    <div id="rightColumn" className="rightCol">
+    <div id="choiceColumn" className="choiceCol" onScroll={handleScroll}>
       {isLoading ? (
         <LoadingScreen />
       ) : (
         <>
           {getSearchForm()}
           {getResultLists()}
-          {getSelectedItemDetail()}
+          {getSelectedItemDetail(displayNavbar)}
         </>
       )}
     </div>
   );
 };
 
-export default RightColumn;
+export default ChoiceColumn;

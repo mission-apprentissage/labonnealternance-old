@@ -1,102 +1,76 @@
 import React, { useEffect } from "react";
-import infoIcon from "../../public/images/icons/info.svg";
-import lightbulbIcon from "../../public/images/icons/lightbulb.svg";
-import linkIcon from "../../public/images/icons/link.svg";
+import bulbIcon from "../../public/images/icons/bulb.svg";
+import gotoIcon from "../../public/images/icons/goto.svg";
+import { get, includes, defaultTo } from "lodash";
+import ReactHtmlParser from "react-html-parser";
 
-const LbbCompanyDetail = ({ company }) => {
-  //console.log("lbb : ", company);
+const LbbCompanyDetail = ({ lbb }) => {
+  let siret = lbb?.company?.siret;
+  let modificationLink = `https://labonneboite.pole-emploi.fr/verification-informations-entreprise/${siret}`;
 
   useEffect(() => {
     try {
-      document.getElementsByClassName("rightCol")[0].scrollTo(0, 0);
+      document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
     } catch (err) {}
   });
 
   return (
     <>
-      <div className="itemDetailBody">
-        <div className="title">En savoir plus</div>
-        <span className="bold">{company.name}</span>{" "}
-        {company.ideaType === "lba"
-          ? "a déjà pris des apprenti-e-s par le passé !"
-          : "a des salariés qui exercent le métier auquel vous vous destinez !"}
-        <br />
-        <br />
-        {company.company.website ? (
-          <>
-            Site Internet :{" "}
-            <a href={company.company.website} target="_blank" rel="noopener noreferrer">
-              {company.company.website}
-            </a>
-            <br />
-            <br />
-          </>
-        ) : (
-          ""
-        )}
-        <div className="sectionTitle">Voir la fiche entreprise sur le site La Bonne Boîte</div>
-        <div className="ellipsisLink">
-          <img className="linkIcon" src={linkIcon} alt="" />
-          <a target="lbb" href={`https://labonneboite.pole-emploi.fr/${company.company.siret}/details`} className={`gtmFiche${company.ideaType}`}>
-            https://labonneboite.pole-emploi.fr/details-entreprises
-          </a>
+      <div className="c-detail-body">
+        <div className="c-detail-advice p-2">
+          <img src={bulbIcon} alt="" />
+          <div className="c-detail-advice-text">
+            <p>Cette entreprise a des salariés qui exercent le métier auquel vous vous destinez.</p>
+            <p className="mb-0">
+              Faites-lui découvrir les avantages d'un recrutement en alternance dans votre candidature !
+            </p>
+          </div>
         </div>
-        <div className="blueAdvice">
-          <img src={infoIcon} alt="" />
-          <span className="bold">C'est quoi une candidature spontanée ?</span>
-          <br />
-          <br />
+
+        <h2 className="c-detail-lbb-title">Qu'est ce qu'une candidature spontanée ?</h2>
+        <p className="c-detail-lbb-paragraph">
           L'entreprise n'a pas déposé d'offre d'emploi, vous pouvez tout de même lui envoyer votre CV pour lui indiquer
-          que vous seriez très intéressé pour intégrer son équipe dans le cadre de votre alternance.
+          que vous seriez très intéressé pour intégrer son équipe dans le cadre de votre apprentissage.
+        </p>
+
+        <h2 className="c-detail-lbb-title">Comment se préparer pour une candidature spontanée ?</h2>
+        <p className="c-detail-lbb-paragraph">
+          Adaptez votre lettre de motivation à l'entreprise aux informations recueillies : Activité, actualités et
+          valeurs
+        </p>
+        <p className="c-detail-lbb-paragraph">Conseil : Allez voir le site de l'entreprise si elle en a un.</p>
+
+        <h2 className="c-detail-lbb-title">Quels sont les avantages pour l’employeur ? </h2>
+        <ul className="c-detail-lbb-ul">
+          <li className="c-detail-lbb-li">Une embauche à coût très réduit grâce aux aides existantes</li>
+          <li className="c-detail-lbb-li">
+            Un moyen de former à ses métiers et d'anticiper un besoin de main d'oeuvre
+          </li>
+          <li className="c-detail-lbb-li">
+            La valorisation des compétences de ses salariés, en leur confiant un apprenti et en reconnaissant leur
+            capacité de transmettre un métier
+          </li>
+        </ul>
+      </div>
+      <div className="c-detail-lbb-siretzone">
+        <div className="c-detail-lbb-siretno p-0 m-0">N° de siret</div>
+        <div className="c-detail-lbb-siretactual p-0 m-0">
+          {defaultTo(siret, ReactHtmlParser("<em>Non renseigné</em>"))}
         </div>
-        <div className="pinkAdvice">
-          <img src={lightbulbIcon} alt="" />
-          <span className="bold">Comment se préparer pour une candidature spontanée ?</span>
-          <br />
-          <ul>
-            <li>
-              Adaptez votre lettre de motivation à l'entreprise et aux informations recueillies : activité, actualités
-              et valeurs.
-              <br />
-              Conseil : Allez voir le site de l'entreprise si elle en a un.
-            </li>
-            <li>
-              Mettez en valeur vos qualités en lien avec le métier recherché et indiquez pourquoi vous souhaitez
-              réaliser votre apprentissage dans cette entreprise en particulier.
-            </li>
-            <li className="ellipsisLink">
-              Besoin d'aide pour concevoir votre CV ? Il existe plusieurs outils gratuits :
-              <br />
-              <a href="https://cv.clicnjob.fr/" target="outilCV" className="gtmCVLink gtmClicnjob">
-                https://cv.clicnjob.fr/
+        {siret ? (
+          <div className="c-detail-lbb-siretok">
+            <div className="c-detail-lbb-siretno">C'est mon entreprise</div>
+            <div className="c-detail-lbb-siretaction">
+              <a
+                className="btn btn-outline-primary c-detail-lbb-siretbutton px-1 px-sm-3 c-home-descr__more"
+                target="_blank"
+                rel="noopener noreferer"
+                href={modificationLink}
+              >
+                <img src={gotoIcon} alt="Aller à" />
+                <span className="c-detail-lbb-siretbutton d-inline px-1 px-sm-0 ml-2">Modifier les informations </span>
               </a>
-              <br />
-              <a href="https://cvdesignr.com/fr" target="outilCV" className="gtmCVLink gtmCvdesigner">
-                https://cvdesignr.com/fr
-              </a>
-              <br />
-              <a href="https://www.canva.com/fr_fr/creer/cv/" target="outilCV" className="gtmCVLink gtmCanva">
-                https://www.canva.com/fr_fr/creer/cv/
-              </a>
-              <br />
-            </li>
-          </ul>
-        </div>
-        {company.ideaType === "lbb" ? (
-          <div className="blueAdvice">
-            <span className="bold">Les avantages que cet employeur va obtenir en vous recrutant en apprentissage</span>
-            <br />
-            <br />
-            Faites découvrir à cette entreprise les avantages d'un recrutement en apprentissage :
-            <br />
-            <ul>
-              <li>une embauche à coût très réduit car des aides existent</li>
-              <li>un moyen de former à vos métiers et d'anticiper un besoin de main d'oeuvre</li>
-              <li>
-                la reconnaissance de la capacité de transmettre un métier et valoriser les compétences de vos salariés
-                en leur confiant un apprenti.
-              </li>
-            </ul>
+            </div>
           </div>
         ) : (
           ""

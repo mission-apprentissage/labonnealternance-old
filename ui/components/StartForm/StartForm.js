@@ -107,7 +107,7 @@ const StartForm = (props) => {
                   compareItemFunction={compareAutoCompleteValues}
                   onInputValueChangeFunction={fetchAddresses}
                   previouslySelectedItem={formValues?.location ?? null}
-                  scrollParentId="rightColumn"
+                  scrollParentId="choiceColumn"
                   name="placeField"
                   placeholder="Adresse, ville ou code postal"
                   illustration={localisationImage}
@@ -118,7 +118,7 @@ const StartForm = (props) => {
                 <input
                   type="submit"
                   value="C'est parti !"
-                  className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-home-hero__submit gtmSearch gtmHome"
+                  className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn gtmSearch gtmHome"
                   data-disable-with="C'est parti !"
                   disabled={isSubmitting}
                 />

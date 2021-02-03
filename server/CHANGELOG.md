@@ -2,6 +2,8 @@
 
 ## 1.8.1 [02/02/2021]
 [371] Utilisation API Catalogue ES au lieu d'accès direct
+[351c] Sticky Navbar sur l'écran de détail
+[351] Rechartage formation et entreprise LBB
 
 ## 1.8.0 [01/02/2021]
 [377] Bascule sur le catalogue 2021

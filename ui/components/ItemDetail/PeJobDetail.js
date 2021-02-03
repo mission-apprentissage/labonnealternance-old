@@ -1,73 +1,69 @@
 import React, { useEffect } from "react";
 import moment from "moment";
-import infoIcon from "../../public/images/icons/info.svg";
-import linkIcon from "../../public/images/icons/link.svg";
+import bulbIcon from "../../public/images/icons/bulb.svg";
+import { get, defaultTo } from "lodash";
+import ReactHtmlParser from "react-html-parser";
+let md = require("markdown-it")().disable(["link", "image"]);
 
 const PeJobDetail = ({ job }) => {
   useEffect(() => {
     try {
-      document.getElementsByClassName("rightCol")[0].scrollTo(0, 0);
+      document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
     } catch (err) {}
   });
 
+  const description = get(job, "job.description", undefined);
+  const contractDuration = get(job, "job.contractDescription", undefined);
+  const contractRythm = get(job, "job.duration", undefined);
+  const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined;
   return (
     <>
-      <div className="itemDetailBody">
-        <div className="title">En savoir plus</div>
-        <div className="sectionTitle">{job.title}</div>
-        <br />
-        Publié le {moment(job.job.creationDate).format("DD / MM / YYYY")}
-        <br />
-        Durée : {job.job.contractDescription}
-        <br />
-        Rythme : {job.job.duration}
-        <br />
-        <br />
-        <div className="sectionTitle">Description de l'offre</div>
-        <div className="description">{job.job.description}</div>
-        <br />
-        {job.contact ? (
-          <>
-            <div className="sectionTitle">Postuler</div>
-            <div className="description">
-              {job.contact.name ? (
-                <>
-                  {job.contact.name}
-                  <br />
-                </>
-              ) : (
-                ""
-              )}
-              {job.contact.info ? (
-                <>
-                  {job.contact.info}
-                  <br />
-                </>
-              ) : (
-                ""
-              )}
-              <br />
-            </div>
-          </>
+      <div className="c-detail-body">
+        <div className="c-detail-company">
+          {get(job, "company.name", ReactHtmlParser("<em>Entreprise non précisée</em>"))}
+          <span className="c-detail-proposal"> propose actuellement cette offre</span>
+        </div>
+        <h2 className="c-detail-jobtitle">{get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))}</h2>
+        <div className="c-detail-meta">
+          <div className="c-detail-metadate">
+            Publiée le : {defaultTo(creationDate, ReactHtmlParser("<em>Donnée manquante</em>"))}
+          </div>
+          <div className="c-detail-metaduration">
+            Durée : {defaultTo(contractDuration, ReactHtmlParser("<em>Donnée manquante</em>"))}
+          </div>
+          <div className="c-detail-metarythm">
+            Rythme : {defaultTo(contractRythm, ReactHtmlParser("<em>Donnée manquante</em>"))}
+          </div>
+        </div>
+
+        {description ? (
+          <div className="c-detail-description">
+            <h3 className="c-detail-description-title">Description de l'offre</h3>
+            <div className="c-detail-description-text">{ReactHtmlParser(md.render(description))}</div>
+          </div>
         ) : (
           ""
         )}
-        <div className="sectionTitle">Retrouvez l'offre sur Pôle emploi</div>
-        <div className="ellipsisLink">
-          <a target="poleemploi" href={job.url} className="gtmLienOffrePE">
-            <img className="linkIcon" src={linkIcon} alt="" />
-            {job.url}
+
+        <hr className="c-detail-header-separator mt-5" />
+
+        <h3 className="c-detail-description-title">Postuler</h3>
+
+        <div className="c-detail-pelink mt-3">
+          <a target="poleemploi" href={job.url}>
+            Contactez le recruteur sur Pôle emploi
           </a>
         </div>
-        <div className="blueAdvice">
-          <div className="floatLeft">
-            <img src={infoIcon} alt="" />
-          </div>
-          <div className="paragraph">
-            Optimisez votre recherche en envoyant aussi des candidatures spontanées aux entreprises qui n’ont pas
-            diffusé d’offre !
+
+        <div className="c-detail-advice p-2">
+          <img src={bulbIcon} alt="" />
+          <div className="c-detail-advice-text">
+            Diversifiez vos démarches en envoyant aussi des candidatures spontanées aux entreprises qui n'ont pas
+            diffusé d'offre !
           </div>
         </div>
+
+        <div className="mt-3">&nbsp;</div>
       </div>
     </>
   );
