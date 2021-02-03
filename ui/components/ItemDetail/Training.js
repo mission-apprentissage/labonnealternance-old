@@ -66,7 +66,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
             ) : (
               <>
                 <span className="knowMore">
-                  <button className="c-resultcard-knowmore" onClick={onSelectItem}>
+                  <button className="c-resultcard-knowmore gtmSavoirPlus gtmFormation gtmListe" onClick={onSelectItem}>
                     En savoir plus
                   </button>
                 </span>

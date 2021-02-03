@@ -1,4 +1,5 @@
-const { getCatalogueES } = require("../common/esClient");
+const axios = require("axios");
+const config = require("config");
 const Sentry = require("@sentry/node");
 const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
@@ -6,13 +7,12 @@ const { formationsQueryValidator, formationsRegionQueryValidator } = require("./
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
 
 const formationResultLimit = 500;
+const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
 
 const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit }) => {
   //console.log(romes, coords, radius, diploma);
 
   try {
-    const esClient = getCatalogueES();
-
     const distance = radius || 30;
 
     let mustTerm = [
@@ -41,41 +41,42 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
-    const responseFormations = await esClient.search({
-      ...esQueryIndexFragment,
-      body: {
-        query: {
-          bool: {
-            must: mustTerm,
-            filter: {
-              geo_distance: {
-                distance: `${distance}km`,
-                idea_geo_coordonnees_etablissement: {
-                  lat: coords[1],
-                  lon: coords[0],
-                },
+    const body = {
+      query: {
+        bool: {
+          must: mustTerm,
+          filter: {
+            geo_distance: {
+              distance: `${distance}km`,
+              lieu_formation_geo_coordonnees: {
+                lat: coords[1],
+                lon: coords[0],
               },
             },
           },
         },
-        sort: [
-          {
-            _geo_distance: {
-              idea_geo_coordonnees_etablissement: [parseFloat(coords[0]), parseFloat(coords[1])],
-              order: "asc",
-              unit: "km",
-              mode: "min",
-              distance_type: "arc",
-              ignore_unmapped: true,
-            },
-          },
-        ],
       },
+      sort: [
+        {
+          _geo_distance: {
+            lieu_formation_geo_coordonnees: [parseFloat(coords[0]), parseFloat(coords[1])],
+            order: "asc",
+            unit: "km",
+            mode: "min",
+            distance_type: "arc",
+            ignore_unmapped: true,
+          },
+        },
+      ],
+    };
+
+    const responseFormations = await axios.post(urlCatalogueSearch, body, {
+      params: esQueryIndexFragment,
     });
 
     let formations = [];
 
-    responseFormations.body.hits.hits.forEach((formation) => {
+    responseFormations.data.hits.hits.forEach((formation) => {
       formations.push({ source: formation._source, sort: formation.sort, id: formation._id });
     });
 
@@ -86,7 +87,7 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
     if (_.get(err, "meta.meta.connection.status") === "dead") {
       console.error("Elastic search is down or unreachable");
     }
-    return { error: error_msg };
+    return { result: "error", results: [], error: error_msg, message: error_msg };
   }
 };
 
@@ -101,8 +102,6 @@ const getRegionFormations = async ({
   //console.log(romes, coords, radius, diploma);
 
   try {
-    const esClient = getCatalogueES();
-
     let mustTerm = [];
 
     if (departement)
@@ -143,22 +142,21 @@ const getRegionFormations = async ({
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
-    //  console.log(mustTerm);
-
-    const responseFormations = await esClient.search({
-      ...esQueryIndexFragment,
-      body: {
-        query: {
-          bool: {
-            must: mustTerm,
-          },
+    const body = {
+      query: {
+        bool: {
+          must: mustTerm,
         },
       },
+    };
+
+    const responseFormations = await axios.post(urlCatalogueSearch, body, {
+      params: esQueryIndexFragment,
     });
 
     let formations = [];
 
-    responseFormations.body.hits.hits.forEach((formation) => {
+    responseFormations.data.hits.hits.forEach((formation) => {
       formations.push({ source: formation._source, sort: formation.sort, id: formation._id });
     });
 
@@ -291,21 +289,18 @@ const transformFormationForIdea = (formation) => {
   resultFormation.place = {
     distance: formation.sort ? formation.sort[0] : null,
     fullAddress: getTrainingAddress(formation.source), // adresse postale reconstruite à partir des éléments d'adresse fournis
-    latitude: formation.source.idea_geo_coordonnees_etablissement
-      ? formation.source.idea_geo_coordonnees_etablissement.split(",")[0]
+    latitude: formation.source.lieu_formation_geo_coordonnees
+      ? formation.source.lieu_formation_geo_coordonnees.split(",")[0]
       : null,
-    longitude: formation.source.idea_geo_coordonnees_etablissement
-      ? formation.source.idea_geo_coordonnees_etablissement.split(",")[1]
+    longitude: formation.source.lieu_formation_geo_coordonnees
+      ? formation.source.lieu_formation_geo_coordonnees.split(",")[1]
       : null,
-    city: formation.source.etablissement_formateur_localite,
-    address: `${formation.source.etablissement_formateur_adresse}${
-      formation.source.etablissement_formateur_complement_adresse
-        ? ", " + formation.source.etablissement_formateur_complement_adresse
-        : ""
-    }`,
+    //city: formation.source.etablissement_formateur_localite,
+    city: formation.source.localite,
+    address: `${formation.source.lieu_formation_adresse}`,
     cedex: formation.source.etablissement_formateur_cedex,
-    zipCode: formation.source.etablissement_formateur_code_postal,
-    trainingZipCode: formation.source.code_postal,
+    zipCode: formation.source.code_postal,
+    //trainingZipCode: formation.source.code_postal,
     departementNumber: formation.source.num_departement,
     region: formation.source.region,
   };
@@ -345,24 +340,29 @@ const transformFormationForIdea = (formation) => {
 };
 
 const getTrainingAddress = (school) => {
-  let schoolAddress = school.etablissement_formateur_adresse
-    ? `${school.etablissement_formateur_adresse}${
-        school.etablissement_formateur_complement_adresse
-          ? `, ${school.etablissement_formateur_complement_adresse}`
-          : ""
-      } ${school.etablissement_formateur_localite ? school.etablissement_formateur_localite : ""} ${
-        school.etablissement_formateur_code_postal ? school.etablissement_formateur_code_postal : ""
-      }${school.etablissement_formateur_cedex ? ` CEDEX ${school.etablissement_formateur_cedex}` : ""}
-        `
-    : `${school.etablissement_gestionnaire_adresse}${
-        school.etablissement_gestionnaire_complement_adresse
-          ? `, ${school.etablissement_gestionnaire_complement_adresse}`
-          : ""
-      } ${school.etablissement_gestionnaire_localite ? school.etablissement_gestionnaire_localite : ""} ${
-        school.etablissement_gestionnaire_code_postal ? school.etablissement_gestionnaire_code_postal : ""
-      }${school.etablissement_gestionnaire_cedex ? ` CEDEX ${school.etablissement_gestionnaire_cedex}` : ""}
-        `;
+  let schoolAddress = "";
 
+  if (school.lieu_formation_adresse) {
+    schoolAddress = `${school.lieu_formation_adresse} ${school.code_postal} ${school.localite}`;
+  } else {
+    schoolAddress = school.etablissement_formateur_adresse
+      ? `${school.etablissement_formateur_adresse}${
+          school.etablissement_formateur_complement_adresse
+            ? `, ${school.etablissement_formateur_complement_adresse}`
+            : ""
+        } ${school.etablissement_formateur_localite ? school.etablissement_formateur_localite : ""} ${
+          school.etablissement_formateur_code_postal ? school.etablissement_formateur_code_postal : ""
+        }${school.etablissement_formateur_cedex ? ` CEDEX ${school.etablissement_formateur_cedex}` : ""}
+        `
+      : `${school.etablissement_gestionnaire_adresse}${
+          school.etablissement_gestionnaire_complement_adresse
+            ? `, ${school.etablissement_gestionnaire_complement_adresse}`
+            : ""
+        } ${school.etablissement_gestionnaire_localite ? school.etablissement_gestionnaire_localite : ""} ${
+          school.etablissement_gestionnaire_code_postal ? school.etablissement_gestionnaire_code_postal : ""
+        }${school.etablissement_gestionnaire_cedex ? ` CEDEX ${school.etablissement_gestionnaire_cedex}` : ""}
+        `;
+  }
   return schoolAddress;
 };
 
@@ -439,8 +439,8 @@ const getFormationsParRegionQuery = async (query) => {
 
 const getFormationEsQueryIndexFragment = (limit) => {
   return {
-    //index: "formations",
-    index: "mnaformation",
+    //index: "mnaformation",
+    index: "convertedformation",
     size: limit,
     _sourceIncludes: [
       "etablissement_formateur_siret",
@@ -448,9 +448,11 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "_id",
       "email",
       "niveau",
-      "idea_geo_coordonnees_etablissement",
+      "lieu_formation_geo_coordonnees",
       "intitule_long",
       "intitule_court",
+      "lieu_formation_adresse",
+      "localite",
       "code_postal",
       "num_departement",
       "region",

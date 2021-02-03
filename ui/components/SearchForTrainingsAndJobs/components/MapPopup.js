@@ -45,9 +45,9 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
           <>
             <div className="mapboxPopupTitle">Formations à : </div>
             <div className="mapboxPopupAddress">
-              {list[0].company.name.toLowerCase() /*getTrainingSchoolName(list[0].source, "lowerCase")*/}
+              {list[0].company.name}
               <br />
-              {list[0].place.fullAddress.toLowerCase() /*getTrainingAddress(list[0].source, "lowerCase")*/}
+              {list[0].place.fullAddress}
             </div>
             <ul>{getTrainings(list)}</ul>
           </>

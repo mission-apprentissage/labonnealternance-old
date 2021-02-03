@@ -9,11 +9,9 @@ const corsMiddleware = require("./middlewares/corsMiddleware");
 const packageJson = require("../../package.json");
 const rome = require("./routes/rome");
 const jobDiploma = require("./routes/jobDiploma");
-const formation = require("./routes/formation");
 const formationV1 = require("./routes/formationV1");
 const version = require("./routes/version");
 const formationRegionV1 = require("./routes/formationRegionV1");
-const job = require("./routes/job");
 const jobV1 = require("./routes/jobV1");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
 const rateLimit = require("express-rate-limit");
@@ -67,10 +65,6 @@ module.exports = async (components) => {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   app.use("/api/version", limiter3PerSecond, version());
-
-  app.use("/api/formations", limiter5PerSecond, formation());
-
-  app.use("/api/jobs", limiter3PerSecond, job());
 
   app.use("/api/v1/formations", limiter5PerSecond, formationV1());
 

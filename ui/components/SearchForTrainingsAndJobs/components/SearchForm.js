@@ -250,7 +250,7 @@ const SearchForm = (props) => {
               </Col>
             </Row>
 
-            <Button className="submitButton" type="submit" disabled={isSubmitting}>
+            <Button className="submitButton gtmSearch gtmSearchForm" type="submit" disabled={isSubmitting}>
               Voir les résultats
             </Button>
           </Form>
