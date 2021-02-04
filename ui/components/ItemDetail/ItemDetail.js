@@ -15,7 +15,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
   const [seeInfo, setSeeInfo] = useState(false);
 
   let contactEmail = selectedItem?.contact?.email;
-  let contactInfo = contactEmail ? `écrire à ${contactEmail}` : "informations non communiquées";
+  let contactInfo = contactEmail ? `écrire à ${contactEmail}` : null;
 
   let siret = selectedItem?.company?.siret;
 
@@ -82,30 +82,24 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
             </p>
 
             {kind === "formation" ? (
-              <>
-                {selectedItem.onisepUrl ? (
-                  <div className="c-detail-km c-detail-pelink">
-                    <img src={linkIcon} alt="Lien" />
-                    <a href={selectedItem.onisepUrl} className="ml-3" target="_blank" rel="noopener noreferrer">
-                      Descriptif sur le site Onisep
-                    </a>
+              contactInfo ? (
+                <>
+                  <div className="pt-5 pl-3">
+                    {seeInfo ? (
+                      contactInfo
+                    ) : (
+                      <button
+                        className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
+                        onClick={() => setSeeInfo(true)}
+                      >
+                        Voir les informations de contact
+                      </button>
+                    )}
                   </div>
-                ) : (
-                  ""
-                )}
-                <div className="pt-5 pl-3">
-                  {seeInfo ? (
-                    contactInfo
-                  ) : (
-                    <button
-                      className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
-                      onClick={() => setSeeInfo(true)}
-                    >
-                      Voir les informations de contact
-                    </button>
-                  )}
-                </div>
-              </>
+                </>
+              ) : (
+                ""
+              )
             ) : (
               <p className="mb-4">
                 <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
