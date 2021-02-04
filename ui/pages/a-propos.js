@@ -49,7 +49,7 @@ const APROPOS = () => (
             La Bonne Alternance est d’abord une start-up interne de Pôle emploi créée et développée par des conseillers.{" "}
             <br />
             Reprise par la{" "}
-            <a href="https://mission-apprentissage.gitbook.io/general/" rel="nooepener noreferer" target="_blank">
+            <a href="https://mission-apprentissage.gitbook.io/general/" rel="nooepener noreferrer" target="_blank">
               Mission apprentissage
             </a>{" "}
             en 2020, le site ajoute désormais des informations sur les formations et les offres d’emploi en

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
@@ -21,7 +21,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
-  
   return (
     <>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
@@ -52,25 +51,17 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
             <p className={"c-detail-title c-detail-title--" + kind}>
               {kind === "formation" ? (
-                <>
-                  {defaultTo(actualTitle, 'Formation')}
-                </>
+                <>{defaultTo(actualTitle, "Formation")}</>
               ) : (
-                <>
-                  {get(selectedItem, "company.name", "")}  
-                </>
+                <>{get(selectedItem, "company.name", "")}</>
               )}
             </p>
 
             <p className="c-detail-activity">
               {kind === "formation" ? (
-                <>
-                  {get(selectedItem, "company.name", "")}
-                </>
+                <>{get(selectedItem, "company.name", "")}</>
               ) : (
-                <>
-                  {defaultTo(actualTitle, 'Entreprise')}
-                </>
+                <>{defaultTo(actualTitle, "Entreprise")}</>
               )}
             </p>
             <p className="d-flex">
@@ -95,7 +86,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
                 {selectedItem.onisepUrl ? (
                   <div className="c-detail-km c-detail-pelink">
                     <img src={linkIcon} alt="Lien" />
-                    <a href={selectedItem.onisepUrl} className="ml-3" target="_blank" rel="noopener noreferer">
+                    <a href={selectedItem.onisepUrl} className="ml-3" target="_blank" rel="noopener noreferrer">
                       Descriptif sur le site Onisep
                     </a>
                   </div>

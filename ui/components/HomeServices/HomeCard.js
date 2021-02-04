@@ -18,7 +18,7 @@ const HomeCard = (props) => {
       <footer className="card-footer c-home-services__footer">
         <a
           href={props.url}
-          rel="noopener noreferer"
+          rel="noopener noreferrer"
           target="_blank"
           className="c-home-services__btn btn btn-block btn-primary mb-2 mx-auto"
         >
