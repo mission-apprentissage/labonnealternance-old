@@ -106,7 +106,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
                   href={`https://labonneboite.pole-emploi.fr/${siret}/details`}
                     className={`gtmContact gtmContact${capitalize(kind)} d-block btn btn-outline-primary w-50 mt-3 c-detail-seeinfo`}
                 >
-                  Voir les informations de contact
+                  <span className="d-block d-sm-inline">Voir les informations</span>
+                  <span className="d-block d-sm-inline">&nbsp;de contact</span>
                 </a>
               ) : (
                 ""
