@@ -103,7 +103,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
                     contactInfo
                   ) : (
                     <button
-                      className="gtmContact d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
+                        className="gtmContactFormation d-block btn btn-outline-primary  w-50 ml-3 mt-3"
                       onClick={() => setSeeInfo(true)}
                     >
                       Voir les informations de contact
@@ -121,7 +121,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
                   <a
                     target="lbb"
                     href={`https://labonneboite.pole-emploi.fr/${siret}/details`}
-                    className="d-block btn btn-outline-primary w-50 mt-3 c-detail-seeinfo"
+                      className="gtmContactEntreprise d-block btn btn-outline-primary w-50 mt-3 c-detail-seeinfo"
                   >
                     Voir les informations de contact
                   </a>
