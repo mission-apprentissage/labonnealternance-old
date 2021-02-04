@@ -17,7 +17,7 @@ const DescriptionMissionApprentissage = () => {
 
         <a
           className="btn btn-outline-primary px-1 px-sm-5 c-home-descr__more"
-          rel="noopener noreferer"
+          rel="noopener noreferrer"
           href="https://mission-apprentissage.gitbook.io/general/"
           target="_blank"
         >

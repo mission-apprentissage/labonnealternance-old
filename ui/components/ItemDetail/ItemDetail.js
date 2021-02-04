@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { get, includes, defaultTo, round } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
+import contactIcon from "../../public/images/icons/contact_icon.svg";
 import linkIcon from "../../public/images/icons/link.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
@@ -15,13 +16,18 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
   const [seeInfo, setSeeInfo] = useState(false);
 
   let contactEmail = selectedItem?.contact?.email;
-  let contactInfo = contactEmail ? `écrire à ${contactEmail}` : "informations non communiquées";
+  let contactInfo = contactEmail ? (
+    <span className="c-detail-km c-detail-pelink">
+      <a href={`mailto:${contactEmail}`} className="ml-1" target="_blank" rel="noopener noreferrer">
+        {contactEmail}
+      </a>
+    </span>
+  ) : null;
 
   let siret = selectedItem?.company?.siret;
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
-  
   return (
     <>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
@@ -52,33 +58,25 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
             <p className={"c-detail-title c-detail-title--" + kind}>
               {kind === "formation" ? (
-                <>
-                  {defaultTo(actualTitle, 'Formation')}
-                </>
+                <>{defaultTo(actualTitle, "Formation")}</>
               ) : (
-                <>
-                  {get(selectedItem, "company.name", "")}  
-                </>
+                <>{get(selectedItem, "company.name", "")}</>
               )}
             </p>
 
-            <p className="c-detail-activity">
+            <p className={`c-detail-activity c-detail-title--${kind}`}>
               {kind === "formation" ? (
-                <>
-                  {get(selectedItem, "company.name", "")}
-                </>
+                <>{get(selectedItem, "company.name", "")}</>
               ) : (
-                <>
-                  {defaultTo(actualTitle, 'Entreprise')}
-                </>
+                <>{defaultTo(actualTitle, "Entreprise")}</>
               )}
             </p>
-            <p className="d-flex">
+            <p className="d-flex mt-4">
               <span className="d-block">
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
               </span>
               <span className="ml-2 d-block">
-                <span className="c-detail-address d-block">{get(selectedItem, "place.fullAddress", "").toLowerCase()}</span>
+                <span className="c-detail-address d-block">{get(selectedItem, "place.fullAddress", "")}</span>
                 {distance ? (
                   <span className="c-detail-km d-block">
                     {round(distance, 1) + " "}
@@ -91,16 +89,17 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
             </p>
 
             {kind === "formation" ? (
-              <>
-                <div className="c-detail-km c-detail-pelink">
-                  <img src={linkIcon} alt="Lien" />
-                  <a href="http://www.ecoledetravail.fr" className="ml-3" target="_blank" rel="noopener noreferer">
-                    www.ecoledetravail.fr
-                  </a>
-                </div>
-                <div className="pt-5 pl-3">
+              contactInfo ? (
+                <p className="d-flex mt-4">
                   {seeInfo ? (
-                    contactInfo
+                    <>
+                      <span className="d-block">
+                        <img className="cardIcon" src={contactIcon} alt="" />
+                      </span>
+                      <span className="ml-2 d-block">
+                        <span className="c-detail-address d-block">{contactInfo}</span>
+                      </span>
+                    </>
                   ) : (
                     <button
                       className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
@@ -109,8 +108,10 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
                       Voir les informations de contact
                     </button>
                   )}
-                </div>
-              </>
+                </p>
+              ) : (
+                ""
+              )
             ) : (
               <p className="mb-4">
                 <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>

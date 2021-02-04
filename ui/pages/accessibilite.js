@@ -45,7 +45,7 @@ const Accessibilite = () => (
           </p>
           <p>
             Le site La Bonne Alternance est en cours d'optimisation afin de le rendre conforme au{" "}
-            <a href="http://references.modernisation.gouv.fr/referentiel/" rel="noopener noreferer" target="_blank">
+            <a href="http://references.modernisation.gouv.fr/referentiel/" rel="noopener noreferrer" target="_blank">
               RGAA v3
             </a>
             . La déclaration de conformité sera publiée ultérieurement.
@@ -83,7 +83,7 @@ const Accessibilite = () => (
             <a
               href="https://github.com/mission-apprentissage/labonnealternance"
               target="_blank"
-              rel="noreferer noopener"
+              rel="noreferrer noopener"
             >
               Github
             </a>

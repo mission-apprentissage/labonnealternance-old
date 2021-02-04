@@ -31,7 +31,7 @@ const Organisme = (props) => {
               <a
                 href="https://reseau.intercariforef.org/referencer-son-offre-de-formation"
                 target="_blank"
-                rel="noreferer noopener"
+                rel="noreferrer noopener"
               >
                 https://reseau.intercariforef.org/referencer-son-offre-de-formation.
               </a>

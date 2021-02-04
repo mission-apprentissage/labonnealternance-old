@@ -35,7 +35,7 @@ const Navigation = (props) => {
                   href="https://labonneboite.pole-emploi.fr/informations-entreprise/action"
                   target="_blank"
                   className="nav-link"
-                  rel="noopener noreferer"
+                  rel="noopener noreferrer"
                 >
                   <img className="mt-n1" src="/images/square_link.svg" alt="Lien organisme recruteur" />
                   <span className="ml-2">Recruteur</span>

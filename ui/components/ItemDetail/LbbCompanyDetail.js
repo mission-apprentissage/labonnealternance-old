@@ -11,8 +11,7 @@ const LbbCompanyDetail = ({ lbb }) => {
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
-  },
-  []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
+  }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   return (
     <>
@@ -64,7 +63,7 @@ const LbbCompanyDetail = ({ lbb }) => {
               <a
                 className="btn btn-outline-primary c-detail-lbb-siretbutton px-1 px-sm-3 c-home-descr__more"
                 target="_blank"
-                rel="noopener noreferer"
+                rel="noopener noreferrer"
                 href={modificationLink}
               >
                 <img src={gotoIcon} alt="Aller à" />

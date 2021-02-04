@@ -39,7 +39,7 @@ const HomeServices = () => {
       <div className="text-center my-2 my-md-5">
         <a
           className="btn btn-outline-primary mb-5 px-1 px-sm-5 c-home-descr__more"
-          rel="noopener noreferer"
+          rel="noopener noreferrer"
           href="https://mission-apprentissage.gitbook.io/general/"
           target="_blank"
         >
