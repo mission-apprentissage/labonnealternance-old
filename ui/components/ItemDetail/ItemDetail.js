@@ -8,7 +8,6 @@ import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import linkIcon from "../../public/images/icons/link.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
-  console.log('selectedItem', selectedItem);
   const kind = selectedItem?.ideaType;
   const companySize = selectedItem?.company?.size?.toLowerCase();
   const distance = selectedItem?.place?.distance;
