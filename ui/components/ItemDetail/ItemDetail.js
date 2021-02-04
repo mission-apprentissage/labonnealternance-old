@@ -57,7 +57,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
               )}
             </p>
 
-            <p className="c-detail-activity">
+            <p className={`c-detail-activity c-detail-title--${kind}`}>
               {kind === "formation" ? (
                 <>{get(selectedItem, "company.name", "")}</>
               ) : (
