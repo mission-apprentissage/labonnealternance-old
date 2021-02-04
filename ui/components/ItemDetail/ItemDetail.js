@@ -5,6 +5,7 @@ import TrainingDetail from "./TrainingDetail";
 import { get, includes, defaultTo, round } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
+import contactIcon from "../../public/images/icons/contact_icon.svg";
 import linkIcon from "../../public/images/icons/link.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
@@ -15,7 +16,13 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
   const [seeInfo, setSeeInfo] = useState(false);
 
   let contactEmail = selectedItem?.contact?.email;
-  let contactInfo = contactEmail ? `écrire à ${contactEmail}` : null;
+  let contactInfo = contactEmail ? (
+    <span className="c-detail-km c-detail-pelink">
+      <a href={`mailto:${contactEmail}`} className="ml-1" target="_blank" rel="noopener noreferrer">
+        {contactEmail}
+      </a>
+    </span>
+  ) : null;
 
   let siret = selectedItem?.company?.siret;
 
@@ -83,20 +90,25 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
             {kind === "formation" ? (
               contactInfo ? (
-                <>
-                  <div className="pt-5 pl-3">
-                    {seeInfo ? (
-                      contactInfo
-                    ) : (
-                      <button
-                        className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
-                        onClick={() => setSeeInfo(true)}
-                      >
-                        Voir les informations de contact
-                      </button>
-                    )}
-                  </div>
-                </>
+                <p className="d-flex mt-4">
+                  {seeInfo ? (
+                    <>
+                      <span className="d-block">
+                        <img className="cardIcon" src={contactIcon} alt="" />
+                      </span>
+                      <span className="ml-2 d-block">
+                        <span className="c-detail-address d-block">{contactInfo}</span>
+                      </span>
+                    </>
+                  ) : (
+                    <button
+                      className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
+                      onClick={() => setSeeInfo(true)}
+                    >
+                      Voir les informations de contact
+                    </button>
+                  )}
+                </p>
               ) : (
                 ""
               )
