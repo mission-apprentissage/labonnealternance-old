@@ -69,12 +69,16 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
             {kind === "formation" ? (
               <>
-                <div className="c-detail-km c-detail-pelink">
-                  <img src={linkIcon} alt="Lien" />
-                  <a href="http://www.ecoledetravail.fr" className="ml-3" target="_blank" rel="noopener noreferer">
-                    www.ecoledetravail.fr
-                  </a>
-                </div>
+                {selectedItem.onisepUrl ? (
+                  <div className="c-detail-km c-detail-pelink">
+                    <img src={linkIcon} alt="Lien" />
+                    <a href={selectedItem.onisepUrl} className="ml-3" target="_blank" rel="noopener noreferer">
+                      Descriptif sur le site Onisep
+                    </a>
+                  </div>
+                ) : (
+                  ""
+                )}
                 <div className="pt-5 pl-3">
                   {seeInfo ? (
                     contactInfo
