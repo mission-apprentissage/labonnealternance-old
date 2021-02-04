@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.8.2 [04/02/2021]
+[381] Nouvelle charte, corrections
+
 ## 1.8.1 [02/02/2021]
 [371] Utilisation API Catalogue ES au lieu d'accès direct
 [351c] Sticky Navbar sur l'écran de détail
