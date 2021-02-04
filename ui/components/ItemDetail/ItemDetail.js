@@ -19,6 +19,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
   let siret = selectedItem?.company?.siret;
 
+  let actualTitle = selectedItem?.title || selectedItem?.longTitle;
+
+  
   return (
     <>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
@@ -46,9 +49,29 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
             >
               ← Retour aux résultats
             </button>
-            <p className={"c-detail-title c-detail-title--" + kind}>{get(selectedItem, "company.name", "")}</p>
+
+            <p className={"c-detail-title c-detail-title--" + kind}>
+              {kind === "formation" ? (
+                <>
+                  {defaultTo(actualTitle, 'Formation')}
+                </>
+              ) : (
+                <>
+                  {get(selectedItem, "company.name", "")}  
+                </>
+              )}
+            </p>
+
             <p className="c-detail-activity">
-              <em>Activité non renseignée</em>
+              {kind === "formation" ? (
+                <>
+                  {get(selectedItem, "company.name", "")}
+                </>
+              ) : (
+                <>
+                  {defaultTo(actualTitle, 'Entreprise')}
+                </>
+              )}
             </p>
             <p className="d-flex">
               <span className="d-block">

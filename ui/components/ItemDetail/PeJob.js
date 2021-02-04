@@ -38,9 +38,8 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
 
     searchForTrainingsOnNewCenter(newCenter);
   };
-
   return (
-    <div className="resultCard">
+    <div className="resultCard gtmSavoirPlus gtmPeJob gtmListe" onClick={onSelectItem}>
       <div className="c-media" id={`id${job.job.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
@@ -60,7 +59,7 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
             ) : (
               <>
                 <span className="knowMore">
-                  <button className={`c-resultcard-knowmore gtmSavoirPlus gtmPeJob gtmListe`} onClick={onSelectItem}>
+                  <button className={`c-resultcard-knowmore`}>
                     En savoir plus
                   </button>
                 </span>
