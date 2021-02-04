@@ -55,7 +55,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
               </span>
               <span className="ml-2 d-block">
-                <span className="c-detail-address d-block">{get(selectedItem, "place.fullAddress", "").toLowerCase()}</span>
+                <span className="c-detail-address d-block">{get(selectedItem, "place.fullAddress", "")}</span>
                 {distance ? (
                   <span className="c-detail-km d-block">
                     {round(distance, 1) + " "}
