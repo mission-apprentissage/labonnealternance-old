@@ -64,7 +64,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
                 <>{defaultTo(actualTitle, "Entreprise")}</>
               )}
             </p>
-            <p className="d-flex">
+            <p className="d-flex mt-4">
               <span className="d-block">
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
               </span>
