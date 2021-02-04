@@ -168,7 +168,6 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     if (scopeContext.isJob) {
       searchForJobsWithStrictRadius(values);
     }
-    //setIsLoading(false);
     dispatch(setIsFormVisible(false));
   };
 
@@ -394,7 +393,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const [displayNavbar, setDisplayNavbar] = useState(false);
 
   const handleScroll = () => {
-    setDisplayNavbar(document.querySelector('#choiceColumn').scrollTop > 0)
+    setDisplayNavbar(document.querySelector('#choiceColumn').scrollTop > 30)
   };
 
   return (
