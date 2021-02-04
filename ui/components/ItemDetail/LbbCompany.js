@@ -22,7 +22,11 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
     );
   };
 
-  const centerSearchOnCompany = async () => {
+  const centerSearchOnCompany = async (e) => {
+    if (e) {
+      e.stopPropagation();
+    }
+
     // récupération du code insee manquant depuis la base d'adresse
     if (!company.place.insee) {
       const addresses = await fetchAddresses(company.place.address, "municipality");
@@ -76,11 +80,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
             ) : (
               <>
                 <div className="knowMore">
-                  <button
-                    className={`c-resultcard-knowmore`}
-                  >
-                    En savoir plus
-                  </button>
+                  <button className={`c-resultcard-knowmore`}>En savoir plus</button>
                 </div>
               </>
             )}

@@ -23,7 +23,11 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
     );
   };
 
-  const centerSearchOnPeJob = () => {
+  const centerSearchOnPeJob = (e) => {
+    if (e) {
+      e.stopPropagation();
+    }
+
     let lT = job.place;
 
     const newCenter = {
@@ -59,9 +63,7 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
             ) : (
               <>
                 <span className="knowMore">
-                  <button className={`c-resultcard-knowmore`}>
-                    En savoir plus
-                  </button>
+                  <button className={`c-resultcard-knowmore`}>En savoir plus</button>
                 </span>
               </>
             )}

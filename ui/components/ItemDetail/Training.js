@@ -23,7 +23,11 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
     );
   };
 
-  const centerSearchOnTraining = async () => {
+  const centerSearchOnTraining = async (e) => {
+    if (e) {
+      e.stopPropagation();
+    }
+
     // reconstruction des critères d'adresse selon l'adresse du centre de formation
     const label = `${training.place.city} ${training.place.zipCode}`;
 
@@ -66,9 +70,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
             ) : (
               <>
                 <span className="knowMore">
-                  <button className="c-resultcard-knowmore">
-                    En savoir plus
-                  </button>
+                  <button className="c-resultcard-knowmore">En savoir plus</button>
                 </span>
               </>
             )}
