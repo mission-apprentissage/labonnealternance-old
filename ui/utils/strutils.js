@@ -1,5 +1,5 @@
-import _ from 'lodash'
+import { isString } from 'lodash'
 
-const isNonEmptyString = (val) => _.isString(val) && val.trim().length > 0
+const isNonEmptyString = (val) => isString(val) && val.trim().length > 0
 
 export { isNonEmptyString };

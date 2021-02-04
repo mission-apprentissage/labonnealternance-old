@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { get, includes, defaultTo, round } from "lodash";
+import { get, includes, defaultTo, round, capitalize } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import linkIcon from "../../public/images/icons/link.svg";
@@ -21,11 +21,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
   let siret = selectedItem?.company?.siret;
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
-
-  // majuscule pour la 1ère lettre
-  let capitalize = function(s) {
-    return s && s[0].toUpperCase() + s.slice(1);
-  }
 
   return (
     <>
