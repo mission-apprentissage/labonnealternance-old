@@ -8,6 +8,7 @@ import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import linkIcon from "../../public/images/icons/link.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
+  console.log('selectedItem', selectedItem);
   const kind = selectedItem?.ideaType;
   const companySize = selectedItem?.company?.size?.toLowerCase();
   const distance = selectedItem?.place?.distance;
@@ -21,7 +22,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
-  
+  // majuscule pour la 1ère lettre
+  let capitalize = function(s) {
+    return s && s[0].toUpperCase() + s.slice(1);
+  }
+
   return (
     <>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
@@ -90,46 +95,23 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
               </span>
             </p>
 
-            {kind === "formation" ? (
-              <>
-                <div className="c-detail-km c-detail-pelink">
-                  <img src={linkIcon} alt="Lien" />
-                  <a href="http://www.ecoledetravail.fr" className="ml-3" target="_blank" rel="noopener noreferer">
-                    www.ecoledetravail.fr
-                  </a>
-                </div>
-                <div className="pt-5 pl-3">
-                  {seeInfo ? (
-                    contactInfo
-                  ) : (
-                    <button
-                        className="gtmContactFormation d-block btn btn-outline-primary  w-50 ml-3 mt-3"
-                      onClick={() => setSeeInfo(true)}
-                    >
-                      Voir les informations de contact
-                    </button>
-                  )}
-                </div>
-              </>
-            ) : (
-              <p className="mb-4">
-                <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
-                <span className="c-detail-sizetext d-block">
-                  {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
-                </span>
-                {siret ? (
-                  <a
-                    target="lbb"
-                    href={`https://labonneboite.pole-emploi.fr/${siret}/details`}
-                      className="gtmContactEntreprise d-block btn btn-outline-primary w-50 mt-3 c-detail-seeinfo"
-                  >
-                    Voir les informations de contact
-                  </a>
-                ) : (
-                  ""
-                )}
-              </p>
-            )}
+            <p className="mb-4">
+              <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
+              <span className="c-detail-sizetext d-block">
+                {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
+              </span>
+              {siret ? (
+                <a
+                  target="lbb"
+                  href={`https://labonneboite.pole-emploi.fr/${siret}/details`}
+                    className={`gtmContact gtmContact${capitalize(kind)} d-block btn btn-outline-primary w-50 mt-3 c-detail-seeinfo`}
+                >
+                  Voir les informations de contact
+                </a>
+              ) : (
+                ""
+              )}
+            </p>
           </div>
           <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
         </header>
