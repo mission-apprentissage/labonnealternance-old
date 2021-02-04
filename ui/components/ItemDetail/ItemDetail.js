@@ -103,7 +103,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
                     contactInfo
                   ) : (
                     <button
-                      className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
+                      className="gtmContact d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
                       onClick={() => setSeeInfo(true)}
                     >
                       Voir les informations de contact
