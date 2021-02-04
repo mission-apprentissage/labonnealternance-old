@@ -84,6 +84,7 @@
   padding: 20px 25px;
   margin: 8px 25px;
   color: #4A4A4A;
+  cursor: pointer;
 }
 .resultCard .extendedJobSearchButton,
 .resultCard .extendedTrainingSearchButton {
@@ -152,7 +153,6 @@
   margin-left: auto;
 }
 .resultCard .knowMore button {
-  cursor: pointer;
   color: $gray-700 !important;
   background: none;
   border: none;
