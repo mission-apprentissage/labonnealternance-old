@@ -49,7 +49,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
   };
 
   return (
-    <div className="resultCard trainingCard" onClick={onSelectItem}>
+    <div className="resultCard trainingCard  gtmSavoirPlus gtmFormation gtmListe" onClick={onSelectItem}>
       <div className="c-media" id={`id${training.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={trainingIcon} alt="" />
@@ -66,7 +66,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
             ) : (
               <>
                 <span className="knowMore">
-                  <button className="c-resultcard-knowmore gtmSavoirPlus gtmFormation gtmListe">
+                  <button className="c-resultcard-knowmore">
                     En savoir plus
                   </button>
                 </span>

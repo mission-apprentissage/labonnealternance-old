@@ -48,7 +48,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
   };
 
   return (
-    <div className="resultCard resultCardLbb" onClick={onSelectItem}>
+    <div className={`resultCard resultCardLbb gtmSavoirPlus gtm${company.ideaType} gtmListe`} onClick={onSelectItem}>
       <div className="c-media" id={`${company.ideaType}${company.company.siret}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
@@ -77,7 +77,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
               <>
                 <div className="knowMore">
                   <button
-                    className={`c-resultcard-knowmore gtmSavoirPlus gtm${company.ideaType} gtmListe`}
+                    className={`c-resultcard-knowmore`}
                   >
                     En savoir plus
                   </button>
