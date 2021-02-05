@@ -6,7 +6,6 @@ import { get, includes, defaultTo, round } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
-import linkIcon from "../../public/images/icons/link.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
   const kind = selectedItem?.ideaType;

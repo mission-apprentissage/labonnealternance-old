@@ -23,17 +23,21 @@ const ResultLists = (props) => {
     filterLayers(filterButton);
   };
 
+  const getBanner = () => {
+    return <div className="c-trainingresult-warning pl-4 py-3">
+      <div className="c-trainingresult-warningimg">
+        <img src={questionMarkIcon} alt="Interrogation" />
+      </div>
+      <div className="c-trainingresult-warningtxt ml-2">
+        Les résultats affichés concernent uniquement les offres d'apprentissage
+                </div>
+    </div>
+  }
+
   const getTrainingResult = () => {
     if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
       return <div className="trainingResult">
-               <div className="c-trainingresult-warning pl-4 py-3">
-                 <div className="c-trainingresult-warningimg">
-                   <img src={questionMarkIcon} alt="Interrogation" />
-                 </div>
-                <div className="c-trainingresult-warningtxt ml-2">
-                  Les résultats affichés concernent uniquement les offres d'apprentissage
-                </div>
-               </div>
+              {getBanner()}
               {getTrainingList()}
              </div>;
     } else {
@@ -86,6 +90,7 @@ const ResultLists = (props) => {
             <div className="jobResult">
               {peJobList || lbbCompanyList ? (
                 <>
+                  {getBanner()}
                   {peJobList}
                   {lbbCompanyList}
                   {jobCount < 100 ? (
