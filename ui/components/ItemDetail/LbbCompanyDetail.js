@@ -3,8 +3,9 @@ import bulbIcon from "../../public/images/icons/bulb.svg";
 import gotoIcon from "../../public/images/icons/goto.svg";
 import { get, includes, defaultTo } from "lodash";
 import ReactHtmlParser from "react-html-parser";
+import contactIcon from "../../public/images/icons/contact_icon.svg";
 
-const LbbCompanyDetail = ({ lbb }) => {
+const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
   let modificationLink = `https://labonneboite.pole-emploi.fr/verification-informations-entreprise/${siret}`;
 
@@ -13,8 +14,66 @@ const LbbCompanyDetail = ({ lbb }) => {
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
+  const kind = lbb?.ideaType;
+  let contactEmail = lbb?.contact?.email;
+  const companySize = lbb?.company?.size?.toLowerCase();
+  let contactInfo = contactEmail ? (
+    <span className="c-detail-km c-detail-pelink">
+      <a href={`mailto:${contactEmail}`} className="ml-1" target="_blank" rel="noopener noreferrer">
+        {contactEmail}
+      </a>
+    </span>
+  ) : null;
+
+
   return (
     <>
+    <div className="text-left">
+        {kind === "formation" ? (
+          contactInfo ? (
+            <p className="d-flex mt-4">
+              {seeInfo ? (
+                <>
+                  <span className="d-block">
+                    <img className="cardIcon" src={contactIcon} alt="" />
+                  </span>
+                  <span className="ml-2 d-block">
+                    <span className="c-detail-address d-block">{contactInfo}</span>
+                  </span>
+                </>
+              ) : (
+                <button
+                  className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
+                  onClick={() => setSeeInfo(true)}
+                >
+                  Voir les informations de contact
+                </button>
+              )}
+            </p>
+          ) : (
+            ""
+          )
+        ) : (
+          <p className="mb-4">
+            <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
+            <span className="c-detail-sizetext d-block">
+              {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
+            </span>
+            {siret ? (
+              <a
+                target="lbb"
+                href={`https://labonneboite.pole-emploi.fr/${siret}/details`}
+                className="d-block btn btn-outline-primary w-50 mt-3 c-detail-seeinfo"
+              >
+                Voir les informations de contact
+              </a>
+            ) : (
+              ""
+            )}
+          </p>
+        )}
+      </div>
+      <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
       <div className="c-detail-body">
         <div className="c-detail-advice p-2">
           <img src={bulbIcon} alt="" />
