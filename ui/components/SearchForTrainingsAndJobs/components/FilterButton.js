@@ -21,7 +21,7 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   };
 
   const getText = () => {
-    if (type === "all") return "Voir tout";
+    if (type === "all") return "&nbsp;Voir tout&nbsp;";
 
     return `${count} ${type === "trainings" ? "formations&nbsp;" : "entreprises&nbsp;"}`;
   };
