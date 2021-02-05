@@ -245,8 +245,9 @@
   flex-wrap: wrap;
   justify-content: left;
   padding-left: 31px;
-  box-shadow: 0 3px 3px -3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.25);
 }
+
 .demoPage .choiceCol .filterButtons button {
   text-align: center;
   font-size: 12px;
@@ -270,22 +271,35 @@
   color: #4A4A4A;
   font-weight: 700;
   border-bottom: 2px solid $gray-750;
+  // outline: none;
+    // box-shadow: none;
+  // border-radius: none;
 }
 .demoPage .choiceCol .filterButtons button.filterButtontrainings.active {
   border: none;
   font-weight: 700;
   color: #4A4A4A;
   border-bottom: 2px solid $gray-750;
+  // outline: none
+    // box-shadow: none;
+  // border-radius: none;
 }
 .demoPage .choiceCol .filterButtons button.filterButtonjobs.active {
   border: none;
   font-weight: 700;
   color: #4A4A4A;
   border-bottom: 2px solid $gray-750;
+  // outline: none;
+  // box-shadow: none;
+  // border-radius: none;
 }
 .demoPage .choiceCol .filterButtons button:hover,
 .demoPage .choiceCol .filterButtons button:focus {
   box-shadow: none;
+  outline: 1px solid $primary;
+      box-shadow: 0 1px 2px #000;
+  // box-shadow: 0 0 0 2px #88b8ff;
+  // border-radius: 2px;
 }
 .demoPage .row {
   text-align: center;
