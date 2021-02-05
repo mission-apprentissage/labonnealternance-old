@@ -56,19 +56,13 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
               ← Retour aux résultats
             </button>
 
-            <p className={"c-detail-title c-detail-title--" + kind}>
-              {kind === "formation" ? (
-                <>{defaultTo(actualTitle, "Formation")}</>
-              ) : (
-                <>{get(selectedItem, "company.name", "")}</>
-              )}
-            </p>
+            <p className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</p>
 
             <p className={`c-detail-activity c-detail-title--${kind}`}>
-              {kind === "formation" ? (
-                <>{get(selectedItem, "company.name", "")}</>
+              {kind === "lba" || kind === "lbb" ? (
+                <>Candidature spontanée</>
               ) : (
-                <>{defaultTo(actualTitle, "Entreprise")}</>
+                <>{get(selectedItem, "company.name", "")}</>
               )}
             </p>
             <p className="d-flex mt-4">
