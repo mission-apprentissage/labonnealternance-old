@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.8.3 [05/02/2021]
+[322] étendre la sélection, classes gtm
+
 ## 1.8.2 [04/02/2021]
 [381] Nouvelle charte, corrections
 
