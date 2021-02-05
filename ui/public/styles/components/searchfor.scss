@@ -248,14 +248,18 @@
 }
 .demoPage .choiceCol .filterButtons button {
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   background: none;
   width: fit-content;
   outline: none;
   border: none;
   padding: 20px 0px;
-  margin-right: 20px;
   color: #929292;
+  margin-right: 5px;
+  @include media-breakpoint-up(sm) { 
+    font-size: 14px;
+    margin-right: 40px;
+  }
 }
 .demoPage .choiceCol .filterButtons button img {
   margin: -2px 5px 0 5px;
@@ -268,13 +272,15 @@
 }
 .demoPage .choiceCol .filterButtons button.filterButtontrainings.active {
   border: none;
-  padding: 11px;
-  color: #BD1992;
+  font-weight: 700;
+  color: #4A4A4A;
+  border-bottom: 2px solid $gray-750;
 }
 .demoPage .choiceCol .filterButtons button.filterButtonjobs.active {
   border: none;
-  padding: 11px;
-  color: #54108E;
+  font-weight: 700;
+  color: #4A4A4A;
+  border-bottom: 2px solid $gray-750;
 }
 .demoPage .choiceCol .filterButtons button:hover,
 .demoPage .choiceCol .filterButtons button:focus {
