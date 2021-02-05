@@ -1,9 +1,9 @@
 import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
-import companySizeIcon from "../../public/images/icons/employees.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
+import { get } from "lodash";
 
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
@@ -60,18 +60,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
 
         <div className="c-media-body">
           <div className="title d-inline-block">{company.company.name}</div>
-          <div className="cardText pt-1">
-            {company.company.size ? (
-              <div className="companySize">
-                <img src={companySizeIcon} alt="" />{" "}
-                {company.company.size && company.company.size === "0 salarié"
-                  ? "petite entreprise"
-                  : company.company.size}
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          <div className="cardText pt-1">{get(company, "nafs[0].label", "")}</div>
           <div className="cardText pt-2">{company.place.fullAddress}</div>
           <span className="cardDistance pt-1">
             {company.place.distance} km(s) du lieu de recherche
