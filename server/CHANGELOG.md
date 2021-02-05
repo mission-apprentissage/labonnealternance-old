@@ -1,5 +1,9 @@
 # CHANGELOG
 
+
+## 1.8.4 [05/02/2021]
+[349] Nouvelle charte onglets
+
 ## 1.8.2 [04/02/2021]
 [381] Nouvelle charte, corrections
 
