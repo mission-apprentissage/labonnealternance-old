@@ -62,7 +62,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
               </>
             ) : (
               <button
-                className="d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3"
+                className={`d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3 gtmContact gtm${kind}`}
                 onClick={() => setSeeInfo(true)}
               >
                 Voir les informations de contact
