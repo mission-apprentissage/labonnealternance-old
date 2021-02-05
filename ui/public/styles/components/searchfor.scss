@@ -250,12 +250,11 @@
   text-align: center;
   font-size: 14px;
   background: none;
-  border-radius: 20px !important;
   width: fit-content;
   min-width: 100px;
   margin: 0 0 10px 10px;
   outline: none;
-  border: 1px solid #C9C9C9;
+  border: none;
   padding: 11px;
   color: #929292;
 }
@@ -263,23 +262,21 @@
   margin: -2px 5px 0 5px;
 }
 .demoPage .choiceCol .filterButtons button.filterButtonall.active {
-  border: 2px solid #828282;
+  border: none;
   color: #4A4A4A;
 }
 .demoPage .choiceCol .filterButtons button.filterButtontrainings.active {
-  border: 1px solid #BD1992;
+  border: none;
   padding: 11px;
   color: #BD1992;
 }
 .demoPage .choiceCol .filterButtons button.filterButtonjobs.active {
-  border: 1px solid #54108E;
+  border: none;
   padding: 11px;
   color: #54108E;
 }
-.demoPage .choiceCol .filterButtons button:hover,
-.demoPage .choiceCol .filterButtons button:focus {
-  box-shadow: 0px 1px 2px #000000;
-}
+
+
 .demoPage .row {
   text-align: center;
 }

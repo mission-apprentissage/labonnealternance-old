@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Spinner } from "reactstrap";
+import { Nav, NavItem, NavLink, Spinner } from "reactstrap";
 import Training from "../../../components/ItemDetail/Training";
 import PeJob from "../../../components/ItemDetail/PeJob";
 import LbbCompany from "../../../components/ItemDetail/LbbCompany";
