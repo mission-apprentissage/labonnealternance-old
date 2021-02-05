@@ -92,6 +92,7 @@ const ResultLists = (props) => {
                   <NoJobResult />
                   <ExtendedSearchButton
                     title="Étendre la sélection"
+                    hasJob="true"
                     handleExtendedSearch={props.handleExtendedSearch}
                   />
                 </>
@@ -105,7 +106,7 @@ const ResultLists = (props) => {
           return (
             <>
               <NoJobResult />
-              <ExtendedSearchButton title="Étendre la sélection" handleExtendedSearch={props.handleExtendedSearch} />
+              <ExtendedSearchButton title="Étendre la sélection" hasJob="false" handleExtendedSearch={props.handleExtendedSearch} />
             </>
           );
       }
