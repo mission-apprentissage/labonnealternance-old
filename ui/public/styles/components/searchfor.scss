@@ -244,7 +244,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
-  margin-left: 31px;
+  padding-left: 31px;
+  box-shadow: 0 3px 3px -3px rgba(0, 0, 0, 0.25);
 }
 .demoPage .choiceCol .filterButtons button {
   text-align: center;

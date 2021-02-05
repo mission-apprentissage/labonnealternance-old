@@ -10,6 +10,7 @@ import ExtendedSearchButton from "./ExtendedSearchButton";
 import NoJobResult from "./NoJobResult";
 import FilterButton from "./FilterButton";
 import { useScopeContext } from "context/ScopeContext";
+import questionMarkIcon from "public/images/icons/question_mark.svg";
 
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -24,7 +25,17 @@ const ResultLists = (props) => {
 
   const getTrainingResult = () => {
     if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
-      return <div className="trainingResult">{getTrainingList()}</div>;
+      return <div className="trainingResult">
+               <div className="c-trainingresult-warning pl-4 py-3">
+                 <div className="c-trainingresult-warningimg">
+                   <img src={questionMarkIcon} alt="Interrogation" />
+                 </div>
+                <div className="c-trainingresult-warningtxt ml-2">
+                  Les résultats affichés concernent uniquement les offres d'apprentissage
+                </div>
+               </div>
+              {getTrainingList()}
+             </div>;
     } else {
       return "";
     }
