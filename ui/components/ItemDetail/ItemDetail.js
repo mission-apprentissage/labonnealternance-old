@@ -39,7 +39,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
               handleClose();
             }}
           >
-            <span className="mr-3">←</span> {get(selectedItem, "company.name", "Retour")}
+            <span className="mr-3">←</span> {actualTitle}
           </nav>
         ) : (
           ""
