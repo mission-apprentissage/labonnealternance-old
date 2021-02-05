@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Spinner } from "reactstrap";
+import { Nav, NavItem, NavLink, Spinner } from "reactstrap";
 import Training from "../../../components/ItemDetail/Training";
 import PeJob from "../../../components/ItemDetail/PeJob";
 import LbbCompany from "../../../components/ItemDetail/LbbCompany";
@@ -42,7 +42,6 @@ const ResultLists = (props) => {
             ""
           )}
           {props.trainings.map((training, idx) => {
-            //console.log("training : ",training," ---------- ",props.trainings);
             return (
               <Training
                 key={idx}
@@ -299,14 +298,20 @@ const ResultLists = (props) => {
         }
       }
     }
+
+    let correspondText = `${count === 0 ? " ne" : ""}${count <= 1 ? " correspond" : " correspondent"} à votre recherche`
+
     return (
-      <>
+      <div className="c-result-lists">
         <div className="resultTitle">
-          {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading)
-            ? `${trainingPart}${trainingPart && jobPart ? " et " : ""}${jobPart}${count === 0 ? " ne" : ""}${
-                count <= 1 ? " correspond" : " correspondent"
-              } à votre recherche`
-            : ""}
+          {((scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading)) ? ( 
+            <>
+              <span className="c-resultlist-correspond c-resultlist-correspond--bold">{trainingPart} {trainingPart && jobPart ? " et " : ""} {jobPart} </span>
+              <span className="c-resultlist-correspond c-resultlist-correspond--light">{correspondText}</span>
+            </>
+          ) : ( 
+            ""
+          )}
           {trainingLoading ? (
             <>
               <br />
@@ -349,7 +354,7 @@ const ResultLists = (props) => {
         ) : (
           ""
         )}
-      </>
+      </div>
     );
   };
 
@@ -368,10 +373,7 @@ const ResultLists = (props) => {
   return (
     <div className={isFormVisible || props.selectedItem ? "hiddenResultList" : ""}>
       <header>
-        <LogoIdea />
-        <Button className="blueButton filterButton" onClick={props.showSearchForm}>
-          <span className="hiddenSM"> Filtres</span>
-        </Button>
+        <LogoIdea showSearchForm={props.showSearchForm} />
       </header>
       <div className="clearBoth" />
       {getResultCountAndLoading()}

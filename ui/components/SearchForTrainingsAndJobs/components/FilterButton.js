@@ -1,8 +1,6 @@
 import React from "react";
-import trainingIcon from "../../../public/images/icons/training_filter.svg";
-import jobIcon from "../../../public/images/icons/job_filter.svg";
-import inactiveTrainingIcon from "../../../public/images/icons/training_filter_inactive.svg";
-import inactiveJobIcon from "../../../public/images/icons/job_filter_inactive.svg";
+import trainingIcon from "../../../public/images/icons/book_small.svg";
+import jobIcon from "../../../public/images/icons/job_small.svg";
 
 const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   const handleClick = (e) => {
@@ -12,8 +10,11 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
 
   const getIcon = () => {
     let src = "";
-    if (type === "trainings") src = isActive ? trainingIcon : inactiveTrainingIcon;
-    else if (type === "jobs") src = isActive ? jobIcon : inactiveJobIcon;
+    if (type === "trainings") {
+      src = trainingIcon;
+    } else if (type === "jobs") {
+      src = jobIcon;
+    }
 
     return src ? <img src={src} alt="" /> : "";
   };

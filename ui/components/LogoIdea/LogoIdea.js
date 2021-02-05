@@ -4,8 +4,9 @@ import { push } from "connected-next-router";
 import { Row, Col } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./LogoIdea.module.scss";
+import { Button } from "reactstrap";
 
-const LogoIdea = () => {
+const LogoIdea = ({ showSearchForm }) => {
   const dispatch = useDispatch();
 
   const { widgetParameters } = useSelector((state) => state.trainings);
@@ -40,8 +41,13 @@ const LogoIdea = () => {
           />
         </a>
       </Col>
-      <Col xs="8">
+      <Col xs="4">
         <h1 className={styles.h1}>Trouvez votre apprentissage</h1>
+      </Col>
+      <Col xs="4">
+        <Button className="blueButton filterButton" onClick={showSearchForm}>
+          <span className="hiddenSM"> Filtres</span>
+        </Button>
       </Col>
     </Row>
   );
