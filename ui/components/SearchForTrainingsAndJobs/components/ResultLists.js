@@ -300,10 +300,8 @@ const ResultLists = (props) => {
 
     let correspondText = `${count === 0 ? " ne" : ""}${count <= 1 ? " correspond" : " correspondent"} à votre recherche`
 
-    
-
     return (
-      <>
+      <div className="c-result-lists">
         <div className="resultTitle">
           {((scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading)) ? ( 
             <>
@@ -355,7 +353,7 @@ const ResultLists = (props) => {
         ) : (
           ""
         )}
-      </>
+      </div>
     );
   };
 
@@ -374,10 +372,7 @@ const ResultLists = (props) => {
   return (
     <div className={isFormVisible || props.selectedItem ? "hiddenResultList" : ""}>
       <header>
-        <LogoIdea />
-        <Button className="blueButton filterButton" onClick={props.showSearchForm}>
-          <span className="hiddenSM"> Filtres</span>
-        </Button>
+        <LogoIdea showSearchForm={props.showSearchForm} />
       </header>
       <div className="clearBoth" />
       {getResultCountAndLoading()}
