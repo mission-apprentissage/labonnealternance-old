@@ -10,7 +10,6 @@ import ExtendedSearchButton from "./ExtendedSearchButton";
 import NoJobResult from "./NoJobResult";
 import FilterButton from "./FilterButton";
 import { useScopeContext } from "context/ScopeContext";
-import ReactHtmlParser from 'react-html-parser'; 
 
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
