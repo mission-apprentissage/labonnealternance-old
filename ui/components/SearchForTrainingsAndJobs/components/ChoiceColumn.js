@@ -73,7 +73,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
       const itemElement = getItemElement(itemToScrollTo);
 
       if (itemElement) {
-        scrollToElementInContainer("choiceColumn", itemElement, 50, "auto");
+        scrollToElementInContainer("choiceColumn", itemElement, 200, "auto");
         dispatch(setItemToScrollTo(null));
       }
     }

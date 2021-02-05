@@ -1,6 +1,7 @@
 import React from "react";
 import trainingIcon from "../../../public/images/icons/book_small.svg";
 import jobIcon from "../../../public/images/icons/job_small.svg";
+import ReactHtmlParser from "react-html-parser";
 
 const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   const handleClick = (e) => {
@@ -20,9 +21,9 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   };
 
   const getText = () => {
-    if (type === "all") return "Voir tout";
+    if (type === "all") return "&nbsp;Voir tout&nbsp;";
 
-    return `${count} ${type === "trainings" ? "formations" : "entreprises"}`;
+    return `${count} ${type === "trainings" ? "formations&nbsp;" : "entreprises&nbsp;"}`;
   };
 
   return (
@@ -31,7 +32,7 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
       className={`gtmFilterButton gtmFilterButton${type} filterButton${type}${isActive ? " active" : ""}`}
     >
       {getIcon()}
-      {getText()}
+      {ReactHtmlParser(getText())}
     </button>
   );
 };

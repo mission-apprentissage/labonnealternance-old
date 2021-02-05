@@ -1,5 +1,9 @@
 # CHANGELOG
 
+
+## 1.8.4 [05/02/2021]
+[387] bannière
+
 ## 1.8.3 [05/02/2021]
 [322] étendre la sélection, classes gtm
 [349] Nouvelle charte onglets
