@@ -1,9 +1,7 @@
 import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
-import companySizeIcon from "../../public/images/icons/employees.svg";
 import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
-import { get } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 
 const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {

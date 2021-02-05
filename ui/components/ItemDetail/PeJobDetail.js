@@ -3,10 +3,10 @@ import moment from "moment";
 import bulbIcon from "../../public/images/icons/bulb.svg";
 import { get, defaultTo } from "lodash";
 import ReactHtmlParser from "react-html-parser";
+
 let md = require("markdown-it")().disable(["link", "image"]);
 
-const PeJobDetail = ({ job }) => {
-
+const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
@@ -16,9 +16,22 @@ const PeJobDetail = ({ job }) => {
   const contractDuration = get(job, "job.contractDescription", undefined);
   const contractRythm = get(job, "job.duration", undefined);
   const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined;
+
+  const kind = job?.ideaType;
+  const companySize = job?.company?.size?.toLowerCase();
+
   return (
     <>
-      <div className="c-detail-body">
+      <div className="text-left">
+        <p className="mb-4">
+          <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
+          <span className="c-detail-sizetext d-block">
+            {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
+          </span>
+        </p>
+      </div>
+      <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
+      <div>
         <div className="c-detail-company">
           {get(job, "company.name", ReactHtmlParser("<em>Entreprise non précisée</em>"))}
           <span className="c-detail-proposal"> propose actuellement cette offre</span>

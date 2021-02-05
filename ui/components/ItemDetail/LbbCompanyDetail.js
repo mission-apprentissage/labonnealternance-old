@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import bulbIcon from "../../public/images/icons/bulb.svg";
 import gotoIcon from "../../public/images/icons/goto.svg";
-import { get, includes, defaultTo } from "lodash";
+import { defaultTo } from "lodash";
 import ReactHtmlParser from "react-html-parser";
+import contactIcon from "../../public/images/icons/contact_icon.svg";
 
-const LbbCompanyDetail = ({ lbb }) => {
+const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
   let modificationLink = `https://labonneboite.pole-emploi.fr/verification-informations-entreprise/${siret}`;
 
@@ -13,8 +14,72 @@ const LbbCompanyDetail = ({ lbb }) => {
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
+  const kind = lbb?.ideaType;
+  let contactEmail = lbb?.contact?.email;
+  let contactPhone = lbb?.contact?.phone;
+
+  let companySize = lbb?.company?.size?.toLowerCase();
+  if (companySize.startsWith("0")) {
+    companySize = "petite entreprise";
+  }
+
+  let contactInfo = (
+    <>
+      {contactEmail ? (
+        <p className="c-detail-km c-detail-pelink">
+          <a href={`mailto:${contactEmail}`} className="ml-1">
+            {contactEmail}
+          </a>
+        </p>
+      ) : (
+        ""
+      )}
+      {contactPhone ? (
+        <p className="c-detail-km c-detail-pelink">
+          <a href={`tel:${contactPhone}`} className="ml-1">
+            {contactPhone}
+          </a>
+        </p>
+      ) : (
+        ""
+      )}
+    </>
+  );
+
   return (
     <>
+      <div className="text-left">
+        {contactPhone || contactEmail ? (
+          <p className="d-flex mt-4">
+            {seeInfo ? (
+              <>
+                <span className="d-block">
+                  <img className="cardIcon" src={contactIcon} alt="" />
+                </span>
+                <span className="ml-2 d-block">
+                  <span className="c-detail-address d-block">{contactInfo}</span>
+                </span>
+              </>
+            ) : (
+              <button
+                className={`d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3 gtmContact gtm${kind}`}
+                onClick={() => setSeeInfo(true)}
+              >
+                Voir les informations de contact
+              </button>
+            )}
+          </p>
+        ) : (
+          ""
+        )}
+        <p className="mb-4">
+          <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
+          <span className="c-detail-sizetext d-block">
+            {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
+          </span>
+        </p>
+      </div>
+      <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
       <div className="c-detail-body">
         <div className="c-detail-advice p-2">
           <img src={bulbIcon} alt="" />
@@ -53,13 +118,13 @@ const LbbCompanyDetail = ({ lbb }) => {
       </div>
       <div className="c-detail-lbb-siretzone">
         <div className="c-detail-lbb-siretno p-0 m-0">N° de siret</div>
-        <div className="c-detail-lbb-siretactual p-0 m-0">
+        <div className="c-detail-lbb-siretactual p-0 mt-2">
           {defaultTo(siret, ReactHtmlParser("<em>Non renseigné</em>"))}
         </div>
         {siret ? (
           <div className="c-detail-lbb-siretok">
             <div className="c-detail-lbb-siretno">C'est mon entreprise</div>
-            <div className="c-detail-lbb-siretaction">
+            <div className="c-detail-lbb-siretaction mt-2">
               <a
                 className="btn btn-outline-primary c-detail-lbb-siretbutton px-1 px-sm-3 c-home-descr__more"
                 target="_blank"
