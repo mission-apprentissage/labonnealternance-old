@@ -45,11 +45,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
             <p className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</p>
 
             <p className={`c-detail-activity c-detail-title--${kind}`}>
-              {kind === "lba" || kind === "lbb" ? (
-                <>Candidature spontanée</>
-              ) : (
-                <>{get(selectedItem, "company.name", "")}</>
-              )}
+              {kind === "lba" || kind === "lbb"
+                ? get(selectedItem, "nafs[0].label", "Candidature spontanée")
+                : get(selectedItem, "company.name", "")}
             </p>
             <p className="d-flex mt-4">
               <span className="d-block">
