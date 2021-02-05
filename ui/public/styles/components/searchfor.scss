@@ -244,8 +244,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
-  margin-left: 31px;
+  padding-left: 31px;
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.25);
 }
+
 .demoPage .choiceCol .filterButtons button {
   text-align: center;
   font-size: 12px;
@@ -285,6 +287,8 @@
 .demoPage .choiceCol .filterButtons button:hover,
 .demoPage .choiceCol .filterButtons button:focus {
   box-shadow: none;
+  box-shadow: 0 0 0 2px $primary;
+  border-radius: 2px;
 }
 .demoPage .row {
   text-align: center;
