@@ -244,18 +244,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
-  margin-left: 15px;
+  margin-left: 31px;
 }
 .demoPage .choiceCol .filterButtons button {
   text-align: center;
   font-size: 14px;
   background: none;
   width: fit-content;
-  min-width: 100px;
-  margin: 0 0 10px 10px;
   outline: none;
   border: none;
-  padding: 11px;
+  padding: 20px 0px;
+  margin-right: 20px;
   color: #929292;
 }
 .demoPage .choiceCol .filterButtons button img {
@@ -264,6 +263,7 @@
 .demoPage .choiceCol .filterButtons button.filterButtonall.active {
   border: none;
   color: #4A4A4A;
+  border-bottom: 2px solid $gray-750;
 }
 .demoPage .choiceCol .filterButtons button.filterButtontrainings.active {
   border: none;
@@ -275,8 +275,10 @@
   padding: 11px;
   color: #54108E;
 }
-
-
+.demoPage .choiceCol .filterButtons button:hover,
+.demoPage .choiceCol .filterButtons button:focus {
+  box-shadow: none;
+}
 .demoPage .row {
   text-align: center;
 }
@@ -311,8 +313,8 @@
   color: #4A4A4A;
   font-weight: 600;
   font-size: 22px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 0px;
   padding: 0 20px;
 }
 .demoPage .searchLoading {
