@@ -24,22 +24,21 @@ const ResultLists = (props) => {
   };
 
   const getBanner = () => {
-    return <div className="c-trainingresult-warning pl-4 py-3">
-      <div className="c-trainingresult-warningimg">
-        <img src={questionMarkIcon} alt="Interrogation" />
+    return (
+      <div className="c-trainingresult-warning pl-4 py-3 mt-1">
+        <div className="c-trainingresult-warningimg">
+          <img src={questionMarkIcon} alt="Interrogation" />
+        </div>
+        <div className="c-trainingresult-warningtxt ml-2">
+          Les résultats affichés concernent uniquement les offres d'apprentissage
+        </div>
       </div>
-      <div className="c-trainingresult-warningtxt ml-2">
-        Les résultats affichés concernent uniquement les offres d'apprentissage
-                </div>
-    </div>
-  }
+    );
+  };
 
   const getTrainingResult = () => {
     if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
-      return <div className="trainingResult">
-              {getBanner()}
-              {getTrainingList()}
-             </div>;
+      return <div className="trainingResult">{getTrainingList()}</div>;
     } else {
       return "";
     }
@@ -90,7 +89,6 @@ const ResultLists = (props) => {
             <div className="jobResult">
               {peJobList || lbbCompanyList ? (
                 <>
-                  {getBanner()}
                   {peJobList}
                   {lbbCompanyList}
                   {jobCount < 100 ? (
@@ -121,7 +119,11 @@ const ResultLists = (props) => {
           return (
             <>
               <NoJobResult />
-              <ExtendedSearchButton title="Étendre la sélection" hasJob="false" handleExtendedSearch={props.handleExtendedSearch} />
+              <ExtendedSearchButton
+                title="Étendre la sélection"
+                hasJob="false"
+                handleExtendedSearch={props.handleExtendedSearch}
+              />
             </>
           );
       }
@@ -315,17 +317,21 @@ const ResultLists = (props) => {
       }
     }
 
-    let correspondText = `${count === 0 ? " ne" : ""}${count <= 1 ? " correspond" : " correspondent"} à votre recherche`
+    let correspondText = `${count === 0 ? " ne" : ""}${
+      count <= 1 ? " correspond" : " correspondent"
+    } à votre recherche`;
 
     return (
       <div className="c-result-lists">
         <div className="resultTitle">
-          {((scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading)) ? ( 
+          {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
             <>
-              <span className="c-resultlist-correspond c-resultlist-correspond--bold">{trainingPart} {trainingPart && jobPart ? " et " : ""} {jobPart} </span>
+              <span className="c-resultlist-correspond c-resultlist-correspond--bold">
+                {trainingPart} {trainingPart && jobPart ? " et " : ""} {jobPart}{" "}
+              </span>
               <span className="c-resultlist-correspond c-resultlist-correspond--light">{correspondText}</span>
             </>
-          ) : ( 
+          ) : (
             ""
           )}
           {trainingLoading ? (
@@ -394,6 +400,7 @@ const ResultLists = (props) => {
       <div className="clearBoth" />
       {getResultCountAndLoading()}
       {getErrorMessages()}
+      {getBanner()}
       {getTrainingResult()}
       {getJobResult()}
     </div>
