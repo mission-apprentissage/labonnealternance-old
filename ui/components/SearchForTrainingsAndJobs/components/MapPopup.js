@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getJobAddress } from "../../../utils/jobs";
 import { logError } from "../../../utils/tools";
 import { ErrorMessage } from "../../";
+import { capitalizeFirstLetter } from "../../../utils/strutils";
 
 const MapPopup = ({ type, item, handleSelectItem }) => {
   //console.log("Mappopup : ", type, item);
@@ -33,7 +34,10 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
               <div className="mapboxPopupTitle">{job.title}</div>
               <div className="mapboxPopupAddress">{getJobAddress(job)}</div>
               <div className="knowMore">
-                <button className={`gtmSavoirPlus gtm${job.ideaType} gtmMap`} onClick={() => openJobDetail(job)}>
+                <button
+                  className={`gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
+                  onClick={() => openJobDetail(job)}
+                >
                   En savoir plus
                 </button>
               </div>

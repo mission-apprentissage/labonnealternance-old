@@ -18,18 +18,9 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
   const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined;
 
   const kind = job?.ideaType;
-  const companySize = job?.company?.size?.toLowerCase();
 
   return (
     <>
-      <div className="text-left">
-        <p className="mb-4">
-          <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
-          <span className="c-detail-sizetext d-block">
-            {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
-          </span>
-        </p>
-      </div>
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
       <div>
         <div className="c-detail-company">

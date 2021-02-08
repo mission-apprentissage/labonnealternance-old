@@ -4,6 +4,7 @@ import gotoIcon from "../../public/images/icons/goto.svg";
 import { defaultTo } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
+import { capitalizeFirstLetter } from "../../utils/strutils";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
@@ -62,7 +63,9 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
               </>
             ) : (
               <button
-                className={`d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3 gtmContact gtm${kind}`}
+                className={`d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3 gtmContact gtm${capitalizeFirstLetter(
+                  kind
+                )}`}
                 onClick={() => setSeeInfo(true)}
               >
                 Voir les informations de contact
@@ -101,6 +104,35 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
         <p className="c-detail-lbb-paragraph">
           Adaptez votre lettre de motivation à l'entreprise aux informations recueillies : Activité, actualités et
           valeurs
+        </p>
+        <p className="c-detail-lbb-paragraph">
+          Mettez en valeur vos qualités en lien avec le métier recherché et indiquez pourquoi vous souhaitez réaliser
+          votre apprentissage dans cette entreprise en particulier.
+          <br />
+          <br />
+          Besoin d'aide pour concevoir votre CV ? Il existe plusieurs outils gratuits :
+          <br />
+          <a href="https://cv.clicnjob.fr/" className="gtmCVLink gtmClicnjob" rel="noopener noreferrer" target="_blank">
+            https://cv.clicnjob.fr/
+          </a>
+          <br />
+          <a
+            href="https://cvdesignr.com/fr"
+            className="gtmCVLink gtmCvdesigner"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            https://cvdesignr.com/fr
+          </a>
+          <br />
+          <a
+            href="https://www.canva.com/fr_fr/creer/cv/"
+            className="gtmCVLink gtmCanva"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            https://www.canva.com/fr_fr/creer/cv/
+          </a>
         </p>
         <p className="c-detail-lbb-paragraph">Conseil : Allez voir le site de l'entreprise si elle en a un.</p>
 

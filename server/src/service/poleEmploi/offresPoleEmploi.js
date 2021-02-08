@@ -147,9 +147,7 @@ const transformPeJobForIdea = (job, lat, long) => {
     fullAddress: `${job.lieuTravail.libelle} ${job.lieuTravail.codePostal}`,
   };
 
-  resultJob.company = {
-    size: job.trancheEffectifEtab,
-  };
+  resultJob.company = {};
 
   if (job.entreprise) {
     if (job.entreprise.nom) resultJob.company.name = job.entreprise.nom;

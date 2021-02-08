@@ -2,6 +2,7 @@ import React from "react";
 import trainingIcon from "../../../public/images/icons/book_small.svg";
 import jobIcon from "../../../public/images/icons/job_small.svg";
 import ReactHtmlParser from "react-html-parser";
+import { capitalizeFirstLetter } from "../../../utils/strutils";
 
 const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   const handleClick = (e) => {
@@ -29,7 +30,9 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   return (
     <button
       onClick={handleClick}
-      className={`gtmFilterButton gtmFilterButton${type} filterButton${type}${isActive ? " active" : ""}`}
+      className={`gtmFilterButton gtmFilterButton${capitalizeFirstLetter(type)} filterButton${type}${
+        isActive ? " active" : ""
+      }`}
     >
       {getIcon()}
       {ReactHtmlParser(getText())}

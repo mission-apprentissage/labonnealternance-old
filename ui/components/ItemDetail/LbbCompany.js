@@ -3,6 +3,7 @@ import jobIcon from "../../public/images/icons/job.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
+import { capitalizeFirstLetter } from "../../utils/strutils";
 import { get } from "lodash";
 
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
@@ -52,7 +53,10 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
   };
 
   return (
-    <div className={`resultCard resultCardLbb gtmSavoirPlus gtm${company.ideaType} gtmListe`} onClick={onSelectItem}>
+    <div
+      className={`resultCard resultCardLbb gtmSavoirPlus gtm${capitalizeFirstLetter(company.ideaType)} gtmListe`}
+      onClick={onSelectItem}
+    >
       <div className="c-media" id={`${company.ideaType}${company.company.siret}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
