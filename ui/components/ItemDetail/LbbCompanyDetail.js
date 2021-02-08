@@ -105,6 +105,35 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           Adaptez votre lettre de motivation à l'entreprise aux informations recueillies : Activité, actualités et
           valeurs
         </p>
+        <p className="c-detail-lbb-paragraph">
+          Mettez en valeur vos qualités en lien avec le métier recherché et indiquez pourquoi vous souhaitez réaliser
+          votre apprentissage dans cette entreprise en particulier.
+          <br />
+          <br />
+          Besoin d'aide pour concevoir votre CV ? Il existe plusieurs outils gratuits :
+          <br />
+          <a href="https://cv.clicnjob.fr/" className="gtmCVLink gtmClicnjob" rel="noopener noreferrer" target="_blank">
+            https://cv.clicnjob.fr/
+          </a>
+          <br />
+          <a
+            href="https://cvdesignr.com/fr"
+            className="gtmCVLink gtmCvdesigner"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            https://cvdesignr.com/fr
+          </a>
+          <br />
+          <a
+            href="https://www.canva.com/fr_fr/creer/cv/"
+            className="gtmCVLink gtmCanva"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            https://www.canva.com/fr_fr/creer/cv/
+          </a>
+        </p>
         <p className="c-detail-lbb-paragraph">Conseil : Allez voir le site de l'entreprise si elle en a un.</p>
 
         <h2 className="c-detail-lbb-title">Quels sont les avantages pour l’employeur ? </h2>
