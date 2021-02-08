@@ -393,7 +393,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const [displayNavbar, setDisplayNavbar] = useState(false);
 
   const handleScroll = () => {
-    setDisplayNavbar(document.querySelector('#choiceColumn').scrollTop > 30)
+    setDisplayNavbar(document.querySelector("#choiceColumn").scrollTop > 30);
   };
 
   return (

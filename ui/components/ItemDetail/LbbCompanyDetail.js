@@ -4,6 +4,7 @@ import gotoIcon from "../../public/images/icons/goto.svg";
 import { defaultTo } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
+import { capitalizeFirstLetter } from "../../utils/strutils";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
@@ -62,7 +63,9 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
               </>
             ) : (
               <button
-                className={`d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3 gtmContact gtm${kind}`}
+                className={`d-block btn btn-lg btn-dark w-75 font-weight-bold c-regular-darkbtn ml-3 mt-3 gtmContact gtm${capitalizeFirstLetter(
+                  kind
+                )}`}
                 onClick={() => setSeeInfo(true)}
               >
                 Voir les informations de contact
