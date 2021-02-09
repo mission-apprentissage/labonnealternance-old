@@ -1,7 +1,3 @@
-location ~* .(eot|otf|svg|ttf|woff|woff2)$ {
-    add_header Access-Control-Allow-Origin *;
-}
-
 location / {
     limit_req               zone=flood burst=200 nodelay;
     proxy_pass              http://ui:3000;
@@ -14,4 +10,8 @@ location / {
     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header        X-Forwarded-Host $server_name;
     proxy_set_header        X-Forwarded-Proto $scheme; 
+}
+
+location ~* .(eot|otf|svg|ttf|woff|woff2)$ {
+    add_header Access-Control-Allow-Origin *;
 }
