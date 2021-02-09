@@ -11,7 +11,3 @@ location / {
     proxy_set_header        X-Forwarded-Host $server_name;
     proxy_set_header        X-Forwarded-Proto $scheme; 
 }
-
-location ~* .(eot|otf|svg|ttf|woff|woff2)$ {
-    add_header Access-Control-Allow-Origin *;
-}
