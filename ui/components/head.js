@@ -29,6 +29,35 @@ const HeadLaBonneAlternance = (props) => {
       <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+      <link
+        rel="preload"
+        href="https://labonnealternance-recette.apprentissage.beta.gouv.fr/fonts/Inter/Inter-Regular.ttf"
+        as="font"
+        type="font/ttf"
+        crossorigin="anonymous"
+      ></link>
+      <link
+        rel="preload"
+        href="https://labonnealternance-recette.apprentissage.beta.gouv.fr/fonts/Marianne/Marianne-Medium.woff"
+        as="font"
+        type="font/woff"
+        crossorigin="anonymous"
+      ></link>
+      <link
+        rel="preload"
+        href="https://labonnealternance-recette.apprentissage.beta.gouv.fr/fonts/Inter/Inter-Bold.ttf"
+        as="font"
+        type="font/ttf"
+        crossorigin="anonymous"
+      ></link>
+      <link
+        rel="preload"
+        href="https://labonnealternance-recette.apprentissage.beta.gouv.fr/fonts/Marianne/Marianne-Bold.woff"
+        as="font"
+        type="font/woff"
+        crossorigin="anonymous"
+      ></link>
+
       <link rel="manifest" href="/favicon/site.webmanifest" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="msapplication-TileColor" content="#ffffff" />
@@ -38,15 +67,15 @@ const HeadLaBonneAlternance = (props) => {
       <meta
         name="description"
         content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
-        />
-        <meta property="og:site_name" content="La Bonne Alternance" />
-        <meta property="og:title" content="La Bonne Alternance - Trouvez votre alternance" />
-        <meta property="og:type" content="site" />
-        <meta property="og:url" content="https://labonnealternance.pole-emploi.fr" />
-        <meta
-          property="og:description"
-          content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
-          />
+      />
+      <meta property="og:site_name" content="La Bonne Alternance" />
+      <meta property="og:title" content="La Bonne Alternance - Trouvez votre alternance" />
+      <meta property="og:type" content="site" />
+      <meta property="og:url" content="https://labonnealternance.pole-emploi.fr" />
+      <meta
+        property="og:description"
+        content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
+      />
     </Head>
   );
 };
