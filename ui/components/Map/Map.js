@@ -43,7 +43,7 @@ const Map = ({ showResultList }) => {
     }
   }, [trainings, jobs]);
 
-  useEffect(() => { //hack pour rechercharger la map après navigation back / forward navigateur
+  useEffect(() => { //hack pour recharger la map après navigation back / forward navigateur
     if (!mapInitialized && isMapInitialized) {
       setMapInitialized(true);
       setTimeout(() => {
