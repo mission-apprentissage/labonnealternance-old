@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.8.6 [10/02/2021]
+[388] Endpoint d'injection du fichier domainesMetiers
+
 ## 1.8.5 [10/02/2021]
 [386] Rechargement carte après navigation navigateur
 [392] Fix bug scroll vers offre PE
