@@ -2,6 +2,9 @@ import React from "react";
 import Head from "next/head";
 
 const HeadLaBonneAlternance = (props) => {
+  
+  console.log("HEAD : ",props);
+
   return (
     <Head>
       {/* Google Tag Manager */}
