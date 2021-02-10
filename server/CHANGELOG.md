@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.8.5 [10/02/2021]
+[386] Rechargement carte après navigation navigateur
+[392] Fix bug scroll vers offre PE
+[395] Empêcher le rechargement de page au dépassement de scroll sur mobile
+
 ## 1.8.4 [08/02/2021]
 [381] Ajustements nouvelle charte
 
