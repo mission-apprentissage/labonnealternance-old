@@ -47,7 +47,13 @@ const HeadLaBonneAlternance = (props) => {
             type="font/woff"
             crossorigin="anonymous"
           ></link>
-          <link rel="preload" href={`${props.publicUrl}/fonts/Inter/Inter-Bold.ttf`} as="font" type="font/ttf" crossorigin="anonymous"></link>
+          <link
+            rel="preload"
+            href={`${props.publicUrl}/fonts/Inter/Inter-Bold.ttf`}
+            as="font"
+            type="font/ttf"
+            crossorigin="anonymous"
+          ></link>
           <link
             rel="preload"
             href={`${props.publicUrl}/fonts/Inter/Inter-SemiBold.ttf`}
