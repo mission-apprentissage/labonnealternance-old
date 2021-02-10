@@ -29,30 +29,43 @@ const HeadLaBonneAlternance = (props) => {
       <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-      <link
-        rel="preload"
-        href={`${process.env.publicUrl}/fonts/Inter/Inter-Regular.ttf`}
-        as="font"
-        type="font/ttf"
-      ></link>
-      <link
-        rel="preload"
-        href={`${process.env.publicUrl}/fonts/Marianne/Marianne-Medium.woff`}
-        as="font"
-        type="font/woff"
-      ></link>
-      <link
-        rel="preload"
-        href={`${process.env.publicUrl}/fonts/Inter/Inter-Bold.ttf`}
-        as="font"
-        type="font/ttf"
-      ></link>
-      <link
-        rel="preload"
-        href={`${process.env.publicUrl}/fonts/Marianne/Marianne-Bold.woff`}
-        as="font"
-        type="font/woff"
-      ></link>
+
+      {process.env.publicUrl ? (
+        <>
+          <link
+            rel="preload"
+            href={`${process.env.publicUrl}/fonts/Inter/Inter-Regular.ttf`}
+            as="font"
+            type="font/ttf"
+          ></link>
+          <link
+            rel="preload"
+            href={`${process.env.publicUrl}/fonts/Marianne/Marianne-Medium.woff`}
+            as="font"
+            type="font/woff"
+          ></link>
+          <link
+            rel="preload"
+            href={`${process.env.publicUrl}/fonts/Inter/Inter-Bold.ttf`}
+            as="font"
+            type="font/ttf"
+          ></link>
+          <link
+            rel="preload"
+            href={`${process.env.publicUrl}/fonts/Inter/Inter-SemiBold.ttf`}
+            as="font"
+            type="font/ttf"
+          ></link>
+          <link
+            rel="preload"
+            href={`${process.env.publicUrl}/fonts/Marianne/Marianne-Bold.woff`}
+            as="font"
+            type="font/woff"
+          ></link>
+        </>
+      ) : (
+        ""
+      )}
 
       <link rel="manifest" href="/favicon/site.webmanifest" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
