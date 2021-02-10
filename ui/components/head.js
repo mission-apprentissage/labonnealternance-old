@@ -31,31 +31,27 @@ const HeadLaBonneAlternance = (props) => {
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
       <link
         rel="preload"
-        href="https://labonnealternance-recette.apprentissage.beta.gouv.fr/fonts/Inter/Inter-Regular.ttf"
+        href={`${process.env.publicUrl}/fonts/Inter/Inter-Regular.ttf`}
         as="font"
         type="font/ttf"
-        crossorigin="anonymous"
       ></link>
       <link
         rel="preload"
-        href="https://labonnealternance-recette.apprentissage.beta.gouv.fr/fonts/Marianne/Marianne-Medium.woff"
+        href={`${process.env.publicUrl}/fonts/Marianne/Marianne-Medium.woff`}
         as="font"
         type="font/woff"
-        crossorigin="anonymous"
       ></link>
       <link
         rel="preload"
-        href="https://labonnealternance-recette.apprentissage.beta.gouv.fr/fonts/Inter/Inter-Bold.ttf"
+        href={`${process.env.publicUrl}/fonts/Inter/Inter-Bold.ttf`}
         as="font"
         type="font/ttf"
-        crossorigin="anonymous"
       ></link>
       <link
         rel="preload"
-        href="https://labonnealternance-recette.apprentissage.beta.gouv.fr/fonts/Marianne/Marianne-Bold.woff"
+        href={`${process.env.publicUrl}/fonts/Marianne/Marianne-Bold.woff`}
         as="font"
         type="font/woff"
-        crossorigin="anonymous"
       ></link>
 
       <link rel="manifest" href="/favicon/site.webmanifest" />
