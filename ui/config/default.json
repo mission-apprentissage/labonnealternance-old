@@ -1,7 +1,7 @@
 {
   "appName": "labonnealternance",
   "env": "local",
-  "publicUrl": "http://localhost",
+  "publicUrl": "http://localhost:3000",
   "log": {
     "type": "console",
     "level": "info"

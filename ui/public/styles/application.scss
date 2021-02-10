@@ -5,3 +5,9 @@
 @import 'bootstrap/scss/bootstrap.scss';
 
 @import 'public/styles/all_components.scss';
+
+
+body
+{
+    overscroll-behavior: none;
+}
