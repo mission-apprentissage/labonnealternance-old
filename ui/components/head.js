@@ -30,35 +30,30 @@ const HeadLaBonneAlternance = (props) => {
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
 
-      {process.env.publicUrl ? (
+      {props.publicUrl ? (
         <>
           <link
             rel="preload"
-            href={`${process.env.publicUrl}/fonts/Inter/Inter-Regular.ttf`}
+            href={`${props.publicUrl}/fonts/Inter/Inter-Regular.ttf`}
             as="font"
             type="font/ttf"
           ></link>
           <link
             rel="preload"
-            href={`${process.env.publicUrl}/fonts/Marianne/Marianne-Medium.woff`}
+            href={`${props.publicUrl}/fonts/Marianne/Marianne-Medium.woff`}
             as="font"
             type="font/woff"
           ></link>
+          <link rel="preload" href={`${props.publicUrl}/fonts/Inter/Inter-Bold.ttf`} as="font" type="font/ttf"></link>
           <link
             rel="preload"
-            href={`${process.env.publicUrl}/fonts/Inter/Inter-Bold.ttf`}
+            href={`${props.publicUrl}/fonts/Inter/Inter-SemiBold.ttf`}
             as="font"
             type="font/ttf"
           ></link>
           <link
             rel="preload"
-            href={`${process.env.publicUrl}/fonts/Inter/Inter-SemiBold.ttf`}
-            as="font"
-            type="font/ttf"
-          ></link>
-          <link
-            rel="preload"
-            href={`${process.env.publicUrl}/fonts/Marianne/Marianne-Bold.woff`}
+            href={`${props.publicUrl}/fonts/Marianne/Marianne-Bold.woff`}
             as="font"
             type="font/woff"
           ></link>
