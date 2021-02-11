@@ -84,11 +84,12 @@ const getLabelsAndRomes = async (searchKeyword) => {
 const updateRomesMetiersQuery = async (query) => {
   if (!query.secret) {
     return { error: "secret_missing" };
-  } else if (!query.secret === config.private.secretUpdateRomesMetiers) {
+  } else if (query.secret !== config.private.secretUpdateRomesMetiers) {
     return { error: "wrong_secret" };
   } else {
     try {
       console.log("update");
+      return { ok: "a faire" };
     } catch (err) {
       let error_msg = _.get(err, "meta.body") ?? err.message;
 
