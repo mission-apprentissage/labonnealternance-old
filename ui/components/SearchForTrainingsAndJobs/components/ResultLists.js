@@ -53,7 +53,7 @@ const ResultLists = (props) => {
               Aucune formation ne correspondait à votre zone de recherche, nous avons trouvé les plus proches
             </div>
           ) : (
-            ""
+            <div className="bold">Aucune formation trouvée pour votre recherche</div>
           )}
           {props.trainings.map((training, idx) => {
             return (
@@ -69,7 +69,7 @@ const ResultLists = (props) => {
       );
     } else if (props.isTrainingSearchLoading) {
       return "Nous recherchons les formations, merci de patienter...";
-    } else return "";
+    } else return <div className="bold bg-white">Aucune formation trouvée pour votre recherche</div>;
   };
 
   const getJobResult = () => {
