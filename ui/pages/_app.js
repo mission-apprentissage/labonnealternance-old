@@ -21,9 +21,7 @@ class ExampleApp extends App {
     let host = "";
     if (req) {
       host = req.headers.host;
-      if (host.startsWith("localhost")) {
-        host = "http://" + host;
-      }
+      host = `${host.startsWith("localhost") ? "http" : "https"}://${host}`;
     }
 
     return { host };
