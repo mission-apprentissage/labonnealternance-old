@@ -69,7 +69,9 @@ const ResultLists = (props) => {
       );
     } else if (props.isTrainingSearchLoading) {
       return "Nous recherchons les formations, merci de patienter...";
-    } else return <div className="bold bg-white">Aucune formation trouvée pour votre recherche</div>;
+    } else {
+      return <div className="bold bg-white">Aucune formation trouvée pour votre recherche</div>;
+    }
   };
 
   const getJobResult = () => {
