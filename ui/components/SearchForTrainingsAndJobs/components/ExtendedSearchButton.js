@@ -20,7 +20,7 @@ const ExtendedSearchButton = ({ title, hasJob, handleExtendedSearch }) => {
   }
 
   return scopeContext.isJob ? (
-    <Button className={`${gtmClass()} submitButton`} onClick={handleClick}>
+    <Button className={`${gtmClass()} btn btn-lg btn-dark c-regular-darkbtn mt-3`} onClick={handleClick}>
       {title}
     </Button>
   ) : (
