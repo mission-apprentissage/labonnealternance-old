@@ -3,6 +3,7 @@ const { getDomainesMetiersES } = require("../common/esClient");
 const _ = require("lodash");
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
 const config = require("config");
+const updateDomainesMetiers = require("../jobs/domainesMetiers/updateDomainesMetiers");
 
 const getRomesAndLabelsFromTitleQuery = async (query) => {
   if (!query.title) return { error: "title_missing" };
@@ -89,7 +90,8 @@ const updateRomesMetiersQuery = async (query) => {
   } else {
     try {
       console.log("update");
-      return { ok: "a faire" };
+      let result = await updateDomainesMetiers();
+      return result;
     } catch (err) {
       let error_msg = _.get(err, "meta.body") ?? err.message;
 
