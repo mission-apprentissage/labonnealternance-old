@@ -90,7 +90,7 @@ const updateRomesMetiersQuery = async (query) => {
   } else {
     try {
       console.log("update");
-      let result = await updateDomainesMetiers();
+      let result = await updateDomainesMetiers(query.fileName);
       return result;
     } catch (err) {
       let error_msg = _.get(err, "meta.body") ?? err.message;

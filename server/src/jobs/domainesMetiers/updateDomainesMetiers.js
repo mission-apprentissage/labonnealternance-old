@@ -39,11 +39,16 @@ const createIndex = async () => {
   await DomainesMetiers.createMapping(requireAsciiFolding);
 };
 
-const downloadAndSaveFile = () => {
-  logMessage("info", `Downloading and save file from S3 Bucket...`);
+const downloadAndSaveFile = (optionalFileName) => {
+  logMessage(
+    "info",
+    `Downloading and save file ${optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx"} from S3 Bucket...`
+  );
 
   return new Promise((r) => {
-    getFileFromS3("mna-services/features/domainesMetiers/currentDomainesMetiers.xlsx")
+    getFileFromS3(
+      `mna-services/features/domainesMetiers/${optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx"}`
+    )
       .pipe(fs.createWriteStream(FILE_LOCAL_PATH))
       .on("close", () => {
         r();
@@ -56,16 +61,16 @@ const readXLSXFile = (filePath) => {
   return { sheet_name_list: workbook.SheetNames, workbook };
 };
 
-module.exports = async () => {
+module.exports = async (optionalFileName) => {
   try {
     logMessage("info", " -- Start of DomainesMetiers initializer -- ");
+
+    await downloadAndSaveFile(optionalFileName);
 
     await emptyMongo();
     await clearIndex();
 
     await createIndex();
-
-    await downloadAndSaveFile();
 
     const workbookDomainesMetiers = readXLSXFile(FILE_LOCAL_PATH);
 
@@ -135,10 +140,13 @@ module.exports = async () => {
       }
     }
 
-    return { result: "Table mise à jour" };
+    return {
+      result: "Table mise à jour",
+      fileName: optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx",
+    };
   } catch (err) {
     logMessage("error", err);
     let error_msg = _.get(err, "meta.body") ?? err.message;
-    return { error: error_msg };
+    return { error: error_msg, fileName: optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx" };
   }
 };
