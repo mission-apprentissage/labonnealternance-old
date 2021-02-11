@@ -31,47 +31,7 @@ const HeadLaBonneAlternance = (props) => {
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
       <link rel="manifest" href="/favicon/site.webmanifest" />
 
-      {props.publicUrl ? (
-        <>
-          <link
-            rel="preload"
-            href={`${props.publicUrl}/fonts/Inter/Inter-Regular.ttf`}
-            as="font"
-            type="font/ttf"
-            crossorigin="anonymous"
-          ></link>
-          <link
-            rel="preload"
-            href={`${props.publicUrl}/fonts/Marianne/Marianne-Medium.woff`}
-            as="font"
-            type="font/woff"
-            crossorigin="anonymous"
-          ></link>
-          <link
-            rel="preload"
-            href={`${props.publicUrl}/fonts/Inter/Inter-Bold.ttf`}
-            as="font"
-            type="font/ttf"
-            crossorigin="anonymous"
-          ></link>
-          <link
-            rel="preload"
-            href={`${props.publicUrl}/fonts/Inter/Inter-SemiBold.ttf`}
-            as="font"
-            type="font/ttf"
-            crossorigin="anonymous"
-          ></link>
-          <link
-            rel="preload"
-            href={`${props.publicUrl}/fonts/Marianne/Marianne-Bold.woff`}
-            as="font"
-            type="font/woff"
-            crossorigin="anonymous"
-          ></link>
-        </>
-      ) : (
-        ""
-      )}
+      <Fonts url={props.publicUrl} />
 
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
       <meta name="msapplication-TileColor" content="#ffffff" />
