@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs");
+const _ = require("lodash");
 const XLSX = require("xlsx");
 const logger = require("../../common/logger");
 const { DomainesMetiers } = require("../../common/model");
@@ -133,7 +134,11 @@ module.exports = async () => {
         }
       }
     }
+
+    return { result: "Table mise à jour" };
   } catch (err) {
     logMessage("error", err);
+    let error_msg = _.get(err, "meta.body") ?? err.message;
+    return { error: error_msg };
   }
 };
