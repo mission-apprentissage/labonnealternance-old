@@ -49,7 +49,7 @@ const ResultLists = (props) => {
       return (
         <>
           {props.searchRadius < props.trainings[0].place.distance ? (
-            <div className="trainingColor bold">
+            <div className="bold px-3">
               Aucune formation ne correspondait à votre zone de recherche, nous avons trouvé les plus proches
             </div>
           ) : (
