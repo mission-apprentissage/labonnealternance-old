@@ -82,7 +82,7 @@ const Fonts = ({ url }) => {
     );
   };
 
-  return url ? <>{getFontPreloadLinks()}</> : "";
+  return url==="neverdisplay" ? <>{getFontPreloadLinks()}</> : "";
 };
 
 export default Fonts;
