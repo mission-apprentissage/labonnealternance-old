@@ -53,7 +53,7 @@ const ResultLists = (props) => {
               Aucune formation ne correspondait à votre zone de recherche, nous avons trouvé les plus proches
             </div>
           ) : (
-            <div className="bold">Aucune formation trouvée pour votre recherche</div>
+            ""
           )}
           {props.trainings.map((training, idx) => {
             return (
