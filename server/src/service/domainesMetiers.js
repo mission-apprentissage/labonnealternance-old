@@ -2,6 +2,7 @@ const logger = require("../common/logger");
 const { getDomainesMetiersES } = require("../common/esClient");
 const _ = require("lodash");
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
+const config = require("config");
 
 const getRomesAndLabelsFromTitleQuery = async (query) => {
   if (!query.title) return { error: "title_missing" };
@@ -80,6 +81,23 @@ const getLabelsAndRomes = async (searchKeyword) => {
   }
 };
 
+const updateRomesMetiersQuery = async (query) => {
+  if (!query.secret) {
+    return { error: "secret_missing" };
+  } else if (!query.secret === config.private.secretUpdateRomesMetiers) {
+    return { error: "wrong_secret" };
+  } else {
+    try {
+      console.log("update");
+    } catch (err) {
+      let error_msg = _.get(err, "meta.body") ?? err.message;
+
+      return { error: error_msg };
+    }
+  }
+};
+
 module.exports = {
   getRomesAndLabelsFromTitleQuery,
+  updateRomesMetiersQuery,
 };

@@ -8,6 +8,7 @@ const tryCatch = require("./middlewares/tryCatchMiddleware");
 const corsMiddleware = require("./middlewares/corsMiddleware");
 const packageJson = require("../../package.json");
 const rome = require("./routes/rome");
+const updateRomesMetiers = require("./routes/updateRomesMetiers");
 const jobDiploma = require("./routes/jobDiploma");
 const formationV1 = require("./routes/formationV1");
 const version = require("./routes/version");
@@ -47,6 +48,12 @@ module.exports = async (components) => {
     windowMs: 1000, // 1 second
     max: 3, // limit each IP to 3 requests per windowMs
   });
+
+  const limiter1Per5Second = rateLimit({
+    windowMs: 5000, // 5 seconds
+    max: 1, // limit each IP to 1 request per windowMs
+  });
+
   const limiter5PerSecond = rateLimit({
     windowMs: 1000, // 1 second
     max: 5, // limit each IP to 5 requests per windowMs
@@ -77,6 +84,8 @@ module.exports = async (components) => {
   app.use("/api/jobsdiplomas", limiter10PerSecond, jobDiploma());
 
   app.use("/api/romelabels", limiter10PerSecond, rome());
+
+  app.use("/api/updateRomesMetiers", limiter1Per5Second, updateRomesMetiers());
 
   app.get(
     "/api",
