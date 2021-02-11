@@ -27,7 +27,7 @@ const LogoIdea = ({ showSearchForm }) => {
   };
 
   return (
-    <row className='d-none d-md-flex c-logo-idea py-2 ml-3'>
+    <row className='d-none d-md-flex c-logo-idea py-2 pl-3'>
       <div>
         <a href="/" onClick={goToLbaHome}>
           <img
