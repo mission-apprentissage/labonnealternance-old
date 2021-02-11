@@ -325,7 +325,7 @@ const ResultLists = (props) => {
 
     return (
       <div className="c-result-lists pt-md-5">
-        <div className="resultTitle pt-3">
+        <div className="resultTitle pt-3 mt-0 mt-md-4">
           {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
             <>
               <span className="c-resultlist-correspond c-resultlist-correspond--bold">
