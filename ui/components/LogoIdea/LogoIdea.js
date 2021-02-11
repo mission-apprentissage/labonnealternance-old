@@ -41,7 +41,7 @@ const LogoIdea = ({ showSearchForm }) => {
         </a>
       </div>
       <div className="ml-2">
-        <h1 className={styles.h1}>Trouvez votre apprentissage</h1>
+        contenu
       </div>
     </row>
   );

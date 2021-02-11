@@ -1,6 +1,7 @@
 .c-logo-idea {
   position: fixed;
-  height: auto;
+  display: flex;
+  align-items: center;
   z-index: 999;
   width: 103%;
   background-color: white;
