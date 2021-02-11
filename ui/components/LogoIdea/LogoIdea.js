@@ -1,5 +1,5 @@
 import React from "react";
-import logoLBA from "../../public/images/logo-noir-lba.svg";
+import logoLBA from "../../public/images/logo-noir-seul.svg";
 import { push } from "connected-next-router";
 import { Row, Col } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,8 +27,8 @@ const LogoIdea = ({ showSearchForm }) => {
   };
 
   return (
-    <Row className={styles.root}>
-      <Col xs="4">
+    <row className='d-none d-md-flex c-logo-idea py-2 ml-3'>
+      <div>
         <a href="/" onClick={goToLbaHome}>
           <img
             src={
@@ -37,19 +37,13 @@ const LogoIdea = ({ showSearchForm }) => {
                 : logoLBA
             }
             alt="Retour page d'accueil de La Bonne Alternance"
-            className={styles.img}
           />
         </a>
-      </Col>
-      <Col xs="4">
+      </div>
+      <div className="ml-2">
         <h1 className={styles.h1}>Trouvez votre apprentissage</h1>
-      </Col>
-      <Col xs="4">
-        <Button className="blueButton filterButton" onClick={showSearchForm}>
-          <span className="hiddenSM"> Filtres</span>
-        </Button>
-      </Col>
-    </Row>
+      </div>
+    </row>
   );
 };
 
