@@ -23,6 +23,7 @@ process.env.sentryOrg = sentryOrg;
 process.env.sentryProject = sentryProject;
 process.env.sentryAuthToken = sentryProject;
 process.env.env = env;
+process.env.publicUrl = config.publicUrl;
 
 /*
  * END OF SENTRY---------------------------

@@ -43,6 +43,15 @@ const Map = ({ showResultList }) => {
     }
   }, [trainings, jobs]);
 
+  useEffect(() => { //hack pour recharger la map après navigation back / forward navigateur
+    if (!mapInitialized && isMapInitialized) {
+      setMapInitialized(true);
+      setTimeout(() => {
+        initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });
+      }, 0);
+    }
+  }, []);
+
   // Warning : mapContainer doit être vide sinon les onclick sur la map ne marcheront pas
   return (
     <>
