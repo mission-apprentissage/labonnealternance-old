@@ -1,6 +1,8 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AutoCompleteField } from "../";
+import  buildDiplomas from "services/buildDiplomas";
+import { Input } from "reactstrap";
 
 
 const renderFormik = () => {
@@ -53,15 +55,13 @@ const renderFormik = () => {
           <div className="c-logobar-formgroup ml-3">
             <label htmlFor="jobField" className="c-logobar-label">Niveau d'études</label>
             <div className="c-logobar-field">
-              <AutoCompleteField
-                items={[]}
-                itemToStringFunction={() => {}}
-                onSelectedItemChangeFunction={() => {}}
-                compareItemFunction={() => {}}
-                onInputValueChangeFunction={() => {}}
-                name="jobField"
-                placeholder=""
-              />
+              <Input
+                onChange={() => {}}
+                type="select"
+                name="diploma"
+              >
+                {buildDiplomas()}
+              </Input>
             </div>
           </div>
         </Form>
