@@ -149,8 +149,7 @@
 .choiceCol select:focus {
   outline: none;
 }
-.choiceCol .fa-search,
-.choiceCol .fa-map-marker-alt {
+.choiceCol .fa-search {
   margin-top: 16px;
 }
 .choiceCol .autoCompleteContainer {
@@ -166,17 +165,7 @@
   font-weight: bold;
   margin: 20px 0;
 }
-.choiceCol button {
-  // width: 80%;
-  // background: #333;
-  // color: #fff;
-  // border: 1px solid #333;
-  // text-align: center;
-  // font-size: 16px;
-  // padding: 18px;
-  // max-width: 280px;
-  // margin: auto;
-}
+
 .choiceCol .blueButton {
   color: #066EE7;
   background: #fff;
