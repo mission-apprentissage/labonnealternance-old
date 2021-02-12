@@ -39,7 +39,7 @@ const LogoIdea = ({ showSearchForm, showResultList }) => {
           />
         </a>
       </div>
-      <div className="ml-2">
+      <div className="ml-4">
         <LogoBar/>
       </div>
     </row>

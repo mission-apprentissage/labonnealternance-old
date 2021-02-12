@@ -19,9 +19,13 @@ form.c-logobar-form {
   font-size: 12px;
   line-height: 15px;
   color: $gray-700;
+  text-align: left;
+  margin-left: 1rem;
+  padding-top: 0.3rem;
 }
 
 .c-logobar .c-input-work-container .c-input-work {
   padding: 0;
   height: 30px;
+  margin-left: 1rem;
 }
