@@ -28,7 +28,7 @@ const LogoIdea = ({ showSearchForm, showResultList }) => {
 
   return (
     <>
-      <div className="pt-2">
+      <div className="container container-fluid pt-2">
         <Row className='d-md-none'>
           <Col xs="3">
             <a href="/" onClick={goToLbaHome} className="ml-3">
@@ -51,7 +51,7 @@ const LogoIdea = ({ showSearchForm, showResultList }) => {
         </Row >
         <Row className='d-none d-md-flex c-logo-idea py-2 pl-3'>
           <div>
-            <a href="/" onClick={goToLbaHome}>
+            <a href="/" onClick={goToLbaHome} className="ml-3">
               <img
                 src={
                   widgetParameters && widgetParameters?.parameters?.returnLogoURL
