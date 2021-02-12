@@ -22,13 +22,13 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   };
 
   const getText = () => {
-    let res = `${ count } `;
+    let res = `<span class="c-filterbutton-count">${count} </span>`;
     if (type === "trainings") {
-      res += "formation(s)&nbsp;";
+      res += `formation${count <= 1 ? '' : 's'}`;
     } else if (type === "jobs") {
-      res += "entreprise(s)&nbsp;";
+      res += `entreprise${count <= 1 ? '' : 's'}`;
     } else if (type === "all") {
-      res = "&nbsp;";
+      res = "";
     }
     return res;
   };

@@ -14,10 +14,13 @@
   width: fit-content;
   outline: none;
   border: none;
-  padding: 20px 0px;
+  padding: 21px 0 12px 0;
   color: #929292;
   margin-right: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
   @include media-breakpoint-up(sm) { 
+    padding: 21px 0 21px 0;
     font-size: 14px;
     margin-right: 40px;
   }
@@ -41,10 +44,14 @@
 .c-filterbutton.is-active {
   border: none;
   font-weight: 700;
-  color: #4A4A4A;
-  border-bottom: 2px solid $gray-750;
+  color: $info;
+  border-bottom: 2px solid $info;
+  padding-bottom: 10px;
   @include media-breakpoint-up(sm) { 
-    display: block;
+    padding-bottom: 20px;
+    color: $gray-750;
+    border-bottom: 2px solid $gray-750;
+    display: inline;
   }
 }
 
@@ -53,4 +60,11 @@
   box-shadow: none;
   box-shadow: 0 0 0 2px $primary;
   border-radius: 2px;
+}
+
+.c-filterbutton-count {
+  display: none;
+  @include media-breakpoint-up(sm) { 
+    display: inline;
+  }
 }
