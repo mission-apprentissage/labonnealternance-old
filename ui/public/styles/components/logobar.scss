@@ -1,0 +1,27 @@
+.c-logobar {
+  display: flex;
+  align-items: center;
+}
+form.c-logobar-form {
+  margin-top: 0;
+}
+.c-logobar-formgroup {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid $gray-300;
+  border-radius: 10px;
+}
+
+.c-logobar-label {
+  display: block;
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 15px;
+  color: $gray-700;
+}
+
+.c-logobar .c-input-work-container .c-input-work {
+  padding: 0;
+  height: 30px;
+}

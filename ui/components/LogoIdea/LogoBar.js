@@ -8,9 +8,9 @@ const renderFormik = () => {
     <Formik>
       {({ }) => (
         <Form className="c-logobar-form">
-          <div className="formGroup">
-            <label htmlFor="jobField" className="sr-only">Choisissez le domaine de votre projet</label>
-            <div className="fieldContainer">
+          <div className="c-logobar-formgroup">
+            <label htmlFor="jobField" className="c-logobar-label">Métier</label>
+            <div className="c-logobar-field">
               <AutoCompleteField
                 items={[]}
                 itemToStringFunction={() => {}}
