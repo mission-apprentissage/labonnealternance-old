@@ -6,6 +6,7 @@ const logger = require("../../common/logger");
 const { DomainesMetiers } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
 const { getFileFromS3 } = require("../../common/utils/awsUtils");
+const { oleoduc } = require("oleoduc");
 
 const FILE_LOCAL_PATH = path.join(__dirname, "./assets/domainesMetiers_S3.xlsx");
 
@@ -44,16 +45,12 @@ const downloadAndSaveFile = (optionalFileName) => {
     "info",
     `Downloading and save file ${optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx"} from S3 Bucket...`
   );
-
-  return new Promise((r) => {
+  return oleoduc(
     getFileFromS3(
       `mna-services/features/domainesMetiers/${optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx"}`
-    )
-      .pipe(fs.createWriteStream(FILE_LOCAL_PATH))
-      .on("close", () => {
-        r();
-      });
-  });
+    ),
+    fs.createWriteStream(FILE_LOCAL_PATH)
+  );
 };
 
 const readXLSXFile = (filePath) => {
