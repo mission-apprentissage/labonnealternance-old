@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AutoCompleteField } from "../";
 import  buildDiplomas from "services/buildDiplomas";
+import  buildRayons from "services/buildRayons";
 import { Input } from "reactstrap";
 
 
@@ -41,15 +42,13 @@ const renderFormik = () => {
           <div className="c-logobar-formgroup ml-3">
             <label htmlFor="jobField" className="c-logobar-label">Rayon</label>
             <div className="c-logobar-field">
-              <AutoCompleteField
-                items={[]}
-                itemToStringFunction={() => {}}
-                onSelectedItemChangeFunction={() => {}}
-                compareItemFunction={() => {}}
-                onInputValueChangeFunction={() => {}}
-                name="jobField"
-                placeholder=""
-              />
+              <Input
+                onChange={() => { }}
+                type="select"
+                name="rayon"
+              >
+                {buildRayons()}
+              </Input>
             </div>
           </div>
           <div className="c-logobar-formgroup ml-3">
