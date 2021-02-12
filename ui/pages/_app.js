@@ -15,12 +15,25 @@ if (process.env.uiSentryDsn) {
 }
 
 class ExampleApp extends App {
+  static async getInitialProps(context) {
+    // récupération du hostname pour initialiser les fonts en preload
+    const { req } = context.ctx;
+    let host = "";
+    if (req) {
+      host = req.headers.host;
+      host = `${host.startsWith("localhost") ? "http" : "https"}://${host}`;
+    }
+
+    return { host };
+  }
+
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, host } = this.props;
+
     return (
       <>
         <main className="c-app overflow-hidden">
-          <HeadLaBonneAlternance />
+          <HeadLaBonneAlternance publicUrl={host && process.env.publicUrl ? host : ""} />
           <ConnectedRouter>
             <Component {...pageProps} />
           </ConnectedRouter>

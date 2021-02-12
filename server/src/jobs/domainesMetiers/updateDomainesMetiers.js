@@ -1,10 +1,12 @@
 const path = require("path");
 const fs = require("fs");
+const _ = require("lodash");
 const XLSX = require("xlsx");
 const logger = require("../../common/logger");
 const { DomainesMetiers } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
 const { getFileFromS3 } = require("../../common/utils/awsUtils");
+const { oleoduc } = require("oleoduc");
 
 const FILE_LOCAL_PATH = path.join(__dirname, "./assets/domainesMetiers_S3.xlsx");
 
@@ -38,16 +40,17 @@ const createIndex = async () => {
   await DomainesMetiers.createMapping(requireAsciiFolding);
 };
 
-const downloadAndSaveFile = () => {
-  logMessage("info", `Downloading and save file from S3 Bucket...`);
-
-  return new Promise((r) => {
-    getFileFromS3("mna-services/features/domainesMetiers/currentDomainesMetiers.xlsx")
-      .pipe(fs.createWriteStream(FILE_LOCAL_PATH))
-      .on("close", () => {
-        r();
-      });
-  });
+const downloadAndSaveFile = (optionalFileName) => {
+  logMessage(
+    "info",
+    `Downloading and save file ${optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx"} from S3 Bucket...`
+  );
+  return oleoduc(
+    getFileFromS3(
+      `mna-services/features/domainesMetiers/${optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx"}`
+    ),
+    fs.createWriteStream(FILE_LOCAL_PATH)
+  );
 };
 
 const readXLSXFile = (filePath) => {
@@ -55,16 +58,16 @@ const readXLSXFile = (filePath) => {
   return { sheet_name_list: workbook.SheetNames, workbook };
 };
 
-module.exports = async () => {
+module.exports = async (optionalFileName) => {
   try {
     logMessage("info", " -- Start of DomainesMetiers initializer -- ");
+
+    await downloadAndSaveFile(optionalFileName);
 
     await emptyMongo();
     await clearIndex();
 
     await createIndex();
-
-    await downloadAndSaveFile();
 
     const workbookDomainesMetiers = readXLSXFile(FILE_LOCAL_PATH);
 
@@ -133,7 +136,14 @@ module.exports = async () => {
         }
       }
     }
+
+    return {
+      result: "Table mise à jour",
+      fileName: optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx",
+    };
   } catch (err) {
     logMessage("error", err);
+    let error_msg = _.get(err, "meta.body") ?? err.message;
+    return { error: error_msg, fileName: optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx" };
   }
 };
