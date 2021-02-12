@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.8.7 [12/02/2021]
+[388] Endpoint d'injection du fichier domainesMetiers
+
 ## 1.8.6 [11/02/2021]
 [363] Charter les messages d'info
 
