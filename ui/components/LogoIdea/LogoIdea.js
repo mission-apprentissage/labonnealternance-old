@@ -1,12 +1,11 @@
 import React from "react";
 import logoLBA from "../../public/images/logo-noir-seul.svg";
 import { push } from "connected-next-router";
-import { Row, Col } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./LogoIdea.module.scss";
-import { Button } from "reactstrap";
+import LogoBar from "./LogoBar";
 
-const LogoIdea = ({ showSearchForm }) => {
+
+const LogoIdea = ({ showSearchForm, showResultList }) => {
   const dispatch = useDispatch();
 
   const { widgetParameters } = useSelector((state) => state.trainings);
@@ -41,7 +40,7 @@ const LogoIdea = ({ showSearchForm }) => {
         </a>
       </div>
       <div className="ml-2">
-        contenu
+        <LogoBar/>
       </div>
     </row>
   );
