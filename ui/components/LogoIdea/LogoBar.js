@@ -22,6 +22,48 @@ const renderFormik = () => {
               />
             </div>
           </div>
+          <div className="c-logobar-formgroup ml-3">
+            <label htmlFor="jobField" className="c-logobar-label">Lieu</label>
+            <div className="c-logobar-field">
+              <AutoCompleteField
+                items={[]}
+                itemToStringFunction={() => {}}
+                onSelectedItemChangeFunction={() => {}}
+                compareItemFunction={() => {}}
+                onInputValueChangeFunction={() => {}}
+                name="jobField"
+                placeholder="ex: marseille"
+              />
+            </div>
+          </div>
+          <div className="c-logobar-formgroup ml-3">
+            <label htmlFor="jobField" className="c-logobar-label">Rayon</label>
+            <div className="c-logobar-field">
+              <AutoCompleteField
+                items={[]}
+                itemToStringFunction={() => {}}
+                onSelectedItemChangeFunction={() => {}}
+                compareItemFunction={() => {}}
+                onInputValueChangeFunction={() => {}}
+                name="jobField"
+                placeholder=""
+              />
+            </div>
+          </div>
+          <div className="c-logobar-formgroup ml-3">
+            <label htmlFor="jobField" className="c-logobar-label">Niveau d'études</label>
+            <div className="c-logobar-field">
+              <AutoCompleteField
+                items={[]}
+                itemToStringFunction={() => {}}
+                onSelectedItemChangeFunction={() => {}}
+                compareItemFunction={() => {}}
+                onInputValueChangeFunction={() => {}}
+                name="jobField"
+                placeholder=""
+              />
+            </div>
+          </div>
         </Form>
       )}
     </Formik>
