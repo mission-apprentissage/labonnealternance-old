@@ -12,12 +12,20 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 19px;
+  display: block;
+  @include media-breakpoint-up(md) { 
+    display: inline;
+  }
 }
 
 .c-resultlist-correspond--bold {
   font-size: 18px;
   font-weight: 700;
   line-height: 27px;
+  display: block;
+  @include media-breakpoint-up(md) { 
+    display: inline;
+  }
 }
 
 .c-trainingresult-warning {
@@ -38,4 +46,11 @@
   font-weight: bold;
   font-size: 14px;
   line-height: 17px;
+ }
+
+.c-resultlist-purplefilter {
+    display: flex;
+    margin-left: auto;
+    margin-right: 30px;
+    cursor: pointer;
  }

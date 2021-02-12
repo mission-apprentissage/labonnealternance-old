@@ -222,7 +222,7 @@
 .choiceCol .noOpportunityFound {
   margin-top: 30px;
 }
-.choiceCol .filterButtons {
+.filterButtons {
   display: inline-block;
   display: flex;
   flex-wrap: wrap;
@@ -231,7 +231,7 @@
   box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.25);
 }
 
-.choiceCol .filterButtons button {
+.filterButtons button {
   text-align: center;
   font-size: 12px;
   background: none;
@@ -246,29 +246,29 @@
     margin-right: 40px;
   }
 }
-.choiceCol .filterButtons button img {
+.filterButtons button img {
   margin: -2px 5px 0 5px;
 }
-.choiceCol .filterButtons button.filterButtonall.active {
+.filterButtons button.filterButtonall.active {
   border: none;
   color: #4A4A4A;
   font-weight: 700;
   border-bottom: 2px solid $gray-750;
 }
-.choiceCol .filterButtons button.filterButtontrainings.active {
+.filterButtons button.filterButtontrainings.active {
   border: none;
   font-weight: 700;
   color: #4A4A4A;
   border-bottom: 2px solid $gray-750;
 }
-.choiceCol .filterButtons button.filterButtonjobs.active {
+.filterButtons button.filterButtonjobs.active {
   border: none;
   font-weight: 700;
   color: #4A4A4A;
   border-bottom: 2px solid $gray-750;
 }
-.choiceCol .filterButtons button:hover,
-.choiceCol .filterButtons button:focus {
+.filterButtons button:hover,
+.filterButtons button:focus {
   box-shadow: none;
   box-shadow: 0 0 0 2px $primary;
   border-radius: 2px;

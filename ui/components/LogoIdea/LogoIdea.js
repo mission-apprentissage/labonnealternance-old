@@ -29,26 +29,6 @@ const LogoIdea = ({ showSearchForm, showResultList }) => {
   return (
     <>
       <div className="container container-fluid pt-2">
-        <Row className='d-md-none'>
-          <Col xs="3">
-            <a href="/" onClick={goToLbaHome} className="ml-3">
-              <img
-                src={logoLBA}
-                alt="Retour page d'accueil de La Bonne Alternance"
-                />
-            </a>
-          </Col>
-          <Col xs="6">
-            <div className="d-flex align-items-center">
-              <h1 className="c-logoidea-title">Trouvez votre apprentissage</h1>
-            </div>
-          </Col>
-          <Col xs="3">
-            <button className="blueButton filterButton mr-3" onClick={showSearchForm}>
-              <span className="hiddenSM"> Filtres</span>
-            </button>
-          </Col>
-        </Row >
         <Row className='d-none d-md-flex c-logo-idea py-2 pl-3'>
           <div>
             <a href="/" onClick={goToLbaHome} className="ml-3">

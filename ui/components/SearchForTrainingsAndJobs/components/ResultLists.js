@@ -11,6 +11,7 @@ import NoJobResult from "./NoJobResult";
 import FilterButton from "./FilterButton";
 import { useScopeContext } from "context/ScopeContext";
 import questionMarkIcon from "public/images/icons/question_mark.svg";
+import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
 
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -374,6 +375,9 @@ const ResultLists = (props) => {
               isActive={activeFilter === "jobs" ? true : false}
               handleFilterButtonClicked={filterButtonClicked}
             />
+            <div className="c-resultlist-purplefilter" onClick={props.showSearchForm}>
+              <img src={purpleFilterIcon} alt="Image de filtres"/>
+            </div>
           </div>
         ) : (
           ""
