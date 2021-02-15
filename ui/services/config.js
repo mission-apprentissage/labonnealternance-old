@@ -31,8 +31,14 @@ export const getWidgetParameters = () => {
 
     p = getValueFromPath("return_logo_url");
     if (p) parameters.returnLogoURL = p;
+
+    p = getValueFromPath("job_name");
+    if (p) parameters.jobName = p;
+
+    console.log("p ",p,parameters);
     /*
         radius : Optionnel . Valeur numérique. Valeurs autorisées : 10 | 30 | 60 | 100. Le rayon de recherche autour du lieu en km. Valeur par défaut 30.
+        job_name : Optionnel. Texte libre. Si job_name est précisé il ne sera pas possible de modifier le métier
         return_uri : Optionnel. Valeur par défaut / . L'uri de retour qui sera notifiée au site appelant. 
         return_logo_url : Optionnel. Valeur par défaut : logo du site Labonnealternance.pole-emploi.fr . L'url du logo du site vers lequel l'utilisateur revient en cliquant sur le bouton de retour dans Idea. 
         Si lat, lon et romes sont correctement renseignés une recherche sera lancée automatiquement en utilisant ces critères. Si radius est correctement renseigné il sera utilisé comme critère de la recherche.
