@@ -10,7 +10,9 @@ import fetchDiplomas from "../../../services/fetchDiplomas";
 import { DomainError } from "../../";
 
 const SearchForm = (props) => {
-  const { isFormVisible, hasSearch, formValues } = useSelector((state) => state.trainings);
+  const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
+
+  console.log("widgetParames ", widgetParameters);
 
   const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
   const [diplomas, setDiplomas] = useState([]);
@@ -133,7 +135,10 @@ const SearchForm = (props) => {
       <Formik
         validate={(values) => {
           const errors = {};
-          if (!values.job || !values.job.label || !values.job.romes || !values.job.romes.length > 0) {
+          if (
+            !(widgetParameters?.parameters?.jobName && widgetParameters?.parameters?.romes) &&
+            (!values.job || !values.job.label || !values.job.romes || !values.job.romes.length > 0)
+          ) {
             errors.job = "Sélectionnez un domaine proposé";
           }
           if (!values.location || !values.location.label) {
@@ -148,22 +153,28 @@ const SearchForm = (props) => {
           <Form>
             <Row>
               <Col xs="12">
-                <div className="formGroup">
-                  <label htmlFor="jobField">Votre projet est dans le domaine ...</label>
-                  <div className="fieldContainer">
-                    <AutoCompleteField
-                      items={[]}
-                      itemToStringFunction={autoCompleteToStringFunction}
-                      onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
-                      compareItemFunction={compareAutoCompleteValues}
-                      onInputValueChangeFunction={domainChanged}
-                      previouslySelectedItem={formValues?.job ?? null}
-                      name="jobField"
-                      placeholder="ex: plomberie"
-                    />
+                {widgetParameters?.parameters?.jobName ? (
+                  <div className="formGroup">
+                    <label>{`Vous souhaitez travailler dans le domaine de ${widgetParameters.parameters.jobName}`}</label>
                   </div>
-                  <ErrorMessage name="job" className="errorField" component="div" />
-                </div>
+                ) : (
+                  <div className="formGroup">
+                    <label htmlFor="jobField">Votre projet est dans le domaine ...</label>
+                    <div className="fieldContainer">
+                      <AutoCompleteField
+                        items={[]}
+                        itemToStringFunction={autoCompleteToStringFunction}
+                        onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
+                        compareItemFunction={compareAutoCompleteValues}
+                        onInputValueChangeFunction={domainChanged}
+                        previouslySelectedItem={formValues?.job ?? null}
+                        name="jobField"
+                        placeholder="ex: plomberie"
+                      />
+                    </div>
+                    <ErrorMessage name="job" className="errorField" component="div" />
+                  </div>
+                )}
               </Col>
 
               <Col xs="12">
@@ -250,10 +261,13 @@ const SearchForm = (props) => {
               </Col>
             </Row>
 
-            <button type="submit" className="btn btn-primary gtmSearch gtmSearchForm mt-4 font-weight-bold" disabled={isSubmitting}>
+            <button
+              type="submit"
+              className="btn btn-primary gtmSearch gtmSearchForm mt-4 font-weight-bold"
+              disabled={isSubmitting}
+            >
               Voir les résultats
             </button>
-
           </Form>
         )}
       </Formik>
