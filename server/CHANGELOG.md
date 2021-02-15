@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.8.8 [15/02/2021]
+[407] Gestion erreur accès au catalogue
+
 ## 1.8.7 [12/02/2021]
 [388] Endpoint d'injection du fichier domainesMetiers
 

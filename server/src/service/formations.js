@@ -74,6 +74,7 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
       params: esQueryIndexFragment,
     });
 
+    //throw new Error("BOOM");
     let formations = [];
 
     responseFormations.data.hits.hits.forEach((formation) => {
@@ -87,7 +88,7 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
     if (_.get(err, "meta.meta.connection.status") === "dead") {
       console.error("Elastic search is down or unreachable");
     }
-    return { result: "error", results: [], error: error_msg, message: error_msg };
+    return { result: "error", error: error_msg, message: error_msg };
   }
 };
 
@@ -162,6 +163,7 @@ const getRegionFormations = async ({
 
     return formations;
   } catch (err) {
+    Sentry.captureException(err);
     let error_msg = _.get(err, "meta.body", err.message);
     console.error("Error getting trainings from romes ", error_msg);
     if (_.get(err, "meta.meta.connection.status") === "dead") {
@@ -201,10 +203,12 @@ const getAtLeastSomeFormations = async ({ romes, romeDomain, coords, radius, dip
       });
     }
 
-    formations = deduplicateFormations(formations);
+    if (!formations.error) {
+      formations = deduplicateFormations(formations);
 
-    //throw new Error("BANG");
-    formations = transformFormationsForIdea(formations);
+      //throw new Error("BANG");
+      formations = transformFormationsForIdea(formations);
+    }
 
     return formations;
   } catch (error) {
