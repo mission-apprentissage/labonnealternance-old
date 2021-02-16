@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button, Container, Row, Col, Input } from "reactstrap";
-import mapMarker from "../../../public/images/icons/pin.svg";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AutoCompleteField, LogoIdea, RadioButton } from "../../";
 import { fetchAddresses } from "../../../services/baseAdresse";
@@ -11,8 +10,6 @@ import { DomainError } from "../../";
 
 const SearchForm = (props) => {
   const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
-
-  console.log("widgetParames ", widgetParameters);
 
   const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
   const [diplomas, setDiplomas] = useState([]);
