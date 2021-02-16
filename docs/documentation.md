@@ -49,7 +49,13 @@ Ex de valeur pour le paramètre src :
 
 **scope :**  déprécié. Ce paramètre n'est plus utilisé.
 
+**frozen\_job** : si ce paramètre est renseigné alors il n'est pas possible de modifier le métier sur le formulaire de recherche.
+
+**job\_name** : un nom pour le métier recherché
+
 **Si caller, lat, lon et romes sont correctement renseignés une recherche sera lancée automatiquement en utilisant ces critères. Si radius est correctement renseigné il sera utilisé comme critère de la recherche.**
+
+#### **Si romes, frozen\_job et job\_name sont renseignés le formulaire de recherche ne permettra pas de modifier le métier de recherche et rappellera le nom dudit métier.** 
 
 #### \*\*\*\*
 
