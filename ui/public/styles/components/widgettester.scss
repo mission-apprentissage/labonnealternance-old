@@ -121,8 +121,15 @@
   border: none;
   height: 52px;
   margin-left: 5px;
-  width: 90%;
+  width: 90%;  
 }
+.widgetTestPage--textInput
+{
+  background: #eee;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
 .widgetTestPage form input[type="radio"] {
   height: 16px;
   margin-left: -90px;
