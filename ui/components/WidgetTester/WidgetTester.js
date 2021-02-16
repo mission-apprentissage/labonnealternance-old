@@ -3,13 +3,12 @@ import { Button, Container, Row, Col } from "reactstrap";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { AutoCompleteField, RadioButton } from "components";
 import { fetchAddresses } from "services/baseAdresse";
-import mapMarker from "public/images/icons/pin.svg";
-//import { fetchRomes } from "../SearchForTrainingsAndJobs/components/SearchForm";
 import fetchRomes from "services/fetchRomes";
 
 const WidgetTester = () => {
   const [locationRadius, setLocationRadius] = useState(0);
   const [scope, setScope] = useState("");
+  const [frozenJob, setFrozenJob] = useState("");
   const [widgetParams, setWidgetParams] = useState(null);
   const [shownRomes, setShownRomes] = useState(null);
   const [shownSearchCenter, setShownSearchCenter] = useState(null);
@@ -42,6 +41,14 @@ const WidgetTester = () => {
 
     setTimeout(() => {
       setFieldValue("scope", scope);
+    }, 0);
+  };
+
+  const handleFrozenChange = (frozenJob, setFieldValue) => {
+    setFrozenJob(frozenJob);
+
+    setTimeout(() => {
+      setFieldValue("frozen_job", frozenJob);
     }, 0);
   };
 
@@ -99,6 +106,8 @@ const WidgetTester = () => {
     res.caller = values.caller || null;
     res.returnURI = values.returnURI || null;
     res.returnLogoURL = values.returnLogoURL || null;
+    res.jobName = values.jobName || null;
+    res.frozenJob = values.frozen_job || null;
 
     setWidgetParams(res);
   };
@@ -123,6 +132,8 @@ const WidgetTester = () => {
       ideaUrl += widgetParams.radius ? `&radius=${widgetParams.radius}` : "";
       ideaUrl += widgetParams.returnURI ? `&return_uri=${encodeURIComponent(widgetParams.returnURI)}` : "";
       ideaUrl += widgetParams.returnLogoURL ? `&return_logo_url=${encodeURIComponent(widgetParams.returnLogoURL)}` : "";
+      ideaUrl += widgetParams.jobName ? `&job_name=${encodeURIComponent(widgetParams.jobName)}` : "";
+      ideaUrl += widgetParams.frozenJob ? "&frozen_job=1" : "";
     } else ideaUrl = `${ideaUrl}/${path}`;
 
     return ideaUrl;
@@ -290,7 +301,7 @@ const WidgetTester = () => {
                   <label>
                     Identifiant appelant (<strong>caller</strong>)
                   </label>
-                  <Field type="text" name="caller" />
+                  <Field type="text" className="widgetTestPage--textInput" name="caller" />
                 </div>
               </Col>
 
@@ -299,7 +310,7 @@ const WidgetTester = () => {
                   <label>
                     URI au click du bouton de retour (<strong>return_uri</strong>)
                   </label>
-                  <Field type="text" name="returnURI" />
+                  <Field type="text" className="widgetTestPage--textInput" name="returnURI" />
                 </div>
               </Col>
 
@@ -308,9 +319,36 @@ const WidgetTester = () => {
                   <label>
                     URL de l'image du bouton de retour (<strong>return_logo_url</strong>)
                   </label>
-                  <Field type="text" name="returnLogoURL" />
+                  <Field type="text" className="widgetTestPage--textInput" name="returnLogoURL" />
                 </div>
               </Col>
+
+              <Col xs="12">
+                <div className="formGroup">
+                  <label>
+                    Nom du métier si métier figé (<strong>job_name</strong>)
+                  </label>
+                  <Field type="text" className="widgetTestPage--textInput" name="jobName" />
+                </div>
+              </Col>
+
+              <Col xs="12">
+                <div className="formGroup">
+                  <label>
+                    Le métier est il figé ? (<strong>frozen_job</strong>)
+                  </label>
+                  <Field type="hidden" value={scope} name="scope" />
+                  <div className="buttons">
+                    <Container>
+                      <Row>
+                        {getRadioButton("frozen_job", "", "Non", frozenJob, setFieldValue, handleFrozenChange)}
+                        {getRadioButton("frozen_job", "1", "Oui", frozenJob, setFieldValue, handleFrozenChange)}
+                      </Row>
+                    </Container>
+                  </div>
+                </div>
+              </Col>
+
             </Row>
 
             <Button className="submitButton" type="submit" disabled={isSubmitting}>
