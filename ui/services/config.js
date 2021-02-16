@@ -35,7 +35,9 @@ export const getWidgetParameters = () => {
     p = getValueFromPath("job_name");
     if (p) parameters.jobName = p;
 
-    console.log("p ",p,parameters);
+    p = getValueFromPath("frozen_job");
+    if (p) parameters.frozenJob = p;
+
     /*
         radius : Optionnel . Valeur numérique. Valeurs autorisées : 10 | 30 | 60 | 100. Le rayon de recherche autour du lieu en km. Valeur par défaut 30.
         job_name : Optionnel. Texte libre. Si job_name est précisé il ne sera pas possible de modifier le métier
