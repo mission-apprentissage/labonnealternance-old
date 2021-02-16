@@ -134,7 +134,11 @@ const SearchForm = (props) => {
           const errors = {};
 
           if (
-            !(widgetParameters?.parameters?.jobName && widgetParameters?.parameters?.romes) &&
+            !(
+              widgetParameters?.parameters?.jobName &&
+              widgetParameters?.parameters?.romes &&
+              widgetParameters?.parameters?.frozenJob
+            ) &&
             (!values.job || !values.job.label || !values.job.romes || !values.job.romes.length > 0)
           ) {
             errors.job = "Sélectionnez un domaine proposé";
@@ -151,7 +155,9 @@ const SearchForm = (props) => {
         {({ isSubmitting, setFieldValue }) => (
           <Form>
             <Row>
-              {widgetParameters?.parameters?.jobName ? (
+              {widgetParameters?.parameters?.jobName &&
+              widgetParameters?.parameters?.romes &&
+              widgetParameters?.parameters?.frozenJob ? (
                 <Col xs="12">
                   <div className="formGroup">
                     <label>{`Vous souhaitez travailler dans le domaine de ${widgetParameters.parameters.jobName}`}</label>
