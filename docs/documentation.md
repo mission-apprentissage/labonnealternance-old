@@ -55,7 +55,7 @@ Ex de valeur pour le paramètre src :
 
 **Si caller, lat, lon et romes sont correctement renseignés une recherche sera lancée automatiquement en utilisant ces critères. Si radius est correctement renseigné il sera utilisé comme critère de la recherche.**
 
-#### **Si romes, frozen\_job et job\_name sont renseignés le formulaire de recherche ne permettra pas de modifier le métier de recherche et rappellera le nom dudit métier.** 
+#### **Si romes, frozen\_job et job\_name sont renseignés le formulaire de recherche ne permettra pas de modifier le métier et rappellera le nom dudit métier.** 
 
 #### \*\*\*\*
 
