@@ -215,6 +215,14 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     closeMapPopups();
   };
 
+  const getRomeFromParameters = (values) => {
+    return widgetParameters?.parameters?.jobName &&
+      widgetParameters?.parameters?.romes &&
+      widgetParameters?.parameters?.frozenJob
+      ? widgetParameters?.parameters?.romes
+      : values.job.romes.join(",");
+  };
+
   const searchForTrainings = async (values) => {
     setIsTrainingSearchLoading(true);
     setTrainingSearchError("");
@@ -222,7 +230,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     try {
       const response = await axios.get(trainingsApi, {
         params: {
-          romes: values.job.romes.join(","),
+          romes: getRomeFromParameters(values),
           longitude: values.location.value.coordinates[0],
           latitude: values.location.value.coordinates[1],
           radius: values.radius || 30,
@@ -277,7 +285,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
 
       const response = await axios.get(jobsApi, {
         params: {
-          romes: values.job.romes.join(","),
+          romes: getRomeFromParameters(values),
           longitude: values.location.value.coordinates[0],
           latitude: values.location.value.coordinates[1],
           insee: values.location.insee,

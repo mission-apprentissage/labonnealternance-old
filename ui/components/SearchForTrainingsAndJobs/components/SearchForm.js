@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button, Container, Row, Col, Input } from "reactstrap";
-import mapMarker from "../../../public/images/icons/pin.svg";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AutoCompleteField, LogoIdea, RadioButton } from "../../";
 import { fetchAddresses } from "../../../services/baseAdresse";
@@ -10,7 +9,7 @@ import fetchDiplomas from "../../../services/fetchDiplomas";
 import { DomainError } from "../../";
 
 const SearchForm = (props) => {
-  const { isFormVisible, hasSearch, formValues } = useSelector((state) => state.trainings);
+  const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
 
   const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
   const [diplomas, setDiplomas] = useState([]);
@@ -133,9 +132,18 @@ const SearchForm = (props) => {
       <Formik
         validate={(values) => {
           const errors = {};
-          if (!values.job || !values.job.label || !values.job.romes || !values.job.romes.length > 0) {
+
+          if (
+            !(
+              widgetParameters?.parameters?.jobName &&
+              widgetParameters?.parameters?.romes &&
+              widgetParameters?.parameters?.frozenJob
+            ) &&
+            (!values.job || !values.job.label || !values.job.romes || !values.job.romes.length > 0)
+          ) {
             errors.job = "Sélectionnez un domaine proposé";
           }
+
           if (!values.location || !values.location.label) {
             errors.location = "Sélectionnez un lieu proposé";
           }
@@ -147,40 +155,52 @@ const SearchForm = (props) => {
         {({ isSubmitting, setFieldValue }) => (
           <Form>
             <Row>
-              <Col xs="12">
-                <div className="formGroup">
-                  <label htmlFor="jobField">Votre projet est dans le domaine ...</label>
-                  <div className="fieldContainer">
-                    <AutoCompleteField
-                      items={[]}
-                      itemToStringFunction={autoCompleteToStringFunction}
-                      onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
-                      compareItemFunction={compareAutoCompleteValues}
-                      onInputValueChangeFunction={domainChanged}
-                      previouslySelectedItem={formValues?.job ?? null}
-                      name="jobField"
-                      placeholder="ex: plomberie"
-                    />
+              {widgetParameters?.parameters?.jobName &&
+              widgetParameters?.parameters?.romes &&
+              widgetParameters?.parameters?.frozenJob ? (
+                <Col xs="12">
+                  <div className="formGroup">
+                    <label>{`Vous souhaitez travailler dans le domaine de ${widgetParameters.parameters.jobName}`}</label>
                   </div>
-                  <ErrorMessage name="job" className="errorField" component="div" />
-                </div>
-              </Col>
+                </Col>
+              ) : (
+                <>
+                  <Col xs="12">
+                    <div className="formGroup">
+                      <label htmlFor="jobField">Votre projet est dans le domaine ...</label>
+                      <div className="fieldContainer">
+                        <AutoCompleteField
+                          items={[]}
+                          itemToStringFunction={autoCompleteToStringFunction}
+                          onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
+                          compareItemFunction={compareAutoCompleteValues}
+                          onInputValueChangeFunction={domainChanged}
+                          previouslySelectedItem={formValues?.job ?? null}
+                          name="jobField"
+                          placeholder="ex: plomberie"
+                        />
+                      </div>
+                      <ErrorMessage name="job" className="errorField" component="div" />
+                    </div>
+                  </Col>
 
-              <Col xs="12">
-                <div className="formGroup">
-                  <label htmlFor="diplomaField">Le diplôme que vous souhaitez obtenir ...</label>
-                  <div className="fieldContainer">
-                    <Input
-                      onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
-                      value={diploma}
-                      type="select"
-                      name="diploma"
-                    >
-                      {buildAvailableDiplomas()}
-                    </Input>
-                  </div>
-                </div>
-              </Col>
+                  <Col xs="12">
+                    <div className="formGroup">
+                      <label htmlFor="diplomaField">Le diplôme que vous souhaitez obtenir ...</label>
+                      <div className="fieldContainer">
+                        <Input
+                          onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
+                          value={diploma}
+                          type="select"
+                          name="diploma"
+                        >
+                          {buildAvailableDiplomas()}
+                        </Input>
+                      </div>
+                    </div>
+                  </Col>
+                </>
+              )}
 
               <Col xs="12">
                 <div className="formGroup">
@@ -250,10 +270,13 @@ const SearchForm = (props) => {
               </Col>
             </Row>
 
-            <button type="submit" className="btn btn-primary gtmSearch gtmSearchForm mt-4 font-weight-bold" disabled={isSubmitting}>
+            <button
+              type="submit"
+              className="btn btn-primary gtmSearch gtmSearchForm mt-4 font-weight-bold"
+              disabled={isSubmitting}
+            >
               Voir les résultats
             </button>
-
           </Form>
         )}
       </Formik>
