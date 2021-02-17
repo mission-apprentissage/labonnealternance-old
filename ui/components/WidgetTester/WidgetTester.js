@@ -326,15 +326,6 @@ const WidgetTester = () => {
               <Col xs="12">
                 <div className="formGroup">
                   <label>
-                    Nom du métier si métier figé (<strong>job_name</strong>)
-                  </label>
-                  <Field type="text" className="widgetTestPage--textInput" name="jobName" />
-                </div>
-              </Col>
-
-              <Col xs="12">
-                <div className="formGroup">
-                  <label>
                     Le métier est il figé ? (<strong>frozen_job</strong>)
                   </label>
                   <Field type="hidden" value={scope} name="scope" />
@@ -346,9 +337,25 @@ const WidgetTester = () => {
                       </Row>
                     </Container>
                   </div>
+                  <div className="widgetTestPage--notice">
+                    L'utilisateur ne pourra pas faire une recherche sur d'autres métiers (romes) que ceux que vous avez
+                    spécifiés.
+                  </div>
                 </div>
               </Col>
 
+              <Col xs="12">
+                <div className="formGroup">
+                  <label>
+                    Nom du métier (<strong>job_name</strong>)
+                  </label>
+                  <Field type="text" className="widgetTestPage--textInput" name="jobName" />
+                  <div className="widgetTestPage--notice">
+                    La phrase suivante apparaîtra sur le formulaire: "Vous souhaitez travailler dans le domaine de
+                    [votre saisie]".
+                  </div>
+                </div>
+              </Col>
             </Row>
 
             <Button className="submitButton" type="submit" disabled={isSubmitting}>
@@ -369,7 +376,7 @@ const WidgetTester = () => {
             <div>
               La documentation est ici :{" "}
               <a href="https://mission-apprentissage.gitbook.io/la-bonne-alternance/documentation" target="docIdea">
-              https://mission-apprentissage.gitbook.io/la-bonne-alternance/documentation
+                https://mission-apprentissage.gitbook.io/la-bonne-alternance/documentation
               </a>
             </div>
             {getForm()}
