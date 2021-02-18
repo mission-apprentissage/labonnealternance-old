@@ -3,8 +3,8 @@ import { useFormikContext } from "formik";
 import { useCombobox } from "downshift";
 import { debounce } from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService";
-import highlightItem  from "../../services/hightlightItem";
-import ReactHtmlParser from 'react-html-parser'; 
+import highlightItem from "../../services/hightlightItem";
+import ReactHtmlParser from "react-html-parser";
 
 let debouncedOnInputValueChange = null;
 
