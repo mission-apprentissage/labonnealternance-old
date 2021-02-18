@@ -49,8 +49,11 @@
  }
 
 .c-resultlist-purplefilter {
-    display: flex;
-    margin-left: auto;
-    margin-right: 30px;
-    cursor: pointer;
+  margin-left: auto;
+  margin-right: 30px;
+  cursor: pointer;
+  display: flex;
+  @include media-breakpoint-up(md) { 
+    display: none;
+  }
  }

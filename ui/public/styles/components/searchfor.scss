@@ -222,57 +222,7 @@
 .choiceCol .noOpportunityFound {
   margin-top: 30px;
 }
-.filterButtons {
-  display: inline-block;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-  padding-left: 31px;
-  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.25);
-}
 
-.filterButtons button {
-  text-align: center;
-  font-size: 12px;
-  background: none;
-  width: fit-content;
-  outline: none;
-  border: none;
-  padding: 20px 0px;
-  color: #929292;
-  margin-right: 5px;
-  @include media-breakpoint-up(sm) { 
-    font-size: 14px;
-    margin-right: 40px;
-  }
-}
-.filterButtons button img {
-  margin: -2px 5px 0 5px;
-}
-.filterButtons button.filterButtonall.active {
-  border: none;
-  color: #4A4A4A;
-  font-weight: 700;
-  border-bottom: 2px solid $gray-750;
-}
-.filterButtons button.filterButtontrainings.active {
-  border: none;
-  font-weight: 700;
-  color: #4A4A4A;
-  border-bottom: 2px solid $gray-750;
-}
-.filterButtons button.filterButtonjobs.active {
-  border: none;
-  font-weight: 700;
-  color: #4A4A4A;
-  border-bottom: 2px solid $gray-750;
-}
-.filterButtons button:hover,
-.filterButtons button:focus {
-  box-shadow: none;
-  box-shadow: 0 0 0 2px $primary;
-  border-radius: 2px;
-}
 .demoPage .row {
   text-align: center;
 }

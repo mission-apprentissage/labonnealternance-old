@@ -18,21 +18,25 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
       src = jobIcon;
     }
 
-    return src ? <img src={src} alt="" /> : "";
+    return src ? <img src={src} alt="" className="c-filterbutton-img" /> : "";
   };
 
   const getText = () => {
-    if (type === "all") return "&nbsp;Voir tout&nbsp;";
-
-    return `${count} ${type === "trainings" ? "formations&nbsp;" : "entreprises&nbsp;"}`;
+    let res = `${ count } `;
+    if (type === "trainings") {
+      res += "formation(s)&nbsp;";
+    } else if (type === "jobs") {
+      res += "entreprise(s)&nbsp;";
+    } else if (type === "all") {
+      res = "&nbsp;";
+    }
+    return res;
   };
 
   return (
     <button
       onClick={handleClick}
-      className={`gtmFilterButton gtmFilterButton${capitalizeFirstLetter(type)} filterButton${type}${
-        isActive ? " active" : ""
-      }`}
+      className={`gtmFilterButton gtmFilterButton${capitalizeFirstLetter(type)} c-filterbutton c-filterbutton--${type} ${isActive ? "is-active" : ""}`}
     >
       {getIcon()}
       {ReactHtmlParser(getText())}

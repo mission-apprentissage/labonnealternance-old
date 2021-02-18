@@ -357,7 +357,7 @@ const ResultLists = (props) => {
           )}
         </div>
         {!trainingLoading && !jobLoading && scopeContext.isJob && scopeContext.isTraining ? (
-          <div className="filterButtons">
+          <div className="c-filterbuttons">
             <FilterButton
               type="all"
               isActive={activeFilter === "all" ? true : false}
