@@ -115,15 +115,19 @@ export const AutoCompleteField = ({
       </div>
       <ul {...getMenuProps()} className="c-autocomplete__menu">
         {isOpen &&
-          inputItems.map((item, index) => (
-            <li
-              className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
-              key={`${index}`}
-              {...getItemProps({ item: item.label, index })}
-            >
-              {ReactHtmlParser(highlightItem(item.label, inputValue))}
-            </li>
-          ))}
+          inputItems.map((item, index) =>
+            item.label ? (
+              <li
+                className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
+                key={`${index}`}
+                {...getItemProps({ item: item.label, index })}
+              >
+                {ReactHtmlParser(highlightItem(item.label, inputValue))}
+              </li>
+            ) : (
+              ""
+            )
+          )}
       </ul>
     </div>
   );
