@@ -99,11 +99,12 @@ export const AutoCompleteField = ({
   });
 
   return (
-    <div className="autoCompleteContainer">
-      <div className={`c-input-work-container`} {...getComboboxProps()}>
+    <div className="">
+      <div className={`c-input-work-container c-logobar-formgroup`} {...getComboboxProps()}>
+        <label htmlFor="jobField" className="c-logobar-label">Métier</label>
         <input
           {...getInputProps()}
-          className={`form-control form-control-lg w-100 c-input-work ${
+          className={`form-control c-logobar-field ${
             inputValue && inputValue.length > 20 ? "is-text-too-long" : "is-text-not-too-long"
           }`}
           placeholder={props.placeholder}

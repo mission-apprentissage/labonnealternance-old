@@ -167,8 +167,8 @@ const SearchForm = (props) => {
                 <>
                   <Col xs="12">
                     <div className="formGroup">
-                      <label htmlFor="jobField">Votre projet est dans le domaine ...</label>
-                      <div className="fieldContainer">
+                      <h1 className="h6 font-weight-bold">Votre recherche</h1>
+                      <div className="">
                         <AutoCompleteField
                           items={[]}
                           itemToStringFunction={autoCompleteToStringFunction}
@@ -185,9 +185,10 @@ const SearchForm = (props) => {
                   </Col>
 
                   <Col xs="12">
-                    <div className="formGroup">
-                      <label htmlFor="diplomaField">Le diplôme que vous souhaitez obtenir ...</label>
-                      <div className="fieldContainer">
+                      <div className="formGroup c-logobar-formgroup mt-3">
+                      <div className="">
+                        <label htmlFor="jobField" className="c-logobar-label">Lieu</label>
+
                         <Input
                           onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
                           value={diploma}
