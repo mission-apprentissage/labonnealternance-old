@@ -4,6 +4,7 @@ const { connectToMongoForTests, cleanAll } = require("./testUtils.js");
 const server = require("../../src/http/server");
 const nock = require("nock");
 
+//FIXME : issue https://github.com/mission-apprentissage/labonnealternance/issues/158
 nock.enableNetConnect();
 //nock.enableNetConnect("127.0.0.1");
 
