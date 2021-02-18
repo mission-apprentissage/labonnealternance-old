@@ -201,6 +201,22 @@ const SearchForm = (props) => {
                   </Col>
                 </>
               )}
+              <Col xs="12">
+                <div className="formGroup">
+                  <label htmlFor="diplomaField">Le diplôme que vous souhaitez obtenir ...</label>
+                  <div className="fieldContainer">
+                    <Input
+                      onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
+                      value={diploma}
+                      type="select"
+                      name="diploma"
+                      className="c-searchform-select"
+                    >
+                      {buildAvailableDiplomas()}
+                    </Input>
+                  </div>
+                </div>
+              </Col>
 
               <Col xs="12">
                 <div className="formGroup">

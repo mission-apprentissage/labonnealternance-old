@@ -31,3 +31,18 @@ form.c-logobar-form {
   height: 30px;
   margin-left: 1rem;
 }
+
+.c-logobar-field select {
+  padding: 0;
+  height: 30px;
+  margin-left: .8rem;
+  margin-right: .8rem;
+}
+
+.c-logobar-field {
+  min-height: 30px;
+}
+
+.c-logobar-field input, .c-logobar-field select {
+  border: none;
+}
