@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.9.1 [18/02/2021]
+[419] Gestion cas "vides" sur champ d'auto complétion
+
 ## 1.9.0 [16/02/2021]
 [362] Option métier figé sur widget
 
