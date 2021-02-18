@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.9.2 [18/02/2021]
+[417] Restauration de la home
+
 ## 1.9.1 [18/02/2021]
 Fix des tests avec nock.enableNetConnect
 
