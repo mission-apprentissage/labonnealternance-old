@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.9.1 [18/02/2021]
+Fix des tests avec nock.enableNetConnect
+
 ## 1.9.0 [16/02/2021]
 [362] Option métier figé sur widget
 
