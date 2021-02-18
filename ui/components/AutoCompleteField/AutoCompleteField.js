@@ -8,6 +8,11 @@ import ReactHtmlParser from "react-html-parser";
 
 let debouncedOnInputValueChange = null;
 
+// Permet de sélectionner un élément dans la liste d'items correspondant à un texte entré au clavier
+export const compareAutoCompleteValues = (items, value) => {
+  return items.findIndex((element) => (element.label ? element.label.toLowerCase() === value.toLowerCase() : false));
+};
+
 export const AutoCompleteField = ({
   itemToStringFunction,
   onInputValueChangeFunction,
