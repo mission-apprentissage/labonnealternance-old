@@ -41,7 +41,7 @@ const technicalErrorText = "Error technique momentanée";
 const trainingsApi = baseUrl + "/api/v1/formations";
 const jobsApi = baseUrl + "/api/v1/jobs";
 
-const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
+const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm, isMobile }) => {
   const dispatch = useDispatch();
 
   const scopeContext = useScopeContext();
@@ -391,7 +391,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   };
 
   const getSearchForm = () => {
-    return <SearchForm selectedItem={selectedItem} showResultList={showResultList} handleSubmit={handleSubmit} />;
+    return <SearchForm selectedItem={selectedItem} showResultList={showResultList} handleSubmit={handleSubmit} isMobile={isMobile} />;
   };
 
   const getSelectedItemDetail = (displayNavbar) => {

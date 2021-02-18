@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Button, Container, Row, Col, Input } from "reactstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -24,6 +24,15 @@ const SearchForm = (props) => {
     "6 (Licence...)": "Licence, autres formations niveaux 6 (bac+3)",
     "7 (Master, titre ingénieur...)": "Master, titre ingénieur, autres formations niveaux 7 ou 8 (bac+5)",
   };
+
+  // useEffect(() => {
+  //   console.log('inside SearchForm ! ' + props.isMobile)
+  //   if (!props.isMobile) {
+  //     console.log('props.showResultList...')
+  //     props.showResultList(); 
+  //   }
+  // }, []);
+
 
   const domainChanged = async function (val) {
     const res = await fetchRomes(val, () => {

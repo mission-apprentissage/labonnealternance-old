@@ -7,7 +7,7 @@ import { ScopeContextProvider } from "context/ScopeContext.js";
 
 import Head from "next/head";
 
-const RechercheApprentissage = () => {
+const RechercheApprentissage = ({ isMobile, changedSize}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const RechercheApprentissage = () => {
         <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
       </Head>
       <ScopeContextProvider value={{ isJob: true, isTraining: true }}>
-        <SearchForTrainingsAndJobs />
+        <SearchForTrainingsAndJobs isMobile={isMobile} changedSize={changedSize}/>
       </ScopeContextProvider>
     </>
   );

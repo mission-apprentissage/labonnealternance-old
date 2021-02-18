@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { Row, Col } from "reactstrap";
 
@@ -14,10 +14,57 @@ import { useDispatch, useSelector } from "react-redux";
 import { resizeMap, isMapInitialized } from "../../utils/mapTools";
 import Map from "../../components/Map";
 
-const SearchForTrainingsAndJobs = () => {
+const SearchForTrainingsAndJobs = ({ isMobile, changedSize }) => {
   const dispatch = useDispatch();
 
   const { selectedItem, visiblePane } = useSelector((state) => state.trainings);
+  
+  // useEffect(() => {
+  //   return () => {
+  //     // your code to be run on update only.
+  //     console.log('visiblePane', visiblePane);
+  //     if (!isMobile && visiblePane !== "resultList") {
+  //       console.log('fire...')
+  //       showResultList()
+  //     }
+  //   }
+  // });
+
+
+  const didMount = React.useRef(false);
+
+  React.useEffect(() => {
+    if (didMount.current) {
+      console.log('I run only if isMobile changes.');
+      if (!isMobile) {
+        showResultList()
+      }
+    } else {
+      didMount.current = true;
+    }
+  }, [isMobile]);
+
+
+  // const isInitialMount = useRef(true);
+
+  // useEffect(() => {
+  //   if (isInitialMount.current) {
+  //     isInitialMount.current = false;
+  //   } else {
+  //     // Your useEffect code here to be run on update
+  //     if (!isMobile) {
+  //       console.log('fire...')
+  //       showResultList()
+  //     }
+  //   }
+  // });
+
+  // useEffect(() => {
+  //   if (!isMobile) {
+  //     console.log('fire...')
+  //     showResultList()
+  //   }
+  // }, []);
 
   const showSearchForm = (e) => {
     if (e) {
@@ -67,7 +114,7 @@ const SearchForTrainingsAndJobs = () => {
           xs="12"
           md="5"
         >
-          <ChoiceColumn showResultList={showResultList} showSearchForm={showSearchForm} unSelectItem={unSelectItem} />
+          <ChoiceColumn showResultList={showResultList} showSearchForm={showSearchForm} unSelectItem={unSelectItem} isMobile={isMobile}/>
         </Col>
         <Col className={`vh-100 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
           <Map showResultList={showResultList} />
