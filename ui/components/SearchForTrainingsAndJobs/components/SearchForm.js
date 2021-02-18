@@ -25,15 +25,6 @@ const SearchForm = (props) => {
     "7 (Master, titre ingénieur...)": "Master, titre ingénieur, autres formations niveaux 7 ou 8 (bac+5)",
   };
 
-  // useEffect(() => {
-  //   console.log('inside SearchForm ! ' + props.isMobile)
-  //   if (!props.isMobile) {
-  //     console.log('props.showResultList...')
-  //     props.showResultList(); 
-  //   }
-  // }, []);
-
-
   const domainChanged = async function (val) {
     const res = await fetchRomes(val, () => {
       setDomainError(true);
