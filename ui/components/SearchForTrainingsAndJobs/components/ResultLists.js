@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Nav, NavItem, NavLink, Spinner } from "reactstrap";
 import Training from "../../../components/ItemDetail/Training";
 import PeJob from "../../../components/ItemDetail/PeJob";
@@ -324,7 +324,7 @@ const ResultLists = (props) => {
     } à votre recherche`;
 
     return (
-      <div className="c-result-lists pt-md-5">
+      <div className={`c-result-lists pt-md-5 ${isMobile ? "is-mobile" : ""}`}>
         <div className="resultTitle pt-3 mt-0 mt-md-4">
           {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
             <>
