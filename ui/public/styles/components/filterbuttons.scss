@@ -18,9 +18,8 @@
   color: #929292;
   margin-right: 15px;
   padding-left: 5px;
-  padding-right: 5px;
   @include media-breakpoint-up(sm) { 
-    padding: 21px 0 21px 0;
+    padding: 21px 5px 21px 5px;
     font-size: 14px;
     margin-right: 40px;
   }
