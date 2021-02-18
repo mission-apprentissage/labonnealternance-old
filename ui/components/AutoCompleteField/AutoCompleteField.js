@@ -13,6 +13,11 @@ export const compareAutoCompleteValues = (items, value) => {
   return items.findIndex((element) => (element.label ? element.label.toLowerCase() === value.toLowerCase() : false));
 };
 
+// indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
+export const autoCompleteToStringFunction = (item) => {
+  return item ? item.label : "";
+};
+
 export const AutoCompleteField = ({
   itemToStringFunction,
   onInputValueChangeFunction,

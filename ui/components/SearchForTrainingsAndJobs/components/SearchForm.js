@@ -3,7 +3,11 @@ import { useSelector } from "react-redux";
 import { Button, Container, Row, Col, Input } from "reactstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { LogoIdea, RadioButton } from "../../";
-import { AutoCompleteField, compareAutoCompleteValues } from "components/AutoCompleteField/AutoCompleteField";
+import {
+  AutoCompleteField,
+  compareAutoCompleteValues,
+  autoCompleteToStringFunction,
+} from "components/AutoCompleteField/AutoCompleteField";
 import { fetchAddresses } from "../../../services/baseAdresse";
 import fetchRomes from "../../../services/fetchRomes";
 import fetchDiplomas from "../../../services/fetchDiplomas";
@@ -54,11 +58,6 @@ const SearchForm = (props) => {
             })}
       </>
     );
-  };
-
-  // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
-  const autoCompleteToStringFunction = (item) => {
-    return item ? item.label : "";
   };
 
   // Mets à jours les valeurs de champs du formulaire Formik à partir de l'item sélectionné dans l'AutoCompleteField

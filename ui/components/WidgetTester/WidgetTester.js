@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Button, Container, Row, Col } from "reactstrap";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { RadioButton } from "components";
-import { AutoCompleteField, compareAutoCompleteValues } from "components/AutoCompleteField/AutoCompleteField";
+import {
+  AutoCompleteField,
+  compareAutoCompleteValues,
+  autoCompleteToStringFunction,
+} from "components/AutoCompleteField/AutoCompleteField";
 import { fetchAddresses } from "services/baseAdresse";
 import fetchRomes from "services/fetchRomes";
 
@@ -51,11 +55,6 @@ const WidgetTester = () => {
     setTimeout(() => {
       setFieldValue("frozen_job", frozenJob);
     }, 0);
-  };
-
-  // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
-  const autoCompleteToStringFunction = (item) => {
-    return item ? item.label : "";
   };
 
   // Mets à jours les valeurs de champs du formulaire Formik à partir de l'item sélectionné dans l'AutoCompleteField

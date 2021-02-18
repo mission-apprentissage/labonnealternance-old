@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, ErrorMessage } from "formik";
-import { AutoCompleteField, compareAutoCompleteValues } from "components/AutoCompleteField/AutoCompleteField";
+import {
+  AutoCompleteField,
+  compareAutoCompleteValues,
+  autoCompleteToStringFunction,
+} from "components/AutoCompleteField/AutoCompleteField";
 import { fetchAddresses } from "../../services/baseAdresse";
 import fetchRomes from "../../services/fetchRomes";
 import { DomainError } from "../";
@@ -27,11 +31,6 @@ const StartForm = (props) => {
     dispatch(setFormValues({ job: values.job, location: values.location }));
     dispatch(setShouldExecuteSearch(true));
     dispatch(push({ pathname: "/recherche-apprentissage" }));
-  };
-
-  // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
-  const autoCompleteToStringFunction = (item) => {
-    return item ? item.label : "";
   };
 
   // Mets à jours les valeurs de champs du formulaire Formik à partir de l'item sélectionné dans l'AutoCompleteField
