@@ -14,7 +14,6 @@ if (process.env.uiSentryDsn) {
   SentryReact.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
 }
 
-
 class ExampleApp extends App {
   static async getInitialProps(context) {
     // récupération du hostname pour initialiser les fonts en preload

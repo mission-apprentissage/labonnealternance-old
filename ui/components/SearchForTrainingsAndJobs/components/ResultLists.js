@@ -324,7 +324,7 @@ const ResultLists = (props) => {
     } à votre recherche`;
 
     return (
-      <div className={`c-result-lists pt-md-5 ${isMobile ? "is-mobile" : ""}`}>
+      <div className="c-result-lists pt-md-5">
         <div className="resultTitle pt-3 mt-0 mt-md-4">
           {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
             <>
