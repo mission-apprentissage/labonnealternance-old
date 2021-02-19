@@ -29,7 +29,7 @@ const renderFormik = () => {
     <Formik
       initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
     >
-      {({}) => (
+      {({ isSubmitting, setFieldValue}) => (
         <Form className="c-logobar-form c-searchform">
           <div className="formGroup formGroup--logobar">
             <AutoCompleteField
