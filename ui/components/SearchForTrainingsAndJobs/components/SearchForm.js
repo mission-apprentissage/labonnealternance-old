@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Button, Container, Row, Col, Input } from "reactstrap";
+import { Row, Col, Input } from "reactstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AutoCompleteField, LogoIdea, RadioButton } from "../../";
 import { fetchAddresses } from "../../../services/baseAdresse";
-import fetchRomes from "../../../services/fetchRomes";
-import fetchDiplomas from "../../../services/fetchDiplomas";
 import { DomainError } from "../../";
 import buildRayons from "services/buildRayons";
 import handleSelectChange from "services/handleSelectChange";
+import { partialRight } from "lodash";
+import domainChanged from "services/domainChanged";
+import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
+import updateValuesFromJobAutoComplete from "services/updateValuesFromJobAutoComplete";
+import formikUpdateValue from "services/formikUpdateValue";
+import buildAvailableDiplomas from "services/buildAvailableDiplomas";
 
 const SearchForm = (props) => {
   const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
@@ -18,85 +22,6 @@ const SearchForm = (props) => {
   const [diploma, setDiploma] = useState(formValues?.diploma ?? "");
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
-
-  const diplomaMap = {
-    "3 (CAP...)": "Cap, autres formations niveau 3",
-    "4 (Bac...)": "Bac, autres formations niveau 4",
-    "5 (BTS, DUT...)": "BTS, DUT, autres formations niveaux 5 (Bac+2)",
-    "6 (Licence...)": "Licence, autres formations niveaux 6 (bac+3)",
-    "7 (Master, titre ingénieur...)": "Master, titre ingénieur, autres formations niveaux 7 ou 8 (bac+5)",
-  };
-
-  const domainChanged = async function (val) {
-    const res = await fetchRomes(val, () => {
-      setDomainError(true);
-    });
-    return res;
-  };
-
-  const buildAvailableDiplomas = () => {
-    return (
-      <>
-        <option value="">Indifférent</option>
-        {diplomas.length
-          ? diplomas.sort().map((diploma) => {
-              return (
-                <option key={diploma} value={diploma}>
-                  {diplomaMap[diploma]}
-                </option>
-              );
-            })
-          : Object.keys(diplomaMap).map((key) => {
-              return (
-                <option key={key} value={key}>
-                  {diplomaMap[key]}
-                </option>
-              );
-            })}
-      </>
-    );
-  };
-
-  // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
-  const autoCompleteToStringFunction = (item) => {
-    return item ? item.label : "";
-  };
-
-  // Permet de sélectionner un élément dans la liste d'items correspondant à un texte entré au clavier
-  const compareAutoCompleteValues = (items, value) => {
-    return items.findIndex((element) => element.label.toLowerCase() === value.toLowerCase());
-  };
-
-  // Mets à jours les valeurs de champs du formulaire Formik à partir de l'item sélectionné dans l'AutoCompleteField
-  const updateValuesFromJobAutoComplete = (item, setFieldValue) => {
-    //setTimeout perme d'éviter un conflit de setState
-    setTimeout(() => {
-      setFieldValue("job", item);
-    }, 0);
-
-    updateDiplomaSelectionFromJobChange(item);
-  };
-
-  // Mets à jours les valeurs de champs du formulaire Formik à partir de l'item sélectionné dans l'AutoCompleteField
-  const updateValuesFromPlaceAutoComplete = (item, setFieldValue) => {
-    //setTimeout perme d'éviter un conflit de setState
-    setTimeout(() => {
-      setFieldValue("location", item);
-    }, 0);
-  };
-
-  const updateDiplomaSelectionFromJobChange = async (job) => {
-    let diplomas = [];
-    if (job) {
-      diplomas = await fetchDiplomas(job.romes, () => {
-        setDiplomaError(true);
-      });
-    }
-
-    setTimeout(() => {
-      setDiplomas(diplomas);
-    }, 0);
-  };
 
   const renderFormik = () => {
     return (
@@ -144,9 +69,9 @@ const SearchForm = (props) => {
                           kind="Métier"
                           items={[]}
                           itemToStringFunction={autoCompleteToStringFunction}
-                          onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
+                          onSelectedItemChangeFunction={partialRight(updateValuesFromJobAutoComplete, setDiplomaError, setDiplomas)}
                           compareItemFunction={compareAutoCompleteValues}
-                          onInputValueChangeFunction={domainChanged}
+                          onInputValueChangeFunction={partialRight(domainChanged, setDomainError)}
                           previouslySelectedItem={formValues?.job ?? null}
                           name="jobField"
                           placeholder="ex: plomberie"
@@ -166,7 +91,7 @@ const SearchForm = (props) => {
                     kind="Lieu"
                     items={[]}
                     itemToStringFunction={autoCompleteToStringFunction}
-                    onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
+                    onSelectedItemChangeFunction={partialRight(formikUpdateValue, 'location')}
                     compareItemFunction={compareAutoCompleteValues}
                     onInputValueChangeFunction={fetchAddresses}
                     previouslySelectedItem={formValues?.location ?? null}
@@ -190,7 +115,7 @@ const SearchForm = (props) => {
                         type="select"
                         name="diploma"
                       >
-                        {buildAvailableDiplomas()}
+                        {buildAvailableDiplomas(diplomas)}
                       </Input>
                     </div>
                   </div>
