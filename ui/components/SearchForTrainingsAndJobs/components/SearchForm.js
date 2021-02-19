@@ -13,6 +13,7 @@ import { autoCompleteToStringFunction, compareAutoCompleteValues } from "service
 import updateValuesFromJobAutoComplete from "services/updateValuesFromJobAutoComplete";
 import formikUpdateValue from "services/formikUpdateValue";
 import buildAvailableDiplomas from "services/buildAvailableDiplomas";
+import validateFormik from "services/validateFormik";
 
 const SearchForm = (props) => {
   const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
@@ -26,25 +27,7 @@ const SearchForm = (props) => {
   const renderFormik = () => {
     return (
       <Formik
-        validate={(values) => {
-          const errors = {};
-
-          if (
-            !(
-              widgetParameters?.parameters?.jobName &&
-              widgetParameters?.parameters?.romes &&
-              widgetParameters?.parameters?.frozenJob
-            ) &&
-            (!values.job || !values.job.label || !values.job.romes || !values.job.romes.length > 0)
-          ) {
-            errors.job = "Sélectionnez un domaine proposé";
-          }
-
-          if (!values.location || !values.location.label) {
-            errors.location = "Sélectionnez un lieu proposé";
-          }
-          return errors;
-        }}
+        validate={(values) => {validateFormik(values, widgetParameters)}}
         initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={props.handleSubmit}
       >
