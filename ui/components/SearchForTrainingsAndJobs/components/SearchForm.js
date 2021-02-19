@@ -7,6 +7,7 @@ import { fetchAddresses } from "../../../services/baseAdresse";
 import fetchRomes from "../../../services/fetchRomes";
 import fetchDiplomas from "../../../services/fetchDiplomas";
 import { DomainError } from "../../";
+import buildRayons from "services/buildRayons";
 
 const SearchForm = (props) => {
   const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
@@ -226,48 +227,16 @@ const SearchForm = (props) => {
               </Col>
 
               <Col xs="12">
-                <div className="formGroup">
-                  <label>Dans un rayon de ...</label>
-                  <Field type="hidden" value={locationRadius} name="locationRadius" />
-                  <div className="buttons">
-                    <Container>
-                      <Row>
-                        {getRadioButton(
-                          "locationRadius",
-                          10,
-                          "10km",
-                          locationRadius,
-                          setFieldValue,
-                          handleRadiusChange
-                        )}
-                        {getRadioButton(
-                          "locationRadius",
-                          30,
-                          "30km",
-                          locationRadius,
-                          setFieldValue,
-                          handleRadiusChange
-                        )}
-                        {getRadioButton(
-                          "locationRadius",
-                          60,
-                          "60km",
-                          locationRadius,
-                          setFieldValue,
-                          handleRadiusChange
-                        )}
-                        {getRadioButton(
-                          "locationRadius",
-                          100,
-                          "100km",
-                          locationRadius,
-                          setFieldValue,
-                          handleRadiusChange
-                        )}
-                      </Row>
-
-                      <ErrorMessage name="locationRadius" className="errorField" component="div" />
-                    </Container>
+                <div className="c-logobar-formgroup formGroup mt-3">
+                  <label htmlFor="jobField" className="c-logobar-label">Rayon</label>
+                  <div className="c-logobar-field ml-2">
+                    <Input
+                      onChange={() => { }}
+                      type="select"
+                      name="rayon"
+                    >
+                      {buildRayons()}
+                    </Input>
                   </div>
                 </div>
               </Col>
