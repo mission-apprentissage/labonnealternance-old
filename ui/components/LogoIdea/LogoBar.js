@@ -11,7 +11,7 @@ import { partialRight } from "lodash";
 import domainChanged from "services/domainChanged";
 import updateValuesFromJobAutoComplete from "services/updateValuesFromJobAutoComplete";
 import formikUpdateValue from "services/formikUpdateValue";
-import handleDiplomaChange from "services/handleDiplomaChange";
+import handleSelectChange from "services/handleSelectChange";
 import { fetchAddresses } from "services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
 
@@ -68,9 +68,9 @@ const renderFormik = () => {
               <label htmlFor="jobField" className="c-logobar-label c-logobar-label--rayon">Rayon</label>
               <div className="c-logobar-field">
               <Input
-                onChange={() => {  }}
+                onChange={(evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, 'radius')}
                 type="select"
-                name="rayon"
+                name="locationRadius"
               >
                 {buildRayons()}
               </Input>
@@ -81,7 +81,7 @@ const renderFormik = () => {
             <label htmlFor="jobField" className="c-logobar-label c-logobar-label--diploma">Niveau d'études</label>
             <div className="c-logobar-field">
               <Input
-                onChange={(evt) => handleDiplomaChange(evt, setFieldValue, setDiploma)}
+                onChange={(evt) => handleSelectChange(evt, setFieldValue, setDiploma, 'diploma')}
                 type="select"
                 value={diploma}
                 name="diploma"

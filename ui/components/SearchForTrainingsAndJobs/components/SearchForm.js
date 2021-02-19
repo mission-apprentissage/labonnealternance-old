@@ -100,6 +100,14 @@ const SearchForm = (props) => {
     }, 0);
   };
 
+  const handleRayonChange = (evt, setFieldValue) => {
+    const value = evt.currentTarget.value;
+    setLocationRadius(value);
+    setTimeout(() => {
+      setFieldValue("radius", value);
+    }, 0);
+  };
+
   const getRadioButton = (inputName, value, label, selectedValue, setFieldValue, handleChange) => {
     return (
       <Col xs="3" className="radioButton">
@@ -234,7 +242,7 @@ const SearchForm = (props) => {
                   <label htmlFor="jobField" className="c-logobar-label">Rayon</label>
                   <div className="c-logobar-field ml-2">
                     <Input
-                      onChange={() => { }}
+                      onChange={() => { (evt) => handleRayonChange(evt, setFieldValue)}}
                       type="select"
                       name="rayon"
                     >
