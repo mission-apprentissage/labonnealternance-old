@@ -99,13 +99,16 @@ export const AutoCompleteField = ({
     },
   });
 
+  const classesOfContainer = props?.isHome ? '' : 'c-logobar-formgroup'
+  const classesOfInsider = props?.isHome ? 'form-control-lg w-100 c-input-work' : 'c-logobar-field'
+
   return (
     <div className="">
-      <div className={`c-input-work-container c-logobar-formgroup`} {...getComboboxProps()}>
+      <div className={`c-input-work-container ${classesOfContainer}`} {...getComboboxProps()}>
         <label className="c-logobar-label">{kind}</label>
         <input
           {...getInputProps()}
-          className={`form-control c-logobar-field ${
+          className={`${classesOfInsider} ${
             inputValue && inputValue.length > 20 ? "is-text-too-long" : "is-text-not-too-long"
           }`}
           placeholder={props.placeholder}

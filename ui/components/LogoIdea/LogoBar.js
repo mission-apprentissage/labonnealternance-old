@@ -26,7 +26,7 @@ const renderFormik = () => {
   const [diplomaError, setDiplomaError] = useState(false);
 
   
-  console.log('formValues', formValues);
+  // console.log('formValues', formValues);
 
   return (
     <Formik

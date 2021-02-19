@@ -128,6 +128,8 @@ const SearchForm = (props) => {
     }, 0);
   };
 
+  console.log('formValues in searchform', formValues);
+
   const renderFormik = () => {
     return (
       <Formik
