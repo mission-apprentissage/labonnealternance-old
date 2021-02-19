@@ -48,3 +48,23 @@ form.c-logobar-form {
   border: none;
   width: auto;
 }
+
+.c-logobar-formgroup--rayon {
+  min-width: 100px;
+}
+
+.c-logobar-label--rayon {
+  margin-left: .6rem;
+}
+
+.c-logobar-formgroup--diploma {
+  min-width: 160px;
+}
+
+.c-logobar-label--diploma {
+  margin-left: .6rem;
+}
+
+.choiceCol .formGroup.formGroup--logobar {
+  min-width: 200px;
+}

@@ -60,7 +60,7 @@ const renderFormik = () => {
     <Formik>
       {({ }) => (
         <Form className="c-logobar-form c-searchform">
-          <div className="formGroup">
+          <div className="formGroup formGroup--logobar">
             <AutoCompleteField
               kind="Métier"
               items={[]}
@@ -75,7 +75,7 @@ const renderFormik = () => {
             <ErrorMessage name="job" className="errorField" component="div" />
           </div>
           <div className="ml-3">
-            <div className="formGroup">
+            <div className="formGroup formGroup--logobar">
                 <AutoCompleteField
                   kind="Lieu"
                   items={[]}
@@ -88,9 +88,10 @@ const renderFormik = () => {
                 />
             </div>
           </div>
-          <div className="c-logobar-formgroup ml-3">
-            <label htmlFor="jobField" className="c-logobar-label">Rayon</label>
-            <div className="c-logobar-field">
+          <div className="ml-3">
+            <div className="c-logobar-formgroup c-logobar-formgroup--rayon">
+              <label htmlFor="jobField" className="c-logobar-label c-logobar-label--rayon">Rayon</label>
+              <div className="c-logobar-field">
               <Input
                 onChange={() => { }}
                 type="select"
@@ -99,9 +100,10 @@ const renderFormik = () => {
                 {buildRayons()}
               </Input>
             </div>
+            </div>
           </div>
-          <div className="c-logobar-formgroup ml-3">
-            <label htmlFor="jobField" className="c-logobar-label">Niveau d'études</label>
+          <div className="c-logobar-formgroup c-logobar-formgroup--diploma ml-3">
+            <label htmlFor="jobField" className="c-logobar-label c-logobar-label--diploma">Niveau d'études</label>
             <div className="c-logobar-field">
               <Input
                 onChange={() => { }}
