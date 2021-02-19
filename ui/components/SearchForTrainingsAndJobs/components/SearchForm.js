@@ -85,8 +85,21 @@ const SearchForm = (props) => {
                   <ErrorMessage name="location" className="errorField" component="div" />
                 </div>
               </Col>
-
-
+              <Col xs="12">
+                <div className="c-logobar-formgroup formGroup mt-3">
+                  <label htmlFor="jobField" className="c-logobar-label">Rayon</label>
+                  <div className="c-logobar-field">
+                    <Input
+                      onChange={(evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, 'radius')}
+                      type="select"
+                      value={locationRadius}
+                      name="locationRadius"
+                    >
+                      {buildRayons()}
+                    </Input>
+                  </div>
+                </div>
+              </Col>
               <Col xs="12">
                 <div className="formGroup c-logobar-formgroup mt-3">
                   <div className="">
@@ -104,23 +117,6 @@ const SearchForm = (props) => {
                   </div>
                 </div>
               </Col>
-
-              <Col xs="12">
-                <div className="c-logobar-formgroup formGroup mt-3">
-                  <label htmlFor="jobField" className="c-logobar-label">Rayon</label>
-                  <div className="c-logobar-field">
-                    <Input
-                      onChange={(evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, 'radius') }
-                      type="select"
-                      value={locationRadius}
-                      name="locationRadius"
-                    >
-                      {buildRayons()}
-                    </Input>
-                  </div>
-                </div>
-              </Col>
-            
             </Row>
             <div className='formGroup'>
               <button
