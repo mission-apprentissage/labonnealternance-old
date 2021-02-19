@@ -85,21 +85,6 @@ const SearchForm = (props) => {
     }, 0);
   };
 
-  const getRadioButton = (inputName, value, label, selectedValue, setFieldValue, handleChange) => {
-    return (
-      <Col xs="3" className="radioButton">
-        <RadioButton
-          handleChange={handleChange}
-          inputName={inputName}
-          value={value}
-          label={label}
-          selectedValue={selectedValue}
-          setFieldValue={setFieldValue}
-        />
-      </Col>
-    );
-  };
-
   const updateDiplomaSelectionFromJobChange = async (job) => {
     let diplomas = [];
     if (job) {

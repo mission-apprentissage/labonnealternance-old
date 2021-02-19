@@ -70,6 +70,7 @@ const renderFormik = () => {
               <Input
                 onChange={(evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, 'radius')}
                 type="select"
+                value={locationRadius}
                 name="locationRadius"
               >
                 {buildRayons()}
