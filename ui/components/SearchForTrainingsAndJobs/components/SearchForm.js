@@ -240,15 +240,17 @@ const SearchForm = (props) => {
                   </div>
                 </div>
               </Col>
+            
             </Row>
-
-            <button
-              type="submit"
-              className="btn btn-primary gtmSearch gtmSearchForm mt-4 font-weight-bold"
-              disabled={isSubmitting}
-            >
-              Voir les résultats
-            </button>
+            <div className='formGroup'>
+              <button
+                type="submit"
+                className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn mt-5"
+                disabled={isSubmitting}
+              >
+                C'est parti
+              </button>
+            </div>
           </Form>
         )}
       </Formik>
