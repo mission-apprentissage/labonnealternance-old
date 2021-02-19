@@ -17,7 +17,7 @@ import { autoCompleteToStringFunction, compareAutoCompleteValues } from "service
 
 const renderFormik = () => {
 
-  const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
+  const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => { return state.trainings});
 
   const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
   const [diplomas, setDiplomas] = useState([]);
@@ -25,9 +25,12 @@ const renderFormik = () => {
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
+  
+  console.log('formValues', formValues);
+
   return (
     <Formik
-      initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
+      initialValues={formValues}
     >
       {({ isSubmitting, setFieldValue}) => (
         <Form className="c-logobar-form c-searchform">
@@ -65,7 +68,7 @@ const renderFormik = () => {
               <label htmlFor="jobField" className="c-logobar-label c-logobar-label--rayon">Rayon</label>
               <div className="c-logobar-field">
               <Input
-                onChange={() => { (evt) => handleDiplomaChange(evt, setFieldValue, setDiploma) }}
+                onChange={() => {  }}
                 type="select"
                 name="rayon"
               >
@@ -78,7 +81,7 @@ const renderFormik = () => {
             <label htmlFor="jobField" className="c-logobar-label c-logobar-label--diploma">Niveau d'études</label>
             <div className="c-logobar-field">
               <Input
-                onChange={(evt) => { let value = evt.currentTarget.value; setDiploma(value); setTimeout(() => { setFieldValue("diploma", value); }, 0);}}
+                onChange={(evt) => handleDiplomaChange(evt, setFieldValue, setDiploma)}
                 type="select"
                 value={diploma}
                 name="diploma"
