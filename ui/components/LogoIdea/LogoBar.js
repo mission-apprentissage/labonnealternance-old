@@ -9,6 +9,7 @@ import { Input } from "reactstrap";
 
 import fetchRomes from "services/fetchRomes";
 import fetchDiplomas from "services/fetchDiplomas";
+import { fetchAddresses } from "services/baseAdresse";
 
 
 const renderFormik = () => {
@@ -40,7 +41,7 @@ const renderFormik = () => {
 
   // Mets à jours les valeurs de champs du formulaire Formik à partir de l'item sélectionné dans l'AutoCompleteField
   const updateValuesFromJobAutoComplete = (item, setFieldValue) => {
-    //setTimeout perme d'éviter un conflit de setState
+    //setTimeout permets d'éviter un conflit de setState
     setTimeout(() => {
       setFieldValue("job", item);
     }, 0);
@@ -56,9 +57,24 @@ const renderFormik = () => {
     }, 0);
   };
 
+  const updateDiplomaSelectionFromJobChange = async (job) => {
+    let diplomas = [];
+    if (job) {
+      diplomas = await fetchDiplomas(job.romes, () => {
+        setDiplomaError(true);
+      });
+    }
+
+    setTimeout(() => {
+      setDiplomas(diplomas);
+    }, 0);
+  };
+
   return (
-    <Formik>
-      {({ }) => (
+    <Formik
+      initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
+    >
+      {({}) => (
         <Form className="c-logobar-form c-searchform">
           <div className="formGroup formGroup--logobar">
             <AutoCompleteField
@@ -68,7 +84,7 @@ const renderFormik = () => {
               onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
               compareItemFunction={compareAutoCompleteValues}
               onInputValueChangeFunction={domainChanged}
-              previouslySelectedItem={null}
+              previouslySelectedItem={formValues?.job ?? null}
               name="jobField"
               placeholder="ex: plomberie"
               />
@@ -79,11 +95,12 @@ const renderFormik = () => {
                 <AutoCompleteField
                   kind="Lieu"
                   items={[]}
-                  itemToStringFunction={() => { }}
-                  onSelectedItemChangeFunction={() => { }}
-                  compareItemFunction={() => { }}
-                  onInputValueChangeFunction={() => { }}
-                  name="jobField  "
+                  itemToStringFunction={autoCompleteToStringFunction}
+                  onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
+                  compareItemFunction={compareAutoCompleteValues}
+                  onInputValueChangeFunction={fetchAddresses}
+                  previouslySelectedItem={formValues?.location ?? null}
+                  name="placeField"
                   placeholder="ex: marseille"
                 />
             </div>
