@@ -8,6 +8,7 @@ import fetchRomes from "../../../services/fetchRomes";
 import fetchDiplomas from "../../../services/fetchDiplomas";
 import { DomainError } from "../../";
 import buildRayons from "services/buildRayons";
+import handleSelectChange from "services/handleSelectChange";
 
 const SearchForm = (props) => {
   const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
@@ -84,30 +85,6 @@ const SearchForm = (props) => {
     }, 0);
   };
 
-  const handleRadiusChange = (radius, setFieldValue) => {
-    setLocationRadius(radius);
-
-    setTimeout(() => {
-      setFieldValue("radius", radius);
-    }, 0);
-  };
-
-  const handleDiplomaChange = (evt, setFieldValue) => {
-    const value = evt.currentTarget.value;
-    setDiploma(value);
-    setTimeout(() => {
-      setFieldValue("diploma", value);
-    }, 0);
-  };
-
-  const handleRayonChange = (evt, setFieldValue) => {
-    const value = evt.currentTarget.value;
-    setLocationRadius(value);
-    setTimeout(() => {
-      setFieldValue("radius", value);
-    }, 0);
-  };
-
   const getRadioButton = (inputName, value, label, selectedValue, setFieldValue, handleChange) => {
     return (
       <Col xs="3" className="radioButton">
@@ -135,8 +112,6 @@ const SearchForm = (props) => {
       setDiplomas(diplomas);
     }, 0);
   };
-
-  console.log('formValues in searchform', formValues);
 
   const renderFormik = () => {
     return (
@@ -223,9 +198,9 @@ const SearchForm = (props) => {
                 <div className="formGroup c-logobar-formgroup mt-3">
                   <div className="">
                     <label htmlFor="jobField" className="c-logobar-label">Diplôme</label>
-                    <div className="c-logobar-field ml-2">
+                    <div className="c-logobar-field">
                       <Input
-                        onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
+                        onChange={(evt) => handleSelectChange(evt, setFieldValue, setDiploma, 'diploma')}
                         value={diploma}
                         type="select"
                         name="diploma"
@@ -240,11 +215,12 @@ const SearchForm = (props) => {
               <Col xs="12">
                 <div className="c-logobar-formgroup formGroup mt-3">
                   <label htmlFor="jobField" className="c-logobar-label">Rayon</label>
-                  <div className="c-logobar-field ml-2">
+                  <div className="c-logobar-field">
                     <Input
-                      onChange={() => { (evt) => handleRayonChange(evt, setFieldValue)}}
+                      onChange={(evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, 'radius') }
                       type="select"
-                      name="rayon"
+                      value={locationRadius}
+                      name="locationRadius"
                     >
                       {buildRayons()}
                     </Input>
