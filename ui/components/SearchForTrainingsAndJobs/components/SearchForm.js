@@ -213,15 +213,16 @@ const SearchForm = (props) => {
                 <div className="formGroup c-logobar-formgroup mt-3">
                   <div className="">
                     <label htmlFor="jobField" className="c-logobar-label">Diplôme</label>
-
-                    <Input
-                      onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
-                      value={diploma}
-                      type="select"
-                      name="diploma"
-                    >
-                      {buildAvailableDiplomas()}
-                    </Input>
+                    <div className="c-logobar-field ml-2">
+                      <Input
+                        onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
+                        value={diploma}
+                        type="select"
+                        name="diploma"
+                      >
+                        {buildAvailableDiplomas()}
+                      </Input>
+                    </div>
                   </div>
                 </div>
               </Col>
@@ -259,17 +260,16 @@ const SearchForm = (props) => {
 
   return (
     <div className={isFormVisible ? "" : "hiddenSearchForm"}>
-      <header>
+      <div className="formGroup">
         <LogoIdea />
         {hasSearch ? (
-          <Button className="blueButton" onClick={props.showResultList}>
-            Retour
-          </Button>
+          <button className="c-detail-back px-3 py-1" onClick={props.showResultList}>
+            ← Retour
+          </button>
         ) : (
           ""
         )}
-      </header>
-      <div className="clearBoth" />
+      </div>
 
       {domainError || diplomaError ? <DomainError></DomainError> : renderFormik()}
     </div>
