@@ -6,11 +6,13 @@ import { AutoCompleteField } from "../";
 import buildDiplomas from "services/buildDiplomas";
 import buildRayons from "services/buildRayons";
 import { Input } from "reactstrap";
+import { partialRight } from "lodash";
 
-import fetchRomes from "services/fetchRomes";
-import fetchDiplomas from "services/fetchDiplomas";
+import domainChanged from "services/domainChanged";
+import updateValuesFromJobAutoComplete from "services/updateValuesFromJobAutoComplete";
+import formikUpdateValue from "services/formikUpdateValue";
 import { fetchAddresses } from "services/baseAdresse";
-
+import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
 
 const renderFormik = () => {
 
@@ -21,54 +23,6 @@ const renderFormik = () => {
   const [diploma, setDiploma] = useState(formValues?.diploma ?? "");
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
-
-  const domainChanged = async function (val) {
-    const res = await fetchRomes(val, () => {
-      setDomainError(true);
-    });
-    return res;
-  };
-
-  // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
-  const autoCompleteToStringFunction = (item) => {
-    return item ? item.label : "";
-  };
-
-  // Permet de sélectionner un élément dans la liste d'items correspondant à un texte entré au clavier
-  const compareAutoCompleteValues = (items, value) => {
-    return items.findIndex((element) => element.label.toLowerCase() === value.toLowerCase());
-  };
-
-  // Mets à jours les valeurs de champs du formulaire Formik à partir de l'item sélectionné dans l'AutoCompleteField
-  const updateValuesFromJobAutoComplete = (item, setFieldValue) => {
-    //setTimeout permets d'éviter un conflit de setState
-    setTimeout(() => {
-      setFieldValue("job", item);
-    }, 0);
-
-    updateDiplomaSelectionFromJobChange(item);
-  };
-
-  // Mets à jours les valeurs de champs du formulaire Formik à partir de l'item sélectionné dans l'AutoCompleteField
-  const updateValuesFromPlaceAutoComplete = (item, setFieldValue) => {
-    //setTimeout perme d'éviter un conflit de setState
-    setTimeout(() => {
-      setFieldValue("location", item);
-    }, 0);
-  };
-
-  const updateDiplomaSelectionFromJobChange = async (job) => {
-    let diplomas = [];
-    if (job) {
-      diplomas = await fetchDiplomas(job.romes, () => {
-        setDiplomaError(true);
-      });
-    }
-
-    setTimeout(() => {
-      setDiplomas(diplomas);
-    }, 0);
-  };
 
   return (
     <Formik
@@ -81,9 +35,9 @@ const renderFormik = () => {
               kind="Métier"
               items={[]}
               itemToStringFunction={autoCompleteToStringFunction}
-              onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
+              onSelectedItemChangeFunction={partialRight(updateValuesFromJobAutoComplete, setDiplomaError, setDiplomas)}
               compareItemFunction={compareAutoCompleteValues}
-              onInputValueChangeFunction={domainChanged}
+              onInputValueChangeFunction={partialRight(domainChanged, setDomainError)}
               previouslySelectedItem={formValues?.job ?? null}
               name="jobField"
               placeholder="ex: plomberie"
@@ -96,7 +50,7 @@ const renderFormik = () => {
                   kind="Lieu"
                   items={[]}
                   itemToStringFunction={autoCompleteToStringFunction}
-                  onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
+                  onSelectedItemChangeFunction={partialRight(formikUpdateValue, 'location')}
                   compareItemFunction={compareAutoCompleteValues}
                   onInputValueChangeFunction={fetchAddresses}
                   previouslySelectedItem={formValues?.location ?? null}
