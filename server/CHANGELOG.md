@@ -1,7 +1,13 @@
 # CHANGELOG
 
-## 1.9.1 [18/02/2021]
+## 1.9.3 [19/02/2021]
 [419] Gestion cas "vides" sur champ d'auto complétion
+
+## 1.9.2 [18/02/2021]
+[417] Restauration de la home
+
+## 1.9.1 [18/02/2021]
+Fix des tests avec nock.enableNetConnect
 
 ## 1.9.0 [16/02/2021]
 [362] Option métier figé sur widget
