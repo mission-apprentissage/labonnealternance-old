@@ -170,6 +170,7 @@ const SearchForm = (props) => {
                       <h1 className="h6 font-weight-bold">Votre recherche</h1>
                       <div className="">
                         <AutoCompleteField
+                          kind="Métier"
                           items={[]}
                           itemToStringFunction={autoCompleteToStringFunction}
                           onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
@@ -184,58 +185,43 @@ const SearchForm = (props) => {
                     </div>
                   </Col>
 
-                  <Col xs="12">
-                      <div className="formGroup c-logobar-formgroup mt-3">
-                      <div className="">
-                        <label htmlFor="jobField" className="c-logobar-label">Lieu</label>
 
-                        <Input
-                          onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
-                          value={diploma}
-                          type="select"
-                          name="diploma"
-                        >
-                          {buildAvailableDiplomas()}
-                        </Input>
-                      </div>
-                    </div>
-                  </Col>
                 </>
               )}
+
               <Col xs="12">
-                <div className="formGroup">
-                  <label htmlFor="diplomaField">Le diplôme que vous souhaitez obtenir ...</label>
-                  <div className="fieldContainer">
+                <div className="formGroup mt-3">
+                  <AutoCompleteField
+                    kind="Lieu"
+                    items={[]}
+                    itemToStringFunction={autoCompleteToStringFunction}
+                    onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
+                    compareItemFunction={compareAutoCompleteValues}
+                    onInputValueChangeFunction={fetchAddresses}
+                    previouslySelectedItem={formValues?.location ?? null}
+                    scrollParentId="choiceColumn"
+                    name="placeField"
+                    placeholder="Adresse ou ville ou code postal"
+                  />
+                  <ErrorMessage name="location" className="errorField" component="div" />
+                </div>
+              </Col>
+
+
+              <Col xs="12">
+                <div className="formGroup c-logobar-formgroup mt-3">
+                  <div className="">
+                    <label htmlFor="jobField" className="c-logobar-label">Diplôme</label>
+
                     <Input
                       onChange={(evt) => handleDiplomaChange(evt, setFieldValue)}
                       value={diploma}
                       type="select"
                       name="diploma"
-                      className="c-searchform-select"
                     >
                       {buildAvailableDiplomas()}
                     </Input>
                   </div>
-                </div>
-              </Col>
-
-              <Col xs="12">
-                <div className="formGroup">
-                  <label htmlFor="placeField">A proximité de ...</label>
-                  <div className="fieldContainer">
-                    <AutoCompleteField
-                      items={[]}
-                      itemToStringFunction={autoCompleteToStringFunction}
-                      onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
-                      compareItemFunction={compareAutoCompleteValues}
-                      onInputValueChangeFunction={fetchAddresses}
-                      previouslySelectedItem={formValues?.location ?? null}
-                      scrollParentId="choiceColumn"
-                      name="placeField"
-                      placeholder="Adresse ou ville ou code postal"
-                    />
-                  </div>
-                  <ErrorMessage name="location" className="errorField" component="div" />
                 </div>
               </Col>
 

@@ -9,6 +9,7 @@ import ReactHtmlParser from 'react-html-parser';
 let debouncedOnInputValueChange = null;
 
 export const AutoCompleteField = ({
+  kind,
   itemToStringFunction,
   onInputValueChangeFunction,
   onSelectedItemChangeFunction,
@@ -101,7 +102,7 @@ export const AutoCompleteField = ({
   return (
     <div className="">
       <div className={`c-input-work-container c-logobar-formgroup`} {...getComboboxProps()}>
-        <label htmlFor="jobField" className="c-logobar-label">Métier</label>
+        <label className="c-logobar-label">{kind}</label>
         <input
           {...getInputProps()}
           className={`form-control c-logobar-field ${
