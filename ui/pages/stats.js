@@ -5,11 +5,11 @@ import Breadcrumb from "components/breadcrumb";
 
 import Footer from "components/footer";
 
-const statistiques = () => (
+const stats = () => (
   <div>
     <ScrollToTop />
     <Navigation />
-    <Breadcrumb forPage="statistiques" label="statistiques" />
+    <Breadcrumb forPage="stats" label="statistiques" />
 
     <div className="c-page-container container my-0 mb-sm-5 p-5">
       <div className="row">
@@ -22,10 +22,13 @@ const statistiques = () => (
         <div className="col-12 col-md-7">
           <h3>Statistiques</h3>
           <p>
-            La Bonne Alternance est une startup d’Etat incubée par beta.gouv. Nous développons un service à destination des publics selon les principes du <a href="https://beta.gouv.fr/approche/manifeste">Manifeste de beta.gouv</a> 
+            La Bonne Alternance est une startup d’Etat incubée par beta.gouv. Nous développons un service à destination
+            des publics selon les principes du{" "}
+            <a href="https://beta.gouv.fr/approche/manifeste">Manifeste de beta.gouv</a>
           </p>
           <p>
-            Nous mesurons l’impact de nos actions et publions en toute transparence nos statistiques que vous pouvez <a href="https://datastudio.google.com/reporting/1v-Sim2qMlFSMn4n9JJWaMk8PIONvM757">consulter ici</a> 
+            Nous mesurons l’impact de nos actions et publions en toute transparence nos statistiques que vous pouvez{" "}
+            <a href="https://datastudio.google.com/reporting/1v-Sim2qMlFSMn4n9JJWaMk8PIONvM757">consulter ici</a>
           </p>
         </div>
       </div>
@@ -35,4 +38,4 @@ const statistiques = () => (
   </div>
 );
 
-export default statistiques;
+export default stats;
