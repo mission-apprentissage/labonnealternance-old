@@ -14,6 +14,7 @@ import formikUpdateValue from "services/formikUpdateValue";
 import handleSelectChange from "services/handleSelectChange";
 import { fetchAddresses } from "services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
+import validateFormik from "services/validateFormik";
 
 const LogoBar = ({ showSearchForm, showResultList }) => {
   const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => {
@@ -29,8 +30,18 @@ const LogoBar = ({ showSearchForm, showResultList }) => {
   const renderFormik = () => {
     // console.log('formValues', formValues);
 
+    const handleSubmit = (values) => {
+      console.log("values : ", values);
+    };
+
     return (
-      <Formik initialValues={formValues}>
+      <Formik
+        validate={(values) => {
+          validateFormik(values, widgetParameters);
+        }}
+        initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
+        onSubmit={handleSubmit}
+      >
         {({ isSubmitting, setFieldValue }) => (
           <Form className="c-logobar-form c-searchform">
             <div className="formGroup formGroup--logobar">
@@ -97,6 +108,15 @@ const LogoBar = ({ showSearchForm, showResultList }) => {
                   {buildDiplomas()}
                 </Input>
               </div>
+            </div>
+            <div className="c-logobar-formgroup ml-3">
+              <button
+                type="submit"
+                className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn"
+                disabled={isSubmitting}
+              >
+                Go
+              </button>
             </div>
           </Form>
         )}
