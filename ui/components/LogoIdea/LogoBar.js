@@ -15,9 +15,10 @@ import handleSelectChange from "services/handleSelectChange";
 import { fetchAddresses } from "services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
 
-const renderFormik = () => {
-
-  const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => { return state.trainings});
+const LogoBar = ({ showSearchForm, showResultList }) => {
+  const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => {
+    return state.trainings;
+  });
 
   const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
   const [diplomas, setDiplomas] = useState([]);
@@ -25,82 +26,85 @@ const renderFormik = () => {
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
-  
-  // console.log('formValues', formValues);
+  const renderFormik = () => {
+    // console.log('formValues', formValues);
 
-  return (
-    <Formik
-      initialValues={formValues}
-    >
-      {({ isSubmitting, setFieldValue}) => (
-        <Form className="c-logobar-form c-searchform">
-          <div className="formGroup formGroup--logobar">
-            <AutoCompleteField
-              kind="Métier"
-              items={[]}
-              itemToStringFunction={autoCompleteToStringFunction}
-              onSelectedItemChangeFunction={partialRight(updateValuesFromJobAutoComplete, setDiplomaError, setDiplomas)}
-              compareItemFunction={compareAutoCompleteValues}
-              onInputValueChangeFunction={partialRight(domainChanged, setDomainError)}
-              previouslySelectedItem={formValues?.job ?? null}
-              name="jobField"
-              placeholder="ex: plomberie"
-              />
-            <ErrorMessage name="job" className="errorField" component="div" />
-          </div>
-          <div className="ml-3">
+    return (
+      <Formik initialValues={formValues}>
+        {({ isSubmitting, setFieldValue }) => (
+          <Form className="c-logobar-form c-searchform">
             <div className="formGroup formGroup--logobar">
+              <AutoCompleteField
+                kind="Métier"
+                items={[]}
+                itemToStringFunction={autoCompleteToStringFunction}
+                onSelectedItemChangeFunction={partialRight(
+                  updateValuesFromJobAutoComplete,
+                  setDiplomaError,
+                  setDiplomas
+                )}
+                compareItemFunction={compareAutoCompleteValues}
+                onInputValueChangeFunction={partialRight(domainChanged, setDomainError)}
+                previouslySelectedItem={formValues?.job ?? null}
+                name="jobField"
+                placeholder="ex: plomberie"
+              />
+              <ErrorMessage name="job" className="errorField" component="div" />
+            </div>
+            <div className="ml-3">
+              <div className="formGroup formGroup--logobar">
                 <AutoCompleteField
                   kind="Lieu"
                   items={[]}
                   itemToStringFunction={autoCompleteToStringFunction}
-                  onSelectedItemChangeFunction={partialRight(formikUpdateValue, 'location')}
+                  onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
                   compareItemFunction={compareAutoCompleteValues}
                   onInputValueChangeFunction={fetchAddresses}
                   previouslySelectedItem={formValues?.location ?? null}
                   name="placeField"
                   placeholder="ex: marseille"
                 />
+              </div>
             </div>
-          </div>
-          <div className="ml-3">
-            <div className="c-logobar-formgroup c-logobar-formgroup--rayon">
-              <label htmlFor="jobField" className="c-logobar-label c-logobar-label--rayon">Rayon</label>
+            <div className="ml-3">
+              <div className="c-logobar-formgroup c-logobar-formgroup--rayon">
+                <label htmlFor="jobField" className="c-logobar-label c-logobar-label--rayon">
+                  Rayon
+                </label>
+                <div className="c-logobar-field">
+                  <Input
+                    onChange={(evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, "radius")}
+                    type="select"
+                    value={locationRadius}
+                    name="locationRadius"
+                  >
+                    {buildRayons()}
+                  </Input>
+                </div>
+              </div>
+            </div>
+            <div className="c-logobar-formgroup c-logobar-formgroup--diploma ml-3">
+              <label htmlFor="jobField" className="c-logobar-label c-logobar-label--diploma">
+                Niveau d'études
+              </label>
               <div className="c-logobar-field">
-              <Input
-                onChange={(evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, 'radius')}
-                type="select"
-                value={locationRadius}
-                name="locationRadius"
-              >
-                {buildRayons()}
-              </Input>
+                <Input
+                  onChange={(evt) => handleSelectChange(evt, setFieldValue, setDiploma, "diploma")}
+                  type="select"
+                  value={diploma}
+                  name="diploma"
+                >
+                  {buildDiplomas()}
+                </Input>
+              </div>
             </div>
-            </div>
-          </div>
-          <div className="c-logobar-formgroup c-logobar-formgroup--diploma ml-3">
-            <label htmlFor="jobField" className="c-logobar-label c-logobar-label--diploma">Niveau d'études</label>
-            <div className="c-logobar-field">
-              <Input
-                onChange={(evt) => handleSelectChange(evt, setFieldValue, setDiploma, 'diploma')}
-                type="select"
-                value={diploma}
-                name="diploma"
-              >
-                {buildDiplomas()}
-              </Input>
-            </div>
-          </div>
-        </Form>
-      )}
-    </Formik>
-  )
-}
+          </Form>
+        )}
+      </Formik>
+    );
+  };
 
-const LogoBar = ({ showSearchForm, showResultList }) => {
-  return <div className="c-logobar">
-    {renderFormik()}
-  </div>
+  return <div className="c-logobar">{renderFormik()}</div>;
 };
 
 export default LogoBar;
