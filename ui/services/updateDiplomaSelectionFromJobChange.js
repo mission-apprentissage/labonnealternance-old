@@ -1,7 +1,7 @@
 import fetchDiplomas from "services/fetchDiplomas";
 
 
-export default async function (job, setDiplomaErrorFunc, setDiplomasFunc) {
+export default async function updateDiplomaSelectionFromJobChange(job, setDiplomaErrorFunc, setDiplomasFunc) {
   let diplomas = [];
   if (job) {
     diplomas = await fetchDiplomas(job.romes, () => {
