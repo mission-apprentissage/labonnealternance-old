@@ -110,7 +110,7 @@ const SearchForm = (props) => {
                 <div className="formGroup c-logobar-formgroup mt-3">
                   <div className="">
                     <label htmlFor="jobField" className="c-logobar-label">
-                      Diplôme
+                      Niveau d'études
                     </label>
                     <div className="c-logobar-field">
                       <Input
