@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { AutoCompleteField } from "../";
-import buildDiplomas from "services/buildDiplomas";
+import buildAvailableDiplomas from "services/buildAvailableDiplomas";
 import buildRayons from "services/buildRayons";
 import { Input } from "reactstrap";
 import { partialRight } from "lodash";
@@ -105,7 +105,7 @@ const LogoBar = ({ showSearchForm, showResultList }) => {
                   value={diploma}
                   name="diploma"
                 >
-                  {buildDiplomas()}
+                  {buildAvailableDiplomas(diplomas)}
                 </Input>
               </div>
             </div>
