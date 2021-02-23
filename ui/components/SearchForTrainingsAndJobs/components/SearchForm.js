@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Row, Col, Input } from "reactstrap";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { AutoCompleteField, LogoIdea, RadioButton } from "../../";
+import { Formik, Form, ErrorMessage } from "formik";
+import { AutoCompleteField, LogoIdea } from "../../";
 import { fetchAddresses } from "../../../services/baseAdresse";
 import { DomainError } from "../../";
 import buildRayons from "services/buildRayons";
@@ -27,7 +27,9 @@ const SearchForm = (props) => {
   const renderFormik = () => {
     return (
       <Formik
-        validate={(values) => {validateFormik(values, widgetParameters)}}
+        validate={(values) => {
+          validateFormik(values, widgetParameters);
+        }}
         initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={props.handleSubmit}
       >
@@ -52,7 +54,11 @@ const SearchForm = (props) => {
                           kind="Métier"
                           items={[]}
                           itemToStringFunction={autoCompleteToStringFunction}
-                          onSelectedItemChangeFunction={partialRight(updateValuesFromJobAutoComplete, setDiplomaError, setDiplomas)}
+                          onSelectedItemChangeFunction={partialRight(
+                            updateValuesFromJobAutoComplete,
+                            setDiplomaError,
+                            setDiplomas
+                          )}
                           compareItemFunction={compareAutoCompleteValues}
                           onInputValueChangeFunction={partialRight(domainChanged, setDomainError)}
                           previouslySelectedItem={formValues?.job ?? null}
@@ -63,8 +69,6 @@ const SearchForm = (props) => {
                       <ErrorMessage name="job" className="errorField" component="div" />
                     </div>
                   </Col>
-
-
                 </>
               )}
 
@@ -74,7 +78,7 @@ const SearchForm = (props) => {
                     kind="Lieu"
                     items={[]}
                     itemToStringFunction={autoCompleteToStringFunction}
-                    onSelectedItemChangeFunction={partialRight(formikUpdateValue, 'location')}
+                    onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
                     compareItemFunction={compareAutoCompleteValues}
                     onInputValueChangeFunction={fetchAddresses}
                     previouslySelectedItem={formValues?.location ?? null}
@@ -87,10 +91,12 @@ const SearchForm = (props) => {
               </Col>
               <Col xs="12">
                 <div className="c-logobar-formgroup formGroup mt-3">
-                  <label htmlFor="jobField" className="c-logobar-label">Rayon</label>
+                  <label htmlFor="jobField" className="c-logobar-label">
+                    Rayon
+                  </label>
                   <div className="c-logobar-field">
                     <Input
-                      onChange={(evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, 'radius')}
+                      onChange={(evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, "radius")}
                       type="select"
                       value={locationRadius}
                       name="locationRadius"
@@ -103,10 +109,12 @@ const SearchForm = (props) => {
               <Col xs="12">
                 <div className="formGroup c-logobar-formgroup mt-3">
                   <div className="">
-                    <label htmlFor="jobField" className="c-logobar-label">Diplôme</label>
+                    <label htmlFor="jobField" className="c-logobar-label">
+                      Diplôme
+                    </label>
                     <div className="c-logobar-field">
                       <Input
-                        onChange={(evt) => handleSelectChange(evt, setFieldValue, setDiploma, 'diploma')}
+                        onChange={(evt) => handleSelectChange(evt, setFieldValue, setDiploma, "diploma")}
                         value={diploma}
                         type="select"
                         name="diploma"
@@ -118,7 +126,7 @@ const SearchForm = (props) => {
                 </div>
               </Col>
             </Row>
-            <div className='formGroup'>
+            <div className="formGroup">
               <button
                 type="submit"
                 className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn mt-5"

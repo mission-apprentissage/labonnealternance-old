@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Nav, NavItem, NavLink, Spinner } from "reactstrap";
+import React, { useState } from "react";
+import { Spinner } from "reactstrap";
 import Training from "../../../components/ItemDetail/Training";
 import PeJob from "../../../components/ItemDetail/PeJob";
 import LbbCompany from "../../../components/ItemDetail/LbbCompany";
