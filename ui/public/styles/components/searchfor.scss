@@ -91,9 +91,18 @@
 }
 .choiceCol {
   height: 100vh;
+  padding-top: 0;
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+@media only screen and (min-width: 768px) {
+  .choiceCol
+  {
+    padding-top:78px;
+  }
+}
+
 .choiceCol .apiResult {
   text-align: left;
 }
