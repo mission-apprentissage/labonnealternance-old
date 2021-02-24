@@ -9,10 +9,11 @@ import {
   setIsFormVisible,
   setVisiblePane,
   setShouldMapBeVisible,
-} from "../../store/actions";
+} from "store/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { resizeMap, isMapInitialized } from "../../utils/mapTools";
-import Map from "../../components/Map";
+import { resizeMap, isMapInitialized } from "utils/mapTools";
+import WidgetHeader from "components/WidgetHeader/WidgetHeader";
+import Map from "components/Map";
 
 const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
@@ -75,6 +76,7 @@ const SearchForTrainingsAndJobs = () => {
 
   return (
     <div className="page demoPage">
+      <WidgetHeader />
       <Row>
         <Col
           className={`leftShadow ${visiblePane === "resultList" ? "activeXSPane" : "inactiveXSPane"}`}
