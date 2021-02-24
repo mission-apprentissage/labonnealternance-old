@@ -43,7 +43,8 @@ const Map = ({ showResultList }) => {
     }
   }, [trainings, jobs]);
 
-  useEffect(() => { //hack pour recharger la map après navigation back / forward navigateur
+  useEffect(() => {
+    //hack pour recharger la map après navigation back / forward navigateur
     if (!mapInitialized && isMapInitialized) {
       setMapInitialized(true);
       setTimeout(() => {
@@ -57,20 +58,22 @@ const Map = ({ showResultList }) => {
     <>
       <div ref={(el) => (mapContainer.current = el)} className={`mapContainer ${mapInitialized ? "" : "d-none"}`}></div>
       <div className={`dummyMapContainer ${mapInitialized ? "d-none" : ""}`}>
-        <div className="c-staticmapframe pr-5 py-3">
-          <table>
-            <tbody>
-              <tr>
-                <td className="px-5 c-staticmapframe__decoration"></td>
-                <td>
-                  <span className="c-staticmapframe__title">Faites une recherche</span>
-                  <br />
-                  Renseignez les champs de recherche à droite pour trouver la formation et l'entreprise pour réaliser
-                  votre projet d'alternance
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="c-staticmapframe">
+          <div className="c-staticmapframe__message pr-5 py-3">
+            <table>
+              <tbody>
+                <tr>
+                  <td className="px-5 c-staticmapframe__decoration"></td>
+                  <td>
+                    <span className="c-staticmapframe__title">Faites une recherche</span>
+                    <br />
+                    Renseignez les champs de recherche à droite pour trouver la formation et l'entreprise pour réaliser
+                    votre projet d'alternance
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>

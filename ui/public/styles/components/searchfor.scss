@@ -285,13 +285,19 @@
   outline:none;
 }
 
-.demoPage .dummyMapContainer {
-  background: center / contain no-repeat url(/images/static_map.svg), #F9F8F6;  
-
+.dummyMapContainer {
+  padding-top: 73px;
+  
   .c-staticmapframe
   {
+    background: center/contain no-repeat url(/images/static_map.svg), #F9F8F6;
+    height: 100%;
+    padding-top: 150px;
+  }
+
+  .c-staticmapframe__message
+  {
     margin: auto;
-    margin-top: 150px;
     width: 80%;
     min-width: 250px;
     max-width: 600px;
