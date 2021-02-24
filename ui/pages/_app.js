@@ -16,11 +16,6 @@ if (process.env.uiSentryDsn) {
 
 class ExampleApp extends App {
 
-  constructor(props) {
-    super(props);
-    this.state = { isMobile: false };
-  }
-
   static async getInitialProps(context) {
     // récupération du hostname pour initialiser les fonts en preload
     const { req } = context.ctx;
@@ -33,20 +28,6 @@ class ExampleApp extends App {
     return { host };
   }
 
-  componentDidMount() {
-    window.addEventListener("resize", () => {
-      const ismobile = window.innerWidth < 768;
-      if (this.state.isMobile !== ismobile) {
-        this.setState({
-          changedSize: true,
-          isMobile: ismobile
-        });
-      }
-    }, false);
-  }
-
-  
-
   render() {
     const { Component, pageProps, host } = this.props;
 
@@ -55,7 +36,7 @@ class ExampleApp extends App {
         <main className="c-app overflow-hidden">
           <HeadLaBonneAlternance publicUrl={host && process.env.publicUrl ? host : ""} />
           <ConnectedRouter>
-            <Component {...pageProps} isMobile={this.state.isMobile} changedSize={this.state.changedSize}/>
+            <Component {...pageProps} />
           </ConnectedRouter>
         </main>
       </>

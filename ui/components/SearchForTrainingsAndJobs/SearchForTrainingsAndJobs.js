@@ -14,13 +14,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { resizeMap, isMapInitialized } from "../../utils/mapTools";
 import Map from "../../components/Map";
 
-const SearchForTrainingsAndJobs = ({ isMobile, changedSize }) => {
+const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
 
   const { selectedItem, visiblePane } = useSelector((state) => state.trainings);
   
   // See https://www.robinwieruch.de/react-useeffect-only-on-update
-  const didMount = React.useRef(false);
+  /*const didMount = React.useRef(false);
   React.useEffect(() => {
     if (didMount.current) {
       if (!isMobile) {
@@ -30,7 +30,7 @@ const SearchForTrainingsAndJobs = ({ isMobile, changedSize }) => {
     } else {
       didMount.current = true;
     }
-  }, [isMobile]);
+  }, [isMobile]);*/
 
 
   const showSearchForm = (e) => {
