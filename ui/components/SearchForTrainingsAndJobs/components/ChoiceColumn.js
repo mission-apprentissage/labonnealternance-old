@@ -394,6 +394,10 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     return <SearchForm selectedItem={selectedItem} showResultList={showResultList} handleSubmit={handleSubmit} />;
   };
 
+  const getInitialDesktopText = () => {
+    return <div className="d-md-block">Texte visible seulement si pas de recherche et sur Desktop</div>
+  }
+
   const getSelectedItemDetail = (displayNavbar) => {
     return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} displayNavbar={displayNavbar} />;
   };
@@ -410,6 +414,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
         <LoadingScreen />
       ) : (
         <>
+          {getInitialDesktopText()}
           {getSearchForm()}
           {getResultLists()}
           {getSelectedItemDetail(displayNavbar)}
