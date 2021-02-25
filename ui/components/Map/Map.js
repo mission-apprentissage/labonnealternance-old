@@ -67,7 +67,7 @@ const Map = ({ showResultList }) => {
                   <td>
                     <span className="c-staticmapframe__title">Faites une recherche</span>
                     <br />
-                    Renseignez les champs de recherche à droite pour trouver la formation et l'entreprise pour réaliser
+                    Renseignez les champs de recherche ci-dessus pour trouver la formation et l'entreprise pour réaliser
                     votre projet d'alternance
                   </td>
                 </tr>
