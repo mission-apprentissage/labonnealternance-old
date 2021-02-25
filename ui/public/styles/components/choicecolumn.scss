@@ -4,15 +4,20 @@
     padding-top:0;
 }
 
+.c-choicecolumn__nosearch
+{
+    background: #FFF;
+}
 
 @media only screen and (min-width: 768px){
     .c-choicecolumn
     {
         padding-top:73px;
     }
+
+    .c-choicecolumn__nosearch
+    {
+        background: #F9F8F6;
+    }
 }
 
-.c-choicecolumn__nosearch
-{
-    background: #F9F8F6;
-}
