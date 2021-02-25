@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Row, Col, Input } from "reactstrap";
 import { Formik, Form, ErrorMessage } from "formik";
-import { AutoCompleteField, LogoIdea } from "../../";
+import { AutoCompleteField } from "../../";
 import { fetchAddresses } from "../../../services/baseAdresse";
 import { DomainError } from "../../";
 import buildRayons from "services/buildRayons";
@@ -144,7 +144,6 @@ const SearchForm = (props) => {
   return (
     <div className={isFormVisible ? "" : "hiddenSearchForm"}>
       <div className="formGroup">
-        <LogoIdea />
         {hasSearch ? (
           <button className="c-detail-back px-3 py-1" onClick={props.showResultList}>
             ← Retour
