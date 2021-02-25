@@ -63,6 +63,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const [searchRadius, setSearchRadius] = useState(30);
   const [jobSearchError, setJobSearchError] = useState("");
   const [allJobSearchError, setAllJobSearchError] = useState(false);
+  const [shouldShowWelcomeMessage, setShouldShowWelcomeMessage] = useState(true);
 
   //TODO: définition niveau d'erreur JOB partiel  ou total
 
@@ -152,6 +153,8 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const handleSubmit = async (values) => {
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
+
+    setShouldShowWelcomeMessage(false);
 
     dispatch(setHasSearch(false));
     setSearchRadius(values.radius || 30);
@@ -395,8 +398,12 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   };
 
   const getInitialDesktopText = () => {
-    return <div className="d-none d-md-block">Texte visible seulement si pas de recherche et sur Desktop</div>
-  }
+    return (
+      <div className={`d-none pt-3 ${shouldShowWelcomeMessage ? "d-md-block" : ""}`}>
+        Texte visible seulement si pas de recherche et sur Desktop
+      </div>
+    );
+  };
 
   const getSelectedItemDetail = (displayNavbar) => {
     return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} displayNavbar={displayNavbar} />;
