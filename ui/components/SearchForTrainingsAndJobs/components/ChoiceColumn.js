@@ -41,7 +41,7 @@ const technicalErrorText = "Error technique momentanée";
 const trainingsApi = baseUrl + "/api/v1/formations";
 const jobsApi = baseUrl + "/api/v1/jobs";
 
-const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
+const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm, handleSubmit, shouldShowWelcomeMessage }) => {
   const dispatch = useDispatch();
 
   const scopeContext = useScopeContext();
@@ -63,7 +63,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const [searchRadius, setSearchRadius] = useState(30);
   const [jobSearchError, setJobSearchError] = useState("");
   const [allJobSearchError, setAllJobSearchError] = useState(false);
-  const [shouldShowWelcomeMessage, setShouldShowWelcomeMessage] = useState(true);
+  
 
   //TODO: définition niveau d'erreur JOB partiel  ou total
 
@@ -150,29 +150,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
     }
   };
 
-  const handleSubmit = async (values) => {
-    // centrage de la carte sur le lieu de recherche
-    const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
-
-    setShouldShowWelcomeMessage(false);
-
-    dispatch(setHasSearch(false));
-    setSearchRadius(values.radius || 30);
-    dispatch(setExtendedSearch(false));
-
-    flyToLocation({ center: searchCenter, zoom: 10 });
-
-    dispatch(setFormValues({ ...values }));
-
-    if (scopeContext.isTraining) {
-      searchForTrainings(values);
-    }
-
-    if (scopeContext.isJob) {
-      searchForJobsWithStrictRadius(values);
-    }
-    dispatch(setIsFormVisible(false));
-  };
+  
 
   const searchForJobsOnNewCenter = async (newCenter) => {
     searchOnNewCenter(newCenter, null, "jobs");
@@ -396,7 +374,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   const getSearchForm = () => {
     return (
       <div className="d-block d-md-none">
-        <SearchForm selectedItem={selectedItem} showResultList={showResultList} handleSubmit={handleSubmit} />
+        <SearchForm showResultList={showResultList} handleSubmit={handleSubmit} />
       </div>
     );
   };
