@@ -395,7 +395,7 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   };
 
   const getInitialDesktopText = () => {
-    return <div className="d-md-block">Texte visible seulement si pas de recherche et sur Desktop</div>
+    return <div className="d-none d-md-block">Texte visible seulement si pas de recherche et sur Desktop</div>
   }
 
   const getSelectedItemDetail = (displayNavbar) => {
