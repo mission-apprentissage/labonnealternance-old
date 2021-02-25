@@ -2,11 +2,8 @@ import React from "react";
 import logoLBA from "../../public/images/logo-noir-seul.svg";
 import { push } from "connected-next-router";
 import { useDispatch, useSelector } from "react-redux";
-import LogoBar from "./LogoBar";
 
-import { Row, Col } from "reactstrap";
-
-const LogoIdea = ({ showSearchForm, showResultList }) => {
+const LogoIdea = () => {
   const dispatch = useDispatch();
 
   const { widgetParameters } = useSelector((state) => state.trainings);
@@ -27,27 +24,18 @@ const LogoIdea = ({ showSearchForm, showResultList }) => {
   };
 
   return (
-    <>
-      <div className="container container-fluid pt-2">
-        <Row className='d-none d-md-flex c-logo-idea py-2 pl-3'>
-          <div>
-            <a href="/" onClick={goToLbaHome} className="ml-3 d-none d-lg-inline">
-              <img
-                src={
-                  widgetParameters && widgetParameters?.parameters?.returnLogoURL
-                    ? widgetParameters.parameters.returnLogoURL
-                    : logoLBA
-                }
-                alt="Retour page d'accueil de La Bonne Alternance"
-                />
-            </a>
-          </div>
-          <div className="ml-4">
-            <LogoBar/>
-          </div>
-        </Row>
-      </div>
-    </>
+    <div>
+      <a href="/" onClick={goToLbaHome} className="ml-3 d-none d-lg-inline">
+        <img
+          src={
+            widgetParameters && widgetParameters?.parameters?.returnLogoURL
+              ? widgetParameters.parameters.returnLogoURL
+              : logoLBA
+          }
+          alt="Retour page d'accueil de La Bonne Alternance"
+        />
+      </a>
+    </div>
   );
 };
 
