@@ -299,9 +299,10 @@
   
   .c-staticmapframe
   {
-    background: center/contain no-repeat url(/images/static_map.svg), #F9F8F6;
+    background: center/contain no-repeat url(/images/static_map.svg), #FFF;
     height: 100%;
     padding-top: 150px;
+    box-shadow: 0px 0px 12px 2px rgb(0 0 0 / 21%);
   }
 
   .c-staticmapframe__message

@@ -394,7 +394,11 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   };
 
   const getSearchForm = () => {
-    return <SearchForm selectedItem={selectedItem} showResultList={showResultList} handleSubmit={handleSubmit} />;
+    return (
+      <div className="d-block d-md-none">
+        <SearchForm selectedItem={selectedItem} showResultList={showResultList} handleSubmit={handleSubmit} />
+      </div>
+    );
   };
 
   const getInitialDesktopText = () => {
@@ -416,7 +420,11 @@ const ChoiceColumn = ({ showResultList, unSelectItem, showSearchForm }) => {
   };
 
   return (
-    <div id="choiceColumn" className="choiceCol" onScroll={handleScroll}>
+    <div
+      id="choiceColumn"
+      className={`choiceCol ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}
+      onScroll={handleScroll}
+    >
       {isLoading ? (
         <LoadingScreen />
       ) : (
