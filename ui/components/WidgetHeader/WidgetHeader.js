@@ -28,7 +28,7 @@ const WidgetHeader = ({ showSearchForm, showResultList }) => {
 
   return (
     <>
-      <div className="c-widgetheader container container-fluid pt-2">
+      <div className="c-widgetheader d-none d-md-block container container-fluid">
         <Row className="d-none d-md-flex c-logo-idea py-2 pl-3">
           <div>
             <a href="/" onClick={goToLbaHome} className="ml-3 d-none d-lg-inline">
