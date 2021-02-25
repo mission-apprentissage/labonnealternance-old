@@ -16,8 +16,8 @@ import { fetchAddresses } from "services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
 import validateFormik from "services/validateFormik";
 
-const HeaderForm = ({ showSearchForm, showResultList }) => {
-  const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => {
+const HeaderForm = ({ handleSubmit }) => {
+  const { formValues, widgetParameters } = useSelector((state) => {
     return state.trainings;
   });
 
@@ -29,10 +29,6 @@ const HeaderForm = ({ showSearchForm, showResultList }) => {
 
   const renderFormik = () => {
     // console.log('formValues', formValues);
-
-    const handleSubmit = (values) => {
-      console.log("values : ", values);
-    };
 
     return (
       <Formik
