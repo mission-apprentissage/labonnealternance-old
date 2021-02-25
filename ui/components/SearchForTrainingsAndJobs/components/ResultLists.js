@@ -3,7 +3,7 @@ import { Spinner } from "reactstrap";
 import Training from "../../../components/ItemDetail/Training";
 import PeJob from "../../../components/ItemDetail/PeJob";
 import LbbCompany from "../../../components/ItemDetail/LbbCompany";
-import { LogoIdea, ErrorMessage } from "../../../components";
+import { ErrorMessage } from "../../../components";
 import { filterLayers } from "../../../utils/mapTools";
 import { useSelector } from "react-redux";
 import ExtendedSearchButton from "./ExtendedSearchButton";
@@ -325,8 +325,8 @@ const ResultLists = (props) => {
     } à votre recherche`;
 
     return (
-      <div className="c-result-lists pt-md-5">
-        <div className="resultTitle pt-3 mt-0 mt-md-4">
+      <div className="c-result-lists pt-3">
+        <div className="resultTitle mt-0 mt-md-2">
           {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
             <>
               <span className="c-resultlist-correspond c-resultlist-correspond--bold">
@@ -400,10 +400,6 @@ const ResultLists = (props) => {
 
   return (
     <div className={isFormVisible || props.selectedItem ? "hiddenResultList" : ""}>
-      <header>
-        <LogoIdea showSearchForm={props.showSearchForm} />
-      </header>
-      <div className="clearBoth" />
       {getResultCountAndLoading()}
       {getErrorMessages()}
       {getBanner()}
