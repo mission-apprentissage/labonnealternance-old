@@ -4,7 +4,7 @@ import LogoIdea from "components/LogoIdea/LogoIdea";
 
 import { Row } from "reactstrap";
 
-const WidgetHeader = ({handleSubmit}) => {
+const WidgetHeader = ({ handleSubmit }) => {
   return (
     <>
       <div className="c-widgetheader d-none d-md-block container container-fluid">
