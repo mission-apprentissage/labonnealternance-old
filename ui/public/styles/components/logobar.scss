@@ -27,6 +27,19 @@ form.c-logobar-form {
   padding-top: 0.3rem;
 }
 
+
+.formGroup--logobar-onerror 
+{
+  .c-logobar-label,
+  ::placeholder
+  {
+    color:#b60000;
+  }
+  .c-logobar-formgroup {
+    border: 1px solid #b60000;
+  }
+}
+
 .c-logobar .c-input-work-container .c-input-work {
   padding: 0;
   height: 30px;

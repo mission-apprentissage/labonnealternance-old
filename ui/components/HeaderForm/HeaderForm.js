@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import { AutoCompleteField } from "..";
 import buildAvailableDiplomas from "services/buildAvailableDiplomas";
 import buildRayons from "services/buildRayons";
@@ -32,17 +32,15 @@ const HeaderForm = ({ handleSubmit }) => {
 
     return (
       <Formik
-        validate={(values) => {
-          validateFormik(values, widgetParameters);
-        }}
+        validate={(values) => validateFormik(values, widgetParameters)}
         initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting, setFieldValue }) => (
+        {({ isSubmitting, setFieldValue, errors, touched }) => (
           <Form className="c-logobar-form c-searchform">
-            <div className="formGroup formGroup--logobar">
+            <div className={`formGroup formGroup--logobar ${errors.job ? "formGroup--logobar-onerror" : ""}`}>
               <AutoCompleteField
-                kind="Métier"
+                kind="Métier *"
                 items={[]}
                 itemToStringFunction={autoCompleteToStringFunction}
                 onSelectedItemChangeFunction={partialRight(
@@ -56,12 +54,11 @@ const HeaderForm = ({ handleSubmit }) => {
                 name="jobField"
                 placeholder="ex: plomberie"
               />
-              <ErrorMessage name="job" className="errorField" component="div" />
             </div>
             <div className="ml-3">
-              <div className="formGroup formGroup--logobar">
+              <div className={`formGroup formGroup--logobar ${errors.location ? "formGroup--logobar-onerror" : ""}`}>
                 <AutoCompleteField
-                  kind="Lieu"
+                  kind="Lieu *"
                   items={[]}
                   itemToStringFunction={autoCompleteToStringFunction}
                   onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
