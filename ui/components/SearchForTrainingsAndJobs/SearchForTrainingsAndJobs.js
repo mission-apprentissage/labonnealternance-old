@@ -32,7 +32,7 @@ import { useScopeContext } from "context/ScopeContext";
 import { useDispatch, useSelector } from "react-redux";
 import { resizeMap, isMapInitialized } from "utils/mapTools";
 import WidgetHeader from "components/WidgetHeader/WidgetHeader";
-import WidgetSearchParameters from "components/WidgetHeader/WidgetSearchParameters";
+import InitWidgetSearchParameters from "components/WidgetHeader/InitWidgetSearchParametersters";
 import Map from "components/Map";
 
 const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
@@ -290,7 +290,7 @@ const SearchForTrainingsAndJobs = () => {
 
   return (
     <div className="page demoPage">
-      <WidgetSearchParameters handleSubmit={handleSubmit} setIsLoading={setIsLoading} />
+      <InitWidgetSearchParameters handleSubmit={handleSubmit} setIsLoading={setIsLoading} />
       <WidgetHeader handleSubmit={handleSubmit} />
       <Row>
         <Col
