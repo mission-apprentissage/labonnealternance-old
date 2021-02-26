@@ -32,7 +32,7 @@ import { useScopeContext } from "context/ScopeContext";
 import { useDispatch, useSelector } from "react-redux";
 import { resizeMap, isMapInitialized } from "utils/mapTools";
 import WidgetHeader from "components/WidgetHeader/WidgetHeader";
-import InitWidgetSearchParameters from "components/WidgetHeader/InitWidgetSearchParametersters";
+import InitWidgetSearchParameters from "components/WidgetHeader/InitWidgetSearchParameters";
 import Map from "components/Map";
 
 const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
