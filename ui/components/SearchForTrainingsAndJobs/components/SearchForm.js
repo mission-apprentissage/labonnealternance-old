@@ -27,9 +27,7 @@ const SearchForm = (props) => {
   const renderFormik = () => {
     return (
       <Formik
-        validate={(values) => {
-          validateFormik(values, widgetParameters);
-        }}
+        validate={(values) => validateFormik(values, widgetParameters)}
         initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={props.handleSubmit}
       >
