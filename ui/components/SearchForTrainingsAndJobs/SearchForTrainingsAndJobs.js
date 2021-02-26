@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
-import { Row, Col } from "reactstrap";
 import axios from "axios";
 
-import { MapListSwitchButton, ChoiceColumn } from "./components";
-import baseUrl from "utils/baseUrl";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   setSelectedItem,
   setItemToScrollTo,
@@ -17,6 +16,7 @@ import {
   setExtendedSearch,
   setHasSearch,
 } from "store/actions";
+
 import {
   flyToLocation,
   closeMapPopups,
@@ -25,15 +25,18 @@ import {
   computeMissingPositionAndDistance,
   setJobMarkers,
   setTrainingMarkers,
+  resizeMap,
+  isMapInitialized,
 } from "utils/mapTools";
-import { logError } from "utils/tools";
+
 import { useScopeContext } from "context/ScopeContext";
 
-import { useDispatch, useSelector } from "react-redux";
-import { resizeMap, isMapInitialized } from "utils/mapTools";
-import WidgetHeader from "components/WidgetHeader/WidgetHeader";
-import InitWidgetSearchParameters from "components/WidgetHeader/InitWidgetSearchParameters";
 import Map from "components/Map";
+import { Row, Col } from "reactstrap";
+import { MapListSwitchButton, ChoiceColumn } from "./components";
+import { WidgetHeader, InitWidgetSearchParameters } from "components/WidgetHeader";
+import baseUrl from "utils/baseUrl";
+import { logError } from "utils/tools";
 
 const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
 const partialJobSearchErrorText = "Problème momentané d'accès à certaines opportunités d'emploi";
