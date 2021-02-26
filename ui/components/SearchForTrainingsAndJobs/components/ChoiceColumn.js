@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import distance from "@turf/distance";
-import { scrollToTop, scrollToElementInContainer, logError, getItemElement } from "utils/tools";
+import { scrollToTop, scrollToElementInContainer, getItemElement } from "utils/tools";
 import ItemDetail from "components/ItemDetail/ItemDetail";
 import LoadingScreen from "components/LoadingScreen";
 import SearchForm from "./SearchForm";
@@ -12,11 +12,9 @@ import {
   setItemToScrollTo,
   setFormValues,
   setExtendedSearch,
-  setWidgetParameters,
   setJobs,
 } from "store/actions";
 import { flyToMarker, flyToLocation, closeMapPopups } from "utils/mapTools";
-import { fetchAddressFromCoordinates } from "services/baseAdresse";
 
 const ChoiceColumn = ({
   showResultList,
@@ -33,22 +31,12 @@ const ChoiceColumn = ({
   isJobSearchLoading,
   jobSearchError,
   allJobSearchError,
+  isLoading,
 }) => {
   const dispatch = useDispatch();
 
-  const {
-    hasSearch,
-    trainings,
-    jobs,
-    selectedItem,
-    itemToScrollTo,
-    formValues,
-    widgetParameters,
-    shouldExecuteSearch,
-  } = useSelector((state) => state.trainings);
+  const { trainings, jobs, selectedItem, itemToScrollTo, formValues } = useSelector((state) => state.trainings);
 
-  const [isLoading, setIsLoading] = useState(hasSearch ? false : true);
-  
   useEffect(() => {
     if (itemToScrollTo) {
       const itemElement = getItemElement(itemToScrollTo);
@@ -60,32 +48,6 @@ const ChoiceColumn = ({
     }
   });
 
-  useEffect(() => {
-    if (widgetParameters && widgetParameters.applyWidgetParameters) {
-      launchWidgetSearch(widgetParameters);
-      dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
-    } else {
-      setIsLoading(false);
-    }
-  });
-
-  useEffect(() => {
-    if (shouldExecuteSearch) {
-      executeSearch(formValues);
-    }
-  }, []);
-
-  const executeSearch = (values) => {
-    setIsLoading(true);
-    try {
-      handleSubmit(values);
-      setIsLoading(false);
-    } catch (err) {
-      setIsLoading(false);
-      logError("Search error", err);
-    }
-  };
-
   const handleSelectItem = (item, type) => {
     flyToMarker(item, 12);
     closeMapPopups();
@@ -94,40 +56,6 @@ const ChoiceColumn = ({
 
   const handleClose = () => {
     unSelectItem();
-  };
-
-  const launchWidgetSearch = async () => {
-    setIsLoading(true);
-    const p = widgetParameters.parameters;
-    try {
-      // récupération du code insee depuis la base d'adresse
-      const addresses = await fetchAddressFromCoordinates([p.lon, p.lat]);
-
-      if (addresses.length) {
-        let values = {
-          location: {
-            value: {
-              type: "Point",
-              coordinates: [p.lon, p.lat],
-            },
-            insee: addresses[0].insee,
-          },
-          job: {
-            romes: p.romes.split(","),
-          },
-          radius: p.radius || 30,
-          ...addresses[0],
-        };
-
-        handleSubmit(values);
-      } else {
-        console.log("aucun lieu trouvé");
-      }
-      setIsLoading(false);
-    } catch (err) {
-      setIsLoading(false);
-      logError("WidgetSearch error", err);
-    }
   };
 
   const searchForJobsOnNewCenter = async (newCenter) => {

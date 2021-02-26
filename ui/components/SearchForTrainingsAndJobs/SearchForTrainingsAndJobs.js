@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 
 import { Row, Col } from "reactstrap";
 import axios from "axios";
@@ -16,10 +16,8 @@ import {
   setFormValues,
   setExtendedSearch,
   setHasSearch,
-  setWidgetParameters,
 } from "store/actions";
 import {
-  flyToMarker,
   flyToLocation,
   closeMapPopups,
   factorTrainingsForMap,
@@ -28,12 +26,13 @@ import {
   setJobMarkers,
   setTrainingMarkers,
 } from "utils/mapTools";
-import { scrollToTop, scrollToElementInContainer, logError, getItemElement } from "utils/tools";
+import { logError } from "utils/tools";
 import { useScopeContext } from "context/ScopeContext";
 
 import { useDispatch, useSelector } from "react-redux";
 import { resizeMap, isMapInitialized } from "utils/mapTools";
 import WidgetHeader from "components/WidgetHeader/WidgetHeader";
+import WidgetSearchParameters from "components/WidgetHeader/WidgetSearchParameters";
 import Map from "components/Map";
 
 const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
@@ -58,6 +57,7 @@ const SearchForTrainingsAndJobs = () => {
   const [jobSearchError, setJobSearchError] = useState("");
   const [allJobSearchError, setAllJobSearchError] = useState(false);
   const [trainingSearchError, setTrainingSearchError] = useState("");
+  const [isLoading, setIsLoading] = useState(hasSearch ? false : true);
 
   // See https://www.robinwieruch.de/react-useeffect-only-on-update
   /*const didMount = React.useRef(false);
@@ -290,6 +290,7 @@ const SearchForTrainingsAndJobs = () => {
 
   return (
     <div className="page demoPage">
+      <WidgetSearchParameters handleSubmit={handleSubmit} setIsLoading={setIsLoading} />
       <WidgetHeader handleSubmit={handleSubmit} />
       <Row>
         <Col
@@ -312,6 +313,7 @@ const SearchForTrainingsAndJobs = () => {
             isJobSearchLoading={isJobSearchLoading}
             jobSearchError={jobSearchError}
             allJobSearchError={allJobSearchError}
+            isLoading={isLoading}
           />
         </Col>
         <Col className={`vh-100 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
