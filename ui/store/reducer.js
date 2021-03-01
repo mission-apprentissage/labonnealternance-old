@@ -8,6 +8,7 @@ const initialState = {
   formValues: null,
   extendedSearch: false,
   visiblePane: "resultList",
+  currentPage: "",
   isFormVisible: true,
   hasSearch: false,
   shouldExecuteSearch: false,
@@ -61,6 +62,11 @@ const mainReducer = (state = initialState, action) => {
     res = {
       ...state_copy,
       visiblePane: action.visiblePane,
+    };
+  } else if (action.type === actionsTypes.SET_CURRENT_PAGE) {
+    res = {
+      ...state_copy,
+      currentPage: action.currentPage,
     };
   } else if (action.type === actionsTypes.SET_HAS_SEARCH) {
     res = {

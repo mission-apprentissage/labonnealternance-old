@@ -7,6 +7,7 @@ export const types = {
   SET_FORM_VALUES: "trainings/SET_FORM_VALUES",
   SET_EXTENDED_SEARCH: "trainings/SET_EXTENDED_SEARCH",
   SET_VISIBLE_PANE: "trainings/SET_VISIBLE_PANE",
+  SET_CURRENT_PAGE: "trainings/SET_CURRENT_PAGE",
   SET_HAS_SEARCH: "trainings/SET_HAS_SEARCH",
   SET_IS_FORM_VISIBLE: "trainings/SET_IS_FORM_VISIBLE",
   SET_SHOULD_EXECUTE_SEARCH: "trainings/SET_SHOULD_EXECUTE_SEARCH",
@@ -68,6 +69,13 @@ export const setVisiblePane = (visiblePane = "resultList") => {
   return {
     type: types.SET_VISIBLE_PANE,
     visiblePane,
+  };
+};
+
+export const setCurrentPage = (currentPage = "") => {
+  return {
+    type: types.SET_CURRENT_PAGE,
+    currentPage,
   };
 };
 
