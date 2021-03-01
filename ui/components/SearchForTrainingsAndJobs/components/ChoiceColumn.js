@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useScopeContext } from "context/ScopeContext";
 import { useDispatch, useSelector } from "react-redux";
 import distance from "@turf/distance";
 import { scrollToTop, scrollToElementInContainer, getItemElement } from "utils/tools";
@@ -6,6 +8,8 @@ import ItemDetail from "components/ItemDetail/ItemDetail";
 import LoadingScreen from "components/LoadingScreen";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
+import { currentPage, setCurrentPage } from "utils/currentPage.js";
+
 import {
   setTrainings,
   setSelectedItem,
@@ -13,6 +17,7 @@ import {
   setFormValues,
   setExtendedSearch,
   setJobs,
+  /*setCurrentPage,*/
 } from "store/actions";
 import { flyToMarker, flyToLocation, closeMapPopups } from "utils/mapTools";
 
@@ -34,8 +39,12 @@ const ChoiceColumn = ({
   isLoading,
 }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const scopeContext = useScopeContext();
 
-  const { trainings, jobs, selectedItem, itemToScrollTo, formValues } = useSelector((state) => state.trainings);
+  const { trainings, jobs, selectedItem, itemToScrollTo, formValues /*, currentPage*/ } = useSelector(
+    (state) => state.trainings
+  );
 
   useEffect(() => {
     if (itemToScrollTo) {
@@ -52,9 +61,21 @@ const ChoiceColumn = ({
     flyToMarker(item, 12);
     closeMapPopups();
     dispatch(setSelectedItem(item));
+    setCurrentPage("fiche");
+
+    let itemId = item.id;
+    if (type === "peJob") {
+      itemId = item.job.id;
+    } else if (type !== "training") {
+      itemId = item.company.siret;
+    }
+
+    router.push(`${scopeContext.path}?page=fiche&type=${type}&itemId=${itemId}`, undefined, { shallow: true });
   };
 
   const handleClose = () => {
+    setCurrentPage("");
+    router.push(`${scopeContext.path}`, undefined, { shallow: true });
     unSelectItem();
   };
 

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import axios from "axios";
+import { useRouter } from "next/router";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,6 +19,7 @@ import {
 } from "store/actions";
 
 import {
+  flyToMarker,
   flyToLocation,
   closeMapPopups,
   factorTrainingsForMap,
@@ -36,6 +38,7 @@ import { Row, Col } from "reactstrap";
 import { MapListSwitchButton, ChoiceColumn } from "./components";
 import { WidgetHeader, InitWidgetSearchParameters } from "components/WidgetHeader";
 import baseUrl from "utils/baseUrl";
+import { currentPage, setCurrentPage } from "utils/currentPage";
 import { logError } from "utils/tools";
 
 const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
@@ -50,7 +53,9 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useScopeContext();
 
-  const { hasSearch, selectedItem, widgetParameters, visiblePane } = useSelector((state) => state.trainings);
+  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane } = useSelector(
+    (state) => state.trainings
+  );
 
   const [shouldShowWelcomeMessage, setShouldShowWelcomeMessage] = useState(true);
   const [searchRadius, setSearchRadius] = useState(30);
@@ -61,6 +66,93 @@ const SearchForTrainingsAndJobs = () => {
   const [allJobSearchError, setAllJobSearchError] = useState(false);
   const [trainingSearchError, setTrainingSearchError] = useState("");
   const [isLoading, setIsLoading] = useState(hasSearch ? false : true);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      console.log("route change from routing ", url);
+
+      let urlParams;
+      if (url.indexOf("?") >= 0) urlParams = new URLSearchParams(url.substring(url.indexOf("?")));
+
+      const pageFromUrl = urlParams ? urlParams.get("page") : "";
+      console.log("url ", url, urlParams, "---", currentPage, "---", pageFromUrl);
+
+      if (currentPage !== pageFromUrl) {
+        console.log("AIEAIE", `-${currentPage}-`, pageFromUrl);
+
+        switch (currentPage) {
+          case "fiche": {
+            if (!pageFromUrl) {
+              unSelectItem("doNotSaveToHistory");
+            }
+
+            break;
+          }
+
+          default: {
+            if (pageFromUrl === "fiche") {
+              selectItemFromHistory(urlParams.get("itemId"), urlParams.get("type"));
+            }
+            break;
+          }
+        }
+        setCurrentPage(pageFromUrl ? pageFromUrl : "");
+      } else console.log("todobom", currentPage, pageFromUrl);
+    };
+
+    // * desktop
+    // rien = accueil
+    // fiche
+    // resultat de recherche / liste
+
+    // * mobile
+    // rien = formulaire
+    // map
+    // liste
+    // formulaire
+    // resultat de recherche / fiche
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method:
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, [trainings, jobs]);
+
+  /* a repositionner  */
+  const selectItemFromHistory = (itemId, type) => {
+    const item = findItem(itemId, type);
+
+    flyToMarker(item, 12);
+    closeMapPopups();
+    dispatch(setSelectedItem(item));
+  };
+
+  const findItem = (id, type) => {
+    console.log(id, type, trainings, jobs);
+    let item;
+    if (type === "training") {
+      item = trainings.find((el) => el.id === id);
+    } else if (type === "peJob") {
+      item = jobs.peJobs.find((el) => el.job.id === id);
+    } else if (type === "lba") {
+      item = jobs.lbaCompanies.find((el) => el.company.siret === id);
+    } else if (type === "lbb") {
+      item = jobs.lbbCompanies.find((el) => el.company.siret === id);
+    }
+
+    console.log("item found  ", item);
+
+    return item;
+  };
+
+  /* ------- */
+
+  //console.log("AAAAA ", window ? window.location.pathname : "");
 
   // See https://www.robinwieruch.de/react-useeffect-only-on-update
   /*const didMount = React.useRef(false);
@@ -284,10 +376,16 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
   };
 
-  const unSelectItem = () => {
+  const unSelectItem = (doNotSaveToHistory) => {
+    console.log("spasse quoi ? ", doNotSaveToHistory, selectedItem);
+
+    dispatch(setSelectedItem(null));
     if (selectedItem) {
-      dispatch(setSelectedItem(null));
       dispatch(setItemToScrollTo(selectedItem));
+    }
+
+    if (!doNotSaveToHistory) {
+      router.push(`${scopeContext.path}`, undefined, { shallow: true });
     }
   };
 
