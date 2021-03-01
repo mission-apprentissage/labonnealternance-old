@@ -15,7 +15,6 @@ if (process.env.uiSentryDsn) {
 }
 
 class ExampleApp extends App {
-
   static async getInitialProps(context) {
     // récupération du hostname pour initialiser les fonts en preload
     const { req } = context.ctx;
