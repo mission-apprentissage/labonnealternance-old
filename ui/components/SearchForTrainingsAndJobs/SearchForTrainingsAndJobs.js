@@ -40,6 +40,7 @@ import { WidgetHeader, InitWidgetSearchParameters } from "components/WidgetHeade
 import baseUrl from "utils/baseUrl";
 import { currentPage, setCurrentPage } from "utils/currentPage";
 import { logError } from "utils/tools";
+import updateUiFromHistory from "services/updateUiFromHistory";
 
 const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
 const partialJobSearchErrorText = "Problème momentané d'accès à certaines opportunités d'emploi";
@@ -73,58 +74,20 @@ const SearchForTrainingsAndJobs = () => {
     const handleRouteChange = (url) => {
       //console.log("route change from routing ", url);
 
-      let urlParams;
-      if (url.indexOf("?") >= 0) urlParams = new URLSearchParams(url.substring(url.indexOf("?")));
-
-      const pageFromUrl = urlParams ? urlParams.get("page") : "";
-      const display = urlParams ? urlParams.get("display") : "";
-
-      if (currentPage !== pageFromUrl) {
-        switch (currentPage) {
-          case "fiche": {
-            if (!pageFromUrl) {
-              unSelectItem("doNotSaveToHistory");
-            }
-
-            break;
-          }
-
-          default: {
-            if (pageFromUrl === "fiche") {
-              selectItemFromHistory(urlParams.get("itemId"), urlParams.get("type"));
-            }
-            break;
-          }
-        }
-        setCurrentPage(pageFromUrl ? pageFromUrl : "");
-      } else console.log("todobom", currentPage, pageFromUrl);
-
-      console.log("display : ", display);
-      if (display) {
-        switch (display) {
-          case "map": {
-            if (visiblePane !== "resultMap") {
-              console.log("affichage de la map");
-              showResultMap(null, "doNotSaveToHistory");
-            }
-            break;
-          }
-          case "list": {
-            if (visiblePane !== "resultList" || isFormVisible) {
-              console.log("affichage de la liste");
-              showResultList(null, "doNotSaveToHistory");
-            }
-            break;
-          }
-          default: /*case "form"*/ {
-            if (visiblePane !== "resultList" || !isFormVisible) {
-              console.log("affichage de formulaire");
-              showSearchForm(null, "doNotSaveToHistory");
-            }
-            break;
-          }
-        }
-      }
+      updateUiFromHistory({
+        url,
+        currentPage,
+        trainings,
+        jobs,
+        unSelectItem,
+        selectItemFromHistory,
+        setCurrentPage,
+        visiblePane,
+        isFormVisible,
+        showResultMap,
+        showResultList,
+        showSearchForm,
+      });
     };
 
     router.events.on("routeChangeStart", handleRouteChange);
@@ -394,8 +357,6 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   const unSelectItem = (doNotSaveToHistory) => {
-    console.log("spasse quoi ? ", doNotSaveToHistory, selectedItem);
-
     dispatch(setSelectedItem(null));
     if (selectedItem) {
       dispatch(setItemToScrollTo(selectedItem));
