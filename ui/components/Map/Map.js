@@ -1,14 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import { useStore, useDispatch, useSelector } from "react-redux";
 import { setSelectedItem } from "../../store/actions";
+import { currentPage, setCurrentPage } from "utils/currentPage.js";
+import { useScopeContext } from "context/ScopeContext";
 
 import { map, initializeMap, isMapInitialized } from "../../utils/mapTools";
 
-const Map = ({ showResultList }) => {
+const Map = ({ selectItemOnMap }) => {
   const store = useStore();
   const { trainings, jobs, shouldMapBeVisible } = useSelector((state) => {
     return state.trainings;
   });
+  const router = useRouter();
+
+  const scopeContext = useScopeContext();
 
   const [mapInitialized, setMapInitialized] = useState(false);
   const mapContainer = useRef(null);
@@ -16,6 +22,10 @@ const Map = ({ showResultList }) => {
 
   const unselectItem = () => {
     dispatch(setSelectedItem(null));
+    if (currentPage === "fiche") {
+      setCurrentPage("");
+      router.push(`${scopeContext.path}`, undefined, { shallow: true });
+    }
   };
 
   const shouldMapBeInitialized = () => {
@@ -39,7 +49,7 @@ const Map = ({ showResultList }) => {
   useEffect(() => {
     if (shouldMapBeInitialized()) {
       setMapInitialized(true);
-      initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });
+      initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap });
     }
   }, [trainings, jobs]);
 
@@ -48,7 +58,7 @@ const Map = ({ showResultList }) => {
     if (!mapInitialized && isMapInitialized) {
       setMapInitialized(true);
       setTimeout(() => {
-        initializeMap({ mapContainer, store, showResultList, unselectItem, trainings, jobs });
+        initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap });
       }, 0);
     }
   }, []);

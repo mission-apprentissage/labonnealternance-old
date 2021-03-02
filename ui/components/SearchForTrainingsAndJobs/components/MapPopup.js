@@ -12,7 +12,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
 
   const openItemDetail = (item) => {
     dispatch(setSelectedItem(item));
-    handleSelectItem();
+    handleSelectItem(item);
   };
 
   const getContent = () => {

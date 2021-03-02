@@ -376,6 +376,21 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
   };
 
+  const selectItemOnMap = (item) => {
+    let itemId = item.id;
+    let type = "training";
+    if (item.ideaType === "peJob") {
+      itemId = item.job.id;
+      type = item.ideaType;
+    } else if (item.ideaType !== "formation") {
+      itemId = item.company.siret;
+      type = item.ideaType;
+    }
+
+    setCurrentPage("fiche");
+    router.push(`${scopeContext.path}?page=fiche&type=${type}&itemId=${itemId}`, undefined, { shallow: true });
+  }
+
   const unSelectItem = (doNotSaveToHistory) => {
     console.log("spasse quoi ? ", doNotSaveToHistory, selectedItem);
 
@@ -418,7 +433,7 @@ const SearchForTrainingsAndJobs = () => {
           />
         </Col>
         <Col className={`vh-100 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
-          <Map showResultList={showResultList} />
+          <Map selectItemOnMap={selectItemOnMap} />
         </Col>
       </Row>
       <MapListSwitchButton
