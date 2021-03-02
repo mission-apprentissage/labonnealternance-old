@@ -7,11 +7,12 @@ import * as mapboxgl from "mapbox-gl";
 import { Provider } from "react-redux";
 import { fetchAddresses } from "../services/baseAdresse";
 import { scrollToElementInContainer, getItemElement } from "./tools";
+
 let currentPopup = null;
 let map = null;
 let isMapInitialized = false;
 
-const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trainings, jobs }) => {
+const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap }) => {
   isMapInitialized = true;
 
   mapboxgl.accessToken = "pk.eyJ1IjoiYWxhbmxyIiwiYSI6ImNrYWlwYWYyZDAyejQzMHBpYzE0d2hoZWwifQ.FnAOzwsIKsYFRnTUwneUSA";
@@ -76,7 +77,7 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trai
         if (e && e.originalEvent) {
           if (!e.originalEvent.STOP) {
             e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
-            onLayerClick(e, "job", store, showResultList, unselectItem);
+            onLayerClick(e, "job", store, selectItemOnMap, unselectItem);
           }
         }
       }, 5);
@@ -135,7 +136,7 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trai
 
     map.on("click", "training-points-layer", function (e) {
       e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
-      onLayerClick(e, "training", store, showResultList, unselectItem);
+      onLayerClick(e, "training", store, selectItemOnMap, unselectItem);
     });
 
     if (jobs && jobs.peJobs && (jobs.peJobs.length || jobs.lbaCompanies.length || jobs.lbbCompanies.length)) {
@@ -164,7 +165,7 @@ const initializeMap = ({ mapContainer, store, showResultList, unselectItem, trai
   map.addControl(nav, "top-right");
 };
 
-const onLayerClick = (e, layer, store, showResultList, unselectItem) => {
+const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem) => {
   let coordinates = e.features[0].geometry.coordinates.slice();
 
   // si cluster on a properties: {cluster: true, cluster_id: 125, point_count: 3, point_count_abbreviated: 3}
@@ -191,7 +192,7 @@ const onLayerClick = (e, layer, store, showResultList, unselectItem) => {
 
     currentPopup = new mapboxgl.Popup()
       .setLngLat(coordinates)
-      .setDOMContent(buildPopup(item, item.ideaType, store, showResultList))
+      .setDOMContent(buildPopup(item, item.ideaType, store, selectItemOnMap))
       .addTo(map);
 
     unselectItem();
@@ -211,12 +212,12 @@ const flyToLocation = (location) => {
   }
 };
 
-const buildPopup = (item, type, store, showResultList) => {
+const buildPopup = (item, type, store, selectItemOnMap) => {
   const popupNode = document.createElement("div");
 
   ReactDOM.render(
     <Provider store={store}>
-      <MapPopup handleSelectItem={showResultList} type={type} item={item} />
+      <MapPopup handleSelectItem={selectItemOnMap} type={type} item={item} />
     </Provider>,
     popupNode
   );
