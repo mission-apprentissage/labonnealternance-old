@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import toggleList from "public/images/icons/toggleList.svg";
 import toggleCard from "public/images/icons/toggleCard.svg";
 
-const MapListSwitchButton = ({ showResultMap, showSearchForm, showResultList }) => {
+const MapListSwitchButton = ({ showResultMap, showResultList }) => {
   const { visiblePane, hasSearch } = useSelector((state) => state.trainings);
 
   if (visiblePane === "resultList") {
