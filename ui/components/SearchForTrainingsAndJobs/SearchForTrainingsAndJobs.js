@@ -4,7 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 import { useDispatch, useSelector } from "react-redux";
-
+import { getItemQueryParameters } from "utils/getItemId";
 import {
   setSelectedItem,
   setItemToScrollTo,
@@ -79,6 +79,8 @@ const SearchForTrainingsAndJobs = () => {
       const pageFromUrl = urlParams ? urlParams.get("page") : "";
       console.log("url ", url, urlParams, "---", currentPage, "---", pageFromUrl);
 
+      const display = urlParams ? urlParams.get("display") : "";
+
       if (currentPage !== pageFromUrl) {
         console.log("AIEAIE", `-${currentPage}-`, pageFromUrl);
 
@@ -100,6 +102,29 @@ const SearchForTrainingsAndJobs = () => {
         }
         setCurrentPage(pageFromUrl ? pageFromUrl : "");
       } else console.log("todobom", currentPage, pageFromUrl);
+
+      console.log("display : ",display);
+      if (display) {
+        console.log("on fait qqchose ? ");
+        switch (display) {
+          case "form": {
+            showSearchForm(null, "doNotSaveToHistory");
+            break;
+          }
+          case "map": {
+            showResultMap(null, "doNotSaveToHistory");
+            break;
+          }
+          case "list": {
+            showResultList(null, "doNotSaveToHistory");
+            break;
+          }
+          default: /*case "list"*/ {
+            showSearchForm(null, "doNotSaveToHistory");
+            break;
+          }
+        }
+      }
     };
 
     // * desktop
@@ -133,7 +158,6 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   const findItem = (id, type) => {
-    console.log(id, type, trainings, jobs);
     let item;
     if (type === "training") {
       item = trainings.find((el) => el.id === id);
@@ -144,8 +168,6 @@ const SearchForTrainingsAndJobs = () => {
     } else if (type === "lbb") {
       item = jobs.lbbCompanies.find((el) => el.company.siret === id);
     }
-
-    console.log("item found  ", item);
 
     return item;
   };
@@ -189,6 +211,8 @@ const SearchForTrainingsAndJobs = () => {
       searchForJobsWithStrictRadius(values);
     }
     dispatch(setIsFormVisible(false));
+
+    router.push(`${scopeContext.path}?display=list`, undefined, { shallow: true });
   };
 
   const searchForTrainings = async (values) => {
@@ -343,16 +367,19 @@ const SearchForTrainingsAndJobs = () => {
       : values.job.romes.join(",");
   };
 
-  const showSearchForm = (e) => {
+  const showSearchForm = (e, doNotSaveToHistory) => {
     if (e) {
       e.stopPropagation();
     }
     dispatch(setVisiblePane("resultList")); // affichage de la colonne resultList / searchForm
     dispatch(setIsFormVisible(true));
-    unSelectItem();
+    if (!doNotSaveToHistory) {
+      unSelectItem("doNotSaveToHistory");
+      router.push(`${scopeContext.path}?display=form`, undefined, { shallow: true });
+    }
   };
 
-  const showResultMap = (e) => {
+  const showResultMap = (e, doNotSaveToHistory) => {
     if (e) {
       e.stopPropagation();
     }
@@ -362,34 +389,36 @@ const SearchForTrainingsAndJobs = () => {
     }
     dispatch(setVisiblePane("resultMap"));
 
+    if (!doNotSaveToHistory) {
+      router.push(`${scopeContext.path}?display=map`, undefined, { shallow: true });
+    }
+
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
     setTimeout(() => {
       resizeMap();
     }, 50);
   };
 
-  const showResultList = (e) => {
+  const showResultList = (e, doNotSaveToHistory) => {
     if (e) {
       e.stopPropagation();
     }
     dispatch(setVisiblePane("resultList"));
     dispatch(setIsFormVisible(false));
+    if (!doNotSaveToHistory) {
+      router.push(`${scopeContext.path}?display=list`, undefined, {
+        shallow: true,
+      });
+    }
   };
 
   const selectItemOnMap = (item) => {
-    let itemId = item.id;
-    let type = "training";
-    if (item.ideaType === "peJob") {
-      itemId = item.job.id;
-      type = item.ideaType;
-    } else if (item.ideaType !== "formation") {
-      itemId = item.company.siret;
-      type = item.ideaType;
-    }
-
+    showResultList(null, "doNotSaveToHistory");
     setCurrentPage("fiche");
-    router.push(`${scopeContext.path}?page=fiche&type=${type}&itemId=${itemId}`, undefined, { shallow: true });
-  }
+    router.push(`${scopeContext.path}?page=fiche&display=list&${getItemQueryParameters(item)}`, undefined, {
+      shallow: true,
+    });
+  };
 
   const unSelectItem = (doNotSaveToHistory) => {
     console.log("spasse quoi ? ", doNotSaveToHistory, selectedItem);

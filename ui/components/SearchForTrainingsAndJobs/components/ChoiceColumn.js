@@ -70,7 +70,9 @@ const ChoiceColumn = ({
       itemId = item.company.siret;
     }
 
-    router.push(`${scopeContext.path}?page=fiche&type=${type}&itemId=${itemId}`, undefined, { shallow: true });
+    router.push(`${scopeContext.path}?page=fiche&display=list&type=${type}&itemId=${itemId}`, undefined, {
+      shallow: true,
+    });
   };
 
   const handleClose = () => {
