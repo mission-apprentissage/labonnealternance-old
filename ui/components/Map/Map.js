@@ -4,6 +4,7 @@ import { useStore, useDispatch, useSelector } from "react-redux";
 import { setSelectedItem } from "../../store/actions";
 import { currentPage, setCurrentPage } from "utils/currentPage.js";
 import { useScopeContext } from "context/ScopeContext";
+import pushHistory from "utils/pushHistory";
 
 import { map, initializeMap, isMapInitialized } from "../../utils/mapTools";
 
@@ -24,7 +25,7 @@ const Map = ({ selectItemOnMap }) => {
     dispatch(setSelectedItem(null));
     if (currentPage === "fiche") {
       setCurrentPage("");
-      router.push(`${scopeContext.path}`, undefined, { shallow: true });
+      pushHistory({ router, scopeContext });
     }
   };
 

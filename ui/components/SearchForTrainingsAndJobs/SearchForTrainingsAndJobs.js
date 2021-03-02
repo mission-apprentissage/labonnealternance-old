@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getItemQueryParameters } from "utils/getItemId";
+import pushHistory from "utils/pushHistory";
 import {
   setSelectedItem,
   setItemToScrollTo,
@@ -146,7 +147,7 @@ const SearchForTrainingsAndJobs = () => {
     }
     dispatch(setIsFormVisible(false));
 
-    router.push(`${scopeContext.path}?display=list`, undefined, { shallow: true });
+    pushHistory({ router, scopeContext, display: "list" });
   };
 
   const searchForTrainings = async (values) => {
@@ -310,7 +311,7 @@ const SearchForTrainingsAndJobs = () => {
 
     if (!doNotSaveToHistory) {
       unSelectItem("doNotSaveToHistory");
-      router.push(`${scopeContext.path}?display=form`, undefined, { shallow: true });
+      pushHistory({ router, scopeContext, display: "form" });
     }
   };
 
@@ -325,7 +326,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setVisiblePane("resultMap"));
 
     if (!doNotSaveToHistory) {
-      router.push(`${scopeContext.path}?display=map`, undefined, { shallow: true });
+      pushHistory({ router, scopeContext, display: "map" });
     }
 
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
@@ -342,18 +343,14 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
 
     if (!doNotSaveToHistory) {
-      router.push(`${scopeContext.path}?display=list`, undefined, {
-        shallow: true,
-      });
+      pushHistory({ router, scopeContext, display: "list" });
     }
   };
 
   const selectItemOnMap = (item) => {
     showResultList(null, "doNotSaveToHistory");
     setCurrentPage("fiche");
-    router.push(`${scopeContext.path}?page=fiche&display=list&${getItemQueryParameters(item)}`, undefined, {
-      shallow: true,
-    });
+    pushHistory({ router, scopeContext, item, page: "fiche", display: "list" });
   };
 
   const unSelectItem = (doNotSaveToHistory) => {
@@ -363,7 +360,7 @@ const SearchForTrainingsAndJobs = () => {
     }
 
     if (!doNotSaveToHistory) {
-      router.push(`${scopeContext.path}`, undefined, { shallow: true });
+      pushHistory({ router, scopeContext });
     }
   };
 

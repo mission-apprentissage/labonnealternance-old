@@ -8,7 +8,8 @@ import ItemDetail from "components/ItemDetail/ItemDetail";
 import LoadingScreen from "components/LoadingScreen";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
-import { currentPage, setCurrentPage } from "utils/currentPage.js";
+import { setCurrentPage } from "utils/currentPage.js";
+import pushHistory from "utils/pushHistory";
 
 import {
   setTrainings,
@@ -17,7 +18,6 @@ import {
   setFormValues,
   setExtendedSearch,
   setJobs,
-  /*setCurrentPage,*/
 } from "store/actions";
 import { flyToMarker, flyToLocation, closeMapPopups } from "utils/mapTools";
 
@@ -63,21 +63,12 @@ const ChoiceColumn = ({
     dispatch(setSelectedItem(item));
     setCurrentPage("fiche");
 
-    let itemId = item.id;
-    if (type === "peJob") {
-      itemId = item.job.id;
-    } else if (type !== "training") {
-      itemId = item.company.siret;
-    }
-
-    router.push(`${scopeContext.path}?page=fiche&display=list&type=${type}&itemId=${itemId}`, undefined, {
-      shallow: true,
-    });
+    pushHistory({ router, scopeContext, item, page: "fiche", display: "list" });
   };
 
   const handleClose = () => {
     setCurrentPage("");
-    router.push(`${scopeContext.path}`, undefined, { shallow: true });
+    pushHistory({ router, scopeContext });
     unSelectItem();
   };
 
