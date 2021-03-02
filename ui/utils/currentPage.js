@@ -1,5 +1,5 @@
 export let currentPage = "";
 
-export const setCurrentPage = (a) => {
-  currentPage = a;
+export const setCurrentPage = (p) => {
+  currentPage = p;
 };

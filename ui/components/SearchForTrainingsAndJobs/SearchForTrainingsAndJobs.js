@@ -53,7 +53,7 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useScopeContext();
 
-  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane } = useSelector(
+  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible } = useSelector(
     (state) => state.trainings
   );
 
@@ -71,19 +71,15 @@ const SearchForTrainingsAndJobs = () => {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      console.log("route change from routing ", url);
+      //console.log("route change from routing ", url);
 
       let urlParams;
       if (url.indexOf("?") >= 0) urlParams = new URLSearchParams(url.substring(url.indexOf("?")));
 
       const pageFromUrl = urlParams ? urlParams.get("page") : "";
-      console.log("url ", url, urlParams, "---", currentPage, "---", pageFromUrl);
-
       const display = urlParams ? urlParams.get("display") : "";
 
       if (currentPage !== pageFromUrl) {
-        console.log("AIEAIE", `-${currentPage}-`, pageFromUrl);
-
         switch (currentPage) {
           case "fiche": {
             if (!pageFromUrl) {
@@ -103,41 +99,33 @@ const SearchForTrainingsAndJobs = () => {
         setCurrentPage(pageFromUrl ? pageFromUrl : "");
       } else console.log("todobom", currentPage, pageFromUrl);
 
-      console.log("display : ",display);
+      console.log("display : ", display);
       if (display) {
-        console.log("on fait qqchose ? ");
         switch (display) {
-          case "form": {
-            showSearchForm(null, "doNotSaveToHistory");
-            break;
-          }
           case "map": {
-            showResultMap(null, "doNotSaveToHistory");
+            if (visiblePane !== "resultMap") {
+              console.log("affichage de la map");
+              showResultMap(null, "doNotSaveToHistory");
+            }
             break;
           }
           case "list": {
-            showResultList(null, "doNotSaveToHistory");
+            if (visiblePane !== "resultList" || isFormVisible) {
+              console.log("affichage de la liste");
+              showResultList(null, "doNotSaveToHistory");
+            }
             break;
           }
-          default: /*case "list"*/ {
-            showSearchForm(null, "doNotSaveToHistory");
+          default: /*case "form"*/ {
+            if (visiblePane !== "resultList" || !isFormVisible) {
+              console.log("affichage de formulaire");
+              showSearchForm(null, "doNotSaveToHistory");
+            }
             break;
           }
         }
       }
     };
-
-    // * desktop
-    // rien = accueil
-    // fiche
-    // resultat de recherche / liste
-
-    // * mobile
-    // rien = formulaire
-    // map
-    // liste
-    // formulaire
-    // resultat de recherche / fiche
 
     router.events.on("routeChangeStart", handleRouteChange);
 
@@ -171,23 +159,6 @@ const SearchForTrainingsAndJobs = () => {
 
     return item;
   };
-
-  /* ------- */
-
-  //console.log("AAAAA ", window ? window.location.pathname : "");
-
-  // See https://www.robinwieruch.de/react-useeffect-only-on-update
-  /*const didMount = React.useRef(false);
-  React.useEffect(() => {
-    if (didMount.current) {
-      if (!isMobile) {
-        // will only run if "isMobile" change !
-        showResultList()
-      }
-    } else {
-      didMount.current = true;
-    }
-  }, [isMobile]);*/
 
   const handleSubmit = async (values) => {
     // centrage de la carte sur le lieu de recherche
@@ -373,6 +344,7 @@ const SearchForTrainingsAndJobs = () => {
     }
     dispatch(setVisiblePane("resultList")); // affichage de la colonne resultList / searchForm
     dispatch(setIsFormVisible(true));
+
     if (!doNotSaveToHistory) {
       unSelectItem("doNotSaveToHistory");
       router.push(`${scopeContext.path}?display=form`, undefined, { shallow: true });
@@ -405,6 +377,7 @@ const SearchForTrainingsAndJobs = () => {
     }
     dispatch(setVisiblePane("resultList"));
     dispatch(setIsFormVisible(false));
+
     if (!doNotSaveToHistory) {
       router.push(`${scopeContext.path}?display=list`, undefined, {
         shallow: true,
