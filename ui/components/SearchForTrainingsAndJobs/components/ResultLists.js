@@ -399,7 +399,7 @@ const ResultLists = (props) => {
   };
 
   return (
-    <div className={isFormVisible || props.selectedItem ? "hiddenResultList" : ""}>
+    <div className={`d-md-block ${isFormVisible || props.selectedItem ? "hiddenResultList" : ""}`}>
       {getResultCountAndLoading()}
       {getErrorMessages()}
       {getBanner()}
