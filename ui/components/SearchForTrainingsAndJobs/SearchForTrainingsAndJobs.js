@@ -150,6 +150,23 @@ const SearchForTrainingsAndJobs = () => {
     pushHistory({ router, scopeContext, display: "list" });
   };
 
+  const handleItemLoad = async (item) => {
+    setShouldShowWelcomeMessage(false);
+
+    dispatch(setHasSearch(false));
+    dispatch(setExtendedSearch(true));
+
+    loadItem(item);
+
+    dispatch(setIsFormVisible(false));
+
+    pushHistory({ router, scopeContext, display: "list" });
+  };
+
+  const loadItem = async (values) => {
+    
+  }
+
   const searchForTrainings = async (values) => {
     setIsTrainingSearchLoading(true);
     setTrainingSearchError("");
