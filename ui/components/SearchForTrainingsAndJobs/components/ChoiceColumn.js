@@ -137,6 +137,7 @@ const ChoiceColumn = ({
         jobSearchError={jobSearchError}
         allJobSearchError={allJobSearchError}
         trainingSearchError={trainingSearchError}
+        shouldShowWelcomeMessage={shouldShowWelcomeMessage}
       />
     );
   };

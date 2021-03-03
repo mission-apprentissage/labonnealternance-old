@@ -399,12 +399,14 @@ const ResultLists = (props) => {
   };
 
   return (
-    <div className={`d-md-block ${isFormVisible || props.selectedItem ? "hiddenResultList" : ""}`}>
-      {getResultCountAndLoading()}
-      {getErrorMessages()}
-      {getBanner()}
-      {getTrainingResult()}
-      {getJobResult()}
+    <div className={`d-md-block ${isFormVisible ? "hiddenResultList" : ""}`}>
+      <div className={`${ props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
+        {getResultCountAndLoading()}
+        {getErrorMessages()}
+        {getBanner()}
+        {getTrainingResult()}
+        {getJobResult()}
+      </div>
     </div>
   );
 };
