@@ -74,6 +74,7 @@ module.exports = async (components) => {
   app.use("/api/version", limiter3PerSecond, version());
 
   app.use("/api/v1/formations", limiter5PerSecond, formationV1());
+  app.use("/api/v1/formation", limiter3PerSecond, formationV1());
 
   app.use("/api/v1/formationsParRegion", limiter5PerSecond, formationRegionV1());
 

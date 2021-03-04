@@ -159,13 +159,11 @@ const SearchForTrainingsAndJobs = () => {
     loadItem(item);
 
     dispatch(setIsFormVisible(false));
-
-    pushHistory({ router, scopeContext, display: "list" });
   };
 
   const loadItem = async (values) => {
-    
-  }
+    console.log("LOAD ITEM ", values);
+  };
 
   const searchForTrainings = async (values) => {
     setIsTrainingSearchLoading(true);
@@ -383,7 +381,11 @@ const SearchForTrainingsAndJobs = () => {
 
   return (
     <div className="page demoPage">
-      <InitWidgetSearchParameters handleSubmit={handleSubmit} handleItemLoad={handleItemLoad} setIsLoading={setIsLoading} />
+      <InitWidgetSearchParameters
+        handleSubmit={handleSubmit}
+        handleItemLoad={handleItemLoad}
+        setIsLoading={setIsLoading}
+      />
       <WidgetHeader handleSubmit={handleSubmit} />
       <Row>
         <Col
