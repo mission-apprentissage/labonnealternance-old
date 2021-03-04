@@ -392,7 +392,7 @@ const SearchForTrainingsAndJobs = () => {
             isLoading={isLoading}
           />
         </Col>
-        <Col className={`vh-100 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
+        <Col className={`${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
           <Map selectItemOnMap={selectItemOnMap} />
         </Col>
       </Row>
