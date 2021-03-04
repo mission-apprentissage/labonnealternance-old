@@ -404,8 +404,10 @@ const ResultLists = (props) => {
         {getResultCountAndLoading()}
         {getErrorMessages()}
         {getBanner()}
-        {getTrainingResult()}
-        {getJobResult()}
+        <div className="c-result-all">
+          {getTrainingResult()}
+          {getJobResult()}
+        </div>
       </div>
     </div>
   );
