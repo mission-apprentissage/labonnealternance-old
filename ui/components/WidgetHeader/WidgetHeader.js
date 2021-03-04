@@ -7,7 +7,7 @@ import { Row } from "reactstrap";
 const WidgetHeader = ({ handleSubmit }) => {
   return (
     <>
-      <div className="c-widgetheader d-none d-md-block container container-fluid">
+      <div className="c-widgetheader d-none d-md-block">
         <Row className="c-widgetheader-bar d-none d-md-flex py-2 pl-3">
           <LogoIdea />
           <div className="ml-4">
