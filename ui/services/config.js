@@ -1,4 +1,6 @@
 import { getValueFromPath } from "utils/tools";
+import { setWidgetParameters, setItemParameters } from "store/actions";
+import { push } from "connected-next-router";
 
 export const getWidgetParameters = () => {
   let widgetParameters = { parameters: null, applyWidgetParameters: false };
@@ -73,4 +75,18 @@ export const getItemParameters = () => {
   }
 
   return itemParameters;
+};
+
+export const initParametersFromQuery = (dispatch, shouldPush) => {
+  const widgetParameters = getWidgetParameters();
+  if (widgetParameters && widgetParameters.applyWidgetParameters) {
+    dispatch(setWidgetParameters(widgetParameters));
+    if (shouldPush) dispatch(push({ pathname: "/recherche-apprentissage" }));
+  } else {
+    const itemParameters = getItemParameters();
+    if (itemParameters && itemParameters.applyItemParameters) {
+      dispatch(setItemParameters(itemParameters));
+      if (shouldPush) dispatch(push({ pathname: "/recherche-apprentissage" }));
+    }
+  }
 };
