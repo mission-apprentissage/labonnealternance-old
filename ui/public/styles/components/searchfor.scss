@@ -348,3 +348,14 @@
   border-radius: 15px !important;
   text-align: center;
 }
+
+.c-searchfor {
+  display: flex;
+  flex-direction: column;
+  min-height: 99vh;
+  max-height: 100vh;
+}
+
+.c-searchfor__row {
+  flex-grow: 1;
+}

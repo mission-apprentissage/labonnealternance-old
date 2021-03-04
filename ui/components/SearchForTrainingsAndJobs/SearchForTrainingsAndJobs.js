@@ -365,10 +365,10 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   return (
-    <div className="page demoPage">
+    <div className="page demoPage c-searchfor">
       <InitWidgetSearchParameters handleSubmit={handleSubmit} setIsLoading={setIsLoading} />
       <WidgetHeader handleSubmit={handleSubmit} />
-      <Row>
+      <Row className="c-searchfor__row">
         <Col
           className={`leftShadow ${visiblePane === "resultList" ? "activeXSPane" : "inactiveXSPane"}`}
           xs="12"
