@@ -32,11 +32,6 @@
   padding-left: 0;
   padding-right: 0;
 }
-@media only screen and (min-width: 768px) {
-  .demoPage .leftShadow {
-    box-shadow: 2px -15px 15px rgba(0, 0, 0, 0.5);
-  }
-}
 .demoPage .activeXSPane {
   display: block;
 }
