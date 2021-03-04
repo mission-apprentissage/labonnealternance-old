@@ -1,6 +1,12 @@
 .c-result-all {
   height: 65vh;
   overflow-y: scroll;
+  @include media-breakpoint-up(md) { 
+    height: 50vh;
+  }
+  @include media-breakpoint-up(lg) { 
+    height: 65vh;
+  }
 }
 
 .c-resultlist-correspond {
