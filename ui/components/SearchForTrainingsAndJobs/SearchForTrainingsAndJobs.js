@@ -383,7 +383,7 @@ const SearchForTrainingsAndJobs = () => {
 
   return (
     <div className="page demoPage">
-      <InitWidgetSearchParameters handleSubmit={handleSubmit} setIsLoading={setIsLoading} />
+      <InitWidgetSearchParameters handleSubmit={handleSubmit} handleItemLoad={handleItemLoad} setIsLoading={setIsLoading} />
       <WidgetHeader handleSubmit={handleSubmit} />
       <Row>
         <Col

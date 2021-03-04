@@ -8,7 +8,7 @@ import { logError } from "utils/tools";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const InitWidgetSearchParameters = ({ setIsLoading, handleSubmit }) => {
+const InitWidgetSearchParameters = ({ setIsLoading, handleSubmit, handleItemLoad }) => {
   const dispatch = useDispatch();
 
   const { widgetParameters, shouldExecuteSearch, formValues } = useSelector((state) => state.trainings);

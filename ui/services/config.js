@@ -52,3 +52,25 @@ export const getWidgetParameters = () => {
 
   return widgetParameters;
 };
+
+export const getItemParameters = () => {
+  let itemParameters = { parameters: null, applyItemParameters: false };
+
+  if (getValueFromPath("itemId")) {
+    let parameters = {};
+    let applyItemParameters = true;
+
+    parameters = {
+      itemId: getValueFromPath("itemId"),
+    };
+
+    let p = getValueFromPath("type");
+    if (p) parameters.type = p;
+    else applyItemParameters = false;
+
+    itemParameters.parameters = parameters;
+    itemParameters.applyItemParameters = applyItemParameters;
+  }
+
+  return itemParameters;
+};
