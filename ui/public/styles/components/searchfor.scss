@@ -86,6 +86,7 @@
 }
 .choiceCol {
   max-height: 100vh;
+  min-height: 99vh;
   padding-top: 0;
   overflow-y: auto;
   overflow-x: hidden;
@@ -284,7 +285,6 @@
 }
 
 .dummyMapContainer {
-  padding-top: 73px;
   
   .c-staticmapframe
   {
