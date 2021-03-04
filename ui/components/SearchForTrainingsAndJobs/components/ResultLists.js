@@ -400,7 +400,7 @@ const ResultLists = (props) => {
 
   return (
     <div className={`d-md-block ${isFormVisible ? "hiddenResultList" : ""}`}>
-      <div className={`${ props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
+      <div className={`c-result-container ${ props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
         {getResultCountAndLoading()}
         {getErrorMessages()}
         {getBanner()}
