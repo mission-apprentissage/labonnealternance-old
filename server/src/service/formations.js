@@ -92,6 +92,84 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
   }
 };
 
+const getFormation = async ({ id }) => {
+  console.log("id ", id);
+
+  try {
+    let mustTerm = [
+      {
+        match: {
+          _id: id,
+        },
+      },
+    ];
+
+    const esQueryIndexFragment = getFormationEsQueryIndexFragment(1);
+
+    const body = {
+      query: {
+        bool: {
+          must: mustTerm,
+        },
+      },
+    };
+
+    console.log("body : ", body, mustTerm);
+
+    const responseFormations = await axios.post(urlCatalogueSearch, body, {
+      params: esQueryIndexFragment,
+    });
+
+    //throw new Error("BOOM");
+    let formations = [];
+
+    responseFormations.data.hits.hits.forEach((formation) => {
+      formations.push({ source: formation._source, id: formation._id });
+    });
+
+    console.log("formations : ", formations);
+
+    return formations;
+  } catch (err) {
+    let error_msg = _.get(err, "meta.body", err.message);
+    console.error("Error getting training from id ", error_msg);
+    if (_.get(err, "meta.meta.connection.status") === "dead") {
+      console.error("Elastic search is down or unreachable");
+    }
+    return { result: "error", error: error_msg, message: error_msg };
+  }
+};
+
+// tente de récupérer des formatiosn dans le rayon de recherche, si sans succès cherche les maxOutLimitFormation les plus proches du centre de recherche
+const getOneFormationFromId = async ({ id }) => {
+  try {
+    let formation = [];
+
+    formation = await getFormation({
+      id,
+    });
+
+    if (!formation.error) {
+      formation = transformFormationsForIdea(formation);
+    }
+
+    return formation;
+  } catch (error) {
+    let errorObj = { result: "error", message: error.message };
+
+    Sentry.captureException(error);
+
+    if (error.response) {
+      errorObj.status = error.response.status;
+      errorObj.statusText = error.response.statusText;
+    }
+
+    console.error("error get Training", errorObj);
+
+    return errorObj;
+  }
+};
+
 const getRegionFormations = async ({
   romes,
   romeDomain,
@@ -408,6 +486,31 @@ const getFormationsQuery = async (query) => {
   }
 };
 
+const getFormationQuery = async (query) => {
+  //const queryValidationResult = formationsQueryValidator(query);
+
+  //if (queryValidationResult.error) return queryValidationResult;
+
+  if (query.caller) {
+    trackEvent({ category: "Appel API", action: "formationV1", label: query.caller });
+  }
+
+  console.log("query : ", query);
+
+  try {
+    const formation = await getOneFormationFromId({
+      id: query.id,
+    });
+
+    //throw new Error("BIG BANG");
+    return formation;
+  } catch (err) {
+    console.error("Error ", err.message);
+    Sentry.captureException(err);
+    return { error: "internal_error" };
+  }
+};
+
 const getFormationsParRegionQuery = async (query) => {
   //console.log("query : ", query);
 
@@ -536,6 +639,7 @@ const sortFormations = (formations) => {
 
 module.exports = {
   getFormationsQuery,
+  getFormationQuery,
   getFormationsParRegionQuery,
   transformFormationsForIdea,
   getFormations,

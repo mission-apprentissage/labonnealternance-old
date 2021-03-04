@@ -49,6 +49,7 @@ const trainingErrorText = "Oups ! Les résultats formation ne sont pas disponibl
 const technicalErrorText = "Error technique momentanée";
 
 const trainingsApi = baseUrl + "/api/v1/formations";
+const trainingApi = trainingsApi + "/formation";
 const jobsApi = baseUrl + "/api/v1/jobs";
 
 const SearchForTrainingsAndJobs = () => {
@@ -163,6 +164,12 @@ const SearchForTrainingsAndJobs = () => {
 
   const loadItem = async (values) => {
     console.log("LOAD ITEM ", values);
+    if (values.type === "training") {
+      const response = await axios.get(trainingApi + "/" + values.itemId);
+
+      console.log("response : ", response);
+    }
+    return;
   };
 
   const searchForTrainings = async (values) => {
