@@ -164,15 +164,10 @@ const ChoiceColumn = ({
 
   const [displayNavbar, setDisplayNavbar] = useState(false);
 
-  const handleScroll = () => {
-    setDisplayNavbar(document.querySelector("#choiceColumn").scrollTop > 30);
-  };
-
   return (
     <div
       id="choiceColumn"
       className={`choiceCol ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}
-      onScroll={handleScroll}
     >
       {isLoading ? (
         <LoadingScreen />

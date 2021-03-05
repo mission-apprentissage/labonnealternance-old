@@ -398,14 +398,20 @@ const ResultLists = (props) => {
     );
   };
 
+  const handleScroll = () => {
+    console.log('handleScroll ', document.querySelector(".c-result-list__text").scrollTop);
+
+  };
+
+
   return (
     <div className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${props.selectedItem ? "c-result-list--item" : ""}`}>
       <div className={`c-result-list__header ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
         {getResultCountAndLoading()}
         {getErrorMessages()}
-        {getBanner()}
       </div>
-      <div className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
+      <div onScroll={handleScroll} className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
+        {getBanner()}
         {getTrainingResult()}
         {getJobResult()}
       </div>
