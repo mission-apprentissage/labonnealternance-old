@@ -159,6 +159,11 @@ const SearchForTrainingsAndJobs = () => {
       factorTrainingsForMap,
       setIsTrainingSearchLoading,
       setIsJobSearchLoading,
+      computeMissingPositionAndDistance,
+      setJobSearchError,
+      setJobs,
+      setJobMarkers,
+      factorJobsForMap,
     });
 
     dispatch(setIsFormVisible(false));
