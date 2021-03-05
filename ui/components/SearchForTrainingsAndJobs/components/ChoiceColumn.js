@@ -158,11 +158,9 @@ const ChoiceColumn = ({
     );
   };
 
-  const getSelectedItemDetail = (displayNavbar) => {
-    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} displayNavbar={displayNavbar} />;
+  const getSelectedItemDetail = () => {
+    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} />;
   };
-
-  const [displayNavbar, setDisplayNavbar] = useState(false);
 
   return (
     <div
@@ -180,7 +178,7 @@ const ChoiceColumn = ({
           ) : (
             getResultLists() 
           )}          
-          {getSelectedItemDetail(displayNavbar)}
+          {getSelectedItemDetail()}
         </>
       )}
     </div>

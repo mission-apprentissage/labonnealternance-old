@@ -376,3 +376,10 @@
 .c-result-list.c-result-list--item {
   height: 0%;
 } 
+
+.c-resultlist-correspond-display-false {
+  display: none;
+}
+.c-resultlist-correspond-display-true {
+  @extend .pt-3;
+}

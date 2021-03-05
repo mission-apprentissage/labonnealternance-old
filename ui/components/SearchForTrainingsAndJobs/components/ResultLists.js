@@ -254,7 +254,7 @@ const ResultLists = (props) => {
   };
 
   // construit le bloc formaté avec les décomptes de formations et d'opportunités d'emploi
-  const getResultCountAndLoading = () => {
+  const getResultCountAndLoading = (localDisplayCount) => {
     if (props.allJobSearchError && props.trainingSearchError) return "";
 
     let count = 0;
@@ -325,15 +325,15 @@ const ResultLists = (props) => {
     } à votre recherche`;
 
     return (
-      <div className="pt-3">
+      <div className="pt-0">
         <div className="resultTitle mt-0 mt-md-2">
           {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
-            <>
+            <div className={`c-resultlist-correspond-display-${localDisplayCount}`}>
               <span className="c-resultlist-correspond c-resultlist-correspond--bold">
                 {trainingPart} {trainingPart && jobPart ? " et " : ""} {jobPart}{" "}
               </span>
               <span className="c-resultlist-correspond c-resultlist-correspond--light">{correspondText}</span>
-            </>
+            </div>
           ) : (
             ""
           )}
@@ -398,16 +398,17 @@ const ResultLists = (props) => {
     );
   };
 
+  
+  const [displayCount, setDisplayCount] = useState(false);
   const handleScroll = () => {
     console.log('handleScroll ', document.querySelector(".c-result-list__text").scrollTop);
-
+    setDisplayCount(document.querySelector(".c-result-list__text").scrollTop < 30);
   };
-
 
   return (
     <div className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${props.selectedItem ? "c-result-list--item" : ""}`}>
       <div className={`c-result-list__header ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
-        {getResultCountAndLoading()}
+        {getResultCountAndLoading(displayCount)}
         {getErrorMessages()}
       </div>
       <div onScroll={handleScroll} className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
