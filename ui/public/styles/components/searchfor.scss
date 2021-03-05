@@ -35,6 +35,7 @@
 
 .demoPage .inactiveXSPane {
   display: block;
+  z-index: -1;
 }
 .demoPage .floatingButtons {
   display: none;
@@ -353,9 +354,6 @@
 .c-searchfor__row {
   flex: 1;
   overflow: hidden;
-}
-.c-searchfor__row.row {
-  z-index: -42;
 }
 .choiceCol-container {
   height: 100%;
