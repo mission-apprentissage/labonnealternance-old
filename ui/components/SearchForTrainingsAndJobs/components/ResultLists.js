@@ -399,17 +399,18 @@ const ResultLists = (props) => {
   };
 
   return (
-    <div className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""}`}>
-        <div className={`c-result-list__header d-md-block ${isFormVisible ? "hiddenResultList" : ""}`}>
-          {getResultCountAndLoading()}
-          {getErrorMessages()}
-        </div>
-        <div className="c-result-list__text c-result-all">
-          {getBanner()}
-          {getTrainingResult()}
-          {getJobResult()}
-        </div>
+    <div className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${props.selectedItem ? "c-result-list--item" : ""}`}>
+      <div className={`c-result-list__header ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
+        {getResultCountAndLoading()}
+        {getErrorMessages()}
+        {getBanner()}
+      </div>
+      <div className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
+        {getTrainingResult()}
+        {getJobResult()}
+      </div>
     </div>
+
   );
 };
 
