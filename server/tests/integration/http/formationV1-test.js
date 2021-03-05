@@ -271,8 +271,8 @@ httpTests(__filename, ({ startServer }) => {
 
     const response = await httpClient.get("/api/V1/formations/formation/a");
 
-    assert.strictEqual(response.status, 404);
-    assert.ok(response.data.error.indexOf("not_found") >= 0);
+    assert.strictEqual(response.status, 200);
+    assert.ok(response.data.results.length === 0);
   });
 
   it("Vérifie que la recherche formation répond", async () => {

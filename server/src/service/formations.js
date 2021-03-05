@@ -490,10 +490,6 @@ const getFormationQuery = async (query) => {
       id: query.id,
     });
 
-    if (formation.results && formation.results.length === 0) {
-      return { error: "not_found" };
-    }
-
     //throw new Error("BIG BANG");
     return formation;
   } catch (err) {
