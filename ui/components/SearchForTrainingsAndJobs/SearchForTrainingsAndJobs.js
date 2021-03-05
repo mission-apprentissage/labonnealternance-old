@@ -163,12 +163,9 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   const loadItem = async (values) => {
-    console.log("LOAD ITEM ", values);
     try {
       if (values.type === "training") {
         const response = await axios.get(trainingApi + "/" + values.itemId);
-
-        console.log("response : ", response);
 
         if (response.data.result === "error") {
           logError("Training Search Error", `${response.data.message}`);
@@ -182,6 +179,8 @@ const SearchForTrainingsAndJobs = () => {
         if (response.data.results.length) {
           setTrainingMarkers(factorTrainingsForMap(response.data.results));
         }
+        dispatch(setSelectedItem(response.data.results[0]));
+        setCurrentPage("fiche");
       }
     } catch (err) {
       console.log(
