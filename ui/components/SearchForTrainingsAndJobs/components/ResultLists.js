@@ -403,9 +403,9 @@ const ResultLists = (props) => {
         <div className={`c-result-list__header d-md-block ${isFormVisible ? "hiddenResultList" : ""}`}>
           {getResultCountAndLoading()}
           {getErrorMessages()}
-          {getBanner()}
         </div>
         <div className="c-result-list__text c-result-all">
+          {getBanner()}
           {getTrainingResult()}
           {getJobResult()}
         </div>
