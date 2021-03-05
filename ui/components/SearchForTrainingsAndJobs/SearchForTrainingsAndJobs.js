@@ -164,11 +164,37 @@ const SearchForTrainingsAndJobs = () => {
 
   const loadItem = async (values) => {
     console.log("LOAD ITEM ", values);
-    if (values.type === "training") {
-      const response = await axios.get(trainingApi + "/" + values.itemId);
+    try {
+      if (values.type === "training") {
+        const response = await axios.get(trainingApi + "/" + values.itemId);
 
-      console.log("response : ", response);
+        console.log("response : ", response);
+
+        if (response.data.result === "error") {
+          logError("Training Search Error", `${response.data.message}`);
+          setTrainingSearchError(trainingErrorText);
+        }
+
+        dispatch(setTrainings(response.data.results));
+        dispatch(setHasSearch(true));
+        dispatch(setIsFormVisible(false));
+
+        if (response.data.results.length) {
+          setTrainingMarkers(factorTrainingsForMap(response.data.results));
+        }
+      }
+    } catch (err) {
+      console.log(
+        `Erreur interne lors de la recherche de formations (${err.response ? err.response.status : ""} : ${
+          err.response.data ? err.response.data.error : ""
+        })`
+      );
+      logError("Training search error", err);
+      setTrainingSearchError(trainingErrorText);
     }
+
+    setIsTrainingSearchLoading(false);
+    setIsJobSearchLoading(false);
     return;
   };
 
