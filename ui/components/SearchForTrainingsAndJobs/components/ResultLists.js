@@ -325,7 +325,7 @@ const ResultLists = (props) => {
     } à votre recherche`;
 
     return (
-      <div className="c-result-lists pt-3">
+      <div className="pt-3">
         <div className="resultTitle mt-0 mt-md-2">
           {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
             <>
@@ -399,13 +399,13 @@ const ResultLists = (props) => {
   };
 
   return (
-    <div className={`sub-content d-md-block ${isFormVisible ? "hiddenResultList" : ""}`}>
-        <div className={`sub-content__header d-md-block ${isFormVisible ? "hiddenResultList" : ""}`}>
+    <div className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""}`}>
+        <div className={`c-result-list__header d-md-block ${isFormVisible ? "hiddenResultList" : ""}`}>
           {getResultCountAndLoading()}
           {getErrorMessages()}
           {getBanner()}
         </div>
-        <div className="sub-content__text c-result-all">
+        <div className="c-result-list__text c-result-all">
           {getTrainingResult()}
           {getJobResult()}
         </div>

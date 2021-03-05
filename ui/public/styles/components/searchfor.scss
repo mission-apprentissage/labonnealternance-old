@@ -341,18 +341,18 @@
 }
 
 
-
+/**
+*   This section is dedicated to the "scroll result" problem.
+*/
 .c-searchfor {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
-
 .c-searchfor__row {
   flex: 1;
   overflow: hidden;
 }
-
 .choiceCol-container {
   height: 100%;
   display: flex;
@@ -360,16 +360,10 @@
 .choiceCol {
   flex: 1;
 }
-
-
-
-.sub-content {
+.c-result-list {
   height: 100%;
   display: flex;
   flex-direction: column;
-  
-  &__header {
-  }
   
   &__text {
     flex: 1;

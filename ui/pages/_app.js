@@ -32,7 +32,7 @@ class ExampleApp extends App {
 
     return (
       <>
-        <main className="c-app overflow-hidden">
+        <main className="c-app">
           <HeadLaBonneAlternance publicUrl={host && process.env.publicUrl ? host : ""} />
           <ConnectedRouter>
             <Component {...pageProps} />
