@@ -258,7 +258,6 @@
 }
 .demoPage .mapContainer,
 .demoPage .dummyMapContainer {
-  margin-top: 7px;
   height: 100vh;
   width: 100%;
   top: 0;
@@ -354,6 +353,9 @@
 .c-searchfor__row {
   flex: 1;
   overflow: hidden;
+}
+.c-searchfor__row.row {
+  z-index: -42;
 }
 .choiceCol-container {
   height: 100%;
