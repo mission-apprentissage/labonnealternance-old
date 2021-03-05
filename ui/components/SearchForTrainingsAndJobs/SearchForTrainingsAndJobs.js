@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
+import { loadItem } from "components/SearchForTrainingsAndJobs/services/loadItem";
 import { useDispatch, useSelector } from "react-redux";
-import { getItemQueryParameters } from "utils/getItemId";
 import pushHistory from "utils/pushHistory";
 import {
   setSelectedItem,
@@ -49,7 +49,6 @@ const trainingErrorText = "Oups ! Les résultats formation ne sont pas disponibl
 const technicalErrorText = "Error technique momentanée";
 
 const trainingsApi = baseUrl + "/api/v1/formations";
-const trainingApi = trainingsApi + "/formation";
 const jobsApi = baseUrl + "/api/v1/jobs";
 
 const SearchForTrainingsAndJobs = () => {
@@ -101,7 +100,6 @@ const SearchForTrainingsAndJobs = () => {
     };
   }, [trainings, jobs]);
 
-  /* a repositionner  */
   const selectItemFromHistory = (itemId, type) => {
     const item = findItem(itemId, type);
 
@@ -157,46 +155,24 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setHasSearch(false));
     dispatch(setExtendedSearch(true));
 
-    loadItem(item);
+    loadItem({
+      item,
+      dispatch,
+      setTrainings,
+      setHasSearch,
+      setIsFormVisible,
+      setTrainingMarkers,
+      setSelectedItem,
+      setCurrentPage,
+      setTrainingSearchError,
+      factorTrainingsForMap,
+      setIsTrainingSearchLoading,
+      setIsJobSearchLoading,
+    });
 
     dispatch(setIsFormVisible(false));
   };
-
-  const loadItem = async (values) => {
-    try {
-      if (values.type === "training") {
-        const response = await axios.get(trainingApi + "/" + values.itemId);
-
-        if (response.data.result === "error") {
-          logError("Training Search Error", `${response.data.message}`);
-          setTrainingSearchError(trainingErrorText);
-        }
-
-        dispatch(setTrainings(response.data.results));
-        dispatch(setHasSearch(true));
-        dispatch(setIsFormVisible(false));
-
-        if (response.data.results.length) {
-          setTrainingMarkers(factorTrainingsForMap(response.data.results));
-        }
-        dispatch(setSelectedItem(response.data.results[0]));
-        setCurrentPage("fiche");
-      }
-    } catch (err) {
-      console.log(
-        `Erreur interne lors de la recherche de formations (${err.response ? err.response.status : ""} : ${
-          err.response.data ? err.response.data.error : ""
-        })`
-      );
-      logError("Training search error", err);
-      setTrainingSearchError(trainingErrorText);
-    }
-
-    setIsTrainingSearchLoading(false);
-    setIsJobSearchLoading(false);
-    return;
-  };
-
+  
   const searchForTrainings = async (values) => {
     setIsTrainingSearchLoading(true);
     setTrainingSearchError("");
