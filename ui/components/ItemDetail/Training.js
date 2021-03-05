@@ -9,7 +9,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
   const { formValues } = useSelector((state) => state.trainings);
   const scopeContext = useScopeContext();
 
-  const currentSearchRadius = formValues.radius || 30;
+  const currentSearchRadius = formValues?.radius || 30;
 
   const onSelectItem = () => {
     handleSelectItem(training, "training");
