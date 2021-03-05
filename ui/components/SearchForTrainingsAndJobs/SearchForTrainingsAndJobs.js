@@ -368,7 +368,7 @@ const SearchForTrainingsAndJobs = () => {
     <div className="page demoPage c-searchfor">
       <InitWidgetSearchParameters handleSubmit={handleSubmit} setIsLoading={setIsLoading} />
       <WidgetHeader handleSubmit={handleSubmit} />
-      <Row className="c-searchfor__row">
+      <Row className={`c-searchfor__row is-visible-${isFormVisible}`}>
         <Col
           className={`choiceCol-container leftShadow ${visiblePane === "resultList" ? "activeXSPane" : "inactiveXSPane"}`}
           xs="12"

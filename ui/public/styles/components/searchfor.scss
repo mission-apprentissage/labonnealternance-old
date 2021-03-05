@@ -353,6 +353,9 @@
 .c-searchfor__row {
   flex: 1;
   overflow: hidden;
+  &.is-visible-true {
+    overflow: inherit;
+  }
 }
 .choiceCol-container {
   height: 100%;
