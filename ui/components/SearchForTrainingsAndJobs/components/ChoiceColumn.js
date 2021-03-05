@@ -180,7 +180,11 @@ const ChoiceColumn = ({
         <>
           {getInitialDesktopText()}
           {getSearchForm()}
-          {getResultLists()}
+            {trainings.length === 0 && isJobSearchLoading ? (
+            <div></div>
+          ) : (
+            getResultLists() 
+          )}          
           {getSelectedItemDetail(displayNavbar)}
         </>
       )}
