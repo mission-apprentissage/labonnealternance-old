@@ -33,9 +33,14 @@ export const loadItem = async ({
       if (response.data.results.length) {
         setTrainingMarkers(factorTrainingsForMap(response.data.results));
       }
-      dispatch(setSelectedItem(response.data.results[0]));
-      setCurrentPage("fiche");
+      dispatch(setSelectedItem(response.data.results[0]));      
     }
+    else if (item.type === "training")
+    {
+
+    }
+    setCurrentPage("fiche");
+
   } catch (err) {
     console.log(
       `Erreur interne lors de la recherche de formations (${err.response ? err.response.status : ""} : ${
