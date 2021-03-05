@@ -130,7 +130,7 @@ $small-font-size: 85%;
 *
 */
 .c-app {
-
+  overflow-x: hidden;
   .btn-outline-primary:hover, .btn-outline-primary.hover {
       color: $info;
       background-color: white;
