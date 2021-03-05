@@ -401,7 +401,6 @@ const ResultLists = (props) => {
   
   const [displayCount, setDisplayCount] = useState(false);
   const handleScroll = () => {
-    console.log('handleScroll ', document.querySelector(".c-result-list__text").scrollTop);
     setDisplayCount(document.querySelector(".c-result-list__text").scrollTop < 30);
   };
 
