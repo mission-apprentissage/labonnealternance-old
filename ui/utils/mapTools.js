@@ -335,7 +335,10 @@ const computeMissingPositionAndDistance = async (searchCenter, jobs) => {
         if (addresses.length) {
           job.place.longitude = addresses[0].value.coordinates[0];
           job.place.latitude = addresses[0].value.coordinates[1];
-          job.place.distance = Math.round(10 * distance(searchCenter, [job.place.longitude, job.place.latitude])) / 10;
+          if (searchCenter) {
+            job.place.distance =
+              Math.round(10 * distance(searchCenter, [job.place.longitude, job.place.latitude])) / 10;
+          }
         }
       }
     })
