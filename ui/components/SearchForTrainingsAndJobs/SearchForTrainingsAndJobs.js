@@ -370,7 +370,7 @@ const SearchForTrainingsAndJobs = () => {
       <WidgetHeader handleSubmit={handleSubmit} />
       <Row className="c-searchfor__row">
         <Col
-          className={`leftShadow ${visiblePane === "resultList" ? "activeXSPane" : "inactiveXSPane"}`}
+          className={`choiceCol-container leftShadow ${visiblePane === "resultList" ? "activeXSPane" : "inactiveXSPane"}`}
           xs="12"
           md="5"
         >

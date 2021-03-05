@@ -399,16 +399,16 @@ const ResultLists = (props) => {
   };
 
   return (
-    <div className={`d-md-block ${isFormVisible ? "hiddenResultList" : ""}`}>
-      <div className={`c-result-container ${ props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
-        {getResultCountAndLoading()}
-        {getErrorMessages()}
-        {getBanner()}
-        <div className="c-result-all">
+    <div className={`sub-content d-md-block ${isFormVisible ? "hiddenResultList" : ""}`}>
+        <div className={`sub-content__header d-md-block ${isFormVisible ? "hiddenResultList" : ""}`}>
+          {getResultCountAndLoading()}
+          {getErrorMessages()}
+          {getBanner()}
+        </div>
+        <div className="sub-content__text c-result-all">
           {getTrainingResult()}
           {getJobResult()}
         </div>
-      </div>
     </div>
   );
 };
