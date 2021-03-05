@@ -93,8 +93,6 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
 };
 
 const getFormation = async ({ id }) => {
-  console.log("id ", id);
-
   try {
     let mustTerm = [
       {
@@ -114,8 +112,6 @@ const getFormation = async ({ id }) => {
       },
     };
 
-    console.log("body : ", body, mustTerm);
-
     const responseFormations = await axios.post(urlCatalogueSearch, body, {
       params: esQueryIndexFragment,
     });
@@ -126,8 +122,6 @@ const getFormation = async ({ id }) => {
     responseFormations.data.hits.hits.forEach((formation) => {
       formations.push({ source: formation._source, id: formation._id });
     });
-
-    console.log("formations : ", formations);
 
     return formations;
   } catch (err) {
@@ -487,15 +481,9 @@ const getFormationsQuery = async (query) => {
 };
 
 const getFormationQuery = async (query) => {
-  //const queryValidationResult = formationsQueryValidator(query);
-
-  //if (queryValidationResult.error) return queryValidationResult;
-
   if (query.caller) {
     trackEvent({ category: "Appel API", action: "formationV1", label: query.caller });
   }
-
-  console.log("query : ", query);
 
   try {
     const formation = await getOneFormationFromId({
