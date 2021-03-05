@@ -114,9 +114,9 @@ const Footer = (props) => {
                     className="c-footer-links__link"
                     onClick={(e) => {
                       e.preventDefault();
-                      dispatch(push({ pathname: "/statistiques" }));
+                      dispatch(push({ pathname: "/stats" }));
                     }}
-                    href="/statistiques"
+                    href="/stats"
                   >
                     Statistiques
                   </a>

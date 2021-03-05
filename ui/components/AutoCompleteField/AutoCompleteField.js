@@ -3,10 +3,20 @@ import { useFormikContext } from "formik";
 import { useCombobox } from "downshift";
 import { debounce } from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService";
-import highlightItem  from "../../services/hightlightItem";
-import ReactHtmlParser from 'react-html-parser'; 
+import highlightItem from "services/hightlightItem";
+import ReactHtmlParser from "react-html-parser";
 
 let debouncedOnInputValueChange = null;
+
+// Permet de sélectionner un élément dans la liste d'items correspondant à un texte entré au clavier
+export const compareAutoCompleteValues = (items, value) => {
+  return items.findIndex((element) => (element.label ? element.label.toLowerCase() === value.toLowerCase() : false));
+};
+
+// indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
+export const autoCompleteToStringFunction = (item) => {
+  return item?.label?.toString() ?? "";
+};
 
 export const AutoCompleteField = ({
   kind,
@@ -120,15 +130,19 @@ export const AutoCompleteField = ({
       </div>
       <ul {...getMenuProps()} className="c-autocomplete__menu">
         {isOpen &&
-          inputItems.map((item, index) => (
-            <li
-              className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
-              key={`${index}`}
-              {...getItemProps({ item: item.label, index })}
-            >
-              {ReactHtmlParser(highlightItem(item.label, inputValue))}
-            </li>
-          ))}
+          inputItems.map((item, index) =>
+            item.label ? (
+              <li
+                className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
+                key={`${index}`}
+                {...getItemProps({ item: item.label, index })}
+              >
+                {ReactHtmlParser(highlightItem(item.label, inputValue))}
+              </li>
+            ) : (
+              ""
+            )
+          )}
       </ul>
     </div>
   );

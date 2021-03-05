@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Row, Col, Input } from "reactstrap";
 import { Formik, Form, ErrorMessage } from "formik";
-import { AutoCompleteField } from "../../";
+import { AutoCompleteField } from "components/AutoCompleteField/AutoCompleteField";
+
 import { fetchAddresses } from "../../../services/baseAdresse";
 import { DomainError } from "../../";
 import buildRayons from "services/buildRayons";
