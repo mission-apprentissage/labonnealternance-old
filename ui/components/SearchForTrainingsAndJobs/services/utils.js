@@ -9,6 +9,14 @@ const partialJobSearchErrorText = "Problème momentané d'accès à certaines op
 const trainingErrorText = "Oups ! Les résultats formation ne sont pas disponibles actuellement !";
 const technicalErrorText = "Error technique momentanée";
 
+const getRomeFromParameters = ({ values, widgetParameters }) => {
+  return widgetParameters?.parameters?.jobName &&
+    widgetParameters?.parameters?.romes &&
+    widgetParameters?.parameters?.frozenJob
+    ? widgetParameters?.parameters?.romes
+    : values.job.romes.join(",");
+};
+
 export {
   trainingApi,
   trainingsApi,
@@ -17,4 +25,5 @@ export {
   partialJobSearchErrorText,
   trainingErrorText,
   technicalErrorText,
+  getRomeFromParameters,
 };
