@@ -96,8 +96,12 @@ const getPeJobFromId = async (query) => {
     const peJob = await offresPoleEmploi.getPeJobFromId({
       id: query.id,
     });
+    let result = [];
+    if (peJob) {
+      result.push(peJob);
+    }
 
-    return { peJobs: [peJob] };
+    return { peJobs: result };
   } catch (err) {
     console.log("Error ", err.message);
     Sentry.captureException(err);

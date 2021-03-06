@@ -253,4 +253,12 @@ httpTests(__filename, ({ startServer }) => {
     assert.strictEqual(response.data.lbbCompanies.result, "error");
     //assert.ok(response.data.lbbCompanies.statusText.indexOf("Unknown rome_code") >= 0);
   });
+
+  it("Vérifie que la route offre PE par id répond", async () => {
+    const { httpClient } = await startServer();
+
+    const response = await httpClient.get("/api/V1/jobs/job/110MSJT");
+
+    assert.strictEqual(response.status, 200);
+  });
 });
