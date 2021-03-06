@@ -94,9 +94,11 @@ const SearchForTrainingsAndJobs = () => {
   const selectItemFromHistory = (itemId, type) => {
     const item = findItem(itemId, type);
 
-    flyToMarker(item, 12);
     closeMapPopups();
-    dispatch(setSelectedItem(item));
+    if (item) {
+      flyToMarker(item, 12);
+      dispatch(setSelectedItem(item));
+    }
   };
 
   const findItem = (id, type) => {
