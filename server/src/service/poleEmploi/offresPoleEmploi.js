@@ -138,7 +138,7 @@ const transformPeJobForIdea = (job, lat, long) => {
   }
 
   resultJob.place = {
-    distance: computeJobDistanceToSearchCenter(job, lat, long),
+    distance: lat === null ? 0 : computeJobDistanceToSearchCenter(job, lat, long),
     insee: job.lieuTravail.commune,
     zipCode: job.lieuTravail.codePostal,
     city: job.lieuTravail.libelle,
@@ -248,7 +248,7 @@ const getPeJobFromId = async ({ id }) => {
 
     //throw new Error("boom");
 
-    return job.data;
+    return transformPeJobForIdea(job.data, null, null);
   } catch (error) {
     let errorObj = { result: "error", message: error.message };
 
