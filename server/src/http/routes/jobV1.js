@@ -21,5 +21,24 @@ module.exports = () => {
     })
   );
 
+  router.get(
+    "/job/:id",
+    tryCatch(async (req, res) => {
+      const result = await peApi.getPeJobQuery({ id: req.params.id, referer: req.headers.referer });
+
+      if (result.error) {
+        if (result.error === "wrong_parameters") {
+          res.status(400);
+        } else if (result.error === "not_found") {
+          res.status(404);
+        } else {
+          res.status(500);
+        }
+      }
+
+      return res.json(result);
+    })
+  );
+
   return router;
 };

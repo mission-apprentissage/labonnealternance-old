@@ -185,7 +185,8 @@ const computeJobDistanceToSearchCenter = (job, lat, long) => {
   else return null;
 };
 
-const peJobApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search";
+const peJobsApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search";
+const peJobApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/";
 const peContratsAlternances = "E2"; //E2 -> Contrat d'Apprentissage
 
 const getPeJobs = async (romes, insee, radius, limit) => {
@@ -211,7 +212,7 @@ const getPeJobs = async (romes, insee, radius, limit) => {
       range: `0-${limit - 1}`,
     };
 
-    const jobs = await axios.get(`${peJobApiEndpoint}`, {
+    const jobs = await axios.get(`${peJobsApiEndpoint}`, {
       params,
       headers,
     });
@@ -235,4 +236,33 @@ const getPeJobs = async (romes, insee, radius, limit) => {
   }
 };
 
-module.exports = { getSomePeJobs };
+const getPeJobFromId = async ({ id }) => {
+  try {
+    const token = await getAccessToken("pe");
+    let headers = peApiHeaders;
+    headers.Authorization = `Bearer ${token}`;
+
+    const job = await axios.get(`${peJobApiEndpoint}${id}`, {
+      headers,
+    });
+
+    //throw new Error("boom");
+
+    return job.data;
+  } catch (error) {
+    let errorObj = { result: "error", message: error.message };
+
+    Sentry.captureException(error);
+
+    if (error.response) {
+      errorObj.status = error.response.status;
+      errorObj.statusText = error.response.statusText;
+    }
+
+    console.log("error get PE Job by id", errorObj);
+
+    return errorObj;
+  }
+};
+
+module.exports = { getSomePeJobs, getPeJobFromId };

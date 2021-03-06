@@ -134,7 +134,7 @@ const getFormation = async ({ id }) => {
   }
 };
 
-// tente de récupérer des formatiosn dans le rayon de recherche, si sans succès cherche les maxOutLimitFormation les plus proches du centre de recherche
+// Charge la formation ayant l'id en paramètre
 const getOneFormationFromId = async ({ id }) => {
   try {
     let formation = [];
