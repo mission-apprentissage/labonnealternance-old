@@ -39,7 +39,11 @@ const ResultLists = (props) => {
 
   const getTrainingResult = () => {
     if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
-      return <div className="trainingResult">{getTrainingList()}</div>;
+      return (
+        <div id="trainingResult" className="trainingResult">
+          {getTrainingList()}
+        </div>
+      );
     } else {
       return "";
     }
@@ -376,7 +380,7 @@ const ResultLists = (props) => {
               handleFilterButtonClicked={filterButtonClicked}
             />
             <div className="c-resultlist-purplefilter" onClick={props.showSearchForm}>
-              <img src={purpleFilterIcon} alt="Image de filtres"/>
+              <img src={purpleFilterIcon} alt="Image de filtres" />
             </div>
           </div>
         ) : (
@@ -398,25 +402,31 @@ const ResultLists = (props) => {
     );
   };
 
-  
   const [displayCount, setDisplayCount] = useState(false);
   const handleScroll = () => {
     setDisplayCount(document.querySelector(".c-result-list__text").scrollTop < 30);
   };
 
   return (
-    <div className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${props.selectedItem ? "c-result-list--item" : ""}`}>
+    <div
+      className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${
+        props.selectedItem ? "c-result-list--item" : ""
+      }`}
+    >
       <div className={`c-result-list__header ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
         {getResultCountAndLoading(displayCount)}
         {getErrorMessages()}
       </div>
-      <div onScroll={handleScroll} className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
+      <div
+        onScroll={handleScroll}
+        id="resultList"
+        className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}
+      >
         {getBanner()}
         {getTrainingResult()}
         {getJobResult()}
       </div>
     </div>
-
   );
 };
 
