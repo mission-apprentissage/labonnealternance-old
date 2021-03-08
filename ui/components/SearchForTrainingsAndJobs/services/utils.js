@@ -9,6 +9,7 @@ const companyApi = jobsApi + "/company";
 const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
 const partialJobSearchErrorText = "Problème momentané d'accès à certaines opportunités d'emploi";
 const trainingErrorText = "Oups ! Les résultats formation ne sont pas disponibles actuellement !";
+const notFoundErrorText = "L'élément recherché n'existe plus";
 const technicalErrorText = "Error technique momentanée";
 
 const getRomeFromParameters = ({ values, widgetParameters }) => {
@@ -27,6 +28,7 @@ export {
   partialJobSearchErrorText,
   trainingErrorText,
   technicalErrorText,
+  notFoundErrorText,
   getRomeFromParameters,
   offreApi,
   companyApi,
