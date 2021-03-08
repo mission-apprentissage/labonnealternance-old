@@ -93,15 +93,11 @@ const getJobsFromApi = async (query) => {
 
 const getPeJobFromId = async (query) => {
   try {
-    const peJob = await offresPoleEmploi.getPeJobFromId({
+    const peJobResult = await offresPoleEmploi.getPeJobFromId({
       id: query.id,
     });
-    let result = [];
-    if (peJob) {
-      result.push(peJob);
-    }
 
-    return { peJobs: result };
+    return peJobResult;
   } catch (err) {
     console.log("Error ", err.message);
     Sentry.captureException(err);
