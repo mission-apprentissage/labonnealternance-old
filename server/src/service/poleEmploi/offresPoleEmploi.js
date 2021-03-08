@@ -248,7 +248,7 @@ const getPeJobFromId = async ({ id }) => {
 
     //throw new Error("boom");
 
-    if (job.status === 204) {
+    if (job.status === 204 || job.status === 400) {
       return { result: "not_found", message: "Offre non trouvée" };
     } else {
       let peJob = transformPeJobForIdea(job.data, null, null);
