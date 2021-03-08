@@ -7,6 +7,7 @@ import {
   companyApi,
   trainingErrorText,
   partialJobSearchErrorText,
+  notFoundErrorText,
 } from "components/SearchForTrainingsAndJobs/services/utils";
 
 import { flyToMarker } from "utils/mapTools";
@@ -54,23 +55,16 @@ export const loadItem = async ({
     } else if (item.type === "peJob") {
       const response = await axios.get(offreApi + "/" + item.itemId);
 
-      let peJobs = null;
-
-      if (!response.data.result || response.data.result !== "error") {
-        peJobs = await computeMissingPositionAndDistance(null, response.data.peJobs);
-      }
-
-      let results = {
-        peJobs: peJobs,
-        lbbCompanies: null,
-        lbaCompanies: null,
-      };
-
       // gestion des erreurs
-      if (response.data.peJobs.result === "error") {
-        logError("Job Load Error", `PE Error : ${response.data.peJobs.message}`);
-        setJobSearchError(partialJobSearchErrorText);
-      } else {
+      if (!response.data.message) {
+        let peJobs = await computeMissingPositionAndDistance(null, response.data.peJobs);
+
+        let results = {
+          peJobs: peJobs,
+          lbbCompanies: null,
+          lbaCompanies: null,
+        };
+
         dispatch(setJobs(results));
 
         dispatch(setHasSearch(true));
@@ -78,9 +72,13 @@ export const loadItem = async ({
         setJobMarkers(factorJobsForMap(results), null);
         dispatch(setSelectedItem(results.peJobs[0]));
         itemMarker = results.peJobs[0];
+      } else {
+        logError("Job Load Error", `PE Error : ${response.data.message}`);
+        setJobSearchError(response.data.result === "not_found" ? notFoundErrorText : partialJobSearchErrorText);
       }
     } else if (item.type === "lba" || item.type === "lbb") {
     }
+
     if (itemMarker) {
       flyToMarker(itemMarker, 12);
     }
