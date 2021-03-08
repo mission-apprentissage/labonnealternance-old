@@ -1,4 +1,6 @@
 import { getValueFromPath } from "utils/tools";
+import { setWidgetParameters, setItemParameters } from "store/actions";
+import { push } from "connected-next-router";
 
 export const getWidgetParameters = () => {
   let widgetParameters = { parameters: null, applyWidgetParameters: false };
@@ -51,4 +53,40 @@ export const getWidgetParameters = () => {
   }
 
   return widgetParameters;
+};
+
+export const getItemParameters = () => {
+  let itemParameters = { parameters: null, applyItemParameters: false };
+
+  if (getValueFromPath("itemId")) {
+    let parameters = {};
+    let applyItemParameters = true;
+
+    parameters = {
+      itemId: getValueFromPath("itemId"),
+    };
+
+    let p = getValueFromPath("type");
+    if (p) parameters.type = p;
+    else applyItemParameters = false;
+
+    itemParameters.parameters = parameters;
+    itemParameters.applyItemParameters = applyItemParameters;
+  }
+
+  return itemParameters;
+};
+
+export const initParametersFromQuery = (dispatch, shouldPush) => {
+  const widgetParameters = getWidgetParameters();
+  if (widgetParameters && widgetParameters.applyWidgetParameters) {
+    dispatch(setWidgetParameters(widgetParameters));
+    if (shouldPush) dispatch(push({ pathname: "/recherche-apprentissage" }));
+  } else {
+    const itemParameters = getItemParameters();
+    if (itemParameters && itemParameters.applyItemParameters) {
+      dispatch(setItemParameters(itemParameters));
+      if (shouldPush) dispatch(push({ pathname: "/recherche-apprentissage" }));
+    }
+  }
 };

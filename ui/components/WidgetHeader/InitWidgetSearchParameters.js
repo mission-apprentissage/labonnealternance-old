@@ -2,21 +2,24 @@ import React, { useEffect } from "react";
 
 import { fetchAddressFromCoordinates } from "services/baseAdresse";
 
-import { setWidgetParameters } from "store/actions";
+import { setWidgetParameters, setItemParameters } from "store/actions";
 
 import { logError } from "utils/tools";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const InitWidgetSearchParameters = ({ setIsLoading, handleSubmit }) => {
+const InitWidgetSearchParameters = ({ setIsLoading, handleSubmit, handleItemLoad }) => {
   const dispatch = useDispatch();
 
-  const { widgetParameters, shouldExecuteSearch, formValues } = useSelector((state) => state.trainings);
+  const { widgetParameters, itemParameters, shouldExecuteSearch, formValues } = useSelector((state) => state.trainings);
 
   useEffect(() => {
     if (widgetParameters && widgetParameters.applyWidgetParameters) {
       launchWidgetSearch(widgetParameters);
       dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
+    } else if (itemParameters && itemParameters.applyItemParameters) {
+      launchItemFetch(itemParameters);
+      dispatch(setItemParameters({ ...itemParameters, applyItemParameters: false })); // action one shot
     } else {
       setIsLoading(false);
     }
@@ -66,6 +69,19 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSubmit }) => {
       } else {
         console.log("aucun lieu trouvé");
       }
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      logError("WidgetSearch error", err);
+    }
+  };
+
+  const launchItemFetch = async () => {
+    setIsLoading(true);
+    const p = itemParameters.parameters;
+    try {
+      await handleItemLoad(p);
+
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);

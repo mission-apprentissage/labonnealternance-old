@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import axios from "axios";
 import { useRouter } from "next/router";
 
+import { loadItem } from "components/SearchForTrainingsAndJobs/services/loadItem";
+import { searchForTrainingsFunction } from "components/SearchForTrainingsAndJobs/services/searchForTrainings";
+import { searchForJobsFunction } from "components/SearchForTrainingsAndJobs/services/searchForJobs";
 import { useDispatch, useSelector } from "react-redux";
-import { getItemQueryParameters } from "utils/getItemId";
 import pushHistory from "utils/pushHistory";
 import {
   setSelectedItem,
@@ -38,18 +39,8 @@ import Map from "components/Map";
 import { Row, Col } from "reactstrap";
 import { MapListSwitchButton, ChoiceColumn } from "./components";
 import { WidgetHeader, InitWidgetSearchParameters } from "components/WidgetHeader";
-import baseUrl from "utils/baseUrl";
 import { currentPage, setCurrentPage } from "utils/currentPage";
-import { logError } from "utils/tools";
 import updateUiFromHistory from "services/updateUiFromHistory";
-
-const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
-const partialJobSearchErrorText = "Problème momentané d'accès à certaines opportunités d'emploi";
-const trainingErrorText = "Oups ! Les résultats formation ne sont pas disponibles actuellement !";
-const technicalErrorText = "Error technique momentanée";
-
-const trainingsApi = baseUrl + "/api/v1/formations";
-const jobsApi = baseUrl + "/api/v1/jobs";
 
 const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
@@ -100,13 +91,14 @@ const SearchForTrainingsAndJobs = () => {
     };
   }, [trainings, jobs]);
 
-  /* a repositionner  */
   const selectItemFromHistory = (itemId, type) => {
     const item = findItem(itemId, type);
 
-    flyToMarker(item, 12);
     closeMapPopups();
-    dispatch(setSelectedItem(item));
+    if (item) {
+      flyToMarker(item, 12);
+      dispatch(setSelectedItem(item));
+    }
   };
 
   const findItem = (id, type) => {
@@ -150,44 +142,49 @@ const SearchForTrainingsAndJobs = () => {
     pushHistory({ router, scopeContext, display: "list" });
   };
 
+  const handleItemLoad = async (item) => {
+    setShouldShowWelcomeMessage(false);
+
+    dispatch(setHasSearch(false));
+    dispatch(setExtendedSearch(true));
+
+    loadItem({
+      item,
+      dispatch,
+      setTrainings,
+      setHasSearch,
+      setIsFormVisible,
+      setTrainingMarkers,
+      setSelectedItem,
+      setCurrentPage,
+      setTrainingSearchError,
+      factorTrainingsForMap,
+      setIsTrainingSearchLoading,
+      setIsJobSearchLoading,
+      computeMissingPositionAndDistance,
+      setJobSearchError,
+      setJobs,
+      setJobMarkers,
+      factorJobsForMap,
+    });
+
+    dispatch(setIsFormVisible(false));
+  };
+
   const searchForTrainings = async (values) => {
-    setIsTrainingSearchLoading(true);
-    setTrainingSearchError("");
-    clearTrainings();
-    try {
-      const response = await axios.get(trainingsApi, {
-        params: {
-          romes: getRomeFromParameters(values),
-          longitude: values.location.value.coordinates[0],
-          latitude: values.location.value.coordinates[1],
-          radius: values.radius || 30,
-          diploma: values.diploma,
-        },
-      });
-
-      if (response.data.result === "error") {
-        logError("Training Search Error", `${response.data.message}`);
-        setTrainingSearchError(trainingErrorText);
-      }
-
-      dispatch(setTrainings(response.data.results));
-      dispatch(setHasSearch(true));
-      dispatch(setIsFormVisible(false));
-
-      if (response.data.results.length) {
-        setTrainingMarkers(factorTrainingsForMap(response.data.results));
-      }
-    } catch (err) {
-      console.log(
-        `Erreur interne lors de la recherche de formations (${err.response ? err.response.status : ""} : ${
-          err.response.data ? err.response.data.error : ""
-        })`
-      );
-      logError("Training search error", err);
-      setTrainingSearchError(trainingErrorText);
-    }
-
-    setIsTrainingSearchLoading(false);
+    searchForTrainingsFunction({
+      values,
+      dispatch,
+      setIsTrainingSearchLoading,
+      setTrainingSearchError,
+      clearTrainings,
+      setTrainings,
+      setHasSearch,
+      setIsFormVisible,
+      setTrainingMarkers,
+      factorTrainingsForMap,
+      widgetParameters,
+    });
   };
 
   const searchForJobsWithStrictRadius = async (values) => {
@@ -195,111 +192,27 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   const searchForJobs = async (values, strictRadius) => {
-    setIsJobSearchLoading(true);
-    setJobSearchError("");
-    setAllJobSearchError(false);
-
-    try {
-      const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
-
-      const response = await axios.get(jobsApi, {
-        params: {
-          romes: getRomeFromParameters(values),
-          longitude: values.location.value.coordinates[0],
-          latitude: values.location.value.coordinates[1],
-          insee: values.location.insee,
-          zipcode: values.location.zipcode,
-          radius: values.radius || 30,
-          strictRadius: strictRadius ? "strict" : null,
-        },
-      });
-
-      let peJobs = null;
-
-      let results = {};
-
-      if (response.data === "romes_missing") {
-        setJobSearchError(technicalErrorText);
-        logError("Job search error", `Missing romes`);
-      } else {
-        if (!response.data.peJobs.result || response.data.peJobs.result !== "error")
-          peJobs = await computeMissingPositionAndDistance(searchCenter, response.data.peJobs.results);
-
-        results = {
-          peJobs: response.data.peJobs.result && response.data.peJobs.result === "error" ? null : peJobs,
-          lbbCompanies:
-            response.data.lbbCompanies.result && response.data.lbbCompanies.result === "error"
-              ? null
-              : response.data.lbbCompanies.results,
-          lbaCompanies:
-            response.data.lbaCompanies.result && response.data.lbaCompanies.result === "error"
-              ? null
-              : response.data.lbaCompanies.results,
-        };
-      }
-
-      // gestion des erreurs
-      let jobErrorMessage = "";
-      if (
-        response.data.peJobs.result === "error" &&
-        response.data.lbbCompanies.result === "error" &&
-        response.data.lbaCompanies.result === "error"
-      ) {
-        //TODO: définition niveau d'erreur JOB total
-        setAllJobSearchError(true);
-        jobErrorMessage = allJobSearchErrorText;
-        logError(
-          "Job Search Error",
-          `All job sources in error. PE : ${response.data.peJobs.message} - LBB : ${response.data.lbbCompanies.message} - LBA : ${response.data.lbaCompanies.message}`
-        );
-      } else {
-        if (
-          response.data.peJobs.result === "error" ||
-          response.data.lbbCompanies.result === "error" ||
-          response.data.lbaCompanies.result === "error"
-        ) {
-          jobErrorMessage = partialJobSearchErrorText;
-          if (response.data.peJobs.result === "error")
-            logError("Job Search Error", `PE Error : ${response.data.peJobs.message}`);
-          if (response.data.lbbCompanies.result === "error")
-            logError("Job Search Error", `LBB Error : ${response.data.lbbCompanies.message}`);
-          if (response.data.lbaCompanies.result === "error")
-            logError("Job Search Error", `LBA Error : ${response.data.lbaCompanies.message}`);
-        }
-      }
-
-      if (jobErrorMessage) setJobSearchError(jobErrorMessage);
-
-      dispatch(setJobs(results));
-      dispatch(setHasSearch(true));
-
-      setJobMarkers(factorJobsForMap(results), scopeContext.isTraining ? null : searchCenter);
-    } catch (err) {
-      console.log(
-        `Erreur interne lors de la recherche d'emplois (${
-          err.response && err.response.status ? err.response.status : ""
-        } : ${err.response && err.response.data ? err.response.data.error : err.message})`
-      );
-      logError("Job search error", err);
-      setJobSearchError(allJobSearchErrorText);
-      setAllJobSearchError(true);
-    }
-
-    setIsJobSearchLoading(false);
+    searchForJobsFunction({
+      values,
+      strictRadius,
+      setIsJobSearchLoading,
+      dispatch,
+      setHasSearch,
+      setJobSearchError,
+      setAllJobSearchError,
+      computeMissingPositionAndDistance,
+      setJobs,
+      setJobMarkers,
+      factorJobsForMap,
+      scopeContext,
+      widgetParameters,
+    });
   };
 
   const clearTrainings = () => {
     dispatch(setTrainings([]));
     setTrainingMarkers(null);
     closeMapPopups();
-  };
-
-  const getRomeFromParameters = (values) => {
-    return widgetParameters?.parameters?.jobName &&
-      widgetParameters?.parameters?.romes &&
-      widgetParameters?.parameters?.frozenJob
-      ? widgetParameters?.parameters?.romes
-      : values.job.romes.join(",");
   };
 
   const showSearchForm = (e, doNotSaveToHistory) => {
@@ -366,7 +279,11 @@ const SearchForTrainingsAndJobs = () => {
 
   return (
     <div className="page demoPage c-searchfor">
-      <InitWidgetSearchParameters handleSubmit={handleSubmit} setIsLoading={setIsLoading} />
+      <InitWidgetSearchParameters
+        handleSubmit={handleSubmit}
+        handleItemLoad={handleItemLoad}
+        setIsLoading={setIsLoading}
+      />
       <WidgetHeader handleSubmit={handleSubmit} />
       <Row className={`c-searchfor__row is-visible-${isFormVisible} is-welcome-${shouldShowWelcomeMessage} `}>
         <Col

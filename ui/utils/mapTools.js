@@ -335,7 +335,10 @@ const computeMissingPositionAndDistance = async (searchCenter, jobs) => {
         if (addresses.length) {
           job.place.longitude = addresses[0].value.coordinates[0];
           job.place.latitude = addresses[0].value.coordinates[1];
-          job.place.distance = Math.round(10 * distance(searchCenter, [job.place.longitude, job.place.latitude])) / 10;
+          if (searchCenter) {
+            job.place.distance =
+              Math.round(10 * distance(searchCenter, [job.place.longitude, job.place.latitude])) / 10;
+          }
         }
       }
     })
@@ -352,30 +355,32 @@ const buildJobMarkerIcon = (job) => {
 };
 
 const filterLayers = (filter) => {
-  let layersToShow = [];
-  let layersToHide = [];
-  if (filter === "all")
-    layersToShow = [
-      "training-points-cluster-count",
-      "training-points-layer",
-      "job-points-cluster-count",
-      "job-points-layer",
-    ];
-  if (filter === "jobs") {
-    layersToShow = ["job-points-cluster-count", "job-points-layer"];
-    layersToHide = ["training-points-cluster-count", "training-points-layer"];
-  }
-  if (filter === "trainings") {
-    layersToHide = ["job-points-cluster-count", "job-points-layer"];
-    layersToShow = ["training-points-cluster-count", "training-points-layer"];
-  }
+  if (isMapInitialized) {
+    let layersToShow = [];
+    let layersToHide = [];
+    if (filter === "all")
+      layersToShow = [
+        "training-points-cluster-count",
+        "training-points-layer",
+        "job-points-cluster-count",
+        "job-points-layer",
+      ];
+    if (filter === "jobs") {
+      layersToShow = ["job-points-cluster-count", "job-points-layer"];
+      layersToHide = ["training-points-cluster-count", "training-points-layer"];
+    }
+    if (filter === "trainings") {
+      layersToHide = ["job-points-cluster-count", "job-points-layer"];
+      layersToShow = ["training-points-cluster-count", "training-points-layer"];
+    }
 
-  layersToHide.map((layerId) => {
-    map.setLayoutProperty(layerId, "visibility", "none");
-  });
-  layersToShow.map((layerId) => {
-    map.setLayoutProperty(layerId, "visibility", "visible");
-  });
+    layersToHide.map((layerId) => {
+      map.setLayoutProperty(layerId, "visibility", "none");
+    });
+    layersToShow.map((layerId) => {
+      map.setLayoutProperty(layerId, "visibility", "visible");
+    });
+  }
 };
 
 const waitForMapReadiness = async () => {

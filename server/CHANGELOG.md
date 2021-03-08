@@ -1,8 +1,13 @@
 # CHANGELOG
 
-
 ## 1.10.0 [18/02/2021]
 [354] Nouvelle grille de composants
+[431] Navigation via historique
+[358] Lien direct vers fiche
+
+## 1.9.3 [19/02/2021]
+[419] Gestion cas "vides" sur champ d'auto complétion
+Renommmage /statistiques vers /stats
 
 ## 1.9.2 [18/02/2021]
 [417] Restauration de la home

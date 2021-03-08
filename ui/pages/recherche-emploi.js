@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import SearchForTrainingsAndJobs from "../components/SearchForTrainingsAndJobs";
 import { useDispatch } from "react-redux";
-import { setWidgetParameters } from "store/actions";
-import { getWidgetParameters } from "services/config";
+import { initParametersFromQuery } from "services/config";
 import { ScopeContextProvider } from "context/ScopeContext.js";
 import Head from "next/head";
 
@@ -10,10 +9,7 @@ const RechercheEmploi = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const widgetParameters = getWidgetParameters();
-    if (widgetParameters && widgetParameters.applyWidgetParameters) {
-      dispatch(setWidgetParameters(widgetParameters));
-    }
+    initParametersFromQuery(dispatch);
   }, []);
 
   return (

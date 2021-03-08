@@ -13,6 +13,7 @@ export const types = {
   SET_SHOULD_EXECUTE_SEARCH: "trainings/SET_SHOULD_EXECUTE_SEARCH",
   SET_SHOULD_MAP_BE_VISIBLE: "trainings/SET_SHOULD_MAP_BE_VISIBLE",
   SET_WIDGET_PARAMETERS: "trainings/SET_WIDGET_PARAMETERS",
+  SET_ITEM_PARAMETERS: "trainings/SET_ITEM_PARAMETERS",
 };
 
 export const setResults = (trainings = [], jobs = []) => {
@@ -113,3 +114,11 @@ export const setWidgetParameters = (widgetParameters = true) => {
     widgetParameters,
   };
 };
+
+export const setItemParameters = (itemParameters = true) => {
+  return {
+    type: types.SET_ITEM_PARAMETERS,
+    itemParameters,
+  };
+};
+

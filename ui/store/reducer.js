@@ -14,6 +14,7 @@ const initialState = {
   shouldExecuteSearch: false,
   shouldMapBeVisible: false,
   widgetParameters: null,
+  itemParameters: null,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -92,6 +93,11 @@ const mainReducer = (state = initialState, action) => {
     res = {
       ...state_copy,
       widgetParameters: action.widgetParameters,
+    };
+  } else if (action.type === actionsTypes.SET_ITEM_PARAMETERS) {
+    res = {
+      ...state_copy,
+      itemParameters: action.itemParameters,
     };
   } else {
     res = state_copy;
