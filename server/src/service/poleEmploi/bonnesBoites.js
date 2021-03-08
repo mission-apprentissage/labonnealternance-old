@@ -3,6 +3,7 @@ const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
 const { isOriginLocal } = require("../../common/utils/isOriginLocal");
+
 const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius, referer }) => {
   let companySet = null;
   let currentRadius = strictRadius ? radius : 20000;
@@ -117,6 +118,7 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
 
 const lbbApiEndpoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/company/";
 const lbaApiEndpoint = "https://api.emploi-store.fr/partenaire/labonnealternance/v1/company/";
+const lbbCompanyApiEndPoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/office/";
 
 const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type }) => {
   try {
@@ -162,4 +164,49 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
   }
 };
 
-module.exports = { getSomeLbbCompanies };
+const getCompanyFromSiret = async ({ siret }) => {
+  try {
+    const token = await getAccessToken("pe");
+    let headers = peApiHeaders;
+    headers.Authorization = `Bearer ${token}`;
+
+    console.log("siret", siret, lbbCompanyApiEndPoint);
+
+    //console.log("path : ",`${lbbCompanyApiEndPoint}${siret}/details`);
+
+    /*const company = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details`, {
+      headers,
+    });*/
+
+    // WORK IN PROGRESS : route pas accessible pour le moment au niveau ES
+    return { result: "not_found", message: "Société non trouvée" };
+
+    //throw new Error("boom");
+
+    /*
+    if (job.status === 204 || job.status === 400) {
+      return { result: "not_found", message: "Offre non trouvée" };
+    } else {
+      let peJob = transformPeJobForIdea(job.data, null, null);
+
+      return { peJobs: [peJob] };
+    }
+
+    */
+  } catch (error) {
+    let errorObj = { result: "error", message: error.message };
+
+    Sentry.captureException(error);
+
+    if (error.response) {
+      errorObj.status = error.response.status;
+      errorObj.statusText = error.response.statusText;
+    }
+
+    console.log("error get company by siret", errorObj);
+
+    return errorObj;
+  }
+};
+
+module.exports = { getSomeLbbCompanies, getCompanyFromSiret };
