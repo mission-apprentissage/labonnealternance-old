@@ -170,13 +170,15 @@ const getCompanyFromSiret = async ({ siret }) => {
     let headers = peApiHeaders;
     headers.Authorization = `Bearer ${token}`;
 
-    console.log("siret", siret, lbbCompanyApiEndPoint);
+    /*console.log("siret", siret, lbbCompanyApiEndPoint);
 
-    //console.log("path : ",`${lbbCompanyApiEndPoint}${siret}/details`);
-
-    /*const company = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details`, {
+    console.log("path : ",`${lbbCompanyApiEndPoint}${siret}/details`);
+    console.log("heades : ",headers);*/
+    const company = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details`, {
       headers,
-    });*/
+    });
+
+    console.log("company ", company);
 
     // WORK IN PROGRESS : route pas accessible pour le moment au niveau ES
     return { result: "not_found", message: "Société non trouvée" };

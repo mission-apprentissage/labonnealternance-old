@@ -77,6 +77,30 @@ export const loadItem = async ({
         setJobSearchError(response.data.result === "not_found" ? notFoundErrorText : partialJobSearchErrorText);
       }
     } else if (item.type === "lba" || item.type === "lbb") {
+      const response = await axios.get(companyApi + "/" + item.itemId);
+
+      // gestion des erreurs
+      if (!response.data.message) {
+        let companies = item.type === "lbb" ? response.data.lbbCompanies : response.data.lbaCompanies;
+
+        const loadedItem = companies[0];
+        let results = {
+          peJobs: null,
+          lbbCompanies: item.type === "lbb" ? companies : null,
+          lbaCompanies: item.type === "lba" ? companies : null,
+        };
+
+        dispatch(setJobs(results));
+
+        dispatch(setHasSearch(true));
+
+        setJobMarkers(factorJobsForMap(results), null);
+        dispatch(setSelectedItem(loadedItem));
+        itemMarker = loadedItem;
+      } else {
+        logError("Job Load Error", `PE Error : ${response.data.message}`);
+        setJobSearchError(response.data.result === "not_found" ? notFoundErrorText : partialJobSearchErrorText);
+      }
     }
 
     if (itemMarker) {
