@@ -153,7 +153,21 @@ const ChoiceColumn = ({
   const getInitialDesktopText = () => {
     return (
       <div className={`d-none pt-3 ${shouldShowWelcomeMessage ? "d-md-block" : ""}`}>
-        Texte visible seulement si pas de recherche et sur Desktop
+        <div className="c-staticmapframe__message pr-5 py-3">
+          <table>
+            <tbody>
+              <tr>
+                <td className="px-5 c-staticmapframe__decoration"></td>
+                <td>
+                  <span className="c-staticmapframe__title">Faites une recherche</span>
+                  <br />
+                  Renseignez les champs de recherche ci-dessus pour trouver la formation et l'entreprise pour réaliser
+                  votre projet d'alternance
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   };
@@ -163,21 +177,14 @@ const ChoiceColumn = ({
   };
 
   return (
-    <div
-      id="choiceColumn"
-      className={`choiceCol ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}
-    >
+    <div id="choiceColumn" className={`choiceCol ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}>
       {isLoading ? (
         <LoadingScreen />
       ) : (
         <>
           {getInitialDesktopText()}
           {getSearchForm()}
-          {trainings.length === 0 && isJobSearchLoading ? (
-            <div></div>
-          ) : (
-            getResultLists() 
-          )}          
+          {trainings.length === 0 && isJobSearchLoading ? <div></div> : getResultLists()}
           {getSelectedItemDetail()}
         </>
       )}

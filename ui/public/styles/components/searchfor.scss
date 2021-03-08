@@ -285,7 +285,9 @@
     box-shadow: 0px 0px 12px 2px rgb(0 0 0 / 21%);
   }
 
-  .c-staticmapframe__message
+}
+
+.c-staticmapframe__message
   {
     margin: auto;
     width: 80%;
@@ -312,7 +314,6 @@
       background: center no-repeat url(/images/icons/static_map_search.svg);  
     }
   }
-}
 
 .demoPage .markerIcon {
   width: 30px;
