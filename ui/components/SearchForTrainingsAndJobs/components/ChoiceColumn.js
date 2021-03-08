@@ -158,21 +158,14 @@ const ChoiceColumn = ({
     );
   };
 
-  const getSelectedItemDetail = (displayNavbar) => {
-    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} displayNavbar={displayNavbar} />;
-  };
-
-  const [displayNavbar, setDisplayNavbar] = useState(false);
-
-  const handleScroll = () => {
-    setDisplayNavbar(document.querySelector("#choiceColumn").scrollTop > 30);
+  const getSelectedItemDetail = () => {
+    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} />;
   };
 
   return (
     <div
       id="choiceColumn"
       className={`choiceCol ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}
-      onScroll={handleScroll}
     >
       {isLoading ? (
         <LoadingScreen />
@@ -180,8 +173,12 @@ const ChoiceColumn = ({
         <>
           {getInitialDesktopText()}
           {getSearchForm()}
-          {getResultLists()}
-          {getSelectedItemDetail(displayNavbar)}
+          {trainings.length === 0 && isJobSearchLoading ? (
+            <div></div>
+          ) : (
+            getResultLists() 
+          )}          
+          {getSelectedItemDetail()}
         </>
       )}
     </div>

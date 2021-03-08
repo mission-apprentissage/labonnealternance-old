@@ -278,16 +278,16 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   return (
-    <div className="page demoPage">
+    <div className="page demoPage c-searchfor">
       <InitWidgetSearchParameters
         handleSubmit={handleSubmit}
         handleItemLoad={handleItemLoad}
         setIsLoading={setIsLoading}
       />
       <WidgetHeader handleSubmit={handleSubmit} />
-      <Row>
+      <Row className={`c-searchfor__row is-visible-${isFormVisible} is-welcome-${shouldShowWelcomeMessage} `}>
         <Col
-          className={`leftShadow ${visiblePane === "resultList" ? "activeXSPane" : "inactiveXSPane"}`}
+          className={`choiceCol-container leftShadow ${visiblePane === "resultList" ? "activeXSPane" : "inactiveXSPane"}`}
           xs="12"
           md="5"
         >
@@ -309,7 +309,7 @@ const SearchForTrainingsAndJobs = () => {
             isLoading={isLoading}
           />
         </Col>
-        <Col className={`vh-100 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
+        <Col className={`${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
           <Map selectItemOnMap={selectItemOnMap} />
         </Col>
       </Row>
