@@ -40,5 +40,24 @@ module.exports = () => {
     })
   );
 
+  router.get(
+    "/company/:siret",
+    tryCatch(async (req, res) => {
+      const result = await peApi.getCompanyQuery({ siret: req.params.siret, referer: req.headers.referer });
+
+      if (result.error) {
+        if (result.error === "wrong_parameters") {
+          res.status(400);
+        } else if (result.error === "not_found") {
+          res.status(404);
+        } else {
+          res.status(500);
+        }
+      }
+
+      return res.json(result);
+    })
+  );
+
   return router;
 };
