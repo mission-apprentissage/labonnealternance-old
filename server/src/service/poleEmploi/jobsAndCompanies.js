@@ -19,16 +19,35 @@ const getJobsQuery = async (query) => {
 
 const getPeJobQuery = async (query) => {
   if (query.caller) {
-    trackEvent({ category: "Appel API", action: "jobV1", label: query.caller });
+    trackEvent({ category: "Appel API", action: "loadPeJobV1", label: query.caller });
   }
 
   try {
-    const job = await getPeJobFromId({
+    const job = await offresPoleEmploi.getPeJobFromId({
       id: query.id,
     });
 
     //throw new Error("BIG BANG");
     return job;
+  } catch (err) {
+    console.error("Error ", err.message);
+    Sentry.captureException(err);
+    return { error: "internal_error" };
+  }
+};
+
+const getCompanyQuery = async (query) => {
+  if (query.caller) {
+    trackEvent({ category: "Appel API", action: "loadCompanyV1", label: query.caller });
+  }
+
+  try {
+    const company = await bonnnesBoites.getCompanyFromSiret({
+      siret: query.siret,
+    });
+
+    //throw new Error("BIG BANG");
+    return company;
   } catch (err) {
     console.error("Error ", err.message);
     Sentry.captureException(err);
@@ -84,20 +103,6 @@ const getJobsFromApi = async (query) => {
     //throw new Error("kaboom");
 
     return { peJobs, lbaCompanies, lbbCompanies };
-  } catch (err) {
-    console.log("Error ", err.message);
-    Sentry.captureException(err);
-    return { error: "internal_error" };
-  }
-};
-
-const getPeJobFromId = async (query) => {
-  try {
-    const peJobResult = await offresPoleEmploi.getPeJobFromId({
-      id: query.id,
-    });
-
-    return peJobResult;
   } catch (err) {
     console.log("Error ", err.message);
     Sentry.captureException(err);
@@ -214,4 +219,4 @@ const getNextItem = (items, position) => {
   else return null;
 };
 
-module.exports = { getJobsFromApi, getPeJobFromId, getJobsQuery, getPeJobQuery };
+module.exports = { getJobsFromApi, getJobsQuery, getPeJobQuery, getCompanyQuery };
