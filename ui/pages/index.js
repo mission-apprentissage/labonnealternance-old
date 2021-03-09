@@ -3,7 +3,6 @@ import Navigation from "components/navigation";
 import HomeHero from "components/HomeHero";
 import HomeServices from "components/HomeServices";
 import { initParametersFromQuery } from "services/config";
-//import ServicesMissionApprentissage from "components/ServicesMissionApprentissage";
 import DescriptionMissionApprentissage from "components/DescriptionMissionApprentissage";
 import Footer from "components/footer";
 import { useDispatch } from "react-redux";

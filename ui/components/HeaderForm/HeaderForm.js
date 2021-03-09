@@ -28,8 +28,6 @@ const HeaderForm = ({ handleSubmit }) => {
   const [diplomaError, setDiplomaError] = useState(false);
 
   const renderFormik = () => {
-    // console.log('formValues', formValues);
-
     return (
       <Formik
         validate={(values) => validateFormik(values, widgetParameters)}
