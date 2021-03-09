@@ -10,7 +10,7 @@ const WidgetHeader = ({ handleSubmit }) => {
       <div className="c-widgetheader d-none d-md-block">
         <Row className="c-widgetheader-bar d-none d-md-flex py-2 pl-3">
           <LogoIdea />
-          <div className="ml-4">
+          <div>
             <HeaderForm handleSubmit={handleSubmit} />
           </div>
         </Row>

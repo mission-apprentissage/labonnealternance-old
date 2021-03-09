@@ -24,7 +24,7 @@ const LogoIdea = () => {
   };
 
   return (
-    <div>
+    <div className="mr-4">
       <a href="/" onClick={goToLbaHome} className="ml-3 d-none d-lg-inline">
         <img
           src={
