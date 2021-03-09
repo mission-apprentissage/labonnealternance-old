@@ -1,3 +1,4 @@
+import React from "react";
 
 const diplomaMap = {
   "3 (CAP...)": "CAP",
@@ -17,8 +18,7 @@ export default function buildDiplomas() {
             {diplomaMap[key]}
           </option>
         );
-        })
-      }
+      })}
     </>
   );
 }
