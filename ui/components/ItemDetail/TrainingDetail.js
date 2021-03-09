@@ -1,19 +1,24 @@
 import React, { useEffect } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
+import { useScopeContext } from "context/ScopeContext";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
+  const scopeContext = useScopeContext();
+
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   useEffect(() => {
-    if (window && window.initPrdvWidget) {
-      const el = document.getElementsByClassName("widget-prdv");
+    if (!scopeContext.isJob && scopeContext.isTraining) {
+      if (window && window.initPrdvWidget) {
+        const el = document.getElementsByClassName("widget-prdv");
 
-      if (el.length && !el[0].innerHTML) {
-        window.initPrdvWidget();
+        if (el.length && !el[0].innerHTML) {
+          window.initPrdvWidget();
+        }
       }
     }
   }, []);
