@@ -24,8 +24,8 @@ const LogoIdea = () => {
   };
 
   return (
-    <div className="mr-4">
-      <a href="/" onClick={goToLbaHome} className="ml-3 d-none d-lg-inline">
+    <div className="mr-4 c-logoheader">
+      <a href="/" onClick={goToLbaHome} className="ml-3">
         <img
           src={
             widgetParameters && widgetParameters?.parameters?.returnLogoURL
