@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
+import glassImage from "public/images/glass_white.svg";
 import { Formik, Form, Field } from "formik";
 import { AutoCompleteField } from "..";
 import buildAvailableDiplomas from "services/buildAvailableDiplomas";
@@ -102,13 +102,13 @@ const HeaderForm = ({ handleSubmit }) => {
                 </Input>
               </div>
             </div>
-            <div className="c-logobar-formgroup ml-3">
+            <div className="c-logobar-formgroup ml-3 border-0">
               <button
                 type="submit"
                 className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn"
                 disabled={isSubmitting}
               >
-                Go
+                <img src={glassImage} />
               </button>
             </div>
           </Form>
