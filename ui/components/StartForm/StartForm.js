@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, ErrorMessage } from "formik";
-import { AutoCompleteField } from "../";
+import {
+  AutoCompleteField,
+  compareAutoCompleteValues,
+  autoCompleteToStringFunction,
+} from "components/AutoCompleteField/AutoCompleteField";
 import { fetchAddresses } from "../../services/baseAdresse";
 import fetchRomes from "../../services/fetchRomes";
 import { DomainError } from "../";
@@ -27,16 +31,6 @@ const StartForm = (props) => {
     dispatch(setFormValues({ job: values.job, location: values.location }));
     dispatch(setShouldExecuteSearch(true));
     dispatch(push({ pathname: "/recherche-apprentissage" }));
-  };
-
-  // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
-  const autoCompleteToStringFunction = (item) => {
-    return item ? item.label : "";
-  };
-
-  // Permet de sélectionner un élément dans la liste d'items correspondant à un texte entré au clavier
-  const compareAutoCompleteValues = (items, value) => {
-    return items.findIndex((element) => element.label.toLowerCase() === value.toLowerCase());
   };
 
   // Mets à jours les valeurs de champs du formulaire Formik à partir de l'item sélectionné dans l'AutoCompleteField
@@ -96,6 +90,7 @@ const StartForm = (props) => {
                   name="jobField"
                   placeholder="Ex : boulangerie"
                   illustration={glassImage}
+                  isHome={true}
                 />
                 <ErrorMessage name="job" className="u-error-text-color" component="div" />
               </div>
@@ -111,6 +106,7 @@ const StartForm = (props) => {
                   name="placeField"
                   placeholder="Adresse, ville ou code postal"
                   illustration={localisationImage}
+                  isHome={true}
                 />
                 <ErrorMessage name="location" className="u-error-text-color" component="div" />
               </div>

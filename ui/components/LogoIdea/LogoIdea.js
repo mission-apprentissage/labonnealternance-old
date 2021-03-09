@@ -1,12 +1,9 @@
 import React from "react";
-import logoLBA from "../../public/images/logo-noir-lba.svg";
+import logoLBA from "../../public/images/logo-noir-seul.svg";
 import { push } from "connected-next-router";
-import { Row, Col } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./LogoIdea.module.scss";
-import { Button } from "reactstrap";
 
-const LogoIdea = ({ showSearchForm }) => {
+const LogoIdea = () => {
   const dispatch = useDispatch();
 
   const { widgetParameters } = useSelector((state) => state.trainings);
@@ -27,29 +24,18 @@ const LogoIdea = ({ showSearchForm }) => {
   };
 
   return (
-    <Row className={styles.root}>
-      <Col xs="4">
-        <a href="/" onClick={goToLbaHome}>
-          <img
-            src={
-              widgetParameters && widgetParameters?.parameters?.returnLogoURL
-                ? widgetParameters.parameters.returnLogoURL
-                : logoLBA
-            }
-            alt="Retour page d'accueil de La Bonne Alternance"
-            className={styles.img}
-          />
-        </a>
-      </Col>
-      <Col xs="4">
-        <h1 className={styles.h1}>Trouvez votre apprentissage</h1>
-      </Col>
-      <Col xs="4">
-        <Button className="blueButton filterButton" onClick={showSearchForm}>
-          <span className="hiddenSM"> Filtres</span>
-        </Button>
-      </Col>
-    </Row>
+    <div className="mr-4 c-logoheader">
+      <a href="/" onClick={goToLbaHome} className="ml-3">
+        <img
+          src={
+            widgetParameters && widgetParameters?.parameters?.returnLogoURL
+              ? widgetParameters.parameters.returnLogoURL
+              : logoLBA
+          }
+          alt="Retour page d'accueil de La Bonne Alternance"
+        />
+      </a>
+    </div>
   );
 };
 

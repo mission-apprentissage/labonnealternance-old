@@ -130,7 +130,14 @@ $small-font-size: 85%;
 *
 */
 .c-app {
-
+  // See https://stackoverflow.com/questions/23768152/using-container-fluid-within-bootstrap-cause-horizontal-scrollbar
+  .row {
+    margin: 0px;
+  }
+  // See https://stackoverflow.com/questions/23768152/using-container-fluid-within-bootstrap-cause-horizontal-scrollbar
+  .card-deck {
+    margin: 0px;
+  }
   .btn-outline-primary:hover, .btn-outline-primary.hover {
       color: $info;
       background-color: white;

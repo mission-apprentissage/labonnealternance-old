@@ -1,7 +1,8 @@
 .c-navbar-brand-img {
- @include media-breakpoint-down(sm) { 
-   width: 110px;
- }
+  width: 191px;
+  @include media-breakpoint-down(sm) { 
+    width: 110px;
+  }
 }
 
 .c-navigation.is-filled .navbar {

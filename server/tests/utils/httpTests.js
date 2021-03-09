@@ -4,8 +4,9 @@ const { connectToMongoForTests, cleanAll } = require("./testUtils.js");
 const server = require("../../src/http/server");
 const nock = require("nock");
 
-nock.disableNetConnect();
-nock.enableNetConnect("127.0.0.1");
+//FIXME : issue https://github.com/mission-apprentissage/labonnealternance/issues/158
+nock.enableNetConnect();
+//nock.enableNetConnect("127.0.0.1");
 
 const startServer = async () => {
   const { db } = await connectToMongoForTests();

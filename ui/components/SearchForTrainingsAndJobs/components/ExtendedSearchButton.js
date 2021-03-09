@@ -9,15 +9,15 @@ const ExtendedSearchButton = ({ title, hasJob, handleExtendedSearch }) => {
 
   const scopeContext = useScopeContext();
 
-  const gtmClass = function() {
-    let res = '';
+  const gtmClass = function () {
+    let res = "";
     if (hasJob == "true") {
-      res = 'gtmExtendSelect gtmExtendSelectHasJob'
+      res = "gtmExtendSelect gtmExtendSelectHasJob";
     } else if (hasJob == "false") {
-      res = 'gtmExtendSelect gtmExtendSelectNoJob'
+      res = "gtmExtendSelect gtmExtendSelectNoJob";
     }
     return res;
-  }
+  };
 
   return scopeContext.isJob ? (
     <button className={`${gtmClass()} btn btn-lg btn-dark c-regular-darkbtn my-3`} onClick={handleClick}>

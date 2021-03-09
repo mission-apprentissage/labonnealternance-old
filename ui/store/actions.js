@@ -7,11 +7,13 @@ export const types = {
   SET_FORM_VALUES: "trainings/SET_FORM_VALUES",
   SET_EXTENDED_SEARCH: "trainings/SET_EXTENDED_SEARCH",
   SET_VISIBLE_PANE: "trainings/SET_VISIBLE_PANE",
+  SET_CURRENT_PAGE: "trainings/SET_CURRENT_PAGE",
   SET_HAS_SEARCH: "trainings/SET_HAS_SEARCH",
   SET_IS_FORM_VISIBLE: "trainings/SET_IS_FORM_VISIBLE",
   SET_SHOULD_EXECUTE_SEARCH: "trainings/SET_SHOULD_EXECUTE_SEARCH",
   SET_SHOULD_MAP_BE_VISIBLE: "trainings/SET_SHOULD_MAP_BE_VISIBLE",
   SET_WIDGET_PARAMETERS: "trainings/SET_WIDGET_PARAMETERS",
+  SET_ITEM_PARAMETERS: "trainings/SET_ITEM_PARAMETERS",
 };
 
 export const setResults = (trainings = [], jobs = []) => {
@@ -71,6 +73,13 @@ export const setVisiblePane = (visiblePane = "resultList") => {
   };
 };
 
+export const setCurrentPage = (currentPage = "") => {
+  return {
+    type: types.SET_CURRENT_PAGE,
+    currentPage,
+  };
+};
+
 export const setHasSearch = (hasSearch = false) => {
   return {
     type: types.SET_HAS_SEARCH,
@@ -105,3 +114,11 @@ export const setWidgetParameters = (widgetParameters = true) => {
     widgetParameters,
   };
 };
+
+export const setItemParameters = (itemParameters = true) => {
+  return {
+    type: types.SET_ITEM_PARAMETERS,
+    itemParameters,
+  };
+};
+

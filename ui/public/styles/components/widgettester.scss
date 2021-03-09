@@ -91,7 +91,6 @@
   font-weight: bold;
 }
 .widgetTestPage form .fieldContainer {
-  border: 1px solid #e0e0e0;
   height: 56px;
   width: 100%;
   margin: auto;
@@ -101,7 +100,7 @@
   background: #fff;
   border-radius: 10px;
 }
-.widgetTestPage form .fieldContainer:focus-within {
+.widgetTestPage .c-logobar-formgroup:focus-within {
   border: 1px solid #006AEB;
 }
 .widgetTestPage form .errorField {

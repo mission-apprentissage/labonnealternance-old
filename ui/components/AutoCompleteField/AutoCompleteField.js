@@ -3,12 +3,23 @@ import { useFormikContext } from "formik";
 import { useCombobox } from "downshift";
 import { debounce } from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService";
-import highlightItem  from "../../services/hightlightItem";
-import ReactHtmlParser from 'react-html-parser'; 
+import highlightItem from "services/hightlightItem";
+import ReactHtmlParser from "react-html-parser";
 
 let debouncedOnInputValueChange = null;
 
+// Permet de sélectionner un élément dans la liste d'items correspondant à un texte entré au clavier
+export const compareAutoCompleteValues = (items, value) => {
+  return items.findIndex((element) => (element.label ? element.label.toLowerCase() === value.toLowerCase() : false));
+};
+
+// indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
+export const autoCompleteToStringFunction = (item) => {
+  return item?.label?.toString() ?? "";
+};
+
 export const AutoCompleteField = ({
+  kind,
   itemToStringFunction,
   onInputValueChangeFunction,
   onSelectedItemChangeFunction,
@@ -98,12 +109,16 @@ export const AutoCompleteField = ({
     },
   });
 
+  const classesOfContainer = props?.isHome ? '' : 'c-logobar-formgroup'
+  const classesOfInsider = props?.isHome ? 'form-control-lg w-100 c-input-work' : 'c-logobar-field'
+
   return (
-    <div className="autoCompleteContainer">
-      <div className={`c-input-work-container`} {...getComboboxProps()}>
+    <div className="">
+      <div className={`c-input-work-container ${classesOfContainer}`} {...getComboboxProps()}>
+        <label className="c-logobar-label">{kind}</label>
         <input
           {...getInputProps()}
-          className={`form-control form-control-lg w-100 c-input-work ${
+          className={`${classesOfInsider} ${
             inputValue && inputValue.length > 20 ? "is-text-too-long" : "is-text-not-too-long"
           }`}
           placeholder={props.placeholder}
@@ -115,15 +130,19 @@ export const AutoCompleteField = ({
       </div>
       <ul {...getMenuProps()} className="c-autocomplete__menu">
         {isOpen &&
-          inputItems.map((item, index) => (
-            <li
-              className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
-              key={`${index}`}
-              {...getItemProps({ item: item.label, index })}
-            >
-              {ReactHtmlParser(highlightItem(item.label, inputValue))}
-            </li>
-          ))}
+          inputItems.map((item, index) =>
+            item.label ? (
+              <li
+                className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
+                key={`${index}`}
+                {...getItemProps({ item: item.label, index })}
+              >
+                {ReactHtmlParser(highlightItem(item.label, inputValue))}
+              </li>
+            ) : (
+              ""
+            )
+          )}
       </ul>
     </div>
   );

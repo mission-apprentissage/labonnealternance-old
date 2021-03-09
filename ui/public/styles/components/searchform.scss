@@ -1,0 +1,13 @@
+.c-searchform input, .c-searchform select {
+  border: none;
+  height: 32px;
+  margin-left: 5px;
+  width: 90%;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+.c-searchform.c-searchform--column input, .c-searchform.c-searchform--column select {
+  font-size: 16px;
+}
