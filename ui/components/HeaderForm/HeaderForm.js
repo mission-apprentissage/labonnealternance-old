@@ -102,13 +102,14 @@ const HeaderForm = ({ handleSubmit }) => {
                 </Input>
               </div>
             </div>
-            <div className="c-logobar-formgroup ml-3 border-0">
+            <div className="c-logobar-formgroup ml-md-1 ml-lg-3 border-0">
               <button
                 type="submit"
                 className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn"
                 disabled={isSubmitting}
+                alt="Lancer la recherche"
               >
-                <img src={glassImage} />
+                <img alt="" src={glassImage} />
               </button>
             </div>
           </Form>
