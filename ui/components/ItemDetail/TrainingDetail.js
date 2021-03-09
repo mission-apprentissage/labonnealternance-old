@@ -8,6 +8,26 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
+  useEffect(() => {
+    console.log("Bin alors ? ",training);
+    if (window && window.initPrdvWidget) {
+      const el = document.getElementsByClassName("widget-prdv");
+
+      console.log("el.length ",el.length);
+      console.log("inner : ",el.length?el[0]:"NADA");
+
+      if (el.length && !el[0].innerHTML) {
+        window.initPrdvWidget();
+      }
+    }
+  }, [training]);
+
+  const buildPrdvButton = () => {
+    return (
+      <div className="widget-prdv" data-siret={training.company.siret} data-cfd={training.cfd} data-referrer="lba" />
+    );
+  };
+
   const kind = training?.ideaType;
   let contactEmail = training?.contact?.email;
   let contactInfo = contactEmail ? (
@@ -56,6 +76,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
                 &nbsp;le site Onisep
               </a>
             </span>
+            {buildPrdvButton()}
           </div>
         ) : (
           ""
