@@ -2,7 +2,7 @@ const assert = require("assert");
 const httpTests = require("../../utils/httpTests");
 
 httpTests(__filename, ({ startServer }) => {
-  it("Vérifie que la route répond", async () => {
+  it("Vérifie que la route formations répond", async () => {
     const { httpClient } = await startServer();
 
     const response = await httpClient.get("/api/V1/formations");
@@ -264,5 +264,22 @@ httpTests(__filename, ({ startServer }) => {
         'diploma : Optional diploma argument used with wrong value. Should contains only one of "3 (CAP...)","4 (Bac...)","5 (BTS, DUT...)","6 (Licence...)","7 (Master, titre ingénieur...)".'
       ) >= 0
     );
+  });
+
+  it("Vérifie que la route formation répond", async () => {
+    const { httpClient } = await startServer();
+
+    const response = await httpClient.get("/api/V1/formations/formation/a");
+
+    assert.strictEqual(response.status, 200);
+    assert.ok(response.data.results.length === 0);
+  });
+
+  it("Vérifie que la recherche formation répond", async () => {
+    const { httpClient } = await startServer();
+
+    const response = await httpClient.get("/api/V1/formations/formation/5fd25112c67da3c3e6bc7ef0");
+
+    assert.strictEqual(response.status, 200);
   });
 });

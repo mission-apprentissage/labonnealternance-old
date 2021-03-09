@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Nav, NavItem, NavLink, Spinner } from "reactstrap";
+import { Spinner } from "reactstrap";
 import Training from "../../../components/ItemDetail/Training";
 import PeJob from "../../../components/ItemDetail/PeJob";
 import LbbCompany from "../../../components/ItemDetail/LbbCompany";
-import { LogoIdea, ErrorMessage } from "../../../components";
+import { ErrorMessage } from "../../../components";
 import { filterLayers } from "../../../utils/mapTools";
 import { useSelector } from "react-redux";
 import ExtendedSearchButton from "./ExtendedSearchButton";
@@ -11,6 +11,7 @@ import NoJobResult from "./NoJobResult";
 import FilterButton from "./FilterButton";
 import { useScopeContext } from "context/ScopeContext";
 import questionMarkIcon from "public/images/icons/question_mark.svg";
+import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
 
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -38,7 +39,11 @@ const ResultLists = (props) => {
 
   const getTrainingResult = () => {
     if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
-      return <div className="trainingResult">{getTrainingList()}</div>;
+      return (
+        <div id="trainingResult" className="trainingResult">
+          {getTrainingList()}
+        </div>
+      );
     } else {
       return "";
     }
@@ -253,7 +258,7 @@ const ResultLists = (props) => {
   };
 
   // construit le bloc formaté avec les décomptes de formations et d'opportunités d'emploi
-  const getResultCountAndLoading = () => {
+  const getResultCountAndLoading = (localDisplayCount) => {
     if (props.allJobSearchError && props.trainingSearchError) return "";
 
     let count = 0;
@@ -324,15 +329,15 @@ const ResultLists = (props) => {
     } à votre recherche`;
 
     return (
-      <div className="c-result-lists">
-        <div className="resultTitle">
+      <div className="pt-0">
+        <div className="resultTitle mt-0 mt-md-2">
           {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
-            <>
+            <div className={`c-resultlist-correspond-display-${localDisplayCount}`}>
               <span className="c-resultlist-correspond c-resultlist-correspond--bold">
                 {trainingPart} {trainingPart && jobPart ? " et " : ""} {jobPart}{" "}
               </span>
               <span className="c-resultlist-correspond c-resultlist-correspond--light">{correspondText}</span>
-            </>
+            </div>
           ) : (
             ""
           )}
@@ -356,7 +361,7 @@ const ResultLists = (props) => {
           )}
         </div>
         {!trainingLoading && !jobLoading && scopeContext.isJob && scopeContext.isTraining ? (
-          <div className="filterButtons">
+          <div className="c-filterbuttons">
             <FilterButton
               type="all"
               isActive={activeFilter === "all" ? true : false}
@@ -374,6 +379,9 @@ const ResultLists = (props) => {
               isActive={activeFilter === "jobs" ? true : false}
               handleFilterButtonClicked={filterButtonClicked}
             />
+            <div className="c-resultlist-purplefilter" onClick={props.showSearchForm}>
+              <img src={purpleFilterIcon} alt="Image de filtres" />
+            </div>
           </div>
         ) : (
           ""
@@ -394,17 +402,30 @@ const ResultLists = (props) => {
     );
   };
 
+  const [displayCount, setDisplayCount] = useState(false);
+  const handleScroll = () => {
+    setDisplayCount(document.querySelector(".c-result-list__text").scrollTop < 30);
+  };
+
   return (
-    <div className={isFormVisible || props.selectedItem ? "hiddenResultList" : ""}>
-      <header>
-        <LogoIdea showSearchForm={props.showSearchForm} />
-      </header>
-      <div className="clearBoth" />
-      {getResultCountAndLoading()}
-      {getErrorMessages()}
-      {getBanner()}
-      {getTrainingResult()}
-      {getJobResult()}
+    <div
+      className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${
+        props.selectedItem ? "c-result-list--item" : ""
+      }`}
+    >
+      <div className={`c-result-list__header ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
+        {getResultCountAndLoading(displayCount)}
+        {getErrorMessages()}
+      </div>
+      <div
+        onScroll={handleScroll}
+        id="resultList"
+        className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}
+      >
+        {getBanner()}
+        {getTrainingResult()}
+        {getJobResult()}
+      </div>
     </div>
   );
 };

@@ -19,6 +19,7 @@ export const autoCompleteToStringFunction = (item) => {
 };
 
 export const AutoCompleteField = ({
+  kind,
   itemToStringFunction,
   onInputValueChangeFunction,
   onSelectedItemChangeFunction,
@@ -108,12 +109,16 @@ export const AutoCompleteField = ({
     },
   });
 
+  const classesOfContainer = props?.isHome ? '' : 'c-logobar-formgroup'
+  const classesOfInsider = props?.isHome ? 'form-control-lg w-100 c-input-work' : 'c-logobar-field'
+
   return (
-    <div className="autoCompleteContainer">
-      <div className={`c-input-work-container`} {...getComboboxProps()}>
+    <div className="">
+      <div className={`c-input-work-container ${classesOfContainer}`} {...getComboboxProps()}>
+        <label className="c-logobar-label">{kind}</label>
         <input
           {...getInputProps()}
-          className={`form-control form-control-lg w-100 c-input-work ${
+          className={`${classesOfInsider} ${
             inputValue && inputValue.length > 20 ? "is-text-too-long" : "is-text-not-too-long"
           }`}
           placeholder={props.placeholder}

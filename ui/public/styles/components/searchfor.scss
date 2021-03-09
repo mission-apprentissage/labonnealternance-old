@@ -1,6 +1,3 @@
-.demoPage {
-  max-width: 99%;
-}
 .demoPage .c-autocomplete__menu {
   margin-left: 0px;
   width: 100%;
@@ -15,7 +12,7 @@
 .demoPage .bold {
   font-weight: bold;
 }
-.demoPage form {
+.c-searchform {
   margin-top: 20px;
 }
 .demoPage form .row {
@@ -35,14 +32,7 @@
   padding-left: 0;
   padding-right: 0;
 }
-@media only screen and (min-width: 768px) {
-  .demoPage .leftShadow {
-    box-shadow: 2px -15px 15px rgba(0, 0, 0, 0.5);
-  }
-}
-.demoPage .activeXSPane {
-  display: block;
-}
+
 .demoPage .inactiveXSPane {
   display: block;
 }
@@ -92,22 +82,18 @@
   margin-top: 13px;
   margin-left: 15px;
 }
-.demoPage .choiceCol {
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.demoPage .choiceCol .apiResult {
+
+.choiceCol .apiResult {
   text-align: left;
 }
-.demoPage .choiceCol .formGroup {
+.choiceCol .formGroup {
   text-align: left;
   margin: auto;
   width: 90%;
   max-width: 450px;
   min-width: 250px;
 }
-.demoPage .choiceCol .fieldContainer {
+.choiceCol .fieldContainer {
   border: 1px solid #e0e0e0;
   height: 56px;
   width: 90%;
@@ -118,66 +104,47 @@
   background: #fff;
   border-radius: 10px;
 }
-.demoPage .choiceCol .fieldContainer:focus-within {
+.choiceCol .fieldContainer:focus-within {
   border: 1px solid #006AEB;
 }
-.demoPage .choiceCol .errorField {
-  color: red;
-  margin-top: -10px;
-  margin-bottom: 25px;
+.choiceCol .errorField {
+  color: #b60000;
+  margin-left: 5px;
 }
-.demoPage .choiceCol .form-check {
+.choiceCol .form-check {
   padding-left: 0;
 }
-.demoPage .choiceCol .buttons {
+.choiceCol .buttons {
   margin: auto;
   max-width: 600px;
 }
-.demoPage .choiceCol input,
-.demoPage .choiceCol select {
-  border: none;
-  height: 52px;
-  margin-left: 5px;
-  width: 90%;
-}
-.demoPage .choiceCol input[type="radio"] {
+.choiceCol input[type="radio"] {
   height: 16px;
   margin-left: -45px;
   margin-top: 3px;
 }
-.demoPage .choiceCol input:focus,
-.demoPage .choiceCol select:focus {
+.choiceCol input:focus,
+.choiceCol select:focus {
   outline: none;
 }
-.demoPage .choiceCol .fa-search,
-.demoPage .choiceCol .fa-map-marker-alt {
+.choiceCol .fa-search {
   margin-top: 16px;
 }
-.demoPage .choiceCol .autoCompleteContainer {
+.choiceCol .autoCompleteContainer {
   width: 87%;
   float: left;
 }
-.demoPage .choiceCol h2 {
+.choiceCol h2 {
   font-size: 24px;
   color: #333;
   margin: 20px 0;
 }
-.demoPage .choiceCol .listText {
+.choiceCol .listText {
   font-weight: bold;
   margin: 20px 0;
 }
-.demoPage .choiceCol button {
-  // width: 80%;
-  // background: #333;
-  // color: #fff;
-  // border: 1px solid #333;
-  // text-align: center;
-  // font-size: 16px;
-  // padding: 18px;
-  // max-width: 280px;
-  // margin: auto;
-}
-.demoPage .choiceCol .blueButton {
+
+.choiceCol .blueButton {
   color: #066EE7;
   background: #fff;
   border: 2px solid #066EE7;
@@ -187,7 +154,7 @@
   text-align: center;
   width: auto;
 }
-.demoPage .choiceCol .closeButton {
+.choiceCol .closeButton {
   color: #4A4A4A;
   background: #fff;
   border-radius: 50px !important;
@@ -201,7 +168,7 @@
   border: none;
   box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.2);
 }
-.demoPage .choiceCol .submitButton {
+.choiceCol .submitButton {
   margin-top: 20px;
   background-color: #0061DF;
   border-radius: 10px;
@@ -212,81 +179,31 @@
   border: none;
   margin-bottom: 30px;
 }
-.demoPage .choiceCol header .blueButton {
+.choiceCol header .blueButton {
   margin-top: 5px;
   float: right;
 }
-.demoPage .choiceCol .blueButton:hover {
+.choiceCol .blueButton:hover {
   color: #fff;
   border: 2px solid #066EE7;
   background: #066EE7;
 }
-.demoPage .choiceCol .filterButton {
+.choiceCol .filterButton {
   background-image: url(/images/icons/filter.svg);
   background-position: 4px;
   background-repeat: no-repeat;
   width: 80px;
   text-align: right;
 }
-.demoPage .choiceCol .filterButton:hover {
+.choiceCol .filterButton:hover {
   background-image: url("/images/icons/filter_white.svg");
   background-position: 4px;
   background-repeat: no-repeat;
 }
-.demoPage .choiceCol .noOpportunityFound {
+.choiceCol .noOpportunityFound {
   margin-top: 30px;
 }
-.demoPage .choiceCol .filterButtons {
-  display: inline-block;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-  padding-left: 31px;
-  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.25);
-}
 
-.demoPage .choiceCol .filterButtons button {
-  text-align: center;
-  font-size: 12px;
-  background: none;
-  width: fit-content;
-  outline: none;
-  border: none;
-  padding: 20px 0px;
-  color: #929292;
-  margin-right: 5px;
-  @include media-breakpoint-up(sm) { 
-    font-size: 14px;
-    margin-right: 40px;
-  }
-}
-.demoPage .choiceCol .filterButtons button img {
-  margin: -2px 5px 0 5px;
-}
-.demoPage .choiceCol .filterButtons button.filterButtonall.active {
-  border: none;
-  color: #4A4A4A;
-  font-weight: 700;
-  border-bottom: 2px solid $gray-750;
-}
-.demoPage .choiceCol .filterButtons button.filterButtontrainings.active {
-  border: none;
-  font-weight: 700;
-  color: #4A4A4A;
-  border-bottom: 2px solid $gray-750;
-}
-.demoPage .choiceCol .filterButtons button.filterButtonjobs.active {
-  border: none;
-  font-weight: 700;
-  color: #4A4A4A;
-  border-bottom: 2px solid $gray-750;
-}
-.demoPage .choiceCol .filterButtons button:hover,
-.demoPage .choiceCol .filterButtons button:focus {
-  box-shadow: none;
-  box-shadow: 0 0 0 2px $primary;
-  border-radius: 2px;
-}
 .demoPage .row {
   text-align: center;
 }
@@ -322,7 +239,6 @@
   color: #4A4A4A;
   font-weight: 600;
   font-size: 22px;
-  margin-top: 20px;
   margin-bottom: 0px;
   padding: 0 20px;
 }
@@ -337,11 +253,13 @@
 .demoPage .dummyMapContainer {
   height: 100vh;
   width: 100%;
-  position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
+  @include media-breakpoint-up(md) { 
+    position: absolute;
+  }
 }
 
 .mapContainer:focus,
@@ -350,13 +268,21 @@
   outline:none;
 }
 
-.demoPage .dummyMapContainer {
-  background: center / contain no-repeat url(/images/static_map.svg), #F9F8F6;  
-
+.dummyMapContainer {
+  
   .c-staticmapframe
   {
+    background: center/contain no-repeat url(/images/static_map.svg), #FFF;
+    height: 100%;
+    padding-top: 150px;
+    box-shadow: 0px 0px 12px 2px rgb(0 0 0 / 21%);
+  }
+
+}
+
+.c-staticmapframe__message
+  {
     margin: auto;
-    margin-top: 150px;
     width: 80%;
     min-width: 250px;
     max-width: 600px;
@@ -381,7 +307,6 @@
       background: center no-repeat url(/images/icons/static_map_search.svg);  
     }
   }
-}
 
 .demoPage .markerIcon {
   width: 30px;
@@ -407,4 +332,54 @@
   height: 18px;
   border-radius: 15px !important;
   text-align: center;
+}
+
+
+/**
+*   This section is dedicated to the "scroll result" problem.
+*   See https://codepen.io/pigparlor/pen/NWbBMYL
+*/
+.c-searchfor {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.c-searchfor__row {
+  flex: 1;
+  overflow: hidden;
+    &.is-visible-true {
+      overflow: inherit;
+    }
+    &.is-visible-true.is-welcome-true {
+      overflow: hidden;
+    }
+}
+.choiceCol-container {
+  overflow:hidden;
+  height: 100%;
+  display: flex;
+}
+.choiceCol {
+  flex: 1;
+}
+.c-result-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  &__text {
+    flex: 1;
+    overflow: auto;
+  }
+}
+
+.c-result-list.c-result-list--item {
+  height: 0%;
+} 
+
+.c-resultlist-correspond-display-false {
+  display: none;
+}
+.c-resultlist-correspond-display-true {
+  @extend .pt-3;
 }

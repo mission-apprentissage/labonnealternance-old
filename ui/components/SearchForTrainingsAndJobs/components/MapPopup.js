@@ -10,14 +10,9 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
   //console.log("Mappopup : ", type, item);
   const dispatch = useDispatch();
 
-  const openJobDetail = (job) => {
-    dispatch(setSelectedItem(job));
-    handleSelectItem();
-  };
-
-  const openTrainingDetail = (training) => {
-    dispatch(setSelectedItem(training));
-    handleSelectItem();
+  const openItemDetail = (item) => {
+    dispatch(setSelectedItem(item));
+    handleSelectItem(item);
   };
 
   const getContent = () => {
@@ -36,7 +31,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
               <div className="knowMore">
                 <button
                   className={`gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
-                  onClick={() => openJobDetail(job)}
+                  onClick={() => openItemDetail(job)}
                 >
                   En savoir plus
                 </button>
@@ -85,7 +80,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
 
         <ul>
           {list.map((job, idx) => (
-            <li onClick={() => openJobDetail(job)} key={idx}>
+            <li onClick={() => openItemDetail(job)} key={idx}>
               {job.title}
             </li>
           ))}
@@ -99,7 +94,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
     let result = (
       <>
         {list.map((training, idx) => (
-          <li className={`gtmSavoirPlus gtmFormation gtmMap`} onClick={() => openTrainingDetail(training)} key={idx}>
+          <li className={`gtmSavoirPlus gtmFormation gtmMap`} onClick={() => openItemDetail(training)} key={idx}>
             {training.title ? training.title : training.longTitle}
           </li>
         ))}

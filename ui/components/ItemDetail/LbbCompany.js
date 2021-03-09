@@ -9,7 +9,7 @@ import { get } from "lodash";
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
 
-  const currentSearchRadius = formValues.radius || 30;
+  const currentSearchRadius = formValues?.radius || 30;
 
   const onSelectItem = () => {
     handleSelectItem(company, company.ideaType);
