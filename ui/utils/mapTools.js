@@ -196,7 +196,7 @@ const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem) => {
       .addTo(map);
 
     unselectItem();
-    scrollToElementInContainer("choiceColumn", getItemElement(item), 200, "smooth");
+    scrollToElementInContainer("resultList", getItemElement(item), 200, "smooth");
   }
 };
 
