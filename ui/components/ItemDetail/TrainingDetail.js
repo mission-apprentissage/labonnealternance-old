@@ -9,18 +9,14 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   useEffect(() => {
-    console.log("Bin alors ? ",training);
     if (window && window.initPrdvWidget) {
       const el = document.getElementsByClassName("widget-prdv");
-
-      console.log("el.length ",el.length);
-      console.log("inner : ",el.length?el[0]:"NADA");
 
       if (el.length && !el[0].innerHTML) {
         window.initPrdvWidget();
       }
     }
-  }, [training]);
+  }, []);
 
   const buildPrdvButton = () => {
     return (
@@ -76,12 +72,12 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
                 &nbsp;le site Onisep
               </a>
             </span>
-            {buildPrdvButton()}
           </div>
         ) : (
           ""
         )}
         <br />
+        <div className="c-detail-prdv mt-3 ml-3 w-75">{buildPrdvButton()}</div>
       </div>
     </>
   );
