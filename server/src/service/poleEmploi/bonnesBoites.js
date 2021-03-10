@@ -164,9 +164,9 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
   }
 };
 
-const getCompanyFromSiret = async ({ siret }) => {
+const getCompanyFromSiret = async ({ siret, referer }) => {
   try {
-    const token = await getAccessToken("pe");
+    const token = await getAccessToken("lbb");
     let headers = peApiHeaders;
     headers.Authorization = `Bearer ${token}`;
 
@@ -174,27 +174,28 @@ const getCompanyFromSiret = async ({ siret }) => {
 
     console.log("path : ",`${lbbCompanyApiEndPoint}${siret}/details`);
     console.log("heades : ",headers);*/
-    const company = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details`, {
+    const companyQuery = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details`, {
       headers,
     });
 
-    console.log("company ", company);
+    console.log("company ", companyQuery);
 
     // WORK IN PROGRESS : route pas accessible pour le moment au niveau ES
-    return { result: "not_found", message: "Société non trouvée" };
+    //return { result: "not_found", message: "Société non trouvée" };
 
     //throw new Error("boom");
 
-    /*
-    if (job.status === 204 || job.status === 400) {
-      return { result: "not_found", message: "Offre non trouvée" };
+    if (companyQuery.status === 204 || companyQuery.status === 400) {
+      return { result: "not_found", message: "Société non trouvée" };
     } else {
-      let peJob = transformPeJobForIdea(job.data, null, null);
+      let company = transformLbbCompanyForIdea({
+        company: companyQuery.data,
+        type: "lbb",
+        contactAllowedOrigin: isOriginLocal(referer),
+      });
 
-      return { peJobs: [peJob] };
+      return { lbbCompanies: [company] };
     }
-
-    */
   } catch (error) {
     let errorObj = { result: "error", message: error.message };
 
@@ -205,7 +206,7 @@ const getCompanyFromSiret = async ({ siret }) => {
       errorObj.statusText = error.response.statusText;
     }
 
-    console.log("error get company by siret", errorObj);
+    console.log("error getting company by siret", errorObj);
 
     return errorObj;
   }
