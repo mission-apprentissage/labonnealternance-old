@@ -81,7 +81,7 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
   }
 
   resultCompany.place = {
-    distance: company.distance,
+    distance: company.distance ?? 0,
     fullAddress: company.address,
     latitude: company.lat,
     longitude: company.lon,
@@ -170,20 +170,9 @@ const getCompanyFromSiret = async ({ siret, referer }) => {
     let headers = peApiHeaders;
     headers.Authorization = `Bearer ${token}`;
 
-    /*console.log("siret", siret, lbbCompanyApiEndPoint);
-
-    console.log("path : ",`${lbbCompanyApiEndPoint}${siret}/details`);
-    console.log("heades : ",headers);*/
     const companyQuery = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details`, {
       headers,
     });
-
-    console.log("company ", companyQuery);
-
-    // WORK IN PROGRESS : route pas accessible pour le moment au niveau ES
-    //return { result: "not_found", message: "Société non trouvée" };
-
-    //throw new Error("boom");
 
     if (companyQuery.status === 204 || companyQuery.status === 400) {
       return { result: "not_found", message: "Société non trouvée" };
