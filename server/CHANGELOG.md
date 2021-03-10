@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.10.0 [09/03/2021]
+[354] Nouvelle grille de composants, formulaire dans head
+[431] Navigation via historique
+[358] Lien direct vers fiches offre et formation
+
 ## 1.9.3 [19/02/2021]
 [419] Gestion cas "vides" sur champ d'auto complétion
 Renommmage /statistiques vers /stats

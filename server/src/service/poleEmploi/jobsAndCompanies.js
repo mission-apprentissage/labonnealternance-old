@@ -17,6 +17,44 @@ const getJobsQuery = async (query) => {
   return getJobsFromApi(query);
 };
 
+const getPeJobQuery = async (query) => {
+  if (query.caller) {
+    trackEvent({ category: "Appel API", action: "loadPeJobV1", label: query.caller });
+  }
+
+  try {
+    const job = await offresPoleEmploi.getPeJobFromId({
+      id: query.id,
+    });
+
+    //throw new Error("BIG BANG");
+    return job;
+  } catch (err) {
+    console.error("Error ", err.message);
+    Sentry.captureException(err);
+    return { error: "internal_error" };
+  }
+};
+
+const getCompanyQuery = async (query) => {
+  if (query.caller) {
+    trackEvent({ category: "Appel API", action: "loadCompanyV1", label: query.caller });
+  }
+
+  try {
+    const company = await bonnnesBoites.getCompanyFromSiret({
+      siret: query.siret,
+    });
+
+    //throw new Error("BIG BANG");
+    return company;
+  } catch (err) {
+    console.error("Error ", err.message);
+    Sentry.captureException(err);
+    return { error: "internal_error" };
+  }
+};
+
 const getJobsFromApi = async (query) => {
   try {
     const sources = !query.sources ? ["lba", "lbb", "offres"] : query.sources.split(",");
@@ -181,4 +219,4 @@ const getNextItem = (items, position) => {
   else return null;
 };
 
-module.exports = { getJobsFromApi, getJobsQuery };
+module.exports = { getJobsFromApi, getJobsQuery, getPeJobQuery, getCompanyQuery };

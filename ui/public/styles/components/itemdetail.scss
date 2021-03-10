@@ -178,3 +178,33 @@
 .resultCard .body a:visited {
   color: black;
 }
+
+.c-detail-prdv
+{
+  text-align: left;
+}
+
+.widget-prdv 
+{
+  button
+  {
+    border:none;
+    background: none;
+  }
+
+  a
+  {
+    display: inline-block;
+    width: 100%;
+    background-color: rgb(42, 42, 42);
+    border: 1px solid rgb(42, 42, 42);
+    border-radius: 8px;
+    color: #fff !important;
+    font-family:  Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 18px;
+    font-weight: 700;  
+    padding: 6px 16px;
+    text-align: center;
+    vertical-align: middle;
+  }
+}

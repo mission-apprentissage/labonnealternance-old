@@ -90,6 +90,7 @@ const StartForm = (props) => {
                   name="jobField"
                   placeholder="Ex : boulangerie"
                   illustration={glassImage}
+                  isHome={true}
                 />
                 <ErrorMessage name="job" className="u-error-text-color" component="div" />
               </div>
@@ -105,6 +106,7 @@ const StartForm = (props) => {
                   name="placeField"
                   placeholder="Adresse, ville ou code postal"
                   illustration={localisationImage}
+                  isHome={true}
                 />
                 <ErrorMessage name="location" className="u-error-text-color" component="div" />
               </div>

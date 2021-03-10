@@ -1,12 +1,33 @@
 import React, { useEffect } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
+import { useScopeContext } from "context/ScopeContext";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
+  const scopeContext = useScopeContext();
+
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
+
+  useEffect(() => {
+    if (!scopeContext.isJob && scopeContext.isTraining) {
+      if (window && window.initPrdvWidget) {
+        const el = document.getElementsByClassName("widget-prdv");
+
+        if (el.length && !el[0].innerHTML) {
+          window.initPrdvWidget();
+        }
+      }
+    }
+  }, []);
+
+  const buildPrdvButton = () => {
+    return (
+      <div className="widget-prdv" data-siret={training.company.siret} data-cfd={training.cfd} data-referrer="lba" />
+    );
+  };
 
   const kind = training?.ideaType;
   let contactEmail = training?.contact?.email;
@@ -61,6 +82,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
           ""
         )}
         <br />
+        <div className="c-detail-prdv mt-3 ml-3 w-75">{buildPrdvButton()}</div>
       </div>
     </>
   );
