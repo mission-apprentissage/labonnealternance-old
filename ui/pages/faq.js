@@ -88,8 +88,7 @@ const FAQ = (props) => {
                 J'ai une suggestion d'amélioration de La Bonne Alternance, comment puis-je vous la transmettre ?
               </h2>
               <p className="c-faq-answer">
-                Merci de nous aider à améliorer le service ! Vous pouvez nous transmettre vos suggestions grâce au lien
-                <a href="/contact">"contact"</a> situé en bas de cet écran.
+                Merci de nous aider à améliorer le service ! Vous pouvez nous transmettre vos suggestions grâce au lien <a href="/contact">"contact"</a> situé en bas de cet écran.
               </p>
             </div>
             <h3 className="mt-5 mb-3">Résultats Formations</h3>

@@ -21,7 +21,7 @@ const APROPOS = () => (
           <hr className="c-page-title-separator" align="left" />
         </div>
         <div className="col-12 col-md-7">
-          <p>⚠ cette page risque d'être modifiée pour y accueillir les infos sur la mission, les autres services de la mission, les autres services de pole emploi et les services utiles</p>
+          <p>⚠ Cette page risque d'être modifiée pour y accueillir les infos sur la mission, les autres services de la mission, les autres services de pole emploi et les services utiles</p>
           <h3>Le saviez-vous ?</h3>
           <p>
             7 employeurs sur 10 recrutent sans déposer d’offre d’emploi.
