@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.10.2 [11/03/2021]
+[359] Corrections footer
+
 ## 1.10.1 [11/03/2021]
 [464] Ajout de la localité du CFA pour discriminer les quasi doublons
 [461] Corrections design
