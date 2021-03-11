@@ -63,7 +63,6 @@ const ResultLists = (props) => {
             ""
           )}
           {props.trainings.map((training, idx) => {
-            console.log('idx', idx);
             return (
               <Training
                 key={idx}
