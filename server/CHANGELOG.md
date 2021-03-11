@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.10.1 [11/03/2021]
+[460] Zoom dézoom de la carte au pinch
 [457] Accès direct aux fiches LBB / LBA
 
 ## 1.10.0 [09/03/2021]
