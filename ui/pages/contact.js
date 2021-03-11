@@ -23,7 +23,7 @@ const contact = () => (
           <h3>Nous contacter</h3>
           <p>
             Une remarque, un avis, une suggestion d’amélioration ?
-            <a href="mailto:labonnealternance@pole-emploi.fr" target="_blank" rel="noopener noreferrer"> Contactez-nous !</a>
+            <a href="mailto:labonnealternance@pole-emploi.fr"> Contactez-nous !</a>
           </p>
         </div>
       </div>

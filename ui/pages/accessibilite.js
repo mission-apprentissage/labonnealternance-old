@@ -76,7 +76,7 @@ const Accessibilite = () => (
 
           <p>
             Vous pouvez nous aider à améliorer l'accessibilité du site en nous signalant les problèmes éventuels que
-            vous rencontrez : <a href="mailto:labonnealternance@pole-emploi.fr" target="_blank" rel="noopener noreferrer">Contactez-nous</a>.
+            vous rencontrez : <a href="mailto:labonnealternance@pole-emploi.fr">Contactez-nous</a>.
           </p>
 
           <p>

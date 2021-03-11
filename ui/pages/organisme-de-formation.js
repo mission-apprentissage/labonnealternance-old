@@ -42,7 +42,7 @@ const Organisme = (props) => {
             </p>
             <div className="text-center">
               <p className="c-organisme-help">Vous êtes perdu(e) ? Nous sommes là pour vous aider.</p>
-              <a className="c-organisme-contact-link" href="mailto:labonnealternance@pole-emploi.fr" target="_blank" rel="noopener noreferrer">
+              <a className="c-organisme-contact-link" href="mailto:labonnealternance@pole-emploi.fr">
                 Contacter notre service support
               </a>
             </div>
