@@ -80,13 +80,18 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
     };
   }
 
+  // format différent selon accès aux bonnes boîtes par recherche ou par siret
+  const address = company?.address?.city
+    ? `${company.address.street_number} ${company.address.street_name}, ${company.address.zipcode} ${company.address.city}`.trim()
+    : company.address;
+
   resultCompany.place = {
     distance: company.distance ?? 0,
-    fullAddress: company.address,
+    fullAddress: address,
     latitude: company.lat,
     longitude: company.lon,
     city: company.city,
-    address: company.address,
+    address,
   };
 
   resultCompany.company = {
