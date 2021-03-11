@@ -179,29 +179,25 @@ const getCompanyFromSiret = async ({ siret, referer, type }) => {
       headers,
     });
 
-    if (companyQuery.status === 204 || companyQuery.status === 400) {
-      return { result: "not_found", message: "Société non trouvée" };
-    } else {
-      let company = transformLbbCompanyForIdea({
-        company: companyQuery.data,
-        type,
-        contactAllowedOrigin: isOriginLocal(referer),
-      });
+    let company = transformLbbCompanyForIdea({
+      company: companyQuery.data,
+      type,
+      contactAllowedOrigin: isOriginLocal(referer),
+    });
 
-      console.log("TYPE : ", type);
-
-      return type === "lbb" ? { lbbCompanies: [company] } : { lbaCompanies: [company] };
-    }
+    return type === "lbb" ? { lbbCompanies: [company] } : { lbaCompanies: [company] };
   } catch (error) {
     let errorObj = { result: "error", message: error.message };
-
-    Sentry.captureException(error);
 
     if (error.response) {
       errorObj.status = error.response.status;
       errorObj.statusText = error.response.statusText;
     }
+    if (errorObj.status === 404) {
+      return { result: "not_found", message: "Société non trouvée" };
+    }
 
+    Sentry.captureException(error);
     console.log("error getting company by siret", errorObj);
 
     return errorObj;
