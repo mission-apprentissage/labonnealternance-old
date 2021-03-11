@@ -92,7 +92,7 @@ const CGU = (props) => {
                 À tout moment, chaque entreprise peut d’une part s’opposer à ce que son nom apparaisse dans les résultats de recherche ou d’autre part, demander à être mise en avant.
               </p>
               <p>
-                Elle peut également demander la modification/suppression des informations communiquées (ex. coordonnées) sur le site La Bonne Alternance en remplissant le formulaire recruteur directement depuis la page d’accueil du site.
+                Elle peut également demander la modification/suppression des informations communiquées (ex. coordonnées) sur le site La Bonne Alternance en remplissant le <a href="https://labonneboite.pole-emploi.fr/informations-entreprise/action">formulaire recruteur</a> directement depuis la page d’accueil du site.
               </p>
             </section>
             <section>
