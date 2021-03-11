@@ -24,6 +24,7 @@ const CGU = (props) => {
             <hr className="c-page-title-separator" align="left" />
           </div>
           <div className="col-12 col-md-7">
+            <p className="mb-3">Dernière mise à jour le : 11/03/2021</p>
             <h3 className="mb-3">Conditions d'utilisation</h3>
             <p>
               L’utilisateur du service doit respecter ces conditions générales d’utilisation. Elles peuvent être modifiées par Pôle emploi. L’utilisateur est donc invité à consulter régulièrement la dernière version mise à jour.
