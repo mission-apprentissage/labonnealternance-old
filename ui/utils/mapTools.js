@@ -29,7 +29,7 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
     maxZoom: 17,
     minZoom: 3,
     dragRotate: false,
-    touchZoomRotate: false,
+    //touchZoomRotate: false,
   });
 
   map.on("load", async () => {
