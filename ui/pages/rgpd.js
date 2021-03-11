@@ -28,7 +28,7 @@ const RGPD = () => (
               support informatique (catégorie d’appareil, système d’exploitation, navigateur), ou votre navigation
               (méthode d’accès à notre site, durée de votre visite).
               <br />
-              Ces cookies nous permettent de mesurer les usages du site La bonne alternance, afin de l’améliorer.
+              Ces cookies nous permettent de mesurer les usages du site La Bonne Alternance, afin de l’améliorer.
             </li>
             <li>
               Des cookies anonymes liés à la réalisation d’enquêtes et analyses via l’outil Hotjar.
@@ -38,7 +38,7 @@ const RGPD = () => (
             </li>
 
             <li>
-              Des cookies spécifiques à l’outil La bonne alternance.
+              Des cookies spécifiques à l’outil La Bonne Alternance.
               <br />
               Ces cookies permettent l'enregistrement de vos préférences ou de l'état de votre interface
             </li>
