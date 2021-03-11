@@ -100,10 +100,10 @@ const HeaderForm = ({ handleSubmit }) => {
                 </Input>
               </div>
             </div>
-            <div className="c-logobar-formgroup ml-md-1 ml-lg-3 border-0">
+            <div className="c-logobar-formgroup ml-md-1 ml-lg-3 border-0 c-logobar-submit-container">
               <button
                 type="submit"
-                className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn"
+                className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn c-logobar-submit"
                 disabled={isSubmitting}
                 alt="Lancer la recherche"
               >
