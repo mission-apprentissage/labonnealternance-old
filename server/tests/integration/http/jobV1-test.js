@@ -261,4 +261,20 @@ httpTests(__filename, ({ startServer }) => {
 
     assert.strictEqual(response.status, 200);
   });
+
+  it("Vérifie que la route lBB par siret répond", async () => {
+    const { httpClient } = await startServer();
+
+    const response = await httpClient.get("/api/V1/jobs/company/84384222000017?type=lbb");
+
+    assert.strictEqual(response.status, 200);
+  });
+
+  it("Vérifie que la route lBA par siret répond", async () => {
+    const { httpClient } = await startServer();
+
+    const response = await httpClient.get("/api/V1/jobs/company/84384222000017?type=lba");
+
+    assert.strictEqual(response.status, 200);
+  });
 });
