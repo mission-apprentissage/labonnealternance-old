@@ -61,7 +61,9 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
         <div className="c-media-body">
           <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
-          <div className="cardText pt-1">{training.company.name}</div>
+          <div className="cardText pt-1">
+            {training.company.name} ({training.company.place.city})
+          </div>
           <div className="cardText pt-2">{training.place.fullAddress}</div>
           <span className="cardDistance pt-1">
             {Math.round(training.place.distance)} km(s) du lieu de recherche
