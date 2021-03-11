@@ -80,13 +80,18 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
     };
   }
 
+  // format différent selon accès aux bonnes boîtes par recherche ou par siret
+  const address = company?.address?.city
+    ? `${company.address.street_number} ${company.address.street_name}, ${company.address.zipcode} ${company.address.city}`.trim()
+    : company.address;
+
   resultCompany.place = {
-    distance: company.distance,
-    fullAddress: company.address,
+    distance: company.distance ?? 0,
+    fullAddress: address,
     latitude: company.lat,
     longitude: company.lon,
     city: company.city,
-    address: company.address,
+    address,
   };
 
   resultCompany.company = {
@@ -164,48 +169,36 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
   }
 };
 
-const getCompanyFromSiret = async ({ siret }) => {
+const getCompanyFromSiret = async ({ siret, referer, type }) => {
   try {
-    const token = await getAccessToken("pe");
+    const token = await getAccessToken("lbb");
     let headers = peApiHeaders;
     headers.Authorization = `Bearer ${token}`;
 
-    /*console.log("siret", siret, lbbCompanyApiEndPoint);
-
-    console.log("path : ",`${lbbCompanyApiEndPoint}${siret}/details`);
-    console.log("heades : ",headers);*/
-    const company = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details`, {
+    const companyQuery = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details`, {
       headers,
     });
 
-    console.log("company ", company);
+    let company = transformLbbCompanyForIdea({
+      company: companyQuery.data,
+      type,
+      contactAllowedOrigin: isOriginLocal(referer),
+    });
 
-    // WORK IN PROGRESS : route pas accessible pour le moment au niveau ES
-    return { result: "not_found", message: "Société non trouvée" };
-
-    //throw new Error("boom");
-
-    /*
-    if (job.status === 204 || job.status === 400) {
-      return { result: "not_found", message: "Offre non trouvée" };
-    } else {
-      let peJob = transformPeJobForIdea(job.data, null, null);
-
-      return { peJobs: [peJob] };
-    }
-
-    */
+    return type === "lbb" ? { lbbCompanies: [company] } : { lbaCompanies: [company] };
   } catch (error) {
     let errorObj = { result: "error", message: error.message };
-
-    Sentry.captureException(error);
 
     if (error.response) {
       errorObj.status = error.response.status;
       errorObj.statusText = error.response.statusText;
     }
+    if (errorObj.status === 404) {
+      return { result: "not_found", message: "Société non trouvée" };
+    }
 
-    console.log("error get company by siret", errorObj);
+    Sentry.captureException(error);
+    console.log("error getting company by siret", errorObj);
 
     return errorObj;
   }
