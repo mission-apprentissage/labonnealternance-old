@@ -59,7 +59,7 @@ const FAQ = (props) => {
               <h2 className="c-faq-question">Comment est calculée la distance indiquée ?</h2>
               <p className="c-faq-answer">
                 Les distances indiquées sont les distances à vol d'oiseau. Si vous constatez tout de même une erreur,
-                vous pouvez nous la signaler grâce au lien "contact" en bas de l'écran.
+                vous pouvez nous la signaler grâce au lien <a href="/contact">"contact"</a>  en bas de l'écran.
               </p>
             </div>
             <div className="c-faq-question-block">
@@ -95,7 +95,7 @@ const FAQ = (props) => {
               </h2>
               <p className="c-faq-answer">
                 Merci de nous aider à améliorer le service ! Vous pouvez nous transmettre vos suggestions grâce au lien
-                "contact" situé en bas de cet écran.
+                <a href="/contact">"contact"</a> situé en bas de cet écran.
               </p>
             </div>
             <h3 className="mt-5 mb-3">Résultats Formations</h3>
@@ -143,8 +143,7 @@ const FAQ = (props) => {
                 Un domaine peut regrouper un ou plusieurs métiers.
                 <br />
                 Nous essayons d'améliorer cette liste de domaines avec des intitulés compréhensibles des utilisateurs :
-                si vous avez une suggestion d'amélioration, vous pouvez nous la transmettre grâce au lien "contact"
-                situé en bas de l'écran.
+                si vous avez une suggestion d'amélioration, vous pouvez nous la transmettre grâce au lien <a href="/contact">"contact"</a>                situé en bas de l'écran.
               </p>
             </div>
             <div className="c-faq-question-block">
