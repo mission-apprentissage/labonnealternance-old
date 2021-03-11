@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.10.1 [11/03/2021]
+[460] Zoom dézoom de la carte au pinch
+
 ## 1.10.0 [09/03/2021]
 [354] Nouvelle grille de composants, formulaire dans head
 [431] Navigation via historique
