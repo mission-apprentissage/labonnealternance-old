@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.10.1 [11/03/2021]
+[461] Corrections design
+
 ## 1.10.0 [09/03/2021]
 [354] Nouvelle grille de composants, formulaire dans head
 [431] Navigation via historique
