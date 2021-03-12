@@ -3,6 +3,8 @@
 ## 1.10.2 [12/03/2021]
 [476] Supprimer lien "en savoir plus" sur mobile
 [473] Voir les informations de contact, restyler
+[478] Fix bande blanche à droite sur map
+[479] Map statique tronquée
 
 ## 1.10.1 [11/03/2021]
 [465] Image recherche
