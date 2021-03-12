@@ -287,7 +287,9 @@ const SearchForTrainingsAndJobs = () => {
       <WidgetHeader handleSubmit={handleSubmit} />
       <Row className={`c-searchfor__row is-visible-${isFormVisible} is-welcome-${shouldShowWelcomeMessage} `}>
         <Col
-          className={`choiceCol-container leftShadow ${visiblePane === "resultList" ? "activeXSPane" : "inactiveXSPane"}`}
+          className={`choiceCol-container leftShadow ${
+            visiblePane === "resultList" ? "activeXSPane" : "inactiveXSPane"
+          }`}
           xs="12"
           md="5"
         >
@@ -309,7 +311,11 @@ const SearchForTrainingsAndJobs = () => {
             isLoading={isLoading}
           />
         </Col>
-        <Col className={`${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
+        <Col
+          className={`p-0 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`}
+          xs="12"
+          md="7"
+        >
           <Map selectItemOnMap={selectItemOnMap} />
         </Col>
       </Row>
