@@ -10,6 +10,7 @@ import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
 import { setCurrentPage } from "utils/currentPage.js";
 import pushHistory from "utils/pushHistory";
+import dosearchIcon from "public/images/icons/dosearch.svg";
 
 import {
   setTrainings,
