@@ -55,7 +55,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
               </>
             ) : (
               <button
-                className="d-block btn btn-lg btn-outline-primary w-75 ml-3 mt-3  gtmContact gtmFormation"
+                className="c-see-info d-block btn btn-lg btn-outline-primary w-75 ml-3 mt-3  gtmContact gtmFormation"
                 onClick={() => setSeeInfo(true)}
               >
                 Voir les informations de contact

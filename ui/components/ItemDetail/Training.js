@@ -71,7 +71,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
               ""
             ) : (
               <>
-                <span className="knowMore">
+                  <span className="knowMore d-none d-md-block">
                   <button className="c-resultcard-knowmore">En savoir plus</button>
                 </span>
               </>

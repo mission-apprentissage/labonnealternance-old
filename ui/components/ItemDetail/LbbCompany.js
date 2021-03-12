@@ -72,7 +72,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
               ""
             ) : (
               <>
-                <div className="knowMore">
+                <div className="knowMore d-none d-md-block">
                   <button className={`c-resultcard-knowmore`}>En savoir plus</button>
                 </div>
               </>
