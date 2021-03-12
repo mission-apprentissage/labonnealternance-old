@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.10.2 [12/03/2021]
+[477] Couleur spinner
 [428] Breadcrumb
 [476] Supprimer lien "en savoir plus" sur mobile
 [473] Voir les informations de contact, restyler
