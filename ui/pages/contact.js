@@ -9,7 +9,7 @@ const contact = () => (
   <div>
     <ScrollToTop />
     <Navigation />
-    <Breadcrumb forPage="contact" label="contact" />
+    <Breadcrumb forPage="contact" label="Contact" />
 
     <div className="c-page-container container my-0 mb-sm-5 p-5">
       <div className="row">
