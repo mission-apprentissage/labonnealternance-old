@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 1.10.2 [12/03/2021]
+[476] Supprimer lien "en savoir plus" sur mobile
 
 ## 1.10.1 [11/03/2021]
 [469] Dropshadow
