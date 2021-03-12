@@ -10,7 +10,7 @@ import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
 import { setCurrentPage } from "utils/currentPage.js";
 import pushHistory from "utils/pushHistory";
-import dosearchIcon from "public/images/icons/dosearch.svg";
+import dosearchImage from "public/images/dosearch.svg";
 
 import {
   setTrainings,
@@ -153,12 +153,13 @@ const ChoiceColumn = ({
 
   const getInitialDesktopText = () => {
     return (
-      <div className={`d-none pt-3 ${shouldShowWelcomeMessage ? "d-md-block" : ""}`}>
+      <div className={`w-75 m-auto d-none pt-5 ${shouldShowWelcomeMessage ? "d-md-block" : ""}`}>
+        <img src={dosearchImage} alt="Faites une recherche" />
         <div className="c-staticmapframe__message pr-5 py-3">
           <table>
             <tbody>
               <tr>
-                <td className="px-5 c-staticmapframe__decoration"></td>
+                <td className="px-4 px-lg-5 c-staticmapframe__decoration"></td>
                 <td>
                   <span className="c-staticmapframe__title">Faites une recherche</span>
                   <br />
