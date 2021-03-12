@@ -305,7 +305,7 @@ const ResultLists = (props) => {
           <span className="jobColor">
             <div className="searchLoading">
               Recherche des entreprises en cours
-              <Spinner/>
+              <Spinner />
             </div>
           </span>
         );
