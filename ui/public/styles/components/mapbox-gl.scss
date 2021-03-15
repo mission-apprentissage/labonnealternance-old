@@ -2,10 +2,17 @@ canvas.mapboxgl-canvas:focus {
   outline: none;
 }
 .mapboxgl-popup {
-  max-width: 250px !important;
+  width: 80%;
+  max-width: 300px !important;
 
   @include media-breakpoint-up(md) { 
+    width: 40%;
     max-width: 400px !important;
+  }
+
+  @include media-breakpoint-up(lg) { 
+    width: 50%;
+    max-width: 600px !important;
   }
 }
 .mapboxgl-popup-content {
