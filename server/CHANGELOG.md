@@ -7,6 +7,7 @@
 [473] Voir les informations de contact, restyler
 [478] Fix bande blanche à droite sur map
 [479] Map statique tronquée
+[480] Largeur mapbox réduite sur mobile
 
 ## 1.10.1 [11/03/2021]
 [465] Image recherche
