@@ -20,6 +20,7 @@ const Accessibilite = () => (
         </div>
 
         <div className="col-12 col-md-7">
+          <p className="mb-3">Dernière mise à jour le : 11/03/2021</p>
           <h3>Introduction</h3>
           <p>
             L'initiative internationale pour l'accessibilité du Web (Web Accessiblility Initiative) définit
@@ -45,7 +46,7 @@ const Accessibilite = () => (
           </p>
           <p>
             Le site La Bonne Alternance est en cours d'optimisation afin de le rendre conforme au{" "}
-            <a href="http://references.modernisation.gouv.fr/referentiel/" rel="noopener noreferrer" target="_blank">
+            <a href="https://www.numerique.gouv.fr/publications/rgaa-accessibilite" rel="noopener noreferrer" target="_blank">
               RGAA v3
             </a>
             . La déclaration de conformité sera publiée ultérieurement.

@@ -9,7 +9,7 @@ const contact = () => (
   <div>
     <ScrollToTop />
     <Navigation />
-    <Breadcrumb forPage="contact" label="contact" />
+    <Breadcrumb forPage="contact" label="Contact" />
 
     <div className="c-page-container container my-0 mb-sm-5 p-5">
       <div className="row">
@@ -23,7 +23,7 @@ const contact = () => (
           <h3>Nous contacter</h3>
           <p>
             Une remarque, un avis, une suggestion d’amélioration ?
-            <a href="labonnealternance@pole-emploi.fr"> Contactez-nous !</a>
+            <a href="mailto:labonnealternance@pole-emploi.fr"> Contactez-nous !</a>
           </p>
         </div>
       </div>

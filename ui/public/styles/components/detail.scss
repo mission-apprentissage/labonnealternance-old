@@ -93,7 +93,13 @@
   background-color: white;
   padding-left: 30px;
   padding-right: 30px;
-}
+  padding-bottom: 100px;
+  
+  @include media-breakpoint-up(md) { 
+    padding-bottom: 0;
+  }
+} 
+ 
 .c-detail-company {
   background-color: white;
   font-size: 16px;
@@ -288,6 +294,10 @@ a.c-detail-lbb-siretbutton {
   @include media-breakpoint-up(lg) {
     font-size: 16px;
   }
+}
+
+.c-see-info {
+  font-size: 16px;
 }
 
 .c-detail-stickynav {

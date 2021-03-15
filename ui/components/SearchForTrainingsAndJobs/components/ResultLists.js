@@ -26,7 +26,7 @@ const ResultLists = (props) => {
 
   const getBanner = () => {
     return (
-      <div className="c-trainingresult-warning pl-4 py-3 mt-1">
+      <div className="c-trainingresult-warning pl-4 py-3">
         <div className="c-trainingresult-warningimg">
           <img src={questionMarkIcon} alt="Interrogation" />
         </div>
@@ -36,13 +36,15 @@ const ResultLists = (props) => {
       </div>
     );
   };
-
+  
   const getTrainingResult = () => {
     if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
       return (
-        <div id="trainingResult" className="trainingResult">
-          {getTrainingList()}
-        </div>
+        <>
+          <div id="trainingResult" className="trainingResult">
+            {getTrainingList()}
+          </div>
+        </>
       );
     } else {
       return "";

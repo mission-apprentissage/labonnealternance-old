@@ -77,7 +77,7 @@ export const loadItem = async ({
         setJobSearchError(response.data.result === "not_found" ? notFoundErrorText : partialJobSearchErrorText);
       }
     } else if (item.type === "lba" || item.type === "lbb") {
-      const response = await axios.get(companyApi + "/" + item.itemId);
+      const response = await axios.get(`${companyApi}/${item.itemId}?type=${item.type}`);
 
       // gestion des erreurs
       if (!response.data.message) {

@@ -16,7 +16,7 @@ const APROPOS = () => (
         <div className="col-12 col-md-5">
           <h1>
             <span className="d-block c-page-title is-color-1">A propos de</span>
-            <span className="d-block c-page-title is-color-2">La bonne alternance</span>
+            <span className="d-block c-page-title is-color-2">La Bonne Alternance</span>
           </h1>
           <hr className="c-page-title-separator" align="left" />
         </div>

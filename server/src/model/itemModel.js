@@ -22,7 +22,7 @@ const itemModel = (type) => {
       fullAddress: null, // adresse postale reconstruite à partir des éléments d'adresse fournis
       latitude: null, // formation -> idea_geo_coordonnees_etablissement | pe -> lieuTravail.latitude | lbb/lba -> lat
       longitude: null, // formation -> idea_geo_coordonnees_etablissement | pe -> lieuTravail.longitude | lbb/lba -> lon
-      city: null, // pe -> lieuTravail.libelle | formation -> etablissement_formateur_localite | pe -> city
+      city: null, // pe -> lieuTravail.libelle | formation -> localite | pe -> city
       address: null, // formation -> etablissement_formateur_adresse, etablissement_formateur_complement_adresse | lbb / lba -> address
       cedex: null, // formation -> etablissement_formateur_cedex
       zipCode: null, // formation -> etablissement_formateur_code_postal | pe -> lieuTravail.codePostal
@@ -41,6 +41,9 @@ const itemModel = (type) => {
       url: null, // lbb / lba -> website
       id: null, // formation -> etablissement_formateur_id
       uai: null, // formation -> etablissement_formateur_uai
+      place: null /*{
+            city,   // formation -> etablissement_formateur_localite
+      }*/,
 
       headquarter: null /*{    // uniquement pour formation
                 id, // formation -> etablissement_gestionnaire_id

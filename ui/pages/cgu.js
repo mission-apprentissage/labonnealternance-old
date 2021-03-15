@@ -24,6 +24,7 @@ const CGU = (props) => {
             <hr className="c-page-title-separator" align="left" />
           </div>
           <div className="col-12 col-md-7">
+            <p className="mb-3">Dernière mise à jour le : 11/03/2021</p>
             <h3 className="mb-3">Conditions d'utilisation</h3>
             <p>
               L’utilisateur du service doit respecter ces conditions générales d’utilisation. Elles peuvent être modifiées par Pôle emploi. L’utilisateur est donc invité à consulter régulièrement la dernière version mise à jour.
@@ -70,7 +71,7 @@ const CGU = (props) => {
             <section>
               <h2 className="c-faq-question mt-2">2. Objet du site</h2>
               <p>
-                Le site internet <a href="labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> a pour objet de faciliter les entrées en alternance des usagers en informant sur les formations en apprentissage ainsi que les offres d’emplois et entreprises auprès desquelles adresser une candidature.
+                Le site internet <a href="https://labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> a pour objet de faciliter les entrées en alternance des usagers en informant sur les formations en apprentissage ainsi que les offres d’emplois et entreprises auprès desquelles adresser une candidature.
               </p>
               <p>
                 L’utilisateur peut filtrer tout ou partie des informations à l’aide des filtres suivants : niveau de diplôme préparé, secteur d’emploi et secteur géographique.
@@ -79,7 +80,7 @@ const CGU = (props) => {
             <section>
               <h2 className="c-faq-question mt-2">3. Fonctionnement de la Bonne Alternance</h2>
               <p>
-                Le service proposé sur le site <a href="labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> permet à l’utilisateur de rechercher des formations et/ou entreprises susceptibles d’embaucher en alternance des profils similaires au sien, en fonction des données qu’il a saisies (domaine/métier, niveau de diplôme, secteur géographique).
+                Le service proposé sur le site <a href="https://labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> permet à l’utilisateur de rechercher des formations et/ou entreprises susceptibles d’embaucher en alternance des profils similaires au sien, en fonction des données qu’il a saisies (domaine/métier, niveau de diplôme, secteur géographique).
               </p>
               <p>
                 Les résultats de recherche sont accessibles en liste et sur une carte. Ils sont classés en fonction de leur proximité géographique par rapport au périmètre défini par l’utilisateur.
@@ -91,7 +92,7 @@ const CGU = (props) => {
                 À tout moment, chaque entreprise peut d’une part s’opposer à ce que son nom apparaisse dans les résultats de recherche ou d’autre part, demander à être mise en avant.
               </p>
               <p>
-                Elle peut également demander la modification/suppression des informations communiquées (ex. coordonnées) sur le site La Bonne Alternance en remplissant le formulaire recruteur directement depuis la page d’accueil du site.
+                Elle peut également demander la modification/suppression des informations communiquées (ex. coordonnées) sur le site La Bonne Alternance en remplissant le <a href="https://labonneboite.pole-emploi.fr/informations-entreprise/action" target="_blank" rel="noopener noreferrer">formulaire recruteur</a> directement depuis la page d’accueil du site.
               </p>
             </section>
             <section>
