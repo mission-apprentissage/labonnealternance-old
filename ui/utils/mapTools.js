@@ -2,7 +2,6 @@ import React from "react";
 import distance from "@turf/distance";
 import { Marker, MapPopup } from "../components/SearchForTrainingsAndJobs/components";
 import ReactDOM from "react-dom";
-// import mapboxgl from "mapbox-gl";
 import * as mapboxgl from "mapbox-gl";
 import { Provider } from "react-redux";
 import { fetchAddresses } from "../services/baseAdresse";
@@ -29,7 +28,6 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
     maxZoom: 17,
     minZoom: 3,
     dragRotate: false,
-    touchZoomRotate: false,
   });
 
   map.on("load", async () => {

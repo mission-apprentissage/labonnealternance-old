@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 1.10.2 [12/03/2021]
+[477] Couleur spinner
+[428] Breadcrumb
+[476] Supprimer lien "en savoir plus" sur mobile
+[473] Voir les informations de contact, restyler
+[478] Fix bande blanche à droite sur map
+[479] Map statique tronquée
+[480] Largeur mapbox réduite sur mobile
+Meilleur centrage boutons flottants
+
+## 1.10.1 [11/03/2021]
+[465] Image recherche
+[469] Dropshadow
+[359] Corrections footer
+[464] Ajout de la localité du CFA pour discriminer les quasi doublons
+[461] Corrections design
+[460] Zoom dézoom de la carte au pinch
+[457] Accès direct aux fiches LBB / LBA
+
 ## 1.10.0 [09/03/2021]
 [354] Nouvelle grille de composants, formulaire dans head
 [431] Navigation via historique

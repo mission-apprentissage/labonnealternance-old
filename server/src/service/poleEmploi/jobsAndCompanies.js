@@ -44,6 +44,8 @@ const getCompanyQuery = async (query) => {
   try {
     const company = await bonnnesBoites.getCompanyFromSiret({
       siret: query.siret,
+      referer: query.referer,
+      type: query.type,
     });
 
     //throw new Error("BIG BANG");

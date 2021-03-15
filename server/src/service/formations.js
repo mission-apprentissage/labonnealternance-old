@@ -404,6 +404,9 @@ const transformFormationForIdea = (formation) => {
       },
       name: formation.source.etablissement_gestionnaire_entreprise_raison_sociale,
     },
+    place: {
+      city: formation.source.etablissement_formateur_localite,
+    },
   };
 
   if (formation.source.rome_codes && formation.source.rome_codes.length) {

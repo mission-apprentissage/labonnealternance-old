@@ -9,7 +9,7 @@ const stats = () => (
   <div>
     <ScrollToTop />
     <Navigation />
-    <Breadcrumb forPage="stats" label="statistiques" />
+    <Breadcrumb forPage="stats" label="Statistiques" />
 
     <div className="c-page-container container my-0 mb-sm-5 p-5">
       <div className="row">

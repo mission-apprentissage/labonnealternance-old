@@ -54,3 +54,12 @@
     display: none;
   }
  }
+
+
+ .c-result-list__text
+ {
+   padding-bottom: 100px;
+   @include media-breakpoint-up(md) { 
+    padding-bottom: 0;
+  }
+ }

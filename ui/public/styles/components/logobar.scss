@@ -5,7 +5,8 @@
 form.c-logobar-form {
   margin-top: 0;
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  height: 57px;
 }
 .c-logobar-formgroup {
   display: flex;
@@ -80,4 +81,13 @@ form.c-logobar-form {
 
 .choiceCol .formGroup.formGroup--logobar {
   min-width: 200px;
+}
+
+.c-logobar-formgroup.c-logobar-submit-container {
+  padding: 0;
+}
+
+.c-regular-darkbtn.c-logobar-submit {
+  height: 57px;
+  margin: 0;
 }

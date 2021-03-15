@@ -61,10 +61,8 @@
     position: fixed;
     bottom: 40px;
     right: unset;
-    left: 20px;
-  }
-  .demoPage .floatingButtons.resultList {
-    right: 30px;
+    left: 50%;
+    transform: translateX(-40%);
   }
 }
 @media only screen and (min-width: 351px) and (max-width: 767px) {
@@ -75,7 +73,8 @@
     display: block;
     position: fixed;
     bottom: 40px;
-    right: 40%;
+    left: 50%;
+    transform: translateX(-40%);
   }
 }
 .demoPage .inFormIcon {
@@ -227,10 +226,10 @@
   font-weight: bold;
 }
 .demoPage .trainingColor {
-  color: $pinksoft500;
+  color: #00AC8C;
 }
 .demoPage .jobColor {
-  color: #00AC8C;
+  color: $pinksoft500;
 }
 
 .demoPage .resultTitle {
@@ -272,12 +271,13 @@
   
   .c-staticmapframe
   {
-    background: center/contain no-repeat url(/images/static_map.svg), #FFF;
+    background: center no-repeat url("/images/static_map.svg"), #FFF;
+    background-size: auto 85%;
+    background-position-y: 10px;
     height: 100%;
     padding-top: 150px;
     box-shadow: 0px 0px 12px 2px rgb(0 0 0 / 21%);
   }
-
 }
 
 .c-staticmapframe__message
@@ -370,6 +370,7 @@
   &__text {
     flex: 1;
     overflow: auto;
+    background-color: #f9f8f6;
   }
 }
 

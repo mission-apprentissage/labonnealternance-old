@@ -48,6 +48,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
               {kind === "lba" || kind === "lbb"
                 ? get(selectedItem, "nafs[0].label", "Candidature spontanée")
                 : get(selectedItem, "company.name", "")}
+              {kind === "formation" ? ` (${selectedItem.company.place.city})` : ""}
             </p>
             <p className="d-flex mt-4">
               <span className="d-block">
