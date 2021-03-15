@@ -7,6 +7,7 @@ import buildAvailableDiplomas from "services/buildAvailableDiplomas";
 import buildRayons from "services/buildRayons";
 import { Input } from "reactstrap";
 import { partialRight } from "lodash";
+import { DomainError } from "components";
 
 import domainChanged from "services/domainChanged";
 import updateValuesFromJobAutoComplete from "services/updateValuesFromJobAutoComplete";
@@ -116,7 +117,9 @@ const HeaderForm = ({ handleSubmit }) => {
     );
   };
 
-  return <div className="c-logobar">{renderFormik()}</div>;
+  return (
+    <div className="c-logobar">{domainError || diplomaError ? <DomainError position="header" /> : renderFormik()}</div>
+  );
 };
 
 export default HeaderForm;
