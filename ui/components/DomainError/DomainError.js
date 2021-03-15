@@ -15,7 +15,7 @@ export default function DomainError({ position, setDomainError, setDiplomaError 
 
   const getResetButton = () => {
     return (
-      <button className="c-domainerror-reset" onClick={reset}>
+      <button className="c-domainerror-reset mt-1 btn btn-dark" onClick={reset}>
         Réessayer
       </button>
     );
