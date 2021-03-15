@@ -8,6 +8,7 @@
 [478] Fix bande blanche à droite sur map
 [479] Map statique tronquée
 [480] Largeur mapbox réduite sur mobile
+Meilleur centrage boutons flottants
 
 ## 1.10.1 [11/03/2021]
 [465] Image recherche

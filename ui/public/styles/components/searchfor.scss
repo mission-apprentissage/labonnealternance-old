@@ -61,10 +61,8 @@
     position: fixed;
     bottom: 40px;
     right: unset;
-    left: 20px;
-  }
-  .demoPage .floatingButtons.resultList {
-    right: 30px;
+    left: 50%;
+    transform: translateX(-40%);
   }
 }
 @media only screen and (min-width: 351px) and (max-width: 767px) {
@@ -75,7 +73,8 @@
     display: block;
     position: fixed;
     bottom: 40px;
-    right: 40%;
+    left: 50%;
+    transform: translateX(-40%);
   }
 }
 .demoPage .inFormIcon {
