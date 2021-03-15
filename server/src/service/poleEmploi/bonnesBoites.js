@@ -193,6 +193,7 @@ const getCompanyFromSiret = async ({ siret, referer, type }) => {
       errorObj.status = error.response.status;
       errorObj.statusText = error.response.statusText;
     }
+
     if (errorObj.status === 404) {
       return { result: "not_found", message: "Société non trouvée" };
     }

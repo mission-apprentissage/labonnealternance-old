@@ -43,6 +43,7 @@ module.exports = () => {
   router.get(
     "/company/:siret",
     tryCatch(async (req, res) => {
+
       const result = await peApi.getCompanyQuery({
         siret: req.params.siret,
         type: req.query.type,
