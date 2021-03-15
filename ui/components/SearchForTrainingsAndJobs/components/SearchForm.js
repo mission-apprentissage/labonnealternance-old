@@ -152,7 +152,11 @@ const SearchForm = (props) => {
         )}
       </div>
 
-      {domainError || diplomaError ? <DomainError /> : renderFormik()}
+      {domainError || diplomaError ? (
+        <DomainError setDomainError={setDomainError} setDiplomaError={setDiplomaError} />
+      ) : (
+        renderFormik()
+      )}
     </div>
   );
 };

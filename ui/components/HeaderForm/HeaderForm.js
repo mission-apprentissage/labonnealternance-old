@@ -118,7 +118,13 @@ const HeaderForm = ({ handleSubmit }) => {
   };
 
   return (
-    <div className="c-logobar">{domainError || diplomaError ? <DomainError position="header" /> : renderFormik()}</div>
+    <div className="c-logobar">
+      {domainError || diplomaError ? (
+        <DomainError position="header" setDomainError={setDomainError} setDiplomaError={setDiplomaError} />
+      ) : (
+        renderFormik()
+      )}
+    </div>
   );
 };
 
