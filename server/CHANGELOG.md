@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.10.3 [16/03/2021]
+[486] Fix messages d'erreurs sur formulaires
+
 ## 1.10.2 [12/03/2021]
 [477] Couleur spinner
 [428] Breadcrumb
