@@ -67,10 +67,10 @@ const StartForm = (props) => {
           validate={(values) => {
             const errors = {};
             if (!values.job || !values.job.label || !values.job.romes || !values.job.romes.length > 0) {
-              errors.job = "Sélectionnez un domaine proposé";
+              errors.job = "Veuillez sélectionner un métier proposé";
             }
             if (!values.location || !values.location.label) {
-              errors.location = "Sélectionnez un lieu proposé";
+              errors.location = "Veuillez sélectionner un lieu proposé";
             }
             return errors;
           }}
