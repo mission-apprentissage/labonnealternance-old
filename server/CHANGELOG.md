@@ -1,8 +1,10 @@
 # CHANGELOG
 
 ## 1.10.3 [16/03/2021]
-[486] Fix messages d'erreurs sur formulaires
+[486] Fix messages d'erreurs techniques sur formulaires
 [487] Bouton reset message d'erreur
+[422] Lien de recherche Google
+[468] Style messages d'erreurs champs de formulaires
 
 ## 1.10.2 [12/03/2021]
 [477] Couleur spinner
