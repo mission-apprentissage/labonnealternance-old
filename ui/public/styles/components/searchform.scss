@@ -23,11 +23,11 @@
 .c-searchform--onerror
 {
   .c-logobar-formgroup {
-    border: 1px solid #FA5C00;
+    border: 1px solid $warning;
   }
 
   .errorField {
-    color: #FA5C00;
+    color: $warning;
     margin-left: 5px;
     font-style: italic;
     font-size: 14px;
