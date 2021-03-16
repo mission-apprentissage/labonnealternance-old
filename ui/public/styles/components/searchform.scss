@@ -19,3 +19,21 @@
     padding-bottom: 0;
   }
 }
+
+.c-searchform--onerror
+{
+  .c-logobar-formgroup {
+    border: 1px solid $warning;
+  }
+
+  .errorField {
+    color: $warning;
+    margin-left: 5px;
+    font-style: italic;
+    font-size: 14px;
+    padding-left: 25px;
+    background-image: url(/images/icons/input_value_error.svg);
+    background-repeat: no-repeat;
+    background-position: 5px 2px;
+  }
+}
