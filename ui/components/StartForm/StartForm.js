@@ -77,9 +77,9 @@ const StartForm = (props) => {
           initialValues={formValues ?? { job: {}, location: {} }}
           onSubmit={handleSubmit}
         >
-          {({ isSubmitting, setFieldValue }) => (
+          {({ isSubmitting, errors, setFieldValue }) => (
             <Form>
-              <div className="form-group c-home-hero__input mb-2">
+              <div className={`form-group c-home-hero__input mb-2 ${errors.job ? "form-group--onerror" : ""}`}>
                 <AutoCompleteField
                   items={[]}
                   itemToStringFunction={autoCompleteToStringFunction}
@@ -94,7 +94,9 @@ const StartForm = (props) => {
                 />
                 <ErrorMessage name="job" className="u-error-text-color" component="div" />
               </div>
-              <div className="form-group c-home-hero__input mb-3 mb-sm-4">
+              <div
+                className={`form-group c-home-hero__input mb-3 mb-sm-4 ${errors.location ? "form-group--onerror" : ""}`}
+              >
                 <AutoCompleteField
                   items={[]}
                   itemToStringFunction={autoCompleteToStringFunction}

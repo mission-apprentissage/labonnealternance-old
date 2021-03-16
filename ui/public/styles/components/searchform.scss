@@ -19,3 +19,17 @@
     padding-bottom: 0;
   }
 }
+
+.c-searchform--onerror
+{
+  .c-logobar-formgroup {
+    border: 1px solid #FA5C00;
+  }
+
+  .errorField {
+    color: #FA5C00;
+    margin-left: 5px;
+    font-style: italic;
+    font-size: 14px;
+  }
+}
