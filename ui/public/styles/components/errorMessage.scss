@@ -11,7 +11,11 @@
 
 .u-error-text-color
 {
-  color: #FA5C00
+  color: #FA5C00;
+  padding-left: 25px;
+  background-image: url(/images/icons/input_value_error.svg);
+  background-repeat: no-repeat;
+  background-position: 5px 2px;
 }
 
 
