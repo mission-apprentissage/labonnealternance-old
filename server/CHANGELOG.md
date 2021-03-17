@@ -5,6 +5,9 @@
 [487] Bouton reset message d'erreur
 [422] Lien de recherche Google
 [468] Style messages d'erreurs champs de formulaires
+[425] Style input
+[217] Navigation par tabulation dans les popups 
+Généralisation bouton prdv
 
 ## 1.10.2 [12/03/2021]
 [477] Couleur spinner
