@@ -47,9 +47,19 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
     </>
   );
 
+  const getGoogleSearchParameters = () => {
+    return encodeURI(`${lbb.title} ${lbb.place.address}`);
+  };
+
   return (
     <>
       <div className="text-left">
+        <p className="mb-4">
+          <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
+          <span className="c-detail-sizetext d-block">
+            {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
+          </span>
+        </p>
         {contactPhone || contactEmail ? (
           <p className="d-flex mt-4">
             {seeInfo ? (
@@ -63,7 +73,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
               </>
             ) : (
               <button
-                  className={`d-block btn btn-outline-primary w-75 ml-3 mt-3 gtmContact gtm${capitalizeFirstLetter(
+                className={`d-block btn btn-outline-primary w-75 ml-3 mt-3 gtmContact gtm${capitalizeFirstLetter(
                   kind
                 )}`}
                 onClick={() => setSeeInfo(true)}
@@ -76,9 +86,17 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           ""
         )}
         <p className="mb-4">
-          <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
           <span className="c-detail-sizetext d-block">
-            {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
+            <img className="mt-n1" src="/images/square_link.svg" alt="" />
+            <span className="ml-2">En savoir plus sur </span>
+            <a
+              href={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
+              target="_blank"
+              className="c-detail-google-search"
+              rel="noopener noreferrer"
+            >
+              {lbb.title}
+            </a>
           </span>
         </p>
       </div>

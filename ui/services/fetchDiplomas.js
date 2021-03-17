@@ -26,25 +26,34 @@ export default async function fetchDiplomas(
   if (cleanedArrayOfRome.length === 0) return res;
 
   const romeDiplomasApi = _baseUrl + "/api/jobsdiplomas";
-  const response = await _axios.get(romeDiplomasApi, { params: { romes: cleanedArrayOfRome.join(",") } });
 
-  const isAxiosError = !!_.get(response, "data.error");
-  const hasNoValidData = !_.isArray(_.get(response, "data"));
-  const isSimulatedError = _.includes(_.get(_window, "location.href", ""), "diplomaError=true");
+  let isAxiosError, hasNoValidData, isSimulatedError;
+
+  try {
+    const response = await _axios.get(romeDiplomasApi, { params: { romes: cleanedArrayOfRome.join(",") } });
+
+    isAxiosError = !!_.get(response, "data.error");
+    hasNoValidData = !_.isArray(_.get(response, "data"));
+    isSimulatedError = _.includes(_.get(_window, "location.href", ""), "diplomaError=true");
+
+    res = response.data;
+  } catch (err) {
+    isAxiosError = err.message;
+  }
 
   const isError = isAxiosError || hasNoValidData || isSimulatedError;
 
   if (isError) {
     errorCallbackFn();
     if (isAxiosError) {
-      _logError("Diploma API error", `Diploma API error ${response.data.error}`);
+      _logError("Diploma API error", `Diploma API error`);
     } else if (hasNoValidData) {
       _logError("Diploma API error : API call worked, but returned unexpected data");
     } else if (isSimulatedError) {
       _logError("Diploma API error simulated with a query param :)");
     }
-  } else {
-    res = response.data;
+
+    res = [];
   }
 
   return res;
