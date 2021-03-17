@@ -4,6 +4,7 @@ const _ = require("lodash");
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
 const config = require("config");
 const updateDomainesMetiers = require("../jobs/domainesMetiers/updateDomainesMetiers");
+const Sentry = require("@sentry/node");
 
 const getRomesAndLabelsFromTitleQuery = async (query) => {
   if (!query.title) return { error: "title_missing" };
@@ -68,8 +69,11 @@ const getLabelsAndRomes = async (searchKeyword) => {
       });
     }
 
+    //throw new Error("BOOOOOOOM");
+
     return { labelsAndRomes };
   } catch (err) {
+    Sentry.captureException(err);
     let error_msg = _.get(err, "meta.body") ?? err.message;
 
     if (_.get(err, "meta.meta.connection.status") === "dead") {
@@ -93,6 +97,8 @@ const updateRomesMetiersQuery = async (query) => {
       let result = await updateDomainesMetiers(query.fileName);
       return result;
     } catch (err) {
+      Sentry.captureException(err);
+
       let error_msg = _.get(err, "meta.body") ?? err.message;
 
       return { error: error_msg };
