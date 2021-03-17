@@ -50,9 +50,9 @@ const SearchForTrainingsAndJobs = () => {
     (state) => state.trainings
   );
 
-  const [shouldShowWelcomeMessage, setShouldShowWelcomeMessage] = useState(true);
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
+  const [shouldShowWelcomeMessage, setShouldShowWelcomeMessage] = useState(hasSearch ? false : true);
 
   const [isJobSearchLoading, setIsJobSearchLoading] = useState(hasSearch ? false : true);
   const [jobSearchError, setJobSearchError] = useState("");
@@ -311,11 +311,7 @@ const SearchForTrainingsAndJobs = () => {
             isLoading={isLoading}
           />
         </Col>
-        <Col
-          className={`p-0 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`}
-          xs="12"
-          md="7"
-        >
+        <Col className={`p-0 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
           <Map selectItemOnMap={selectItemOnMap} />
         </Col>
       </Row>

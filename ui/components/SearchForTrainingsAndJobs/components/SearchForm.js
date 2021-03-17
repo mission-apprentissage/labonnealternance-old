@@ -32,7 +32,7 @@ const SearchForm = (props) => {
         initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={props.handleSubmit}
       >
-        {({ isSubmitting, setFieldValue }) => (
+        {({ isSubmitting, setFieldValue, errors }) => (
           <Form className="c-searchform c-searchform--column">
             <Row>
               {widgetParameters?.parameters?.jobName &&
@@ -48,9 +48,9 @@ const SearchForm = (props) => {
                   <Col xs="12">
                     <div className="formGroup">
                       <h1 className="h6 font-weight-bold">Votre recherche</h1>
-                      <div className="">
+                      <div className={`${errors.job ? "c-searchform--onerror" : ""}`}>
                         <AutoCompleteField
-                          kind="Métier"
+                          kind="Métier *"
                           items={[]}
                           itemToStringFunction={autoCompleteToStringFunction}
                           onSelectedItemChangeFunction={partialRight(
@@ -64,17 +64,17 @@ const SearchForm = (props) => {
                           name="jobField"
                           placeholder="ex: plomberie"
                         />
+                        <ErrorMessage name="job" className="errorField" component="div" />
                       </div>
-                      <ErrorMessage name="job" className="errorField" component="div" />
                     </div>
                   </Col>
                 </>
               )}
 
               <Col xs="12">
-                <div className="formGroup mt-3">
+                <div className={`formGroup mt-3 ${errors.location ? "c-searchform--onerror" : ""}`}>
                   <AutoCompleteField
-                    kind="Lieu"
+                    kind="Lieu *"
                     items={[]}
                     itemToStringFunction={autoCompleteToStringFunction}
                     onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
@@ -152,7 +152,11 @@ const SearchForm = (props) => {
         )}
       </div>
 
-      {domainError || diplomaError ? <DomainError></DomainError> : renderFormik()}
+      {domainError || diplomaError ? (
+        <DomainError setDomainError={setDomainError} setDiplomaError={setDiplomaError} />
+      ) : (
+        renderFormik()
+      )}
     </div>
   );
 };

@@ -83,3 +83,17 @@
     left: 14px;
   }
 }
+
+.form-group--onerror
+{
+  .c-input-work
+  {
+    border: 1px solid $warning;
+  }
+
+  .u-error-text-color
+  {
+    font-style: italic;
+    font-size: 14px;
+  }
+}
