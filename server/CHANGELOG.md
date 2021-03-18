@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ## 1.10.4 [18/03/2021]
 [347] Nouvelle charte page d'erreur
 [495] Fix caractères spéciaux dans les liens google
