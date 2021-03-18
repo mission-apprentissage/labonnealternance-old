@@ -52,7 +52,7 @@ const HeadLaBonneAlternance = (props) => {
         content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
       />
 
-      <script src="https://rdv-cfa.apprentissage.beta.gouv.fr/assets/bundle.js"></script>
+      <script src="https://rdv-cfa-recette.apprentissage.beta.gouv.fr/assets/bundle.js"></script>
     </Head>
   );
 };
