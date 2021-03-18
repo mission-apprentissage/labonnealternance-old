@@ -1,6 +1,6 @@
 import React from "react";
 import noop from "lodash";
-import LostHeader from "components/LostHeader";
+import LostHeader from "components/LostHeader/LostHeader";
 import Footer from "components/footer";
 import lostCat from "public/images/lostCat.svg";
 
