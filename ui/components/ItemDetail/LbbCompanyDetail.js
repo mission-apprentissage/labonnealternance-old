@@ -48,7 +48,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   );
 
   const getGoogleSearchParameters = () => {
-    return encodeURI(`${lbb.title} ${lbb.place.address}`);
+    return encodeURIComponent(`${lbb.title} ${lbb.place.address}`);
   };
 
   return (

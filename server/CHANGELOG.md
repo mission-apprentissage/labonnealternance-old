@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.10.4 [18/03/2021]
+[495] Fix caractères spéciaux dans les liens google
 [494] Classe GTM lien google
 [408] Classe GTM lien contact PE
 Correspondance environnements lba / prdv 
