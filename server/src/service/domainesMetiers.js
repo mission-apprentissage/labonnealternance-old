@@ -20,7 +20,15 @@ const getMultiMatchTerm = (term) => {
       must: {
         multi_match: {
           query: term,
-          fields: ["domaine^3", "sous_domaine^20", "domaines^1", "familles^1", "mots_clefs^3", "intitules_romes^5"],
+          fields: [
+            "domaine^3",
+            "sous_domaine^20",
+            "domaines^1",
+            "familles^1",
+            "mots_clefs^3",
+            "intitules_romes^5",
+            "intitules_rncps^5",
+          ],
           type: "phrase_prefix",
           operator: "or",
         },
