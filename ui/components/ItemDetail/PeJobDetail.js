@@ -54,7 +54,7 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
         <h3 className="c-detail-description-title">Postuler</h3>
 
         <div className="c-detail-pelink mt-3">
-          <a target="poleemploi" href={job.url}>
+          <a className="gtmContactPE" target="poleemploi" href={job.url}>
             Contactez le recruteur sur Pôle emploi
           </a>
         </div>
