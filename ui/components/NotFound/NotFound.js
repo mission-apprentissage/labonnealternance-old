@@ -5,13 +5,19 @@ import lostCat from "public/images/lostCat.svg";
 
 const NotFound = () => (
   <>
+
     <WidgetHeader handleSubmit={noop} />
-    <img src={lostCat} alt="Chat perdu" />
-    <div className='not-found'>
-      <a href="https://labonnealternance.pole-emploi.fr" className="back">
-        Retour à l'accueil
-      </a>
+    <div className="container-fluid d-flex min-vh-100 flex-column">
+      <div className="row bg-light flex-fill fill d-flex justify-content-start">
+        <div className="col">
+          text
+        </div>
+        <div className="col">
+          img
+        </div>
+      </div>
     </div>
+
   </>
 );
 
