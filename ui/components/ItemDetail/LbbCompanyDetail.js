@@ -92,7 +92,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
             <a
               href={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
               target="_blank"
-              className="c-detail-google-search"
+              className="c-detail-google-search gtmGoogleLink"
               rel="noopener noreferrer"
             >
               {lbb.title}
