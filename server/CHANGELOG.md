@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.10.4 [18/03/2021]
+Correspondance environnements lba / prdv 
+
 ## 1.10.3 [16/03/2021]
 [486] Fix messages d'erreurs techniques sur formulaires
 [487] Bouton reset message d'erreur
