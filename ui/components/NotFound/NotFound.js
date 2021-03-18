@@ -7,14 +7,27 @@ import lostCat from "public/images/lostCat.svg";
 const NotFound = () => (
   <>
 
-    <div id="page" className="min-vh-100 d-flex flex-column">
-      <div id="header">
+    <div className="not-found-container">
+      <div className="not-found-header">
         <WidgetHeader handleSubmit={noop} />
       </div>
-      <div id="content" className="flex-grow-1">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, perspiciatis. Adipisci minus at assumenda, repellat ab nisi debitis dolor! Quibusdam excepturi beatae officiis ducimus eius fugit aliquam nulla nostrum minima.
+      <div className="not-found-content-container">
+        <div className="not-found-content">
+          <div className="row">
+            <div className="col-12 col-lg-6 order-lg-2">
+              <img src={lostCat} alt="Chat perdu" />
+            </div>
+            <div className="col-12 col-lg-6 order-lg-1">
+              <div className='not-found'>
+                <a href="https://labonnealternance.pole-emploi.fr" className="back">
+                  Retour à l'accueil
+            </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="footer">
+      <div className="not-found-footer">
         <Footer />
       </div>
     </div>
