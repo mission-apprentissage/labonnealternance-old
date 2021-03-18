@@ -1,3 +1,11 @@
-.not-found {
-  color: #4A4A4A;
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.not-found-content-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
