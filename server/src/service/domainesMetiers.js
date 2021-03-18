@@ -44,7 +44,7 @@ const getLabelsAndRomes = async (searchKeyword) => {
     const response = await esClient.search({
       index: "domainesmetiers",
       size: 20,
-      _sourceIncludes: ["sous_domaine", "codes_romes"],
+      _sourceIncludes: ["sous_domaine", "codes_romes", "codes_rncps"],
       body: {
         query: {
           bool: {
@@ -57,7 +57,11 @@ const getLabelsAndRomes = async (searchKeyword) => {
     let labelsAndRomes = [];
 
     response.body.hits.hits.forEach((labelAndRome) => {
-      labelsAndRomes.push({ label: labelAndRome._source.sous_domaine, romes: labelAndRome._source.codes_romes });
+      labelsAndRomes.push({
+        label: labelAndRome._source.sous_domaine,
+        romes: labelAndRome._source.codes_romes,
+        rncps: labelAndRome._source.codes_rncps,
+      });
     });
 
     if (searchKeyword.length > 3) {
