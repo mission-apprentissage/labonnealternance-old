@@ -1,10 +1,10 @@
 # CHANGELOG
 
 ## 1.10.4 [18/03/2021]
+[347] Nouvelle charte page d'erreur
 [495] Fix caractères spéciaux dans les liens google
 [494] Classe GTM lien google
 [408] Classe GTM lien contact PE
-Correspondance environnements lba / prdv 
 
 ## 1.10.3 [16/03/2021]
 [486] Fix messages d'erreurs techniques sur formulaires
@@ -31,7 +31,7 @@ Meilleur centrage boutons flottants
 [359] Corrections footer
 [464] Ajout de la localité du CFA pour discriminer les quasi doublons
 [461] Corrections design
-[460] Zoom dézoom de la carte au pinch
+[460] Zoom dézoom de la  carte au pinch
 [457] Accès direct aux fiches LBB / LBA
 
 ## 1.10.0 [09/03/2021]
