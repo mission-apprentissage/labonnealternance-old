@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.11.0 [19/03/2021]
+[497] domainesMetiers retourne les codes RNCPs
+
 ## 1.10.4 [18/03/2021]
 [495] Fix caractères spéciaux dans les liens google
 [494] Classe GTM lien google
