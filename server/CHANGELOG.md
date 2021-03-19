@@ -1,6 +1,9 @@
 # CHANGELOG
 
 
+## 1.10.6 [19/03/2021]
+[509] Circulation entre fiches
+
 ## 1.10.5 [19/03/2021]
 [348] Page d'erreur 500
 
