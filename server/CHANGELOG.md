@@ -1,6 +1,9 @@
 # CHANGELOG
 
 
+## 1.10.5 [19/03/2021]
+[348] Page d'erreur 500
+
 ## 1.10.4 [18/03/2021]
 [490] Déplacer les crédits d'illustrations
 [347] Nouvelle charte page d'erreur
