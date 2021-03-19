@@ -9,7 +9,7 @@ const { trackEvent } = require("../common/utils/sendTrackingEvent");
 const formationResultLimit = 500;
 const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
 
-const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit }) => {
+const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma, limit }) => {
   //console.log(romes, coords, radius, diploma);
 
   try {
@@ -32,12 +32,22 @@ const getFormations = async ({ romes, romeDomain, coords, radius, diploma, limit
           },
     ];
 
-    if (diploma)
+    if (rncps) {
+      console.log("romes", romes, romes.join(" "), "rncps", rncps, rncps.join(" "));
+      mustTerm.push({
+        match: {
+          rncps_codes: rncps.join(" "),
+        },
+      });
+    }
+
+    if (diploma) {
       mustTerm.push({
         match: {
           niveau: diploma,
         },
       });
+    }
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
@@ -246,14 +256,25 @@ const getRegionFormations = async ({
 };
 
 // tente de récupérer des formatiosn dans le rayon de recherche, si sans succès cherche les maxOutLimitFormation les plus proches du centre de recherche
-const getAtLeastSomeFormations = async ({ romes, romeDomain, coords, radius, diploma, maxOutLimitFormation }) => {
+const getAtLeastSomeFormations = async ({
+  romes,
+  rncps,
+  romeDomain,
+  coords,
+  radius,
+  diploma,
+  maxOutLimitFormation,
+}) => {
   try {
     let formations = [];
     let currentRadius = radius;
     let formationLimit = formationResultLimit;
 
+    console.log("ICI : ", rncps);
+
     formations = await getFormations({
       romes,
+      rncps,
       romeDomain,
       coords,
       radius: currentRadius,
@@ -467,6 +488,7 @@ const getFormationsQuery = async (query) => {
   try {
     const formations = await getAtLeastSomeFormations({
       romes: query.romes ? query.romes.split(",") : null,
+      rncps: query.rncps ? query.rncps.split(",") : null,
       coords: [query.longitude, query.latitude],
       radius: query.radius,
       diploma: query.diploma,
