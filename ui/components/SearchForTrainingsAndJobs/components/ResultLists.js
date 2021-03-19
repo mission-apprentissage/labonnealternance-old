@@ -12,6 +12,7 @@ import FilterButton from "./FilterButton";
 import { useScopeContext } from "context/ScopeContext";
 import questionMarkIcon from "public/images/icons/question_mark.svg";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
+import {get, concat} from "lodash";
 
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -409,6 +410,40 @@ const ResultLists = (props) => {
     setDisplayCount(document.querySelector(".c-result-list__text").scrollTop < 30);
   };
 
+  let fullResultList = []
+
+  const saveAndRenderTrainingResult = () => {
+    let trainingResult = getTrainingResult();
+    console.log('trainingResult', trainingResult);
+    
+    // console.log('trainingResult...', trainingResult.props.children.props.children.props.children[1].map(x => x.props.training));
+    let root_prop = trainingResult?.props?.children?.props?.children?.props
+    console.log('root_prop', root_prop);
+    if (root_prop && get(root_prop, 'children[1]')) {
+      let arrayOfTrainings = root_prop.children[1].map(x => JSON.parse(JSON.stringify((x.props.training))))
+      console.log('arrayOfTrainings', arrayOfTrainings);
+      localStorage.setItem('lba_result', JSON.stringify(arrayOfTrainings))
+    }
+    
+    return trainingResult;
+  }
+  
+  const saveAndRenderJobResult = () => {
+    let jobResult = getJobResult();
+    console.log('jobResult', jobResult);
+    let root_prop = jobResult?.props?.children?.props
+    
+    if (root_prop) {
+      let arrayOfJobs = root_prop.children[1].props.children.map(x => JSON.parse(JSON.stringify((x.props.company))))
+      console.log('arrayOfJobs', arrayOfJobs);
+      let initial_result = JSON.parse(localStorage.getItem('lba_result'));
+      let final_result = concat(initial_result, arrayOfJobs);
+      localStorage.setItem('lba_result', JSON.stringify(final_result))
+    }
+    
+    return jobResult;
+  }
+
   return (
     <div
       className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${
@@ -425,8 +460,8 @@ const ResultLists = (props) => {
         className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}
       >
         {getBanner()}
-        {getTrainingResult()}
-        {getJobResult()}
+        {saveAndRenderTrainingResult()}
+        {saveAndRenderJobResult(fullResultList)}
       </div>
     </div>
   );
