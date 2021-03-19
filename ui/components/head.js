@@ -6,6 +6,13 @@ import baseUrl from "utils/baseUrl";
 const HeadLaBonneAlternance = (props) => {
   return (
     <Head>
+      {/* Global error simulation */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `throw 'Im not a number';`,
+        }}
+      />
+      {/* End Global error simulation  */}
       {/* Google Tag Manager */}
       <script
         dangerouslySetInnerHTML={{
