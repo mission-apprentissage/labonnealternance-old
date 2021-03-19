@@ -5,6 +5,7 @@ import {
   trainingsApi,
   trainingErrorText,
   getRomeFromParameters,
+  getRncpsFromParameters,
 } from "components/SearchForTrainingsAndJobs/services/utils";
 
 export const searchForTrainingsFunction = async ({
@@ -24,9 +25,11 @@ export const searchForTrainingsFunction = async ({
   setTrainingSearchError("");
   clearTrainings();
   try {
+    console.log("values : ", values);
     const response = await axios.get(trainingsApi, {
       params: {
         romes: getRomeFromParameters({ values, widgetParameters }),
+        rncps: getRncpsFromParameters({ values, widgetParameters }),
         longitude: values.location.value.coordinates[0],
         latitude: values.location.value.coordinates[1],
         radius: values.radius || 30,

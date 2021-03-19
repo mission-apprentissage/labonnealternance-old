@@ -20,6 +20,16 @@ const getRomeFromParameters = ({ values, widgetParameters }) => {
     : values.job.romes.join(",");
 };
 
+const getRncpsFromParameters = ({ values, widgetParameters }) => {
+  return widgetParameters?.parameters?.jobName &&
+    widgetParameters?.parameters?.romes &&
+    widgetParameters?.parameters?.frozenJob
+    ? ""
+    : values.job?.rncps
+    ? values.job.rncps.join(",")
+    : "";
+};
+
 export {
   trainingApi,
   trainingsApi,
@@ -30,6 +40,7 @@ export {
   technicalErrorText,
   notFoundErrorText,
   getRomeFromParameters,
+  getRncpsFromParameters,
   offreApi,
   companyApi,
 };
