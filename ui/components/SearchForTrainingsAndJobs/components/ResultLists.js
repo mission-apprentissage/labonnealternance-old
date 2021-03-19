@@ -410,13 +410,10 @@ const ResultLists = (props) => {
     setDisplayCount(document.querySelector(".c-result-list__text").scrollTop < 30);
   };
 
-  let fullResultList = []
-
   const saveAndRenderTrainingResult = () => {
     let trainingResult = getTrainingResult();
     console.log('trainingResult', trainingResult);
     
-    // console.log('trainingResult...', trainingResult.props.children.props.children.props.children[1].map(x => x.props.training));
     let root_prop = trainingResult?.props?.children?.props?.children?.props
     console.log('root_prop', root_prop);
     if (root_prop && get(root_prop, 'children[1]')) {
@@ -461,7 +458,7 @@ const ResultLists = (props) => {
       >
         {getBanner()}
         {saveAndRenderTrainingResult()}
-        {saveAndRenderJobResult(fullResultList)}
+        {saveAndRenderJobResult()}
       </div>
     </div>
   );
