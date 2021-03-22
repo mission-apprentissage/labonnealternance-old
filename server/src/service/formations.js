@@ -33,12 +33,11 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
     ];
 
     if (rncps) {
-      console.log("romes", romes, romes.join(" "), "rncps", rncps, rncps.join(" "));
-      mustTerm.push({
+      /*mustTerm.push({
         match: {
           rncp_code: rncps.join(" "),
         },
-      });
+      });*/
     }
 
     if (diploma) {
