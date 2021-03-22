@@ -6,7 +6,7 @@ import extendedSearchPin from "../../public/images/icons/jobPin.svg";
 import { useScopeContext } from "context/ScopeContext";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
-  const { formValues } = useSelector((state) => state.trainings);
+  const { formValues, itemParameters } = useSelector((state) => state.trainings);
   const scopeContext = useScopeContext();
 
   const currentSearchRadius = formValues?.radius || 30;
@@ -21,6 +21,14 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
         <img src={extendedSearchPin} alt="" /> <span>Voir les entreprises proches</span>
       </button>
     );
+  };
+
+  const getDebugClass = () => {
+    if (itemParameters?.mode === "debug" && formValues?.job?.rncps.indexOf(training.rncpCode) < 0) {
+      return "debugRemoved";
+    } else {
+      return "";
+    }
   };
 
   const centerSearchOnTraining = async (e) => {
@@ -53,7 +61,10 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
   };
 
   return (
-    <div className="resultCard trainingCard gtmSavoirPlus gtmFormation gtmListe" onClick={onSelectItem}>
+    <div
+      className={`resultCard trainingCard gtmSavoirPlus gtmFormation gtmListe ${getDebugClass()}`}
+      onClick={onSelectItem}
+    >
       <div className="c-media" id={`id${training.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={trainingIcon} alt="" />
@@ -65,13 +76,20 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
             {training.company.name} ({training.company.place.city})
           </div>
           <div className="cardText pt-2">{training.place.fullAddress}</div>
+          {itemParameters?.mode === "debug" ? (
+            <div className="cardText pt-2">{`${training.rncpCode} - romes :${training.romes.map(
+              (rome) => " " + rome.code
+            )}`}</div>
+          ) : (
+            ""
+          )}
           <span className="cardDistance pt-1">
             {Math.round(training.place.distance)} km(s) du lieu de recherche
             {showTextOnly ? (
               ""
             ) : (
               <>
-                  <span className="knowMore d-none d-md-block">
+                <span className="knowMore d-none d-md-block">
                   <button className="c-resultcard-knowmore">En savoir plus</button>
                 </span>
               </>
