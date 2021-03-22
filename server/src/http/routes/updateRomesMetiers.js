@@ -1,6 +1,6 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
-const { updateRomesMetiersQuery } = require("../../service/domainesMetiers");
+const { updateRomesMetiersQuery, getMissingRNCPs } = require("../../service/domainesMetiers");
 /**
  * API romes
  */
@@ -11,6 +11,14 @@ module.exports = () => {
     "/",
     tryCatch(async (req, res) => {
       const result = await updateRomesMetiersQuery(req.query);
+      return res.json(result);
+    })
+  );
+
+  router.get(
+    "/missingRNCPs",
+    tryCatch(async (req, res) => {
+      const result = await getMissingRNCPs(req.query);
       return res.json(result);
     })
   );

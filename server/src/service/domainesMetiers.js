@@ -4,6 +4,7 @@ const _ = require("lodash");
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
 const config = require("config");
 const updateDomainesMetiers = require("../jobs/domainesMetiers/updateDomainesMetiers");
+const getMissingRNCPsFromDomainesMetiers = require("../jobs/domainesMetiers/getMissingRNCPsFromDomainesMetiers");
 const Sentry = require("@sentry/node");
 
 const getRomesAndLabelsFromTitleQuery = async (query) => {
@@ -105,8 +106,26 @@ const updateRomesMetiersQuery = async (query) => {
     return { error: "wrong_secret" };
   } else {
     try {
-      console.log("update");
       let result = await updateDomainesMetiers(query.fileName);
+      return result;
+    } catch (err) {
+      Sentry.captureException(err);
+
+      let error_msg = _.get(err, "meta.body") ?? err.message;
+
+      return { error: error_msg };
+    }
+  }
+};
+
+const getMissingRNCPs = async (query) => {
+  if (!query.secret) {
+    return { error: "secret_missing" };
+  } else if (query.secret !== config.private.secretUpdateRomesMetiers) {
+    return { error: "wrong_secret" };
+  } else {
+    try {
+      let result = await getMissingRNCPsFromDomainesMetiers(query.fileName);
       return result;
     } catch (err) {
       Sentry.captureException(err);
@@ -121,4 +140,5 @@ const updateRomesMetiersQuery = async (query) => {
 module.exports = {
   getRomesAndLabelsFromTitleQuery,
   updateRomesMetiersQuery,
+  getMissingRNCPs,
 };
