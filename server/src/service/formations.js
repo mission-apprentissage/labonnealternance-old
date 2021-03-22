@@ -36,7 +36,7 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
       console.log("romes", romes, romes.join(" "), "rncps", rncps, rncps.join(" "));
       mustTerm.push({
         match: {
-          rncps_codes: rncps.join(" "),
+          rncp_code: rncps.join(" "),
         },
       });
     }
@@ -288,6 +288,7 @@ const getAtLeastSomeFormations = async ({
       currentRadius = 20000;
       formations = await getFormations({
         romes,
+        rncps,
         romeDomain,
         coords,
         radius: currentRadius,
