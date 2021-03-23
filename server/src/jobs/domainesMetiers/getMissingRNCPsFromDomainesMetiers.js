@@ -50,21 +50,22 @@ const getMissingRNCPsOfDomain = async (domain) => {
 
     let missingRNCPs = [];
     let missingRNCPsWithLabel = [];
+    let missingTrainingCount = 0;
 
     response.data.hits.hits.forEach((training) => {
-      if (
-        domain.codes_rncps.indexOf(training._source.rncp_code) < 0 &&
-        missingRNCPs.indexOf(training._source.rncp_code) < 0
-      ) {
-        missingRNCPs.push(training._source.rncp_code);
-        missingRNCPsWithLabel.push(`${training._source.rncp_code} : ${training._source.rncp_intitule}`);
+      if (domain.codes_rncps.indexOf(training._source.rncp_code) < 0) {
+        missingTrainingCount++;
+        if (missingRNCPs.indexOf(training._source.rncp_code) < 0) {
+          missingRNCPs.push(training._source.rncp_code);
+          missingRNCPsWithLabel.push(`${training._source.rncp_code} : ${training._source.rncp_intitule}`);
+        }
       }
     });
     //console.log("total ", response.data.hits.hits.length, " miss : ", missingRNCPs.length,[...new Set(missingRNCPs)].length);
 
     return {
       totalFormations: response.data.hits.hits.length,
-      totalFormationsPerdues: missingRNCPs.length,
+      totalFormationsPerdues: missingTrainingCount,
       RNCPsManquants: missingRNCPsWithLabel,
     };
   } catch (err) {
