@@ -49,10 +49,15 @@ const getMissingRNCPsOfDomain = async (domain) => {
     );
 
     let missingRNCPs = [];
+    let missingRNCPsWithLabel = [];
 
     response.data.hits.hits.forEach((training) => {
-      if (domain.codes_rncps.indexOf(training._source.rncp_code) < 0) {
+      if (
+        domain.codes_rncps.indexOf(training._source.rncp_code) < 0 &&
+        missingRNCPs.indexOf(training._source.rncp_code) < 0
+      ) {
         missingRNCPs.push(training._source.rncp_code);
+        missingRNCPsWithLabel.push(`${training._source.rncp_code} : ${training._source.rncp_intitule}`);
       }
     });
     //console.log("total ", response.data.hits.hits.length, " miss : ", missingRNCPs.length,[...new Set(missingRNCPs)].length);
@@ -60,7 +65,7 @@ const getMissingRNCPsOfDomain = async (domain) => {
     return {
       totalFormations: response.data.hits.hits.length,
       totalFormationsPerdues: missingRNCPs.length,
-      RNCPsManquants: [...new Set(missingRNCPs)],
+      RNCPsManquants: missingRNCPsWithLabel,
     };
   } catch (err) {
     let error_msg = _.get(err, "meta.body") ?? err.message;
@@ -147,8 +152,8 @@ module.exports = async (optionalFileName) => {
 
           missingRNCPs.push({
             metier: domainesMetier.sous_domaine,
-            codesROMEs,
-            codesRNCPs,
+            /*codesROMEs,
+            codesRNCPs,*/
             missingRNCPs: missingRNCPsOfDomain ? missingRNCPsOfDomain : "aucun RNCP manquant",
           });
 
