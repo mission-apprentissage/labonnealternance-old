@@ -1,8 +1,8 @@
 # CHANGELOG
 
-
-## 1.10.5 [19/03/2021]
+## 1.10.5 [23/03/2021]
 [348] Page d'erreur 500
+[513] Filtre selon état de publication
 
 ## 1.10.4 [18/03/2021]
 [490] Déplacer les crédits d'illustrations
