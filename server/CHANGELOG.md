@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 1.10.5 [23/03/2021]
+[348] Page d'erreur 500
+[513] Filtre selon état de publication
+
+## 1.10.4 [18/03/2021]
+[490] Déplacer les crédits d'illustrations
+[347] Nouvelle charte page d'erreur
+[495] Fix caractères spéciaux dans les liens google
+[494] Classe GTM lien google
+[408] Classe GTM lien contact PE
+
 ## 1.10.3 [16/03/2021]
 [486] Fix messages d'erreurs techniques sur formulaires
 [487] Bouton reset message d'erreur

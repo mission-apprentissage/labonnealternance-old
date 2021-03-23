@@ -55,6 +55,12 @@ const APROPOS = () => (
             en 2020, le site ajoute désormais des informations sur les formations et les offres d’emploi en
             apprentissage.
           </p>
+
+          <h3>Crédits images</h3>
+
+          <p>
+            <small><a href="https://www.freepik.com/vectors/people">Illustration de la page d'accueil réalisée par pikisuperstar - www.freepik.com</a></small>
+          </p>
         </div>
       </div>
     </div>
