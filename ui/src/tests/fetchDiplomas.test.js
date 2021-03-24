@@ -35,7 +35,7 @@ describe("fetchDiplomas", () => {
     const res = await fetchDiplomas(["D1208", "D1203"], mockedErrorFn, "urlMock", axiosStub, {}, mockedLoggerFn);
     // then
     expect(mockedErrorFn).toHaveBeenCalled();
-    expect(mockedLoggerFn).toHaveBeenCalledWith("Diploma API error", "Diploma API error remote_error_message");
+    expect(mockedLoggerFn).toHaveBeenCalledWith("Diploma API error", "Diploma API error");
     expect(res).toEqual([]);
   });
 

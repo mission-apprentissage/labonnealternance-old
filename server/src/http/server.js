@@ -12,6 +12,7 @@ const updateRomesMetiers = require("./routes/updateRomesMetiers");
 const jobDiploma = require("./routes/jobDiploma");
 const formationV1 = require("./routes/formationV1");
 const version = require("./routes/version");
+const error500 = require("./routes/error500");
 const formationRegionV1 = require("./routes/formationRegionV1");
 const jobV1 = require("./routes/jobV1");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
@@ -72,6 +73,8 @@ module.exports = async (components) => {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   app.use("/api/version", limiter3PerSecond, version());
+
+  app.use("/api/error500", limiter3PerSecond, error500());
 
   app.use("/api/v1/formations", limiter5PerSecond, formationV1());
 

@@ -155,9 +155,6 @@ const Footer = (props) => {
                 />
               </a>
             </Col>
-            <Col className="col-12 text-center c-footer-credit pt-3">
-              <small><a href="https://www.freepik.com/vectors/people">Illustration réalisée par pikisuperstar - www.freepik.com</a></small>
-            </Col>
           </Row>
         </div>
       </Navbar>
