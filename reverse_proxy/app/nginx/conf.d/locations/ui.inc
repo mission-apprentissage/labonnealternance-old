@@ -17,6 +17,6 @@ location / {
     }
 
     if ($filename ~* ^.*?\.(eot)|(ttf)|(woff)$){
-       proxy_set_header Access-Control-Allow-Origin *;
+       add_header Access-Control-Allow-Origin *;
     }
 }
