@@ -10,4 +10,8 @@ location / {
     proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header        X-Forwarded-Host $server_name;
     proxy_set_header        X-Forwarded-Proto $scheme; 
+
+    if ($filename ~* ^.*?\.(eot)|(ttf)|(woff)$){
+       proxy_set_header Access-Control-Allow-Origin *;
+    }
 }
