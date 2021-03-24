@@ -54,6 +54,7 @@ const HeadLaBonneAlternance = (props) => {
       />
 
       <script
+        rel="preload"
         src={`https://rdv-cfa${env !== "production" ? "-recette" : ""}.apprentissage.beta.gouv.fr/assets/bundle.js`}
       ></script>
     </Head>
