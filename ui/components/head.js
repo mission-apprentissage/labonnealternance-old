@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Fonts from "./fonts";
 import baseUrl from "utils/baseUrl";
+import env from "utils/env";
 
 const HeadLaBonneAlternance = (props) => {
   return (
@@ -54,9 +55,7 @@ const HeadLaBonneAlternance = (props) => {
       />
 
       <script
-        src={`https://rdv-cfa${
-          baseUrl.indexOf("recette") >= 0 ? "-recette" : ""
-        }.apprentissage.beta.gouv.fr/assets/bundle.js`}
+        src={`https://rdv-cfa${env !== "production" ? "-recette" : ""}.apprentissage.beta.gouv.fr/assets/bundle.js`}
       ></script>
     </Head>
   );
