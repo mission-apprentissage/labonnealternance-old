@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import Fonts from "./fonts";
-import baseUrl from "utils/baseUrl";
 import env from "utils/env";
 
 const HeadLaBonneAlternance = (props) => {
