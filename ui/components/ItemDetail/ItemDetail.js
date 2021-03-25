@@ -29,17 +29,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
 
   const goNext = () => {
-    // console.log('goNext');
     let list = currentListAndItem.list;
     let item = currentListAndItem.item;
-    console.log('currentListAndItem', currentListAndItem);
     let currentIndex = findIndex(list, item)
     let nextIndex = (currentIndex == list.length - 1 ? 0 : currentIndex + 1)
-    console.log('z', nextIndex);
-    // Store.getState()
-    // const trainings = useSelector((state) => state.trainings);
-    // console.log('trainings', trainings);
-
+    console.log('nextIndex', nextIndex);
   }
   
   const goPrev = () => {
