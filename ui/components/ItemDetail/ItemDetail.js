@@ -18,14 +18,12 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectedItem }) => {
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
   const currentList = useSelector((store) => {
-    let res = {}
     let picked = pick(store.trainings, ['trainings', 'jobs'])
     let trainingsArray = get(picked, 'trainings', [])
     let lbaArray = get(picked, 'jobs.lbaCompanies', [])
     let lbbArray = get(picked, 'jobs.lbbCompanies', [])
     let peArray = get(picked, 'jobs.peJobs', [])
-    res = concat([], trainingsArray, lbaArray, lbbArray, peArray)
-    return res
+    return concat([], trainingsArray, lbaArray, lbbArray, peArray)
   }) 
 
 
