@@ -144,7 +144,7 @@ const SearchForm = (props) => {
     <div className={isFormVisible ? "" : "hiddenSearchForm"}>
       <div className="formGroup">
         {hasSearch ? (
-          <button className="c-detail-back px-3 py-1" onClick={props.showResultList}>
+          <button className="c-tiny-btn px-3 py-1" onClick={props.showResultList}>
             ← Retour
           </button>
         ) : (

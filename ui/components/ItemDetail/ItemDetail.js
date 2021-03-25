@@ -8,9 +8,6 @@ import { get, pick, concat, includes, defaultTo, round, findIndex } from 'lodash
 
 const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
 
-  console.log('handleClose', handleClose);
-  console.log('handleSelectItem', handleSelectItem);
-
   const kind = selectedItem?.ideaType;
 
   const distance = selectedItem?.place?.distance;
