@@ -42,9 +42,9 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
     // See https://www.npmjs.com/package/react-swipeable
     onSwiped: (event_data) => {
       if (event_data.dir === 'Right') {
-        goNext()
-      } else if (event_data.dir === 'Left') {
         goPrev()
+      } else if (event_data.dir === 'Left') {
+        goNext()
       }
     } 
   })
