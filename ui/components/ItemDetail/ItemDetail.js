@@ -14,6 +14,14 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
+  const goNext = () => {
+    console.log('goNext');
+  }
+  
+  const goPrev = () => {
+    console.log('goPrev');
+  }
+
   return (
     <>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
@@ -47,7 +55,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
               <div>
                 <button
                   className="c-tiny-btn"
-                  onClick={() => {console.log('prec')}}
+                  onClick={() => { goPrev() }}
                 >
                   ← Résultat précédent
                 </button>              
@@ -55,7 +63,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
               <div className="ml-2">
                 <button
                   className="c-tiny-btn"
-                  onClick={() => {console.log('suiv')}}
+                  onClick={() => { goNext() }}
                 >
                   Résultat suivant →
                 </button>              
