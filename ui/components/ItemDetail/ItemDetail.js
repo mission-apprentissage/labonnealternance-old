@@ -3,9 +3,8 @@ import { useSelector  } from "react-redux";
 import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { get, includes, defaultTo, round } from "lodash";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
-import {pick} from 'lodash';
+import { get, pick, concat, includes, defaultTo, round } from 'lodash';
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
   const kind = selectedItem?.ideaType;
@@ -16,12 +15,22 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
-  const currentList = useSelector(store => pick(store.trainings, ['trainings', 'jobs', 'selectedItem']))
+  const currentListAndItem = useSelector((store) => {
+    let res = {}
+    let picked = pick(store.trainings, ['trainings', 'jobs'])
+    let trainingsArray = get(picked, 'trainings', [])
+    let lbaArray = get(picked, 'jobs.lbaCompanies', [])
+    let lbbArray = get(picked, 'jobs.lbbCompanies', [])
+    let peArray = get(picked, 'jobs.peJobs', [])
+    res.currentList = concat([], trainingsArray, lbaArray, lbbArray, peArray)
+    res.currentItem = get(store, 'trainings.selectedItem')
+    return res
+  }) 
 
 
   const goNext = () => {
     // console.log('goNext');
-    console.log('currentList', currentList);
+    console.log('currentListAndItem', currentListAndItem);
 
     // Store.getState()
     // const trainings = useSelector((state) => state.trainings);
