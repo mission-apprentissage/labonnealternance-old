@@ -175,7 +175,7 @@ const ChoiceColumn = ({
   };
 
   const getSelectedItemDetail = () => {
-    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} />;
+    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} handleSelectItem={handleSelectItem} />;
   };
 
   return (

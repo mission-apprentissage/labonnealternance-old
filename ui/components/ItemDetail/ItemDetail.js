@@ -6,7 +6,9 @@ import TrainingDetail from "./TrainingDetail";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import { get, pick, concat, includes, defaultTo, round, findIndex } from 'lodash';
 
-const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
+const ItemDetail = ({ selectedItem, handleClose, handleSelectedItem }) => {
+
+  console.log('handleSelectedItem', handleSelectedItem);
   const kind = selectedItem?.ideaType;
 
   const distance = selectedItem?.place?.distance;
@@ -15,25 +17,23 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
-  const currentListAndItem = useSelector((store) => {
+  const currentList = useSelector((store) => {
     let res = {}
     let picked = pick(store.trainings, ['trainings', 'jobs'])
     let trainingsArray = get(picked, 'trainings', [])
     let lbaArray = get(picked, 'jobs.lbaCompanies', [])
     let lbbArray = get(picked, 'jobs.lbbCompanies', [])
     let peArray = get(picked, 'jobs.peJobs', [])
-    res.list = concat([], trainingsArray, lbaArray, lbbArray, peArray)
-    res.item = get(store, 'trainings.selectedItem')
+    res = concat([], trainingsArray, lbaArray, lbbArray, peArray)
     return res
   }) 
 
 
   const goNext = () => {
-    let list = currentListAndItem.list;
-    let item = currentListAndItem.item;
-    let currentIndex = findIndex(list, item)
-    let nextIndex = (currentIndex == list.length - 1 ? 0 : currentIndex + 1)
-    console.log('nextIndex', nextIndex);
+    let currentIndex = findIndex(currentList, selectedItem)
+    let nextIndex = (currentIndex == currentList.length - 1 ? 0 : currentIndex + 1)
+    console.log('nextIndex', nextIndex)
+    console.log('handleSelectedItem', handleSelectedItem);
   }
   
   const goPrev = () => {
@@ -43,19 +43,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
   return (
     <>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
-        {displayNavbar ? (
-          <nav
-            className="c-detail-stickynav"
-            onClick={() => {
-              setSeeInfo(false);
-              handleClose();
-            }}
-          >
-            <span className="mr-3">←</span> {actualTitle}
-          </nav>
-        ) : (
-          ""
-        )}
         <header className="c-detail-header">
           <div className="text-left">
             <div className="d-flex">
