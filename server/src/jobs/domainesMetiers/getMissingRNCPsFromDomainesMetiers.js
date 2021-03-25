@@ -30,6 +30,9 @@ const getFormationEsQueryIndexFragment = (limit) => {
   };
 };
 
+let inDomainRNCPs = new Set();
+let domainsOfRNCPs = {};
+
 const getMissingRNCPsOfDomain = async (domain) => {
   try {
     const response = await axios.post(
@@ -57,7 +60,11 @@ const getMissingRNCPsOfDomain = async (domain) => {
         missingTrainingCount++;
         if (missingRNCPs.indexOf(training._source.rncp_code) < 0) {
           missingRNCPs.push(training._source.rncp_code);
-          missingRNCPsWithLabel.push(`${training._source.rncp_code} : ${training._source.rncp_intitule}`);
+          let missinRNCPWithLabel = {
+            libelle: training._source.rncp_intitule,
+            code: training._source.rncp_code,
+          };
+          missingRNCPsWithLabel.push(missinRNCPWithLabel);
         }
       }
     });
@@ -97,6 +104,20 @@ const downloadAndSaveFile = (optionalFileName) => {
 const readXLSXFile = (filePath) => {
   const workbook = XLSX.readFile(filePath, { codepage: 65001 });
   return { sheet_name_list: workbook.SheetNames, workbook };
+};
+
+const searchForMissingRNCPsInOtherDomains = (missingRNCPs) => {
+  missingRNCPs.forEach((domainMissingRNCPs) => {
+    domainMissingRNCPs.missingRNCPs.RNCPsManquants.forEach((rncp) => {
+      if (rncp) {
+        if (inDomainRNCPs.has(rncp.code)) {
+          rncp.autresMetiers = domainsOfRNCPs[rncp.code];
+        } else {
+          rncp.autresMetiers = "aucun";
+        }
+      }
+    });
+  });
 };
 
 module.exports = async (optionalFileName) => {
@@ -147,6 +168,15 @@ module.exports = async (optionalFileName) => {
             couples_romes_metiers: couplesROMEsIntitules,
           });
 
+          // enregistrement des rncps
+          codesRNCPs.forEach((rncp) => {
+            inDomainRNCPs.add(rncp);
+            if (domainsOfRNCPs[rncp]) {
+              domainsOfRNCPs[rncp].push(domainesMetier.sous_domaine);
+            } else {
+              domainsOfRNCPs[rncp] = [domainesMetier.sous_domaine];
+            }
+          });
           //console.log("ICIII : ", getMissingRNCPsOfDomain);
 
           let missingRNCPsOfDomain = await getMissingRNCPsOfDomain(domainesMetier);
@@ -203,9 +233,12 @@ module.exports = async (optionalFileName) => {
       }
     }
 
+    searchForMissingRNCPsInOtherDomains(missingRNCPs);
+
     return {
       result: "Fichier analysé",
       fileName: optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx",
+      //inDomainRNCPs: [...inDomainRNCPs],
       missingRNCPs,
     };
   } catch (err) {
