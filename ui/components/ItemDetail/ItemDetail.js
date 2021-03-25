@@ -4,6 +4,7 @@ import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
+import {useSwipeable} from "react-swipeable";
 import { get, pick, concat, includes, defaultTo, round, findIndex } from 'lodash';
 
 const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
@@ -25,7 +26,6 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
     return concat([], trainingsArray, lbaArray, lbbArray, peArray)
   }) 
 
-
   const goNext = () => {
     let currentIndex = findIndex(currentList, selectedItem)
     let nextIndex = (currentIndex == currentList.length - 1 ? 0 : currentIndex + 1)
@@ -38,8 +38,20 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
     handleSelectItem(currentList[prevIndex])
   }
 
+  const swipeHandlers = useSwipeable({ 
+    // See https://www.npmjs.com/package/react-swipeable
+    onSwiped: (event_data) => {
+      console.log('event_data', event_data);
+      if (event_data.dir == 'Right') {
+        goNext()
+      } else if (event_data.dir == 'Left') {
+        goPrev()
+      }
+    } 
+  })
+
   return (
-    <>
+    <div {...swipeHandlers}>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
         <header className="c-detail-header">
           <div className="text-left">
@@ -114,7 +126,7 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
           )}
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
