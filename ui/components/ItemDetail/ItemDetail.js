@@ -4,7 +4,7 @@ import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
-import { get, pick, concat, includes, defaultTo, round } from 'lodash';
+import { get, pick, concat, includes, defaultTo, round, findIndex } from 'lodash';
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
   const kind = selectedItem?.ideaType;
@@ -22,16 +22,20 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
     let lbaArray = get(picked, 'jobs.lbaCompanies', [])
     let lbbArray = get(picked, 'jobs.lbbCompanies', [])
     let peArray = get(picked, 'jobs.peJobs', [])
-    res.currentList = concat([], trainingsArray, lbaArray, lbbArray, peArray)
-    res.currentItem = get(store, 'trainings.selectedItem')
+    res.list = concat([], trainingsArray, lbaArray, lbbArray, peArray)
+    res.item = get(store, 'trainings.selectedItem')
     return res
   }) 
 
 
   const goNext = () => {
     // console.log('goNext');
+    let list = currentListAndItem.list;
+    let item = currentListAndItem.item;
     console.log('currentListAndItem', currentListAndItem);
-
+    let currentIndex = findIndex(list, item)
+    let nextIndex = (currentIndex == list.length - 1 ? 0 : currentIndex + 1)
+    console.log('z', nextIndex);
     // Store.getState()
     // const trainings = useSelector((state) => state.trainings);
     // console.log('trainings', trainings);
