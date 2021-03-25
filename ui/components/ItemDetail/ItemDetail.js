@@ -6,9 +6,11 @@ import TrainingDetail from "./TrainingDetail";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import { get, pick, concat, includes, defaultTo, round, findIndex } from 'lodash';
 
-const ItemDetail = ({ selectedItem, handleClose, handleSelectedItem }) => {
+const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
 
-  console.log('handleSelectedItem', handleSelectedItem);
+  console.log('handleClose', handleClose);
+  console.log('handleSelectItem', handleSelectItem);
+
   const kind = selectedItem?.ideaType;
 
   const distance = selectedItem?.place?.distance;
@@ -30,12 +32,13 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectedItem }) => {
   const goNext = () => {
     let currentIndex = findIndex(currentList, selectedItem)
     let nextIndex = (currentIndex == currentList.length - 1 ? 0 : currentIndex + 1)
-    console.log('nextIndex', nextIndex)
-    console.log('handleSelectedItem', handleSelectedItem);
+    handleSelectItem(currentList[nextIndex])
   }
   
   const goPrev = () => {
-    console.log('goPrev');
+    let currentIndex = findIndex(currentList, selectedItem)
+    let prevIndex = (currentIndex == 0 ? currentList.length - 1  : currentIndex - 1)
+    handleSelectItem(currentList[prevIndex])
   }
 
   return (
