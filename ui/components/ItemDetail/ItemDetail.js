@@ -48,15 +48,35 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
         )}
         <header className="c-detail-header">
           <div className="text-left">
-            <button
-              className="c-detail-back"
-              onClick={() => {
-                setSeeInfo(false);
-                handleClose();
-              }}
-            >
-              ← Retour aux résultats
-            </button>
+            <div className="d-flex">
+              <div className="mr-auto">
+                <button
+                  className="c-tiny-btn"
+                  onClick={() => {
+                    setSeeInfo(false);
+                    handleClose ();
+                  }}
+                >
+                  ← Retour aux résultats
+                </button>
+              </div>
+              <div>
+                <button
+                  className="c-tiny-btn"
+                  onClick={() => {console.log('prec')}}
+                >
+                  ← Résultat précédent
+                </button>              
+              </div>
+              <div className="ml-2">
+                <button
+                  className="c-tiny-btn"
+                  onClick={() => {console.log('suiv')}}
+                >
+                  Résultat suivant →
+                </button>              
+              </div>
+            </div>
 
             <p className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</p>
 
