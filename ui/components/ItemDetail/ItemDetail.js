@@ -55,7 +55,7 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
         <header className="c-detail-header">
           <div className="text-left">
             <div className="d-flex">
-              <div className="mr-auto">
+              <div className="mr-1">
                 <button
                   className="c-tiny-btn"
                   onClick={() => {
@@ -66,7 +66,7 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
                   ← Retour aux résultats
                 </button>
               </div>
-              <div>
+              <div className="ml-1 ml-sm-auto">
                 <button
                   className="c-tiny-btn"
                   onClick={() => { goPrev() }}
@@ -74,7 +74,7 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
                   ← Résultat précédent
                 </button>              
               </div>
-              <div className="ml-2">
+              <div className="ml-1 ml-xl-2">
                 <button
                   className="c-tiny-btn"
                   onClick={() => { goNext() }}
