@@ -121,9 +121,14 @@ const ChoiceColumn = ({
     dispatch(setTrainings(trainings));
   };
 
+  const [activeFilter, setActiveFilter] = useState("all");
+
+
   const getResultLists = () => {
     return (
       <ResultLists
+        activeFilter={activeFilter}
+        setActiveFilter={setActiveFilter}
         selectedItem={selectedItem}
         handleSelectItem={handleSelectItem}
         showSearchForm={showSearchForm}
