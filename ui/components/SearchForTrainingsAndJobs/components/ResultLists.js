@@ -12,6 +12,7 @@ import FilterButton from "./FilterButton";
 import { useScopeContext } from "context/ScopeContext";
 import questionMarkIcon from "public/images/icons/question_mark.svg";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
+import { isArray, find } from "lodash";
 
 const ResultLists = (props) => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -169,7 +170,6 @@ const ResultLists = (props) => {
           })}
         </>
       );
-      //} else return <div className="listText">Aucun poste pour ces critères de recherche</div>;
     } else return "";
   };
 
@@ -409,6 +409,44 @@ const ResultLists = (props) => {
     setDisplayCount(document.querySelector(".c-result-list__text").scrollTop < 30);
   };
 
+  const saveAndRenderTrainingResult = () => {
+    let trainingResult = getTrainingResult();
+    console.log('trainingResult', trainingResult);
+
+    // let rawData = extractRawDataFrom(trainingResult, 'training');
+    console.log('rawData', extractRawDataFrom(trainingResult, 'training'));
+
+    // let root_prop = trainingResult?.props?.children?.props?.children?.props
+    // console.log('root_prop', root_prop);
+    // if (root_prop && get(root_prop, 'children[1]')) {
+    //   let arrayOfTrainings = root_prop.children[1].map(x => JSON.parse(JSON.stringify((x.props.training))))
+    //   console.log('arrayOfTrainings', arrayOfTrainings);
+    //   localStorage.setItem('lba_result', JSON.stringify(arrayOfTrainings))
+    // }
+
+    // let found = findObject(trainingResult?.props?.children?.props, 'capacity', null)
+    // console.log('found', found);
+
+    return trainingResult;
+  }
+  
+  const extractRawDataFrom = (rendered, targetProp, numberOfCall = 0) => {
+    console.log('targetProp', targetProp);
+    let aChildren = rendered?.props?.children
+    let res = null;
+    if (numberOfCall > 5) {
+      return res;
+    } else if (!isArray(aChildren)) {
+      res = extractRawDataFrom(aChildren, targetProp, numberOfCall + 1)
+    } else {
+      let targetArray = find(aChildren, isArray);
+      res = targetArray.map((x) => x.props[targetProp]);
+      console.log('res', res);
+    }
+    return res
+  }
+
+
   return (
     <div
       className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${
@@ -425,7 +463,7 @@ const ResultLists = (props) => {
         className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}
       >
         {getBanner()}
-        {getTrainingResult()}
+        {saveAndRenderTrainingResult()}
         {getJobResult()}
       </div>
     </div>
