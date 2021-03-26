@@ -7,7 +7,7 @@ import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import {useSwipeable} from "react-swipeable";
 import { get, pick, concat, includes, defaultTo, round, findIndex } from 'lodash';
 
-const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
+const ItemDetail = ({ selectedItem, handleClose, handleSelectItem, activeFilter }) => {
 
   const kind = selectedItem?.ideaType;
 
@@ -19,10 +19,10 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
 
   const currentList = useSelector((store) => {
     let picked = pick(store.trainings, ['trainings', 'jobs'])
-    let trainingsArray = get(picked, 'trainings', [])
-    let peArray = get(picked, 'jobs.peJobs', [])
-    let lbaArray = get(picked, 'jobs.lbaCompanies', [])
-    let lbbArray = get(picked, 'jobs.lbbCompanies', [])
+    let trainingsArray = includes(['all', 'trainings'], activeFilter) ? get(picked, 'trainings', []) : []
+    let peArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.peJobs', []) : []
+    let lbaArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.lbaCompanies', []) : [] 
+    let lbbArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.lbbCompanies', []) : [] 
     return concat([], trainingsArray, peArray, lbaArray, lbbArray)
   }) 
 
