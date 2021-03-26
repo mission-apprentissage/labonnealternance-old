@@ -70,21 +70,21 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem, activeFilter 
               </div>
               {currentList.length > 1 ? (
                 <>
-                  <div className="ml-1 ml-sm-auto">
-                    <button
-                      className="c-tiny-btn"
-                      onClick={() => { goPrev() }}
-                    >
-                      ← Résultat précédent
-                    </button>              
-                  </div>
-                  <div className="ml-1 ml-xl-2">
-                    <button
-                      className="c-tiny-btn"
-                      onClick={() => { goNext() }}
-                    >
-                      Résultat suivant →
-                    </button>              
+                  <div className="ml-auto">
+                      <button
+                        className="c-tiny-btn"
+                        onClick={() => { goPrev() }}
+                        >
+                        ← Résultat précédent
+                      </button>              
+                    </div>
+                    <div className="ml-1 ml-xl-2">
+                      <button
+                        className="c-tiny-btn "
+                        onClick={() => { goNext() }}
+                        >
+                        Résultat suivant →
+                      </button>              
                   </div>
                 </>
               ) : (
