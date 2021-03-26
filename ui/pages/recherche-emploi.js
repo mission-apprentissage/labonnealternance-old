@@ -19,7 +19,7 @@ const RechercheEmploi = () => {
           href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
           rel="stylesheet"
           media="print"
-          onload="this.media='all'"
+          onLoad="this.media='all'"
         />
       </Head>
       <ScopeContextProvider value={{ isJob: true, isTraining: false, path: "/recherche-emploi" }}>
