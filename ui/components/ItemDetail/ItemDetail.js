@@ -23,9 +23,8 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem, activeFilter 
     let peArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.peJobs', []) : []
     let lbaArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.lbaCompanies', []) : [] 
     let lbbArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.lbbCompanies', []) : [] 
-    let fullList = concat([], trainingsArray, peArray, lbaArray, lbbArray).filter(el => !!el)
+    let fullList = concat([], trainingsArray, peArray, lbaArray, lbbArray)
     let listWithoutEmptyValues = fullList.filter(el => !!el)
-    console.log('listWithoutEmptyValues', listWithoutEmptyValues);
     return listWithoutEmptyValues
   }) 
 
