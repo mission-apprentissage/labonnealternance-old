@@ -15,9 +15,8 @@ import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
 import { isArray, find, get, map } from "lodash";
 
 const ResultLists = (props) => {
-  // const [activeFilter, setActiveFilter] = useState("all");
+  
   const scopeContext = useScopeContext();
-
   const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
 
   const filterButtonClicked = (filterButton) => {
