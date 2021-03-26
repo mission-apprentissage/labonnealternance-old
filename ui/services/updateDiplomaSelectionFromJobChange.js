@@ -1,6 +1,5 @@
 import fetchDiplomas from "services/fetchDiplomas";
 
-
 export default async function updateDiplomaSelectionFromJobChange(job, setDiplomaErrorFunc, setDiplomasFunc) {
   let diplomas = [];
   if (job) {
@@ -12,4 +11,4 @@ export default async function updateDiplomaSelectionFromJobChange(job, setDiplom
   setTimeout(() => {
     setDiplomasFunc(diplomas);
   }, 0);
-};
+}
