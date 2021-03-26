@@ -23,7 +23,7 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem }) => {
     let peArray = get(picked, 'jobs.peJobs', [])
     let lbaArray = get(picked, 'jobs.lbaCompanies', [])
     let lbbArray = get(picked, 'jobs.lbbCompanies', [])
-    return concat([], trainingsArray, lbaArray, lbbArray, peArray)
+    return concat([], trainingsArray, peArray, lbaArray, lbbArray)
   }) 
 
   const goNext = () => {
