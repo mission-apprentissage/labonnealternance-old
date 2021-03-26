@@ -446,8 +446,17 @@ const ResultLists = (props) => {
     } else if (!isArray(aChildren)) {
       res = extractJobFrom(aChildren, numberOfCall + 1)
     } else {
-      let targetArray = find(aChildren, (e) => !!get(e, 'props.children[0].props.company'));
-      res = map(targetArray.props.children, (e) => e?.props?.company)
+      if (aChildren) {
+        let targetArray = find(aChildren, (e) => {
+          if (e) {
+            return !!get(e, 'props.children[0].props.company');
+          }
+          return false;
+        })
+        if (targetArray) {
+          res = map(targetArray.props.children, (e) => e?.props?.company)
+        }
+      }
     }
     return res
   }
