@@ -23,7 +23,10 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem, activeFilter 
     let peArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.peJobs', []) : []
     let lbaArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.lbaCompanies', []) : [] 
     let lbbArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.lbbCompanies', []) : [] 
-    return concat([], trainingsArray, peArray, lbaArray, lbbArray)
+    let fullList = concat([], trainingsArray, peArray, lbaArray, lbbArray).filter(el => !!el)
+    let listWithoutEmptyValues = fullList.filter(el => !!el)
+    console.log('listWithoutEmptyValues', listWithoutEmptyValues);
+    return listWithoutEmptyValues
   }) 
 
   const goNext = () => {
@@ -66,22 +69,29 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem, activeFilter 
                   ← Retour aux résultats
                 </button>
               </div>
-              <div className="ml-1 ml-sm-auto">
-                <button
-                  className="c-tiny-btn"
-                  onClick={() => { goPrev() }}
-                >
-                  ← Résultat précédent
-                </button>              
-              </div>
-              <div className="ml-1 ml-xl-2">
-                <button
-                  className="c-tiny-btn"
-                  onClick={() => { goNext() }}
-                >
-                  Résultat suivant →
-                </button>              
-              </div>
+              {currentList.length > 1 ? (
+                <>
+                  <div className="ml-1 ml-sm-auto">
+                    <button
+                      className="c-tiny-btn"
+                      onClick={() => { goPrev() }}
+                    >
+                      ← Résultat précédent
+                    </button>              
+                  </div>
+                  <div className="ml-1 ml-xl-2">
+                    <button
+                      className="c-tiny-btn"
+                      onClick={() => { goNext() }}
+                    >
+                      Résultat suivant →
+                    </button>              
+                  </div>
+                </>
+              ) : (
+                <>
+                </>
+              )}
             </div>
 
             <p className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</p>

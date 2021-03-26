@@ -409,59 +409,6 @@ const ResultLists = (props) => {
     setDisplayCount(document.querySelector(".c-result-list__text").scrollTop < 30);
   };
 
-  const saveAndRenderTrainingResult = () => {
-    let trainingResult = getTrainingResult();
-    console.log('trainingResult', trainingResult);
-    let displayedTrainings = extractTrainingFrom(trainingResult, 'training')
-    console.log('displayedTrainings', displayedTrainings);
-    return trainingResult;
-  }
-  
-  const saveAndRenderJobResult = () => {
-    let jobResult = getJobResult();
-    let displayedJobs = extractJobFrom(jobResult)
-    console.log('displayedJobs', displayedJobs);
-    return jobResult;
-  }
-  
-  const extractTrainingFrom = (rendered, targetProp, numberOfCall = 0) => {
-    let aChildren = rendered?.props?.children
-    let res = null;
-    if (numberOfCall > 5) {
-      return res;
-    } else if (!isArray(aChildren)) {
-      res = extractTrainingFrom(aChildren, targetProp, numberOfCall + 1)
-    } else {
-      let targetArray = find(aChildren, isArray);
-      res = targetArray.map((x) => x.props[targetProp]);
-    }
-    return res
-  }
-
-  const extractJobFrom = (rendered, numberOfCall = 0) => {
-    let aChildren = rendered?.props?.children
-    let res = null;
-    if (numberOfCall > 7) {
-      return res;
-    } else if (!isArray(aChildren)) {
-      res = extractJobFrom(aChildren, numberOfCall + 1)
-    } else {
-      if (aChildren) {
-        let targetArray = find(aChildren, (e) => {
-          if (e) {
-            return !!get(e, 'props.children[0].props.company');
-          }
-          return false;
-        })
-        if (targetArray) {
-          res = map(targetArray.props.children, (e) => e?.props?.company)
-        }
-      }
-    }
-    return res
-  }
-
-
   return (
     <div
       className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${
@@ -478,8 +425,8 @@ const ResultLists = (props) => {
         className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}
       >
         {getBanner()}
-        {saveAndRenderTrainingResult()}
-        {saveAndRenderJobResult()}
+        {getTrainingResult()}
+        {getJobResult()}
       </div>
     </div>
   );
