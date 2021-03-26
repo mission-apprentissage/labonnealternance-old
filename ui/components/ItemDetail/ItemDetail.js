@@ -44,9 +44,13 @@ const ItemDetail = ({ selectedItem, handleClose, handleSelectItem, activeFilter 
     // See https://www.npmjs.com/package/react-swipeable
     onSwiped: (event_data) => {
       if (event_data.dir === 'Right') {
-        goPrev()
+        if (currentList.length > 1) {
+          goPrev()
+        }
       } else if (event_data.dir === 'Left') {
-        goNext()
+        if (currentList.length > 1) {
+          goNext()
+        }
       }
     } 
   })
