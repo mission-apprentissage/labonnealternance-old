@@ -45,7 +45,7 @@ const Fonts = () => {
     );
   };
 
-  return url !== "neverdisplay" ? <>{getFontPreloadLinks()}</> : "";
+  return <>{getFontPreloadLinks()}</>;
 };
 
 export default Fonts;
