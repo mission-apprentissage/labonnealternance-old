@@ -30,6 +30,52 @@ const getFormationEsQueryIndexFragment = (limit) => {
   };
 };
 
+const resultFilePath = path.join(__dirname, "./assets/RNCPs_manquants.xlsx");
+
+const saveResultToFile = (json) => {
+  logMessage("info", " -- Saving missing rncps to local file -- ");
+
+  try {
+    fs.unlinkSync(resultFilePath);
+  } catch (err) {
+    console.log("error removing file : ", err.message);
+  }
+
+  let wsResult = [
+    ["Domaine", "Total_formations", "Total_formations_perdues", "Code_rncp", "Lbelle_rncp", "Rncp_dans_autres_metiers"],
+  ];
+
+  json.map((domain) => {
+    if (domain.metier) {
+      //console.log(domain);
+      wsResult.push([
+        domain.metier,
+        domain.missingRNCPs.totalFormations,
+        domain.missingRNCPs.totalFormationsPerdues,
+        "",
+        "",
+        "",
+      ]);
+
+      domain.missingRNCPs.RNCPsManquants.map((rncp) => {
+        let metiers = "";
+        if (rncp.autresMetiers !== "aucun") {
+          metiers = rncp.autresMetiers.join("; ");
+        }
+
+        wsResult.push(["", "", "", rncp.code, rncp.libelle, metiers]);
+      });
+    }
+  });
+
+  // Ecriture résultat
+  let wb = XLSX.utils.book_new();
+
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(wsResult), "Rncps_manquants");
+
+  XLSX.writeFile(wb, resultFilePath);
+};
+
 let inDomainRNCPs = new Set();
 let domainsOfRNCPs = {};
 
@@ -183,8 +229,8 @@ module.exports = async (optionalFileName) => {
 
           missingRNCPs.push({
             metier: domainesMetier.sous_domaine,
-            /*codesROMEs,
-            codesRNCPs,*/
+            //codesROMEs,
+            //codesRNCPs,
             missingRNCPs: missingRNCPsOfDomain ? missingRNCPsOfDomain : "aucun RNCP manquant",
           });
 
@@ -234,6 +280,8 @@ module.exports = async (optionalFileName) => {
     }
 
     searchForMissingRNCPsInOtherDomains(missingRNCPs);
+
+    saveResultToFile(missingRNCPs);
 
     return {
       result: "Fichier analysé",
