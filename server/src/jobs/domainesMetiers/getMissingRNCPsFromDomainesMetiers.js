@@ -286,6 +286,7 @@ module.exports = async (optionalFileName) => {
     return {
       result: "Fichier analysé",
       fileName: optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx",
+      fichierXlsx: `${config.pubicUrl}/api/updateRomesMetiers/missingRNCPs/RNCP_manquants.xlsx`,
       //inDomainRNCPs: [...inDomainRNCPs],
       missingRNCPs,
     };
