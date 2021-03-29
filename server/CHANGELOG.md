@@ -1,8 +1,8 @@
 # CHANGELOG
 
-
 ## 1.10.6 [25/03/2021]
 [509] Swipe
+[330] Optimisations et nettoyage
 
 ## 1.10.5 [23/03/2021]
 [348] Page d'erreur 500
