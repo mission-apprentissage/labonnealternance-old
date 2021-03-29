@@ -16,7 +16,12 @@ const RechercheApprentissageFormation = () => {
   return (
     <>
       <Head>
-        <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+        <link
+          href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
+          rel="stylesheet"
+          media="print"
+          onLoad="this.media='all'"
+        />
       </Head>
       <ScopeContextProvider value={{ isJob: false, isTraining: true, path: "/recherche-apprentissage-formation" }}>
         <SearchForTrainingsAndJobs />
