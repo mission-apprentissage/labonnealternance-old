@@ -2,6 +2,7 @@
 
 ## 1.10.6 [26/03/2021]
 [330] Optimisations et nettoyage
+[518] Classe GMT sur bouton PRDV
 
 ## 1.10.5 [23/03/2021]
 [348] Page d'erreur 500
