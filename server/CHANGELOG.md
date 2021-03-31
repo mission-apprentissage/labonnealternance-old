@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.11.0 [31/03/2021]
+Récupération des offres Matcha
+
 ## 1.10.6 [26/03/2021]
 [330] Optimisations et nettoyage
 [518] Classe GMT sur bouton PRDV
