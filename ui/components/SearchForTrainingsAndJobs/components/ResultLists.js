@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Spinner } from "reactstrap";
 import Training from "../../../components/ItemDetail/Training";
 import PeJob from "../../../components/ItemDetail/PeJob";
+import Job from "../../../components/ItemDetail/Job";
 import LbbCompany from "../../../components/ItemDetail/LbbCompany";
 import { ErrorMessage } from "../../../components";
 import { filterLayers } from "../../../utils/mapTools";
@@ -36,7 +37,7 @@ const ResultLists = (props) => {
       </div>
     );
   };
-  
+
   const getTrainingResult = () => {
     if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
       return (
@@ -146,6 +147,7 @@ const ResultLists = (props) => {
 
     if (jobs) {
       if (jobs.peJobs) jobCount += jobs.peJobs.length;
+      if (jobs.matchas) jobCount += jobs.matchas.length;
       if (jobs.lbbCompanies) jobCount += jobs.lbbCompanies.length;
       if (jobs.lbaCompanies) jobCount += jobs.lbaCompanies.length;
     }
@@ -173,6 +175,7 @@ const ResultLists = (props) => {
     } else return "";
   };
 
+  //TODO: remplacer getPeJobList
   const getJobList = () => {
     const mergedJobs = mergeJobs();
     if (mergedJobs.length) {
@@ -213,7 +216,37 @@ const ResultLists = (props) => {
     } else return "";
   };
 
-  // fusionne les résultats lbb et lba et les trie par ordre croissant de distance, optionnellement intègre aussi les offres PE
+  // fusionne les offres pe et matcha et les trie par ordre croissant de distance
+  // TODO: refacto des merges pour n'en avoir qu'un qui marche dans tous les cas
+  const mergeJobs = () => {
+    let mergedArray = [];
+    let resultSources = 0;
+    if (props.jobs) {
+      if (props.jobs.peJobs && props.jobs.peJobs.length > 0) {
+        mergedArray = mergedArray.concat(props.jobs.peJobs);
+        resultSources++;
+      }
+
+      if (props.jobs.matchas && props.jobs.matchas.length > 0) {
+        mergedArray = mergedArray.concat(props.jobs.matchas);
+        resultSources++;
+      }
+
+      if (resultSources > 1)
+        mergedArray.sort((a, b) => {
+          let dA = a.place.distance;
+          let dB = b.place.distance;
+
+          if (dA > dB) return 1;
+          if (dA < dB) return -1;
+          return 0;
+        });
+    }
+
+    return mergedArray;
+  };
+
+  // fusionne les résultats lbb et lba et les trie par ordre croissant de distance, optionnellement intègre aussi les offres PE et matchas
   const mergeOpportunities = (onlyLbbLbaCompanies) => {
     let mergedArray = [];
     let resultSources = 0;
@@ -230,6 +263,11 @@ const ResultLists = (props) => {
 
       if (!onlyLbbLbaCompanies && props.jobs.peJobs && props.jobs.peJobs.length > 0) {
         mergedArray = mergedArray.concat(props.jobs.peJobs);
+        resultSources++;
+      }
+
+      if (!onlyLbbLbaCompanies && props.jobs.matchas && props.jobs.matchas.length > 0) {
+        mergedArray = mergedArray.concat(props.jobs.matchas);
         resultSources++;
       }
 
