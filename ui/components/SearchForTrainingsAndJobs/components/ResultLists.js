@@ -173,6 +173,26 @@ const ResultLists = (props) => {
     } else return "";
   };
 
+  const getJobList = () => {
+    const mergedJobs = mergeJobs();
+    if (mergedJobs.length) {
+      return (
+        <>
+          {mergedJobs.map((job, idx) => {
+            return (
+              <Job
+                key={idx}
+                job={job}
+                handleSelectItem={props.handleSelectItem}
+                searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
+              />
+            );
+          })}
+        </>
+      );
+    } else return "";
+  };
+
   const getLbbCompanyList = () => {
     const mergedLbaLbbCompanies = mergeOpportunities("onlyLbbLba");
     if (mergedLbaLbbCompanies.length) {
