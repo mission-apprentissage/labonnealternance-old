@@ -2,9 +2,6 @@ const axios = require("axios");
 const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
 
-//const poleEmploi = require("./common.js");
-const { getRoundedRadius } = require("./common.js");
-
 const matchaApiEndpoint = "https://matcha.apprentissage.beta.gouv.fr/api/formulaire/search";
 
 const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
@@ -18,12 +15,12 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
       lon: longitude,
     };
 
-    params = {
+    /*params = {
       distance: "30",
-      lat: "2.347",
-      lon: "48.859",
+      lon: "2.347",
+      lat: "48.859",
       romes: ["A1203", "A1414"],
-    };
+    };*/
 
     console.log(`${matchaApiEndpoint}`, params);
 
@@ -53,105 +50,67 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
 };
 
 // update du contenu avec des résultats pertinents par rapport au rayon
-const transformMatchaJobsForIdea = (jobs, radius, lat, long) => {
+const transformMatchaJobsForIdea = (jobs) => {
   let resultJobs = {
     results: [],
     inRadiusItems: 0,
   };
 
-  if (jobs.resultats && jobs.resultats.length) {
-    for (let i = 0; i < jobs.resultats.length; ++i) {
-      let job = transformMatchaJobForIdea(jobs.resultats[i], lat, long);
+  if (jobs && jobs.length) {
+    for (let i = 0; i < jobs.length; ++i) {
+      console.log("jobs ", jobs[i]._source);
+      let companyJobs = transformMatchaJobForIdea(jobs[i]._source, jobs[i].sort[0]);
 
-      let distanceWeightModifier = 0;
+      console.log("companyJobs ", companyJobs);
 
-      // si la distance au centre du point de recherche n'est pas connue, on la calcule avec l'utilitaire distance de turf.js
-      if (job.place.latitude && job.place.longitude) {
-        if (job.place.distance < getRoundedRadius(radius)) {
-          resultJobs.inRadiusItems++;
-        } else {
-          distanceWeightModifier = (job.place.distance - radius) * 3;
-        }
-      } else {
-        // dans certains cas latitude et longitude sont absents, parfois les deux sont à 0
-        if (i === resultJobs.inRadiusItems) {
-          // considéré arbitrairement comme dans le rayon
-          resultJobs.inRadiusItems++;
-        } else {
-          distanceWeightModifier = getRoundedRadius(radius) + 100; // arbitraire
-        }
-      }
-
-      if (distanceWeightModifier > 900) distanceWeightModifier = 900; // malus au poids maximal de 900 pour la distance
-
-      job.ideaWeight = 1000 - distanceWeightModifier; // affectation d'un poids élevé pour les offres d'emploi
-
-      resultJobs.results.push(job);
-      //console.log("job weight : ", jobs.resultats[i].weight);
+      companyJobs.map((job) => resultJobs.results.push(job));
     }
-
-    //console.log("inRadiusJobs : ", inRadiusJobs, radius);
   }
+
+  console.log("resultJobs ", resultJobs);
 
   return resultJobs;
 };
 
 // Adaptation au modèle Idea et conservation des seules infos utilisées des offres
-const transformMatchaJobForIdea = (job /*, lat, long*/) => {
-  let resultJob = itemModel("peJob");
+const transformMatchaJobForIdea = (job, distance) => {
+  let resultJobs = [];
 
-  resultJob.title = job.intitule;
+  job.offres.map((offre) => {
+    let resultJob = itemModel("matcha");
+    resultJob.id = job.id_form;
+    resultJob.title = offre.libelle;
+    resultJob.contact = {
+      email: job.email,
+      name: job.prenom + " " + job.nom,
+      phone: job.telephone,
+    };
 
-  //contact
-  if (job.contact) {
-    resultJob.contact = {};
-    if (job.contact.nom) resultJob.contact.name = job.contact.nom;
-    if (job.contact.courriel) resultJob.contact.email = job.contact.courriel;
-    if (job.contact.coordonnees1)
-      resultJob.contact.info = `${job.contact.coordonnees1}${
-        job.contact.coordonnees2 ? "\n" + job.contact.coordonnees2 : ""
-      }${job.contact.coordonnees3 ? "\n" + job.contact.coordonnees3 : ""}`;
-  }
+    resultJob.place.distance = distance;
+    resultJob.place.fullAddress = job.adresse;
+    resultJob.place.address = job.adresse;
+    resultJob.place.latitude = job.geo_coordonnees.split(",")[0];
+    resultJob.place.longitude = job.geo_coordonnees.split(",")[1];
 
-  resultJob.place = {
-    distance: 0, //lat === null ? 0 : computeJobDistanceToSearchCenter(job, lat, long),
-    insee: job.lieuTravail.commune,
-    zipCode: job.lieuTravail.codePostal,
-    city: job.lieuTravail.libelle,
-    latitude: job.lieuTravail.latitude,
-    longitude: job.lieuTravail.longitude,
-    fullAddress: `${job.lieuTravail.libelle} ${job.lieuTravail.codePostal}`,
-  };
+    resultJob.company.siret = job.siret;
+    resultJob.company.name = job.raison_sociale;
 
-  resultJob.company = {};
+    resultJob.diplomaLevel = offre.niveau;
+    resultJob.createdAt = job.createdAt;
+    resultJob.lastUpdateAt = job.updatedAt;
 
-  if (job.entreprise) {
-    if (job.entreprise.nom) resultJob.company.name = job.entreprise.nom;
-    if (job.entreprise.logo) resultJob.company.logo = job.entreprise.logo;
-    if (job.entreprise.description) resultJob.company.description = job.entreprise.description;
-  }
+    resultJob.job = {
+      description: offre.description,
+      creationDate: job.createdAt,
+    };
 
-  resultJob.url = `https://candidat.pole-emploi.fr/offres/recherche/detail/${job.id}`;
+    resultJob.romes = [];
+    offre.romes.map((code) => resultJob.romes.push({ code }));
 
-  resultJob.job = {
-    id: job.id,
-    creationDate: job.dateCreation,
-    description: job.description,
-    contractType: job.typeContrat,
-    contractDescription: job.typeContratLibelle,
-    duration: job.dureeTravailLibelle,
-  };
+    resultJob.push(resultJob);
+  });
 
-  if (job.romeCode) {
-    resultJob.romes = [
-      {
-        code: job.romeCode,
-        label: job.appellationLibelle,
-      },
-    ];
-  }
-
-  return resultJob;
+  return resultJobs;
 };
 
 module.exports = { getMatchaJobs };
