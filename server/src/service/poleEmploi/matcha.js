@@ -12,29 +12,22 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
     const distance = radius || 10;
 
     let params = {
-      romes,
+      romes: romes.split(","),
       distance,
       lat: latitude,
       lon: longitude,
     };
 
     params = {
-      distance: "100",
-      lat: "2.3",
-      lon: "48.8",
+      distance: "30",
+      lat: "2.347",
+      lon: "48.859",
       romes: ["A1203", "A1414"],
     };
 
     console.log(`${matchaApiEndpoint}`, params);
 
-    const jobs = await axios.post(`${matchaApiEndpoint}`, params, {
-      headers: {
-        // 'application/json' is the modern content-type for JSON, but some
-        // older servers may use 'text/json'.
-        // See: http://bit.ly/text-json
-        "content-type": "text/json",
-      },
-    });
+    const jobs = await axios.post(`${matchaApiEndpoint}`, params);
 
     //throw new Error("boom");
 
