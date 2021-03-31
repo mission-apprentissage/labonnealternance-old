@@ -76,9 +76,9 @@ const transformMatchaJobsForIdea = (jobs) => {
 const transformMatchaJobForIdea = (job, distance) => {
   let resultJobs = [];
 
-  job.offres.map((offre) => {
+  job.offres.map((offre, idx) => {
     let resultJob = itemModel("matcha");
-    resultJob.id = job.id_form;
+    resultJob.id = `${job.id_form}-${idx}`;
     resultJob.title = offre.libelle;
     resultJob.contact = {
       email: job.email,
