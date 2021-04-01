@@ -28,6 +28,10 @@
   letter-spacing: 0;
   text-align: center;
   margin-bottom: 15px;
+  width: 80px;
+  @include media-breakpoint-up(sm) { 
+    width: inherit;
+  }
 }
 
 .c-detail-title {
@@ -38,6 +42,9 @@
   color: $pinksoft500;
   margin-bottom: 11px;
   padding-bottom: 0;
+  a {
+    overflow-wrap: anywhere;
+  }
 }
 
 .c-detail-title--formation {
