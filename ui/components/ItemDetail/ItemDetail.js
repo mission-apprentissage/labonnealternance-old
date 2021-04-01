@@ -7,7 +7,7 @@ import { findIndex, concat, pick, get, includes, defaultTo, round } from "lodash
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import { useSwipeable } from "react-swipeable";
 
-const ItemDetail = ({ selectedItem, handleClose, displayNavbar, activeFilter }) => {
+const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
   const distance = selectedItem?.place?.distance;
