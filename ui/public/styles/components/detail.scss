@@ -172,6 +172,19 @@
   margin-top: 21px;
 }
 
+.c-detail-description-me {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 12px 6px rgba(121, 121, 121, 0.24);
+}
+
 .c-detail-description-title {
   font-size: 16px;
   font-weight: 700;
@@ -189,7 +202,7 @@
   letter-spacing: 0px;
   text-align: left;
   a {
-    color: $gray-700;
+    color: #FFFFFF;
     text-decoration: underline solid $gray-750;
     text-decoration-thickness: 2px;
     text-underline-offset: 2px;
