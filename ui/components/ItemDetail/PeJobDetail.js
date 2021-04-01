@@ -51,16 +51,6 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
 
         <hr className="c-detail-header-separator mt-5" />
 
-        <div className="c-detail-description-me">
-
-          <div className="c-detail-pelink my-3">
-            <a className="btn btn-dark ml-1 gtmContactPE" target="poleemploi" href={job.url}>
-              Je postule sur Pôle emploi
-            </a>
-          </div>
-
-        </div>
-
         <div className="c-detail-advice p-2">
           <img src={bulbIcon} alt="" />
           <div className="c-detail-advice-text">

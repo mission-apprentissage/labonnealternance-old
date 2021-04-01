@@ -173,10 +173,9 @@
 }
 
 .c-detail-description-me {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
-  z-index: 999;
   display: flex;
   width: 100%;
   align-items: center;

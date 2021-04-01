@@ -128,6 +128,17 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         </header>
 
         <div className="c-detail-body">
+          {selectedItem?.url ? (
+            <div className="c-detail-description-me">
+              <div className="c-detail-pelink my-3">
+                <a className="btn btn-dark ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
+                    Je postule sur Pôle emploi
+                </a>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
           {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
           {includes(["lbb", "lba"], kind) ? (
             <LbbCompanyDetail lbb={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
@@ -139,6 +150,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ) : (
             ""
           )}
+          
         </div>
       </section>
     </>
