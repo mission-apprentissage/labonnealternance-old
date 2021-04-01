@@ -15,6 +15,7 @@ Récupération des offres Matcha
 [509] Swipe et scroll
 [330] Optimisations et nettoyage
 [518] Classe GMT sur bouton PRDV
+[529] Positionner tags
 
 ## 1.10.5 [23/03/2021]
 [348] Page d'erreur 500
