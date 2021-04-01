@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { concat, pick, get, includes, defaultTo, round } from "lodash";
+import { findIndex, concat, pick, get, includes, defaultTo, round } from "lodash";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import { useSwipeable } from "react-swipeable";
 
@@ -42,11 +42,14 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, activeFilter }) 
     }
   })
   const goNext = () => {
-    console.log('goNext');
+    let currentIndex = findIndex(currentList, selectedItem)
+    let nextIndex = (currentIndex == currentList.length - 1 ? 0 : currentIndex + 1)
+    handleSelectItem(currentList[nextIndex])
   }
-  
   const goPrev = () => {
-    console.log('goPrev');
+    let currentIndex = findIndex(currentList, selectedItem)
+    let prevIndex = (currentIndex == 0 ? currentList.length - 1 : currentIndex - 1)
+    handleSelectItem(currentList[prevIndex])
   }
 
   return (
