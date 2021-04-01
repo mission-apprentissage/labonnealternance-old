@@ -15,6 +15,17 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
+  const currentList = useSelector((store) => {
+    let picked = pick(store.trainings, ['trainings', 'jobs'])
+    let trainingsArray = includes(['all', 'trainings'], activeFilter) ? get(picked, 'trainings', []) : []
+    let peArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.peJobs', []) : []
+    let lbaArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.lbaCompanies', []) : []
+    let lbbArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.lbbCompanies', []) : []
+    let fullList = concat([], trainingsArray, peArray, lbaArray, lbbArray)
+    let listWithoutEmptyValues = fullList.filter(el => !!el)
+    return listWithoutEmptyValues
+  })
+
   // See https://www.npmjs.com/package/react-swipeable
   const swipeHandlers = useSwipeable({
     onSwiped: (event_data) => {
