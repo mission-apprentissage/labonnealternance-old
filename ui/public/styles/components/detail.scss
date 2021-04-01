@@ -45,6 +45,7 @@
 }
 
 .c-detail-body {
+  position: relative;
   a {
     overflow-wrap: anywhere;
   }  
@@ -265,6 +266,7 @@
 .c-detail-lbb-siretzone {
   background-color: $gray-200;
   padding: 30px;
+  padding-bottom: 70px;
   text-align: left;
 }
 
