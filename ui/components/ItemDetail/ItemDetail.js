@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import PeJobDetail from "./PeJobDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { get, includes, defaultTo, round } from "lodash";
+import { concat, pick, get, includes, defaultTo, round } from "lodash";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import { useSwipeable } from "react-swipeable";
 
-const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
+const ItemDetail = ({ selectedItem, handleClose, displayNavbar, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
   const distance = selectedItem?.place?.distance;
