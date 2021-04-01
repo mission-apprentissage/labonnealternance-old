@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.10.6 [1/04/2021]
+[509] Swipe et scroll
+
 ## 1.10.5 [23/03/2021]
 [348] Page d'erreur 500
 [513] Filtre selon état de publication
