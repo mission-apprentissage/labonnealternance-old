@@ -4,6 +4,7 @@ import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { get, includes, defaultTo, round } from "lodash";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
+import { useSwipeable } from "react-swipeable";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
   const kind = selectedItem?.ideaType;
@@ -14,9 +15,24 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
+  // See https://www.npmjs.com/package/react-swipeable
+  const swipeHandlers = useSwipeable({
+    onSwiped: (event_data) => {
+      if (event_data.dir === 'Right') {
+        if (currentList.length > 1) {
+          goPrev()
+        }
+      } else if (event_data.dir === 'Left') {
+        if (currentList.length > 1) {
+          goNext()
+        }
+      }
+    }
+  })
+
   return (
     <>
-      <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`}>
+      <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`} {...swipeHandlers}>
         {displayNavbar ? (
           <nav
             className="c-detail-stickynav"
