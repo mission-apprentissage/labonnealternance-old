@@ -107,7 +107,7 @@ const transformMatchaJobForIdea = (job, distance) => {
     resultJob.romes = [];
     offre.romes.map((code) => resultJob.romes.push({ code }));
 
-    resultJob.push(resultJob);
+    resultJobs.push(resultJob);
   });
 
   return resultJobs;
