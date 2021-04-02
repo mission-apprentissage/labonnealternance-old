@@ -71,6 +71,7 @@ const SearchForTrainingsAndJobs = () => {
         currentPage,
         trainings,
         jobs,
+        selectedItem,
         unSelectItem,
         selectItemFromHistory,
         setCurrentPage,
