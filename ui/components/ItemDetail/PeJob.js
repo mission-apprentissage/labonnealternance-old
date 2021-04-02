@@ -51,12 +51,12 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
         <div className="c-media-body">
 
           <div className="row no-gutters">
-            <div className="col-12 col-lg-6 text-left">
+            <div className="col-12 col-lg-7 text-left">
               <div className="title d-inline-block">
                 {job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Offre anonyme</i>")}
               </div>
             </div>
-            <div className="col-12 col-lg-6 text-left text-lg-right">
+            <div className="col-12 col-lg-5 text-left text-lg-right">
               <span className="c-media-tag c-media-tag--briefcase">
                 <img src={briefcaseIcon} alt="valise" />
                 <span className="ml-1">Offre d'emploi</span>
@@ -69,27 +69,18 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
             <div className="cardText pt-2">{job.place.fullAddress}</div>
           </div>
 
-
-          <div className="row no-gutters">
-            <div className="col-8 text-left">
-              <span className="cardDistance pt-1">
-                {Math.round(job.place.distance)} km(s) du lieu de recherche
-              </span>
-            </div>
-            <div className="col-4 d-flex flex-column">
-
-              {showTextOnly ? (
-                  ""
-                ) : (
-                  <>
-                    <span className="knowMore d-none d-md-block mt-auto">
-                      <button className={`c-resultcard-knowmore`}>En savoir plus</button>
-                    </span>
-                  </>
-                )}
-            </div>
-          </div>
-
+          <span className="cardDistance pt-1">
+            {Math.round(job.place.distance)} km(s) du lieu de recherche
+            {showTextOnly ? (
+              ""
+            ) : (
+              <>
+                <span className="knowMore d-none d-md-block">
+                  <button className={`c-resultcard-knowmore`}>En savoir plus</button>
+                </span>
+              </>
+            )}
+          </span>
           {Math.round(job.place.distance) > currentSearchRadius ? getCenterSearchOnPeJobButton() : ""}
         </div>
       </div>
