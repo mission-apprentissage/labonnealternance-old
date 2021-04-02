@@ -93,13 +93,13 @@ const ResultLists = (props) => {
           const mergedJobList = getMergedJobList();
           return <div className="jobResult">{mergedJobList ? <>{mergedJobList}</> : ""}</div>;
         } else {
-          const peJobList = getPeJobList();
+          const jobList = getJobList();
           const lbbCompanyList = getLbbCompanyList();
           return (
             <div className="jobResult">
-              {peJobList || lbbCompanyList ? (
+              {jobList || lbbCompanyList ? (
                 <>
-                  {peJobList}
+                  {jobList}
                   {lbbCompanyList}
                   {jobCount < 100 ? (
                     <ExtendedSearchButton
