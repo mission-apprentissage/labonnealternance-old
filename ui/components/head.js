@@ -55,7 +55,7 @@ const HeadLaBonneAlternance = (props) => {
 
       <script
         async
-        src={`https://rdv-cfa${env !== "production" ? "-recette" : ""}.apprentissage.beta.gouv.fr/assets/bundle.js`}
+        src={`https://rdv-cfa${env !== "production" ? "-recette" : ""}.apprentissage.beta.gouv.fr/assets/widget.min.js`}
       ></script>
     </Head>
   );
