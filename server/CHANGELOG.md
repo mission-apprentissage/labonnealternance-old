@@ -1,9 +1,11 @@
 # CHANGELOG
 
+## 1.10.7 [2/04/2021]
+[517] Reliquats 404 et 500
+
 ## 1.10.6 [1/04/2021]
 [509] Swipe et scroll
 [330] Optimisations et nettoyage
-[517] Reliquats 404 et 500
 [518] Classe GMT sur bouton PRDV
 
 ## 1.10.5 [23/03/2021]
