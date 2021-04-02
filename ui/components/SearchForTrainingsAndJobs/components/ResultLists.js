@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Spinner } from "reactstrap";
 import Training from "../../../components/ItemDetail/Training";
-import PeJob from "../../../components/ItemDetail/PeJob";
 import Job from "../../../components/ItemDetail/Job";
 import LbbCompany from "../../../components/ItemDetail/LbbCompany";
 import { ErrorMessage } from "../../../components";
@@ -264,7 +263,7 @@ const ResultLists = (props) => {
     return mergedArray;
   };
 
-  // retourne le bloc construit des items lbb, lba et pe triés par ordre de distance
+  // retourne le bloc construit des items lbb, lba, matcha et pe triés par ordre de distance
   const getMergedJobList = () => {
     const mergedOpportunities = mergeOpportunities();
 
@@ -272,9 +271,9 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedOpportunities.map((opportunity, idx) => {
-            if (opportunity.ideaType === "peJob")
+            if (opportunity.ideaType === "peJob" || opportunity.ideaType === "matcha")
               return (
-                <PeJob
+                <Job
                   key={idx}
                   job={opportunity}
                   handleSelectItem={props.handleSelectItem}
