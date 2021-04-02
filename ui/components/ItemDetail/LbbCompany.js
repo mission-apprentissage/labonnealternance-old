@@ -83,39 +83,24 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
           </div>
         
 
-          <div className="row no-gutters">
-            <div className="col-8 text-left">
-              <span className="cardDistance pt-1">
-                {company.place.distance} km(s) du lieu de recherche
-
-              </span>
-            </div>
-            <div className="col-4 d-flex flex-column">
-
-              {showTextOnly ? (
-                ""
-              ) : (
-                <>
-                  <div className="knowMore d-none d-md-block mt-auto">
-                    <button className={`c-resultcard-knowmore`}>En savoir plus</button>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-
-
-
-
-
-
-
-
+          <span className="cardDistance pt-1">
+            {company.place.distance} km(s) du lieu de recherche
+            {showTextOnly ? (
+              ""
+            ) : (
+              <>
+                <div className="knowMore d-none d-md-block">
+                  <button className={`c-resultcard-knowmore`}>En savoir plus</button>
+                </div>
+              </>
+            )}
+          </span>
           {showTextOnly ? (
             ""
           ) : (
             <>{Math.round(company.place.distance) > currentSearchRadius ? getCenterSearchOnCompanyButton() : ""}</>
           )}
+
         </div>
       </div>
     </div>
