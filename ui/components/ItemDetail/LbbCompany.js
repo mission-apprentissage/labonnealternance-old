@@ -65,23 +65,32 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
 
         <div className="c-media-body">
 
+          <div className="row no-gutters">
+            <div className="col-12 col-lg-6 text-left">
+              <div className="title d-inline-block">{company.company.name}</div>
+            </div>
+            <div className="col-12 col-lg-6 text-left text-lg-right">
+              <span className="c-media-tag c-media-tag--paperplane">
+                <img src={paperplaneIcon} alt="valise" />
+                <span className="ml-1">Candidature spontanée</span>
+              </span>
+            </div>
+          </div>
+
+          <div>
+            <div className="cardText pt-1">{get(company, "nafs[0].label", "")}</div>
+            <div className="cardText pt-2">{company.place.fullAddress}</div>
+          </div>
+        
 
           <div className="row no-gutters">
             <div className="col-8 text-left">
-              <div className="title d-inline-block">{company.company.name}</div>
-              <div className="cardText pt-1">{get(company, "nafs[0].label", "")}</div>
-              <div className="cardText pt-2">{company.place.fullAddress}</div>
               <span className="cardDistance pt-1">
                 {company.place.distance} km(s) du lieu de recherche
 
               </span>
             </div>
             <div className="col-4 d-flex flex-column">
-
-              <span className="c-media-tag c-media-tag--paperplane">
-                <img src={paperplaneIcon} alt="valise" />
-                <span className="ml-1">Candidature spontanée</span>
-              </span>
 
               {showTextOnly ? (
                 ""

@@ -23,13 +23,19 @@
   color: $pinksoft750;
   padding: 0.5rem;
   padding-top: 0.25rem;
+  font-size: 12px;
+  @include media-breakpoint-up(lg) {
+    font-size: 8px;
+  }
+  @include media-breakpoint-up(xl) {
+    font-size: 12px;
+  }
 }
 .c-media-tag.c-media-tag--briefcase {
   background: #FFF4F2;
 }
 .c-media-tag.c-media-tag--paperplane {
   background: #FFF4F2;
-  font-size: 12px;
 }
 .c-media-tag span {
   vertical-align: bottom;
