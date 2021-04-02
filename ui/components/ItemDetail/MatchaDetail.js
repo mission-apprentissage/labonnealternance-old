@@ -32,6 +32,11 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
+        <div className="c-detail-description">
+          <h3 className="c-detail-description-title">Niveau</h3>
+          <div className="c-detail-description-text">{job.diplomaLevel}</div>
+        </div>
+
         {description ? (
           <div className="c-detail-description">
             <h3 className="c-detail-description-title">Description de l'offre</h3>
