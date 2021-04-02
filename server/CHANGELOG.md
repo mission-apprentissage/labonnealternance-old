@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.10.7 [2/04/2021]
+[517] Reliquats 404 et 500
 [535] Changement de nom du fichier widget prdv
 
 ## 1.10.6 [1/04/2021]
