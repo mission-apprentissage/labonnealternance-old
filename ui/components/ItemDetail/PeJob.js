@@ -48,24 +48,31 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
         </div>
 
         <div className="c-media-body">
-          <div className="title d-inline-block">
-            {job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Offre anonyme</i>")}
+          <div className="row">
+            <div className="col-10 text-left">
+              <div className="title d-inline-block">
+                {job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Offre anonyme</i>")}
+              </div>
+              <div className="cardText pt-0">{job.title}</div>
+              <div className="cardText pt-2">{job.place.fullAddress}</div>
+              <span className="cardDistance pt-1">
+                {Math.round(job.place.distance)} km(s) du lieu de recherche
+              </span>
+            </div>
+            <div className="col-2 d-flex flex-column">
+              {showTextOnly ? (
+                  ""
+                ) : (
+                  <>
+                    <span className="knowMore d-none d-md-block mt-auto">
+                      <button className={`c-resultcard-knowmore`}>En savoir plus</button>
+                    </span>
+                  </>
+                )}
+            
+            </div>
           </div>
-          <div className="cardText pt-0">{job.title}</div>
-          <div className="cardText pt-2">{job.place.fullAddress}</div>
 
-          <span className="cardDistance pt-1">
-            {Math.round(job.place.distance)} km(s) du lieu de recherche
-            {showTextOnly ? (
-              ""
-            ) : (
-              <>
-                <span className="knowMore d-none d-md-block">
-                  <button className={`c-resultcard-knowmore`}>En savoir plus</button>
-                </span>
-              </>
-            )}
-          </span>
           {Math.round(job.place.distance) > currentSearchRadius ? getCenterSearchOnPeJobButton() : ""}
         </div>
       </div>
