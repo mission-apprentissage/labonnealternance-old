@@ -1,6 +1,6 @@
 const axios = require("axios");
 const Sentry = require("@sentry/node");
-const { itemModel } = require("../../model/itemModel");
+const { itemModel } = require("../model/itemModel");
 
 const matchaApiEndpoint = "https://matcha.apprentissage.beta.gouv.fr/api/formulaire/search";
 
@@ -15,20 +15,7 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
       lon: longitude,
     };
 
-    /*params = {
-      distance: "30",
-      lon: "2.347",
-      lat: "48.859",
-      romes: ["A1203", "A1414"],
-    };*/
-
-    console.log(`${matchaApiEndpoint}`, params);
-
     const jobs = await axios.post(`${matchaApiEndpoint}`, params);
-
-    //throw new Error("boom");
-
-    console.log("MATCHA : ", jobs.data);
 
     return transformMatchaJobsForIdea(jobs.data, radius, latitude, longitude);
   } catch (error) {
@@ -58,16 +45,10 @@ const transformMatchaJobsForIdea = (jobs) => {
 
   if (jobs && jobs.length) {
     for (let i = 0; i < jobs.length; ++i) {
-      console.log("jobs ", jobs[i]._source);
       let companyJobs = transformMatchaJobForIdea(jobs[i]._source, jobs[i].sort[0]);
-
-      console.log("companyJobs ", companyJobs);
-
       companyJobs.map((job) => resultJobs.results.push(job));
     }
   }
-
-  console.log("resultJobs ", resultJobs);
 
   return resultJobs;
 };

@@ -2,7 +2,7 @@ const Sentry = require("@sentry/node");
 
 const offresPoleEmploi = require("./offresPoleEmploi");
 const bonnnesBoites = require("./bonnesBoites");
-const matcha = require("./matcha");
+const matcha = require("../matcha");
 const { jobsQueryValidator } = require("./jobsQueryValidator");
 const { trackEvent } = require("../../common/utils/sendTrackingEvent");
 
