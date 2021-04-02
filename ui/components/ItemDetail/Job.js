@@ -61,7 +61,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
         </div>
 
         <div className="c-media-body">
-          <div className="row">
+          <div className="row no-gutters">
             <div className="col-8 text-left">
               <div className="title d-inline-block">
                 {job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Offre anonyme</i>")}
