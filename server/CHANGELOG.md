@@ -1,10 +1,12 @@
 # CHANGELOG
 
-## 1.10.6 [1/04/2021]
+## 1.10.7 [02/04/2021]
+[529] Positionner tags
+
+## 1.10.6 [01/04/2021]
 [509] Swipe et scroll
 [330] Optimisations et nettoyage
 [518] Classe GMT sur bouton PRDV
-[529] Positionner tags
 
 ## 1.10.5 [23/03/2021]
 [348] Page d'erreur 500
