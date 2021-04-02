@@ -72,6 +72,11 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
               </span>
             </div>
             <div className="col-2 d-flex flex-column">
+
+              <div className="c-media-tag">
+                
+              </div>
+
               {showTextOnly ? (
                   ""
                 ) : (
@@ -81,7 +86,6 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
                     </span>
                   </>
                 )}
-            
             </div>
           </div>
 
