@@ -71,10 +71,7 @@ const FAQ = (props) => {
                 Pourquoi il n'y a pas toujours de précisions sur les profils recherchés ?
               </h2>
               <p className="c-faq-answer">
-                
-                
-                
-                lternance centralise deux types de résultats :<br />
+                La Bonne Alternance centralise deux types de résultats :<br />
                 <ul>
                   <li>
                     les offres d'emploi en apprentissage (les offres en contrat de professionnalisation ne sont pour le
