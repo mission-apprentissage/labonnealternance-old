@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PeJobDetail from "./PeJobDetail";
+import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { get, includes, defaultTo, round } from "lodash";
@@ -71,6 +72,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar }) => {
 
         <div className="c-detail-body">
           {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
+          {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
           {includes(["lbb", "lba"], kind) ? (
             <LbbCompanyDetail lbb={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
           ) : (
