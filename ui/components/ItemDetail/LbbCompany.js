@@ -1,5 +1,6 @@
 import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
+import paperplaneIcon from "../../public/images/paperplane.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
@@ -63,30 +64,44 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
         </div>
 
         <div className="c-media-body">
-          <div className="row">
-            <div className="col-10">
-              a
+
+
+          <div className="row no-gutters">
+            <div className="col-8 text-left">
+              <div className="title d-inline-block">{company.company.name}</div>
+              <div className="cardText pt-1">{get(company, "nafs[0].label", "")}</div>
+              <div className="cardText pt-2">{company.place.fullAddress}</div>
+              <span className="cardDistance pt-1">
+                {company.place.distance} km(s) du lieu de recherche
+
+              </span>
             </div>
-            <div className="col-2">
-              b
-              
+            <div className="col-4 d-flex flex-column">
+
+              <span className="c-media-tag c-media-tag--briefcase">
+                <img src={paperplaneIcon} alt="valise" />
+                <span className="ml-1">Offre d'emploi</span>
+              </span>
+
+              {showTextOnly ? (
+                ""
+              ) : (
+                <>
+                  <div className="knowMore d-none d-md-block mt-auto">
+                    <button className={`c-resultcard-knowmore`}>En savoir plus</button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
-          <div className="title d-inline-block">{company.company.name}</div>
-          <div className="cardText pt-1">{get(company, "nafs[0].label", "")}</div>
-          <div className="cardText pt-2">{company.place.fullAddress}</div>
-          <span className="cardDistance pt-1">
-            {company.place.distance} km(s) du lieu de recherche
-            {showTextOnly ? (
-              ""
-            ) : (
-              <>
-                <div className="knowMore d-none d-md-block">
-                  <button className={`c-resultcard-knowmore`}>En savoir plus</button>
-                </div>
-              </>
-            )}
-          </span>
+
+
+
+
+
+
+
+
           {showTextOnly ? (
             ""
           ) : (
