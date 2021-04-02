@@ -78,9 +78,9 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
             </div>
             <div className="col-4 d-flex flex-column">
 
-              <span className="c-media-tag c-media-tag--briefcase">
+              <span className="c-media-tag c-media-tag--paperplane">
                 <img src={paperplaneIcon} alt="valise" />
-                <span className="ml-1">Offre d'emploi</span>
+                <span className="ml-1">Candidature spontanée</span>
               </span>
 
               {showTextOnly ? (
