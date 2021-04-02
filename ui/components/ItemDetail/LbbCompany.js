@@ -63,6 +63,15 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
         </div>
 
         <div className="c-media-body">
+          <div className="row">
+            <div className="col-10">
+              a
+            </div>
+            <div className="col-2">
+              b
+              
+            </div>
+          </div>
           <div className="title d-inline-block">{company.company.name}</div>
           <div className="cardText pt-1">{get(company, "nafs[0].label", "")}</div>
           <div className="cardText pt-2">{company.place.fullAddress}</div>
