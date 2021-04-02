@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## 1.10.6 [26/03/2021]
+## 1.10.6 [1/04/2021]
+[509] Swipe et scroll
 [330] Optimisations et nettoyage
 [518] Classe GMT sur bouton PRDV
 

@@ -9,6 +9,7 @@ export const updateUiFromHistory = ({
   trainings,
   currentPage,
   unSelectItem,
+  selectedItem,
   selectItemFromHistory,
   setCurrentPage,
   visiblePane,
@@ -23,6 +24,7 @@ export const updateUiFromHistory = ({
 
   const pageFromUrl = urlParams ? urlParams.get("page") : "";
   const display = urlParams ? urlParams.get("display") : "";
+  const itemId = urlParams ? urlParams.get("itemId") : "";
 
   // réconciliation entre le store et l'état attendu indiqué par les query parameters pour les éléments sélectionnés
   if (currentPage !== pageFromUrl) {
@@ -34,17 +36,24 @@ export const updateUiFromHistory = ({
         }
         break;
       }
-
+      
       default: {
         if (pageFromUrl === "fiche") {
           // sélection de l'item correspondant à la fiche dans l'historique
-          selectItemFromHistory(urlParams.get("itemId"), urlParams.get("type"));
+          selectItemFromHistory(itemId, urlParams.get("type"));
         }
         break;
       }
     }
+
     setCurrentPage(pageFromUrl ? pageFromUrl : "");
-  }
+    
+    } else {
+        if (currentPage === "fiche" && (!selectedItem || itemId != selectedItem.id)) {
+            // sélection de l'item correspondant à la fiche dans l'historique
+            selectItemFromHistory(itemId, urlParams.get("type"));
+        }
+    } 
 
   // réconciliation entre le store et l'état attendu pour les panneaux d'affichage responsive
   if (display) {
