@@ -365,19 +365,19 @@ const ResultLists = (props) => {
           <div className="c-filterbuttons">
             <FilterButton
               type="all"
-              isActive={props.activeFilter === "all" ? true : false}
+              isActive={props.activeFilter === "all"}
               handleFilterButtonClicked={filterButtonClicked}
             />
             <FilterButton
               type="trainings"
               count={trainingCount}
-              isActive={props.activeFilter === "trainings" ? true : false}
+              isActive={props.activeFilter === "trainings"}
               handleFilterButtonClicked={filterButtonClicked}
             />
             <FilterButton
               type="jobs"
               count={jobCount}
-              isActive={props.activeFilter === "jobs" ? true : false}
+              isActive={props.activeFilter === "jobs"}
               handleFilterButtonClicked={filterButtonClicked}
             />
             <div className="c-resultlist-purplefilter" onClick={props.showSearchForm}>
