@@ -155,27 +155,6 @@ const ResultLists = (props) => {
     return jobCount;
   };
 
-  const getPeJobList = () => {
-    if (props.jobs && props.jobs.peJobs && props.jobs.peJobs.length) {
-      return (
-        <>
-          {props.jobs.peJobs.map((job, idx) => {
-            return (
-              <PeJob
-                key={idx}
-                job={job}
-                handleSelectItem={props.handleSelectItem}
-                searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-              />
-            );
-          })}
-        </>
-      );
-      //} else return <div className="listText">Aucun poste pour ces critères de recherche</div>;
-    } else return "";
-  };
-
-  //TODO: remplacer getPeJobList
   const getJobList = () => {
     const mergedJobs = mergeJobs();
     if (mergedJobs.length) {

@@ -51,6 +51,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
 
     searchForTrainingsOnNewCenter(newCenter);
   };
+
   return (
     <div className="resultCard gtmSavoirPlus gtmPeJob gtmListe" onClick={onSelectItem}>
       <div className="c-media" id={`${job.ideaType}${job.ideaType === "matcha" ? job.id : job.job.id}`}>
@@ -66,7 +67,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
           <div className="cardText pt-2">{job.place.fullAddress}</div>
 
           <span className="cardDistance pt-1">
-            {Math.round(job.place.distance)} km(s) du lieu de recherche
+            {job.place.distance} km(s) du lieu de recherche
             {showTextOnly ? (
               ""
             ) : (
