@@ -3,6 +3,7 @@ import trainingIcon from "../../public/images/icons/book.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
+import smileyIcon from "../../public/images/smiley.svg";
 import { useScopeContext } from "context/ScopeContext";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
@@ -60,8 +61,20 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
         </div>
 
         <div className="c-media-body">
-          <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
-          <div className="cardText pt-1">
+
+          <div className="row no-gutters">
+            <div className="col-12 col-lg-6 text-left">
+              <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
+            </div>
+            <div className="col-12 col-lg-6 text-left text-lg-right">
+              <span className="c-media-tag c-media-tag--smiley">
+                <img src={smileyIcon} alt="sourire" />
+                <span className="ml-1">CFA d'entreprise</span>
+              </span>
+            </div>
+          </div>
+
+          <div className="cardText pt-3 pt-lg-1">
             {training.company.name} ({training.company.place.city})
           </div>
           <div className="cardText pt-2">{training.place.fullAddress}</div>
