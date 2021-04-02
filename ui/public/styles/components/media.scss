@@ -11,18 +11,21 @@
   flex: 1;
 }
 
-
-.c-media-tag.c-media-tag--briefcase {
+.c-media-tag {
+  align-self: flex-end;
   font-size: 12px;
   font-weight: 700;
   line-height: 15px;
   letter-spacing: 0px;
   text-align: left;
-  vertical-align: bottom;
-  background: #FFF4F2;
+  width: fit-content;
   border-radius: 6px;
   color: $pinksoft750;
-  padding: .25rem;
+  padding: 0.5rem;
+  padding-top: 0.25rem;
+}
+.c-media-tag.c-media-tag--briefcase {
+  background: #FFF4F2;
 }
 .c-media-tag span {
   vertical-align: bottom;

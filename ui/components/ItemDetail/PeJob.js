@@ -62,10 +62,10 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
             </div>
             <div className="col-4 d-flex flex-column">
 
-              <div className="c-media-tag c-media-tag--briefcase">
+              <span className="c-media-tag c-media-tag--briefcase">
                 <img src={briefcaseIcon} alt="valise" />
                 <span className="ml-1">Offre d'emploi</span>
-              </div>
+              </span>
 
               {showTextOnly ? (
                   ""
