@@ -39,6 +39,7 @@ const getItemElement = (item) => {
 
   if (realItem.ideaType === "peJob") id = `peJob${realItem.job.id}`;
   else if (realItem.ideaType === "formation") id = `id${realItem.id}`;
+  else if (realItem.ideaType === "matcha") id = `matcha${realItem.id}`;
   else id = `${realItem.ideaType}${realItem.company.siret}`;
 
   let res = document.getElementById(id);
