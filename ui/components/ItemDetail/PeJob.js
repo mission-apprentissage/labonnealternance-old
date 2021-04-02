@@ -1,5 +1,6 @@
 import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
+import briefcaseIcon from "../../public/images/briefcase.svg";
 import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import ReactHtmlParser from "react-html-parser";
@@ -49,7 +50,7 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
 
         <div className="c-media-body">
           <div className="row">
-            <div className="col-10 text-left">
+            <div className="col-8 text-left">
               <div className="title d-inline-block">
                 {job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Offre anonyme</i>")}
               </div>
@@ -59,10 +60,11 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
                 {Math.round(job.place.distance)} km(s) du lieu de recherche
               </span>
             </div>
-            <div className="col-2 d-flex flex-column">
+            <div className="col-4 d-flex flex-column">
 
-              <div className="c-media-tag">
-                
+              <div className="c-media-tag c-media-tag--briefcase">
+                <img src={briefcaseIcon} alt="valise" />
+                <span className="ml-1">Offre d'emploi</span>
               </div>
 
               {showTextOnly ? (
