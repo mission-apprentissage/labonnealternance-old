@@ -50,6 +50,16 @@ const FAQ = (props) => {
               </p>
             </div>
             <div className="c-faq-question-block">
+              <h2 className="c-faq-question">Si je candidate auprès d’une entreprise affichée sur La Bonne Alternance, suis-je obligé de suivre une formation dans un organisme proposé par La Bonne Alternance ?</h2>
+              <p className="c-faq-answer">
+                Non, il n’y a pas d’obligation : vous pouvez indépendamment postuler dans une des entreprises affichées par La Bonne Alternance et suivre une formation dans l’organisme de votre choix, même s’il n’est pas affiché sur La Bonne Alternance.
+                <br />
+                En effet, même si la plupart le font, certains organismes de formations choisissent de ne pas se référencer dans la base nationale des formations en apprentissage.
+                <br />
+                Précision utile : certains Centres de Formation des Apprentis (CFA) sont des CFA d’entreprise : postuler auprès d’une entreprise liée à ce type de CFA implique obligatoirement de suivre la formation dans ce CFA.
+              </p>
+            </div>
+            <div className="c-faq-question-block">
               <h2 className="c-faq-question">Comment est calculée la distance indiquée ?</h2>
               <p className="c-faq-answer">
                 Les distances indiquées sont les distances à vol d'oiseau. Si vous constatez tout de même une erreur,
@@ -61,7 +71,10 @@ const FAQ = (props) => {
                 Pourquoi il n'y a pas toujours de précisions sur les profils recherchés ?
               </h2>
               <p className="c-faq-answer">
-                La Bonne Alternance centralise deux types de résultats :<br />
+                
+                
+                
+                lternance centralise deux types de résultats :<br />
                 <ul>
                   <li>
                     les offres d'emploi en apprentissage (les offres en contrat de professionnalisation ne sont pour le
