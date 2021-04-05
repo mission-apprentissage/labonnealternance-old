@@ -27,25 +27,25 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
       e.stopPropagation();
     }
 
-    let lT = job.place;
+    let jobPlace = job.place;
 
-    if (!lT.insee) {
+    if (!jobPlace.insee) {
       const addresses = await fetchAddresses(job.place.address, "municipality");
-      lT.insee = "";
-      lT.zipCode = "";
+      jobPlace.insee = "";
+      jobPlace.zipCode = "";
       if (addresses.length) {
-        lT.insee = addresses[0].insee;
-        lT.zipCode = addresses[0].zipcode;
+        jobPlace.insee = addresses[0].insee;
+        jobPlace.zipCode = addresses[0].zipcode;
       }
     }
 
     const newCenter = {
-      insee: lT.insee,
-      label: lT.fullAddress,
-      zipcode: lT.zipCode,
+      insee: jobPlace.insee,
+      label: jobPlace.fullAddress,
+      zipcode: jobPlace.zipCode,
       value: {
         type: "Point",
-        coordinates: [lT.longitude, lT.latitude],
+        coordinates: [jobPlace.longitude, jobPlace.latitude],
       },
     };
 
