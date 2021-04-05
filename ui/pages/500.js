@@ -12,7 +12,7 @@ const Error500 = () => {
         window.location.href="/";
       }}/>
       <h1 className="c-500-title">Oops</h1>
-      <p>Le site la bonne alternance n'est pas disponible pour le moment</p>
+      <p>Le site La Bonne Alternance n'est pas disponible pour le moment</p>
       <img src={lostWoman} alt="Personne perdue" className="c-500-img" />
     </div>
   </>;

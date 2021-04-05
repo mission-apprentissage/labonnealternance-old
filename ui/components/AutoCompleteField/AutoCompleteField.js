@@ -83,6 +83,7 @@ export const AutoCompleteField = ({
     selectItem,
     inputValue,
   } = useCombobox({
+    id: 'lang-switcher',
     items: inputItems,
     itemToString,
     initialSelectedItem: previouslySelectedItem,
