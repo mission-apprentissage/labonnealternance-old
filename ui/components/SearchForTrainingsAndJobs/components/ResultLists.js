@@ -197,19 +197,10 @@ const ResultLists = (props) => {
   // TODO: refacto des merges pour n'en avoir qu'un qui marche dans tous les cas
   const mergeJobs = () => {
     let mergedArray = [];
-    let resultSources = 0;
+
     if (props.jobs) {
-      if (props.jobs.peJobs && props.jobs.peJobs.length > 0) {
-        mergedArray = mergedArray.concat(props.jobs.peJobs);
-        resultSources++;
-      }
-
-      if (props.jobs.matchas && props.jobs.matchas.length > 0) {
-        mergedArray = mergedArray.concat(props.jobs.matchas);
-        resultSources++;
-      }
-
-      mergedArray = sortMergedSources(mergedArray, resultSources);
+      mergedArray = concatSources([props.jobs.peJobs, props.jobs.matchas]);
+      mergedArray = sortMergedSources(mergedArray);
     }
 
     return mergedArray;
@@ -218,45 +209,42 @@ const ResultLists = (props) => {
   // fusionne les résultats lbb et lba et les trie par ordre croissant de distance, optionnellement intègre aussi les offres PE et matchas
   const mergeOpportunities = (onlyLbbLbaCompanies) => {
     let mergedArray = [];
-    let resultSources = 0;
     if (props.jobs) {
-      if (props.jobs.lbbCompanies && props.jobs.lbbCompanies.length) {
-        mergedArray = props.jobs.lbbCompanies;
-        resultSources++;
+      let sources = [props.jobs.lbbCompanies, props.jobs.lbaCompanies];
+      if (!onlyLbbLbaCompanies) {
+        sources.push(props.jobs.peJobs);
+        sources.push(props.jobs.matchas);
       }
 
-      if (props.jobs.lbaCompanies && props.jobs.lbaCompanies.length) {
-        mergedArray = mergedArray.concat(props.jobs.lbaCompanies);
-        resultSources++;
-      }
+      mergedArray = concatSources(sources);
 
-      if (!onlyLbbLbaCompanies && props.jobs.peJobs && props.jobs.peJobs.length > 0) {
-        mergedArray = mergedArray.concat(props.jobs.peJobs);
-        resultSources++;
-      }
-
-      if (!onlyLbbLbaCompanies && props.jobs.matchas && props.jobs.matchas.length > 0) {
-        mergedArray = mergedArray.concat(props.jobs.matchas);
-        resultSources++;
-      }
-
-      mergedArray = sortMergedSources(mergedArray, resultSources);
+      mergedArray = sortMergedSources(mergedArray);
     }
 
     return mergedArray;
   };
 
-  const sortMergedSources = (mergedArray, sourceCount) => {
-    if (sourceCount > 1) {
-      mergedArray.sort((a, b) => {
-        let dA = a.place.distance;
-        let dB = b.place.distance;
+  const concatSources = (sources) => {
+    let resultArray = [];
 
-        if (dA > dB) return 1;
-        if (dA < dB) return -1;
-        return 0;
-      });
-    }
+    sources.map((source) => {
+      if (source && source.length) {
+        resultArray = resultArray.concat(source);
+      }
+    });
+
+    return resultArray;
+  };
+
+  const sortMergedSources = (mergedArray) => {
+    mergedArray.sort((a, b) => {
+      let dA = a.place.distance;
+      let dB = b.place.distance;
+
+      if (dA > dB) return 1;
+      if (dA < dB) return -1;
+      return 0;
+    });
 
     return mergedArray;
   };
