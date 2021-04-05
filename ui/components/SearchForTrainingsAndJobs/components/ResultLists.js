@@ -14,13 +14,12 @@ import questionMarkIcon from "public/images/icons/question_mark.svg";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
 
 const ResultLists = (props) => {
-  const [activeFilter, setActiveFilter] = useState("all");
   const scopeContext = useScopeContext();
 
   const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
 
   const filterButtonClicked = (filterButton) => {
-    setActiveFilter(filterButton);
+    props.setActiveFilter(filterButton);
     filterLayers(filterButton);
   };
 
@@ -38,7 +37,7 @@ const ResultLists = (props) => {
   };
 
   const getTrainingResult = () => {
-    if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
+    if (hasSearch && scopeContext.isTraining && (props.activeFilter === "all" || props.activeFilter === "trainings")) {
       return (
         <>
           <div id="trainingResult" className="trainingResult">
@@ -82,7 +81,7 @@ const ResultLists = (props) => {
   };
 
   const getJobResult = () => {
-    if (hasSearch && !props.isJobSearchLoading && (activeFilter === "all" || activeFilter === "jobs")) {
+    if (hasSearch && !props.isJobSearchLoading && (props.activeFilter === "all" || props.activeFilter === "jobs")) {
       if (props.allJobSearchError) return "";
 
       const jobCount = getJobCount(props.jobs);
@@ -402,19 +401,19 @@ const ResultLists = (props) => {
           <div className="c-filterbuttons">
             <FilterButton
               type="all"
-              isActive={activeFilter === "all" ? true : false}
+              isActive={props.activeFilter === "all"}
               handleFilterButtonClicked={filterButtonClicked}
             />
             <FilterButton
               type="trainings"
               count={trainingCount}
-              isActive={activeFilter === "trainings" ? true : false}
+              isActive={props.activeFilter === "trainings"}
               handleFilterButtonClicked={filterButtonClicked}
             />
             <FilterButton
               type="jobs"
               count={jobCount}
-              isActive={activeFilter === "jobs" ? true : false}
+              isActive={props.activeFilter === "jobs"}
               handleFilterButtonClicked={filterButtonClicked}
             />
             <div className="c-resultlist-purplefilter" onClick={props.showSearchForm}>

@@ -3,7 +3,12 @@
 ## 1.11.0 [05/04/2021]
 Récupération des offres Matcha
 
-## 1.10.6 [26/03/2021]
+## 1.10.7 [2/04/2021]
+[517] Reliquats 404 et 500
+[535] Changement de nom du fichier widget prdv
+
+## 1.10.6 [1/04/2021]
+[509] Swipe et scroll
 [330] Optimisations et nettoyage
 [518] Classe GMT sur bouton PRDV
 
