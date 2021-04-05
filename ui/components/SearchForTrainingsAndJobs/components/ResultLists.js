@@ -209,15 +209,7 @@ const ResultLists = (props) => {
         resultSources++;
       }
 
-      if (resultSources > 1)
-        mergedArray.sort((a, b) => {
-          let dA = a.place.distance;
-          let dB = b.place.distance;
-
-          if (dA > dB) return 1;
-          if (dA < dB) return -1;
-          return 0;
-        });
+      mergedArray = sortMergedSources(mergedArray, resultSources);
     }
 
     return mergedArray;
@@ -248,15 +240,22 @@ const ResultLists = (props) => {
         resultSources++;
       }
 
-      if (resultSources > 1)
-        mergedArray.sort((a, b) => {
-          let dA = a.place.distance;
-          let dB = b.place.distance;
+      mergedArray = sortMergedSources(mergedArray, resultSources);
+    }
 
-          if (dA > dB) return 1;
-          if (dA < dB) return -1;
-          return 0;
-        });
+    return mergedArray;
+  };
+
+  const sortMergedSources = (mergedArray, sourceCount) => {
+    if (sourceCount > 1) {
+      mergedArray.sort((a, b) => {
+        let dA = a.place.distance;
+        let dB = b.place.distance;
+
+        if (dA > dB) return 1;
+        if (dA < dB) return -1;
+        return 0;
+      });
     }
 
     return mergedArray;
