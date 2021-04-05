@@ -176,9 +176,9 @@ const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem) => {
   if (e.features[0].properties.cluster) {
     let zoom = map.getZoom();
 
-    if (zoom > 11) zoom += 1;
-    else if (zoom > 9) zoom += 2;
-    else zoom += 3;
+    if (zoom > 11) zoom += 2;
+    else if (zoom > 9) zoom += 3;
+    else zoom += 4;
 
     map.easeTo({ center: coordinates, speed: 0.2, zoom });
   } else {
