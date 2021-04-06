@@ -21,7 +21,31 @@ const MentionsLegales = () => (
 
         <div className="col-12 col-md-7">
           <p className="mb-3">Dernière mise à jour le : 06/04/2021</p>
-          <h3>Introduction</h3>
+          <h3>Éditeur du site</h3>
+          <p>
+            Le site La Bonne Alternance est édité par Pôle Emploi, situé :<br />
+            15 avenue du Docteur Gley
+            <br />
+            75987 Paris cedex 20
+            <br />
+            Tél. : <a href="tel:+33140306000">01 40 30 60 00</a>
+            <br />
+          </p>
+
+          <h3>Directeur de la publication</h3>
+          <p>Monsieur Jean Bassères, Directeur Général.</p>
+
+          <h3>Hébergement du site</h3>
+          <p>
+            Ce site est hébergé par OVH :<br />
+            2 rue Kellermann
+            <br />
+            59100 Roubaix
+            <br />
+            Tél. : <a href="tel:+33972101007">09 72 10 10 07</a>
+          </p>
+
+          <h3>Accessibilité</h3>
           <p>
             L'initiative internationale pour l'accessibilité du Web (Web Accessiblility Initiative) définit
             l'accessibilité du Web comme suit :
@@ -46,7 +70,11 @@ const MentionsLegales = () => (
           </p>
           <p>
             Le site La Bonne Alternance est en cours d'optimisation afin de le rendre conforme au{" "}
-            <a href="https://www.numerique.gouv.fr/publications/rgaa-accessibilite" rel="noopener noreferrer" target="_blank">
+            <a
+              href="https://www.numerique.gouv.fr/publications/rgaa-accessibilite"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               RGAA v3
             </a>
             . La déclaration de conformité sera publiée ultérieurement.
