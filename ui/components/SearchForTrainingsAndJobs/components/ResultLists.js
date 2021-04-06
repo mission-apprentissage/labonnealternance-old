@@ -217,7 +217,6 @@ const ResultLists = (props) => {
       }
 
       mergedArray = concatSources(sources);
-
       mergedArray = sortMergedSources(mergedArray);
     }
 
