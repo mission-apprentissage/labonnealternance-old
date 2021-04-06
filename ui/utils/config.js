@@ -1,14 +1,17 @@
 const config = {
   local: {
+    env: "local",
     urls: [/^"localhost"$/g],
     baseUrl: "http://localhost:5000",
   },
   dev: {
+    env: "recette",
     urls: [/^labonnealternance-recette.apprentissage.beta.gouv.fr$/g,/^labonnealternance.beta.pole-emploi.fr$/g],
     baseUrl: "https://labonnealternance-recette.apprentissage.beta.gouv.fr",
   },
 
   prod: {
+    env: "production",
     urls: [/^labonnealternance.apprentissage.beta.gouv.fr$/g,/^labonnealternance.pole-emploi.fr$/g],
     baseUrl: "https://labonnealternance.apprentissage.beta.gouv.fr",
   },

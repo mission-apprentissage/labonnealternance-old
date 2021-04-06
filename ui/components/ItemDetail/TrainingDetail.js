@@ -20,7 +20,12 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
 
   const buildPrdvButton = () => {
     return (
-      <div className="widget-prdv" data-siret={training.company.siret} data-cfd={training.cfd} data-referrer="lba" />
+      <div
+        className="widget-prdv gtmPrdv"
+        data-siret={training.company.siret}
+        data-cfd={training.cfd}
+        data-referrer="lba"
+      />
     );
   };
 
