@@ -17,40 +17,40 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
   const currentList = useSelector((store) => {
-    let picked = pick(store.trainings, ['trainings', 'jobs'])
-    let trainingsArray = includes(['all', 'trainings'], activeFilter) ? get(picked, 'trainings', []) : []
-    let peArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.peJobs', []) : []
-    let lbaArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.lbaCompanies', []) : []
-    let lbbArray = includes(['all', 'jobs'], activeFilter) ? get(picked, 'jobs.lbbCompanies', []) : []
-    let fullList = concat([], trainingsArray, peArray, lbaArray, lbbArray)
-    let listWithoutEmptyValues = fullList.filter(el => !!el)
-    return listWithoutEmptyValues
-  })
+    let picked = pick(store.trainings, ["trainings", "jobs"]);
+    let trainingsArray = includes(["all", "trainings"], activeFilter) ? get(picked, "trainings", []) : [];
+    let peArray = includes(["all", "jobs"], activeFilter) ? get(picked, "jobs.peJobs", []) : [];
+    let lbaArray = includes(["all", "jobs"], activeFilter) ? get(picked, "jobs.lbaCompanies", []) : [];
+    let lbbArray = includes(["all", "jobs"], activeFilter) ? get(picked, "jobs.lbbCompanies", []) : [];
+    let fullList = concat([], trainingsArray, peArray, lbaArray, lbbArray);
+    let listWithoutEmptyValues = fullList.filter((el) => !!el);
+    return listWithoutEmptyValues;
+  });
 
   // See https://www.npmjs.com/package/react-swipeable
   const swipeHandlers = useSwipeable({
     onSwiped: (event_data) => {
-      if (event_data.dir === 'Right') {
+      if (event_data.dir === "Right") {
         if (currentList.length > 1) {
-          goPrev()
+          goPrev();
         }
-      } else if (event_data.dir === 'Left') {
+      } else if (event_data.dir === "Left") {
         if (currentList.length > 1) {
-          goNext()
+          goNext();
         }
       }
-    }
-  })
+    },
+  });
   const goNext = () => {
-    let currentIndex = findIndex(currentList, selectedItem)
-    let nextIndex = (currentIndex == currentList.length - 1 ? 0 : currentIndex + 1)
-    handleSelectItem(currentList[nextIndex])
-  }
+    let currentIndex = findIndex(currentList, selectedItem);
+    let nextIndex = currentIndex == currentList.length - 1 ? 0 : currentIndex + 1;
+    handleSelectItem(currentList[nextIndex]);
+  };
   const goPrev = () => {
-    let currentIndex = findIndex(currentList, selectedItem)
-    let prevIndex = (currentIndex == 0 ? currentList.length - 1 : currentIndex - 1)
-    handleSelectItem(currentList[prevIndex])
-  }
+    let currentIndex = findIndex(currentList, selectedItem);
+    let prevIndex = currentIndex == 0 ? currentList.length - 1 : currentIndex - 1;
+    handleSelectItem(currentList[prevIndex]);
+  };
 
   return (
     <>
@@ -76,7 +76,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                   className="c-tiny-btn"
                   onClick={() => {
                     setSeeInfo(false);
-                    handleClose ();
+                    handleClose();
                   }}
                 >
                   ← Retour aux résultats
@@ -85,18 +85,22 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               <div>
                 <button
                   className="c-tiny-btn"
-                  onClick={() => { goPrev() }}
+                  onClick={() => {
+                    goPrev();
+                  }}
                 >
                   ← Résultat précédent
-                </button>              
+                </button>
               </div>
               <div className="ml-2">
                 <button
                   className="c-tiny-btn"
-                  onClick={() => { goNext() }}
+                  onClick={() => {
+                    goNext();
+                  }}
                 >
                   Résultat suivant →
-                </button>              
+                </button>
               </div>
             </div>
 
@@ -128,11 +132,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         </header>
 
         <div className="c-detail-body">
-          {selectedItem?.url ? (
+          {kind === "peJob" && selectedItem?.url ? (
             <div className="c-detail-description-me">
               <div className="c-detail-pelink my-3">
                 <a className="btn btn-dark ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
-                    Je postule sur Pôle emploi
+                  Je postule sur Pôle emploi
                 </a>
               </div>
             </div>
@@ -150,7 +154,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ) : (
             ""
           )}
-          
         </div>
       </section>
     </>
