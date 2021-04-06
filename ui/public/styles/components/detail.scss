@@ -209,6 +209,20 @@
   }
 }
 
+.c-detail-contactlink {
+  a {
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    text-decoration: underline solid $gray-750;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+}
+
 .c-detail-advice {
   background-color: #FFE2DF;
   border-radius: 10px;

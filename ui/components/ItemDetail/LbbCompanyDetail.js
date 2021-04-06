@@ -27,7 +27,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let contactInfo = (
     <>
       {contactEmail ? (
-        <p className="c-detail-km c-detail-pelink">
+        <p className="c-detail-km c-detail-contactlink">
           <a href={`mailto:${contactEmail}`} className="ml-1">
             {contactEmail}
           </a>
@@ -36,7 +36,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
         ""
       )}
       {contactPhone ? (
-        <p className="c-detail-km c-detail-pelink">
+        <p className="c-detail-km c-detail-contactlink">
           <a href={`tel:${contactPhone}`} className="ml-1">
             {contactPhone}
           </a>
