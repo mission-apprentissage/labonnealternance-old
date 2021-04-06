@@ -53,13 +53,7 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
 
         <h3 className="c-detail-description-title">Postuler</h3>
 
-        <div className="c-detail-pelink mt-3">
-          <a className="gtmContactPE" target="poleemploi" href={job.url}>
-            Contactez le recruteur sur Pôle emploi
-          </a>
-        </div>
-
-        <div className="c-detail-advice p-2">
+        <div className="c-detail-advice c-detail-advice--mb p-2">
           <img src={bulbIcon} alt="" />
           <div className="c-detail-advice-text">
             Diversifiez vos démarches en envoyant aussi des candidatures spontanées aux entreprises qui n'ont pas
