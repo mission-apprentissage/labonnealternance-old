@@ -88,11 +88,11 @@ const Footer = (props) => {
                     className="c-footer-links__link"
                     onClick={(e) => {
                       e.preventDefault();
-                      dispatch(push({ pathname: "/accessibilite" }));
+                      dispatch(push({ pathname: "/mentions-legales" }));
                     }}
-                    href="/accessibilite"
+                    href="/mentions-legales"
                   >
-                    Accessibilité
+                    Mentions légales
                   </a>
                 </li>
 

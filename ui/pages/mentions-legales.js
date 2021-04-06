@@ -4,23 +4,23 @@ import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
 
 import Footer from "components/footer";
-const Accessibilite = () => (
+const MentionsLegales = () => (
   <div>
     <ScrollToTop />
     <Navigation />
-    <Breadcrumb forPage="accessibilite" label="Accessibilité" />
+    <Breadcrumb forPage="mentions-legales" label="Mentions légales" />
 
     <div className="c-page-container container my-0 mb-sm-5 p-5">
       <div className="row">
         <div className="col-12 col-md-5">
           <h1>
-            <span className="d-block c-page-title is-color-2">Accessibilité</span>
+            <span className="d-block c-page-title is-color-2">Mentions légales</span>
           </h1>
           <hr className="c-page-title-separator" align="left" />
         </div>
 
         <div className="col-12 col-md-7">
-          <p className="mb-3">Dernière mise à jour le : 11/03/2021</p>
+          <p className="mb-3">Dernière mise à jour le : 06/04/2021</p>
           <h3>Introduction</h3>
           <p>
             L'initiative internationale pour l'accessibilité du Web (Web Accessiblility Initiative) définit
@@ -98,4 +98,4 @@ const Accessibilite = () => (
   </div>
 );
 
-export default Accessibilite;
+export default MentionsLegales;
