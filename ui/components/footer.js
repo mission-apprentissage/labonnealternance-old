@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col, Navbar } from "reactstrap";
 
-import Link from "next/link";
-import Router from "next/router";
-import { push, replace, goBack, goForward, prefetch } from "connected-next-router";
+import { push } from "connected-next-router";
 import { useDispatch } from "react-redux";
 
 import logoFSE from "public/images/logo_fse.svg";
@@ -55,34 +53,7 @@ const Footer = (props) => {
                     FAQ
                   </a>
                 </li>
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/rgpd" }));
-                    }}
-                    href="/rgpd"
-                  >
-                    RGPD
-                  </a>
-                </li>
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/accessibilite" }));
-                    }}
-                    href="/accessibilite"
-                  >
-                    Accessibilité
-                  </a>
-                </li>
-              </ul>
-            </Col>
-            <Col className="col-md-4 col-lg-3">
-              <ul className="c-footer-links">
+
                 <li className="c-footer-links__line">
                   <a
                     className="c-footer-links__link"
@@ -108,6 +79,48 @@ const Footer = (props) => {
                     Développeurs
                   </a>
                 </li>
+              </ul>
+            </Col>
+            <Col className="col-md-4 col-lg-3">
+              <ul className="c-footer-links">
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/accessibilite" }));
+                    }}
+                    href="/accessibilite"
+                  >
+                    Accessibilité
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/cgu" }));
+                    }}
+                    href="/cgu"
+                  >
+                    CGU
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/rgpd" }));
+                    }}
+                    href="/rgpd"
+                  >
+                    RGPD
+                  </a>
+                </li>
 
                 <li className="c-footer-links__line">
                   <a
@@ -121,25 +134,23 @@ const Footer = (props) => {
                     Statistiques
                   </a>
                 </li>
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/cgu" }));
-                    }}
-                    href="/cgu"
-                  >
-                    CGU
-                  </a>
-                </li>
               </ul>
             </Col>
             <Col className="text-center col-12 col-lg-3">
-              <a href="http://www.fse.gouv.fr" target="_blank" rel="noopener norefer" className="c-footer-logocontainer">
+              <a
+                href="http://www.fse.gouv.fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="c-footer-logocontainer"
+              >
                 <img className="c-footer--partner-logo" src={logoFSE} alt="Logo du FSE" />
               </a>
-              <a href="https://www.gouvernement.fr/france-relance" target="_blank" rel="noopener norefer" className="c-footer-logocontainer">
+              <a
+                href="https://www.gouvernement.fr/france-relance"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="c-footer-logocontainer"
+              >
                 <img
                   className="c-footer--partner-logo"
                   src={logoFranceRelance}
@@ -147,12 +158,13 @@ const Footer = (props) => {
                   alt="Logo France Relance"
                 />
               </a>
-              <a href="http://www.pole-emploi.fr" target="_blank" rel="noopener norefer" className="c-footer-logocontainer">
-                <img
-                  className="c-footer--partner-logo"
-                  src={logoPoleEmploi}
-                  alt="Logo de Pôle emploi"
-                />
+              <a
+                href="http://www.pole-emploi.fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="c-footer-logocontainer"
+              >
+                <img className="c-footer--partner-logo" src={logoPoleEmploi} alt="Logo de Pôle emploi" />
               </a>
             </Col>
           </Row>
