@@ -175,7 +175,7 @@ const ResultLists = (props) => {
   };
 
   const getLbbCompanyList = () => {
-    const mergedLbaLbbCompanies = mergeOpportunities(props.jobs,"onlyLbbLba");
+    const mergedLbaLbbCompanies = mergeOpportunities(props.jobs, "onlyLbbLba");
     if (mergedLbaLbbCompanies.length) {
       return (
         <>
