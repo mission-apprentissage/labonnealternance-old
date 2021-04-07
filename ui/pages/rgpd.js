@@ -14,7 +14,11 @@ const RGPD = () => (
       <div className="row">
         <div className="col-12 col-md-5">
           <h1>
-            <span className="d-block c-page-title is-color-2">RGPD</span>
+            <span className="d-block c-page-title is-color-2">
+              Politique de confidentialité
+              <br />
+              La Bonne Alternance
+            </span>
           </h1>
           <hr className="c-page-title-separator" align="left" />
         </div>
