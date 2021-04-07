@@ -12,6 +12,7 @@ import FilterButton from "./FilterButton";
 import { useScopeContext } from "context/ScopeContext";
 import questionMarkIcon from "public/images/icons/question_mark.svg";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
+import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 
 const ResultLists = (props) => {
   const scopeContext = useScopeContext();
@@ -154,7 +155,7 @@ const ResultLists = (props) => {
   };
 
   const getJobList = () => {
-    const mergedJobs = mergeJobs();
+    const mergedJobs = mergeJobs(props.jobs);
     if (mergedJobs.length) {
       return (
         <>
@@ -174,7 +175,7 @@ const ResultLists = (props) => {
   };
 
   const getLbbCompanyList = () => {
-    const mergedLbaLbbCompanies = mergeOpportunities("onlyLbbLba");
+    const mergedLbaLbbCompanies = mergeOpportunities(props.jobs,"onlyLbbLba");
     if (mergedLbaLbbCompanies.length) {
       return (
         <>
@@ -193,64 +194,9 @@ const ResultLists = (props) => {
     } else return "";
   };
 
-  // fusionne les offres pe et matcha et les trie par ordre croissant de distance
-  // TODO: refacto des merges pour n'en avoir qu'un qui marche dans tous les cas
-  const mergeJobs = () => {
-    let mergedArray = [];
-
-    if (props.jobs) {
-      mergedArray = concatSources([props.jobs.peJobs, props.jobs.matchas]);
-      mergedArray = sortMergedSources(mergedArray);
-    }
-
-    return mergedArray;
-  };
-
-  // fusionne les résultats lbb et lba et les trie par ordre croissant de distance, optionnellement intègre aussi les offres PE et matchas
-  const mergeOpportunities = (onlyLbbLbaCompanies) => {
-    let mergedArray = [];
-    if (props.jobs) {
-      let sources = [props.jobs.lbbCompanies, props.jobs.lbaCompanies];
-      if (!onlyLbbLbaCompanies) {
-        sources.push(props.jobs.peJobs);
-        sources.push(props.jobs.matchas);
-      }
-
-      mergedArray = concatSources(sources);
-      mergedArray = sortMergedSources(mergedArray);
-    }
-
-    return mergedArray;
-  };
-
-  const concatSources = (sources) => {
-    let resultArray = [];
-
-    sources.map((source) => {
-      if (source && source.length) {
-        resultArray = resultArray.concat(source);
-      }
-    });
-
-    return resultArray;
-  };
-
-  const sortMergedSources = (mergedArray) => {
-    mergedArray.sort((a, b) => {
-      let dA = a.place.distance;
-      let dB = b.place.distance;
-
-      if (dA > dB) return 1;
-      if (dA < dB) return -1;
-      return 0;
-    });
-
-    return mergedArray;
-  };
-
   // retourne le bloc construit des items lbb, lba, matcha et pe triés par ordre de distance
   const getMergedJobList = () => {
-    const mergedOpportunities = mergeOpportunities();
+    const mergedOpportunities = mergeOpportunities(props.jobs);
 
     if (mergedOpportunities.length) {
       return (
