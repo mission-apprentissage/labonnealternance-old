@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.10.8 [6/04/2021]
+[514] Maj CGU et liens footers
 [546] Hotfix liens contacts en blanc sur blanc
 
 ## 1.10.7 [2/04/2021]
