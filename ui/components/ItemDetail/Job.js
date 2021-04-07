@@ -2,9 +2,10 @@ import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
 import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
+import { fetchAddresses } from "../../services/baseAdresse";
 import ReactHtmlParser from "react-html-parser";
 
-const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
+const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
 
   const currentSearchRadius = formValues?.radius || 30;
@@ -15,34 +16,45 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
 
   const getCenterSearchOnPeJobButton = () => {
     return (
-      <button className="extendedTrainingSearchButton" onClick={centerSearchOnPeJob}>
+      <button className="extendedTrainingSearchButton" onClick={centerSearchOnJob}>
         <img src={extendedSearchPin} alt="" /> <span>Voir les formations proches</span>
       </button>
     );
   };
 
-  const centerSearchOnPeJob = (e) => {
+  const centerSearchOnJob = async (e) => {
     if (e) {
       e.stopPropagation();
     }
 
-    let lT = job.place;
+    let jobPlace = job.place;
+
+    if (!jobPlace.insee) {
+      const addresses = await fetchAddresses(job.place.address, "municipality");
+      jobPlace.insee = "";
+      jobPlace.zipCode = "";
+      if (addresses.length) {
+        jobPlace.insee = addresses[0].insee;
+        jobPlace.zipCode = addresses[0].zipcode;
+      }
+    }
 
     const newCenter = {
-      insee: lT.insee,
-      label: lT.fullAddress,
-      zipcode: lT.zipCode,
+      insee: jobPlace.insee,
+      label: jobPlace.fullAddress,
+      zipcode: jobPlace.zipCode,
       value: {
         type: "Point",
-        coordinates: [lT.longitude, lT.latitude],
+        coordinates: [jobPlace.longitude, jobPlace.latitude],
       },
     };
 
     searchForTrainingsOnNewCenter(newCenter);
   };
+
   return (
     <div className="resultCard gtmSavoirPlus gtmPeJob gtmListe" onClick={onSelectItem}>
-      <div className="c-media" id={`${job.ideaType}${job.job.id}`}>
+      <div className="c-media" id={`${job.ideaType}${job.ideaType === "matcha" ? job.id : job.job.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
         </div>
@@ -55,7 +67,7 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
           <div className="cardText pt-2">{job.place.fullAddress}</div>
 
           <span className="cardDistance pt-1">
-            {Math.round(job.place.distance)} km(s) du lieu de recherche
+            {job.place.distance} km(s) du lieu de recherche
             {showTextOnly ? (
               ""
             ) : (
@@ -73,4 +85,4 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
   );
 };
 
-export default PeJob;
+export default Job;

@@ -137,7 +137,11 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
       onLayerClick(e, "training", store, selectItemOnMap, unselectItem);
     });
 
-    if (jobs && jobs.peJobs && (jobs.peJobs.length || jobs.lbaCompanies.length || jobs.lbbCompanies.length)) {
+    if (
+      jobs &&
+      jobs.peJobs &&
+      (jobs.peJobs.length || jobs.lbaCompanies.length || jobs.lbbCompanies.length || jobs.matchas.length)
+    ) {
       setJobMarkers(factorJobsForMap(jobs));
     }
 
@@ -172,9 +176,9 @@ const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem) => {
   if (e.features[0].properties.cluster) {
     let zoom = map.getZoom();
 
-    if (zoom > 11) zoom += 1;
-    else if (zoom > 9) zoom += 2;
-    else zoom += 3;
+    if (zoom > 11) zoom += 2;
+    else if (zoom > 9) zoom += 3;
+    else zoom += 4;
 
     map.easeTo({ center: coordinates, speed: 0.2, zoom });
   } else {
@@ -277,12 +281,22 @@ const factorTrainingsForMap = (list) => {
 const factorJobsForMap = (lists) => {
   let sortedList = [];
 
-  // concaténation des trois sources d'emploi
-  if (lists.peJobs) sortedList = lists.peJobs;
+  // concaténation des quatre sources d'emploi
+  if (lists.peJobs) {
+    sortedList = lists.peJobs;
+  }
 
-  if (lists.lbbCompanies) sortedList = sortedList.length ? sortedList.concat(lists.lbbCompanies) : lists.lbbCompanies;
+  if (lists.lbbCompanies) {
+    sortedList = sortedList.length ? sortedList.concat(lists.lbbCompanies) : lists.lbbCompanies;
+  }
 
-  if (lists.lbaCompanies) sortedList = sortedList.length ? sortedList.concat(lists.lbaCompanies) : lists.lbaCompanies;
+  if (lists.lbaCompanies) {
+    sortedList = sortedList.length ? sortedList.concat(lists.lbaCompanies) : lists.lbaCompanies;
+  }
+
+  if (lists.matchas) {
+    sortedList = sortedList.length ? sortedList.concat(lists.matchas) : lists.matchas;
+  }
 
   // tri de la liste de tous les emplois selon les coordonnées geo (l'objectif est d'avoir les emplois au même lieu proches)
   sortedList.sort((a, b) => {

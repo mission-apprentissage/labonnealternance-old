@@ -37,9 +37,25 @@ const getItemElement = (item) => {
 
   let realItem = item.items ? item.items[0] : item;
 
-  if (realItem.ideaType === "peJob") id = `peJob${realItem.job.id}`;
-  else if (realItem.ideaType === "formation") id = `id${realItem.id}`;
-  else id = `${realItem.ideaType}${realItem.company.siret}`;
+  switch (realItem.ideaType) {
+    case "peJob": {
+      id = `peJob${realItem.job.id}`;
+      break;
+    }
+    case "formation": {
+      id = `id${realItem.id}`;
+      break;
+    }
+    case "matcha": {
+      id = `matcha${realItem.id}`;
+      break;
+    }
+    default: {
+      //aka. lbb et lba
+      id = `${realItem.ideaType}${realItem.company.siret}`;
+      break;
+    }
+  }
 
   let res = document.getElementById(id);
 

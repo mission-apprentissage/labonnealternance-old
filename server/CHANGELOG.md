@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.11.0 [08/04/2021]
+Récupération des offres Matcha
+
 ## 1.10.8 [6/04/2021]
 [514] Maj CGU et liens footers
 [546] Hotfix liens contacts en blanc sur blanc

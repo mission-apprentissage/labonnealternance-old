@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import PeJobDetail from "./PeJobDetail";
+import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { findIndex, concat, pick, get, includes, defaultTo, round } from "lodash";
 import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
 import { useSwipeable } from "react-swipeable";
+import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
@@ -16,13 +18,22 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
+  const { extendedSearch } = useSelector((state) => state.trainings);
+
   const currentList = useSelector((store) => {
     let picked = pick(store.trainings, ["trainings", "jobs"]);
     let trainingsArray = includes(["all", "trainings"], activeFilter) ? get(picked, "trainings", []) : [];
-    let peArray = includes(["all", "jobs"], activeFilter) ? get(picked, "jobs.peJobs", []) : [];
-    let lbaArray = includes(["all", "jobs"], activeFilter) ? get(picked, "jobs.lbaCompanies", []) : [];
-    let lbbArray = includes(["all", "jobs"], activeFilter) ? get(picked, "jobs.lbbCompanies", []) : [];
-    let fullList = concat([], trainingsArray, peArray, lbaArray, lbbArray);
+
+    let jobList = [];
+    let companyList = [];
+    if (includes(["all", "jobs"], activeFilter)) {
+      if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
+      else {
+        jobList = mergeJobs(get(picked, "jobs"));
+        companyList = mergeOpportunities(get(picked, "jobs"), "onlyLbbLba");
+      }
+    }
+    let fullList = concat([], trainingsArray, jobList, companyList);
     let listWithoutEmptyValues = fullList.filter((el) => !!el);
     return listWithoutEmptyValues;
   });
@@ -144,6 +155,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             ""
           )}
           {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
+          {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
           {includes(["lbb", "lba"], kind) ? (
             <LbbCompanyDetail lbb={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
           ) : (
