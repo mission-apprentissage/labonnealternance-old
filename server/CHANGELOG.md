@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.11.0 [05/04/2021]
+## 1.11.0 [08/04/2021]
 Récupération des offres Matcha
 
 ## 1.10.7 [2/04/2021]
