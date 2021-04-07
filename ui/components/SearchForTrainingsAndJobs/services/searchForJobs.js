@@ -75,7 +75,7 @@ export const searchForJobsFunction = async ({
     let jobErrorMessage = "";
     if (
       response.data.peJobs.result === "error" &&
-      response.data.matchas.result === "error" &&
+      //response.data.matchas.result === "error" &&
       response.data.lbbCompanies.result === "error" &&
       response.data.lbaCompanies.result === "error"
     ) {
@@ -89,7 +89,7 @@ export const searchForJobsFunction = async ({
     } else {
       if (
         response.data.peJobs.result === "error" ||
-        response.data.matchas.result === "error" ||
+        //response.data.matchas.result === "error" ||
         response.data.lbbCompanies.result === "error" ||
         response.data.lbaCompanies.result === "error"
       ) {
