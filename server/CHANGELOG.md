@@ -3,6 +3,10 @@
 ## 1.11.0 [05/04/2021]
 Récupération des offres Matcha
 
+## 1.10.8 [6/04/2021]
+[514] Maj CGU et liens footers
+[546] Hotfix liens contacts en blanc sur blanc
+
 ## 1.10.7 [2/04/2021]
 [517] Reliquats 404 et 500
 [535] Changement de nom du fichier widget prdv
