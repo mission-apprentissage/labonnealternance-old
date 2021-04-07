@@ -32,7 +32,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const kind = training?.ideaType;
   let contactEmail = training?.contact?.email;
   let contactInfo = contactEmail ? (
-    <span className="c-detail-km c-detail-pelink">
+    <span className="c-detail-km c-detail-contactlink">
       <a href={`mailto:${contactEmail}`} className="ml-1" target="_blank" rel="noopener noreferrer">
         {contactEmail}
       </a>

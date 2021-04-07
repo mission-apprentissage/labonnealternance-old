@@ -132,7 +132,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         </header>
 
         <div className="c-detail-body">
-          {selectedItem?.url ? (
+          {kind === "peJob" && selectedItem?.url ? (
             <div className="c-detail-description-me">
               <div className="c-detail-pelink my-3">
                 <a className="btn btn-dark ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
