@@ -92,20 +92,20 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                     goPrev();
                   }}
                 >
-                  <img className="c-tiny-btn__image" src={chevronLeft} alt="Vers la gauche" />
+                  <img className="c-tiny-btn__image" src={chevronLeft} alt="Résultat précédent" />
                 </button>
               </div>
-              <div className="">
+              <div className="ml-2">
                 <button
                   className="c-tiny-btn"
                   onClick={() => {
                     goNext();
                   }}
                 >
-                  →
+                  <img className="c-tiny-btn__image" src={chevronRight} alt="Résultat suivant" />
                 </button>
               </div>
-              <div className="">
+              <div className="ml-2">
                 <button
                   className="c-tiny-btn"
                   onClick={() => {
@@ -113,7 +113,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                     handleClose();
                   }}
                 >
-                  x
+                  <img className="c-tiny-btn__image" src={chevronClose} alt="Fermer la fenêtre" />
                 </button>
               </div>
             </div>
