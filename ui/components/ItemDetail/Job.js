@@ -6,7 +6,7 @@ import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import ReactHtmlParser from "react-html-parser";
 import { fetchAddresses } from "../../services/baseAdresse";
 
-const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
+const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
 
   const currentSearchRadius = formValues?.radius || 30;
@@ -99,4 +99,4 @@ const PeJob = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCen
   );
 };
 
-export default PeJob;
+export default Job;
