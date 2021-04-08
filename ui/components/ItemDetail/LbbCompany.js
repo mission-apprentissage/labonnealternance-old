@@ -69,7 +69,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
             <div className="col-12 col-lg-6 text-left">
               <div className="title d-inline-block">{company.company.name}</div>
             </div>
-            <div className="col-12 col-lg-6 text-left text-lg-right">
+            <div className="col-12 col-lg-6 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
               <span className="c-media-tag c-media-tag--paperplane">
                 <img src={paperplaneIcon} alt="valise" />
                 <span className="ml-1">Candidature spontanée</span>

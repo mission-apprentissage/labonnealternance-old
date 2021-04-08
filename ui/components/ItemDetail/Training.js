@@ -66,7 +66,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
             <div className="col-12 col-lg-6 text-left">
               <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
             </div>
-            <div className="col-12 col-lg-6 text-left text-lg-right">
+            <div className="col-12 col-lg-6  d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
               <span className="c-media-tag c-media-tag--smiley">
                 <img src={smileyIcon} alt="sourire" />
                 <span className="ml-1">CFA d'entreprise</span>
