@@ -336,13 +336,19 @@ const computeMissingPositionAndDistance = async (searchCenter, jobs) => {
 
   await Promise.all(
     jobs.map(async (job) => {
-      if (job.place && !job.place.longitude && !job.place.latitude && job.place.city) {
-        let city = job.place.city; // complétion du numéro du département pour réduire les résultats erronés (ex : Saint Benoit à la réunion pour 86 - ST BENOIT)
-        let dpt = city.substring(0, 2);
-        dpt += "000";
-        city = dpt + city.substring(2);
+      if (job.place && !job.place.longitude && !job.place.latitude && (job.place.city || job.place.address)) {
+        let addresses = null;
 
-        const addresses = await fetchAddresses(city, "municipality"); // on force à Municipality pour ne pas avoir des rues dans de mauvaise localités
+        if (job.place.city) {
+          let city = job.place.city; // complétion du numéro du département pour réduire les résultats erronés (ex : Saint Benoit à la réunion pour 86 - ST BENOIT)
+          let dpt = city.substring(0, 2);
+          dpt += "000";
+          city = dpt + city.substring(2);
+
+          addresses = await fetchAddresses(city, "municipality"); // on force à Municipality pour ne pas avoir des rues dans de mauvaise localités
+        } else {
+          addresses = await fetchAddresses(job.place.address, "municipality"); // on force à Municipality pour ne pas avoir des rues dans de mauvaise localités
+        }
 
         if (addresses.length) {
           job.place.longitude = addresses[0].value.coordinates[0];
