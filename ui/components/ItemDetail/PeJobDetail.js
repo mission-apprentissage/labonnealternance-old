@@ -49,10 +49,6 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
           ""
         )}
 
-        <hr className="c-detail-header-separator mt-5" />
-
-        <h3 className="c-detail-description-title">Postuler</h3>
-
         <div className="c-detail-advice c-detail-advice--mb p-2">
           <img src={bulbIcon} alt="" />
           <div className="c-detail-advice-text">
