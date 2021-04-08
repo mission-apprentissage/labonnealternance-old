@@ -44,7 +44,8 @@ module.exports = () => {
   router.get(
     "/matcha/:id",
     tryCatch(async (req, res) => {
-      const result = await matchaApi.getMatchaJob({ id: req.params.id, referer: req.headers.referer });
+      console.log("AAAAA ", req.params.id);
+      const result = await matchaApi.getMatchaJobById({ id: req.params.id, referer: req.headers.referer });
 
       if (result.error) {
         if (result.error === "wrong_parameters") {

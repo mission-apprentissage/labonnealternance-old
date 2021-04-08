@@ -55,7 +55,7 @@ const transformMatchaJobsForIdea = (jobs) => {
   return resultJobs;
 };
 
-const getMatchaJob = async ({ id }) => {
+const getMatchaJobById = async ({ id }) => {
   try {
     const jobs = await axios.get(`${matchaJobEndPoint}/${id}`);
 
@@ -121,4 +121,4 @@ const transformMatchaJobForIdea = (job, distance) => {
   return resultJobs;
 };
 
-module.exports = { getMatchaJob, getMatchaJobs };
+module.exports = { getMatchaJobById, getMatchaJobs };
