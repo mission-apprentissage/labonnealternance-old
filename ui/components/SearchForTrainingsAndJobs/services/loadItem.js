@@ -53,81 +53,80 @@ export const loadItem = async ({
       }
       dispatch(setSelectedItem(response.data.results[0]));
       itemMarker = response.data.results[0];
-    } else if (item.type === "peJob") {
-      const response = await axios.get(offreApi + "/" + item.itemId);
+    } else {
+      let results = {
+        peJobs: null,
+        lbbCompanies: null,
+        lbaCompanies: null,
+        matchas: null,
+      };
 
-      // gestion des erreurs
-      if (!response.data.message) {
-        let peJobs = await computeMissingPositionAndDistance(null, response.data.peJobs);
+      let loadedItem = null;
 
-        let results = {
-          peJobs: peJobs,
-          lbbCompanies: null,
-          lbaCompanies: null,
-          matchas: null,
-        };
+      let errorMessage = null;
+      let responseResult = null;
 
-        dispatch(setJobs(results));
+      switch (item.type) {
+        case "peJob": {
+          const response = await axios.get(offreApi + "/" + item.itemId);
 
-        dispatch(setHasSearch(true));
+          // gestion des erreurs
+          if (!response.data.message) {
+            let peJobs = await computeMissingPositionAndDistance(null, response.data.peJobs);
 
-        setJobMarkers(factorJobsForMap(results), null);
-        dispatch(setSelectedItem(results.peJobs[0]));
-        itemMarker = results.peJobs[0];
-      } else {
-        logError("Job Load Error", `PE Error : ${response.data.message}`);
-        setJobSearchError(response.data.result === "not_found" ? notFoundErrorText : partialJobSearchErrorText);
+            results.peJobs = peJobs;
+            loadedItem = peJobs[0];
+          } else {
+            errorMessage = `PE Error : ${response.data.message}`;
+            responseResult = response.data.result;
+          }
+          break;
+        }
+        case "matcha": {
+          const response = await axios.get(matchaApi + "/" + item.itemId);
+
+          // gestion des erreurs
+          if (!response.data.message) {
+            let matchas = await computeMissingPositionAndDistance(null, response.data.matchas);
+            results.matchas = matchas;
+            loadedItem = matchas[0];
+          } else {
+            errorMessage = `Matcha Error : ${response.data.message}`;
+            responseResult = response.data.result;
+          }
+          break;
+        }
+
+        default: {
+          const response = await axios.get(`${companyApi}/${item.itemId}?type=${item.type}`);
+
+          // gestion des erreurs
+          if (!response.data.message) {
+            let companies = item.type === "lbb" ? response.data.lbbCompanies : response.data.lbaCompanies;
+
+            loadedItem = companies[0];
+            results.lbbCompanies = item.type === "lbb" ? companies : null;
+            results.lbaCompanies = item.type === "lba" ? companies : null;
+          } else {
+            errorMessage = `${item.type} Error : ${response.data.message}`;
+            responseResult = response.data.result;
+          }
+          break;
+        }
       }
-    } else if (item.type === "matcha") {
-      const response = await axios.get(matchaApi + "/" + item.itemId);
 
-      // gestion des erreurs
-      if (!response.data.message) {
-        let matchas = await computeMissingPositionAndDistance(null, response.data.matchas);
-
-        let results = {
-          peJobs: null,
-          lbbCompanies: null,
-          lbaCompanies: null,
-          matchas: matchas,
-        };
-
+      if (!errorMessage) {
         dispatch(setJobs(results));
 
         dispatch(setHasSearch(true));
 
         setJobMarkers(factorJobsForMap(results), null);
-        dispatch(setSelectedItem(results.matchas[0]));
-        itemMarker = results.matchas[0];
-      } else {
-        logError("Job Load Error", `PE Error : ${response.data.message}`);
-        setJobSearchError(response.data.result === "not_found" ? notFoundErrorText : partialJobSearchErrorText);
-      }
-    } else if (item.type === "lba" || item.type === "lbb") {
-      const response = await axios.get(`${companyApi}/${item.itemId}?type=${item.type}`);
 
-      // gestion des erreurs
-      if (!response.data.message) {
-        let companies = item.type === "lbb" ? response.data.lbbCompanies : response.data.lbaCompanies;
-
-        const loadedItem = companies[0];
-        let results = {
-          peJobs: null,
-          lbbCompanies: item.type === "lbb" ? companies : null,
-          lbaCompanies: item.type === "lba" ? companies : null,
-          matchas: null,
-        };
-
-        dispatch(setJobs(results));
-
-        dispatch(setHasSearch(true));
-
-        setJobMarkers(factorJobsForMap(results), null);
         dispatch(setSelectedItem(loadedItem));
         itemMarker = loadedItem;
       } else {
-        logError("Job Load Error", `PE Error : ${response.data.message}`);
-        setJobSearchError(response.data.result === "not_found" ? notFoundErrorText : partialJobSearchErrorText);
+        logError("Job Load Error", errorMessage);
+        setJobSearchError(responseResult === "not_found" ? notFoundErrorText : partialJobSearchErrorText);
       }
     }
 
