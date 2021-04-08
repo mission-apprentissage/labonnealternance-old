@@ -81,6 +81,7 @@ const transformMatchaJobForIdea = (job, distance) => {
     resultJob.lastUpdateAt = job.updatedAt;
 
     resultJob.job = {
+      id: offre._id,
       description: offre.description,
       creationDate: job.createdAt,
     };
