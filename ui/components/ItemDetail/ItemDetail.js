@@ -9,6 +9,8 @@ import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/chevronclose.svg";
+import paperplaneIcon from "public/images/paperplane.svg";
+
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 
@@ -66,6 +68,13 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     handleSelectItem(currentList[prevIndex]);
   };
 
+  const candidatureSpontanee = () => {
+    return <span className="c-media-tag c-media-tag--paperplane">
+             <img src={paperplaneIcon} alt="valise" />
+             <span className="ml-1">Candidature spontanée</span>
+           </span>
+  }
+
   return (
     <>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`} {...swipeHandlers}>
@@ -85,6 +94,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         <header className="c-detail-header">
           <div className="">
             <div className="d-flex justify-content-end">
+              <div>
+                {kind === "formation" ? ` (${selectedItem.company.place.city})` : ""}
+              </div>
               <div>
                 <button
                   className="c-tiny-btn"
