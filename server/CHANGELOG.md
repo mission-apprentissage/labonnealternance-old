@@ -2,6 +2,7 @@
 
 ## 1.11.0 [08/04/2021]
 Récupération des offres Matcha
+[529] Positionner tags
 
 ## 1.10.8 [6/04/2021]
 [514] Maj CGU et liens footers
@@ -11,7 +12,7 @@ Récupération des offres Matcha
 [517] Reliquats 404 et 500
 [535] Changement de nom du fichier widget prdv
 
-## 1.10.6 [1/04/2021]
+## 1.10.6 [01/04/2021]
 [509] Swipe et scroll
 [330] Optimisations et nettoyage
 [518] Classe GMT sur bouton PRDV

@@ -1,9 +1,10 @@
 import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
+import briefcaseIcon from "../../public/images/briefcase.svg";
 import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
-import { fetchAddresses } from "../../services/baseAdresse";
 import ReactHtmlParser from "react-html-parser";
+import { fetchAddresses } from "../../services/baseAdresse";
 
 const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
@@ -14,7 +15,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
     handleSelectItem(job, "peJob");
   };
 
-  const getCenterSearchOnPeJobButton = () => {
+  const getCenterSearchOnJobButton = () => {
     return (
       <button className="extendedTrainingSearchButton" onClick={centerSearchOnJob}>
         <img src={extendedSearchPin} alt="" /> <span>Voir les formations proches</span>
@@ -51,7 +52,6 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
 
     searchForTrainingsOnNewCenter(newCenter);
   };
-
   return (
     <div className="resultCard gtmSavoirPlus gtmPeJob gtmListe" onClick={onSelectItem}>
       <div className="c-media" id={`${job.ideaType}${job.ideaType === "matcha" ? job.id : job.job.id}`}>
@@ -60,11 +60,25 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
         </div>
 
         <div className="c-media-body">
-          <div className="title d-inline-block">
-            {job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Offre anonyme</i>")}
+
+          <div className="row no-gutters">
+            <div className="col-12 col-lg-7 text-left">
+              <div className="title d-inline-block">
+                {job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Offre anonyme</i>")}
+              </div>
+            </div>
+            <div className="col-12 col-lg-5 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
+              <span className="c-media-tag c-media-tag--briefcase">
+                <img src={briefcaseIcon} alt="valise" />
+                <span className="ml-1">Offre d'emploi</span>
+              </span>
+            </div>
           </div>
-          <div className="cardText pt-0">{job.title}</div>
-          <div className="cardText pt-2">{job.place.fullAddress}</div>
+
+          <div>
+            <div className="cardText pt-2">{job.title}</div>
+            <div className="cardText pt-2">{job.place.fullAddress}</div>
+          </div>
 
           <span className="cardDistance pt-1">
             {job.place.distance} km(s) du lieu de recherche
@@ -78,7 +92,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
               </>
             )}
           </span>
-          {Math.round(job.place.distance) > currentSearchRadius ? getCenterSearchOnPeJobButton() : ""}
+          {Math.round(job.place.distance) > currentSearchRadius ? getCenterSearchOnJobButton() : ""}
         </div>
       </div>
     </div>
