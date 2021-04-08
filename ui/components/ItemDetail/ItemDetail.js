@@ -5,7 +5,10 @@ import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { findIndex, concat, pick, get, includes, defaultTo, round } from "lodash";
-import smallMapPointIcon from "../../public/images/icons/small_map_point.svg";
+import smallMapPointIcon from "public/images/icons/small_map_point.svg";
+import chevronLeft from "public/images/chevronleft.svg";
+import chevronRight from "public/images/chevronright.svg";
+import chevronClose from "public/images/chevronclose.svg";
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 
@@ -80,19 +83,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ""
         )}
         <header className="c-detail-header">
-          <div className="text-left">
-            <div className="d-flex">
-              <div className="mr-auto">
-                <button
-                  className="c-tiny-btn"
-                  onClick={() => {
-                    setSeeInfo(false);
-                    handleClose();
-                  }}
-                >
-                  ← Retour aux résultats
-                </button>
-              </div>
+          <div className="">
+            <div className="d-flex justify-content-end">
               <div>
                 <button
                   className="c-tiny-btn"
@@ -100,17 +92,28 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                     goPrev();
                   }}
                 >
-                  ← Résultat précédent
+                  <img className="c-tiny-btn__image" src={chevronLeft} alt="Vers la gauche" />
                 </button>
               </div>
-              <div className="ml-2">
+              <div className="">
                 <button
                   className="c-tiny-btn"
                   onClick={() => {
                     goNext();
                   }}
                 >
-                  Résultat suivant →
+                  →
+                </button>
+              </div>
+              <div className="">
+                <button
+                  className="c-tiny-btn"
+                  onClick={() => {
+                    setSeeInfo(false);
+                    handleClose();
+                  }}
+                >
+                  x
                 </button>
               </div>
             </div>
