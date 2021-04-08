@@ -105,7 +105,9 @@ const transformMatchaJobForIdea = (job, distance) => {
     resultJob.createdAt = job.createdAt;
     resultJob.lastUpdateAt = job.updatedAt;
 
+    console.log("offre ", offre._id);
     resultJob.job = {
+      id: offre._id,
       description: offre.description,
       creationDate: job.createdAt,
     };
