@@ -9,7 +9,10 @@ import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/chevronclose.svg";
+
 import paperplaneIcon from "public/images/paperplane.svg";
+import briefcaseIcon from "public/images/briefcase.svg";
+import smileyIcon from "public/images/smiley.svg";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
@@ -75,6 +78,22 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
            </span>
   }
 
+  const cfaDentreprise = () => {
+    return <span className="c-media-tag c-media-tag--smiley">
+      <img src={smileyIcon} alt="sourire" />
+      <span className="ml-1">CFA d'entreprise</span>
+    </span>
+  }
+
+  const offreDemploi = () => {
+    return <span className="c-media-tag c-media-tag--briefcase">
+      <img src={briefcaseIcon} alt="valise" />
+      <span className="ml-1">Offre d'emploi</span>
+    </span>
+  }
+
+
+  
   return (
     <>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`} {...swipeHandlers}>
@@ -93,9 +112,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         )}
         <header className="c-detail-header">
           <div className="">
-            <div className="d-flex justify-content-end">
-              <div>
-                {kind === "formation" ? ` (${selectedItem.company.place.city})` : ""}
+            <div className="d-flex justify-content-end mb-2">
+              <div className="mr-auto">
+                {kind === "formation" ? cfaDentreprise() : ""}
+                {includes(["lbb", "lba"], kind) ? candidatureSpontanee() : ""}
+                {kind === "peJob" ? offreDemploi() : ""}
               </div>
               <div>
                 <button
