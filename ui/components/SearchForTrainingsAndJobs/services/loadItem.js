@@ -4,6 +4,7 @@ import { logError } from "utils/tools";
 import {
   trainingApi,
   offreApi,
+  matchaApi,
   companyApi,
   trainingErrorText,
   partialJobSearchErrorText,
@@ -63,6 +64,31 @@ export const loadItem = async ({
           peJobs: peJobs,
           lbbCompanies: null,
           lbaCompanies: null,
+        };
+
+        dispatch(setJobs(results));
+
+        dispatch(setHasSearch(true));
+
+        setJobMarkers(factorJobsForMap(results), null);
+        dispatch(setSelectedItem(results.peJobs[0]));
+        itemMarker = results.peJobs[0];
+      } else {
+        logError("Job Load Error", `PE Error : ${response.data.message}`);
+        setJobSearchError(response.data.result === "not_found" ? notFoundErrorText : partialJobSearchErrorText);
+      }
+    } else if (item.type === "matcha") {
+      const response = await axios.get(matchaApi + "/" + item.itemId);
+
+      // gestion des erreurs
+      if (!response.data.message) {
+        let matchas = await computeMissingPositionAndDistance(null, response.data.peJobs);
+
+        let results = {
+          peJobs: null,
+          lbbCompanies: null,
+          lbaCompanies: null,
+          matchas: matchas,
         };
 
         dispatch(setJobs(results));
