@@ -23,7 +23,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
     );
   };
 
-  const centerSearchOnJob = (e) => {
+  const centerSearchOnJob = async (e) => {
     if (e) {
       e.stopPropagation();
     }
