@@ -64,6 +64,7 @@ export const loadItem = async ({
           peJobs: peJobs,
           lbbCompanies: null,
           lbaCompanies: null,
+          matchas: null,
         };
 
         dispatch(setJobs(results));
@@ -82,7 +83,7 @@ export const loadItem = async ({
 
       // gestion des erreurs
       if (!response.data.message) {
-        let matchas = await computeMissingPositionAndDistance(null, response.data.peJobs);
+        let matchas = await computeMissingPositionAndDistance(null, response.data.matchas);
 
         let results = {
           peJobs: null,
@@ -96,8 +97,8 @@ export const loadItem = async ({
         dispatch(setHasSearch(true));
 
         setJobMarkers(factorJobsForMap(results), null);
-        dispatch(setSelectedItem(results.peJobs[0]));
-        itemMarker = results.peJobs[0];
+        dispatch(setSelectedItem(results.matchas[0]));
+        itemMarker = results.matchas[0];
       } else {
         logError("Job Load Error", `PE Error : ${response.data.message}`);
         setJobSearchError(response.data.result === "not_found" ? notFoundErrorText : partialJobSearchErrorText);
@@ -114,6 +115,7 @@ export const loadItem = async ({
           peJobs: null,
           lbbCompanies: item.type === "lbb" ? companies : null,
           lbaCompanies: item.type === "lba" ? companies : null,
+          matchas: null,
         };
 
         dispatch(setJobs(results));
