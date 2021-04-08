@@ -113,7 +113,7 @@ const SearchForTrainingsAndJobs = () => {
     } else if (type === "lbb") {
       item = jobs.lbbCompanies.find((el) => el.company.siret === id);
     } else if (type === "matcha") {
-      item = jobs.matchas.find((el) => el.id === id);
+      item = jobs.matchas.find((el) => el.job.id === id);
     }
 
     return item;
