@@ -21,8 +21,6 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
 
     return transformMatchaJobsForIdea(jobs.data, radius, latitude, longitude);
   } catch (error) {
-    console.log("error : ", error);
-
     let errorObj = { result: "error", message: error.message };
 
     Sentry.captureException(error);
@@ -105,7 +103,6 @@ const transformMatchaJobForIdea = (job, distance) => {
     resultJob.createdAt = job.createdAt;
     resultJob.lastUpdateAt = job.updatedAt;
 
-    console.log("offre ", offre._id);
     resultJob.job = {
       id: offre._id,
       description: offre.description,
