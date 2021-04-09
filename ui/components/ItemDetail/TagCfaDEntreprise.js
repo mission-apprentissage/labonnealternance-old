@@ -16,4 +16,5 @@ const TagCfaDEntreprise = (isCfa) => {
   </>
 }
 
-export default TagCfaEntreprise;
+export default TagCfaDEntreprise;
+        
