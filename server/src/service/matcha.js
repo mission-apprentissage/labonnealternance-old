@@ -2,7 +2,9 @@ const axios = require("axios");
 const Sentry = require("@sentry/node");
 const { itemModel } = require("../model/itemModel");
 
-const matchaApiEndpoint = "https://matcha.apprentissage.beta.gouv.fr/api/formulaire/search";
+const matchaApiEndpoint = "https://matcha.apprentissage.beta.gouv.fr/api/formulaire";
+const matchaSearchEndPoint = `${matchaApiEndpoint}/search`;
+const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
 const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
   try {
@@ -15,12 +17,10 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
       lon: longitude,
     };
 
-    const jobs = await axios.post(`${matchaApiEndpoint}`, params);
+    const jobs = await axios.post(`${matchaSearchEndPoint}`, params);
 
     return transformMatchaJobsForIdea(jobs.data, radius, latitude, longitude);
   } catch (error) {
-    console.log("error : ", error);
-
     let errorObj = { result: "error", message: error.message };
 
     Sentry.captureException(error);
@@ -53,6 +53,28 @@ const transformMatchaJobsForIdea = (jobs) => {
   return resultJobs;
 };
 
+const getMatchaJobById = async ({ id }) => {
+  try {
+    const jobs = await axios.get(`${matchaJobEndPoint}/${id}`);
+    const job = transformMatchaJobForIdea(jobs.data);
+
+    return { matchas: job };
+  } catch (error) {
+    let errorObj = { result: "error", message: error.message };
+
+    Sentry.captureException(error);
+
+    if (error.response) {
+      errorObj.status = error.response.status;
+      errorObj.statusText = error.response.statusText;
+    }
+
+    console.log("error getting Matcha Job by id", errorObj);
+
+    return errorObj;
+  }
+};
+
 // Adaptation au modèle Idea et conservation des seules infos utilisées des offres
 const transformMatchaJobForIdea = (job, distance) => {
   let resultJobs = [];
@@ -81,6 +103,7 @@ const transformMatchaJobForIdea = (job, distance) => {
     resultJob.lastUpdateAt = job.updatedAt;
 
     resultJob.job = {
+      id: offre._id,
       description: offre.description,
       creationDate: job.createdAt,
     };
@@ -94,4 +117,4 @@ const transformMatchaJobForIdea = (job, distance) => {
   return resultJobs;
 };
 
-module.exports = { getMatchaJobs };
+module.exports = { getMatchaJobById, getMatchaJobs };
