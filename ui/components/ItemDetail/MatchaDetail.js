@@ -45,7 +45,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   );
 
   const getGoogleSearchParameters = () => {
-    return encodeURIComponent(`${job.title} ${job.place.address}`);
+    return encodeURIComponent(`${job.company.name} ${job.place.address}`);
   };
 
   return (
@@ -107,7 +107,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
               className="c-detail-google-search gtmGoogleLink"
               rel="noopener noreferrer"
             >
-              {job.title}
+              {job.company.name}
             </a>
           </span>
         </p>
