@@ -1,6 +1,9 @@
 # CHANGELOG
 
-## 1.11.0 [09/04/2021]
+## 1.11.1 [09/04/2021]
+[537] Changement de couleurs
+
+## 1.11.0 [08/04/2021]
 Récupération des offres Matcha
 [544] Nouveaux pictogrammes précédent / suivant
 [529] Positionner tags
