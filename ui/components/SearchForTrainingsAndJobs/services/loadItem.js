@@ -71,7 +71,7 @@ export const loadItem = async ({
           const response = await axios.get(offreApi + "/" + item.itemId);
 
           // gestion des erreurs
-          if (!response.data.message) {
+          if (!response?.data?.message) {
             let peJobs = await computeMissingPositionAndDistance(null, response.data.peJobs);
 
             results.peJobs = peJobs;
@@ -86,7 +86,7 @@ export const loadItem = async ({
           const response = await axios.get(matchaApi + "/" + item.itemId);
 
           // gestion des erreurs
-          if (!response.data.message) {
+          if (!response?.data?.message) {
             let matchas = await computeMissingPositionAndDistance(null, response.data.matchas);
             results.matchas = matchas;
             loadedItem = matchas[0];
@@ -101,7 +101,7 @@ export const loadItem = async ({
           const response = await axios.get(`${companyApi}/${item.itemId}?type=${item.type}`);
 
           // gestion des erreurs
-          if (!response.data.message) {
+          if (!response?.data?.message) {
             let companies = item.type === "lbb" ? response.data.lbbCompanies : response.data.lbaCompanies;
 
             loadedItem = companies[0];
