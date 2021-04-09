@@ -11,7 +11,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
   const currentSearchRadius = formValues?.radius || 30;
 
   const onSelectItem = () => {
-    handleSelectItem(job, "peJob");
+    handleSelectItem(job);
   };
 
   const getCenterSearchOnPeJobButton = () => {
