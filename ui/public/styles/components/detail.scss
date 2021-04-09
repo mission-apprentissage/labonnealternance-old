@@ -38,7 +38,7 @@
   font-weight: 700;
   line-height: 48px;
   letter-spacing: 0em;
-  color: $pinksoft500;
+  color: $pinksoft750;
   margin-bottom: 11px;
   padding-bottom: 0;
 }
@@ -52,14 +52,13 @@
 
 
 .c-detail-title--formation {
-  color: #00AC8C;
+  color: $greensoft500;
 }
 
 .c-detail-title--lba,
-.c-detail-title--lba,
 .c-detail-title--peJob,
 .c-detail-title--matcha {
-  color: $pinksoft500;
+  color: $pinksoft750;
 }
 
 .c-detail-activity {
@@ -264,7 +263,7 @@
 }
 
 .c-detail-lbb-li::marker {
-  color: $pinksoft500;
+  color: $pinksoft750;
   font-size: 31px;
 }
 
@@ -275,7 +274,7 @@
 }
 .c-detail-lbb-li::before {
   content: '⬤';
-  color: $pinksoft500;
+  color: $pinksoft750;
   position: absolute;
   left: -2em;
   font-size: 1em; 
