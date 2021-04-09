@@ -75,29 +75,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     handleSelectItem(currentList[prevIndex]);
   };
 
-  const candidatureSpontanee = () => {
-    return <span className="c-media-tag c-media-tag--paperplane">
-             <img src={paperplaneIcon} alt="avion en papier" />
-             <span className="ml-1">Candidature spontanée</span>
-           </span>
-  }
-
-  const cfaDentreprise = () => {
-    return <span className="c-media-tag c-media-tag--smiley">
-      <img src={smileyIcon} alt="sourire" />
-      <span className="ml-1">CFA d'entreprise</span>
-    </span>
-  }
-
-  const offreDemploi = () => {
-    return <span className="c-media-tag c-media-tag--briefcase">
-      <img src={briefcaseIcon} alt="valise" />
-      <span className="ml-1">Offre d'emploi</span>
-    </span>
-  }
-
-
-  
   return (
     <>
       <section className={`c-detail itemDetail ${selectedItem ? "" : "hiddenItemDetail"}`} {...swipeHandlers}>
