@@ -2,9 +2,9 @@ const axios = require("axios");
 const Sentry = require("@sentry/node");
 const { itemModel } = require("../model/itemModel");
 
-const matchaApiEndpoint = "https://matcha.apprentissage.beta.gouv.fr/api";
-const matchaSearchEndPoint = `${matchaApiEndpoint}/formulaire/search`;
-const matchaJobEndPoint = `${matchaApiEndpoint}/offre/`;
+const matchaApiEndpoint = "https://matcha.apprentissage.beta.gouv.fr/api/formulaire";
+const matchaSearchEndPoint = `${matchaApiEndpoint}/search`;
+const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
 const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
   try {
