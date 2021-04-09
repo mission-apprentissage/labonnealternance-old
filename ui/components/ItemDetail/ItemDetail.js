@@ -10,10 +10,6 @@ import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/chevronclose.svg";
 
-import paperplaneIcon from "public/images/paperplane.svg";
-import briefcaseIcon from "public/images/briefcase.svg";
-import smileyIcon from "public/images/smiley.svg";
-
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 

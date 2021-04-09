@@ -1,6 +1,7 @@
 import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
-import briefcaseIcon from "../../public/images/briefcase.svg";
+import TagOffreEmploi from './TagOffreEmploi';
+
 import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import ReactHtmlParser from "react-html-parser";
@@ -68,10 +69,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
               </div>
             </div>
             <div className="col-12 col-lg-5 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
-              <span className="c-media-tag c-media-tag--briefcase">
-                <img src={briefcaseIcon} alt="valise" />
-                <span className="ml-1">Offre d'emploi</span>
-              </span>
+              <TagOffreEmploi/>
             </div>
           </div>
 
