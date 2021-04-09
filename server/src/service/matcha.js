@@ -56,11 +56,10 @@ const transformMatchaJobsForIdea = (jobs) => {
 const getMatchaJobById = async ({ id }) => {
   try {
     const jobs = await axios.get(`${matchaJobEndPoint}/${id}`);
+    const job = transformMatchaJobForIdea(jobs.data);
 
-    return transformMatchaJobsForIdea(jobs.data);
+    return { matchas: job };
   } catch (error) {
-    console.log("error : ", error);
-
     let errorObj = { result: "error", message: error.message };
 
     Sentry.captureException(error);
