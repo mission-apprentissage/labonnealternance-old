@@ -58,6 +58,7 @@ $bluesoft500: #5770be;
 $bluedark500: #484d7a;
 $pinksoft500: #ff8d7e;
 $pinksoft750: #D07C75;
+$greensoft500: #00AC8C;
 $pinkdark500: #d08a77;
 $pinklight500: #ffc29e;
 $home-background-color: #FFF8F8;
@@ -71,6 +72,7 @@ $colors: map-merge(
     "pinksoft500": $pinksoft500,
     "pinksoft750": $pinksoft750,
     "pinkdark500": $pinkdark500,
+    "greensoft500": $pinkdark500,
     "pinklight500": $pinklight500,
     "white":      $white
     ),
