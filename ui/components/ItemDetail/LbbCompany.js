@@ -1,6 +1,6 @@
 import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
-import paperplaneIcon from "../../public/images/paperplane.svg";
+import TagCandidatureSpontanee from './TagCandidatureSpontanee';
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
@@ -70,10 +70,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
               <div className="title d-inline-block">{company.company.name}</div>
             </div>
             <div className="col-12 col-lg-6 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
-              <span className="c-media-tag c-media-tag--paperplane">
-                <img src={paperplaneIcon} alt="valise" />
-                <span className="ml-1">Candidature spontanée</span>
-              </span>
+              <TagCandidatureSpontanee/>
             </div>
           </div>
 
