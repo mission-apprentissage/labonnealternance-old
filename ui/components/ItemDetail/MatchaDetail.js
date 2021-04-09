@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-//import moment from "moment";
 import bulbIcon from "../../public/images/icons/bulb.svg";
 import { get } from "lodash";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
