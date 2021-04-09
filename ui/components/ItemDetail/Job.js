@@ -13,7 +13,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
   const currentSearchRadius = formValues?.radius || 30;
 
   const onSelectItem = () => {
-    handleSelectItem(job, "peJob");
+    handleSelectItem(job);
   };
 
   const getCenterSearchOnJobButton = () => {
@@ -53,9 +53,10 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
 
     searchForTrainingsOnNewCenter(newCenter);
   };
+
   return (
     <div className="resultCard gtmSavoirPlus gtmPeJob gtmListe" onClick={onSelectItem}>
-      <div className="c-media" id={`${job.ideaType}${job.ideaType === "matcha" ? job.id : job.job.id}`}>
+      <div className="c-media" id={`${job.ideaType}${job.job.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
         </div>

@@ -1,10 +1,8 @@
 # CHANGELOG
 
-## 1.11.1 [08/04/2021]
-[544] Nouveaux pictogrammes précédent / suivant
-
-## 1.11.0 [08/04/2021]
+## 1.11.0 [09/04/2021]
 Récupération des offres Matcha
+[544] Nouveaux pictogrammes précédent / suivant
 [529] Positionner tags
 
 ## 1.10.8 [6/04/2021]

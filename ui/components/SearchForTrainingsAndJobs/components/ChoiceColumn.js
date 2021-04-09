@@ -58,7 +58,7 @@ const ChoiceColumn = ({
     }
   });
 
-  const handleSelectItem = (item, type) => {
+  const handleSelectItem = (item) => {
     flyToMarker(item, 12);
     closeMapPopups();
     dispatch(setSelectedItem(item));
@@ -127,7 +127,7 @@ const ChoiceColumn = ({
     return (
       <ResultLists
         activeFilter={activeFilter}
-        setActiveFilter= { setActiveFilter }
+        setActiveFilter={setActiveFilter}
         selectedItem={selectedItem}
         handleSelectItem={handleSelectItem}
         showSearchForm={showSearchForm}
@@ -179,7 +179,14 @@ const ChoiceColumn = ({
   };
 
   const getSelectedItemDetail = () => {
-    return <ItemDetail selectedItem={selectedItem} handleClose={handleClose} handleSelectItem={handleSelectItem} activeFilter={activeFilter} />;
+    return (
+      <ItemDetail
+        selectedItem={selectedItem}
+        handleClose={handleClose}
+        handleSelectItem={handleSelectItem}
+        activeFilter={activeFilter}
+      />
+    );
   };
 
   return (

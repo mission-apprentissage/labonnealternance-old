@@ -9,6 +9,7 @@ export const getItemIdAndType = (item) => {
     itemId = item.job.id;
     type = item.ideaType;
   } else if (item.ideaType === "matcha") {
+    itemId = item.job.id;
     type = item.ideaType;
   } else if (item.ideaType !== "formation") {
     itemId = item.company.siret;
