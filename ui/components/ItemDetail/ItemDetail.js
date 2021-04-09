@@ -93,7 +93,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               <div className="mr-auto">
                 {kind === "formation" ? <TagCfaDEntreprise /> : ""}
                 {includes(["lbb", "lba"], kind) ? <TagCandidatureSpontanee/> : ""}
-                {kind === "peJob" ? <TagOffreEmploi/> : ""}
+                {includes(["peJob", "matcha"], kind) ? <TagOffreEmploi/> : ""}
               </div>
               <div>
                 <button
