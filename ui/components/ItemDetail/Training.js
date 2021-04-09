@@ -3,8 +3,9 @@ import trainingIcon from "../../public/images/icons/book.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
-import smileyIcon from "../../public/images/smiley.svg";
 import { useScopeContext } from "context/ScopeContext";
+
+import TagCfaDEntreprise from './TagCfaDEntreprise';
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
@@ -67,10 +68,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
               <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
             </div>
             <div className="col-12 col-lg-6  d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
-              <span className="c-media-tag c-media-tag--smiley">
-                <img src={smileyIcon} alt="sourire" />
-                <span className="ml-1">CFA d'entreprise</span>
-              </span>
+              <TagCfaDEntreprise/>
             </div>
           </div>
 
