@@ -2,7 +2,7 @@ import React from "react";
 
 import smileyIcon from "public/images/smiley.svg";
 
-const TagCfaEntreprise = (isCfa) => {
+const TagCfaDEntreprise = (isCfa) => {
   
   return <>
     {isCfa === true ? 
