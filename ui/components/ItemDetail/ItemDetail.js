@@ -18,6 +18,8 @@ import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 
 import TagCandidatureSpontanee from './TagCandidatureSpontanee';
+import TagOffreEmploi from './TagOffreEmploi';
+import TagCfaEntreprise from './TagCfaEntreprise';
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
@@ -116,9 +118,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <div className="">
             <div className="d-flex justify-content-end mb-2">
               <div className="mr-auto">
-                {kind === "formation" ? cfaDentreprise() : ""}
+                {kind === "formation" ? <TagCfaEntreprise /> : ""}
                 {includes(["lbb", "lba"], kind) ? <TagCandidatureSpontanee/> : ""}
-                {kind === "peJob" ? offreDemploi() : ""}
+                {kind === "peJob" ? <TagOffreEmploi/> : ""}
               </div>
               <div>
                 <button
