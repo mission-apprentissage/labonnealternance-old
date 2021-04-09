@@ -17,6 +17,8 @@ import smileyIcon from "public/images/smiley.svg";
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 
+import TagCandidatureSpontanee from './TagCandidatureSpontanee';
+
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
@@ -73,7 +75,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   const candidatureSpontanee = () => {
     return <span className="c-media-tag c-media-tag--paperplane">
-             <img src={paperplaneIcon} alt="valise" />
+             <img src={paperplaneIcon} alt="avion en papier" />
              <span className="ml-1">Candidature spontanée</span>
            </span>
   }
@@ -115,7 +117,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <div className="d-flex justify-content-end mb-2">
               <div className="mr-auto">
                 {kind === "formation" ? cfaDentreprise() : ""}
-                {includes(["lbb", "lba"], kind) ? candidatureSpontanee() : ""}
+                {includes(["lbb", "lba"], kind) ? <TagCandidatureSpontanee/> : ""}
                 {kind === "peJob" ? offreDemploi() : ""}
               </div>
               <div>
