@@ -54,14 +54,14 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   return (
     <>
       <div className="text-left">
-        <p className="mb-4">
+        <p className="mb-3">
           <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
           <span className="c-detail-sizetext d-block">
             {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
           </span>
         </p>
         {contactPhone || contactEmail ? (
-          <p className="d-flex mt-4">
+          <p className="d-flex mb-3">
             {seeInfo ? (
               <>
                 <span className="d-block">
@@ -73,9 +73,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
               </>
             ) : (
               <button
-                className={`d-block btn btn-outline-primary w-75 ml-3 mt-3 gtmContact gtm${capitalizeFirstLetter(
-                  kind
-                )}`}
+                className={`d-block btn btn-outline-primary w-75 gtmContact gtm${capitalizeFirstLetter(kind)}`}
                 onClick={() => setSeeInfo(true)}
               >
                 Voir les informations de contact
@@ -85,7 +83,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
         ) : (
           ""
         )}
-        <p className="mb-4">
+        <p className="mb-3 text-left">
           <span className="c-detail-sizetext d-block">
             <img className="mt-n1" src="/images/square_link.svg" alt="" />
             <span className="ml-2">En savoir plus sur </span>
