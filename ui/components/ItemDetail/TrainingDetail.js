@@ -43,7 +43,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
     <>
       <div className="text-left">
         {contactInfo ? (
-          <p className="d-flex mt-4">
+          <p className="d-flex mb-3">
             {seeInfo ? (
               <>
                 <span className="d-block">
@@ -55,7 +55,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
               </>
             ) : (
               <button
-                className="c-see-info d-block btn btn-lg btn-outline-primary w-75 ml-3 mt-3  gtmContact gtmFormation"
+                className="c-see-info d-block btn btn-lg btn-outline-primary gtmContact gtmFormation"
                 onClick={() => setSeeInfo(true)}
               >
                 Voir les informations de contact
