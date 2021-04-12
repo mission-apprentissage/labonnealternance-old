@@ -8,14 +8,14 @@ import { findIndex, concat, pick, get, includes, defaultTo, round } from "lodash
 import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
-import chevronClose from "public/images/chevronclose.svg";
+import chevronClose from "public/images/close.svg";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 
-import TagCandidatureSpontanee from './TagCandidatureSpontanee';
-import TagOffreEmploi from './TagOffreEmploi';
-import TagCfaDEntreprise from './TagCfaDEntreprise';
+import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
+import TagOffreEmploi from "./TagOffreEmploi";
+import TagCfaDEntreprise from "./TagCfaDEntreprise";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
@@ -92,8 +92,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <div className="d-flex justify-content-end mb-2">
               <div className="mr-auto">
                 {kind === "formation" ? <TagCfaDEntreprise /> : ""}
-                {includes(["lbb", "lba"], kind) ? <TagCandidatureSpontanee/> : ""}
-                {includes(["peJob", "matcha"], kind) ? <TagOffreEmploi/> : ""}
+                {includes(["lbb", "lba"], kind) ? <TagCandidatureSpontanee /> : ""}
+                {includes(["peJob", "matcha"], kind) ? <TagOffreEmploi /> : ""}
               </div>
               <div>
                 <button
