@@ -115,7 +115,7 @@
 }
 @media only screen and (max-width: 767px) {
   .resultCard {
-    padding: 15px 30px 10px;
+    padding: 15px 10px 10px 20px;
   }
 }
 
@@ -162,7 +162,6 @@
   border: none;
   padding-left: 0;
   padding-right: 0;
-  margin-right: 10px;
   padding-bottom: 5px;
   padding-top: 0px;
   width: fit-content;
@@ -217,8 +216,8 @@
 .c-detail-google-search,
 .c-detail-google-search:hover
 {
-  color: $pinksoft500;
+  color: $pinksoft750;
   font-weight: 700;
-  border-bottom: 2px solid #ff8d7e;
+  border-bottom: 2px solid $pinksoft750;
   text-decoration: none;
 }

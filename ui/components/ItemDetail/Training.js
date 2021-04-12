@@ -5,6 +5,8 @@ import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
 import { useScopeContext } from "context/ScopeContext";
 
+import TagCfaDEntreprise from './TagCfaDEntreprise';
+
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
   const { formValues, itemParameters } = useSelector((state) => state.trainings);
   const scopeContext = useScopeContext();
@@ -71,8 +73,17 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
         </div>
 
         <div className="c-media-body">
-          <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
-          <div className="cardText pt-1">
+
+          <div className="row no-gutters">
+            <div className="col-12 col-lg-6 text-left">
+              <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
+            </div>
+            <div className="col-12 col-lg-6  d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
+              <TagCfaDEntreprise/>
+            </div>
+          </div>
+
+          <div className="cardText pt-3 pt-lg-1">
             {training.company.name} ({training.company.place.city})
           </div>
           <div className="cardText pt-2">{training.place.fullAddress}</div>

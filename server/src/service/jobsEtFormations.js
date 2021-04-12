@@ -29,7 +29,10 @@ const getJobsEtFormationsQuery = async (query) => {
             romeDomain: query.romeDomain,
           })
         : null,
-      sources.indexOf("lba") >= 0 || sources.indexOf("lbb") >= 0 || sources.indexOf("offres") >= 0
+      sources.indexOf("lba") >= 0 ||
+      sources.indexOf("lbb") >= 0 ||
+      sources.indexOf("offres") >= 0 ||
+      sources.indexOf("matcha") >= 0
         ? getJobsFromApi(query)
         : null,
     ]);

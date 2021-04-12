@@ -2,6 +2,7 @@ const Sentry = require("@sentry/node");
 
 const offresPoleEmploi = require("./offresPoleEmploi");
 const bonnnesBoites = require("./bonnesBoites");
+const matcha = require("../matcha");
 const { jobsQueryValidator } = require("./jobsQueryValidator");
 const { trackEvent } = require("../../common/utils/sendTrackingEvent");
 
@@ -59,9 +60,9 @@ const getCompanyQuery = async (query) => {
 
 const getJobsFromApi = async (query) => {
   try {
-    const sources = !query.sources ? ["lba", "lbb", "offres"] : query.sources.split(",");
+    const sources = !query.sources ? ["lba", "lbb", "offres", "matcha"] : query.sources.split(",");
 
-    const [peJobs, lbaCompanies, lbbCompanies] = await Promise.all([
+    const [peJobs, lbaCompanies, lbbCompanies, matchas] = await Promise.all([
       sources.indexOf("offres") >= 0
         ? offresPoleEmploi.getSomePeJobs({
             romes: query.romes.split(","),
@@ -94,6 +95,14 @@ const getJobsFromApi = async (query) => {
             referer: query.referer,
           })
         : null,
+      sources.indexOf("matcha") >= 0
+        ? matcha.getMatchaJobs({
+            romes: query.romes,
+            latitude: query.latitude,
+            longitude: query.longitude,
+            radius: parseInt(query.radius),
+          })
+        : null,
     ]);
 
     //remove duplicates between lbas and lbbs. lbas stay untouched, only duplicate lbbs are removed
@@ -104,7 +113,7 @@ const getJobsFromApi = async (query) => {
 
     //throw new Error("kaboom");
 
-    return { peJobs, lbaCompanies, lbbCompanies };
+    return { peJobs, matchas, lbaCompanies, lbbCompanies };
   } catch (err) {
     console.log("Error ", err.message);
     Sentry.captureException(err);

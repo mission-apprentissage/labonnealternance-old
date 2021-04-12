@@ -1,29 +1,29 @@
 const itemModel = (type) => {
   return {
-    ideaType: type, // type de l'item :  formation | lbb | lba | peJob
+    ideaType: type, // type de l'item :  formation | lbb | lba | peJob | matcha
     ideaWeight: null, // poids défini pour Idea pour un tri par poids
 
-    title: null, // pe -> intitule | lbb/lba -> name | formation -> nom
+    title: null, // pe -> intitule | lbb/lba -> name | formation -> nom | matcha -> offres.libelle
     longTitle: null, // formation -> intitule_long,
-    id: null, // formation -> id
+    id: null, // formation -> id | matcha -> id_form
 
     contact: null, // informations de contact. optionnel
     /*{
-            email     // pe -> contact.courriel | lbb/lba -> email | formation -> email
-            name      // pe -> contact.nom
-            phone     // lbb/lba --> phone
+            email     // pe -> contact.courriel | lbb/lba -> email | formation -> email | matcha -> email
+            name      // pe -> contact.nom | matcha -> prenom nom
+            phone     // lbb/lba --> phone | matcha -> telephone
             info      // pe -> contact.coordonnees1+contact.coordonnees2+contact.coordonnees3
             }
         */
 
     // lieu principal pour l'item, lieu de formation ou lieu de l'offre ou adresse de l'entreprise
     place: {
-      distance: null, // distance au centre de recherche en km. pe --> lieutTravail.distance recalculé par turf.js | formation --> sort[0] | lbb/lba -> distance
-      fullAddress: null, // adresse postale reconstruite à partir des éléments d'adresse fournis
-      latitude: null, // formation -> idea_geo_coordonnees_etablissement | pe -> lieuTravail.latitude | lbb/lba -> lat
-      longitude: null, // formation -> idea_geo_coordonnees_etablissement | pe -> lieuTravail.longitude | lbb/lba -> lon
+      distance: null, // distance au centre de recherche en km. pe --> lieutTravail.distance recalculé par turf.js | formation --> sort[0] | lbb/lba -> distance | matcha -> sort[0]
+      fullAddress: null, // adresse postale reconstruite à partir des éléments d'adresse fournis | matcha -> adresse
+      latitude: null, // formation -> idea_geo_coordonnees_etablissement | pe -> lieuTravail.latitude | lbb/lba -> lat | matcha -> geo_coordonnees
+      longitude: null, // formation -> idea_geo_coordonnees_etablissement | pe -> lieuTravail.longitude | lbb/lba -> lon | matcha -> geo_coordonnees
       city: null, // pe -> lieuTravail.libelle | formation -> localite | pe -> city
-      address: null, // formation -> etablissement_formateur_adresse, etablissement_formateur_complement_adresse | lbb / lba -> address
+      address: null, // formation -> etablissement_formateur_adresse, etablissement_formateur_complement_adresse | lbb / lba -> address | matcha -> adresse
       cedex: null, // formation -> etablissement_formateur_cedex
       zipCode: null, // formation -> etablissement_formateur_code_postal | pe -> lieuTravail.codePostal
       insee: null, // pe -> lieuTravail.commune
@@ -32,8 +32,8 @@ const itemModel = (type) => {
     },
 
     company: {
-      name: null, // pe -> entreprise.nom | formation -> etablissement_formateur_entreprise_raison_sociale | lbb/lba -> name
-      siret: null, // lbb/lba -> siret | formation -> etablissement_formateur_siret
+      name: null, // pe -> entreprise.nom | formation -> etablissement_formateur_entreprise_raison_sociale | lbb/lba -> name | matcha -> raison_sociale
+      siret: null, // lbb/lba -> siret | formation -> etablissement_formateur_siret | matcha -> siret
       size: null, // lbb/lba -> headcount_text
       logo: null, // pe -> entreprise.logo
       description: null, // pe -> entreprise.description
@@ -61,7 +61,7 @@ const itemModel = (type) => {
             },*/,
     },
 
-    diplomaLevel: null, // formation -> niveau
+    diplomaLevel: null, // formation -> niveau  | matcha -> offres.niveau
     diploma: null, // formation -> diplome
     cfd: null, // formation -> cfd
     rncpCode: null, // formation -> rncp_code
@@ -69,15 +69,15 @@ const itemModel = (type) => {
     rncpEligibleApprentissage: null, // formation -> rncp_eligible_apprentissage
     period: null, // formation -> periode
     capacity: null, // formation -> capacite
-    createdAt: null, // formation -> created_at
-    lastUpdateAt: null, // formation -> last_update_at
+    createdAt: null, // formation -> created_at | matcha -> createdAt
+    lastUpdateAt: null, // formation -> last_update_at | matcha -> updatedAt
     onisepUrl: null, // formation -> onisep_url
     url: null, // pe -> reconstruction depuis id | lbb/lba url
 
-    job: null /*                    // uniquement pour pe
+    job: null /*                    // uniquement pour pe et matcha
         {
-            description,           // pe -> description
-            creationDate,          // pe -> dateCreation
+            description,           // pe -> description | matcha -> description
+            creationDate,          // pe -> dateCreation | matcha -> createdAt
             id,                    // pe -> id
             contractType,          // pe -> typeContrat
             contractDescription,   // pe -> typeContratLibelle
@@ -86,7 +86,7 @@ const itemModel = (type) => {
 
     romes: null /*[
             {
-                code,              // pe -> romeCode | lbb/lba -> matched_rome_code
+                code,              // pe -> romeCode | lbb/lba -> matched_rome_code | matcha -> offres.romes
                 label,             // pe -> appellationLibelle | lbb/lba -> matched_rome_label
             }
         ],*/,

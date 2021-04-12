@@ -20,14 +20,19 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
 
   const buildPrdvButton = () => {
     return (
-      <div className="widget-prdv" data-siret={training.company.siret} data-cfd={training.cfd} data-referrer="lba" />
+      <div
+        className="widget-prdv gtmPrdv"
+        data-siret={training.company.siret}
+        data-cfd={training.cfd}
+        data-referrer="lba"
+      />
     );
   };
 
   const kind = training?.ideaType;
   let contactEmail = training?.contact?.email;
   let contactInfo = contactEmail ? (
-    <span className="c-detail-km c-detail-pelink">
+    <span className="c-detail-km c-detail-contactlink">
       <a href={`mailto:${contactEmail}`} className="ml-1" target="_blank" rel="noopener noreferrer">
         {contactEmail}
       </a>
@@ -38,7 +43,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
     <>
       <div className="text-left">
         {contactInfo ? (
-          <p className="d-flex mt-4">
+          <p className="d-flex mb-3">
             {seeInfo ? (
               <>
                 <span className="d-block">
@@ -50,7 +55,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
               </>
             ) : (
               <button
-                className="c-see-info d-block btn btn-lg btn-outline-primary w-75 ml-3 mt-3  gtmContact gtmFormation"
+                className="c-see-info d-block btn btn-lg btn-outline-primary gtmContact gtmFormation"
                 onClick={() => setSeeInfo(true)}
               >
                 Voir les informations de contact

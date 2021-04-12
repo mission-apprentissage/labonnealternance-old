@@ -9,6 +9,17 @@ const { trackEvent } = require("../common/utils/sendTrackingEvent");
 const formationResultLimit = 500;
 const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
 
+const publishedMustTerm = {
+  match: {
+    published: true,
+  },
+};
+const publishedSchoolMustTerm = {
+  match: {
+    etablissement_reference_catalogue_published: true,
+  },
+};
+
 const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma, limit }) => {
   //console.log(romes, coords, radius, diploma);
 
@@ -47,6 +58,9 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
         },
       });
     }
+
+    mustTerm.push(publishedMustTerm);
+    mustTerm.push(publishedSchoolMustTerm);
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
@@ -221,6 +235,9 @@ const getRegionFormations = async ({
           niveau: diploma,
         },
       });
+
+    mustTerm.push(publishedMustTerm);
+    mustTerm.push(publishedSchoolMustTerm);
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 

@@ -1,14 +1,40 @@
 # CHANGELOG
 
-## 1.11.0 [19/03/2021]
+## 1.12.0 [12/04/2021]
 [497] domainesMetiers retourne les codes RNCPs
-Preload des fonts
+
+## 1.11.1 [09/04/2021]
+[537] Changement de couleurs
+[382] Ajout des contrats pro dans les offres Pôle emploi
+
+## 1.11.0 [08/04/2021]
+Récupération des offres Matcha
+[544] Nouveaux pictogrammes précédent / suivant
+[529] Positionner tags
+
+## 1.10.8 [06/04/2021]
+[514] Maj CGU et liens footers
+[546] Hotfix liens contacts en blanc sur blanc
+
+## 1.10.7 [02/04/2021]
+[517] Reliquats 404 et 500
+[535] Changement de nom du fichier widget prdv
+
+## 1.10.6 [01/04/2021]
+[509] Swipe et scroll
+[330] Optimisations et nettoyage
+[518] Classe GMT sur bouton PRDV
+
+## 1.10.5 [23/03/2021]
+[348] Page d'erreur 500
+[513] Filtre selon état de publication
 
 ## 1.10.4 [18/03/2021]
+[490] Déplacer les crédits d'illustrations
+[347] Nouvelle charte page d'erreur
 [495] Fix caractères spéciaux dans les liens google
 [494] Classe GTM lien google
 [408] Classe GTM lien contact PE
-Correspondance environnements lba / prdv 
 
 ## 1.10.3 [16/03/2021]
 [486] Fix messages d'erreurs techniques sur formulaires

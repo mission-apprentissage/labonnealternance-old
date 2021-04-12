@@ -51,7 +51,7 @@ const WidgetTester = () => {
 
   const handleFrozenChange = (frozenJob, setFieldValue) => {
     setFrozenJob(frozenJob);
-    
+
     setTimeout(() => {
       setFieldValue("frozen_job", frozenJob);
     }, 0);

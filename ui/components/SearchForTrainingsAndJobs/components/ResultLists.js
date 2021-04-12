@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Spinner } from "reactstrap";
 import Training from "../../../components/ItemDetail/Training";
-import PeJob from "../../../components/ItemDetail/PeJob";
+import Job from "../../../components/ItemDetail/Job";
 import LbbCompany from "../../../components/ItemDetail/LbbCompany";
 import { ErrorMessage } from "../../../components";
 import { filterLayers } from "../../../utils/mapTools";
@@ -12,15 +12,15 @@ import FilterButton from "./FilterButton";
 import { useScopeContext } from "context/ScopeContext";
 import questionMarkIcon from "public/images/icons/question_mark.svg";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
+import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 
 const ResultLists = (props) => {
-  const [activeFilter, setActiveFilter] = useState("all");
   const scopeContext = useScopeContext();
 
   const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
 
   const filterButtonClicked = (filterButton) => {
-    setActiveFilter(filterButton);
+    props.setActiveFilter(filterButton);
     filterLayers(filterButton);
   };
 
@@ -36,9 +36,9 @@ const ResultLists = (props) => {
       </div>
     );
   };
-  
+
   const getTrainingResult = () => {
-    if (hasSearch && scopeContext.isTraining && (activeFilter === "all" || activeFilter === "trainings")) {
+    if (hasSearch && scopeContext.isTraining && (props.activeFilter === "all" || props.activeFilter === "trainings")) {
       return (
         <>
           <div id="trainingResult" className="trainingResult">
@@ -82,7 +82,7 @@ const ResultLists = (props) => {
   };
 
   const getJobResult = () => {
-    if (hasSearch && !props.isJobSearchLoading && (activeFilter === "all" || activeFilter === "jobs")) {
+    if (hasSearch && !props.isJobSearchLoading && (props.activeFilter === "all" || props.activeFilter === "jobs")) {
       if (props.allJobSearchError) return "";
 
       const jobCount = getJobCount(props.jobs);
@@ -92,13 +92,13 @@ const ResultLists = (props) => {
           const mergedJobList = getMergedJobList();
           return <div className="jobResult">{mergedJobList ? <>{mergedJobList}</> : ""}</div>;
         } else {
-          const peJobList = getPeJobList();
+          const jobList = getJobList();
           const lbbCompanyList = getLbbCompanyList();
           return (
             <div className="jobResult">
-              {peJobList || lbbCompanyList ? (
+              {jobList || lbbCompanyList ? (
                 <>
-                  {peJobList}
+                  {jobList}
                   {lbbCompanyList}
                   {jobCount < 100 ? (
                     <ExtendedSearchButton
@@ -146,6 +146,7 @@ const ResultLists = (props) => {
 
     if (jobs) {
       if (jobs.peJobs) jobCount += jobs.peJobs.length;
+      if (jobs.matchas) jobCount += jobs.matchas.length;
       if (jobs.lbbCompanies) jobCount += jobs.lbbCompanies.length;
       if (jobs.lbaCompanies) jobCount += jobs.lbaCompanies.length;
     }
@@ -153,13 +154,14 @@ const ResultLists = (props) => {
     return jobCount;
   };
 
-  const getPeJobList = () => {
-    if (props.jobs && props.jobs.peJobs && props.jobs.peJobs.length) {
+  const getJobList = () => {
+    const mergedJobs = mergeJobs(props.jobs);
+    if (mergedJobs.length) {
       return (
         <>
-          {props.jobs.peJobs.map((job, idx) => {
+          {mergedJobs.map((job, idx) => {
             return (
-              <PeJob
+              <Job
                 key={idx}
                 job={job}
                 handleSelectItem={props.handleSelectItem}
@@ -169,12 +171,11 @@ const ResultLists = (props) => {
           })}
         </>
       );
-      //} else return <div className="listText">Aucun poste pour ces critères de recherche</div>;
     } else return "";
   };
 
   const getLbbCompanyList = () => {
-    const mergedLbaLbbCompanies = mergeOpportunities("onlyLbbLba");
+    const mergedLbaLbbCompanies = mergeOpportunities(props.jobs, "onlyLbbLba");
     if (mergedLbaLbbCompanies.length) {
       return (
         <>
@@ -193,51 +194,17 @@ const ResultLists = (props) => {
     } else return "";
   };
 
-  // fusionne les résultats lbb et lba et les trie par ordre croissant de distance, optionnellement intègre aussi les offres PE
-  const mergeOpportunities = (onlyLbbLbaCompanies) => {
-    let mergedArray = [];
-    let resultSources = 0;
-    if (props.jobs) {
-      if (props.jobs.lbbCompanies && props.jobs.lbbCompanies.length) {
-        mergedArray = props.jobs.lbbCompanies;
-        resultSources++;
-      }
-
-      if (props.jobs.lbaCompanies && props.jobs.lbaCompanies.length) {
-        mergedArray = mergedArray.concat(props.jobs.lbaCompanies);
-        resultSources++;
-      }
-
-      if (!onlyLbbLbaCompanies && props.jobs.peJobs && props.jobs.peJobs.length > 0) {
-        mergedArray = mergedArray.concat(props.jobs.peJobs);
-        resultSources++;
-      }
-
-      if (resultSources > 1)
-        mergedArray.sort((a, b) => {
-          let dA = a.place.distance;
-          let dB = b.place.distance;
-
-          if (dA > dB) return 1;
-          if (dA < dB) return -1;
-          return 0;
-        });
-    }
-
-    return mergedArray;
-  };
-
-  // retourne le bloc construit des items lbb, lba et pe triés par ordre de distance
+  // retourne le bloc construit des items lbb, lba, matcha et pe triés par ordre de distance
   const getMergedJobList = () => {
-    const mergedOpportunities = mergeOpportunities();
+    const mergedOpportunities = mergeOpportunities(props.jobs);
 
     if (mergedOpportunities.length) {
       return (
         <>
           {mergedOpportunities.map((opportunity, idx) => {
-            if (opportunity.ideaType === "peJob")
+            if (opportunity.ideaType === "peJob" || opportunity.ideaType === "matcha")
               return (
-                <PeJob
+                <Job
                   key={idx}
                   job={opportunity}
                   handleSelectItem={props.handleSelectItem}
@@ -366,19 +333,19 @@ const ResultLists = (props) => {
           <div className="c-filterbuttons">
             <FilterButton
               type="all"
-              isActive={activeFilter === "all" ? true : false}
+              isActive={props.activeFilter === "all"}
               handleFilterButtonClicked={filterButtonClicked}
             />
             <FilterButton
               type="trainings"
               count={trainingCount}
-              isActive={activeFilter === "trainings" ? true : false}
+              isActive={props.activeFilter === "trainings"}
               handleFilterButtonClicked={filterButtonClicked}
             />
             <FilterButton
               type="jobs"
               count={jobCount}
-              isActive={activeFilter === "jobs" ? true : false}
+              isActive={props.activeFilter === "jobs"}
               handleFilterButtonClicked={filterButtonClicked}
             />
             <div className="c-resultlist-purplefilter" onClick={props.showSearchForm}>

@@ -2,9 +2,6 @@
   width: 24px;
 }
 
-.c-detail-header {
-
-}
 .c-detail-back {
   background: white;
   border: 1px solid #E0E0E0;
@@ -17,25 +14,45 @@
   text-align: center;
   margin-bottom: 15px;
 }
+.c-tiny-btn {
+  background: white;
+  border: none;
+  padding:0;
+}
+
+.c-tiny-btn__image {
+  width: 30px;
+  height: 30px;
+}
 
 .c-detail-title {
   font-size: 32px;
   font-weight: 700;
   line-height: 48px;
   letter-spacing: 0em;
-  color: $pinksoft500;
+  color: $pinksoft750;
   margin-bottom: 11px;
   padding-bottom: 0;
+  text-align: left;
+  word-break: break-word;
 }
+
+.c-detail-body {
+  position: relative;
+  a {
+    overflow-wrap: anywhere;
+  }  
+}
+
 
 .c-detail-title--formation {
-  color: #00AC8C;
+  color: $greensoft500;
 }
 
 .c-detail-title--lba,
-.c-detail-title--lba,
-.c-detail-title--peJob {
-  color: $pinksoft500;
+.c-detail-title--peJob,
+.c-detail-title--matcha {
+  color: $pinksoft750;
 }
 
 .c-detail-activity {
@@ -46,6 +63,7 @@
   letter-spacing: 0;
   margin-bottom: 12px;
   padding-bottom: 0;
+  text-align: left;
 }
 
 .c-detail-address {
@@ -84,9 +102,6 @@
 
 .c-detail-header-separator {
   margin-bottom: 0;
-}
-.c-detail-header-separator--formation {
-  margin-top: 2.3rem;
 }
 
 .c-detail-body {
@@ -149,6 +164,18 @@
   margin-top: 21px;
 }
 
+.c-detail-description-me {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 12px 6px rgba(121, 121, 121, 0.24);
+}
+
 .c-detail-description-title {
   font-size: 16px;
   font-weight: 700;
@@ -160,13 +187,27 @@
 }
 
 .c-detail-pelink {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 19px;
-  letter-spacing: 0px;
-  text-align: left;
   a {
-    color: $gray-700;
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-decoration: underline solid $gray-750;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+}
+
+.c-detail-contactlink {
+  a {
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
     text-decoration: underline solid $gray-750;
     text-decoration-thickness: 2px;
     text-underline-offset: 2px;
@@ -179,6 +220,10 @@
   display: flex;
   align-items: center;
   margin-top: 24px;
+}
+
+.c-detail-advice--mb {
+  margin-bottom: 70px;
 }
 
 .c-detail-advice-text {
@@ -210,7 +255,7 @@
 }
 
 .c-detail-lbb-li::marker {
-  color: $pinksoft500;
+  color: $pinksoft750;
   font-size: 31px;
 }
 
@@ -221,7 +266,7 @@
 }
 .c-detail-lbb-li::before {
   content: '⬤';
-  color: $pinksoft500;
+  color: $pinksoft750;
   position: absolute;
   left: -2em;
   font-size: 1em; 
@@ -230,6 +275,7 @@
 .c-detail-lbb-siretzone {
   background-color: $gray-200;
   padding: 30px;
+  padding-bottom: 70px;
   text-align: left;
 }
 
@@ -298,6 +344,9 @@ a.c-detail-lbb-siretbutton {
 
 .c-see-info {
   font-size: 16px;
+  padding: 11px 40px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .c-detail-stickynav {
