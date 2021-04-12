@@ -242,7 +242,7 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     let response = await httpClient.get(
-      "/api/V1/jobs?romes=X0000&radius=0&longitude=180&latitude=90&insee=12345&caller=a"
+      "/api/V1/jobs?romes=X0000&radius=0&sources=lba,lbb&longitude=180&latitude=90&insee=12345&caller=a"
     );
 
     assert.strictEqual(response.status, 200);

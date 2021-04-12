@@ -24,7 +24,7 @@ const CGU = (props) => {
             <hr className="c-page-title-separator" align="left" />
           </div>
           <div className="col-12 col-md-7">
-            <p className="mb-3">Dernière mise à jour le : 07/04/2021</p>
+            <p className="mb-3">Dernière mise à jour le : 12/04/2021</p>
             <h3 className="mb-3">Conditions générales d’utilisation de La Bonne Alternance</h3>
             <p>
               Les présentes conditions générales d’utilisation (dites « CGU ») fixent le cadre juridique de La Bonne
@@ -123,7 +123,12 @@ const CGU = (props) => {
               <p>
                 <strong>5.2 L’Utilisateur</strong>
               </p>
-
+                L’utilisation du site internet <a href="https://labonnealternance.pole-emploi.fr" target="_blank"  rel="noopener noreferrer">labonnealternance.pole-emploi.fr</a> est soumise au respect par l’utilisateur :
+                <ul>
+                  <li> de la législation française;</li>
+                  <li> des présentes conditions d’utilisation;</li>
+                  <li>Les présentes conditions d’utilisation peuvent être modifiées à tout moment et la date de mise à jour est mentionnée.</li>
+                </ul>
               <p>
                 Toute information transmise par l'Utilisateur est de sa seule responsabilité. Il est rappelé que toute
                 personne procédant à une fausse déclaration pour elle-même ou pour autrui s’expose, notamment, aux
@@ -132,11 +137,25 @@ const CGU = (props) => {
               </p>
             </section>
             <section>
-              <h2 className="c-faq-question mt-2">Article 6 – Mise à jour des conditions d’utilisation</h2>
+              <h2 className="c-faq-question mt-2">Article 6 - Protection des données à caractère personnel</h2>
+              <p>
+               L’utilisation du moteur de recherche disponible sur le site internet La Bonne Alternance nécessite d’indiquer le(s) métier(s) recherché(s) ainsi que le périmètre géographique souhaité. Ces données sont collectées et traitées par Pôle emploi uniquement dans le but de fournir, à la requête de l’utilisateur, la liste des entreprises ou organismes ayant un potentiel d’embauche dans un secteur d’emploi et géographique donné, une liste de formations en apprentissage dans un secteur d’emploi et géographique donné, une liste d’offres d’emploi dans un secteur d’emploi et géographique donné.<br />
+               Pôle emploi traite également des données relatives aux entreprises qui peuvent concerner directement des personnes physiques, notamment les coordonnées des interlocuteurs personnes physiques de ces entreprises.
+              </p>
+            </section>
+            <section>
+              <h2 className="c-faq-question mt-2">Article 7 – Mise à jour des conditions d’utilisation</h2>
               <p>
                 Les termes des présentes conditions d’utilisation peuvent être amendés à tout moment, sans préavis, en
                 fonction des modifications apportées à la plateforme, de l’évolution de la législation ou pour tout
                 autre motif jugé nécessaire.
+              </p>
+            </section>
+            <section>
+              <h2 className="c-faq-question mt-2">Article 8 - Propriété intellectuelle</h2>
+              <p>
+                Les marques Pôle emploi et La Bonne Alternance sont protégées au titre des articles L.712-1 et suivants du code de la propriété intellectuelle. Toute représentation, reproduction ou diffusion, intégrale ou partielle de la marque Pôle emploi et/ou de la marque La Bonne Alternance, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Pôle emploi constitue un acte de contrefaçon, sanctionné en application de l’article L.716-1 du même code.<br />
+                Par ailleurs, le site <a href="https://labonnealternance.pole-emploi.fr" target="_blank"  rel="noopener noreferrer">labonnealternance.pole-emploi.fr</a> contient des contenus sur lesquels des tiers détiennent des droits de propriété intellectuelle (dessin, graphisme, marque, etc.) ou un droit à l’image (photo, visuel mettant en scène une personne physique, vidéo, etc.). Les internautes ne sont pas autorisés à réutiliser ces contenus en l’absence de l’autorisation préalable et expresse de ces tiers.
               </p>
             </section>
           </div>
