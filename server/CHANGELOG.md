@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.11.2 [12/04/2021]
+[524] Coupure des appels à l'api LBB
+
 ## 1.11.1 [09/04/2021]
 [537] Changement de couleurs
 [382] Ajout des contrats pro dans les offres Pôle emploi
