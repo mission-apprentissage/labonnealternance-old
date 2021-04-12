@@ -119,6 +119,11 @@
   }
 }
 
+.resultCard.debugRemoved
+{
+  background: red !important;
+}
+
 .resultCard .cardDistance {
   display: flex;
   font-size: 14px;

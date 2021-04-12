@@ -2,6 +2,7 @@
 
 ## 1.11.2 [12/04/2021]
 [524] Coupure des appels à l'api LBB
+[497] domainesMetiers retourne les codes RNCPs
 
 ## 1.11.1 [09/04/2021]
 [537] Changement de couleurs

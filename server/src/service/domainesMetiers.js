@@ -4,6 +4,7 @@ const _ = require("lodash");
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
 const config = require("config");
 const updateDomainesMetiers = require("../jobs/domainesMetiers/updateDomainesMetiers");
+const getMissingRNCPsFromDomainesMetiers = require("../jobs/domainesMetiers/getMissingRNCPsFromDomainesMetiers");
 const Sentry = require("@sentry/node");
 
 const getRomesAndLabelsFromTitleQuery = async (query) => {
@@ -20,7 +21,15 @@ const getMultiMatchTerm = (term) => {
       must: {
         multi_match: {
           query: term,
-          fields: ["domaine^3", "sous_domaine^20", "domaines^1", "familles^1", "mots_clefs^3", "intitules_romes^5"],
+          fields: [
+            "domaine^3",
+            "sous_domaine^20",
+            "domaines^1",
+            "familles^1",
+            "mots_clefs^3",
+            "intitules_romes^5",
+            "intitules_rncps^5",
+          ],
           type: "phrase_prefix",
           operator: "or",
         },
@@ -44,7 +53,7 @@ const getLabelsAndRomes = async (searchKeyword) => {
     const response = await esClient.search({
       index: "domainesmetiers",
       size: 20,
-      _sourceIncludes: ["sous_domaine", "codes_romes"],
+      _sourceIncludes: ["sous_domaine", "codes_romes", "codes_rncps"],
       body: {
         query: {
           bool: {
@@ -57,7 +66,11 @@ const getLabelsAndRomes = async (searchKeyword) => {
     let labelsAndRomes = [];
 
     response.body.hits.hits.forEach((labelAndRome) => {
-      labelsAndRomes.push({ label: labelAndRome._source.sous_domaine, romes: labelAndRome._source.codes_romes });
+      labelsAndRomes.push({
+        label: labelAndRome._source.sous_domaine,
+        romes: labelAndRome._source.codes_romes,
+        rncps: labelAndRome._source.codes_rncps,
+      });
     });
 
     if (searchKeyword.length > 3) {
@@ -93,8 +106,26 @@ const updateRomesMetiersQuery = async (query) => {
     return { error: "wrong_secret" };
   } else {
     try {
-      console.log("update");
       let result = await updateDomainesMetiers(query.fileName);
+      return result;
+    } catch (err) {
+      Sentry.captureException(err);
+
+      let error_msg = _.get(err, "meta.body") ?? err.message;
+
+      return { error: error_msg };
+    }
+  }
+};
+
+const getMissingRNCPs = async (query) => {
+  if (!query.secret) {
+    return { error: "secret_missing" };
+  } else if (query.secret !== config.private.secretUpdateRomesMetiers) {
+    return { error: "wrong_secret" };
+  } else {
+    try {
+      let result = await getMissingRNCPsFromDomainesMetiers(query.fileName);
       return result;
     } catch (err) {
       Sentry.captureException(err);
@@ -109,4 +140,5 @@ const updateRomesMetiersQuery = async (query) => {
 module.exports = {
   getRomesAndLabelsFromTitleQuery,
   updateRomesMetiersQuery,
+  getMissingRNCPs,
 };

@@ -29,11 +29,16 @@ const domainesMetiersSchema = {
     default: [],
     description: "Les libellés des codes ROMEs associés au métier",
   },
-  /*codes_rncps: {
-      type: [String],
-      default: [],
-      description: "Les codes RNCPs associés au métier",
-    },*/
+  codes_rncps: {
+    type: [String],
+    default: [],
+    description: "Les codes RNCPs associés au métier",
+  },
+  intitules_rncps: {
+    type: [String],
+    default: [],
+    description: "Les libellés des codes RNCPs associés au métier",
+  },
   mots_clefs: {
     type: String,
     default: null,

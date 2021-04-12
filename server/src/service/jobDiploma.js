@@ -5,13 +5,18 @@ const axios = require("axios");
 
 const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
 
-const getDiplomasForJobs = async (romes) => {
+const getDiplomasForJobs = async (romes /*, rncps*/) => {
   try {
     const body = {
       query: {
         match: {
           rome_codes: romes,
         },
+        /*
+        FIXME: lors de l'activation du cloisonnement RNCP
+        bool: {
+          must: [{ match: { rome_codes: romes } }, { match: { rncp_code: rncps } }],
+        },*/
       },
       aggs: {
         niveaux: {
@@ -37,7 +42,7 @@ const getDiplomasForJobs = async (romes) => {
     Sentry.captureException(err);
 
     let error_msg = _.get(err, "meta.body") ? err.meta.body : err.message;
-    console.log("Error getting jobDiplomas from romes ", error_msg);
+    console.log("Error getting jobDiplomas from romes and rncps", error_msg);
     if (_.get(err, "meta.meta.connection.status") === "dead") {
       console.log("Elastic search is down or unreachable");
     }
@@ -48,10 +53,13 @@ const getDiplomasForJobs = async (romes) => {
 const getDiplomasForJobsQuery = async (query) => {
   //console.log("query : ", query);
 
-  if (!query.romes) return "romes_missing";
-  else {
+  if (!query.romes) {
+    return "romes_missing";
+  } else if (!query.rncps) {
+    return "rncps_missing";
+  } else {
     try {
-      const diplomas = await getDiplomasForJobs(query.romes);
+      const diplomas = await getDiplomasForJobs(query.romes, query.rncps);
       return diplomas;
     } catch (err) {
       console.log("Error ", err.message);

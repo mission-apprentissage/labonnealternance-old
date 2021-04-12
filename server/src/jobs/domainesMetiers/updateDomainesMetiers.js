@@ -71,13 +71,15 @@ module.exports = async (optionalFileName) => {
 
     const workbookDomainesMetiers = readXLSXFile(FILE_LOCAL_PATH);
 
-    let domaines, familles, codesROMEs, intitulesROMEs, couplesROMEsIntitules;
+    let domaines, familles, codesROMEs, intitulesROMEs, codesRNCPs, intitulesRNCPs, couplesROMEsIntitules;
 
     const reset = () => {
       domaines = [];
       familles = [];
       codesROMEs = [];
       intitulesROMEs = [];
+      codesRNCPs = [];
+      intitulesRNCPs = [];
       couplesROMEsIntitules = [];
     };
 
@@ -102,6 +104,8 @@ module.exports = async (optionalFileName) => {
             familles: familles,
             codes_romes: codesROMEs,
             intitules_romes: intitulesROMEs,
+            codes_rncps: codesRNCPs,
+            intitules_rncps: intitulesRNCPs,
             couples_romes_metiers: couplesROMEsIntitules,
           });
 
@@ -129,10 +133,25 @@ module.exports = async (optionalFileName) => {
             });
           }
 
-          if (onglet[j]["Codes ROME"] && codesROMEs.indexOf(onglet[j]["Codes ROME"].trim()) < 0)
-            codesROMEs.push(onglet[j]["Codes ROME"].trim());
-          if (onglet[j]["Intitulé code ROME"] && intitulesROMEs.indexOf(onglet[j]["Intitulé code ROME"].trim()) < 0)
-            intitulesROMEs.push(onglet[j]["Intitulé code ROME"].trim());
+          let currentROME = onglet[j]["Codes ROME"];
+          if (currentROME && codesROMEs.indexOf(currentROME.trim()) < 0) {
+            codesROMEs.push(currentROME.trim());
+          }
+
+          let currentIntituleROME = onglet[j]["Intitulé code ROME"];
+          if (currentIntituleROME && intitulesROMEs.indexOf(currentIntituleROME.trim()) < 0) {
+            intitulesROMEs.push(currentIntituleROME.trim());
+          }
+
+          let currentRNCP = onglet[j]["Code RNCP"];
+          if (currentRNCP && codesRNCPs.indexOf(currentRNCP.trim()) < 0) {
+            codesRNCPs.push(currentRNCP.trim());
+          }
+
+          let currentLibelleRNCP = onglet[j]["Libellé RNCP"];
+          if (currentLibelleRNCP && intitulesRNCPs.indexOf(currentLibelleRNCP.trim()) < 0) {
+            intitulesRNCPs.push(currentLibelleRNCP.trim());
+          }
         }
       }
     }

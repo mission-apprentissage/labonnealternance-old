@@ -14,6 +14,7 @@ const filteredInput = (input) => {
 
 export default async function fetchDiplomas(
   arrayOfRome,
+  arrayOfRncp,
   errorCallbackFn = _.noop,
   _baseUrl = baseUrl,
   _axios = axios,
@@ -25,12 +26,17 @@ export default async function fetchDiplomas(
   let cleanedArrayOfRome = filteredInput(arrayOfRome);
   if (cleanedArrayOfRome.length === 0) return res;
 
+  let cleanedArrayOfRncp = filteredInput(arrayOfRncp);
+  if (cleanedArrayOfRncp.length === 0) return res;
+
   const romeDiplomasApi = _baseUrl + "/api/jobsdiplomas";
 
   let isAxiosError, hasNoValidData, isSimulatedError;
 
   try {
-    const response = await _axios.get(romeDiplomasApi, { params: { romes: cleanedArrayOfRome.join(",") } });
+    const response = await _axios.get(romeDiplomasApi, {
+      params: { romes: cleanedArrayOfRome.join(","), rncps: cleanedArrayOfRncp.join(",") },
+    });
 
     isAxiosError = !!_.get(response, "data.error");
     hasNoValidData = !_.isArray(_.get(response, "data"));

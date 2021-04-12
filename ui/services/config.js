@@ -56,7 +56,7 @@ export const getWidgetParameters = () => {
 };
 
 export const getItemParameters = () => {
-  let itemParameters = { parameters: null, applyItemParameters: false };
+  let itemParameters = { parameters: null, mode: null, applyItemParameters: false };
 
   if (getValueFromPath("itemId")) {
     let parameters = {};
@@ -74,6 +74,10 @@ export const getItemParameters = () => {
     itemParameters.applyItemParameters = applyItemParameters;
   }
 
+  if (getValueFromPath("mode")) {
+    itemParameters.mode = "debug";
+  }
+
   return itemParameters;
 };
 
@@ -84,7 +88,7 @@ export const initParametersFromQuery = (dispatch, shouldPush) => {
     if (shouldPush) dispatch(push({ pathname: "/recherche-apprentissage" }));
   } else {
     const itemParameters = getItemParameters();
-    if (itemParameters && itemParameters.applyItemParameters) {
+    if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {
       dispatch(setItemParameters(itemParameters));
       if (shouldPush) dispatch(push({ pathname: "/recherche-apprentissage" }));
     }
