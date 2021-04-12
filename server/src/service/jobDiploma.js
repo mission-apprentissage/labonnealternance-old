@@ -5,13 +5,18 @@ const axios = require("axios");
 
 const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
 
-const getDiplomasForJobs = async (romes, rncps) => {
+const getDiplomasForJobs = async (romes /*, rncps*/) => {
   try {
     const body = {
       query: {
+        match: {
+          rome_codes: romes,
+        },
+        /*
+        FIXME: lors de l'activation du cloisonnement RNCP
         bool: {
           must: [{ match: { rome_codes: romes } }, { match: { rncp_code: rncps } }],
-        },
+        },*/
       },
       aggs: {
         niveaux: {
