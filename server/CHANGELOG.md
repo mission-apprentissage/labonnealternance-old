@@ -9,11 +9,11 @@ Récupération des offres Matcha
 [544] Nouveaux pictogrammes précédent / suivant
 [529] Positionner tags
 
-## 1.10.8 [6/04/2021]
+## 1.10.8 [06/04/2021]
 [514] Maj CGU et liens footers
 [546] Hotfix liens contacts en blanc sur blanc
 
-## 1.10.7 [2/04/2021]
+## 1.10.7 [02/04/2021]
 [517] Reliquats 404 et 500
 [535] Changement de nom du fichier widget prdv
 

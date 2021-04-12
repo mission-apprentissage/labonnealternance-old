@@ -179,6 +179,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ) : (
             ""
           )}
+          
         </div>
       </section>
     </>
