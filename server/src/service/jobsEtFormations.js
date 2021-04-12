@@ -21,6 +21,7 @@ const getJobsEtFormationsQuery = async (query) => {
       sources.indexOf("formations") >= 0
         ? getFormations({
             romes: query.romes ? query.romes.split(",") : null,
+            rncps: query.rncps ? query.rncps.split(",") : null,
             coords: [query.longitude, query.latitude],
             radius: query.radius,
             diploma: query.diploma,

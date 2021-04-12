@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.12.0 [12/04/2021]
+[497] domainesMetiers retourne les codes RNCPs
+
 ## 1.11.1 [09/04/2021]
 [537] Changement de couleurs
 [382] Ajout des contrats pro dans les offres Pôle emploi
