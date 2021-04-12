@@ -48,7 +48,7 @@
   border-radius: 58px;
   border: none;
   padding: 10px 20px;
-  margin-top: -5rem;
+  margin-top: -2rem;
 }
 .demoPage .floatingButtons button:focus {
   box-shadow: none;
@@ -223,10 +223,10 @@
   font-weight: bold;
 }
 .demoPage .trainingColor {
-  color: #00AC8C;
+  color: $greensoft500;
 }
 .demoPage .jobColor {
-  color: $pinksoft500;
+  color: $pinksoft750;
 }
 
 .demoPage .resultTitle {

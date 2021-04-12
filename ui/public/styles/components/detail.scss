@@ -2,9 +2,6 @@
   width: 24px;
 }
 
-.c-detail-header {
-
-}
 .c-detail-back {
   background: white;
   border: 1px solid #E0E0E0;
@@ -19,19 +16,13 @@
 }
 .c-tiny-btn {
   background: white;
-  border: 1px solid #E0E0E0;
-  border-radius: 4px;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 15px;
-  letter-spacing: 0;
-  text-align: center;
-  margin-bottom: 15px;
-  width: 80px;
-  @include media-breakpoint-up(sm) { 
-    width: inherit;
-  }
+  border: none;
+  padding:0;
+}
+
+.c-tiny-btn__image {
+  width: 30px;
+  height: 30px;
 }
 
 .c-detail-title {
@@ -39,9 +30,11 @@
   font-weight: 700;
   line-height: 48px;
   letter-spacing: 0em;
-  color: $pinksoft500;
+  color: $pinksoft750;
   margin-bottom: 11px;
   padding-bottom: 0;
+  text-align: left;
+  word-break: break-word;
 }
 
 .c-detail-body {
@@ -53,13 +46,13 @@
 
 
 .c-detail-title--formation {
-  color: #00AC8C;
+  color: $greensoft500;
 }
 
 .c-detail-title--lba,
-.c-detail-title--lba,
-.c-detail-title--peJob {
-  color: $pinksoft500;
+.c-detail-title--peJob,
+.c-detail-title--matcha {
+  color: $pinksoft750;
 }
 
 .c-detail-activity {
@@ -70,6 +63,7 @@
   letter-spacing: 0;
   margin-bottom: 12px;
   padding-bottom: 0;
+  text-align: left;
 }
 
 .c-detail-address {
@@ -108,9 +102,6 @@
 
 .c-detail-header-separator {
   margin-bottom: 0;
-}
-.c-detail-header-separator--formation {
-  margin-top: 2.3rem;
 }
 
 .c-detail-body {
@@ -209,12 +200,30 @@
   }
 }
 
+.c-detail-contactlink {
+  a {
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    text-decoration: underline solid $gray-750;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+}
+
 .c-detail-advice {
   background-color: #FFE2DF;
   border-radius: 10px;
   display: flex;
   align-items: center;
   margin-top: 24px;
+}
+
+.c-detail-advice--mb {
+  margin-bottom: 70px;
 }
 
 .c-detail-advice-text {
@@ -246,7 +255,7 @@
 }
 
 .c-detail-lbb-li::marker {
-  color: $pinksoft500;
+  color: $pinksoft750;
   font-size: 31px;
 }
 
@@ -257,7 +266,7 @@
 }
 .c-detail-lbb-li::before {
   content: '⬤';
-  color: $pinksoft500;
+  color: $pinksoft750;
   position: absolute;
   left: -2em;
   font-size: 1em; 
@@ -335,6 +344,9 @@ a.c-detail-lbb-siretbutton {
 
 .c-see-info {
   font-size: 16px;
+  padding: 11px 40px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .c-detail-stickynav {
