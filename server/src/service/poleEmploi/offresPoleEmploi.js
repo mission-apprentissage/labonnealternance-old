@@ -187,7 +187,7 @@ const computeJobDistanceToSearchCenter = (job, lat, long) => {
 
 const peJobsApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/search";
 const peJobApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/";
-const peContratsAlternances = "E2"; //E2 -> Contrat d'Apprentissage
+const peContratsAlternances = "E2,FS"; //E2 -> Contrat d'Apprentissage, FS -> contrat de professionalisation
 
 const getPeJobs = async (romes, insee, radius, limit) => {
   try {

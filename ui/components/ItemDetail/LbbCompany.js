@@ -1,5 +1,6 @@
 import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
+import TagCandidatureSpontanee from './TagCandidatureSpontanee';
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
@@ -63,9 +64,22 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
         </div>
 
         <div className="c-media-body">
-          <div className="title d-inline-block">{company.company.name}</div>
-          <div className="cardText pt-1">{get(company, "nafs[0].label", "")}</div>
-          <div className="cardText pt-2">{company.place.fullAddress}</div>
+
+          <div className="row no-gutters">
+            <div className="col-12 col-lg-6 text-left">
+              <div className="title d-inline-block">{company.company.name}</div>
+            </div>
+            <div className="col-12 col-lg-6 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
+              <TagCandidatureSpontanee/>
+            </div>
+          </div>
+
+          <div>
+            <div className="cardText pt-2">{get(company, "nafs[0].label", "")}</div>
+            <div className="cardText pt-2">{company.place.fullAddress}</div>
+          </div>
+        
+
           <span className="cardDistance pt-1">
             {company.place.distance} km(s) du lieu de recherche
             {showTextOnly ? (
@@ -83,6 +97,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
           ) : (
             <>{Math.round(company.place.distance) > currentSearchRadius ? getCenterSearchOnCompanyButton() : ""}</>
           )}
+
         </div>
       </div>
     </div>

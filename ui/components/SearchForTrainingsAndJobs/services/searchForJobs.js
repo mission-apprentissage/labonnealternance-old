@@ -56,6 +56,10 @@ export const searchForJobsFunction = async ({
 
       results = {
         peJobs: response.data.peJobs.result && response.data.peJobs.result === "error" ? null : peJobs,
+        matchas:
+          response.data.matchas.result && response.data.matchas.result === "error"
+            ? null
+            : response.data.matchas.results,
         lbbCompanies:
           response.data.lbbCompanies.result && response.data.lbbCompanies.result === "error"
             ? null
@@ -71,6 +75,7 @@ export const searchForJobsFunction = async ({
     let jobErrorMessage = "";
     if (
       response.data.peJobs.result === "error" &&
+      //response.data.matchas.result === "error" &&
       response.data.lbbCompanies.result === "error" &&
       response.data.lbaCompanies.result === "error"
     ) {
@@ -84,6 +89,7 @@ export const searchForJobsFunction = async ({
     } else {
       if (
         response.data.peJobs.result === "error" ||
+        //response.data.matchas.result === "error" ||
         response.data.lbbCompanies.result === "error" ||
         response.data.lbaCompanies.result === "error"
       ) {
@@ -94,6 +100,8 @@ export const searchForJobsFunction = async ({
           logError("Job Search Error", `LBB Error : ${response.data.lbbCompanies.message}`);
         if (response.data.lbaCompanies.result === "error")
           logError("Job Search Error", `LBA Error : ${response.data.lbaCompanies.message}`);
+        if (response.data.matchas.result === "error")
+          logError("Job Search Error", `Matcha Error : ${response.data.matchas.message}`);
       }
     }
 

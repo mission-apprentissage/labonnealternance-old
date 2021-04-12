@@ -1,10 +1,23 @@
 # CHANGELOG
 
-## 1.10.7 [2/04/2021]
+## 1.11.1 [09/04/2021]
+[537] Changement de couleurs
+[382] Ajout des contrats pro dans les offres Pôle emploi
+
+## 1.11.0 [08/04/2021]
+Récupération des offres Matcha
+[544] Nouveaux pictogrammes précédent / suivant
+[529] Positionner tags
+
+## 1.10.8 [06/04/2021]
+[514] Maj CGU et liens footers
+[546] Hotfix liens contacts en blanc sur blanc
+
+## 1.10.7 [02/04/2021]
 [517] Reliquats 404 et 500
 [535] Changement de nom du fichier widget prdv
 
-## 1.10.6 [1/04/2021]
+## 1.10.6 [01/04/2021]
 [509] Swipe et scroll
 [330] Optimisations et nettoyage
 [518] Classe GMT sur bouton PRDV

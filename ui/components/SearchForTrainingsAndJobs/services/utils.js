@@ -5,6 +5,7 @@ const trainingApi = trainingsApi + "/formation";
 const jobsApi = baseUrl + "/api/v1/jobs";
 const offreApi = jobsApi + "/job";
 const companyApi = jobsApi + "/company";
+const matchaApi = jobsApi + "/matcha";
 
 const allJobSearchErrorText = "Problème momentané d'accès aux opportunités d'emploi";
 const partialJobSearchErrorText = "Problème momentané d'accès à certaines opportunités d'emploi";
@@ -31,5 +32,6 @@ export {
   notFoundErrorText,
   getRomeFromParameters,
   offreApi,
+  matchaApi,
   companyApi,
 };
