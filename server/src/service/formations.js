@@ -44,7 +44,9 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
     ];
 
     if (rncps) {
-      /*mustTerm.push({
+      /*
+        FIXME: En attente listing des RNCPs à jour
+        mustTerm.push({
         match: {
           rncp_code: rncps.join(" "),
         },
@@ -285,8 +287,6 @@ const getAtLeastSomeFormations = async ({
     let formations = [];
     let currentRadius = radius;
     let formationLimit = formationResultLimit;
-
-    console.log("ICI : ", rncps);
 
     formations = await getFormations({
       romes,
