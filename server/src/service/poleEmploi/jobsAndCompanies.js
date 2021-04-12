@@ -60,9 +60,9 @@ const getCompanyQuery = async (query) => {
 
 const getJobsFromApi = async (query) => {
   try {
-    const sources = !query.sources ? ["lba", "lbb", "offres", "matcha"] : query.sources.split(",");
+    const sources = !query.sources ? ["lba", /*"lbb",*/ "offres", "matcha"] : query.sources.split(",");
 
-    const [peJobs, lbaCompanies, lbbCompanies, matchas] = await Promise.all([
+    let [peJobs, lbaCompanies, lbbCompanies, matchas] = await Promise.all([
       sources.indexOf("offres") >= 0
         ? offresPoleEmploi.getSomePeJobs({
             romes: query.romes.split(","),
@@ -111,6 +111,9 @@ const getJobsFromApi = async (query) => {
     //some magic with peJobs, lbbCompanies to have a correct number of returned jobs, more weight on peJobs
     getWeightedCompanies(peJobs, lbaCompanies, lbbCompanies);
 
+    if (!query.sources) {
+      lbbCompanies = { results: [] };
+    }
     //throw new Error("kaboom");
 
     return { peJobs, matchas, lbaCompanies, lbbCompanies };
