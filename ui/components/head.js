@@ -38,7 +38,11 @@ const HeadLaBonneAlternance = (props) => {
         async
         src={`https://rdv-cfa${env !== "production" ? "-recette" : ""}.apprentissage.beta.gouv.fr/assets/widget.min.js`}
       ></script>
-      <script async src={`https://cdn.tagcommander.com/5234/${env}/${env !== "recette" ? "uat/" : ""}tc_lba_31.js`}></script>
+      {env !== "local" ? (
+        <script async src={`https://cdn.tagcommander.com/5234/${env !== "recette" ? "uat/" : ""}tc_lba_31.js`}></script>
+      ) : (
+        ""
+      )}
     </Head>
   );
 };
