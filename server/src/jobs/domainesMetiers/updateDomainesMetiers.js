@@ -83,6 +83,8 @@ module.exports = async (optionalFileName) => {
       couplesROMEsIntitules = [];
     };
 
+    let avertissements = [];
+
     for (let i = 0; i < workbookDomainesMetiers.sheet_name_list.length; ++i) {
       logMessage("info", `Début traitement lettre : ${workbookDomainesMetiers.sheet_name_list[i]}`);
 
@@ -108,6 +110,9 @@ module.exports = async (optionalFileName) => {
             intitules_rncps: intitulesRNCPs,
             couples_romes_metiers: couplesROMEsIntitules,
           });
+
+          if (codesROMEs.length > 15)
+            avertissements.push({ domaine: onglet[j]["Sous domaine "], romes: codesROMEs.length });
 
           await domainesMetier.save();
 
@@ -159,6 +164,7 @@ module.exports = async (optionalFileName) => {
     return {
       result: "Table mise à jour",
       fileName: optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx",
+      avertissements,
     };
   } catch (err) {
     logMessage("error", err);
