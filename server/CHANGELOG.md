@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.11.3 [13/04/2021]
+[536] Remplacement gtm par tagcommander
+
 ## 1.11.2 [12/04/2021]
 [524] Coupure des appels à l'api LBB
 [497] domainesMetiers retourne les codes RNCPs
