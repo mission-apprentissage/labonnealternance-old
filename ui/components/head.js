@@ -6,25 +6,6 @@ import env from "utils/env";
 const HeadLaBonneAlternance = (props) => {
   return (
     <Head>
-      {/* Google Tag Manager */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer', 'GTM-T9G5QSC');`,
-        }}
-      />
-      {/* End Google Tag Manager */}
-      {/* Google Tag Manager (noscript) */}
-      <noscript
-        dangerouslySetInnerHTML={{
-          __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9G5QSC" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-        }}
-      />
-      {/* End Google Tag Manager (noscript) */}
-
       <title>La Bonne Alternance | Trouvez votre alternance</title>
       <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
       <link rel="canonical" href="http://labonnealternance.pole-emploi.fr" />
@@ -57,6 +38,14 @@ const HeadLaBonneAlternance = (props) => {
         async
         src={`https://rdv-cfa${env !== "production" ? "-recette" : ""}.apprentissage.beta.gouv.fr/assets/widget.min.js`}
       ></script>
+      {env !== "local" ? (
+        <script
+          async
+          src={`https://cdn.tagcommander.com/5234/${env !== "production" ? "uat/" : ""}tc_lba_31.js`}
+        ></script>
+      ) : (
+        ""
+      )}
     </Head>
   );
 };
