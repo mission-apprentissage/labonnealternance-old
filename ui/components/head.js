@@ -4,7 +4,6 @@ import Fonts from "./fonts";
 import env from "utils/env";
 
 const HeadLaBonneAlternance = (props) => {
-  console.log("env ",env);
   return (
     <Head>
       <title>La Bonne Alternance | Trouvez votre alternance</title>
@@ -39,11 +38,7 @@ const HeadLaBonneAlternance = (props) => {
         async
         src={`https://rdv-cfa${env !== "production" ? "-recette" : ""}.apprentissage.beta.gouv.fr/assets/widget.min.js`}
       ></script>
-
-      <script
-        async
-        src={`https://cdn.tagcommander.com/5234/${env !== "recette" ? "uat/" : ""}tc_lba_31.js`}
-      ></script>
+      <script async src={`https://cdn.tagcommander.com/5234/${env}/${env !== "recette" ? "uat/" : ""}tc_lba_31.js`}></script>
     </Head>
   );
 };
