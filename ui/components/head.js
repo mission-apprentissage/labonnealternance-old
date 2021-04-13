@@ -4,6 +4,7 @@ import Fonts from "./fonts";
 import env from "utils/env";
 
 const HeadLaBonneAlternance = (props) => {
+  console.log("env ",env);
   return (
     <Head>
       <title>La Bonne Alternance | Trouvez votre alternance</title>
@@ -41,7 +42,7 @@ const HeadLaBonneAlternance = (props) => {
 
       <script
         async
-        src={`https://cdn.tagcommander.com/5234/${env !== "production" ? "uat/" : ""}tc_lba_31.js`}
+        src={`https://cdn.tagcommander.com/5234/${env !== "recette" ? "uat/" : ""}tc_lba_31.js`}
       ></script>
     </Head>
   );
