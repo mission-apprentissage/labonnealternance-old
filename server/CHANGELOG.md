@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.12.0 [14/04.2021]
+[311] Recherche depuis la carte
+
 ## 1.11.3 [13/04/2021]
 [536] Remplacement gtm par tagcommander
 
