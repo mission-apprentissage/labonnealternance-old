@@ -7,10 +7,19 @@ import { useScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
 import MapSearchButton from "./MapSearchButton";
 import { map, initializeMap, isMapInitialized } from "utils/mapTools";
+import { fetchAddressFromCoordinates } from "services/baseAdresse";
 
-const Map = ({ selectItemOnMap }) => {
+let mapPosition = {
+  lat: null,
+  lon: null,
+  zoom: null,
+};
+
+let shouldHandleMapSearch = true;
+
+const Map = ({ handleSubmit, selectItemOnMap }) => {
   const store = useStore();
-  const { trainings, jobs, shouldMapBeVisible } = useSelector((state) => {
+  const { trainings, jobs, formValues, shouldMapBeVisible } = useSelector((state) => {
     return state.trainings;
   });
   const router = useRouter();
@@ -86,7 +95,7 @@ const Map = ({ selectItemOnMap }) => {
   useEffect(() => {
     if (shouldMapBeInitialized()) {
       setMapInitialized(true);
-      initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap });
+      initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap, onMapHasMoved });
     }
   }, [trainings, jobs]);
 
@@ -95,7 +104,7 @@ const Map = ({ selectItemOnMap }) => {
     if (!mapInitialized && isMapInitialized) {
       setMapInitialized(true);
       setTimeout(() => {
-        initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap });
+        initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap, onMapHasMoved });
       }, 0);
     }
   }, []);
