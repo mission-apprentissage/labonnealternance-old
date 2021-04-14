@@ -66,7 +66,6 @@ const Map = ({ handleSubmit, selectItemOnMap }) => {
   };
 
   const onMapHasMoved = ({ lat, lon, zoom }) => {
-    console.log("map moved : ", lat, lon, zoom);
     mapPosition = {
       lat,
       lon,
