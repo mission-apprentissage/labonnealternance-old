@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useStore, useDispatch, useSelector } from "react-redux";
-import { setSelectedItem } from "../../store/actions";
+import { setSelectedItem } from "store/actions";
 import { currentPage, setCurrentPage } from "utils/currentPage.js";
 import { useScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
-
-import { map, initializeMap, isMapInitialized } from "../../utils/mapTools";
+import MapSearchButton from "./MapSearchButton";
+import { map, initializeMap, isMapInitialized } from "utils/mapTools";
 
 const Map = ({ selectItemOnMap }) => {
   const store = useStore();
@@ -67,6 +67,7 @@ const Map = ({ selectItemOnMap }) => {
   // Warning : mapContainer doit être vide sinon les onclick sur la map ne marcheront pas
   return (
     <>
+      <MapSearchButton />
       <div ref={(el) => (mapContainer.current = el)} className={`mapContainer ${mapInitialized ? "" : "d-none"}`}></div>
       <div className={`dummyMapContainer ${mapInitialized ? "d-none" : ""}`}>
         <div className="c-staticmapframe"></div>
