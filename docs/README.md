@@ -1,7 +1,7 @@
 ---
 description: >-
   La Bonne Alternance est un service qui expose les deux composantes de
-  l'apprentissage : la formation et l'emploi. Ce service expose également les
+  l'alternance : la formation et l'emploi. Ce service expose également les
   entreprises sur l'ensemble du périmètre alternance.
 ---
 
@@ -23,7 +23,7 @@ Ce service est également disponible sous forme de Widget, directement exposable
 
 Actuellement, vous pouvez afficher le widget avec les données entreprises sur toute l'alternance, ou le widget avec les données entreprises et/ou formations sur l'apprentissage \(voir sections "Tester le widget"\).
 
-En tant que jobboard vous pouvez choisir d'y afficher seulement les offres d'emploi en apprentissage et les entreprises susceptibles de recruter en alternance.
+En tant que jobboard vous pouvez choisir d'y afficher seulement les offres d'emploi en alternance et les entreprises susceptibles de recruter en alternance.
 
 En tant qu'OPCO, vous pouvez choisir d'y afficher uniquement les formations et/ou les entreprises des domaines professionnels sur lesquels vous intervenez.
 

@@ -2,7 +2,7 @@
 description: >-
   Sur cette page, vous trouverez la documentation pour intégrer le widget LBA
   sur votre site, permettant de requêter et afficher les formations et les
-  entreprises pour entrer en apprentissage.
+  entreprises pour entrer en alternance.
 ---
 
 # Widget : tester et consulter la documentation
@@ -23,9 +23,9 @@ Ex de valeur pour le paramètre src :
 
 **A / Chemins :**
 
-**/recherche-apprentissage :** pour rechercher en même temps des formations et des emplois en apprentissage
+**/recherche-apprentissage :** pour rechercher en même temps des formations en apprentissage et des emplois en alternance
 
-**/recherche-emploi :** pour rechercher uniquement des emplois en apprentissage
+**/recherche-emploi :** pour rechercher uniquement des emplois en alternance
 
 **/recherche-apprentissage-formation :** pour rechercher uniquement des formations
 
