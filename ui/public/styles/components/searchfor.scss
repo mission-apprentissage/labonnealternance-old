@@ -39,6 +39,7 @@
 .demoPage .floatingButtons {
   display: none;
 }
+
 .demoPage .floatingButtons button {
   cursor: pointer;
   margin-right: 30px;
@@ -53,6 +54,7 @@
 .demoPage .floatingButtons button:focus {
   box-shadow: none;
 }
+
 @media only screen and (max-width: 350px) {
   .demoPage .inactiveXSPane {
     display: none;

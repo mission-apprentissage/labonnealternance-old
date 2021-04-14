@@ -89,3 +89,22 @@ canvas.mapboxgl-canvas:focus {
   color: #000;
   text-decoration: underline;
 }
+
+.c-map-searchButton
+{
+  z-index: 1;
+  position: relative;
+  width: 100%;
+}
+.c-map-searchButton button {
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 14px;
+  color: $gray-700;
+  border-radius: 58px;
+  border: none;
+  padding: 8px 15px;
+  margin: auto;
+  margin-top: 24px;
+  box-shadow: 0px 0px 12px 6px rgba(121, 121, 121, 0.4);
+}
