@@ -2,7 +2,7 @@
 description: >-
   La Bonne Alternance est un service qui expose les deux composantes de
   l'apprentissage : la formation et l'emploi. Ce service expose également les
-  entreprises sur l'ensemble du périmètre Alternance.
+  entreprises sur l'ensemble du périmètre alternance.
 ---
 
 # Présentation
