@@ -87,12 +87,11 @@ const transformPeJobsForIdea = (jobs, radius, lat, long) => {
     for (let i = 0; i < jobs.resultats.length; ++i) {
       let job = transformPeJobForIdea(jobs.resultats[i], lat, long);
 
-      if (!job.place.distance)
-        if (job.place.latitude && job.place.longitude) {
-          if (job.place.distance < getRoundedRadius(radius)) {
-            resultJobs.results.push(job);
-          }
+      if (job.place.latitude && job.place.longitude) {
+        if (job.place.distance < getRoundedRadius(radius)) {
+          resultJobs.results.push(job);
         }
+      }
     }
   }
 
