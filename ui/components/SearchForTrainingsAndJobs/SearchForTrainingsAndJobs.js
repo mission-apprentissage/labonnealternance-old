@@ -315,7 +315,7 @@ const SearchForTrainingsAndJobs = () => {
           />
         </Col>
         <Col className={`p-0 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
-          <Map selectItemOnMap={selectItemOnMap} />
+          <Map handleSubmit={handleSubmit} selectItemOnMap={selectItemOnMap} />
         </Col>
       </Row>
       <MapListSwitchButton

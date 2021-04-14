@@ -29,9 +29,41 @@ const Map = ({ selectItemOnMap }) => {
     }
   };
 
-  const handleSearchClick = () => {
-    console.log("aaa");
-  }
+  const handleSearchClick = async () => {
+    console.log("aaa ", mapPosition, shouldHandleMapSearch);
+
+    if (shouldHandleMapSearch) {
+      shouldHandleMapSearch = false;
+
+      let values = formValues;
+      values.location.value.coordinates = [mapPosition.lon, mapPosition.lat];
+
+      try {
+        // récupération du code insee depuis la base d'adresse
+        const addresses = await fetchAddressFromCoordinates([mapPosition.lon, mapPosition.lat]);
+
+        if (addresses.length) {
+          console.log("addresses : ", addresses[0]);
+          values.location.insee = addresses[0].insee;
+        } else {
+          console.log("aucun lieu trouvé");
+          values.location.insee = null;
+        }
+      } catch (err) {}
+      await handleSubmit(values);
+
+      shouldHandleMapSearch = true;
+    }
+  };
+
+  const onMapHasMoved = ({ lat, lon, zoom }) => {
+    console.log("map moved : ", lat, lon, zoom);
+    mapPosition = {
+      lat,
+      lon,
+      zoom,
+    };
+  };
 
   const shouldMapBeInitialized = () => {
     /*
