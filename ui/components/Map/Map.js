@@ -29,6 +29,10 @@ const Map = ({ selectItemOnMap }) => {
     }
   };
 
+  const handleSearchClick = () => {
+    console.log("aaa");
+  }
+
   const shouldMapBeInitialized = () => {
     /*
     Chargement de la carte si :
@@ -67,7 +71,7 @@ const Map = ({ selectItemOnMap }) => {
   // Warning : mapContainer doit être vide sinon les onclick sur la map ne marcheront pas
   return (
     <>
-      <MapSearchButton />
+      <MapSearchButton handleSearchClick={handleSearchClick} />
       <div ref={(el) => (mapContainer.current = el)} className={`mapContainer ${mapInitialized ? "" : "d-none"}`}></div>
       <div className={`dummyMapContainer ${mapInitialized ? "d-none" : ""}`}>
         <div className="c-staticmapframe"></div>

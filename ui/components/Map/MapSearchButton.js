@@ -2,13 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import refreshSearchOnMap from "public/images/icons/refreshSearchOnMap.svg";
 
-const MapSearchButton = () => {
+const MapSearchButton = ({ handleSearchClick }) => {
   const { hasSearch } = useSelector((state) => state.trainings);
 
   return hasSearch ? (
     <div className="c-map-searchButton">
       <button
-        onClick={console.log("a") /*showResultMap*/}
+        onClick={handleSearchClick}
         title="Lancer une rechercher centrée sur la carte"
         className="d-flex align-items-center"
       >
