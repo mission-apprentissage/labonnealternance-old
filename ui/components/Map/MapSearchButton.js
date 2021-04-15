@@ -21,7 +21,7 @@ const MapSearchButton = ({ handleSearchClick }) => {
         ) : (
           <>
             <img src={lookingGlassOnMap} alt="" />
-            <span className="ml-2">Rechercher des entreprises</span>
+            <span className="ml-2">Lancer une recherche</span>
           </>
         )}
       </button>
