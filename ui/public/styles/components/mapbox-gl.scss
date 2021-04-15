@@ -103,7 +103,11 @@ canvas.mapboxgl-canvas:focus {
   margin: 0 auto;
   left: 0;
   right: 0;
-  top: 4rem
+  top: 4rem;
+
+  @include media-breakpoint-up(md) { 
+    top: 2rem;
+  }
 }
 
 .c-map-searchButton button {
