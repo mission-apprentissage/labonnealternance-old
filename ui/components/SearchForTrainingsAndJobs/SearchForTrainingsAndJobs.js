@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from "react";
 
 import { useRouter } from "next/router";
@@ -119,7 +120,7 @@ const SearchForTrainingsAndJobs = () => {
     return item;
   };
 
-  const handleSearchSubmit = async (values) => {
+  const handleSearchSubmit = async (values,misc) => {
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
 
@@ -142,7 +143,8 @@ const SearchForTrainingsAndJobs = () => {
     }
     dispatch(setIsFormVisible(false));
 
-    pushHistory({ router, scopeContext, display: "list" });
+    if(misc!=="stayOnMap")
+      pushHistory({ router, scopeContext, display: "list" });
   };
 
   const handleItemLoad = async (item) => {
