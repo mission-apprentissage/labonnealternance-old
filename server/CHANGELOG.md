@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.11.3 [15/04/2021]
+[550] Changement de texte RGPD
+
 ## 1.11.3 [13/04/2021]
 [536] Remplacement gtm par tagcommander
 [537] Bordure icône job
