@@ -4,6 +4,7 @@ canvas.mapboxgl-canvas:focus {
 .mapboxgl-popup {
   width: 80%;
   max-width: 300px !important;
+  z-index: 2;
 
   @include media-breakpoint-up(md) { 
     width: 40%;
@@ -97,9 +98,13 @@ canvas.mapboxgl-canvas:focus {
 {
   z-index: 1;
   position: relative;
-  width: 100%;
-  margin-top: 2rem;
+  width: 260px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 2,5rem
 }
+
 .c-map-searchButton button {
   cursor: pointer;
   background-color: #fff;
