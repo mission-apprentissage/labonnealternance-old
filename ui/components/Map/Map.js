@@ -17,7 +17,7 @@ let mapPosition = {
 
 let shouldHandleMapSearch = true;
 
-const Map = ({ handleSubmit, selectItemOnMap }) => {
+const Map = ({ handleSubmit, showSearchForm, selectItemOnMap }) => {
   const store = useStore();
   const { trainings, jobs, formValues, shouldMapBeVisible } = useSelector((state) => {
     return state.trainings;
@@ -39,29 +39,37 @@ const Map = ({ handleSubmit, selectItemOnMap }) => {
   };
 
   const handleSearchClick = async () => {
-    console.log("aaa ", mapPosition, shouldHandleMapSearch);
+    console.log("aaa ", mapPosition, formValues, shouldHandleMapSearch);
 
-    if (shouldHandleMapSearch) {
-      shouldHandleMapSearch = false;
+    if (formValues) {
+      if (shouldHandleMapSearch) {
+        shouldHandleMapSearch = false;
 
-      let values = formValues;
-      values.location.value.coordinates = [mapPosition.lon, mapPosition.lat];
+        let values = formValues;
+        values.location.value.coordinates = [mapPosition.lon, mapPosition.lat];
 
-      try {
-        // récupération du code insee depuis la base d'adresse
-        const addresses = await fetchAddressFromCoordinates([mapPosition.lon, mapPosition.lat]);
+        try {
+          // récupération du code insee depuis la base d'adresse
+          const addresses = await fetchAddressFromCoordinates([mapPosition.lon, mapPosition.lat]);
 
-        if (addresses.length) {
-          console.log("addresses : ", addresses[0]);
-          values.location.insee = addresses[0].insee;
-        } else {
-          console.log("aucun lieu trouvé");
-          values.location.insee = null;
-        }
-      } catch (err) {}
-      await handleSubmit(values);
+          if (addresses.length) {
+            console.log("addresses : ", addresses[0]);
+            values.location.insee = addresses[0].insee;
+          } else {
+            console.log("aucun lieu trouvé");
+            values.location.insee = null;
+          }
+        } catch (err) {}
+        await handleSubmit(values);
 
-      shouldHandleMapSearch = true;
+        shouldHandleMapSearch = true;
+      }
+    } else {
+      // le formulaire n'a pas été renseigné. On ne connait pas le métier
+      // go to form ou focus sur recherche de métier
+
+      console.log("go to form");
+      showSearchForm();
     }
   };
 
