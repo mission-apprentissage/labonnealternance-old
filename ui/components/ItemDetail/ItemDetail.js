@@ -157,7 +157,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
         <div className="c-detail-body">
           {kind === "peJob" && selectedItem?.url ? (
-            <div className="c-detail-description-me">
+            <div className="c-detail-description-me col-12 col-md-5">
               <div className="c-detail-pelink my-3">
                 <a className="btn btn-dark ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
                   Je postule sur Pôle emploi
