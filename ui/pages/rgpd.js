@@ -84,7 +84,7 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
           </p>
 
           <h2 class="h3">Droit des personnes concernées</h2>
-          <p>
+          <div>
             <span className="d-block">Vous disposez des droits suivants concernant vos données à caractère personnel :</span>
             <ul>
               <li>Droit d’information et droit d’accès des données ;</li>
@@ -100,8 +100,62 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
                 <span className="d-block">75987 Paris cedex 20</span>
               </li>
             </ul>
+            <p>En raison de l’obligation de sécurité et de confidentialité dans le traitement des données à caractère personnel qui incombe au responsable de traitement, votre demande ne sera traitée que si vous apportez la preuve de votre identité.</p>
+            <p>Pour vous aider dans votre démarche, vous trouverez ici <a href="https://www.cnil.fr/fr/modele/courrier/exercer-son-droit-dacces">https://www.cnil.fr/fr/modele/courrier/exercer-son-droit-dacces</a>, un modèle de courrier élaboré par la Cnil.</p>
+            <p>Nous nous engageons à ne jamais céder ces informations à des tiers.</p>
+          </div>
+
+          <h2 class="h3">Droit des personnes concernées</h2>
+          <p>
+            Le responsable de traitement s’engage à répondre dans un délai raisonnable qui ne saurait dépasser 1 mois à compter de la réception de votre demande.
           </p>
 
+          <h2 class="h3">Sous-traitants</h2>
+          <p>Certaines des données sont envoyées à des sous-traitants pour réaliser certaines missions. Le responsable de traitement s’est assuré de la mise en œuvre par ses sous-traitants de garanties adéquates et du respect de conditions strictes de confidentialité, d’usage et de protection des données.</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Partenaire</th>
+                <th>Pays destinataire</th>
+                <th>Traitement réalisé</th>
+                <th>Garanties</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>OVH</td>
+                <td>France</td>
+                <td>Hébergement du site</td>
+                <td><a style={{wordBreak: "break-all"}} href="https://www.ovh.com/fr/protection-donnees-personnelles/">https://www.ovh.com/fr/protection-donnees-personnelles/</a></td>
+              </tr>
+              <tr>
+                <td>Google Analytics</td>
+                <td>USA</td>
+                <td>Analyses comportementales et statistiques web</td>
+                <td><a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
+              </tr>
+              <tr>
+                <td>Google Tag Manager</td>
+                <td>USA</td>
+                <td>Gestion de balises</td>
+                <td><a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
+              </tr>
+              <tr>
+                <td>Google Optimize</td>
+                <td>USA</td>
+                <td>Optimisation de site web</td>
+                <td>
+                  <a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Hotjar</td>
+                <td>USA</td>
+                <td>Analyses comportementales et statistiques web</td>
+                <td><a style={{ wordBreak: "break-all" }} href="https://www.hotjar.com/legal/policies/privacy/">https://www.hotjar.com/legal/policies/privacy/</a></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
