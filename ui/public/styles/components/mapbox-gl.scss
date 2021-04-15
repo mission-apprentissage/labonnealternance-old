@@ -97,12 +97,12 @@ canvas.mapboxgl-canvas:focus {
 .c-map-searchButton
 {
   z-index: 1;
-  position: relative;
+  position: absolute;
   width: 260px;
   margin: 0 auto;
   left: 0;
   right: 0;
-  top: 2,5rem
+  top: 2.5rem
 }
 
 .c-map-searchButton button {
