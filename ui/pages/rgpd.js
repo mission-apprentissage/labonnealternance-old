@@ -15,41 +15,22 @@ const RGPD = () => (
         <div className="col-12 col-md-5">
           <h1>
             <span className="d-block c-page-title is-color-2">Politique de confidentialité</span>
+            <span className="d-block c-page-title is-color-2">La Bonne Alternance</span>
           </h1>
           <hr className="c-page-title-separator" align="left" />
         </div>
         <div className="col-12 col-md-7">
-          <h3>Politique de confidentialité et utilisation de vos données personnelles</h3>
-          <p>La Bonne Alternance dépose des cookies nécessaires au bon fonctionnement du site:</p>
-
-          <ul>
-            <li>
-              Des cookies anonymes de mesure d'usage via le site Google Analytics. Comme des informations sur votre
-              support informatique (catégorie d’appareil, système d’exploitation, navigateur), ou votre navigation
-              (méthode d’accès à notre site, durée de votre visite).
-              <br />
-              Ces cookies nous permettent de mesurer les usages du site La Bonne Alternance, afin de l’améliorer.
-            </li>
-            <li>
-              Des cookies anonymes liés à la réalisation d’enquêtes et analyses via l’outil Hotjar.
-              <br />
-              Ces cookies nous permettent d’identifier les usagers ayant déjà répondu à une enquête, afin de ne plus les
-              solliciter sur le sujet.
-            </li>
-
-            <li>
-              Des cookies spécifiques à l’outil La Bonne Alternance.
-              <br />
-              Ces cookies permettent l'enregistrement de vos préférences ou de l'état de votre interface
-            </li>
-          </ul>
-
+          <h2 class="h3">Traitement des données à caractère personnel</h2>
           <p>
-            Toutes ces informations ont pour but d'assurer le bon fonctionnement du site et nous permettent également
-            d'améliorer l'intérêt et l'ergonomie de nos services.
+            <span className="d-block">Le présent site La Bonne Alternance est à l’initiative de Pôle emploi, qui est responsable de traitement :</span>
+            <span className="d-block">Pôle emploi</span>
+            <span className="d-block">1-5 rue du docteur Gley</span>
+            <span className="d-block">75987 Paris cedex 20</span>
           </p>
-
-          <p>Notre service s’engage à ne pas communiquer vos données personnelles à des organismes tiers.</p>
+          <h2 class="h3">Finalité</h2>
+          <p>
+            <span className="d-block">Le site « La Bonne Alternance » vise à faciliter les entrées en alternance des usagers en informant sur les formations en apprentissage ainsi que les offres d’emplois et entreprises auprès desquelles adresser une candidature. Le traitement de données a donc pour finalité de fournir, sur requête de l’utilisateur, des résultats de recherche pertinents correspondant aux attentes de l’usager.</span>
+          </p>
         </div>
       </div>
     </div>
