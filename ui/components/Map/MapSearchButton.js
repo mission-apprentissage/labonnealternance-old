@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import refreshSearchOnMap from "public/images/icons/refreshSearchOnMap.svg";
+import lookingGlassOnMap from "public/images/glass.svg";
 
 const MapSearchButton = ({ handleSearchClick }) => {
   const { hasSearch, formValues } = useSelector((state) => state.trainings);
@@ -14,12 +15,12 @@ const MapSearchButton = ({ handleSearchClick }) => {
       >
         {formValues ? (
           <>
-            <img src={refreshSearchOnMap} />
+            <img src={refreshSearchOnMap} alt="" />
             <span className="ml-2">Rechercher dans cette zone</span>
           </>
         ) : (
           <>
-            <img src={refreshSearchOnMap} />
+            <img src={lookingGlassOnMap} alt="" />
             <span className="ml-2">Rechercher des entreprises</span>
           </>
         )}
