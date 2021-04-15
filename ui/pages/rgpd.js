@@ -46,6 +46,62 @@ const RGPD = () => (
             </ul>
           </p>
           
+          <h2 class="h3">Base juridique du traitement de données</h2>
+          <h3 class="h4">a. Données de connexion</h3>
+          <p>
+            <span className="d-block">Ce traitement est nécessaire au respect d'une obligation légale à laquelle le responsable de traitement est soumis au sens de l'article 6-c du Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016 relatif à la protection des personnes physiques à l'égard du traitement des données à caractère personnel et à la libre circulation de ces données.</span>
+          </p>
+          <p>
+            <span className="d-block">L'obligation légale est posée par la loi LCEN n° 2004-575 du 21 juin 2004 pour la confiance
+dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du 25 février 2011.</span>
+          </p>
+          <h3 class="h4">b. Cookies</h3>
+          <p>
+            <span className="d-block">En application de l’article 5(3) de la directive 2002/58/CE modifiée concernant le traitement des données à caractère personnel et la protection de la vie privée dans le secteur des communications électroniques, transposée à l’article 82 de la loi n°78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, les traceurs ou cookies suivent deux régimes distincts.</span>
+          </p>
+          <p>
+            <span className="d-block">Les cookies strictement nécessaires au service ou ayant pour finalité exclusive de faciliter la communication par voie électronique sont dispensés de consentement préalable au titre de l’article 82 de la loi n°78-17 du 6 janvier 1978.</span>
+          </p>
+          <p>
+            <span className="d-block">Les cookies n’étant pas strictement nécessaires au service ou n’ayant pas pour finalité exclusive de faciliter la communication par voie électronique doivent être consenti par l’utilisateur.</span>
+          </p>
+          <p>
+            <span className="d-block">Ce consentement de la personne concernée pour une ou plusieurs finalités spécifiques constitue une base légale au sens du RGPD et doit être entendu au sens de l'article 6-a du Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016 relatif à la protection des personnes physiques à l'égard du traitement des données à caractère personnel et à la libre circulation de ces données.</span>
+          </p>
+          <h3 class="h4">c. Toutes les autres données</h3>
+          <p>
+            <span className="d-block">Les autres données sont traitées sur la base de l’exécution d’une mission d’intérêt public, en vertu de l’article L.5312-1 du Code du Travail qui consiste notamment à mettre en relation l’offre et la demande d’emploi.</span>
+          </p>
+
+          <h2 class="h3">Durée de conservation</h2>
+          <p>
+            <span className="d-block">Les données à caractère personnel sont conservées :</span>
+            <ul>
+              <li>Données de connexion : 12 mois (article 3 du Décret n° 2011-219 du 25 février 2011).</li>
+              <li>Cookies : 13 mois maximum, ou jusqu’au retrait du consentement de la personne.</li>
+              <li>Toutes les autres données : 2 ans</li>
+            </ul>
+          </p>
+
+          <h2 class="h3">Droit des personnes concernées</h2>
+          <p>
+            <span className="d-block">Vous disposez des droits suivants concernant vos données à caractère personnel :</span>
+            <ul>
+              <li>Droit d’information et droit d’accès des données ;</li>
+              <li>Droit de rectification et le cas échéant de suppression des données.</li>
+            </ul>
+            <span className="d-block">Pour les exercer, faites-nous parvenir une demande en précisant la date et l’heure précise de la requête - ces éléments sont indispensables pour nous permettre de retrouver votre recherche :</span>
+            <ul>
+              <li>par voie électronique à l’adresse suivante : dpo@apprentissage.beta.gouv.fr</li>
+              <li>
+                <span className="d-block">par voie postale : Fabrique numérique des ministères sociaux</span>
+                <span className="d-block">Pôle emploi</span>
+                <span className="d-block">1-5 rue du docteur Gley</span>
+                <span className="d-block">75987 Paris cedex 20</span>
+              </li>
+            </ul>
+          </p>
+
         </div>
       </div>
     </div>
