@@ -53,10 +53,8 @@ const Map = ({ handleSubmit, showSearchForm, selectItemOnMap }) => {
           const addresses = await fetchAddressFromCoordinates([mapPosition.lon, mapPosition.lat]);
 
           if (addresses.length) {
-            console.log("addresses : ", addresses[0]);
             values.location.insee = addresses[0].insee;
           } else {
-            console.log("aucun lieu trouvé");
             values.location.insee = null;
           }
         } catch (err) {}
@@ -66,9 +64,6 @@ const Map = ({ handleSubmit, showSearchForm, selectItemOnMap }) => {
       }
     } else {
       // le formulaire n'a pas été renseigné. On ne connait pas le métier
-      // go to form ou focus sur recherche de métier
-
-      console.log("go to form");
       showSearchForm();
     }
   };
