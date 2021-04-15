@@ -156,6 +156,69 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
               </tr>
             </tbody>
           </table>
+          <h2 class="h3">Sécurité et confidentialité des données</h2>
+          <p>Le responsable de traitements ne conserve pas de données à caractère personnel sur le réseau. Elles sont conservées sur la machine locale de l’utilisateur. Dès lors il en a la maîtrise, et est le seul à même d’en garantir la sécurité et confidentialité.</p>
+
+          <h2 class="h3">Utilisation de témoins de connexion (« cookies »)</h2>
+          <p>Un cookie est un fichier déposé sur votre terminal lors de la visite d’un site. Il a pour but de collecter des informations relatives à votre navigation et de vous adresser des services adaptés à votre terminal (ordinateur, mobile ou tablette).</p>
+          <p>Nous collectons donc des données par l’intermédiaire de dispositifs appelés “cookies” permettant d’établir des mesures statistiques.</p>
+          <p>Le site dépose des cookies de mesure d’audience (nombre de visites, pages consultées), respectant les conditions d’exemption du consentement de l’internaute définies par la recommandation « Cookies » de la Commission nationale informatique et libertés (CNIL), et notamment les cookies strictement nécessaires au bon fonctionnement du site. Nous utilisons également des cookies qui vont être soumis à votre consentement :</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Partenaire</th>
+                <th>Pays destinataire</th>
+                <th>Traitement réalisé</th>
+                <th>Garanties</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Google Analytics</td>
+                <td>USA</td>
+                <td>Analyses comportementales et statistiques web</td>
+                <td><a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
+              </tr>
+              <tr>
+                <td>Google Tag Manager</td>
+                <td>USA</td>
+                <td>Gestion de balises</td>
+                <td><a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
+              </tr>
+              <tr>
+                <td>Google Optimize</td>
+                <td>USA</td>
+                <td>Optimisation de site web</td>
+                <td>
+                  <a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Hotjar</td>
+                <td>USA</td>
+                <td>Analyses comportementales et statistiques web</td>
+                <td><a style={{ wordBreak: "break-all" }} href="https://www.hotjar.com/legal/policies/privacy/">https://www.hotjar.com/legal/policies/privacy/</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2 class="h3">[BOUTON MODIFIER LES REGLAGES]</h2>
+          <p>Le responsable de traitements ne conserve pas de données à caractère personnel sur le réseau. Elles sont conservées sur la machine locale de l’utilisateur. Dès lors il en a la maîtrise, et est le seul à même d’en garantir la sécurité et confidentialité.</p>
+          <p>À tout moment, vous pouvez refuser l’utilisation des cookies et désactiver le dépôt sur votre ordinateur ou en utilisant la fonction dédiée de votre navigateur en cliquant sur les liens suivants :</p>
+          <ul>
+            <li>Google Chrome : <a href="https://support.google.com/chrome/answer/95647?hl=fr">https://support.google.com/chrome/answer/95647?hl=fr</a></li>
+            <li>Internet Explorer : <a href="https://support.microsoft.com/fr-fr/help/17442">https://support.microsoft.com/fr-fr/help/17442</a> </li>
+            <li>Mozilla Firefox : <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies">https://support.mozilla.org/fr/kb/activer-desactiver-cookies</a></li>
+            <li>Safari : <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac">https://support.apple.com/fr-fr/guide/safari/sfri11471/mac</a></li>
+          </ul>
+          <p>Pour aller plus loin, vous pouvez consulter les fiches proposées par la Commission Nationale de l’Informatique et des Libertés (CNIL) :</p>
+          <ul>
+            <li><a href="https://www.cnil.fr/fr/cookies-et-traceurs-que-dit-la-loi">Cookies & traceurs : que dit la loi ?</a></li>
+            <li><a href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser">Cookies : les outils pour les maîtriser</a></li>
+          </ul>
+          <div>
+            <a href=""></a>
+          </div>
         </div>
       </div>
     </div>
