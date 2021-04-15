@@ -216,9 +216,6 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
             <li><a href="https://www.cnil.fr/fr/cookies-et-traceurs-que-dit-la-loi">Cookies & traceurs : que dit la loi ?</a></li>
             <li><a href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser">Cookies : les outils pour les maîtriser</a></li>
           </ul>
-          <div>
-            <a href=""></a>
-          </div>
         </div>
       </div>
     </div>
