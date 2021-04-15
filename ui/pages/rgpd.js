@@ -92,7 +92,7 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
             </ul>
             <span className="d-block">Pour les exercer, faites-nous parvenir une demande en précisant la date et l’heure précise de la requête - ces éléments sont indispensables pour nous permettre de retrouver votre recherche :</span>
             <ul>
-              <li>par voie électronique à l’adresse suivante : dpo@apprentissage.beta.gouv.fr</li>
+              <li>par voie électronique à l’adresse suivante : <a target="_blank" rel="noopener noreferrer" href="mailto:dpo@apprentissage.beta.gouv.fr">dpo@apprentissage.beta.gouv.fr</a></li>
               <li>
                 <span className="d-block">par voie postale : Fabrique numérique des ministères sociaux</span>
                 <span className="d-block">Pôle emploi</span>
@@ -101,7 +101,7 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
               </li>
             </ul>
             <p>En raison de l’obligation de sécurité et de confidentialité dans le traitement des données à caractère personnel qui incombe au responsable de traitement, votre demande ne sera traitée que si vous apportez la preuve de votre identité.</p>
-            <p>Pour vous aider dans votre démarche, vous trouverez ici <a href="https://www.cnil.fr/fr/modele/courrier/exercer-son-droit-dacces">https://www.cnil.fr/fr/modele/courrier/exercer-son-droit-dacces</a>, un modèle de courrier élaboré par la Cnil.</p>
+            <p>Pour vous aider dans votre démarche, vous trouverez ici <a target="_blank" rel="noopener noreferrer" href="https://www.cnil.fr/fr/modele/courrier/exercer-son-droit-dacces">https://www.cnil.fr/fr/modele/courrier/exercer-son-droit-dacces</a>, un modèle de courrier élaboré par la Cnil.</p>
             <p>Nous nous engageons à ne jamais céder ces informations à des tiers.</p>
           </div>
 
@@ -126,33 +126,33 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
                 <td>OVH</td>
                 <td>France</td>
                 <td>Hébergement du site</td>
-                <td><a style={{wordBreak: "break-all"}} href="https://www.ovh.com/fr/protection-donnees-personnelles/">https://www.ovh.com/fr/protection-donnees-personnelles/</a></td>
+                <td><a style={{wordBreak: "break-all"}} target="_blank" rel="noopener noreferrer" href="https://www.ovh.com/fr/protection-donnees-personnelles/">https://www.ovh.com/fr/protection-donnees-personnelles/</a></td>
               </tr>
               <tr>
                 <td>Google Analytics</td>
                 <td>USA</td>
                 <td>Analyses comportementales et statistiques web</td>
-                <td><a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
+                <td><a style={{ wordBreak: "break-all" }} target="_blank" rel="noopener noreferrer" href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
               </tr>
               <tr>
                 <td>Google Tag Manager</td>
                 <td>USA</td>
                 <td>Gestion de balises</td>
-                <td><a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
+                <td><a style={{ wordBreak: "break-all" }} target="_blank" rel="noopener noreferrer" href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
               </tr>
               <tr>
                 <td>Google Optimize</td>
                 <td>USA</td>
                 <td>Optimisation de site web</td>
                 <td>
-                  <a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a>
+                  <a style={{ wordBreak: "break-all" }} target="_blank" rel="noopener noreferrer" href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a>
                 </td>
               </tr>
               <tr>
                 <td>Hotjar</td>
                 <td>USA</td>
                 <td>Analyses comportementales et statistiques web</td>
-                <td><a style={{ wordBreak: "break-all" }} href="https://www.hotjar.com/legal/policies/privacy/">https://www.hotjar.com/legal/policies/privacy/</a></td>
+                <td><a style={{ wordBreak: "break-all" }} target="_blank" rel="noopener noreferrer" href="https://www.hotjar.com/legal/policies/privacy/">https://www.hotjar.com/legal/policies/privacy/</a></td>
               </tr>
             </tbody>
           </table>
@@ -177,27 +177,27 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
                 <td>Google Analytics</td>
                 <td>USA</td>
                 <td>Analyses comportementales et statistiques web</td>
-                <td><a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
+                <td><a style={{ wordBreak: "break-all" }} target="_blank" rel="noopener noreferrer" href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
               </tr>
               <tr>
                 <td>Google Tag Manager</td>
                 <td>USA</td>
                 <td>Gestion de balises</td>
-                <td><a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
+                <td><a style={{ wordBreak: "break-all" }} target="_blank" rel="noopener noreferrer" href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a></td>
               </tr>
               <tr>
                 <td>Google Optimize</td>
                 <td>USA</td>
                 <td>Optimisation de site web</td>
                 <td>
-                  <a style={{ wordBreak: "break-all" }} href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a>
+                  <a style={{ wordBreak: "break-all" }} target="_blank" rel="noopener noreferrer" href="https://policies.google.com/privacy?hl=fr">https://policies.google.com/privacy?hl=fr</a>
                 </td>
               </tr>
               <tr>
                 <td>Hotjar</td>
                 <td>USA</td>
                 <td>Analyses comportementales et statistiques web</td>
-                <td><a style={{ wordBreak: "break-all" }} href="https://www.hotjar.com/legal/policies/privacy/">https://www.hotjar.com/legal/policies/privacy/</a></td>
+                <td><a style={{ wordBreak: "break-all" }} target="_blank" rel="noopener noreferrer" href="https://www.hotjar.com/legal/policies/privacy/">https://www.hotjar.com/legal/policies/privacy/</a></td>
               </tr>
             </tbody>
           </table>
@@ -206,15 +206,15 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
           <p>Le responsable de traitements ne conserve pas de données à caractère personnel sur le réseau. Elles sont conservées sur la machine locale de l’utilisateur. Dès lors il en a la maîtrise, et est le seul à même d’en garantir la sécurité et confidentialité.</p>
           <p>À tout moment, vous pouvez refuser l’utilisation des cookies et désactiver le dépôt sur votre ordinateur ou en utilisant la fonction dédiée de votre navigateur en cliquant sur les liens suivants :</p>
           <ul>
-            <li>Google Chrome : <a href="https://support.google.com/chrome/answer/95647?hl=fr">https://support.google.com/chrome/answer/95647?hl=fr</a></li>
-            <li>Internet Explorer : <a href="https://support.microsoft.com/fr-fr/help/17442">https://support.microsoft.com/fr-fr/help/17442</a> </li>
-            <li>Mozilla Firefox : <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies">https://support.mozilla.org/fr/kb/activer-desactiver-cookies</a></li>
-            <li>Safari : <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac">https://support.apple.com/fr-fr/guide/safari/sfri11471/mac</a></li>
+            <li>Google Chrome : <a target="_blank" rel="noopener noreferrer" href="https://support.google.com/chrome/answer/95647?hl=fr">https://support.google.com/chrome/answer/95647?hl=fr</a></li>
+            <li>Internet Explorer : <a target="_blank" rel="noopener noreferrer" href="https://support.microsoft.com/fr-fr/help/17442">https://support.microsoft.com/fr-fr/help/17442</a> </li>
+            <li>Mozilla Firefox : <a target="_blank" rel="noopener noreferrer" href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies">https://support.mozilla.org/fr/kb/activer-desactiver-cookies</a></li>
+            <li>Safari : <a target="_blank" rel="noopener noreferrer" href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac">https://support.apple.com/fr-fr/guide/safari/sfri11471/mac</a></li>
           </ul>
           <p>Pour aller plus loin, vous pouvez consulter les fiches proposées par la Commission Nationale de l’Informatique et des Libertés (CNIL) :</p>
           <ul>
-            <li><a href="https://www.cnil.fr/fr/cookies-et-traceurs-que-dit-la-loi">Cookies & traceurs : que dit la loi ?</a></li>
-            <li><a href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser">Cookies : les outils pour les maîtriser</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.cnil.fr/fr/cookies-et-traceurs-que-dit-la-loi">Cookies & traceurs : que dit la loi ?</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser">Cookies : les outils pour les maîtriser</a></li>
           </ul>
         </div>
       </div>
