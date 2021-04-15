@@ -119,7 +119,7 @@ const SearchForTrainingsAndJobs = () => {
     return item;
   };
 
-  const handleSubmit = async (values) => {
+  const handleSearchSubmit = async (values) => {
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
 
@@ -283,11 +283,11 @@ const SearchForTrainingsAndJobs = () => {
   return (
     <div className="page demoPage c-searchfor">
       <InitWidgetSearchParameters
-        handleSubmit={handleSubmit}
+        handleSearchSubmit={handleSearchSubmit}
         handleItemLoad={handleItemLoad}
         setIsLoading={setIsLoading}
       />
-      <WidgetHeader handleSubmit={handleSubmit} />
+      <WidgetHeader handleSearchSubmit={handleSearchSubmit} />
       <Row className={`c-searchfor__row is-visible-${isFormVisible} is-welcome-${shouldShowWelcomeMessage} `}>
         <Col
           className={`choiceCol-container leftShadow ${
@@ -298,7 +298,7 @@ const SearchForTrainingsAndJobs = () => {
         >
           <ChoiceColumn
             shouldShowWelcomeMessage={shouldShowWelcomeMessage}
-            handleSubmit={handleSubmit}
+            handleSearchSubmit={handleSearchSubmit}
             showResultList={showResultList}
             showSearchForm={showSearchForm}
             unSelectItem={unSelectItem}
@@ -315,7 +315,11 @@ const SearchForTrainingsAndJobs = () => {
           />
         </Col>
         <Col className={`p-0 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
-          <Map handleSubmit={handleSubmit} showSearchForm={showSearchForm} selectItemOnMap={selectItemOnMap} />
+          <Map
+            handleSearchSubmit={handleSearchSubmit}
+            showSearchForm={showSearchForm}
+            selectItemOnMap={selectItemOnMap}
+          />
         </Col>
       </Row>
       <MapListSwitchButton

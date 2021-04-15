@@ -17,7 +17,7 @@ let mapPosition = {
 
 let shouldHandleMapSearch = true;
 
-const Map = ({ handleSubmit, showSearchForm, selectItemOnMap }) => {
+const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   const store = useStore();
   const { trainings, jobs, formValues, shouldMapBeVisible } = useSelector((state) => {
     return state.trainings;
@@ -58,7 +58,7 @@ const Map = ({ handleSubmit, showSearchForm, selectItemOnMap }) => {
             values.location.insee = null;
           }
         } catch (err) {}
-        await handleSubmit(values);
+        await handleSearchSubmit(values);
 
         shouldHandleMapSearch = true;
       }
