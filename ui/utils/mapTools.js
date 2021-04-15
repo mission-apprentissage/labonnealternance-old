@@ -164,7 +164,7 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
   });
 
   const nav = new mapboxgl.NavigationControl({ showCompass: false, visualizePitch: false });
-  map.addControl(nav, "top-right");
+  map.addControl(nav, "bottom-right");
 };
 
 const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem) => {

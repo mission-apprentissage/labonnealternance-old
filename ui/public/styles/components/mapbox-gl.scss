@@ -67,10 +67,13 @@ canvas.mapboxgl-canvas:focus {
 .mapboxgl-popup-content .knowMore button:hover {
   color: #000 !important;
 }
-.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
-  margin: 24px 38px 0 0;
-}
+.mapboxgl-ctrl-bottom-right .mapboxgl-ctrl {
+  margin: 0 18px 2rem 0;
 
+  @include media-breakpoint-up(md) { 
+    margin: 0 38px 2rem 0;
+  }
+}
 
 .c-mapboxpopup--link
 {
@@ -95,6 +98,7 @@ canvas.mapboxgl-canvas:focus {
   z-index: 1;
   position: relative;
   width: 100%;
+  margin-top: 2rem;
 }
 .c-map-searchButton button {
   cursor: pointer;
@@ -105,6 +109,5 @@ canvas.mapboxgl-canvas:focus {
   border: none;
   padding: 8px 15px;
   margin: auto;
-  margin-top: 24px;
   box-shadow: 0px 0px 12px 6px rgba(121, 121, 121, 0.4);
 }
