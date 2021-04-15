@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ## 1.11.4 [15/04/2021]
 [550] Changement de texte RGPD
 
