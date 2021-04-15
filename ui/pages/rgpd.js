@@ -105,7 +105,7 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
             <p>Nous nous engageons à ne jamais céder ces informations à des tiers.</p>
           </div>
 
-          <h2 class="h3">Droit des personnes concernées</h2>
+          <h2 class="h3">Délais de réponse</h2>
           <p>
             Le responsable de traitement s’engage à répondre dans un délai raisonnable qui ne saurait dépasser 1 mois à compter de la réception de votre demande.
           </p>
@@ -202,7 +202,7 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
             </tbody>
           </table>
 
-          <h2 class="h3">[BOUTON MODIFIER LES REGLAGES]</h2>
+          <h2 class="h3">Bouton "modifier les réglages"</h2>
           <p>Le responsable de traitements ne conserve pas de données à caractère personnel sur le réseau. Elles sont conservées sur la machine locale de l’utilisateur. Dès lors il en a la maîtrise, et est le seul à même d’en garantir la sécurité et confidentialité.</p>
           <p>À tout moment, vous pouvez refuser l’utilisation des cookies et désactiver le dépôt sur votre ordinateur ou en utilisant la fonction dédiée de votre navigateur en cliquant sur les liens suivants :</p>
           <ul>
