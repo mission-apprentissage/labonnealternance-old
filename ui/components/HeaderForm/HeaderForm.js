@@ -51,7 +51,7 @@ const HeaderForm = ({ handleSearchSubmit }) => {
                 onInputValueChangeFunction={partialRight(domainChanged, setDomainError)}
                 previouslySelectedItem={formValues?.job ?? null}
                 name="jobField"
-                placeholder="ex: plomberie"
+                placeholder="Ex : boulangerie"
               />
             </div>
             <div className="ml-3">

@@ -62,7 +62,7 @@ const SearchForm = (props) => {
                           onInputValueChangeFunction={partialRight(domainChanged, setDomainError)}
                           previouslySelectedItem={formValues?.job ?? null}
                           name="jobField"
-                          placeholder="ex: plomberie"
+                          placeholder="Ex : boulangerie"
                         />
                         <ErrorMessage name="job" className="errorField" component="div" />
                       </div>
@@ -83,7 +83,7 @@ const SearchForm = (props) => {
                     previouslySelectedItem={formValues?.location ?? null}
                     scrollParentId="choiceColumn"
                     name="placeField"
-                    placeholder="Adresse ou ville ou code postal"
+                    placeholder="Adresse, ville ou code postal"
                   />
                   <ErrorMessage name="location" className="errorField" component="div" />
                 </div>

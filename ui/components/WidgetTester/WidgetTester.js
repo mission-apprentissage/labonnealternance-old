@@ -181,7 +181,7 @@ const WidgetTester = () => {
                       compareItemFunction={compareAutoCompleteValues}
                       onInputValueChangeFunction={fetchRomes}
                       name="jobField"
-                      placeholder="ex: plomberie"
+                      placeholder="Ex : boulangerie"
                     />
                   </div>
                   {showSelectedRomes()}
@@ -203,7 +203,7 @@ const WidgetTester = () => {
                       onInputValueChangeFunction={fetchAddresses}
                       scrollParentId="choiceColumn"
                       name="placeField"
-                      placeholder="Adresse ou ville ou code postal"
+                      placeholder="Adresse, ville ou code postal"
                     />
                   </div>
                   {showSearchCenter()}
