@@ -6,4 +6,11 @@
 .c-widgetheader {
   z-index: 9;
   box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.21);
+  display: none;
+  @include media-breakpoint-up(md) { 
+    display: block;
+  }
+}
+.c-widgetheader.c-widgetheader--detail {
+  display: none;
 }
