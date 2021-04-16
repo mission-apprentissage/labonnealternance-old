@@ -120,7 +120,7 @@ const SearchForTrainingsAndJobs = () => {
     return item;
   };
 
-  const handleSearchSubmit = async (values,misc) => {
+  const handleSearchSubmit = async (values, misc) => {
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
 

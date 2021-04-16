@@ -39,8 +39,6 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   };
 
   const handleSearchClick = async () => {
-    console.log("aaa ", mapPosition, formValues, shouldHandleMapSearch);
-
     if (formValues) {
       if (shouldHandleMapSearch) {
         shouldHandleMapSearch = false;
