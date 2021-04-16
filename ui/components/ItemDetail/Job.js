@@ -12,6 +12,8 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
 
   const currentSearchRadius = formValues?.radius || 30;
 
+  const kind = job?.ideaType;
+
   const onSelectItem = () => {
     handleSelectItem(job);
   };
@@ -55,8 +57,8 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
   };
 
   return (
-    <div className="resultCard gtmSavoirPlus gtmMatcha gtmListe" onClick={onSelectItem}>
-      <div className="c-media" id={`${job.ideaType}${job.job.id}`}>
+    <div className={`resultCard gtmSavoirPlus ${kind === "peJob" ? "gtmPeJob" : ""} ${kind === "matcha" ? "gtmMatcha" : ""} gtmListe`} onClick={onSelectItem}>
+      <div className="c-media" id={`${kind}${job.job.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
         </div>
