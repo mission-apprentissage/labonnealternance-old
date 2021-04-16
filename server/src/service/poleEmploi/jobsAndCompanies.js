@@ -142,20 +142,21 @@ const deduplicateCompanies = (lbaCompanies, lbbCompanies) => {
 
 const getWeightedCompanies = (peJobs, lbaCompanies, lbbCompanies) => {
   //minimum 50 résultats
-  let inRadiusJobs = 0;
+  //let inRadiusJobs = 0;
   let inRadiusLbaCompanies = 0;
   let inRadiusLbbCompanies = 0;
   const minResult = 100;
-  let newPeJobResult = [];
+  //let newPeJobResult = [];
   let newLbaCompanyResult = [];
   let newLbbCompanyResult = [];
 
   //console.log("lbbCompanies : ",lbbCompanies);
 
+  /*
   if (peJobs && peJobs.results && peJobs.inRadiusItems) {
     newPeJobResult = peJobs.results.slice(0, peJobs.inRadiusItems);
     inRadiusJobs = peJobs.inRadiusItems;
-  }
+  }*/
 
   if (lbaCompanies && lbaCompanies.results && lbaCompanies.inRadiusItems) {
     newLbaCompanyResult = lbaCompanies.results.slice(0, lbaCompanies.inRadiusItems);
@@ -167,20 +168,20 @@ const getWeightedCompanies = (peJobs, lbaCompanies, lbbCompanies) => {
     inRadiusLbbCompanies += lbbCompanies.inRadiusItems;
   }
 
-  if (inRadiusLbaCompanies + inRadiusJobs < minResult) {
+  if (inRadiusLbaCompanies /*+ inRadiusJobs*/ < minResult) {
     let addedItem = 0;
-    let jobCursor = inRadiusJobs;
+    //let jobCursor = inRadiusJobs;
     let lbaCompanyCursor = inRadiusLbaCompanies;
     let lbbCompanyCursor = inRadiusLbbCompanies;
-    let nextJob = peJobs ? getNextItem(peJobs.results, jobCursor) : null;
+    //let nextJob = peJobs ? getNextItem(peJobs.results, jobCursor) : null;
     let nextLbaCompany = lbaCompanies ? getNextItem(lbaCompanies.results, lbaCompanyCursor) : null;
     let nextLbbCompany = lbbCompanies ? getNextItem(lbbCompanies.results, lbbCompanyCursor) : null;
 
     while (
-      inRadiusLbaCompanies + inRadiusLbbCompanies + inRadiusJobs + addedItem < minResult &&
-      (nextJob || nextLbaCompany || nextLbbCompany)
+      inRadiusLbaCompanies + inRadiusLbbCompanies /*+ inRadiusJobs*/ + addedItem < minResult &&
+      /*nextJob ||*/ (nextLbaCompany || nextLbbCompany)
     ) {
-      let maxWeightedItem = getMaxWeightedItem(nextJob, nextLbaCompany, nextLbbCompany);
+      let maxWeightedItem = getMaxWeightedItem(/*nextJob,*/ nextLbaCompany, nextLbbCompany);
 
       switch (maxWeightedItem.ideaType) {
         case "lba": {
@@ -195,12 +196,12 @@ const getWeightedCompanies = (peJobs, lbaCompanies, lbbCompanies) => {
           nextLbbCompany = getNextItem(lbbCompanies.results, lbbCompanyCursor);
           break;
         }
-        case "peJob": {
+        /*case "peJob": {
           newPeJobResult.push(nextJob);
           jobCursor++;
           nextJob = getNextItem(peJobs.results, jobCursor);
           break;
-        }
+        }*/
         default:
           break;
       }
@@ -209,13 +210,13 @@ const getWeightedCompanies = (peJobs, lbaCompanies, lbbCompanies) => {
     }
   }
 
-  if (peJobs) peJobs.results = newPeJobResult;
+  //if (peJobs) peJobs.results = newPeJobResult;
   if (lbaCompanies) lbaCompanies.results = newLbaCompanyResult;
   if (lbbCompanies) lbbCompanies.results = newLbbCompanyResult;
 };
 
-const getMaxWeightedItem = (item1, item2, item3) => {
-  let set = [item1, item2, item3];
+const getMaxWeightedItem = (/*item1,*/ item2, item3) => {
+  let set = [/*item1,*/ item2, item3];
 
   set.sort((a, b) => {
     if (a && (!b || a.weight >= b.weight)) {

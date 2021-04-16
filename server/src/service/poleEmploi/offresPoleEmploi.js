@@ -36,7 +36,6 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius }) 
         if (jobs[j].results) {
           // si aucune erreur sur le premier bloc et le bloc en court on procède à la concaténation des deux
           jobs[0].results = jobs[0].results.concat(jobs[j].results);
-          jobs[0].inRadiusItems += jobs[j].inRadiusItems;
         }
         // else le bloc courant est en erreur on ne fait rien
       }
@@ -46,7 +45,7 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius }) 
   // tri du résultat fusionné sur le critère de poids descendant
   if (jobs[0].results) {
     jobs[0].results.sort((a, b) => {
-      return b.ideaWeight - a.ideaWeight;
+      return b.place.distance - a.place.distance;
     });
   }
 
@@ -85,12 +84,11 @@ const transformPeJobsForIdea = (jobs, radius, lat, long) => {
 
   if (jobs.resultats && jobs.resultats.length) {
     for (let i = 0; i < jobs.resultats.length; ++i) {
+      //console.log("jobs.resultat : ",jobs.resultats[i]);
       let job = transformPeJobForIdea(jobs.resultats[i], lat, long);
 
-      if (job.place.latitude && job.place.longitude) {
-        if (job.place.distance < getRoundedRadius(radius)) {
-          resultJobs.results.push(job);
-        }
+      if (job.place.distance < getRoundedRadius(radius)) {
+        resultJobs.results.push(job);
       }
     }
   }
