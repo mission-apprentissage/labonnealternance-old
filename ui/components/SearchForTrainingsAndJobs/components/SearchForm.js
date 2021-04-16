@@ -62,7 +62,7 @@ const SearchForm = (props) => {
                           onInputValueChangeFunction={partialRight(domainChanged, setDomainError)}
                           previouslySelectedItem={formValues?.job ?? null}
                           name="jobField"
-                          placeholder="ex: plomberie"
+                          placeholder="Ex : boulangerie"
                         />
                         <ErrorMessage name="job" className="errorField" component="div" />
                       </div>
