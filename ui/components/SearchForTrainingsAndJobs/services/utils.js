@@ -31,20 +31,6 @@ const getRncpsFromParameters = ({ values, widgetParameters }) => {
     : "";
 };
 
-const isDepartmentJob = (job) => {
-  let isDepartmentJob = false;
-  if (
-    !job.place.distance &&
-    (!job.place.zipCode || job.place.zipCode.substring(0, 2) === job.place.city.substring(0, 2))
-  ) {
-    isDepartmentJob = true;
-  }
-
-  console.log("isDepartmentJob ", isDepartmentJob);
-
-  return isDepartmentJob;
-};
-
 export {
   trainingApi,
   trainingsApi,
@@ -59,5 +45,4 @@ export {
   offreApi,
   matchaApi,
   companyApi,
-  isDepartmentJob,
 };
