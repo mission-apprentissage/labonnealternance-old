@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## 1.12.0 [14/04.2021]
+## 1.12.0 [16/04.2021]
 [311] Recherche depuis la carte
-
-## 1.11.3 [13/04/2021]
 [536] Remplacement gtm par tagcommander
+[550] Changement de texte RGPD
+[537] Bordure icône job
 
 ## 1.11.2 [12/04/2021]
 [524] Coupure des appels à l'api LBB

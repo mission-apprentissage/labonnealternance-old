@@ -172,7 +172,7 @@ const Styleguide = () => {
 
         <p>Un simple paragraphe avec du texte. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius iure sapiente, ab ea aliquid minima animi maxime incidunt accusantium, sunt cupiditate soluta perferendis deleniti vitae commodi ratione fugiat ut quidem.</p>
         
-        <p>Et voici  <a href="#">un lien</a> qui ne pointe vers aucune page, mais est suffisant pour la demo.</p>
+        <p>Et voici  <a href="https://bootrails.com">un lien</a> qui ne pointe vers aucune page, mais est suffisant pour la demo.</p>
         <p className="lead">Ceci est un paragraphe avec de l'emphase (classe "lead" appliquée).</p>
 
         <p>You can use the mark tag to <mark>highlight</mark> text.</p>
