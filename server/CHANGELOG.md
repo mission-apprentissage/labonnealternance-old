@@ -2,6 +2,7 @@
 
 ## 1.12.1 [16/04/2021]
 [543] Fiche détail : faire disparaître la navbar
+[568] Tag matcha
 
 ## 1.12.0 [16/04/2021]
 [311] Recherche depuis la carte
