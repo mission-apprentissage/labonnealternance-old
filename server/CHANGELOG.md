@@ -2,8 +2,9 @@
 
 ## 1.12.0 [16/04.2021]
 [311] Recherche depuis la carte
-[536] Remplacement gtm par tagcommander
 [550] Changement de texte RGPD
+[545] Bouton "Je postule" en fixe
+[536] Remplacement gtm par tagcommander
 [537] Bordure icône job
 
 ## 1.11.2 [12/04/2021]
