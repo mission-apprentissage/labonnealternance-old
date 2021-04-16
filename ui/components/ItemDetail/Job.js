@@ -1,7 +1,7 @@
 import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
 import TagOffreEmploi from "./TagOffreEmploi";
-import { isDepartmentJob } from "components/SearchForTrainingsAndJobs/services/utils";
+import { isDepartmentJob } from "utils/itemListUtils";
 import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import ReactHtmlParser from "react-html-parser";
