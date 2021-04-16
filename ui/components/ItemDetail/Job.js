@@ -1,7 +1,7 @@
 import React from "react";
 import jobIcon from "../../public/images/icons/job.svg";
-import TagOffreEmploi from './TagOffreEmploi';
-
+import TagOffreEmploi from "./TagOffreEmploi";
+import { isDepartmentJob } from "components/SearchForTrainingsAndJobs/services/utils";
 import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import ReactHtmlParser from "react-html-parser";
@@ -62,7 +62,6 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
         </div>
 
         <div className="c-media-body">
-
           <div className="row no-gutters">
             <div className="col-12 col-lg-7 text-left">
               <div className="title d-inline-block">
@@ -70,7 +69,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
               </div>
             </div>
             <div className="col-12 col-lg-5 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
-              <TagOffreEmploi/>
+              <TagOffreEmploi />
             </div>
           </div>
 
@@ -80,7 +79,11 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
           </div>
 
           <span className="cardDistance pt-1">
-            {job.place.distance} km(s) du lieu de recherche
+            {isDepartmentJob(job) ? (
+              "Dans votre zone de recherche"
+            ) : (
+              <>{job.place.distance} km(s) du lieu de recherche</>
+            )}
             {showTextOnly ? (
               ""
             ) : (
