@@ -72,7 +72,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
               </div>
             </div>
             <div className="col-12 col-lg-5 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
-              <TagOffreEmploi/>
+              <TagOffreEmploi />
             </div>
           </div>
 
@@ -99,5 +99,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
     </div>
   );
 };
+
+export default Job;
 
 export default Job;
