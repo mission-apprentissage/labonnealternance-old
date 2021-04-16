@@ -12,6 +12,8 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
 
   const currentSearchRadius = formValues?.radius || 30;
 
+  const kind = job?.ideaType;
+
   const onSelectItem = () => {
     handleSelectItem(job);
   };
@@ -54,9 +56,20 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
     searchForTrainingsOnNewCenter(newCenter);
   };
 
+  const rootClassList = (actualKind) => {
+    let allClasses = "resultCard gtmSavoirPlus gtmListe "
+    if (actualKind === "peJob" ) {
+      allClasses += "gtmPeJob"
+    } else if (actualKind === "matcha") {
+      allClasses += "gtmMatcha"
+    }
+    return allClasses;
+  }
+
   return (
-    <div className="resultCard gtmSavoirPlus gtmPeJob gtmListe" onClick={onSelectItem}>
-      <div className="c-media" id={`${job.ideaType}${job.job.id}`}>
+    <div className={rootClassList(kind)} onClick={onSelectItem}>
+      
+      <div className="c-media" id={`${kind}${job.job.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
         </div>
@@ -70,7 +83,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
               </div>
             </div>
             <div className="col-12 col-lg-5 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
-              <TagOffreEmploi/>
+              <TagOffreEmploi />
             </div>
           </div>
 
@@ -99,3 +112,4 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
 };
 
 export default Job;
+
