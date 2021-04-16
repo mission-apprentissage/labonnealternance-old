@@ -25,6 +25,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         data-siret={training.company.siret}
         data-cfd={training.cfd}
         data-referrer="lba"
+        data-code-postal={training.place.zipCode}
       />
     );
   };

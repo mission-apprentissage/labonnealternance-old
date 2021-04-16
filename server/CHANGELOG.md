@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.12.1 [16/04/2021]
+[571] Ajout code postal pour PRDV
+
 ## 1.12.0 [16/04.2021]
 [311] Recherche depuis la carte
 [550] Changement de texte RGPD
