@@ -27,7 +27,9 @@ const jobsQueryValidator = (query) => {
   validateLongitude(query.longitude, error_messages);
 
   // code INSEE : insee
-  validateInsee(query.insee, error_messages);
+  if (query.caller) {
+    validateInsee(query.insee, error_messages);
+  }
 
   // source mal formée si présente
   validateApiSources(query.sources, error_messages, ["lbb", "lba", "offres"]);

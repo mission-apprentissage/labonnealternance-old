@@ -30,7 +30,7 @@ const SearchForm = (props) => {
       <Formik
         validate={(values) => validateFormik(values, widgetParameters)}
         initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
-        onSubmit={props.handleSubmit}
+        onSubmit={props.handleSearchSubmit}
       >
         {({ isSubmitting, setFieldValue, errors }) => (
           <Form className="c-searchform c-searchform--column">

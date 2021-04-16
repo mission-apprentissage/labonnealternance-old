@@ -27,7 +27,7 @@ const StartForm = (props) => {
     return res;
   };
 
-  const handleSubmit = (values) => {
+  const handleSearchSubmit = (values) => {
     dispatch(setFormValues({ job: values.job, location: values.location }));
     dispatch(setShouldExecuteSearch(true));
     dispatch(push({ pathname: "/recherche-apprentissage" }));
@@ -75,7 +75,7 @@ const StartForm = (props) => {
             return errors;
           }}
           initialValues={formValues ?? { job: {}, location: {} }}
-          onSubmit={handleSubmit}
+          onSubmit={handleSearchSubmit}
         >
           {({ isSubmitting, errors, setFieldValue }) => (
             <Form>

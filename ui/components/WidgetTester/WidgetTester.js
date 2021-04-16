@@ -91,7 +91,7 @@ const WidgetTester = () => {
     );
   };
 
-  const handleSubmit = async (values) => {
+  const handleSearchSubmit = async (values) => {
     let res = {};
 
     res.romes = values.job && values.job.romes ? values.job.romes.join() : null;
@@ -163,7 +163,7 @@ const WidgetTester = () => {
           returnURI: "/",
           returnLogoURL: "",
         }}
-        onSubmit={handleSubmit}
+        onSubmit={handleSearchSubmit}
       >
         {({ isSubmitting, setFieldValue }) => (
           <Form>

@@ -17,7 +17,7 @@ import { fetchAddresses } from "services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
 import validateFormik from "services/validateFormik";
 
-const HeaderForm = ({ handleSubmit }) => {
+const HeaderForm = ({ handleSearchSubmit }) => {
   const { formValues, widgetParameters } = useSelector((state) => {
     return state.trainings;
   });
@@ -33,7 +33,7 @@ const HeaderForm = ({ handleSubmit }) => {
       <Formik
         validate={(values) => validateFormik(values, widgetParameters)}
         initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
-        onSubmit={handleSubmit}
+        onSubmit={handleSearchSubmit}
       >
         {({ isSubmitting, setFieldValue, errors, touched }) => (
           <Form className="c-logobar-form c-searchform">

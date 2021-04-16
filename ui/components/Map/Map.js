@@ -1,16 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useStore, useDispatch, useSelector } from "react-redux";
-import { setSelectedItem } from "../../store/actions";
+import { setSelectedItem } from "store/actions";
 import { currentPage, setCurrentPage } from "utils/currentPage.js";
 import { useScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
+import MapSearchButton from "./MapSearchButton";
+import { map, initializeMap, isMapInitialized } from "utils/mapTools";
+import { fetchAddressFromCoordinates } from "services/baseAdresse";
 
-import { map, initializeMap, isMapInitialized } from "../../utils/mapTools";
+let mapPosition = {
+  lat: null,
+  lon: null,
+  zoom: null,
+};
 
-const Map = ({ selectItemOnMap }) => {
+let shouldHandleMapSearch = true;
+
+const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   const store = useStore();
-  const { trainings, jobs, shouldMapBeVisible } = useSelector((state) => {
+  const { trainings, jobs, formValues, shouldMapBeVisible } = useSelector((state) => {
     return state.trainings;
   });
   const router = useRouter();
@@ -27,6 +36,42 @@ const Map = ({ selectItemOnMap }) => {
       setCurrentPage("");
       pushHistory({ router, scopeContext });
     }
+  };
+
+  const handleSearchClick = async () => {
+    if (formValues) {
+      if (shouldHandleMapSearch) {
+        shouldHandleMapSearch = false;
+
+        let values = formValues;
+        values.location.value.coordinates = [mapPosition.lon, mapPosition.lat];
+
+        try {
+          // récupération du code insee depuis la base d'adresse
+          const addresses = await fetchAddressFromCoordinates([mapPosition.lon, mapPosition.lat]);
+
+          if (addresses.length) {
+            values.location.insee = addresses[0].insee;
+          } else {
+            values.location.insee = null;
+          }
+        } catch (err) {}
+        await handleSearchSubmit(values,"stayOnMap");
+
+        shouldHandleMapSearch = true;
+      }
+    } else {
+      // le formulaire n'a pas été renseigné. On ne connait pas le métier
+      showSearchForm();
+    }
+  };
+
+  const onMapHasMoved = ({ lat, lon, zoom }) => {
+    mapPosition = {
+      lat,
+      lon,
+      zoom,
+    };
   };
 
   const shouldMapBeInitialized = () => {
@@ -50,7 +95,7 @@ const Map = ({ selectItemOnMap }) => {
   useEffect(() => {
     if (shouldMapBeInitialized()) {
       setMapInitialized(true);
-      initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap });
+      initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap, onMapHasMoved });
     }
   }, [trainings, jobs]);
 
@@ -59,7 +104,7 @@ const Map = ({ selectItemOnMap }) => {
     if (!mapInitialized && isMapInitialized) {
       setMapInitialized(true);
       setTimeout(() => {
-        initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap });
+        initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap, onMapHasMoved });
       }, 0);
     }
   }, []);
@@ -67,6 +112,7 @@ const Map = ({ selectItemOnMap }) => {
   // Warning : mapContainer doit être vide sinon les onclick sur la map ne marcheront pas
   return (
     <>
+      <MapSearchButton handleSearchClick={handleSearchClick} />
       <div ref={(el) => (mapContainer.current = el)} className={`mapContainer ${mapInitialized ? "" : "d-none"}`}></div>
       <div className={`dummyMapContainer ${mapInitialized ? "d-none" : ""}`}>
         <div className="c-staticmapframe"></div>

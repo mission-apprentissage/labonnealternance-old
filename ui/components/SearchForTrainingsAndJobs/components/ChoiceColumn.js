@@ -26,7 +26,7 @@ const ChoiceColumn = ({
   showResultList,
   unSelectItem,
   showSearchForm,
-  handleSubmit,
+  handleSearchSubmit,
   shouldShowWelcomeMessage,
   searchRadius,
   isTrainingSearchLoading,
@@ -150,7 +150,7 @@ const ChoiceColumn = ({
   const getSearchForm = () => {
     return (
       <div className="d-block d-md-none">
-        <SearchForm showResultList={showResultList} handleSubmit={handleSubmit} />
+        <SearchForm showResultList={showResultList} handleSearchSubmit={handleSearchSubmit} />
       </div>
     );
   };

@@ -8,7 +8,7 @@ import { logError } from "utils/tools";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const InitWidgetSearchParameters = ({ setIsLoading, handleSubmit, handleItemLoad }) => {
+const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleItemLoad }) => {
   const dispatch = useDispatch();
 
   const { widgetParameters, itemParameters, shouldExecuteSearch, formValues } = useSelector((state) => state.trainings);
@@ -34,7 +34,7 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSubmit, handleItemLoad
   const executeSearch = (values) => {
     setIsLoading(true);
     try {
-      handleSubmit(values);
+      handleSearchSubmit(values);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
@@ -65,7 +65,7 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSubmit, handleItemLoad
           ...addresses[0],
         };
 
-        handleSubmit(values);
+        handleSearchSubmit(values);
       } else {
         console.log("aucun lieu trouvé");
       }

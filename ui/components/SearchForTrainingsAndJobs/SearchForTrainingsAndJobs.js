@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from "react";
 
 import { useRouter } from "next/router";
@@ -119,7 +120,7 @@ const SearchForTrainingsAndJobs = () => {
     return item;
   };
 
-  const handleSubmit = async (values) => {
+  const handleSearchSubmit = async (values, misc) => {
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
 
@@ -142,7 +143,8 @@ const SearchForTrainingsAndJobs = () => {
     }
     dispatch(setIsFormVisible(false));
 
-    pushHistory({ router, scopeContext, display: "list" });
+    if(misc!=="stayOnMap")
+      pushHistory({ router, scopeContext, display: "list" });
   };
 
   const handleItemLoad = async (item) => {
@@ -283,11 +285,11 @@ const SearchForTrainingsAndJobs = () => {
   return (
     <div className="page demoPage c-searchfor">
       <InitWidgetSearchParameters
-        handleSubmit={handleSubmit}
+        handleSearchSubmit={handleSearchSubmit}
         handleItemLoad={handleItemLoad}
         setIsLoading={setIsLoading}
       />
-      <WidgetHeader handleSubmit={handleSubmit} />
+      <WidgetHeader handleSearchSubmit={handleSearchSubmit} />
       <Row className={`c-searchfor__row is-visible-${isFormVisible} is-welcome-${shouldShowWelcomeMessage} `}>
         <Col
           className={`choiceCol-container leftShadow ${
@@ -298,7 +300,7 @@ const SearchForTrainingsAndJobs = () => {
         >
           <ChoiceColumn
             shouldShowWelcomeMessage={shouldShowWelcomeMessage}
-            handleSubmit={handleSubmit}
+            handleSearchSubmit={handleSearchSubmit}
             showResultList={showResultList}
             showSearchForm={showSearchForm}
             unSelectItem={unSelectItem}
@@ -315,7 +317,11 @@ const SearchForTrainingsAndJobs = () => {
           />
         </Col>
         <Col className={`p-0 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
-          <Map selectItemOnMap={selectItemOnMap} />
+          <Map
+            handleSearchSubmit={handleSearchSubmit}
+            showSearchForm={showSearchForm}
+            selectItemOnMap={selectItemOnMap}
+          />
         </Col>
       </Row>
       <MapListSwitchButton

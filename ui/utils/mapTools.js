@@ -11,7 +11,7 @@ let currentPopup = null;
 let map = null;
 let isMapInitialized = false;
 
-const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap }) => {
+const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap, onMapHasMoved }) => {
   isMapInitialized = true;
 
   mapboxgl.accessToken = "pk.eyJ1IjoiYWxhbmxyIiwiYSI6ImNrYWlwYWYyZDAyejQzMHBpYzE0d2hoZWwifQ.FnAOzwsIKsYFRnTUwneUSA";
@@ -150,13 +150,13 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
     }
   });
 
-  /*map.on("move", () => {
-    setMapState({
+  map.on("move", () => {
+    onMapHasMoved({
       lon: map.getCenter().lng.toFixed(4),
       lat: map.getCenter().lat.toFixed(4),
       zoom: map.getZoom().toFixed(2),
     });
-  });*/
+  });
 
   // log vers google analytics de l'utilisation du bouton zoom / dézoom
   map.on("zoomend", (e) => {
@@ -164,7 +164,7 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
   });
 
   const nav = new mapboxgl.NavigationControl({ showCompass: false, visualizePitch: false });
-  map.addControl(nav, "top-right");
+  map.addControl(nav, "bottom-right");
 };
 
 const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem) => {

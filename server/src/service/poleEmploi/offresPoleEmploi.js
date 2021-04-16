@@ -87,34 +87,12 @@ const transformPeJobsForIdea = (jobs, radius, lat, long) => {
     for (let i = 0; i < jobs.resultats.length; ++i) {
       let job = transformPeJobForIdea(jobs.resultats[i], lat, long);
 
-      let distanceWeightModifier = 0;
-
-      // si la distance au centre du point de recherche n'est pas connue, on la calcule avec l'utilitaire distance de turf.js
       if (job.place.latitude && job.place.longitude) {
         if (job.place.distance < getRoundedRadius(radius)) {
-          resultJobs.inRadiusItems++;
-        } else {
-          distanceWeightModifier = (job.place.distance - radius) * 3;
-        }
-      } else {
-        // dans certains cas latitude et longitude sont absents, parfois les deux sont à 0
-        if (i === resultJobs.inRadiusItems) {
-          // considéré arbitrairement comme dans le rayon
-          resultJobs.inRadiusItems++;
-        } else {
-          distanceWeightModifier = getRoundedRadius(radius) + 100; // arbitraire
+          resultJobs.results.push(job);
         }
       }
-
-      if (distanceWeightModifier > 900) distanceWeightModifier = 900; // malus au poids maximal de 900 pour la distance
-
-      job.ideaWeight = 1000 - distanceWeightModifier; // affectation d'un poids élevé pour les offres d'emploi
-
-      resultJobs.results.push(job);
-      //console.log("job weight : ", jobs.resultats[i].weight);
     }
-
-    //console.log("inRadiusJobs : ", inRadiusJobs, radius);
   }
 
   return resultJobs;
