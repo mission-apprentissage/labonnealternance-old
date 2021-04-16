@@ -87,7 +87,7 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     let response = await httpClient.get(
-      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&insee="
+      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&caller=a&insee="
     );
 
     assert.strictEqual(response.status, 400);
@@ -99,7 +99,7 @@ httpTests(__filename, ({ startServer }) => {
     const { httpClient } = await startServer();
 
     let response = await httpClient.get(
-      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&insee=ABCDE"
+      "/api/V1/jobs?romes=F1603,I1308&longitude=2.3752&latitude=48.845&radius=30&caller=a&insee=ABCDE"
     );
 
     assert.strictEqual(response.status, 400);
