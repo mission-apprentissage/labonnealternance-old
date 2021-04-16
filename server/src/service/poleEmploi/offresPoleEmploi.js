@@ -120,7 +120,7 @@ const transformPeJobForIdea = (job, lat, long) => {
     city: job.lieuTravail.libelle,
     latitude: job.lieuTravail.latitude,
     longitude: job.lieuTravail.longitude,
-    fullAddress: `${job.lieuTravail.libelle} ${job.lieuTravail.codePostal}`,
+    fullAddress: `${job.lieuTravail.libelle}${job.lieuTravail.codePostal ? " " + job.lieuTravail.codePostal : ""}`,
   };
 
   resultJob.company = {};
