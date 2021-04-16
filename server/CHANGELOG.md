@@ -1,8 +1,10 @@
 # CHANGELOG
 
+## 1.12.1 [16/04.2021]
+[543] Fiche détail : faire disparaître la navbar
+
 ## 1.12.0 [16/04.2021]
 [311] Recherche depuis la carte
-[543] Fiche détail : faire disparaître la navbar
 [550] Changement de texte RGPD
 [545] Bouton "Je postule" en fixe
 
