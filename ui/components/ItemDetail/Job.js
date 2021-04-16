@@ -102,4 +102,3 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
 
 export default Job;
 
-export default Job;
