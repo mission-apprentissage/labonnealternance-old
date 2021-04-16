@@ -56,8 +56,19 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
     searchForTrainingsOnNewCenter(newCenter);
   };
 
+  const rootClassList = (actualKind) => {
+    let allClasses = "resultCard gtmSavoirPlus gtmListe "
+    if (actualKind === "peJob" ) {
+      allClasses += "gtmPeJob"
+    } else if (actualKind === "matcha") {
+      allClasses += "gtmMatcha"
+    }
+    return allClasses;
+  }
+
   return (
-    <div className={`resultCard gtmSavoirPlus ${kind === "peJob" ? "gtmPeJob" : ""} ${kind === "matcha" ? "gtmMatcha" : ""} gtmListe`} onClick={onSelectItem}>
+    <div className={rootClassList(kind)} onClick={onSelectItem}>
+      
       <div className="c-media" id={`${kind}${job.job.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
