@@ -181,7 +181,7 @@ const WidgetTester = () => {
                       compareItemFunction={compareAutoCompleteValues}
                       onInputValueChangeFunction={fetchRomes}
                       name="jobField"
-                      placeholder="ex: plomberie"
+                      placeholder="Ex : boulangerie"
                     />
                   </div>
                   {showSelectedRomes()}
