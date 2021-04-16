@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ## 1.12.1 [16/04/2021]
 [543] Fiche détail : faire disparaître la navbar
 [568] Tag matcha, lieu PE ok
