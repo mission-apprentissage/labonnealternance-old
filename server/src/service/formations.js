@@ -393,6 +393,7 @@ const transformFormationForIdea = (formation) => {
   resultFormation.capacity = formation.source.capacite;
   resultFormation.createdAt = formation.source.created_at;
   resultFormation.lastUpdateAt = formation.source.last_update_at;
+  resultFormation.idRco = formation.source.id_rco_formation ? formation.source.id_rco_formation.split("|")[0] : "";
 
   if (formation.source.email) {
     resultFormation.contact = {
@@ -621,6 +622,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "rncp_eligible_apprentissage",
       "periode",
       "capacite",
+      "id_rco_formation",
     ],
   };
 };
