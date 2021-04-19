@@ -44,10 +44,30 @@ const sortMergedSources = (mergedArray) => {
     let dA = a.place.distance;
     let dB = b.place.distance;
 
-    if (dA > dB) return 1;
-    if (dA < dB) return -1;
+    if (a.ideaType === "peJob" && isDepartmentJob(a)) {
+      return 1;
+    }
+    if (dA > dB) {
+      return 1;
+    }
+    if (dA < dB) {
+      return -1;
+    }
     return 0;
   });
 
   return mergedArray;
+};
+
+// détermine si l'offre pe est liée au département avec une géoloc non précisée 
+export const isDepartmentJob = (job) => {
+  let isDepartmentJob = false;
+  if (
+    !job.place.distance &&
+    (!job.place.zipCode || job.place.zipCode.substring(0, 2) === job.place.city.substring(0, 2))
+  ) {
+    isDepartmentJob = true;
+  }
+
+  return isDepartmentJob;
 };
