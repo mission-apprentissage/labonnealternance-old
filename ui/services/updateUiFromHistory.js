@@ -20,7 +20,9 @@ export const updateUiFromHistory = ({
 }) => {
   // récupération des query parameters donnant des indications sur l'état de l'interface
   let urlParams;
-  if (url.indexOf("?") >= 0) urlParams = new URLSearchParams(url.substring(url.indexOf("?")));
+  if (url.indexOf("?") >= 0) {
+    urlParams = new URLSearchParams(url.substring(url.indexOf("?")));
+  }
 
   const pageFromUrl = urlParams ? urlParams.get("page") : "";
   const display = urlParams ? urlParams.get("display") : "";
@@ -36,7 +38,7 @@ export const updateUiFromHistory = ({
         }
         break;
       }
-      
+
       default: {
         if (pageFromUrl === "fiche") {
           // sélection de l'item correspondant à la fiche dans l'historique
@@ -47,13 +49,12 @@ export const updateUiFromHistory = ({
     }
 
     setCurrentPage(pageFromUrl ? pageFromUrl : "");
-    
-    } else {
-        if (currentPage === "fiche" && (!selectedItem || itemId != selectedItem.id)) {
-            // sélection de l'item correspondant à la fiche dans l'historique
-            selectItemFromHistory(itemId, urlParams.get("type"));
-        }
-    } 
+  } else {
+    if (currentPage === "fiche" && (!selectedItem || itemId != selectedItem.id)) {
+      // sélection de l'item correspondant à la fiche dans l'historique
+      selectItemFromHistory(itemId, urlParams.get("type"));
+    }
+  }
 
   // réconciliation entre le store et l'état attendu pour les panneaux d'affichage responsive
   if (display) {
