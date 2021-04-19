@@ -55,7 +55,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
 
   return (
     <div
-      className={`resultCard resultCardLbb gtmSavoirPlus gtm${capitalizeFirstLetter(company.ideaType)} gtmListe`}
+      className={`resultCard gtmSavoirPlus gtm${capitalizeFirstLetter(company.ideaType)} gtmListe`}
       onClick={onSelectItem}
     >
       <div className="c-media" id={`${company.ideaType}${company.company.siret}`}>
