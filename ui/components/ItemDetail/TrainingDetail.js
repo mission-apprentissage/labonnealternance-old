@@ -18,6 +18,17 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (training && !training.lbfLoaded) {
+      loadDataFromLbf();
+    }
+  });
+
+  const loadDataFromLbf = () => {
+    console.log("loadDataFromLbf ", training.idRco);
+    //training.lbfLoaded=true;
+  };
+
   const buildPrdvButton = () => {
     return (
       <div
