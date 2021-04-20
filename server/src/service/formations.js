@@ -542,6 +542,32 @@ const getFormationQuery = async (query) => {
   }
 };
 
+const getFormationDescriptionQuery = async (/*query*/) => {
+  try {
+    /*static function querySign($query,$password,$insertTimestamp=true,$hashMethod='md5')
+		{
+			assert(!empty($query));
+			assert(!empty($password));
+			assert(!empty($hashMethod));
+			if($insertTimestamp) $query['timestamp']=gmdate("Y-m-d\TH:i:s");
+			$query['signature']=hash_hmac($hashMethod,http_build_query($query),$password);
+			return $query;
+		}
+    https://labonneformation.pole-emploi.fr/api/v1/detail?user=LBA&uuid=<id form intercarif>&signature=<signature calculée>
+    https://nodejs.org/api/crypto.html#crypto_hmac_digest_encoding
+    */
+
+    const formationDescription = await axios.get(urlCatalogueSearch);
+
+    //throw new Error("BIG BANG");
+    return formationDescription;
+  } catch (err) {
+    console.error("Error ", err.message);
+    Sentry.captureException(err);
+    return { error: "internal_error" };
+  }
+};
+
 const getFormationsParRegionQuery = async (query) => {
   //console.log("query : ", query);
 
@@ -676,4 +702,5 @@ module.exports = {
   transformFormationsForIdea,
   getFormations,
   deduplicateFormations,
+  getFormationDescriptionQuery,
 };
