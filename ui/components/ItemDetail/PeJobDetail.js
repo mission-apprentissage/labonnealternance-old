@@ -32,6 +32,9 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
           <div className="c-detail-metadate">
             Publiée le : {defaultTo(creationDate, ReactHtmlParser("<em>Donnée manquante</em>"))}
           </div>
+          <div className="c-detail-metanature">
+            Nature du contrat : Alternance
+          </div>
           <div className="c-detail-metaduration">
             Durée : {defaultTo(contractDuration, ReactHtmlParser("<em>Donnée manquante</em>"))}
           </div>
