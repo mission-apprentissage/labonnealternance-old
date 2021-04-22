@@ -2,6 +2,7 @@ import React from "react";
 import Navigation from "components/navigation";
 import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
+import HomeServices from "components/HomeServices";
 
 import Footer from "components/footer";
 const APROPOS = () => (
@@ -21,7 +22,7 @@ const APROPOS = () => (
           <hr className="c-page-title-separator" align="left" />
         </div>
         <div className="col-12 col-md-7">
-          <h3>Le saviez-vous ?</h3>
+          <h2>Le saviez-vous ?</h2>
           <p>
             7 employeurs sur 10 recrutent sans déposer d’offre d’emploi.
             <br />
@@ -46,7 +47,7 @@ const APROPOS = () => (
             disponibles, ainsi qu’à des conseils pour postuler.
           </p>
 
-          <h3>Qui sommes-nous ?</h3>
+          <h2>Qui sommes-nous ?</h2>
 
           <p>
             La Bonne Alternance est d’abord une start-up interne de Pôle emploi créée et développée par des conseillers.{" "}
@@ -59,7 +60,11 @@ const APROPOS = () => (
             apprentissage.
           </p>
 
-          <h3>Crédits images</h3>
+          <h2>Autres services digitaux de Pôle emploi</h2>
+          <HomeServices skipTitle="true" />
+
+
+          <h2>Crédits images</h2>
 
           <p>
             <small><a href="https://www.freepik.com/vectors/people">Illustration de la page d'accueil réalisée par pikisuperstar - www.freepik.com</a></small>

@@ -4,13 +4,18 @@ import logoMatcha from "public/images/logo_matcha.svg";
 import logoCatalogue from "public/images/logo_catalogue.svg";
 import HomeCard from "./HomeCard.js";
 
-const HomeServices = () => {
+const HomeServices = ({skipTitle}) => {
   return (
     <section className="c-home-services">
-      <h2 className="c-home-services__main-title py-4 my-md-4 mt-lg-5 mb-lg-5">
-        <span className="c-home-services__main-title--dark">Les services de </span>
-        <span className="c-home-services__main-title--colored">La Bonne Alternance </span>
-      </h2>
+      {skipTitle === "true"
+        ? 
+        ""
+        : 
+        <h2 className="c-home-services__main-title py-4 my-md-4 mt-lg-5 mb-lg-5">
+          <span className="c-home-services__main-title--dark">Les services de </span>
+          <span className="c-home-services__main-title--colored">La Bonne Alternance </span>
+        </h2>
+      }
 
       <div className="card-deck c-home-services__container">
         <HomeCard
