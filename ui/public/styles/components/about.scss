@@ -1,11 +1,15 @@
 .c-about-card {
   display: flex;
-  flex-direction: row;
   align-items: center;
   border-radius: 10px;
   border: none;
   padding: 18px 24px;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.21);
+  text-align: center;
+  @include media-breakpoint-up(sm) {
+    flex-direction: row;
+    text-align: left;
+  } 
 }
 
 .c-about-card__title {
@@ -35,8 +39,8 @@
 }
 
 .c-about-card__img { 
- width: 68px;
- height: 68px;
+ min-width: 68px;
+ min-height: 68px;
  background: #EDEDED; 
  border-radius: 70px;
 }
@@ -53,5 +57,8 @@
 }
 .c-about-card__img--catalog {
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 5px;
+  @include media-breakpoint-up(sm) {
+    margin-left: 20px;
+  } 
 }

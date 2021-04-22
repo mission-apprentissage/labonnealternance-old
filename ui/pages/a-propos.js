@@ -64,7 +64,7 @@ const APROPOS = () => (
 
           <h2>Les services de La Bonne Alternance</h2>
          
-          <div className="card c-about-card c-about-card--flat">
+          <div className="card c-about-card c-about-card--flat mt-4">
             <div className="c-about-card__img">
               <img
                 className={"c-about-card__img--matcha"}
@@ -74,18 +74,20 @@ const APROPOS = () => (
             </div>
             <div className="c-about-card__content">
               <div className="c-about-card__title">
-                title
+                Matcha
               </div>
               <div className="c-about-card__text">
-                text
+                Susciter des recrutements en apprentissage
               </div>
               <div className="c-about-card__link">
-                <a href="">link</a>
+                <a href="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/untitled"
+                   rel="noopener noreferrer"
+                   target="_blank">En savoir plus</a>
               </div>
             </div>
           </div>
 
-          <div className="card c-about-card c-about-card--flat">
+          <div className="card c-about-card c-about-card--flat mt-3">
             <div className="c-about-card__img">
               <img
                 className={"c-about-card__img--catalog"}
@@ -95,18 +97,20 @@ const APROPOS = () => (
             </div>
             <div className="c-about-card__content">
               <div className="c-about-card__title">
-                title
+                Catalogue des formations
               </div>
               <div className="c-about-card__text">
-                text
+                Un catalogue élargi de formations en apprentissage
               </div>
               <div className="c-about-card__link">
-                <a href="">link</a>
+                <a href="https://mission-apprentissage.gitbook.io/catalogue/" 
+                   rel="noopener noreferrer"
+                   target="_blank">En savoir plus</a>
               </div>
             </div>
           </div>
 
-          <div className="card c-about-card c-about-card--flat">
+          <div className="card c-about-card c-about-card--flat mt-3">
             <div className="c-about-card__img">
               <img
                 className={"c-about-card__img--prdv"}
@@ -116,13 +120,15 @@ const APROPOS = () => (
             </div>
             <div className="c-about-card__content">
               <div className="c-about-card__title">
-                title
+                Prise de rendez-vous
               </div>
               <div className="c-about-card__text">
-                text
+                Pour échanger facilement avec les centres de formation
               </div>
               <div className="c-about-card__link">
-                <a href="">link</a>
+                <a href="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/prise-de-rendez-vous"
+                  rel="noopener noreferrer"
+                  target="_blank">En savoir plus</a>
               </div>
             </div>
           </div>
