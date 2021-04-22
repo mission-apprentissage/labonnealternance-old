@@ -24,7 +24,7 @@ const APROPOS = () => (
           <hr className="c-page-title-separator" align="left" />
         </div>
         <div className="col-12 col-md-7">
-          <h2>Le saviez-vous ?</h2>
+          <h2 className="h3">Le saviez-vous ?</h2>
           <p>
             7 employeurs sur 10 recrutent sans déposer d’offre d’emploi.
             <br />
@@ -49,7 +49,7 @@ const APROPOS = () => (
             disponibles, ainsi qu’à des conseils pour postuler.
           </p>
 
-          <h2>Qui sommes-nous ?</h2>
+          <h2 className="h3">Qui sommes-nous ?</h2>
 
           <p>
             La Bonne Alternance est d’abord une start-up interne de Pôle emploi créée et développée par des conseillers.{" "}
@@ -62,7 +62,7 @@ const APROPOS = () => (
             apprentissage.
           </p>
 
-          <h2>Les services de La Bonne Alternance</h2>
+          <h2 className="h3">Les services de La Bonne Alternance</h2>
          
           <div className="card c-about-card c-about-card--flat mt-4">
             <div className="c-about-card__img">
@@ -110,7 +110,7 @@ const APROPOS = () => (
             </div>
           </div>
 
-          <div className="card c-about-card c-about-card--flat mt-3">
+          <div className="card c-about-card c-about-card--flat mt-3 mb-4">
             <div className="c-about-card__img">
               <img
                 className={"c-about-card__img--prdv"}
@@ -133,7 +133,10 @@ const APROPOS = () => (
             </div>
           </div>
 
-          <h2>Crédits images</h2>
+          <h2 className="h3">Autres services de Pôle Emploi</h2>
+
+
+          <h2 className="h3">Crédits images</h2>
 
           <p>
             <small><a href="https://www.freepik.com/vectors/people">Illustration de la page d'accueil réalisée par pikisuperstar - www.freepik.com</a></small>
