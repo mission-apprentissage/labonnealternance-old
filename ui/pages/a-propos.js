@@ -84,32 +84,13 @@ const APROPOS = () => (
               </div>
             </div>
           </div>
+
           <div className="card c-about-card c-about-card--flat">
             <div className="c-about-card__img">
               <img
-                className={"c-about-card__img--matcha"}
-                src={logoMatcha}
-                alt={"Logo matcha"}
-              />
-            </div>
-            <div className="c-about-card__content">
-              <div className="c-about-card__title">
-                title
-              </div>
-              <div className="c-about-card__text">
-                text
-              </div>
-              <div className="c-about-card__link">
-                <a href="">link</a>
-              </div>
-            </div>
-          </div>
-          <div className="card c-about-card c-about-card--flat">
-            <div className="c-about-card__img">
-              <img
-                className={"c-about-card__img--matcha"}
-                src={logoMatcha}
-                alt={"Logo matcha"}
+                className={"c-about-card__img--catalog"}
+                src={logoCatalogue}
+                alt={"Logo catalogue"}
               />
             </div>
             <div className="c-about-card__content">
@@ -125,6 +106,26 @@ const APROPOS = () => (
             </div>
           </div>
 
+          <div className="card c-about-card c-about-card--flat">
+            <div className="c-about-card__img">
+              <img
+                className={"c-about-card__img--prdv"}
+                src={logoPrdv}
+                alt={"Logo prdv"}
+              />
+            </div>
+            <div className="c-about-card__content">
+              <div className="c-about-card__title">
+                title
+              </div>
+              <div className="c-about-card__text">
+                text
+              </div>
+              <div className="c-about-card__link">
+                <a href="">link</a>
+              </div>
+            </div>
+          </div>
 
           <h2>Crédits images</h2>
 
