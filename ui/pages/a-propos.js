@@ -135,6 +135,110 @@ const APROPOS = () => (
 
           <h2 className="h3">Autres services de Pôle Emploi</h2>
 
+          <div className="card-deck">
+            <div className="card c-about-card c-about-card--small mt-3 mb-4">
+              <div className="c-about-card__img">
+                <img
+                  className={"c-about-card__img--lbb"}
+                  alt={"Logo lbb"}
+                />
+              </div>
+              <div className="c-about-card__content">
+                <a href="https://labonneboite.pole-emploi.fr/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="c-about-card__text2 stretched-link">
+                  Pour échanger facilement avec les centres de formation
+                </a>
+              </div>
+            </div>
+            <div className="card c-about-card c-about-card--small mt-3 mb-4">
+              <div className="c-about-card__img">
+                <img
+                  className={"c-about-card__img--lbf"}
+                  alt={"Logo L.B.F."}
+                />
+              </div>
+              <div className="c-about-card__content">
+                <a href="https://labonneformation.pole-emploi.fr/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="c-about-card__text2 stretched-link">
+                  Trouvez une formation en fonction de votre profil ET du marché du travail
+                </a>
+              </div>
+            </div>
+            <div className="card c-about-card c-about-card--small mt-3 mb-4">
+              <div className="c-about-card__img">
+                <img
+                  className={"c-about-card__img--lbf"}
+                  alt={"Logo Maintenant"}
+                />
+              </div>
+              <div className="c-about-card__content">
+                <a href="https://maintenant.pole-emploi.fr/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="c-about-card__text2 stretched-link">
+                  Vous valez plus qu'un CV ! Trouvez le bon job en moins de 5 minutes
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="card-deck">
+            <div className="card c-about-card c-about-card--small mt-3 mb-4">
+              <div className="c-about-card__img">
+                <img
+                  className={"c-about-card__img--lbb"}
+                  alt={"Logo lbb"}
+                />
+              </div>
+              <div className="c-about-card__content">
+                <a href="https://labonneboite.pole-emploi.fr/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="c-about-card__text2 stretched-link">
+                  Pour échanger facilement avec les centres de formation
+                </a>
+              </div>
+            </div>
+            <div className="card c-about-card c-about-card--small mt-3 mb-4">
+              <div className="c-about-card__img">
+                <img
+                  className={"c-about-card__img--lbf"}
+                  alt={"Logo L.B.F."}
+                />
+              </div>
+              <div className="c-about-card__content">
+                <a href="https://labonneformation.pole-emploi.fr/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="c-about-card__text2 stretched-link">
+                  Trouvez une formation en fonction de votre profil ET du marché du travail
+                </a>
+              </div>
+            </div>
+            <div className="card c-about-card c-about-card--small mt-3 mb-4">
+              <div className="c-about-card__img">
+                <img
+                  className={"c-about-card__img--lbf"}
+                  alt={"Logo Maintenant"}
+                />
+              </div>
+              <div className="c-about-card__content">
+                <a href="https://maintenant.pole-emploi.fr/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="c-about-card__text2 stretched-link">
+                  Vous valez plus qu'un CV ! Trouvez le bon job en moins de 5 minutes
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+
 
           <h2 className="h3">Crédits images</h2>
 

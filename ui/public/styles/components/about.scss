@@ -1,10 +1,11 @@
 .c-about-card {
-  display: flex;
   align-items: center;
   border-radius: 10px;
   border: none;
   padding: 18px 24px;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.21);
+}
+.c-about-card--flat {
   text-align: center;
   @include media-breakpoint-up(sm) {
     flex-direction: row;
@@ -27,6 +28,17 @@
   line-height: 24px;
   letter-spacing: 0px;
   color: $gray-600;
+}
+.c-about-card__text2 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #4A4A4A;
+}
+.c-about-card__text2:hover {
+  color: #4A4A4A;
 }
 .c-about-card__link a {
   font-size: 16px;
