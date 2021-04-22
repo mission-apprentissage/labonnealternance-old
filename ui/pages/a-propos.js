@@ -2,7 +2,9 @@ import React from "react";
 import Navigation from "components/navigation";
 import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
-import HomeServices from "components/HomeServices";
+import logoPrdv from "public/images/logo_prdv.svg";
+import logoMatcha from "public/images/logo_matcha.svg";
+import logoCatalogue from "public/images/logo_catalogue.svg";
 
 import Footer from "components/footer";
 const APROPOS = () => (
@@ -60,8 +62,68 @@ const APROPOS = () => (
             apprentissage.
           </p>
 
-          <h2>Autres services digitaux de Pôle emploi</h2>
-          <HomeServices skipTitle="true" />
+          <h2>Les services de La Bonne Alternance</h2>
+         
+          <div className="card c-about-card c-about-card--flat">
+            <div className="c-about-card__img">
+              <img
+                className={"c-about-card__img--matcha"}
+                src={logoMatcha}
+                alt={"Logo matcha"}
+              />
+            </div>
+            <div className="c-about-card__content">
+              <div className="c-about-card__title">
+                title
+              </div>
+              <div className="c-about-card__text">
+                text
+              </div>
+              <div className="c-about-card__link">
+                <a href="">link</a>
+              </div>
+            </div>
+          </div>
+          <div className="card c-about-card c-about-card--flat">
+            <div className="c-about-card__img">
+              <img
+                className={"c-about-card__img--matcha"}
+                src={logoMatcha}
+                alt={"Logo matcha"}
+              />
+            </div>
+            <div className="c-about-card__content">
+              <div className="c-about-card__title">
+                title
+              </div>
+              <div className="c-about-card__text">
+                text
+              </div>
+              <div className="c-about-card__link">
+                <a href="">link</a>
+              </div>
+            </div>
+          </div>
+          <div className="card c-about-card c-about-card--flat">
+            <div className="c-about-card__img">
+              <img
+                className={"c-about-card__img--matcha"}
+                src={logoMatcha}
+                alt={"Logo matcha"}
+              />
+            </div>
+            <div className="c-about-card__content">
+              <div className="c-about-card__title">
+                title
+              </div>
+              <div className="c-about-card__text">
+                text
+              </div>
+              <div className="c-about-card__link">
+                <a href="">link</a>
+              </div>
+            </div>
+          </div>
 
 
           <h2>Crédits images</h2>

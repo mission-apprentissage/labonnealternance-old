@@ -1,0 +1,45 @@
+.c-about-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  border: none;
+  padding: 18px 24px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.21);
+}
+
+.c-about-card__title {
+  font-family: Inter;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0px;
+  color: $gray-700;
+}
+.c-about-card__text {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: $gray-600;
+}
+.c-about-card__link a {
+  font-family: Marianne;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  color: $gray-600;
+  text-decoration: underline;
+}
+
+.c-about-card__img { 
+ width: 68px;
+ height: 68px;
+ background: #EDEDED; 
+ border-radius: 70px;
+}
+.c-about-card__content { 
+  padding-left: 8px;
+}
