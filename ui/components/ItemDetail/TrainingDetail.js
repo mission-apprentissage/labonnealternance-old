@@ -43,7 +43,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
     <>
       <div className="text-left">
         {contactInfo ? (
-          <p className="d-flex mb-3">
+          <div className="d-flex mb-3">
             {seeInfo ? (
               <>
                 <span className="d-block">
@@ -61,7 +61,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
                 Voir les informations de contact
               </button>
             )}
-          </p>
+          </div>
         ) : (
           ""
         )}
