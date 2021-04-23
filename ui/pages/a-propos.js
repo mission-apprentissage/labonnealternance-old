@@ -21,7 +21,7 @@ const APROPOS = () => (
 
     <Breadcrumb forPage="a-propos" label="A propos" />
 
-    <div className="c-page-container container my-0 mb-sm-5 p-5">
+    <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
       <div className="row">
         <div className="col-12 col-md-5">
           <h1>
@@ -259,22 +259,71 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="#">some other link</a>
+                  <a 
+                    href="https://diagoriente.beta.gouv.fr/" 
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Diagoriente
+                  </a>
                 </span>
               </div>                          
               <div className="c-about-otherright">
-                <span className="c-about-otherdescr">lorem ipsum dolores ar mazer mlkzaerj lmazer mlazekjr azemlrj</span>
+                <span className="c-about-otherdescr">Outil d'orientation complet qui permet d'accéder à des pistes métiers en adéquation avec ses intérêts.</span>
               </div>                          
             </div>            
             <div className="c-about-other">
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="#">some other link</a>
+                  <a href="#">Parcoursup</a>
                 </span>
               </div>                          
               <div className="c-about-otherright">
-                <span className="c-about-otherdescr">lorem ipsum dolores ar mazer mlkzaerj lmazer mlazekjr azemlrj</span>
+                <span className="c-about-otherdescr">Les conseils de parcoursup pour entrer en apprentissage.</span>
+              </div>                          
+            </div>            
+            <div className="c-about-other">
+              <div className="c-about-otherleft">
+                <span className="c-about-otherbullet">•</span>
+                <span className="c-about-otherlink">
+                  <a href="#">Parcoursup</a>
+                </span>
+              </div>                          
+              <div className="c-about-otherright">
+                <span className="c-about-otherdescr">Les services d’aide à l’orientation vers les études supérieures proposés par Parcoursup.</span>
+              </div>                          
+            </div>            
+            <div className="c-about-other">
+              <div className="c-about-otherleft">
+                <span className="c-about-otherbullet">•</span>
+                <span className="c-about-otherlink">
+                  <a href="#">Myjobglasses</a>
+                </span>
+              </div>                          
+              <div className="c-about-otherright">
+                <span className="c-about-otherdescr">Myjobglasses vous aide à identifier le métier qui vous correspond.</span>
+              </div>                          
+            </div>            
+            <div className="c-about-other">
+              <div className="c-about-otherleft">
+                <span className="c-about-otherbullet">•</span>
+                <span className="c-about-otherlink">
+                  <a href="#">Openclassrooms</a>
+                </span>
+              </div>                          
+              <div className="c-about-otherright">
+                <span className="c-about-otherdescr">Profitez d’un cours en ligne gratuit pour découvrir l'alternance.</span>
+              </div>                          
+            </div>            
+            <div className="c-about-other">
+              <div className="c-about-otherleft">
+                <span className="c-about-otherbullet">•</span>
+                <span className="c-about-otherlink">
+                  <a href="#">#1jeune1solution</a>
+                </span>
+              </div>                          
+              <div className="c-about-otherright">
+                <span className="c-about-otherdescr">je suis jeune, je découvre toutes les solutions pour préparer mon avenir.</span>
               </div>                          
             </div>            
           </div>
