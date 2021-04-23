@@ -83,3 +83,28 @@
 .c-about-card.c-about-card--small {
   padding: 18px 12px;
 }
+
+.c-about-other {
+  margin-top: 8px;
+}
+.c-about-otherleft {
+  display: flex;
+  align-items: center;
+}
+.c-about-otherbullet {
+  font-size: 25px;
+}
+
+.c-about-otherlink a {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: $gray-700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  margin-left: 3px;
+}

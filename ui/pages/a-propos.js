@@ -253,11 +253,19 @@ const APROPOS = () => (
             </div>
           </div>
 
-
-
-
           <h2 className="h3">Autres liens utiles</h2>
           <div className="c-about-others">
+            <div className="c-about-other">
+              <div className="c-about-otherleft">
+                <span className="c-about-otherbullet">•</span>
+                <span className="c-about-otherlink">
+                  <a href="#">some other link</a>
+                </span>
+              </div>                          
+              <div className="c-about-otherright">
+                <span className="c-about-otherdescr">lorem ipsum dolores ar mazer mlkzaerj lmazer mlazekjr azemlrj</span>
+              </div>                          
+            </div>            
             <div className="c-about-other">
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
