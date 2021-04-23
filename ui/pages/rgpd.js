@@ -110,6 +110,9 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
             Le responsable de traitement s’engage à répondre dans un délai raisonnable qui ne saurait dépasser 1 mois à compter de la réception de votre demande.
           </p>
 
+          <h2 class="h3">Destinataires des données</h2>
+          <p>Le responsable de traitement s’engage à ce que les données à caractères personnels soient traitées par les seules personnes autorisées.</p>
+
           <h2 class="h3">Sous-traitants</h2>
           <p>Certaines des données sont envoyées à des sous-traitants pour réaliser certaines missions. Le responsable de traitement s’est assuré de la mise en œuvre par ses sous-traitants de garanties adéquates et du respect de conditions strictes de confidentialité, d’usage et de protection des données.</p>
           <table class="table table-bordered">
