@@ -275,7 +275,9 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="#">Parcoursup</a>
+                  <a href="https://www.parcoursup.fr/index.php?desc=formations_apprentissage"
+                    target="_blank"
+                    rel="noopener noreferrer">Parcoursup</a>
                 </span>
               </div>                          
               <div className="c-about-otherright">
@@ -286,7 +288,9 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="#">Parcoursup</a>
+                  <a href="https://www.parcoursup.fr/index.php?desc=services_numeriques"
+                    target="_blank"
+                    rel="noopener noreferrer">Parcoursup</a>
                 </span>
               </div>                          
               <div className="c-about-otherright">
@@ -297,7 +301,9 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="#">Myjobglasses</a>
+                  <a href="https://www.myjobglasses.com/"
+                    target="_blank"
+                    rel="noopener noreferrer">Myjobglasses</a>
                 </span>
               </div>                          
               <div className="c-about-otherright">
@@ -308,7 +314,9 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="#">Openclassrooms</a>
+                  <a href="https://openclassrooms.com/fr/courses/6003601-decouvrez-lalternance"
+                    target="_blank"
+                    rel="noopener noreferrer">Openclassrooms</a>
                 </span>
               </div>                          
               <div className="c-about-otherright">
@@ -319,7 +327,9 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="#">#1jeune1solution</a>
+                  <a href="https://www.1jeune1solution.gouv.fr/"
+                    target="_blank"
+                    rel="noopener noreferrer">#1jeune1solution</a>
                 </span>
               </div>                          
               <div className="c-about-otherright">

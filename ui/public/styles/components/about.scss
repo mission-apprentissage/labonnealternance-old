@@ -87,6 +87,7 @@
 
 .c-about-card.c-about-card--small {
   padding: 18px 12px;
+  min-width: 9rem;
 }
 
 .c-about-other {
@@ -133,5 +134,5 @@
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
-  margin-left: 3px;
+  margin-left: 16px;
 }
