@@ -73,3 +73,13 @@
     margin-left: 20px;
   } 
 }
+.c-about-card__img2 {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-about-card.c-about-card--small {
+  padding: 18px 12px;
+}

@@ -6,6 +6,13 @@ import logoPrdv from "public/images/logo_prdv.svg";
 import logoMatcha from "public/images/logo_matcha.svg";
 import logoCatalogue from "public/images/logo_catalogue.svg";
 
+import logoLbb from "public/images/logo-lbb.svg";
+import logoLbf from "public/images/logo-labonneformation.svg";
+import logoMaintenant from "public/images/logo-maintenant.svg";
+import logoMemo from "public/images/logo-memo.png";
+import logoAvril from "public/images/logo-avril.svg";
+import logoClara from "public/images/logo-clara.svg";
+
 import Footer from "components/footer";
 const APROPOS = () => (
   <div>
@@ -137,30 +144,32 @@ const APROPOS = () => (
 
           <div className="card-deck">
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
-              <div className="c-about-card__img">
+              <div className="c-about-card__img2">
                 <img
-                  className={"c-about-card__img--lbb"}
-                  alt={"Logo lbb"}
+                  src={logoLbb}
+                  width="134"
+                  alt={"Logo"}
                 />
               </div>
               <div className="c-about-card__content">
                 <a href="https://labonneboite.pole-emploi.fr/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="c-about-card__text2 stretched-link">
-                  Pour échanger facilement avec les centres de formation
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="c-about-card__text2 stretched-link">
+                  Trouver des entreprises qui recrutent sans déposer d'offres d'emploi
                 </a>
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
-              <div className="c-about-card__img">
+              <div className="c-about-card__img2">
                 <img
-                  className={"c-about-card__img--lbf"}
-                  alt={"Logo L.B.F."}
-                />
+                  src={logoLbf}
+                  width="134"
+                  alt={"Logo"}
+                  />
               </div>
               <div className="c-about-card__content">
-                <a href="https://labonneformation.pole-emploi.fr/"
+                <a href="https://labonneboite.pole-emploi.fr/"
                   rel="noopener noreferrer"
                   target="_blank"
                   className="c-about-card__text2 stretched-link">
@@ -169,11 +178,12 @@ const APROPOS = () => (
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
-              <div className="c-about-card__img">
+              <div className="c-about-card__img2">
                 <img
-                  className={"c-about-card__img--lbf"}
-                  alt={"Logo Maintenant"}
-                />
+                  src={logoMaintenant}
+                  width="134"
+                  alt={"Logo"}
+                  />
               </div>
               <div className="c-about-card__content">
                 <a href="https://maintenant.pole-emploi.fr/"
@@ -188,30 +198,34 @@ const APROPOS = () => (
 
           <div className="card-deck">
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
-              <div className="c-about-card__img">
+              <div className="c-about-card__img2">
                 <img
-                  className={"c-about-card__img--lbb"}
-                  alt={"Logo lbb"}
-                />
+                  src={logoMemo}
+                  width="114"
+                  className={"c-about-card__img--memo"}
+                  alt={"Logo"}
+                  />
               </div>
               <div className="c-about-card__content">
-                <a href="https://labonneboite.pole-emploi.fr/"
+                <a href="https://memo.pole-emploi.fr/"
                   rel="noopener noreferrer"
                   target="_blank"
                   className="c-about-card__text2 stretched-link">
-                  Pour échanger facilement avec les centres de formation
+                    Organiser votre recherche d'emploi avec notre tableau de bord
                 </a>
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
-              <div className="c-about-card__img">
+              <div className="c-about-card__img2">
                 <img
-                  className={"c-about-card__img--lbf"}
-                  alt={"Logo L.B.F."}
-                />
+                  src={logoAvril}
+                  width="114"
+                  className={"c-about-card__img--avril"}
+                  alt={"Logo"}
+                  />
               </div>
               <div className="c-about-card__content">
-                <a href="https://labonneformation.pole-emploi.fr/"
+                      <a href="https://avril.pole-emploi.fr/"
                   rel="noopener noreferrer"
                   target="_blank"
                   className="c-about-card__text2 stretched-link">
@@ -220,18 +234,20 @@ const APROPOS = () => (
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
-              <div className="c-about-card__img">
+              <div className="c-about-card__img2">
                 <img
-                  className={"c-about-card__img--lbf"}
-                  alt={"Logo Maintenant"}
+                  src={logoClara}
+                  width="134"
+                  className={"c-about-card__img--clara"}
+                  alt={"Logo"}
                 />
               </div>
               <div className="c-about-card__content">
-                <a href="https://maintenant.pole-emploi.fr/"
+                <a href="https://clara.pole-emploi.fr/"
                   rel="noopener noreferrer"
                   target="_blank"
                   className="c-about-card__text2 stretched-link">
-                  Vous valez plus qu'un CV ! Trouvez le bon job en moins de 5 minutes
+                  Découvrez les aides et mesures qui vont accélérer votre retour à l'emploi.
                 </a>
               </div>
             </div>
