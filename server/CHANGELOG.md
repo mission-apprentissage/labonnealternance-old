@@ -2,12 +2,14 @@
 
 ## 1.12.2 [23/04/2021]
 [550b] Correction RGPD
+[523] A propos, modifications
 
 ## 1.12.1 [16/04/2021]
 [571] Ajout code postal pour PRDV
 [543] Fiche détail : faire disparaître la navbar
 [539] Positionnement et wording des offres liées au département
 [568] Tag matcha, lieu PE ok
+[556] réorganisation du Dom
 
 ## 1.12.0 [16/04/2021]
 [311] Recherche depuis la carte
