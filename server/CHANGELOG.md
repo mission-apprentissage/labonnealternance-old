@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 1.12.2 [22/04/2021]
+[523] A propos, modifications
 
 ## 1.12.1 [16/04/2021]
 [571] Ajout code postal pour PRDV
