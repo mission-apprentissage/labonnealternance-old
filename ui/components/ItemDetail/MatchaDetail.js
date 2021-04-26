@@ -73,7 +73,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         )}
 
         {contactPhone || contactEmail ? (
-          <p className="d-flex mb-3">
+          <div className="d-flex mb-3">
             {seeInfo ? (
               <>
                 <span className="d-block">
@@ -91,7 +91,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
                 Voir les informations de contact
               </button>
             )}
-          </p>
+          </div>
         ) : (
           ""
         )}

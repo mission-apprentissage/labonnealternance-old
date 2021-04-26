@@ -61,7 +61,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           </span>
         </p>
         {contactPhone || contactEmail ? (
-          <p className="d-flex mb-3">
+          <div className="d-flex mb-3">
             {seeInfo ? (
               <>
                 <span className="d-block">
@@ -79,7 +79,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
                 Voir les informations de contact
               </button>
             )}
-          </p>
+          </div>
         ) : (
           ""
         )}
