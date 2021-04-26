@@ -3,7 +3,8 @@
 ## 1.13.0 [25/04/2021]
 [576] Descriptions des formations LBF
 
-## 1.12.2 [22/04/2021]
+## 1.12.2 [23/04/2021]
+[550b] Correction RGPD
 [523] A propos, modifications
 
 ## 1.12.1 [16/04/2021]
