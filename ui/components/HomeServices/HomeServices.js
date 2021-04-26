@@ -11,7 +11,6 @@ const HomeServices = () => {
         <span className="c-home-services__main-title--dark">Les services de </span>
         <span className="c-home-services__main-title--colored">La Bonne Alternance </span>
       </h2>
-
       <div className="card-deck c-home-services__container">
         <HomeCard
           logo={logoPrdv}

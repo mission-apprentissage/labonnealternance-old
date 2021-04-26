@@ -3,6 +3,9 @@
 ## 1.13.0 [25/04/2021]
 [576] Descriptions des formations LBF
 
+## 1.12.2 [22/04/2021]
+[523] A propos, modifications
+
 ## 1.12.1 [16/04/2021]
 [571] Ajout code postal pour PRDV
 [543] Fiche détail : faire disparaître la navbar
