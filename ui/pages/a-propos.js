@@ -38,9 +38,7 @@ const APROPOS = () => (
             Il est essentiel dans votre recherche de proposer votre candidature à des entreprises n’ayant pas forcément
             déposé d’offre d’emploi en alternance.
           </p>
-          <p>
-            En complément, le service La Bonne Alternance expose les formations disponibles en apprentissage.
-          </p>
+          <p>En complément, le service La Bonne Alternance expose les formations disponibles en apprentissage.</p>
           <p>
             Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 6 dernières années pour vous
             proposer les entreprises qui recrutent régulièrement en alternance (contrat d'apprentissage ou contrat de
@@ -70,72 +68,56 @@ const APROPOS = () => (
           </p>
 
           <h2 className="h3">Les services de La Bonne Alternance</h2>
-         
+
           <div className="card c-about-card c-about-card--flat mt-4">
             <div className="c-about-card__img">
-              <img
-                className={"c-about-card__img--matcha"}
-                src={logoMatcha}
-                alt={"Logo matcha"}
-              />
+              <img className={"c-about-card__img--matcha"} src={logoMatcha} alt={"Logo matcha"} />
             </div>
             <div className="c-about-card__content">
-              <div className="c-about-card__title">
-                Matcha
-              </div>
-              <div className="c-about-card__text">
-                Susciter des recrutements en apprentissage
-              </div>
+              <div className="c-about-card__title">Matcha</div>
+              <div className="c-about-card__text">Susciter des recrutements en apprentissage</div>
               <div className="c-about-card__link">
-                <a href="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/untitled"
-                   rel="noopener noreferrer"
-                   target="_blank">En savoir plus</a>
+                <a
+                  href="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/untitled"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  En savoir plus
+                </a>
               </div>
             </div>
           </div>
 
           <div className="card c-about-card c-about-card--flat mt-3">
             <div className="c-about-card__img">
-              <img
-                className={"c-about-card__img--catalog"}
-                src={logoCatalogue}
-                alt={"Logo catalogue"}
-              />
+              <img className={"c-about-card__img--catalog"} src={logoCatalogue} alt={"Logo catalogue"} />
             </div>
             <div className="c-about-card__content">
-              <div className="c-about-card__title">
-                Catalogue des formations
-              </div>
-              <div className="c-about-card__text">
-                Un catalogue élargi de formations en apprentissage
-              </div>
+              <div className="c-about-card__title">Catalogue des formations</div>
+              <div className="c-about-card__text">Un catalogue élargi de formations en apprentissage</div>
               <div className="c-about-card__link">
-                <a href="https://mission-apprentissage.gitbook.io/catalogue/" 
-                   rel="noopener noreferrer"
-                   target="_blank">En savoir plus</a>
+                <a href="https://mission-apprentissage.gitbook.io/catalogue/" rel="noopener noreferrer" target="_blank">
+                  En savoir plus
+                </a>
               </div>
             </div>
           </div>
 
           <div className="card c-about-card c-about-card--flat mt-3 mb-4">
             <div className="c-about-card__img">
-              <img
-                className={"c-about-card__img--prdv"}
-                src={logoPrdv}
-                alt={"Logo prdv"}
-              />
+              <img className={"c-about-card__img--prdv"} src={logoPrdv} alt={"Logo prdv"} />
             </div>
             <div className="c-about-card__content">
-              <div className="c-about-card__title">
-                Prise de rendez-vous
-              </div>
-              <div className="c-about-card__text">
-                Pour échanger facilement avec les centres de formation
-              </div>
+              <div className="c-about-card__title">Prise de rendez-vous</div>
+              <div className="c-about-card__text">Pour échanger facilement avec les centres de formation</div>
               <div className="c-about-card__link">
-                <a href="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/prise-de-rendez-vous"
+                <a
+                  href="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/prise-de-rendez-vous"
                   rel="noopener noreferrer"
-                  target="_blank">En savoir plus</a>
+                  target="_blank"
+                >
+                  En savoir plus
+                </a>
               </div>
             </div>
           </div>
@@ -145,51 +127,45 @@ const APROPOS = () => (
           <div className="card-deck">
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
               <div className="c-about-card__img2">
-                <img
-                  src={logoLbb}
-                  width="134"
-                  alt={"Logo"}
-                />
+                <img src={logoLbb} width="134" alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a href="https://labonneboite.pole-emploi.fr/"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="c-about-card__text2 stretched-link">
+                <a
+                  href="https://labonneboite.pole-emploi.fr/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="c-about-card__text2 stretched-link"
+                >
                   Trouver des entreprises qui recrutent sans déposer d'offres d'emploi
                 </a>
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
               <div className="c-about-card__img2">
-                <img
-                  src={logoLbf}
-                  width="134"
-                  alt={"Logo"}
-                  />
+                <img src={logoLbf} width="134" alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a href="https://labonneboite.pole-emploi.fr/"
+                <a
+                  href="https://labonneformation.pole-emploi.fr/"
                   rel="noopener noreferrer"
                   target="_blank"
-                  className="c-about-card__text2 stretched-link">
+                  className="c-about-card__text2 stretched-link"
+                >
                   Trouvez une formation en fonction de votre profil ET du marché du travail
                 </a>
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
               <div className="c-about-card__img2">
-                <img
-                  src={logoMaintenant}
-                  width="134"
-                  alt={"Logo"}
-                  />
+                <img src={logoMaintenant} width="134" alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a href="https://maintenant.pole-emploi.fr/"
+                <a
+                  href="https://maintenant.pole-emploi.fr/"
                   rel="noopener noreferrer"
                   target="_blank"
-                  className="c-about-card__text2 stretched-link">
+                  className="c-about-card__text2 stretched-link"
+                >
                   Vous valez plus qu'un CV ! Trouvez le bon job en moins de 5 minutes
                 </a>
               </div>
@@ -199,54 +175,45 @@ const APROPOS = () => (
           <div className="card-deck">
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
               <div className="c-about-card__img2">
-                <img
-                  src={logoMemo}
-                  width="114"
-                  className={"c-about-card__img--memo"}
-                  alt={"Logo"}
-                  />
+                <img src={logoMemo} width="114" className={"c-about-card__img--memo"} alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a href="https://memo.pole-emploi.fr/"
+                <a
+                  href="https://memo.pole-emploi.fr/"
                   rel="noopener noreferrer"
                   target="_blank"
-                  className="c-about-card__text2 stretched-link">
-                    Organiser votre recherche d'emploi avec notre tableau de bord
+                  className="c-about-card__text2 stretched-link"
+                >
+                  Organiser votre recherche d'emploi avec notre tableau de bord
                 </a>
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
               <div className="c-about-card__img2">
-                <img
-                  src={logoAvril}
-                  width="114"
-                  className={"c-about-card__img--avril"}
-                  alt={"Logo"}
-                  />
+                <img src={logoAvril} width="114" className={"c-about-card__img--avril"} alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                      <a href="https://avril.pole-emploi.fr/"
+                <a
+                  href="https://avril.pole-emploi.fr/"
                   rel="noopener noreferrer"
                   target="_blank"
-                  className="c-about-card__text2 stretched-link">
+                  className="c-about-card__text2 stretched-link"
+                >
                   Trouvez une formation en fonction de votre profil ET du marché du travail
                 </a>
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
               <div className="c-about-card__img2">
-                <img
-                  src={logoClara}
-                  width="134"
-                  className={"c-about-card__img--clara"}
-                  alt={"Logo"}
-                />
+                <img src={logoClara} width="134" className={"c-about-card__img--clara"} alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a href="https://clara.pole-emploi.fr/"
+                <a
+                  href="https://clara.pole-emploi.fr/"
                   rel="noopener noreferrer"
                   target="_blank"
-                  className="c-about-card__text2 stretched-link">
+                  className="c-about-card__text2 stretched-link"
+                >
                   Découvrez les aides et mesures qui vont accélérer votre retour à l'emploi.
                 </a>
               </div>
@@ -259,90 +226,112 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a 
-                    href="https://diagoriente.beta.gouv.fr/" 
-                    target="_blank"
-                    rel="noopener noreferrer">
+                  <a href="https://diagoriente.beta.gouv.fr/" target="_blank" rel="noopener noreferrer">
                     Diagoriente
                   </a>
                 </span>
-              </div>                          
+              </div>
               <div className="c-about-otherright">
-                <span className="c-about-otherdescr">Outil d'orientation complet qui permet d'accéder à des pistes métiers en adéquation avec ses intérêts.</span>
-              </div>                          
-            </div>            
+                <span className="c-about-otherdescr">
+                  Outil d'orientation complet qui permet d'accéder à des pistes métiers en adéquation avec ses intérêts.
+                </span>
+              </div>
+            </div>
             <div className="c-about-other">
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="https://www.parcoursup.fr/index.php?desc=formations_apprentissage"
+                  <a
+                    href="https://www.parcoursup.fr/index.php?desc=formations_apprentissage"
                     target="_blank"
-                    rel="noopener noreferrer">Parcoursup</a>
+                    rel="noopener noreferrer"
+                  >
+                    Parcoursup
+                  </a>
                 </span>
-              </div>                          
+              </div>
               <div className="c-about-otherright">
                 <span className="c-about-otherdescr">Les conseils de parcoursup pour entrer en apprentissage.</span>
-              </div>                          
-            </div>            
+              </div>
+            </div>
             <div className="c-about-other">
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="https://www.parcoursup.fr/index.php?desc=services_numeriques"
+                  <a
+                    href="https://www.parcoursup.fr/index.php?desc=services_numeriques"
                     target="_blank"
-                    rel="noopener noreferrer">Parcoursup</a>
+                    rel="noopener noreferrer"
+                  >
+                    Parcoursup
+                  </a>
                 </span>
-              </div>                          
+              </div>
               <div className="c-about-otherright">
-                <span className="c-about-otherdescr">Les services d’aide à l’orientation vers les études supérieures proposés par Parcoursup.</span>
-              </div>                          
-            </div>            
+                <span className="c-about-otherdescr">
+                  Les services d’aide à l’orientation vers les études supérieures proposés par Parcoursup.
+                </span>
+              </div>
+            </div>
             <div className="c-about-other">
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="https://www.myjobglasses.com/"
-                    target="_blank"
-                    rel="noopener noreferrer">Myjobglasses</a>
+                  <a href="https://www.myjobglasses.com/" target="_blank" rel="noopener noreferrer">
+                    Myjobglasses
+                  </a>
                 </span>
-              </div>                          
+              </div>
               <div className="c-about-otherright">
-                <span className="c-about-otherdescr">Myjobglasses vous aide à identifier le métier qui vous correspond.</span>
-              </div>                          
-            </div>            
+                <span className="c-about-otherdescr">
+                  Myjobglasses vous aide à identifier le métier qui vous correspond.
+                </span>
+              </div>
+            </div>
             <div className="c-about-other">
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="https://openclassrooms.com/fr/courses/6003601-decouvrez-lalternance"
+                  <a
+                    href="https://openclassrooms.com/fr/courses/6003601-decouvrez-lalternance"
                     target="_blank"
-                    rel="noopener noreferrer">Openclassrooms</a>
+                    rel="noopener noreferrer"
+                  >
+                    Openclassrooms
+                  </a>
                 </span>
-              </div>                          
+              </div>
               <div className="c-about-otherright">
-                <span className="c-about-otherdescr">Profitez d’un cours en ligne gratuit pour découvrir l'alternance.</span>
-              </div>                          
-            </div>            
+                <span className="c-about-otherdescr">
+                  Profitez d’un cours en ligne gratuit pour découvrir l'alternance.
+                </span>
+              </div>
+            </div>
             <div className="c-about-other">
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="https://www.1jeune1solution.gouv.fr/"
-                    target="_blank"
-                    rel="noopener noreferrer">#1jeune1solution</a>
+                  <a href="https://www.1jeune1solution.gouv.fr/" target="_blank" rel="noopener noreferrer">
+                    #1jeune1solution
+                  </a>
                 </span>
-              </div>                          
+              </div>
               <div className="c-about-otherright">
-                <span className="c-about-otherdescr">je suis jeune, je découvre toutes les solutions pour préparer mon avenir.</span>
-              </div>                          
-            </div>            
+                <span className="c-about-otherdescr">
+                  je suis jeune, je découvre toutes les solutions pour préparer mon avenir.
+                </span>
+              </div>
+            </div>
           </div>
-
 
           <h2 className="h3">Crédits images</h2>
 
           <p>
-            <small><a href="https://www.freepik.com/vectors/people">Illustration de la page d'accueil réalisée par pikisuperstar - www.freepik.com</a></small>
+            <small>
+              <a href="https://www.freepik.com/vectors/people" rel="noopener noreferrer" target="_blank">
+                Illustration de la page d'accueil réalisée par pikisuperstar - www.freepik.com
+              </a>
+            </small>
           </p>
         </div>
       </div>
