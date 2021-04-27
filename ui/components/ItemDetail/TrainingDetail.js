@@ -8,7 +8,7 @@ import fetchTrainingDetails from "services/fetchTrainingDetails";
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const dispatch = useDispatch();
 
-  const { trainings, selectedItem } = useSelector((state) => state.trainings);
+  const { trainings } = useSelector((state) => state.trainings);
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
@@ -100,23 +100,8 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         )}
       </div>
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
-      {training.description ? (
-        <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Description</h3>
-          <div className="c-detail-training">{training.description}</div>
-        </div>
-      ) : (
-        ""
-      )}
 
-      {training.objectif ? (
-        <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Objectif</h3>
-          <div className="c-detail-training">{training.objectif}</div>
-        </div>
-      ) : (
-        ""
-      )}
+      {getTrainingDetails(training.training)}
 
       <div className="c-detail-training">
         {training.onisepUrl ? (
@@ -141,9 +126,91 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
 
 const updateTrainingFromLbf = (training, detailsFromLbf) => {
   if (training && detailsFromLbf) {
-    training.objectif = detailsFromLbf.objectif;
-    training.description = detailsFromLbf.description;
+    training.training = detailsFromLbf;
+    /*
+    
+Durée indicative de la formation
+Nombre d’heures en centre
+Nombre d’heures en entreprise (ce champ est-il toujours valorisé pour l’alternance ?)
+Conditions d’accès
+Entrée sortie permanente ou Date des prochaines sessions
+Niveau de retour à l’embauche
+Contact : (attention 3 champs email)
+● Email
+● Tel
+● Fax (utile pour nos publics ?)
+● URL du centre
+    */
   }
+};
+
+const getTrainingDetails = (training) => {
+
+  console.log("training : ",training);
+
+  if (!training) return "";
+
+  console.log("training 2 : ",training);
+
+  let res = (
+    <>
+      {training.description ? (
+        <div className="c-detail-description">
+          <h3 className="c-detail-description-title">Description</h3>
+          <div className="c-detail-training">{training.description}</div>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {training.objectif ? (
+        <div className="c-detail-description">
+          <h3 className="c-detail-description-title">Objectif</h3>
+          <div className="c-detail-training">{training.objectif}</div>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {training["duree-indicative"] ? (
+        <div className="c-detail-description">
+          <h3 className="c-detail-description-title">Durée indicative</h3>
+          <div className="c-detail-training">{training["duree-indicative"]}</div>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {training["modalites-alternance"] ? (
+        <div className="c-detail-description">
+          <h3 className="c-detail-description-title">Modalités alternance</h3>
+          <div className="c-detail-training">{training["modalites-alternance"]}</div>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {training["modalites-enseignement"] ? (
+        <div className="c-detail-description">
+          <h3 className="c-detail-description-title">Modalités enseignement</h3>
+          <div className="c-detail-training">{training["modalites-enseignement"]}</div>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {training["niveau-retour-embauche"] ? (
+        <div className="c-detail-description">
+          <h3 className="c-detail-description-title">Niveau de retour à l'embauche</h3>
+          <div className="c-detail-training">{training["niveau-retour-embauche"]}</div>
+        </div>
+      ) : (
+        ""
+      )}
+    </>
+  );
+  console.log("res : ",res);
+  return res;
 };
 
 export default TrainingDetail;
