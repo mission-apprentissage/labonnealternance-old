@@ -32,8 +32,6 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   });
 
   const loadDataFromLbf = () => {
-    console.log("loadDataFromLbf ", training.idRco);
-
     let udpdatedTrainings = trainings;
     let shouldDispatch = false;
     udpdatedTrainings.forEach(async (v) => {
@@ -43,9 +41,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         shouldDispatch = true;
         let trainingDetail = await fetchTrainingDetails(training);
 
-        console.log("trainingDetail : ", trainingDetail);
         updateTrainingFromLbf(v, trainingDetail);
-        console.log("v : ", v);
         dispatch(setSelectedItem(v));
       }
     });

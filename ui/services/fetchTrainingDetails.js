@@ -31,7 +31,7 @@ export default async function fetchTrainingDetails(
       _logError("Training detail API error simulated with a query param :)");
     }
   } else {
-    console.log("response : ", response);
+    console.log("response : ", response.data);
 
     res = response.data;
   }
