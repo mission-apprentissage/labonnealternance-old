@@ -121,4 +121,3 @@ export const setItemParameters = (itemParameters = true) => {
     itemParameters,
   };
 };
-

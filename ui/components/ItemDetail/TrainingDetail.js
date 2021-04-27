@@ -1,8 +1,15 @@
 import React, { useEffect } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { setTrainings } from "store/actions";
+import fetchTrainingDetails from "services/fetchTrainingDetails";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
+  const dispatch = useDispatch();
+
+  const { trainings } = useSelector((state) => state.trainings);
+
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
@@ -26,7 +33,22 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
 
   const loadDataFromLbf = () => {
     console.log("loadDataFromLbf ", training.idRco);
-    //training.lbfLoaded=true;
+
+    let udpdatedTrainings = trainings;
+    let shouldDispatch = false;
+    udpdatedTrainings.forEach(async (v) => {
+      //Test if projectname  == parameter1. If it is update status
+      if (v.idRco === training.idRco && !v.lbfLoaded) {
+        v.lbfLoaded = true;
+        shouldDispatch = true;
+        let trainingDetail = await fetchTrainingDetails(training);
+
+        console.log("trainingDetail ",trainingDetail);
+      }
+    });
+    if (shouldDispatch) {
+      dispatch(setTrainings(udpdatedTrainings));
+    }
   };
 
   const buildPrdvButton = () => {
