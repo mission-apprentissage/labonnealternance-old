@@ -14,11 +14,6 @@ const publishedMustTerm = {
     published: true,
   },
 };
-const publishedSchoolMustTerm = {
-  match: {
-    etablissement_reference_catalogue_published: true,
-  },
-};
 
 const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma, limit }) => {
   //console.log(romes, coords, radius, diploma);
@@ -62,7 +57,6 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
     }
 
     mustTerm.push(publishedMustTerm);
-    mustTerm.push(publishedSchoolMustTerm);
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
@@ -239,7 +233,6 @@ const getRegionFormations = async ({
       });
 
     mustTerm.push(publishedMustTerm);
-    mustTerm.push(publishedSchoolMustTerm);
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
