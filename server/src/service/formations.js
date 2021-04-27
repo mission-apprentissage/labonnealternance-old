@@ -546,49 +546,27 @@ const getFormationQuery = async (query) => {
 };
 
 const getLbfQueryParams = (params) => {
+  // le timestamp doit être uriencodé avec le format ISO sans les millis
   let date = new Date().toISOString();
   date = encodeURIComponent(date.substring(0, date.lastIndexOf(".")));
 
-  console.log("date : ", date, config.private.laBonneFormationPassword);
-
   let queryParams = `user=LBA&uid=${params.id}&timestamp=${date}`;
 
-  //creating hmac object
   var hmac = crypto.createHmac("md5", config.private.laBonneFormationPassword);
-  //passing the data to be hashed
   const data = hmac.update(queryParams);
-  //Creating the hmac in the required format
   const signature = data.digest("hex");
 
+  // le param signature doit contenir un hash des autres params chiffré avec le mdp attribué à LBA
   queryParams += "&signature=" + signature;
 
-  console.log("lbf : ", `${lbfDescriptionUrl}?${queryParams}`);
   return queryParams;
 };
 
 const getFormationDescriptionQuery = async (params) => {
   try {
-    /*static function querySign($query,$password,$insertTimestamp=true,$hashMethod='md5')
-		{
-			assert(!empty($query));
-			assert(!empty($password));
-			assert(!empty($hashMethod));
-			if($insertTimestamp) $query['timestamp']=gmdate("Y-m-d\TH:i:s");
-			$query['signature']=hash_hmac($hashMethod,http_build_query($query),$password);
-			return $query;
-		}
-    https://labonneformation.pole-emploi.fr/api/v1/detail?user=LBA&uid=<id form intercarif>&signature=<signature calculée>
-    https://nodejs.org/api/crypto.html#crypto_hmac_digest_encoding
-    */
-
-    console.log("params : ", params);
-
     const formationDescription = await axios.get(`${lbfDescriptionUrl}?${getLbfQueryParams(params)}`);
 
-    console.log(formationDescription);
-
-    //throw new Error("BIG BANG");
-    return formationDescription;
+    return formationDescription.data;
   } catch (err) {
     console.error("Error ", err.message);
     Sentry.captureException(err);
