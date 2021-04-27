@@ -5,9 +5,12 @@ const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
 const { formationsQueryValidator, formationsRegionQueryValidator } = require("./formationsQueryValidator");
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
+const crypto = require("crypto");
 
 const formationResultLimit = 500;
 const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
+
+const lbfDescriptionUrl = "https://labonneformation.pole-emploi.fr/api/v1/detail";
 
 const publishedMustTerm = {
   match: {
@@ -542,7 +545,28 @@ const getFormationQuery = async (query) => {
   }
 };
 
-const getFormationDescriptionQuery = async (/*query*/) => {
+const getLbfQueryParams = (params) => {
+  let date = new Date().toISOString();
+  date = encodeURIComponent(date.substring(0, date.lastIndexOf(".")));
+
+  console.log("date : ", date, config.private.laBonneFormationPassword);
+
+  let queryParams = `user=LBA&uid=${params.id}&timestamp=${date}`;
+
+  //creating hmac object
+  var hmac = crypto.createHmac("md5", config.private.laBonneFormationPassword);
+  //passing the data to be hashed
+  const data = hmac.update(queryParams);
+  //Creating the hmac in the required format
+  const signature = data.digest("hex");
+
+  queryParams += "&signature=" + signature;
+
+  console.log("lbf : ", `${lbfDescriptionUrl}?${queryParams}`);
+  return queryParams;
+};
+
+const getFormationDescriptionQuery = async (params) => {
   try {
     /*static function querySign($query,$password,$insertTimestamp=true,$hashMethod='md5')
 		{
@@ -553,11 +577,15 @@ const getFormationDescriptionQuery = async (/*query*/) => {
 			$query['signature']=hash_hmac($hashMethod,http_build_query($query),$password);
 			return $query;
 		}
-    https://labonneformation.pole-emploi.fr/api/v1/detail?user=LBA&uuid=<id form intercarif>&signature=<signature calculée>
+    https://labonneformation.pole-emploi.fr/api/v1/detail?user=LBA&uid=<id form intercarif>&signature=<signature calculée>
     https://nodejs.org/api/crypto.html#crypto_hmac_digest_encoding
     */
 
-    const formationDescription = await axios.get(urlCatalogueSearch);
+    console.log("params : ", params);
+
+    const formationDescription = await axios.get(`${lbfDescriptionUrl}?${getLbfQueryParams(params)}`);
+
+    console.log(formationDescription);
 
     //throw new Error("BIG BANG");
     return formationDescription;
