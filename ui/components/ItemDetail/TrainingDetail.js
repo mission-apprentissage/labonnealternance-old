@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { setTrainings } from "store/actions";
+import { setTrainings, setSelectedItem } from "store/actions";
 import fetchTrainingDetails from "services/fetchTrainingDetails";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const dispatch = useDispatch();
 
-  const { trainings } = useSelector((state) => state.trainings);
+  const { trainings, selectedItem } = useSelector((state) => state.trainings);
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
@@ -43,7 +43,10 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         shouldDispatch = true;
         let trainingDetail = await fetchTrainingDetails(training);
 
-        console.log("trainingDetail ",trainingDetail);
+        console.log("trainingDetail : ", trainingDetail);
+        updateTrainingFromLbf(v, trainingDetail);
+        console.log("v : ", v);
+        dispatch(setSelectedItem(v));
       }
     });
     if (shouldDispatch) {
@@ -101,6 +104,24 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         )}
       </div>
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
+      {training.description ? (
+        <div className="c-detail-description">
+          <h3 className="c-detail-description-title">Description</h3>
+          <div className="c-detail-training">{training.description}</div>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {training.objectif ? (
+        <div className="c-detail-description">
+          <h3 className="c-detail-description-title">Objectif</h3>
+          <div className="c-detail-training">{training.objectif}</div>
+        </div>
+      ) : (
+        ""
+      )}
+
       <div className="c-detail-training">
         {training.onisepUrl ? (
           <div className="">
@@ -120,6 +141,13 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
       </div>
     </>
   );
+};
+
+const updateTrainingFromLbf = (training, detailsFromLbf) => {
+  if (training && detailsFromLbf) {
+    training.objectif = detailsFromLbf.objectif;
+    training.description = detailsFromLbf.description;
+  }
 };
 
 export default TrainingDetail;
