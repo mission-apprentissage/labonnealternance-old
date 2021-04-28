@@ -16,7 +16,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         window.initPrdvWidget();
       }
     }
-  }, []);
+  }, [training.idRcoFormation]);
 
   const buildPrdvButton = () => {
     return <div className="widget-prdv gtmPrdv" data-referrer="lba" data-id-rco-formation={training.idRcoFormation} />;
