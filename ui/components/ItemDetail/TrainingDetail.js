@@ -19,7 +19,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   }, []);
 
   const buildPrdvButton = () => {
-    return <div className="widget-prdv gtmPrdv" data-id-rco-formation={training.idRcoFormation} />;
+    return <div className="widget-prdv gtmPrdv" data-referrer="lba" data-id-rco-formation={training.idRcoFormation} />;
   };
 
   const kind = training?.ideaType;
