@@ -141,12 +141,7 @@ Contact : (attention 3 champs email)
 };
 
 const getTrainingDetails = (training) => {
-
-  console.log("training : ",training);
-
   if (!training) return "";
-
-  console.log("training 2 : ",training);
 
   let res = (
     <>
@@ -205,7 +200,6 @@ const getTrainingDetails = (training) => {
       )}
     </>
   );
-  console.log("res : ",res);
   return res;
 };
 
