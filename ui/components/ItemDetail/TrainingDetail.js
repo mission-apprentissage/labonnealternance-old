@@ -19,7 +19,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
     if (window && window.initPrdvWidget) {
       const el = document.getElementsByClassName("widget-prdv");
 
-      if (el.length && !el[0].innerHTML) {
+      if (el.length) {
         window.initPrdvWidget();
       }
     }
@@ -47,15 +47,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   };
 
   const buildPrdvButton = () => {
-    return (
-      <div
-        className="widget-prdv gtmPrdv"
-        data-siret={training.company.siret}
-        data-cfd={training.cfd}
-        data-referrer="lba"
-        data-code-postal={training.place.zipCode}
-      />
-    );
+    return <div className="widget-prdv gtmPrdv" data-referrer="lba" data-id-rco-formation={training.idRcoFormation} />;
   };
 
   const kind = training?.ideaType;

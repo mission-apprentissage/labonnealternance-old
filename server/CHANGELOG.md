@@ -6,6 +6,9 @@
 ## 1.12.2 [23/04/2021]
 [550b] Correction RGPD
 [523] A propos, modifications
+[589] Exploitation geoloc catalogue améliorée pour LBA
+[575] Affichage formation non éligible
+[590] Paramètre id rco pour prdv
 
 ## 1.12.1 [16/04/2021]
 [571] Ajout code postal pour PRDV

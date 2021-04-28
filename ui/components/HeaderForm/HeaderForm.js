@@ -65,7 +65,7 @@ const HeaderForm = ({ handleSearchSubmit }) => {
                   onInputValueChangeFunction={fetchAddresses}
                   previouslySelectedItem={formValues?.location ?? null}
                   name="placeField"
-                  placeholder="ex: marseille"
+                  placeholder="Adresse, ville ou code postal"
                 />
               </div>
             </div>

@@ -17,11 +17,6 @@ const publishedMustTerm = {
     published: true,
   },
 };
-const publishedSchoolMustTerm = {
-  match: {
-    etablissement_reference_catalogue_published: true,
-  },
-};
 
 const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma, limit }) => {
   //console.log(romes, coords, radius, diploma);
@@ -65,7 +60,6 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
     }
 
     mustTerm.push(publishedMustTerm);
-    mustTerm.push(publishedSchoolMustTerm);
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
@@ -242,7 +236,6 @@ const getRegionFormations = async ({
       });
 
     mustTerm.push(publishedMustTerm);
-    mustTerm.push(publishedSchoolMustTerm);
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
@@ -397,6 +390,7 @@ const transformFormationForIdea = (formation) => {
   resultFormation.createdAt = formation.source.created_at;
   resultFormation.lastUpdateAt = formation.source.last_update_at;
   resultFormation.idRco = formation.source.id_rco_formation ? formation.source.id_rco_formation.split("|")[0] : "";
+  resultFormation.idRcoFormation = formation.source.id_rco_formation;
 
   if (formation.source.email) {
     resultFormation.contact = {
