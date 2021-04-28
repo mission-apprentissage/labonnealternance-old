@@ -23,7 +23,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         window.initPrdvWidget();
       }
     }
-  }, [training.idRco]);
+  }, [training.idRcoFormation]);
 
   useEffect(() => {
     if (training && !training.lbfLoaded) {
