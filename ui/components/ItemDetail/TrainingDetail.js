@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { setTrainings, setSelectedItem } from "store/actions";
+import { setTrainingsAndSelectedItem } from "store/actions";
 import fetchTrainingDetails from "services/fetchTrainingDetails";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
@@ -32,22 +32,18 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   });
 
   const loadDataFromLbf = () => {
-    let udpdatedTrainings = trainings;
-    let shouldDispatch = false;
-    udpdatedTrainings.forEach(async (v) => {
+    let updatedTrainings = trainings;
+
+    updatedTrainings.forEach(async (v) => {
       //Test if projectname  == parameter1. If it is update status
       if (v.idRco === training.idRco && !v.lbfLoaded) {
         v.lbfLoaded = true;
-        shouldDispatch = true;
         let trainingDetail = await fetchTrainingDetails(training);
 
-        updateTrainingFromLbf(v, trainingDetail);
-        dispatch(setSelectedItem(v));
+        await updateTrainingFromLbf(v, trainingDetail);
+        dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
       }
     });
-    if (shouldDispatch) {
-      dispatch(setTrainings(udpdatedTrainings));
-    }
   };
 
   const buildPrdvButton = () => {
