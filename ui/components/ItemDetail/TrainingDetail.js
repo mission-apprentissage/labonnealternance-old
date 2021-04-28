@@ -12,7 +12,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
     if (window && window.initPrdvWidget) {
       const el = document.getElementsByClassName("widget-prdv");
 
-      if (el.length && !el[0].innerHTML) {
+      if (el.length) {
         window.initPrdvWidget();
       }
     }
