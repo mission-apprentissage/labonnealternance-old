@@ -48,7 +48,7 @@ export const setSelectedItem = (selectedItem = null) => {
 
 export const setTrainingsAndSelectedItem = (trainings = [], selectedItem = null) => {
   return {
-    types: types.SET_TRAININGS_AND_SELECTED_ITEM,
+    type: types.SET_TRAININGS_AND_SELECTED_ITEM,
     selectedItem,
     trainings,
   };
