@@ -16,6 +16,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   useEffect(() => {
+    console.log("APPEL PRDV ",training.id);
     if (window && window.initPrdvWidget) {
       const el = document.getElementsByClassName("widget-prdv");
 
@@ -23,13 +24,17 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         window.initPrdvWidget();
       }
     }
-  }, []);
+  }, [training.id]);
 
   useEffect(() => {
+    console.log("APPEL LBF ",training.id);
     if (training && !training.lbfLoaded) {
+      console.log("call lbf");
       loadDataFromLbf();
     }
-  });
+    else
+      console.log("no call lbf");
+  }, [training.id]);
 
   const loadDataFromLbf = () => {
     let updatedTrainings = trainings;
