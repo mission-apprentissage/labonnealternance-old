@@ -25,7 +25,6 @@ export const searchForTrainingsFunction = async ({
   setTrainingSearchError("");
   clearTrainings();
   try {
-    console.log("values : ", values);
     const response = await axios.get(trainingsApi, {
       params: {
         romes: getRomeFromParameters({ values, widgetParameters }),
