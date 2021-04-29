@@ -26,6 +26,7 @@ const StartForm = (props) => {
       setDomainError(true);
     });
 
+    // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caratères
     if (val.length > 2) {
       SendTrackEvent({
         event: "Moteur de recherche - Metier",
