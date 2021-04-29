@@ -1,5 +1,14 @@
-.c-about h2 {
-  margin-bottom: 32px;
+.c-about-title {
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: $gray-750;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 .c-about-card {
