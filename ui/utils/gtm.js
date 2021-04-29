@@ -10,7 +10,6 @@ export const GTMPageView = (url) => {
 };
 
 export const SendTrackEvent = (event) => {
-  window && window.dataLayer && window.dataLayer.push(event);
-
+  window?.dataLayer?.push(event);
   return event;
 };
