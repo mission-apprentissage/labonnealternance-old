@@ -215,23 +215,11 @@
 }
 
 .c-detail-advice {
-  background-color: #FFE2DF;
-  border-radius: 10px;
   display: flex;
-  align-items: center;
-  margin-top: 24px;
-}
-
-.c-detail-advice--mb {
-  margin-bottom: 70px;
-}
-
-.c-detail-advice-text {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 19px;
-  letter-spacing: 0px;
-  text-align: left;
+  align-items: flex-start;
+  background-color: $gray-100;
+  margin-top: 12px;
+  padding: 24px;
 }
 
 .c-detail-lbb-title {
