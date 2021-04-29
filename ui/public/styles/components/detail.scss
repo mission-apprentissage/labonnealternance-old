@@ -215,23 +215,59 @@
 }
 
 .c-detail-advice {
-  background-color: #FFE2DF;
-  border-radius: 10px;
   display: flex;
-  align-items: center;
-  margin-top: 24px;
+  align-items: flex-start;
+  background-color: $gray-100;
+  margin-top: 12px;
+  padding: 24px;
+  padding-left: 18px;
+  border-left: 6px solid $pinksoft750;
 }
-
-.c-detail-advice--mb {
-  margin-bottom: 70px;
+.c-detail-advice-title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0px;
 }
-
 .c-detail-advice-text {
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
   letter-spacing: 0px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+.c-detail-advice-text.c-detail-advice-text--first {
+  margin-top: 0;
+  @include media-breakpoint-up(md) { 
+    margin-top: 18px;
+  }
+}
+.c-detail-advice-text--tag, .c-detail-advice-tag, .c-detail-advice-title  {
+  display: none;
+  @include media-breakpoint-up(md) { 
+    display: block;
+  }
+}
+.c-detail-advice-tag .c-media-tag {
+  display: block;
+  box-shadow: 0px 0px 15px 1px rgba(121, 121, 121, 0.4);
+}
+.c-detail-advice-highlight {
+  font-weight: 400;
+  color: inherit;
+  @include media-breakpoint-up(md) { 
+    font-weight: 700;
+    color: $pinksoft750;
+  }
+}
+
+.c-detail-advice__figure {
+  margin-right: 19px;
+}
+.c-detail-advice__body {
   text-align: left;
+  flex: 1;
 }
 
 .c-detail-lbb-title {
