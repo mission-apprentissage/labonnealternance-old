@@ -119,6 +119,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
           <div className="c-detail-advice__body">
             <div className="c-detail-advice-title">
+              Le saviez-vous ?
             </div>
             <div className="c-detail-advice-text" >
               Diversifiez vos démarches en envoyant aussi des candidatures spontanées aux entreprises qui n'ont pas
