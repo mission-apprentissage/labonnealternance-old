@@ -31,7 +31,7 @@ const APROPOS = () => (
           <hr className="c-page-title-separator" align="left" />
         </div>
         <div className="col-12 col-md-7">
-          <h2 className="h3">Le saviez-vous ?</h2>
+          <h2 className="c-about-title">Le saviez-vous ?</h2>
           <p>
             7 employeurs sur 10 recrutent sans déposer d’offre d’emploi.
             <br />
@@ -53,7 +53,7 @@ const APROPOS = () => (
             disponibles, ainsi qu’à des conseils pour postuler.
           </p>
 
-          <h2 className="h3">Qui sommes-nous ?</h2>
+          <h2 className="c-about-title">Qui sommes-nous ?</h2>
 
           <p>
             La Bonne Alternance est d’abord une start-up interne de Pôle emploi créée et développée par des conseillers.{" "}
@@ -65,7 +65,7 @@ const APROPOS = () => (
             en 2020, le site ajoute désormais des informations sur les formations en apprentissage et les offres d’emploi en alternance.
           </p>
 
-          <h2 className="h3">Les services de La Bonne Alternance</h2>
+          <h2 className="c-about-title">Les services de La Bonne Alternance</h2>
 
           <div className="card c-about-card c-about-card--flat mt-4">
             <div className="c-about-card__img">
@@ -120,7 +120,7 @@ const APROPOS = () => (
             </div>
           </div>
 
-          <h2 className="h3">Autres services de Pôle Emploi</h2>
+          <h2 className="c-about-title">Autres services de Pôle Emploi</h2>
 
           <div className="card-deck">
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
@@ -218,7 +218,7 @@ const APROPOS = () => (
             </div>
           </div>
 
-          <h2 className="h3">Autres liens utiles</h2>
+          <h2 className="c-about-title">Autres liens utiles</h2>
           <div className="c-about-others">
             <div className="c-about-other">
               <div className="c-about-otherleft">
@@ -322,7 +322,7 @@ const APROPOS = () => (
             </div>
           </div>
 
-          <h2 className="h3">Crédits images</h2>
+          <h2 className="c-about-title">Crédits images</h2>
 
           <p>
             <small>
