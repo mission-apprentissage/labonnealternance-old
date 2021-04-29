@@ -121,11 +121,12 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             <div className="c-detail-advice-title">
               Le saviez-vous ?
             </div>
-            <div className="c-detail-advice-text" >
-              Diversifiez vos démarches en envoyant aussi des candidatures spontanées aux entreprises qui n'ont pas
-              diffusé d'offre !
+            <div className="c-detail-advice-text c-detail-advice-text--first" >
+              Diversifiez vos démarches en envoyant aussi des 
+              <span className="c-detail-advice-highlight">candidatures spontanées</span> 
+              aux entreprises qui n'ont pas diffusé d'offre !
             </div>
-            <div className="c-detail-advice-text" >
+            <div className="c-detail-advice-text c-detail-advice-text--tag" >
               Repérez les tags suivants dans la liste de résultats
             </div>
             <div className="c-detail-advice-tag" >

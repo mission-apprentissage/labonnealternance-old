@@ -229,6 +229,38 @@
   line-height: 19px;
   letter-spacing: 0px;
 }
+.c-detail-advice-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+.c-detail-advice-text.c-detail-advice-text--first {
+  margin-top: 0;
+  @include media-breakpoint-up(md) { 
+    margin-top: 18px;
+  }
+}
+.c-detail-advice-text--tag, .c-detail-advice-tag, .c-detail-advice-title  {
+  display: none;
+  @include media-breakpoint-up(md) { 
+    display: block;
+  }
+}
+.c-detail-advice-tag .c-media-tag {
+  display: block;
+  box-shadow: 0px 0px 15px 1px rgba(121, 121, 121, 0.4);
+}
+.c-detail-advice-highlight {
+  font-weight: 400;
+  color: inherit;
+  @include media-breakpoint-up(md) { 
+    font-weight: 700;
+    color: $pinksoft750;
+  }
+}
 
 .c-detail-advice__figure {
   margin-right: 19px;
