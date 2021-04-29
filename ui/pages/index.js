@@ -20,7 +20,6 @@ const Home = () => {
       <ScrollToTop />
       <Navigation />
       <HomeHero />
-      <HomeServices />
       <DescriptionMissionApprentissage />
       <Footer />
     </div>
