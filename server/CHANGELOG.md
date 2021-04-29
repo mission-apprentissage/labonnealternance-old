@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.12.3 [29/04/2021]
+[441] Le saviez-vous : changement de design
 [523] Corrections page "à propos"
 [584] Emission d'events google analytics via data layer
 
