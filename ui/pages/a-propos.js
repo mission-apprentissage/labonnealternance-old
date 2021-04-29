@@ -38,7 +38,6 @@ const APROPOS = () => (
             Il est essentiel dans votre recherche de proposer votre candidature à des entreprises n’ayant pas forcément
             déposé d’offre d’emploi en alternance.
           </p>
-          <p>En complément, le service La Bonne Alternance expose les formations disponibles en apprentissage.</p>
           <p>
             Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 6 dernières années pour vous
             proposer les entreprises qui recrutent régulièrement en alternance (contrat d'apprentissage ou contrat de
