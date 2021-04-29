@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.12.3 [29/04/2021]
+[584] Emission d'events google analytics via data layer
+
 ## 1.12.2 [23/04/2021]
 [550b] Correction RGPD
 [523] A propos, modifications
