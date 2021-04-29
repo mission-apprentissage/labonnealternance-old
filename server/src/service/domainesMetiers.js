@@ -1,7 +1,7 @@
 const logger = require("../common/logger");
 const { getDomainesMetiersES } = require("../common/esClient");
 const _ = require("lodash");
-const { trackEvent } = require("../common/utils/sendTrackingEvent");
+//const { trackEvent } = require("../common/utils/sendTrackingEvent");
 const config = require("config");
 const updateDomainesMetiers = require("../jobs/domainesMetiers/updateDomainesMetiers");
 const getMissingRNCPsFromDomainesMetiers = require("../jobs/domainesMetiers/getMissingRNCPsFromDomainesMetiers");
@@ -73,14 +73,14 @@ const getLabelsAndRomes = async (searchKeyword) => {
       });
     });
 
-    if (searchKeyword.length > 3) {
+    /*if (searchKeyword.length > 3) {
       trackEvent({
         action: "Custom event",
         label: searchKeyword,
         category: "Moteur de recherche - Metier",
         value: labelsAndRomes.length,
       });
-    }
+    }*/
 
     //throw new Error("BOOOOOOOM");
 
