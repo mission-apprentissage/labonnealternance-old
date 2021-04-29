@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.12.3 [29/04/2021]
+[441] Le saviez-vous : changement de design
+
 ## 1.12.2 [23/04/2021]
 [550b] Correction RGPD
 [523] A propos, modifications
