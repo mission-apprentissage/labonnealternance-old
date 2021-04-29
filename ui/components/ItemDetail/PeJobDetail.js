@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import moment from "moment";
-import bulbIcon from "../../public/images/icons/bulb.svg";
+import questionmarkIcon from "../../public/images/icons/questionmark.svg";
 import { get, defaultTo } from "lodash";
 import ReactHtmlParser from "react-html-parser";
+import TagCandidatureSpontanee from "components/ItemDetail/TagCandidatureSpontanee.js";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -52,15 +53,30 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
           ""
         )}
 
-        <div className="c-detail-advice c-detail-advice--mb p-2">
-          <img src={bulbIcon} alt="" />
-          <div className="c-detail-advice-text">
-            Diversifiez vos démarches en envoyant aussi des candidatures spontanées aux entreprises qui n'ont pas
-            diffusé d'offre !
+        <div className="c-detail-advice">
+          <div className="c-detail-advice__figure">
+            <img src={questionmarkIcon} alt="point d'interrogation" />
+          </div>
+          <div className="c-detail-advice__body">
+            <div className="c-detail-advice-title">
+              Le saviez-vous ?
+            </div>
+            <div className="c-detail-advice-text c-detail-advice-text--first" >
+              Diversifiez vos démarches en envoyant aussi des
+              <span className="c-detail-advice-highlight"> candidatures spontanées </span>
+              aux entreprises qui n'ont pas diffusé d'offre !
+            </div>
+            <div className="c-detail-advice-text c-detail-advice-text--tag" >
+              Repérez les tags suivants dans la liste de résultats
+            </div>
+            <div className="c-detail-advice-tag" >
+              <TagCandidatureSpontanee />
+            </div>
           </div>
         </div>
 
-        <div className="mt-3">&nbsp;</div>
+
+        <div className="mt-5">&nbsp;</div>
       </div>
     </>
   );
