@@ -8,10 +8,9 @@ export default async function domainChanged(val, setDomainErrorFunc) {
 
   if (val.length > 2) {
     SendTrackEvent({
-      action: "Custom event",
-      label: val,
-      category: "Moteur de recherche - Metier",
-      value: res.length,
+      event: "Moteur de recherche - Metier",
+      terme: val,
+      hits: res.length,
     });
   }
 
