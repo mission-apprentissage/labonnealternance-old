@@ -201,7 +201,7 @@ const getTrainingDetails = (training) => {
 
       {training["modalites-alternance"] ? (
         <div className="c-detail-description media">
-          <img src={academicCapIcon} alt="sablier" />
+          <img src={academicCapIcon} alt="cape académique" />
           <div className="c-detail-training media-body">
             <h3 className="c-detail-description-title mb-3 mt-0">Modalités alternance</h3>
             {training["modalites-alternance"]}
@@ -213,7 +213,7 @@ const getTrainingDetails = (training) => {
 
       {training["modalites-enseignement"] ? (
         <div className="c-detail-description media">
-          <img src={academicCapIcon} alt="sablier" />
+          <img src={academicCapIcon} alt="cape académique" />
           <div className="c-detail-training media-body">
             <h3 className="c-detail-description-title mb-3 mt-0">Modalités enseignement</h3>
             {training["modalites-enseignement"]}
