@@ -4,6 +4,7 @@ import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainingsAndSelectedItem } from "store/actions";
 import fetchTrainingDetails from "services/fetchTrainingDetails";
+import questionmarkIcon from "../../public/images/icons/questionmark2.svg";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const dispatch = useDispatch();
@@ -106,16 +107,23 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
       </div>
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
 
-      <div className="c-detail-training">
+      <div className="">
         {training.onisepUrl ? (
-          <div className="">
-            <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
-            <span className="c-detail-traininglink">
-              <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
-                <img src={gotoIcon} alt="Lien" />
-                &nbsp;le site Onisep
-              </a>
-            </span>
+          <div className="c-detail-advice c-detail-advice--training">
+            <div className="c-detail-advice__figure">
+              <img src={questionmarkIcon} alt="point d'interrogation" />
+            </div>
+            <div className="c-detail-advice__body">
+              <div className="c-detail-advice-text" >
+                  <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
+                  <span className="c-detail-traininglink">
+                    <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
+                      <img src={gotoIcon} alt="Lien" />
+                      &nbsp;le site Onisep
+                    </a>
+                  </span>
+              </div>
+            </div>
           </div>
         ) : (
           ""
