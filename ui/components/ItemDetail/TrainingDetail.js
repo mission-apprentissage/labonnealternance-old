@@ -182,14 +182,6 @@ const getTrainingDetails = (training) => {
         ""
       )}
 
-      {training["niveau-retour-embauche"] ? (
-        <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Niveau de retour à l'embauche</h3>
-          <div className="c-detail-training">{training["niveau-retour-embauche"]}</div>
-        </div>
-      ) : (
-        ""
-      )}
     </>
   );
   return res;
