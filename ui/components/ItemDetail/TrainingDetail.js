@@ -4,7 +4,8 @@ import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainingsAndSelectedItem } from "store/actions";
 import fetchTrainingDetails from "services/fetchTrainingDetails";
-import questionmarkIcon from "../../public/images/icons/questionmark2.svg";
+import questionmarkIcon from "public/images/icons/questionmark2.svg";
+import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const dispatch = useDispatch();
@@ -160,9 +161,12 @@ const getTrainingDetails = (training) => {
   let res = (
     <>
       {training.description ? (
-        <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Description</h3>
-          <div className="c-detail-training">{training.description}</div>
+        <div className="c-detail-description media">
+          <img src={clipboardListIcon} alt="dossier" />
+          <div className="c-detail-training media-body">
+            <h3 className="c-detail-description-title mb-3 mt-0">Description</h3>
+            {training.description}
+          </div>
         </div>
       ) : (
         ""
