@@ -52,18 +52,35 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
 
   const kind = training?.ideaType;
   let contactEmail = training?.contact?.email;
-  let contactInfo = contactEmail ? (
-    <span className="c-detail-km c-detail-contactlink">
-      <a href={`mailto:${contactEmail}`} className="ml-1" target="_blank" rel="noopener noreferrer">
-        {contactEmail}
-      </a>
-    </span>
-  ) : null;
+  let contactPhone = training?.contact?.phone;
+
+  let contactInfo = (
+    <>
+      {contactEmail ? (
+        <p className="c-detail-km c-detail-contactlink">
+          <a href={`mailto:${contactEmail}`} className="ml-1">
+            {contactEmail}
+          </a>
+        </p>
+      ) : (
+        ""
+      )}
+      {contactPhone ? (
+        <p className="c-detail-km c-detail-contactlink">
+          <a href={`tel:${contactPhone}`} className="ml-1">
+            {contactPhone}
+          </a>
+        </p>
+      ) : (
+        ""
+      )}
+    </>
+  );
 
   return (
     <>
       <div className="text-left">
-        {contactInfo ? (
+        {contactPhone || contactEmail ? (
           <div className="d-flex mb-3">
             {seeInfo ? (
               <>
@@ -76,7 +93,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
               </>
             ) : (
               <button
-                className="c-see-info d-block btn btn-lg btn-outline-primary gtmContact gtmFormation"
+                className={`c-see-info d-block btn btn-outline-primary gtmContact gtmFormation`}
                 onClick={() => setSeeInfo(true)}
               >
                 Voir les informations de contact
@@ -116,21 +133,15 @@ const updateTrainingFromLbf = (training, detailsFromLbf) => {
   if (training && detailsFromLbf) {
     training.training = detailsFromLbf;
 
-    
-    /*
-    
-Durée indicative de la formation
-Nombre d’heures en centre
-Nombre d’heures en entreprise (ce champ est-il toujours valorisé pour l’alternance ?)
-Conditions d’accès
-Entrée sortie permanente ou Date des prochaines sessions
-Niveau de retour à l’embauche
-Contact : (attention 3 champs email)
-● Email
-● Tel
-● Fax (utile pour nos publics ?)
-● URL du centre
-    */
+    // remplacement des coordonnées de contact catalogue par celles de lbf
+    const contactLbf = detailsFromLbf.organisme.contact;
+
+    training.contact = training.contact || {};
+
+    training.contact.phone = contactLbf.tel || training.contact.phone;
+    training.contact.email = contactLbf.email || training.contact.email;
+
+    training.company.url = contactLbf.url || training.company.url;
   }
 };
 
@@ -191,7 +202,6 @@ const getTrainingDetails = (training) => {
 };
 
 const getTrainingSessions = (training) => {
-  console.log("training.sessions ", training.sessions);
   if (training.sessions) {
     return (
       <div className="c-detail-description">
