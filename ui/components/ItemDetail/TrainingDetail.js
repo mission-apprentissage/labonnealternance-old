@@ -115,6 +115,8 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
 const updateTrainingFromLbf = (training, detailsFromLbf) => {
   if (training && detailsFromLbf) {
     training.training = detailsFromLbf;
+
+    
     /*
     
 Durée indicative de la formation
@@ -182,9 +184,34 @@ const getTrainingDetails = (training) => {
         ""
       )}
 
+      {getTrainingSessions(training)}
     </>
   );
   return res;
+};
+
+const getTrainingSessions = (training) => {
+  console.log("training.sessions ", training.sessions);
+  if (training.sessions) {
+    return (
+      <div className="c-detail-description">
+        <h3 className="c-detail-description-title">Sessions</h3>
+        <div className="c-detail-training">
+          {training.sessions.map((session, idx) => {
+            return (
+              <div key={`session${idx}`}>
+                Début : {session.debut}
+                <br />
+                Fin : {session.fin}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  } else {
+    return "";
+  }
 };
 
 export default TrainingDetail;
