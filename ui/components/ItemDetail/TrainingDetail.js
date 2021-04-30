@@ -106,8 +106,6 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
       </div>
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
 
-      {getTrainingDetails(training.training)}
-
       <div className="c-detail-training">
         {training.onisepUrl ? (
           <div className="">
@@ -125,6 +123,9 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         <br />
         <div className="c-detail-prdv mt-3 ml-3 w-75">{buildPrdvButton()}</div>
       </div>
+
+      {getTrainingDetails(training.training)}
+
     </>
   );
 };
