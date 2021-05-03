@@ -1,7 +1,9 @@
 # CHANGELOG
 
-## 1.13.0 [25/04/2021]
+
+## 1.13.0 [30/04/2021]
 [576] Descriptions des formations LBF
+[601] Intégration détail LBF
 
 ## 1.12.3 [29/04/2021]
 [441] Le saviez-vous : changement de design

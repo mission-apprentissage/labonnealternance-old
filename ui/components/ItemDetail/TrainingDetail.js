@@ -4,6 +4,11 @@ import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainingsAndSelectedItem } from "store/actions";
 import fetchTrainingDetails from "services/fetchTrainingDetails";
+import questionmarkIcon from "public/images/icons/questionmark2.svg";
+import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
+import targetIcon from "public/images/icons/training-target.svg";
+import sablierIcon from "public/images/icons/training-sablier.svg";
+import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const dispatch = useDispatch();
@@ -106,18 +111,23 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
       </div>
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
 
-      {getTrainingDetails(training.training)}
-
-      <div className="c-detail-training">
+      <div className="">
         {training.onisepUrl ? (
-          <div className="">
-            <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
-            <span className="c-detail-traininglink">
-              <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
-                <img src={gotoIcon} alt="Lien" />
-                &nbsp;le site Onisep
-              </a>
-            </span>
+          <div className="c-detail-advice c-detail-advice--training">
+            <div className="c-detail-advice__figure">
+              <img src={questionmarkIcon} alt="point d'interrogation" />
+            </div>
+            <div className="c-detail-advice__body">
+              <div className="c-detail-advice-text" >
+                  <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
+                  <span className="c-detail-traininglink">
+                    <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
+                      <img src={gotoIcon} alt="Lien" />
+                      &nbsp;le site Onisep
+                    </a>
+                  </span>
+              </div>
+            </div>
           </div>
         ) : (
           ""
@@ -125,6 +135,9 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         <br />
         <div className="c-detail-prdv mt-3 ml-3 w-75">{buildPrdvButton()}</div>
       </div>
+
+      {getTrainingDetails(training.training)}
+
     </>
   );
 };
@@ -151,45 +164,60 @@ const getTrainingDetails = (training) => {
   let res = (
     <>
       {training.description ? (
-        <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Description</h3>
-          <div className="c-detail-training">{training.description}</div>
+        <div className="c-detail-description is-first media">
+          <img src={clipboardListIcon} alt="dossier" />
+          <div className="c-detail-training media-body">
+            <h3 className="c-detail-description-title mb-3 mt-0">Description</h3>
+            {training.description}
+          </div>
         </div>
       ) : (
         ""
       )}
 
       {training.objectif ? (
-        <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Objectif</h3>
-          <div className="c-detail-training">{training.objectif}</div>
+        <div className="c-detail-description media">
+          <img src={targetIcon} alt="cible" />
+          <div className="c-detail-training media-body">
+            <h3 className="c-detail-description-title mb-3 mt-0">Objectif</h3>
+            {training.objectif}
+          </div>
         </div>
       ) : (
         ""
       )}
 
       {training["duree-indicative"] ? (
-        <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Durée indicative</h3>
-          <div className="c-detail-training">{training["duree-indicative"]}</div>
+        <div className="c-detail-description media">
+          <img src={sablierIcon} alt="sablier" />
+          <div className="c-detail-training media-body">
+            <h3 className="c-detail-description-title mb-3 mt-0">Durée indicative</h3>
+            {training["duree-indicative"]}
+          </div>
         </div>
       ) : (
         ""
       )}
 
       {training["modalites-alternance"] ? (
-        <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Modalités alternance</h3>
-          <div className="c-detail-training">{training["modalites-alternance"]}</div>
+        <div className="c-detail-description media">
+          <img src={academicCapIcon} alt="cape académique" />
+          <div className="c-detail-training media-body">
+            <h3 className="c-detail-description-title mb-3 mt-0">Modalités alternance</h3>
+            {training["modalites-alternance"]}
+          </div>
         </div>
       ) : (
         ""
       )}
 
       {training["modalites-enseignement"] ? (
-        <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Modalités enseignement</h3>
-          <div className="c-detail-training">{training["modalites-enseignement"]}</div>
+        <div className="c-detail-description media">
+          <img src={academicCapIcon} alt="cape académique" />
+          <div className="c-detail-training media-body">
+            <h3 className="c-detail-description-title mb-3 mt-0">Modalités enseignement</h3>
+            {training["modalites-enseignement"]}
+          </div>
         </div>
       ) : (
         ""
@@ -204,9 +232,10 @@ const getTrainingDetails = (training) => {
 const getTrainingSessions = (training) => {
   if (training.sessions) {
     return (
-      <div className="c-detail-description">
-        <h3 className="c-detail-description-title">Sessions</h3>
-        <div className="c-detail-training">
+      <div className="c-detail-description media">
+        <img src={clipboardListIcon} alt="dossier" />
+        <div className="c-detail-training media-body">
+          <h3 className="c-detail-description-title mb-3 mt-0">Sessions</h3>
           {training.sessions.map((session, idx) => {
             return (
               <div key={`session${idx}`}>
