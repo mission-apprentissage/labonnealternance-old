@@ -118,14 +118,14 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
               <img src={questionmarkIcon} alt="point d'interrogation" />
             </div>
             <div className="c-detail-advice__body">
-              <div className="c-detail-advice-text" >
-                  <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
-                  <span className="c-detail-traininglink">
-                    <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
-                      <img src={gotoIcon} alt="Lien" />
-                      &nbsp;le site Onisep
-                    </a>
-                  </span>
+              <div className="c-detail-advice-text">
+                <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
+                <span className="c-detail-traininglink">
+                  <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
+                    <img src={gotoIcon} alt="Lien" />
+                    &nbsp;le site Onisep
+                  </a>
+                </span>
               </div>
             </div>
           </div>
@@ -137,7 +137,6 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
       </div>
 
       {getTrainingDetails(training.training)}
-
     </>
   );
 };
