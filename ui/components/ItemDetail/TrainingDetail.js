@@ -8,6 +8,7 @@ import questionmarkIcon from "public/images/icons/questionmark2.svg";
 import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
 import sablierIcon from "public/images/icons/training-sablier.svg";
+import chainlinkIcon from "public/images/icons/chainlink.svg";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "utils/strutils";
 
@@ -59,6 +60,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const kind = training?.ideaType;
   let contactEmail = training?.contact?.email;
   let contactPhone = training?.contact?.phone;
+  let companyUrl = training?.company?.url;
 
   let contactInfo = (
     <>
@@ -110,6 +112,26 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
           ""
         )}
       </div>
+      {companyUrl ? (
+        <div className="text-left">
+          <div className="d-flex mb-3">
+            <span className="d-block">
+              <img className="cardIcon" src={chainlinkIcon} alt="" />
+            </span>
+            <span className="ml-2 d-block">
+              <span className="c-detail-address d-block">
+                <p className="c-detail-km c-detail-contactlink">
+                  <a href={companyUrl} target="_blank" rel="noopener noreferrer" className="ml-1">
+                    {companyUrl}
+                  </a>
+                </p>
+              </span>
+            </span>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
 
       <div className="">
