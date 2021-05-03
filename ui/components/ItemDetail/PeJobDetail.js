@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import moment from "moment";
 import questionmarkIcon from "../../public/images/icons/questionmark.svg";
 import { get, defaultTo } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import TagCandidatureSpontanee from "components/ItemDetail/TagCandidatureSpontanee.js";
+import { formatDate } from "utils/strutils";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -16,7 +16,7 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
   const description = get(job, "job.description", undefined);
   const contractDuration = get(job, "job.contractDescription", undefined);
   const contractRythm = get(job, "job.duration", undefined);
-  const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined;
+  const creationDate = job?.job?.creationDate ? formatDate(job.job.creationDate) : undefined;
 
   const kind = job?.ideaType;
 
