@@ -220,17 +220,22 @@ const getTrainingDetails = (training) => {
 
 const getTrainingSessions = (training) => {
   if (training.sessions) {
+    let sessions = [];
+    training.sessions.forEach((s) => {
+      if (sessions.findIndex((v) => s.debut === v.debut && s.fin === v.fin) < 0) {
+        sessions.push({ debut: s.debut, fin: s.fin });
+      }
+    });
+
     return (
       <div className="c-detail-description media">
         <img src={clipboardListIcon} alt="dossier" />
         <div className="c-detail-training media-body">
           <h3 className="c-detail-description-title mb-3 mt-0">Sessions</h3>
-          {training.sessions.map((session, idx) => {
+          {sessions.map((session, idx) => {
             return (
               <div key={`session${idx}`}>
-                Début : {session.debut}
-                <br />
-                Fin : {session.fin}
+                Début : {session.debut} - Fin : {session.fin}
               </div>
             );
           })}
