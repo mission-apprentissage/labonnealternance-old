@@ -9,6 +9,7 @@ import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
 import sablierIcon from "public/images/icons/training-sablier.svg";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
+import { formatDate } from "utils/strutils";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const dispatch = useDispatch();
@@ -235,7 +236,7 @@ const getTrainingSessions = (training) => {
           {sessions.map((session, idx) => {
             return (
               <div key={`session${idx}`}>
-                Début : {session.debut} - Fin : {session.fin}
+                Début : {formatDate(session.debut)} - Fin : {formatDate(session.fin)}
               </div>
             );
           })}
