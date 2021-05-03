@@ -190,7 +190,7 @@ const getTrainingDetails = (training) => {
         <div className="c-detail-description media">
           <img src={sablierIcon} alt="sablier" />
           <div className="c-detail-training media-body">
-            <h3 className="c-detail-description-title mb-3 mt-0">Durée indicative</h3>
+            <h3 className="c-detail-description-title mb-3 mt-0">Durée</h3>
             {training["duree-indicative"]}
           </div>
         </div>
@@ -198,24 +198,14 @@ const getTrainingDetails = (training) => {
         ""
       )}
 
-      {training["modalites-alternance"] ? (
+      {training["sessions"] && training["sessions"].length ? (
         <div className="c-detail-description media">
           <img src={academicCapIcon} alt="cape académique" />
           <div className="c-detail-training media-body">
             <h3 className="c-detail-description-title mb-3 mt-0">Modalités alternance</h3>
-            {training["modalites-alternance"]}
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
-
-      {training["modalites-enseignement"] ? (
-        <div className="c-detail-description media">
-          <img src={academicCapIcon} alt="cape académique" />
-          <div className="c-detail-training media-body">
-            <h3 className="c-detail-description-title mb-3 mt-0">Modalités enseignement</h3>
-            {training["modalites-enseignement"]}
+            Heures en centre de formation : {training["sessions"][0]["nombre-heures-centre"]}h
+            <br />
+            Heures en entreprise : {training["sessions"][0]["nombre-heures-entreprise"]}h
           </div>
         </div>
       ) : (
