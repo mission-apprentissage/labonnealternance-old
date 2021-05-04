@@ -42,8 +42,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
     let updatedTrainings = trainings;
 
     updatedTrainings.forEach(async (v) => {
-      //Test if projectname  == parameter1. If it is update status
-      if (v.idRco === training.idRco && !v.lbfLoaded) {
+      if (v.id === training.id && !v.lbfLoaded) {
         v.lbfLoaded = true;
         let trainingDetail = await fetchTrainingDetails(training);
 
