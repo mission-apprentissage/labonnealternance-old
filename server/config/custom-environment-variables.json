@@ -11,6 +11,7 @@
   "private":
   {
     "apiKey": "LABONNEALTERNANCE_API_KEY",
+    "laBonneFormationPassword": "LABONNEFORMATION_PASSWORD",
     "auth": {
       "passwordHashRounds": "LABONNEALTERNANCE_AUTH_PASSWORD_HASH_ROUNDS",
       "user": {

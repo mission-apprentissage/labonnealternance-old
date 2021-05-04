@@ -42,6 +42,7 @@
   a {
     overflow-wrap: anywhere;
   }  
+  margin-bottom: 32px;
 }
 
 
@@ -154,6 +155,13 @@
   text-align: left;
 }
 
+.c-detail-description {
+  margin-top: 41px;
+  &.is-first {
+    margin-top: 20px;
+  }
+}
+
 .c-detail-description-text {
   font-size: 16px;
   font-weight: 400;
@@ -223,6 +231,20 @@
   padding-left: 18px;
   border-left: 6px solid $pinksoft750;
 }
+.c-detail-advice.c-detail-advice--training {
+  border-left: 6px solid $greensoft750;
+  padding: 8px;
+  padding-bottom: 20px;
+  @include media-breakpoint-up(md) { 
+    padding: 24px;
+    padding-bottom: 57px;
+  }
+}
+.c-detail-advice.c-detail-advice--training .c-detail-advice-text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .c-detail-advice-title {
   font-size: 16px;
   font-weight: 700;
@@ -348,12 +370,13 @@ a.c-detail-lbb-siretbutton {
   color: $gray-600;
 }
 .c-detail-training {
-  padding: 28px 20px 0px 30px;
+  padding-left: 16px;
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
   letter-spacing: 0px;
   text-align: left;
+  white-space: pre-wrap;
 }
 .c-detail-traininglink {
   font-size: 16px;
