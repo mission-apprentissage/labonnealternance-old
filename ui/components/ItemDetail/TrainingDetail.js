@@ -134,32 +134,31 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
       )}
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
 
-      <div className="">
-        {training.onisepUrl ? (
-          <div className="c-detail-advice c-detail-advice--training">
-            <div className="c-detail-advice__figure">
-              <img src={questionmarkIcon} alt="point d'interrogation" />
-            </div>
-            <div className="c-detail-advice__body">
-              <div className="c-detail-advice-text">
-                <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
-                <span className="c-detail-traininglink">
-                  <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
-                    <img src={gotoIcon} alt="Lien" />
-                    &nbsp;le site Onisep
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-        <br />
-        <div className="c-detail-prdv mt-3 ml-3 w-75">{buildPrdvButton()}</div>
-      </div>
+      <div className="c-detail-prdv mt-3 ml-3 w-75">{buildPrdvButton()}</div>
 
       {getTrainingDetails(training.training)}
+
+      {training.onisepUrl ? (
+        <div className="c-detail-advice c-detail-advice--training mt-4">
+          <div className="c-detail-advice__figure">
+            <img src={questionmarkIcon} alt="point d'interrogation" />
+          </div>
+          <div className="c-detail-advice__body">
+            <div className="c-detail-advice-text">
+              <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
+              <span className="c-detail-traininglink">
+                <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
+                  <img src={gotoIcon} alt="Lien" />
+                  &nbsp;le site Onisep
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+      <br />
     </>
   );
 };
