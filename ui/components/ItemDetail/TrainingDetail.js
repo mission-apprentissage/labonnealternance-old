@@ -113,22 +113,20 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         )}
       </div>
       {companyUrl ? (
-        <div className="text-left">
-          <div className="d-flex mb-3">
-            <span className="d-block">
-              <img className="cardIcon" src={chainlinkIcon} alt="" />
-            </span>
-            <span className="ml-2 d-block">
-              <span className="c-detail-address d-block">
-                <p className="c-detail-km c-detail-contactlink">
-                  <a href={companyUrl} target="_blank" rel="noopener noreferrer" className="ml-1">
-                    {companyUrl}
-                  </a>
-                </p>
-              </span>
-            </span>
-          </div>
-        </div>
+        <p className="mb-3 text-left">
+          <span className="c-detail-sizetext d-block">
+            <img className="mt-n1" src="/images/square_link.svg" alt="" />
+            <span className="ml-2">En savoir plus sur </span>
+            <a
+              href={companyUrl}
+              target="_blank"
+              className="c-detail-training-link gtmTrainingLink"
+              rel="noopener noreferrer"
+            >
+              {training.title}
+            </a>
+          </span>
+        </p>
       ) : (
         ""
       )}
