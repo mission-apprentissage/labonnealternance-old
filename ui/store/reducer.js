@@ -44,6 +44,12 @@ const mainReducer = (state = initialState, action) => {
       ...state_copy,
       selectedItem: action.selectedItem,
     };
+  } else if (action.type === actionsTypes.SET_TRAININGS_AND_SELECTED_ITEM) {
+    res = {
+      ...state_copy,
+      selectedItem: action.selectedItem,
+      trainings: action.trainings,
+    };
   } else if (action.type === actionsTypes.SET_ITEM_TO_SCROLL_TO) {
     res = {
       ...state_copy,

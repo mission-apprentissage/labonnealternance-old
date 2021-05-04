@@ -5,9 +5,12 @@ const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
 const { formationsQueryValidator, formationsRegionQueryValidator } = require("./formationsQueryValidator");
 const { trackEvent } = require("../common/utils/sendTrackingEvent");
+const crypto = require("crypto");
 
 const formationResultLimit = 500;
 const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
+
+const lbfDescriptionUrl = "https://labonneformation.pole-emploi.fr/api/v1/detail";
 
 const publishedMustTerm = {
   match: {
@@ -67,7 +70,7 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
           filter: {
             geo_distance: {
               distance: `${distance}km`,
-              lieu_formation_geo_coordonnees: {
+              idea_geo_coordonnees_etablissement: {
                 lat: coords[1],
                 lon: coords[0],
               },
@@ -78,7 +81,7 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
       sort: [
         {
           _geo_distance: {
-            lieu_formation_geo_coordonnees: [parseFloat(coords[0]), parseFloat(coords[1])],
+            idea_geo_coordonnees_etablissement: [parseFloat(coords[0]), parseFloat(coords[1])],
             order: "asc",
             unit: "km",
             mode: "min",
@@ -398,11 +401,11 @@ const transformFormationForIdea = (formation) => {
   resultFormation.place = {
     distance: formation.sort ? formation.sort[0] : null,
     fullAddress: getTrainingAddress(formation.source), // adresse postale reconstruite à partir des éléments d'adresse fournis
-    latitude: formation.source.lieu_formation_geo_coordonnees
-      ? formation.source.lieu_formation_geo_coordonnees.split(",")[0]
+    latitude: formation.source.idea_geo_coordonnees_etablissement
+      ? formation.source.idea_geo_coordonnees_etablissement.split(",")[0]
       : null,
-    longitude: formation.source.lieu_formation_geo_coordonnees
-      ? formation.source.lieu_formation_geo_coordonnees.split(",")[1]
+    longitude: formation.source.idea_geo_coordonnees_etablissement
+      ? formation.source.idea_geo_coordonnees_etablissement.split(",")[1]
       : null,
     //city: formation.source.etablissement_formateur_localite,
     city: formation.source.localite,
@@ -536,6 +539,35 @@ const getFormationQuery = async (query) => {
   }
 };
 
+const getLbfQueryParams = (params) => {
+  // le timestamp doit être uriencodé avec le format ISO sans les millis
+  let date = new Date().toISOString();
+  date = encodeURIComponent(date.substring(0, date.lastIndexOf(".")));
+
+  let queryParams = `user=LBA&uid=${params.id}&timestamp=${date}`;
+
+  var hmac = crypto.createHmac("md5", config.private.laBonneFormationPassword);
+  const data = hmac.update(queryParams);
+  const signature = data.digest("hex");
+
+  // le param signature doit contenir un hash des autres params chiffré avec le mdp attribué à LBA
+  queryParams += "&signature=" + signature;
+
+  return queryParams;
+};
+
+const getFormationDescriptionQuery = async (params) => {
+  try {
+    const formationDescription = await axios.get(`${lbfDescriptionUrl}?${getLbfQueryParams(params)}`);
+
+    return formationDescription.data;
+  } catch (err) {
+    console.error("Error ", err.message);
+    Sentry.captureException(err);
+    return { error: "internal_error" };
+  }
+};
+
 const getFormationsParRegionQuery = async (query) => {
   //console.log("query : ", query);
 
@@ -580,7 +612,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "_id",
       "email",
       "niveau",
-      "lieu_formation_geo_coordonnees",
+      "idea_geo_coordonnees_etablissement",
       "intitule_long",
       "intitule_court",
       "lieu_formation_adresse",
@@ -670,4 +702,5 @@ module.exports = {
   transformFormationsForIdea,
   getFormations,
   deduplicateFormations,
+  getFormationDescriptionQuery,
 };

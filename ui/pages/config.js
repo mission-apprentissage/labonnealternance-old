@@ -10,7 +10,7 @@ const Config = () => {
       microAjax({
         url: baseUrl + "/api/config",
         success: (res) => {
-          console.log("config", res);
+          //console.log("config", res);
           setConfig(JSON.parse(res).config);
         },
       });
