@@ -1,7 +1,16 @@
 # CHANGELOG
 
-## 1.12.3 [29/04/2021]
+## 1.13.1 [04/05/2021]
 [589] Exploitation geoloc catalogue améliorée pour LBA
+
+## 1.13.0 [30/04/2021]
+[576] Descriptions des formations LBF
+[601] Intégration détail LBF
+
+## 1.12.3 [29/04/2021]
+[441] Le saviez-vous : changement de design
+[523] Corrections page "à propos"
+[584] Emission d'events google analytics via data layer
 
 ## 1.12.2 [23/04/2021]
 [550b] Correction RGPD

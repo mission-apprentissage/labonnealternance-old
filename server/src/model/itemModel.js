@@ -97,6 +97,16 @@ const itemModel = (type) => {
                 label,              // lbb/lba -> naf_text
             }
         ],*/,
+    training: null /* alimentation côté client à l'ouverture d'une formation
+        {
+            description,
+            objectif,
+            duree-indicative,
+            modalites-alternance,
+            madalites-enseignement,
+            niveau-retour-embauche,
+        }
+    */,
   };
 };
 
