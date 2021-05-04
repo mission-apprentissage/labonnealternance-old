@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.13.1 [04/05/2021]
+[589] Exploitation geoloc catalogue améliorée pour LBA
+
 ## 1.13.0 [30/04/2021]
 [576] Descriptions des formations LBF
 [601] Intégration détail LBF
@@ -12,7 +15,6 @@
 ## 1.12.2 [23/04/2021]
 [550b] Correction RGPD
 [523] A propos, modifications
-[589] Exploitation geoloc catalogue améliorée pour LBA
 [575] Affichage formation non éligible
 [590] Paramètre id rco pour prdv
 
