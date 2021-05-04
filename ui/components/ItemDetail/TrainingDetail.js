@@ -8,6 +8,7 @@ import questionmarkIcon from "public/images/icons/questionmark2.svg";
 import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
 import sablierIcon from "public/images/icons/training-sablier.svg";
+import chainlinkIcon from "public/images/icons/chainlink.svg";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "utils/strutils";
 
@@ -58,6 +59,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const kind = training?.ideaType;
   let contactEmail = training?.contact?.email;
   let contactPhone = training?.contact?.phone;
+  let companyUrl = training?.company?.url;
 
   let contactInfo = (
     <>
@@ -109,9 +111,27 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
           ""
         )}
       </div>
+      {companyUrl ? (
+        <p className="mb-3 text-left">
+          <span className="c-detail-sizetext d-block">
+            <img className="mt-n1" src="/images/square_link.svg" alt="" />
+            <span className="ml-2">En savoir plus sur </span>
+            <a
+              href={companyUrl}
+              target="_blank"
+              className="c-detail-training-link gtmTrainingLink"
+              rel="noopener noreferrer"
+            >
+              {training.title}
+            </a>
+          </span>
+        </p>
+      ) : (
+        ""
+      )}
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
 
-      <div className="c-detail-prdv mt-3 ml-3 w-75">{buildPrdvButton()}</div>
+      <div className="c-detail-prdv mt-3 ml-3 mb-4 w-75">{buildPrdvButton()}</div>
 
       {getTrainingDetails(training.training)}
 
