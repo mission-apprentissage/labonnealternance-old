@@ -15,7 +15,6 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   const description = get(job, "job.description", undefined);
-  //const creationDate = job?.job?.creationDate ? moment(job.job.creationDate).format("DD / MM / YYYY") : undefined;
 
   const kind = job?.ideaType;
 
