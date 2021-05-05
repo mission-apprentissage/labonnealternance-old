@@ -161,7 +161,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
 };
 
 const updateTrainingFromLbf = (training, detailsFromLbf) => {
-  if (training && detailsFromLbf) {
+  if (training && detailsFromLbf && detailsFromLbf.organisme) {
     training.training = detailsFromLbf;
 
     // remplacement des coordonnées de contact catalogue par celles de lbf
