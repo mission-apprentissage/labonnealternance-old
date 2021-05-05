@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.13.2 [05/05/2021]
+[609] Masquage sessions déjà commencées, meilleure présentation formations
+
 ## 1.13.1 [04/05/2021]
 [589] Exploitation geoloc catalogue améliorée pour LBA
 
