@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.13.3 [05/05/2021]
+[610] Envoi event vers catalogue à l'affichage d'une formation
+
 ## 1.13.2 [05/05/2021]
 [609] Masquage sessions déjà commencées, meilleure présentation formations
 
