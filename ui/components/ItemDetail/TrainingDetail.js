@@ -246,13 +246,16 @@ const getTrainingDetails = (training) => {
 const getTrainingSessions = (training) => {
   if (training.sessions) {
     let sessions = [];
+    let today = new Date().getTime();
     training.sessions.forEach((s) => {
-      if (sessions.findIndex((v) => s.debut === v.debut && s.fin === v.fin) < 0) {
-        sessions.push({ debut: s.debut, fin: s.fin });
+      if (new Date(s.debut).getTime() > today) {
+        if (sessions.findIndex((v) => s.debut === v.debut && s.fin === v.fin) < 0) {
+          sessions.push({ debut: s.debut, fin: s.fin });
+        }
       }
     });
 
-    return (
+    return sessions.length ? (
       <div className="c-detail-description media">
         <img src={clipboardListIcon} alt="dossier" />
         <div className="c-detail-training media-body">
@@ -266,6 +269,8 @@ const getTrainingSessions = (training) => {
           })}
         </div>
       </div>
+    ) : (
+      ""
     );
   } else {
     return "";
