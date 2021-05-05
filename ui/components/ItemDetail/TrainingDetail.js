@@ -4,6 +4,7 @@ import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainingsAndSelectedItem } from "store/actions";
 import fetchTrainingDetails from "services/fetchTrainingDetails";
+import sendTrainingOpenedEventToCatalogue from "services/sendTrainingOpenedEventToCatalogue";
 import questionmarkIcon from "public/images/icons/questionmark2.svg";
 import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
@@ -35,6 +36,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   useEffect(() => {
     if (training && !training.lbfLoaded) {
       loadDataFromLbf();
+      sendTrainingOpenedEventToCatalogue(training.idRcoFormation);
     }
   }, [training.idRco]);
 
