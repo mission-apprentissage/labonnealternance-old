@@ -222,9 +222,15 @@ const getTrainingDetails = (training) => {
           <img src={academicCapIcon} alt="cape académique" />
           <div className="c-detail-training media-body">
             <h3 className="c-detail-description-title mb-3 mt-0">Modalités alternance</h3>
-            Heures en centre de formation : {training["sessions"][0]["nombre-heures-centre"]}h
+            Heures en centre de formation :{" "}
+            {training["sessions"][0]["nombre-heures-centre"]
+              ? `${training["sessions"][0]["nombre-heures-centre"]}h`
+              : "non renseigné"}
             <br />
-            Heures en entreprise : {training["sessions"][0]["nombre-heures-entreprise"]}h
+            Heures en entreprise :{" "}
+            {training["sessions"][0]["nombre-heures-entreprise"]
+              ? `${training["sessions"][0]["nombre-heures-entreprise"]}h`
+              : "non renseigné"}
           </div>
         </div>
       ) : (
