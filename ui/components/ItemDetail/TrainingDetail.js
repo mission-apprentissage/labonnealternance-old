@@ -115,14 +115,14 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         <p className="mb-3 text-left">
           <span className="c-detail-sizetext d-block">
             <img className="mt-n1" src="/images/square_link.svg" alt="" />
-            <span className="ml-2">En savoir plus sur </span>
+            <span className="ml-2">Voir le site </span>
             <a
               href={companyUrl}
               target="_blank"
               className="c-detail-training-link gtmTrainingLink"
               rel="noopener noreferrer"
             >
-              {training.title}
+              {companyUrl}
             </a>
           </span>
         </p>
