@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.14.0 [06/05/2021]
+[559] Meilleur autocomplete
+
 ## 1.13.3 [05/05/2021]
 [610] Envoi event vers catalogue à l'affichage d'une formation
 
