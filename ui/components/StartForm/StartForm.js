@@ -21,11 +21,14 @@ const StartForm = (props) => {
 
   const [domainError, setDomainError] = useState(false);
 
-  const domainChanged = async function (val) {
+  const domainChanged = async function (val, setLoadingState) {
+    console.log('domainChanged');
     const res = await fetchRomes(val, () => {
       setDomainError(true);
-    });
-
+    }); 
+    console.log('fetchRomesRes', res);
+    setLoadingState('done')
+    // setInputItems(['loaded ok'])
     // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caractères
     if (val.length > 2) {
       SendTrackEvent({
@@ -92,7 +95,7 @@ const StartForm = (props) => {
             <Form>
               <div className={`form-group c-home-hero__input mb-2 ${errors.job ? "form-group--onerror" : ""}`}>
                 <AutoCompleteField
-                  items={[]}
+                  items={['init']}
                   itemToStringFunction={autoCompleteToStringFunction}
                   onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
                   compareItemFunction={compareAutoCompleteValues}

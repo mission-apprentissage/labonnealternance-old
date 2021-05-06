@@ -104,6 +104,7 @@ export const AutoCompleteField = ({
         inputItems,
         items,
         setInputItems,
+        setLoadingState,
         selectItem,
         onInputValueChangeFunction,
         compareItemFunction,
@@ -113,6 +114,8 @@ export const AutoCompleteField = ({
 
   const classesOfContainer = props?.isHome ? '' : 'c-logobar-formgroup'
   const classesOfInsider = props?.isHome ? 'form-control-lg w-100 c-input-work' : 'c-logobar-field'
+
+  console.log('loadingState', loadingState);
 
   return (
     <div className="">
