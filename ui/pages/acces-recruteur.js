@@ -72,7 +72,7 @@ const AccesRecruteur = () => (
             </ul>
             <p>Bientôt, nous expérimenterons un autre canal de recueil de besoins en recrutement (projet Matcha) (lien avec picto "on sort du site")</p>
           </section>
-          <section>
+          <section className="mt-4">
             <h2 className="mb-3 h3">Condition d’affichage des entreprises sans offre, pour réception de candidatures spontanées</h2>
             <p>
               Les entreprises présentes sur La Bonne Alternance sans offre d’emploi sont identifiées grâce à un algorithme prédictif. Ce dernier analyse les recrutements en alternance des 6 années passées afin de prédire ceux des 6 mois à venir.
@@ -81,7 +81,7 @@ const AccesRecruteur = () => (
               La liste d’entreprises est mise à jour tous les mois. Vous pouvez demander le référencement ou le déréférencement sur La Bonne Alternance grâce à ce formulaire. (lien avec picto "on sort du site")
             </p>  
           </section>
-          <section>
+          <section className="mt-4">
             <h2 className="mb-3 h3">Vous souhaitez modifier vos coordonnées de contact ou obtenir une autre information ?</h2>
             <p>
               Accédez à ce formulaire (lien avec le picto "on sort du site") pour nous transmettre votre demande.
