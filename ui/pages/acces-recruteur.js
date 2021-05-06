@@ -15,13 +15,28 @@ const AccesRecruteur = () => (
       <div className="row">
         <div className="col-12 col-md-5">
           <h1>
-            <span className="d-block c-page-title is-color-2">Accès Recruteur</span>
+            <span className="d-block c-page-title is-color-2">Informations Recruteur</span>
           </h1>
           <hr className="c-page-title-separator" align="left" />
         </div>
 
         <div className="col-12 col-md-7">
-          
+          <p className="mb-3">Dernière mise à jour le : 06/05/2021</p>
+          <h2 className="mb-3 h3">Conditions d’affichage des offres d’emploi sur La Bonne Alternance</h2>
+          <p>
+            Seules les offres d’emploi en contrat d’apprentissage et en contrat de professionnalisation sont visibles sur La Bonne Alternance.
+          </p>
+          <p>
+            Nous consommons l’API offres de Pôle emploi : par conséquent, votre offre d’emploi est visible sur La Bonne Alternance si :
+          </p>
+          <ul>
+            <li>vous l’avez publiée sur pole-emploi.fr ou 1jeunesolution.gouv.fr (+ picto sortie du site)</li>
+            <li>vous l’avez publiée auprès de l’un des partenaires de Pôle emploi (+picto sortie du site), et que ce dernier a ouvert la multidiffusion de votre offre</li>
+            <li>vous utilisez l’API “Je transfère mes offres” qui permet à Pôle emploi de recueillir directement votre offre depuis votre SIRH, et que l'option "multidiffusion" de l'offre est activée</li>
+            <li>vous utilisez un multiposteur qui a opté pour la multidiffusion de votre offre à Pôle emploi</li>
+            <li>vous avez conclu un partenariat d’agrégation de vos offres par Pôle emploi, que vous avez opté pour la multidiffusion.</li>
+          </ul>
+          <p>Bientôt, nous expérimenterons un autre canal de recueil de besoins en recrutement (projet Matcha) (lien avec picto "on sort du site")</p>
         </div>
       </div>
     </div>
