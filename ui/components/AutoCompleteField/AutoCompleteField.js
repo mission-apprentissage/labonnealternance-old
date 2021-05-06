@@ -10,7 +10,7 @@ let debouncedOnInputValueChange = null;
 
 // Permet de sélectionner un élément dans la liste d'items correspondant à un texte entré au clavier
 export const compareAutoCompleteValues = (items, value) => {
-  return items.findIndex((element) => (element.label ? element.label.toLowerCase() === value.toLowerCase() : false));
+  return items.findIndex((element) => (element?.label ? element.label.toLowerCase() === value.toLowerCase() : false));
 };
 
 // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
@@ -113,27 +113,8 @@ export const AutoCompleteField = ({
   const classesOfContainer = props?.isHome ? '' : 'c-logobar-formgroup'
   const classesOfInsider = props?.isHome ? 'form-control-lg w-100 c-input-work' : 'c-logobar-field'
 
-  const correctlyRender = (highlightedIndexArg, inputValueArg, inputItemsArg, isOpenArg) => {
-        {
-          inputItems?.length === 0 && isOpen === true ? (
-            <li>
-              Pas de résultat - modifiez votre recherche
-            </li>
-            ) : (
-            inputItems.filter((item) => isOpen && !!item?.label).map((item, index) =>
-              <li
-                className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
-                key={`${index}`}
-                {...getItemProps({ item: item.label, index })}
-              >
-                {ReactHtmlParser(highlightItem(item.label, inputValue))}
-              </li>
-            )
-          )
-        }
-  }
-
   console.log('inputValue', inputValue);
+  console.log('inputItems', inputItems);
 
   return (
     <div className="">
@@ -160,7 +141,7 @@ export const AutoCompleteField = ({
                   Entrez du texte
                 </li>
               )
-            } else if (inputItems?.length === 0 && inputValue.length > 0) {
+            } else if (inputItems === 0) {
               return (
                 <li>
                   Spiner, roue qui tourne
