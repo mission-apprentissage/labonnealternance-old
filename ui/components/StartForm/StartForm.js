@@ -25,7 +25,10 @@ const StartForm = (props) => {
     let res = await fetchRomes(val, () => {
       setDomainError(true);
     }); 
+    
     setLoadingState('done')
+
+    // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caractères
     if (val.length > 2) {
       SendTrackEvent({
         event: "Moteur de recherche - Metier",
