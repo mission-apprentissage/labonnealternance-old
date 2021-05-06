@@ -146,7 +146,7 @@ export const AutoCompleteField = ({
                 </li>
               )
             } 
-            else if (inputItems?.length === 1 && inputItems[0] === null && loadingState === 'loading') {
+            else if (loadingState === 'loading') {
               return (
                 <li>
                   Spinner, roue qui tourne
