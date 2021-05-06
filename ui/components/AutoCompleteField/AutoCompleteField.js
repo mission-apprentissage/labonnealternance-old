@@ -139,21 +139,21 @@ export const AutoCompleteField = ({
           if (isOpen) {
             if (inputValue.length === 0) {
               return (
-                <li>
+                <li className="c-autocomplete-neutral">
                   Entrez du texte
                 </li>
               )
             } 
             else if (loadingState === 'loading') {
               return (
-                <li>
+                <li className="c-autocomplete-neutral">
                   Veuillez patienter
                 </li>
               )
             } 
             else if (inputValue.length > 0 && inputItems?.length === 0) {
               return (
-                <li>
+                <li className="c-autocomplete-neutral">
                   Pas de résultat, veuillez modifier votre recherche
                 </li>
               )

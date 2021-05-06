@@ -30,6 +30,13 @@
     cursor: pointer;
   }
 }
+.c-autocomplete__menu li.c-autocomplete-neutral {
+  &:hover {
+    background-color: inherit;
+    cursor: text;
+  }
+}
+
 .c-autocomplete__menu li:first-child {
   padding-top: .8rem;
 }
