@@ -54,6 +54,7 @@ export const AutoCompleteField = ({
 
   const [inputItems, setInputItems] = useState(items);
   const [initialized, setInitialized] = useState(false);
+  const [loadingState, setLoadingState] = useState('loading');
 
   const itemToString = (item) => {
     if (itemToStringFunction) return item ? itemToStringFunction(item) : "";
@@ -130,20 +131,41 @@ export const AutoCompleteField = ({
         {illustration && <img className="c-input-work-img" src={illustration} alt="" />}
       </div>
       <ul {...getMenuProps()} className="c-autocomplete__menu">
-        {isOpen &&
-          inputItems.map((item, index) =>
-            item.label ? (
-              <li
-                className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
-                key={`${index}`}
-                {...getItemProps({ item: item.label, index })}
-              >
-                {ReactHtmlParser(highlightItem(item.label, inputValue))}
-              </li>
-            ) : (
-              ""
-            )
-          )}
+        {(() => {
+          if (isOpen) {
+            if (inputValue.length === 0) {
+              return (
+                <li>
+                  Entrez du texte
+                </li>
+              )
+            } else if (inputItems?.length === 0 && loadingState === 'loading') {
+              return (
+                <li>
+                  Spiner, roue qui tourne
+                </li>
+              )
+            } else if (inputItems?.length === 0 && loadingState === 'done') {
+              return (
+                <li>
+                  Pas de résultat, veuillez modifier votre recherche
+                </li>
+              )
+            } else if (inputItems?.length > 0) {
+              return (
+                inputItems.filter((item) => isOpen && !!item?.label).map((item, index) =>
+                  <li
+                    className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
+                    key={`${index}`}
+                    {...getItemProps({ item: item.label, index })}
+                  >
+                    {ReactHtmlParser(highlightItem(item.label, inputValue))}
+                  </li>
+                )
+              )
+            }
+          }
+        })()}
       </ul>
     </div>
   );
