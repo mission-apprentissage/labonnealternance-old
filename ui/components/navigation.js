@@ -39,7 +39,6 @@ const Navigation = (props) => {
                   }}
                   href="/acces-recruteur"
                 >
-                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien organisme recruteur" />
                   <span className="ml-2">Recruteur</span>
                 </a>
               </NavItem>
