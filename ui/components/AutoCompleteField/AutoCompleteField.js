@@ -141,30 +141,30 @@ export const AutoCompleteField = ({
                   Entrez du texte
                 </li>
               )
-            } else if (inputItems === 0) {
+            } else if (JSON.stringify(inputItems) === "[]") {
               return (
                 <li>
-                  Spiner, roue qui tourne
+                  Spinner, roue qui tourne
                 </li>
               )
-            } else if (inputItems?.length === 0) {
+            } else if (JSON.stringify(inputItems) === "[null]") {
               return (
                 <li>
                   Pas de résultat, veuillez modifier votre recherche
                 </li>
               )
             } else if (inputItems?.length > 0) {
-              return (
-                inputItems.filter((item) => isOpen && !!item?.label).map((item, index) =>
-                  <li
-                    className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
-                    key={`${index}`}
-                    {...getItemProps({ item: item.label, index })}
-                  >
-                    {ReactHtmlParser(highlightItem(item.label, inputValue))}
-                  </li>
+                return (
+                  inputItems.filter((item) => isOpen && !!item?.label).map((item, index) =>
+                    <li
+                      className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
+                      key={`${index}`}
+                      {...getItemProps({ item: item.label, index })}
+                    >
+                      {ReactHtmlParser(highlightItem(item.label, inputValue))}
+                    </li>
+                  )
                 )
-              )
             }
           }
         })()}
