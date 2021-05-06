@@ -22,17 +22,10 @@ const StartForm = (props) => {
   const [domainError, setDomainError] = useState(false);
 
   const domainChanged = async function (val, setLoadingState) {
-    console.log('domainChanged');
     let res = await fetchRomes(val, () => {
       setDomainError(true);
     }); 
-    // if (Array.isArray(res) && res.length === 0) {
-    //   res = [null]
-    // }
-    console.log('fetchRomesRes', res);
     setLoadingState('done')
-    // setInputItems(['loaded ok'])
-    // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caractères
     if (val.length > 2) {
       SendTrackEvent({
         event: "Moteur de recherche - Metier",
