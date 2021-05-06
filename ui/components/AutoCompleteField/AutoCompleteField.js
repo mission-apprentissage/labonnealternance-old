@@ -149,11 +149,11 @@ export const AutoCompleteField = ({
             else if (loadingState === 'loading') {
               return (
                 <li>
-                  Spinner, roue qui tourne
+                  Veuillez patienter
                 </li>
               )
             } 
-            else if (inputItems?.length === 1 && inputItems[0] === null && loadingState === 'done') {
+            else if (inputValue.length > 0 && inputItems?.length === 0) {
               return (
                 <li>
                   Pas de résultat, veuillez modifier votre recherche
