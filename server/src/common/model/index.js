@@ -18,4 +18,7 @@ module.exports = {
   DomainesMetiers: createModel("domainesmetiers", schema.domainesMetiersSchema, {
     esIndexName: "domainesmetiers",
   }),
+  DomainesMetiers2: createModel("domainesmetiers2", schema.domainesMetiers2Schema, {
+    esIndexName: "domainesmetiers2",
+  }),
 };

@@ -2,7 +2,8 @@ const logger = require("../common/logger");
 const { getDomainesMetiersES } = require("../common/esClient");
 const _ = require("lodash");
 const config = require("config");
-const updateDomainesMetiers = require("../jobs/domainesMetiers/updateDomainesMetiers");
+//const updateDomainesMetiers = require("../jobs/domainesMetiers/updateDomainesMetiers");
+const updateDomainesMetiers2 = require("../jobs/domainesMetiers/updateDomainesMetiers2");
 const getMissingRNCPsFromDomainesMetiers = require("../jobs/domainesMetiers/getMissingRNCPsFromDomainesMetiers");
 const Sentry = require("@sentry/node");
 
@@ -96,7 +97,7 @@ const updateRomesMetiersQuery = async (query) => {
     return { error: "wrong_secret" };
   } else {
     try {
-      let result = await updateDomainesMetiers(query.fileName);
+      let result = await updateDomainesMetiers2(query.fileName);
       return result;
     } catch (err) {
       Sentry.captureException(err);
