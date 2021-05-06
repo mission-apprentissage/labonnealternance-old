@@ -118,8 +118,6 @@ export const AutoCompleteField = ({
   const classesOfContainer = props?.isHome ? '' : 'c-logobar-formgroup'
   const classesOfInsider = props?.isHome ? 'form-control-lg w-100 c-input-work' : 'c-logobar-field'
 
-  console.log('loadingState', loadingState);
-
   return (
     <div className="">
       <div className={`c-input-work-container ${classesOfContainer}`} {...getComboboxProps()}>
