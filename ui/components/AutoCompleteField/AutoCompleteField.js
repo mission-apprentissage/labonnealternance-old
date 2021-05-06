@@ -52,6 +52,8 @@ export const AutoCompleteField = ({
 
   const { setFieldValue } = useFormikContext();
 
+  const [loadedState, setLoadedState] = useState(false);
+
   const [inputItems, setInputItems] = useState(items);
   const [initialized, setInitialized] = useState(false);
 
@@ -141,13 +143,19 @@ export const AutoCompleteField = ({
                   Entrez du texte
                 </li>
               )
-            } else if (JSON.stringify(inputItems) === "[null]") {
+            } else if (inputValue.length > 0 && JSON.stringify(inputItems) === "[]") {
               return (
                 <li>
                   Pas de résultat, veuillez modifier votre recherche
                 </li>
               )
-            } else if (JSON.stringify(inputItems) === "[undefined]") {
+            } else if (JSON.stringify(inputItems) === '["loading"]') {
+              return (
+                <li>
+                  Spinner, roue qui tourne
+                </li>
+              )
+            } else if (JSON.stringify(inputItems) === '["loaded ok"]') {
               return (
                 <li>
                   Spinner, roue qui tourne
