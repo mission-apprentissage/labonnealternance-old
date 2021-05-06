@@ -31,9 +31,42 @@ const AccesRecruteur = () => (
               Nous consommons l’API offres de Pôle emploi : par conséquent, votre offre d’emploi est visible sur La Bonne Alternance si :
             </p>
             <ul>
-              <li>vous l’avez publiée sur pole-emploi.fr ou 1jeunesolution.gouv.fr (+ picto sortie du site)</li>
-              <li>vous l’avez publiée auprès de l’un des partenaires de Pôle emploi (+picto sortie du site), et que ce dernier a ouvert la multidiffusion de votre offre</li>
-              <li>vous utilisez l’API “Je transfère mes offres” qui permet à Pôle emploi de recueillir directement votre offre depuis votre SIRH, et que l'option "multidiffusion" de l'offre est activée</li>
+              <li>vous l’avez publiée sur 
+                &nbsp;                
+                <a
+                  href="https://pole-emploi.fr"
+                  target="_blank"
+                  className=""
+                  rel="noopener noreferrer"
+                >
+                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien pole-emploi.fr" />
+                  <span className="ml-1">pole-emploi.fr</span>
+                </a>
+                &nbsp;
+                ou
+                &nbsp;
+                <a
+                  href="https://1jeunesolution.gouv.fr"
+                  target="_blank"
+                  className=""
+                  rel="noopener noreferrer"
+                >
+                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien 1jeunesolution.gouv.fr" />
+                  <span className="ml-1">1jeunesolution.gouv.fr</span>
+                </a>
+              </li>
+              <li>vous l’avez publiée auprès de l’un des partenaires de 
+                  &nbsp;                
+                  <a
+                    href="https://pole-emploi.fr"
+                    target="_blank"
+                    className=""
+                    rel="noopener noreferrer"
+                  >
+                    <img className="mt-n1" src="/images/square_link.svg" alt="Lien pole-emploi.fr" />
+                    <span className="ml-1">Pôle emploi</span>
+                  </a>, et que ce dernier a ouvert la multidiffusion de votre offre</li>
+              <li>vous utilisez l’API "Je transfère mes offres" qui permet à Pôle emploi de recueillir directement votre offre depuis votre SIRH, et que l'option "multidiffusion" de l'offre est activée</li>
               <li>vous utilisez un multiposteur qui a opté pour la multidiffusion de votre offre à Pôle emploi</li>
               <li>vous avez conclu un partenariat d’agrégation de vos offres par Pôle emploi, que vous avez opté pour la multidiffusion.</li>
             </ul>
@@ -45,13 +78,13 @@ const AccesRecruteur = () => (
               Les entreprises présentes sur La Bonne Alternance sans offre d’emploi sont identifiées grâce à un algorithme prédictif. Ce dernier analyse les recrutements en alternance des 6 années passées afin de prédire ceux des 6 mois à venir.
             </p>
             <p>
-              La liste d’entreprises est mise à jour tous les mois. Vous pouvez demander le référencement ou le déréférencement sur La Bonne Alternance grâce à ce formulaire. (lien avec picto “on sort du site")
+              La liste d’entreprises est mise à jour tous les mois. Vous pouvez demander le référencement ou le déréférencement sur La Bonne Alternance grâce à ce formulaire. (lien avec picto "on sort du site")
             </p>  
           </section>
           <section>
             <h2 className="mb-3 h3">Vous souhaitez modifier vos coordonnées de contact ou obtenir une autre information ?</h2>
             <p>
-              Accédez à ce formulaire (lien avec le picto “on sort du site”) pour nous transmettre votre demande.
+              Accédez à ce formulaire (lien avec le picto "on sort du site") pour nous transmettre votre demande.
             </p>  
           </section>
         </div>
