@@ -56,8 +56,6 @@ export const AutoCompleteField = ({
   const [initialized, setInitialized] = useState(false);
   const [loadingState, setLoadingState] = useState('loading');
 
-  const forceUpdate = React.useState()[1].bind(null, {})  // see https://stackoverflow.com/a/58606536/2595513
-
   const itemToString = (item) => {
     if (itemToStringFunction) return item ? itemToStringFunction(item) : "";
     else return item;
@@ -65,11 +63,7 @@ export const AutoCompleteField = ({
 
   // hack pour scroller un champ autocomplete dont les valeurs pourraient être cachées par le clavier du mobile
   const onFocusTriggered = (e) => {
-
-    forceUpdate();
-
     let ancestor = e.currentTarget.closest(`#${scrollParentId}`);
-
     if (ancestor) {
       setTimeout(() => {
         if (typeof window !== "undefined") {
@@ -87,6 +81,7 @@ export const AutoCompleteField = ({
     highlightedIndex,
     getItemProps,
     selectItem,
+    openMenu,
     inputValue,
   } = useCombobox({
     id: 'lang-switcher',
@@ -123,15 +118,18 @@ export const AutoCompleteField = ({
   const classesOfContainer = props?.isHome ? '' : 'c-logobar-formgroup'
   const classesOfInsider = props?.isHome ? 'form-control-lg w-100 c-input-work' : 'c-logobar-field'
 
-  console.log('rerender')
-
   return (
     <div className="">
       <div className={`c-input-work-container ${classesOfContainer}`} {...getComboboxProps()}>
         <label className="c-logobar-label">{kind}</label>
         <input
           {...getInputProps({
-            onFocus: onFocusTriggered,
+            onFocus: (e) => {
+              if (!isOpen) {
+                openMenu()
+              }
+              onFocusTriggered(e)
+            },
           })}
           className={`${classesOfInsider} ${
             inputValue && inputValue.length > 20 ? "is-text-too-long" : "is-text-not-too-long"
