@@ -94,7 +94,7 @@ const StartForm = (props) => {
             <Form>
               <div className={`form-group c-home-hero__input mb-2 ${errors.job ? "form-group--onerror" : ""}`}>
                 <AutoCompleteField
-                  items={[]}
+                  items={['loading']}
                   itemToStringFunction={autoCompleteToStringFunction}
                   onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
                   compareItemFunction={compareAutoCompleteValues}
