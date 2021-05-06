@@ -113,6 +113,26 @@ export const AutoCompleteField = ({
   const classesOfContainer = props?.isHome ? '' : 'c-logobar-formgroup'
   const classesOfInsider = props?.isHome ? 'form-control-lg w-100 c-input-work' : 'c-logobar-field'
 
+  const correctlyRender = (highlightedIndexArg, inputValueArg, inputItemsArg, isOpenArg) => {
+        {
+          inputItems?.length === 0 && isOpen === true ? (
+            <li>
+              Pas de résultat - modifiez votre recherche
+            </li>
+            ) : (
+            inputItems.filter((item) => isOpen && !!item?.label).map((item, index) =>
+              <li
+                className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
+                key={`${index}`}
+                {...getItemProps({ item: item.label, index })}
+              >
+                {ReactHtmlParser(highlightItem(item.label, inputValue))}
+              </li>
+            )
+          )
+        }
+  }
+
   return (
     <div className="">
       <div className={`c-input-work-container ${classesOfContainer}`} {...getComboboxProps()}>
@@ -130,9 +150,13 @@ export const AutoCompleteField = ({
         {illustration && <img className="c-input-work-img" src={illustration} alt="" />}
       </div>
       <ul {...getMenuProps()} className="c-autocomplete__menu">
-        {isOpen &&
-          inputItems.map((item, index) =>
-            item.label ? (
+        {
+          inputItems?.length === 0 && isOpen === true ? (
+            <li>
+              Pas de résultat - modifiez votre recherche
+            </li>
+          ) : (
+            inputItems.filter((item) => isOpen && !!item?.label).map((item, index) =>
               <li
                 className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
                 key={`${index}`}
@@ -140,10 +164,9 @@ export const AutoCompleteField = ({
               >
                 {ReactHtmlParser(highlightItem(item.label, inputValue))}
               </li>
-            ) : (
-              ""
             )
-          )}
+          )
+        }
       </ul>
     </div>
   );
