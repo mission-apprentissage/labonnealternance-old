@@ -141,16 +141,16 @@ export const AutoCompleteField = ({
                   Entrez du texte
                 </li>
               )
-            } else if (JSON.stringify(inputItems) === "[]") {
-              return (
-                <li>
-                  Spinner, roue qui tourne
-                </li>
-              )
             } else if (JSON.stringify(inputItems) === "[null]") {
               return (
                 <li>
                   Pas de résultat, veuillez modifier votre recherche
+                </li>
+              )
+            } else if (JSON.stringify(inputItems) === "[undefined]") {
+              return (
+                <li>
+                  Spinner, roue qui tourne
                 </li>
               )
             } else if (inputItems?.length > 0) {

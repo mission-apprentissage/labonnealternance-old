@@ -21,11 +21,13 @@ const StartForm = (props) => {
 
   const [domainError, setDomainError] = useState(false);
 
-  const domainChanged = async function (val) {
+  const domainChanged = async function (val, setInputItems) {
+    console.log('domainChanged');
     const res = await fetchRomes(val, () => {
       setDomainError(true);
     });
-
+    console.log('fetchRomesRes', res);
+    setInputItems(['loaded ok'])
     // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caractères
     if (val.length > 2) {
       SendTrackEvent({

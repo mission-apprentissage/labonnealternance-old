@@ -14,8 +14,9 @@ export default async function onInputValueChangeService({
 }) {
   // fixe la liste d'items en fonction de la valeur courante du champ input. S'il y a appel à une API c'est ici
   if (onInputValueChangeFunction) {
-    setInputItems([null]);
-    const newItems = await onInputValueChangeFunction(inputValue);
+    
+    setInputItems(['loading']);
+    const newItems = await onInputValueChangeFunction(inputValue, setInputItems);
     setInputItems(newItems);
 
     if (previouslySelectedItem) { // uniquement appelé lors d'une réinitialisation de l'input après navigation
