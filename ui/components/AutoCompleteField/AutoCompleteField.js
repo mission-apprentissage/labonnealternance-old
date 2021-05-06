@@ -10,7 +10,7 @@ let debouncedOnInputValueChange = null;
 
 // Permet de sélectionner un élément dans la liste d'items correspondant à un texte entré au clavier
 export const compareAutoCompleteValues = (items, value) => {
-  return items.findIndex((element) => (element.label ? element.label.toLowerCase() === value.toLowerCase() : false));
+  return items.findIndex((element) => (element?.label ? element.label.toLowerCase() === value.toLowerCase() : false));
 };
 
 // indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
@@ -55,7 +55,7 @@ export const AutoCompleteField = ({
   const [inputItems, setInputItems] = useState(items);
   const [initialized, setInitialized] = useState(false);
   const [loadingState, setLoadingState] = useState('loading');
-
+  
   const itemToString = (item) => {
     if (itemToStringFunction) return item ? itemToStringFunction(item) : "";
     else return item;
@@ -96,6 +96,9 @@ export const AutoCompleteField = ({
       }
     },
     onInputValueChange: async ({ inputValue }) => {
+      if (loadingState === 'done') {
+        setLoadingState('loading')
+      }
       if (!debouncedOnInputValueChange) {
         debouncedOnInputValueChange = debounce(onInputValueChangeService, 300);
       }
@@ -142,19 +145,22 @@ export const AutoCompleteField = ({
                   Entrez du texte
                 </li>
               )
-            } else if (inputItems?.length === 0 && loadingState === 'loading') {
+            } 
+            else if (inputItems?.length === 1 && inputItems[0] === null && loadingState === 'loading') {
               return (
                 <li>
-                  Spiner, roue qui tourne
+                  Spinner, roue qui tourne
                 </li>
               )
-            } else if (inputItems?.length === 0 && loadingState === 'done') {
+            } 
+            else if (inputItems?.length === 1 && inputItems[0] === null && loadingState === 'done') {
               return (
                 <li>
                   Pas de résultat, veuillez modifier votre recherche
                 </li>
               )
-            } else if (inputItems?.length > 0) {
+            } 
+            else if (inputItems?.length > 0) {
               return (
                 inputItems.filter((item) => isOpen && !!item?.label).map((item, index) =>
                   <li

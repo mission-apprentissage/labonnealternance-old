@@ -23,9 +23,12 @@ const StartForm = (props) => {
 
   const domainChanged = async function (val, setLoadingState) {
     console.log('domainChanged');
-    const res = await fetchRomes(val, () => {
+    let res = await fetchRomes(val, () => {
       setDomainError(true);
     }); 
+    if (Array.isArray(res) && res.length === 0) {
+      res = [null]
+    }
     console.log('fetchRomesRes', res);
     setLoadingState('done')
     // setInputItems(['loaded ok'])
