@@ -166,7 +166,7 @@ export const AutoCompleteField = ({
             } 
             else if (inputItems?.length > 0) {
               return (
-                inputItems.filter((item) => isOpen && !!item?.label).map((item, index) =>
+                inputItems.filter((item) => !!item?.label).map((item, index) =>
                   <li
                     className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
                     key={`${index}`}
