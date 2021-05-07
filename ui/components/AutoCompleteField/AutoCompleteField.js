@@ -171,7 +171,7 @@ export const AutoCompleteField = ({
             else {
               return (
                   <>
-                  <span className="c-autocomplete-minititle">Vos résultats :</span>
+                    <span className="c-autocomplete-minititle">Vos résultats :</span>
                     {
                       inputItems.filter((item) => !!item?.label).map((item, index) =>
                       <li
