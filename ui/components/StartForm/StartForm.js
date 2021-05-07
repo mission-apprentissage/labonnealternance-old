@@ -18,16 +18,14 @@ import { SendTrackEvent } from "utils/gtm";
 const StartForm = (props) => {
   const dispatch = useDispatch();
   const { formValues } = useSelector((state) => state.trainings);
-
   const [domainError, setDomainError] = useState(false);
 
-  const domainChanged = async function (val, setLoadingState) {
+  
+  const domainChanged = async function (valsetLoadingState) {
     let res = await fetchRomes(val, () => {
       setDomainError(true);
     }); 
-
     setLoadingState('done')
-
     // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caractères
     if (val.length > 2) {
       SendTrackEvent({
@@ -35,10 +33,15 @@ const StartForm = (props) => {
         terme: val,
         hits: res.length,
       });
-    }
-
+    }  
     return res;
   };
+  
+  const addressChanged = async function (val, setLoadingState) {
+    let res = await fetchAddresses(val)
+    setLoadingState('done')
+    return res
+  }
 
   const handleSearchSubmit = (values) => {
     dispatch(setFormValues({ job: values.job, location: values.location }));
@@ -115,7 +118,7 @@ const StartForm = (props) => {
                   itemToStringFunction={autoCompleteToStringFunction}
                   onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
                   compareItemFunction={compareAutoCompleteValues}
-                  onInputValueChangeFunction={fetchAddresses}
+                  onInputValueChangeFunction={addressChanged}
                   previouslySelectedItem={formValues?.location ?? null}
                   scrollParentId="choiceColumn"
                   name="placeField"
