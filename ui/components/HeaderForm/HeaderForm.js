@@ -30,17 +30,16 @@ const HeaderForm = ({ handleSearchSubmit }) => {
 
   const jobChanged = async function (val, setLoadingState) {
     let res = await domainChanged(val, setDomainError)
-    setLoadingState('done')
+    if (setLoadingState) setLoadingState('done')
     return res;
   };
 
   const addressChanged = async function (val, setLoadingState) {
     let res = await fetchAddresses(val)
-    setLoadingState('done')
+    if (setLoadingState) setLoadingState('done')
     return res
   }
-
-
+  
   const renderFormik = () => {
     return (
       <Formik

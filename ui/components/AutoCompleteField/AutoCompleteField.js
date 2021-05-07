@@ -164,7 +164,7 @@ export const AutoCompleteField = ({
                 </li>
               )
             } 
-            else if (inputItems?.length > 0) {
+            else {
               return (
                 inputItems.filter((item) => !!item?.label).map((item, index) =>
                   <li
