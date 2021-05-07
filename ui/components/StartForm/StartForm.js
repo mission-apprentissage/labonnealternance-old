@@ -6,34 +6,22 @@ import {
   compareAutoCompleteValues,
   autoCompleteToStringFunction,
 } from "components/AutoCompleteField/AutoCompleteField";
-import { fetchAddresses } from "../../services/baseAdresse";
-import fetchRomes from "../../services/fetchRomes";
+import { fetchAddresses } from "services/baseAdresse";
+import domainChanged from "services/domainChanged";
 import { DomainError } from "../";
 import { push } from "connected-next-router";
 import { setFormValues, setShouldExecuteSearch } from "store/actions";
 import glassImage from "public/images/glass.svg";
 import localisationImage from "public/images/localisation.svg";
-import { SendTrackEvent } from "utils/gtm";
 
 const StartForm = (props) => {
   const dispatch = useDispatch();
   const { formValues } = useSelector((state) => state.trainings);
   const [domainError, setDomainError] = useState(false);
 
-  
-  const domainChanged = async function (val, setLoadingState) {
-    let res = await fetchRomes(val, () => {
-      setDomainError(true);
-    }); 
+  const startChanged = async function (val, setLoadingState) {
+    let res = await domainChanged(val, setDomainError)
     setLoadingState('done')
-    // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caractères
-    if (val.length > 2) {
-      SendTrackEvent({
-        event: "Moteur de recherche - Metier",
-        terme: val,
-        hits: res.length,
-      });
-    }  
     return res;
   };
   
@@ -101,7 +89,7 @@ const StartForm = (props) => {
                   itemToStringFunction={autoCompleteToStringFunction}
                   onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
                   compareItemFunction={compareAutoCompleteValues}
-                  onInputValueChangeFunction={domainChanged}
+                  onInputValueChangeFunction={startChanged}
                   previouslySelectedItem={formValues?.job ?? null}
                   name="jobField"
                   placeholder="Ex : boulangerie"
