@@ -25,7 +25,7 @@ const StartForm = (props) => {
     let res = await fetchRomes(val, () => {
       setDomainError(true);
     }); 
-    
+
     setLoadingState('done')
 
     // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caractères
@@ -94,7 +94,7 @@ const StartForm = (props) => {
             <Form>
               <div className={`form-group c-home-hero__input mb-2 ${errors.job ? "form-group--onerror" : ""}`}>
                 <AutoCompleteField
-                  items={['init']}
+                  items={[]}
                   itemToStringFunction={autoCompleteToStringFunction}
                   onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
                   compareItemFunction={compareAutoCompleteValues}

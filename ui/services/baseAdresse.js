@@ -1,6 +1,8 @@
 import axios from "axios";
 
 export const fetchAddresses = (value, type) => {
+  console.log('value', value);
+  console.log('type', type);
   if (value) {
     let term = value;
     const limit = 10;
