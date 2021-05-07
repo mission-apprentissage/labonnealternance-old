@@ -59,6 +59,8 @@ const readXLSXFile = (filePath) => {
 };
 
 module.exports = async (optionalFileName) => {
+  let step = 0;
+
   try {
     logMessage("info", " -- Start of DomainesMetiers initializer -- ");
 
@@ -71,92 +73,158 @@ module.exports = async (optionalFileName) => {
 
     const workbookDomainesMetiers = readXLSXFile(FILE_LOCAL_PATH);
 
-    let domaines, familles, codesROMEs, intitulesROMEs, codesRNCPs, intitulesRNCPs, couplesROMEsIntitules;
+    let codesROMEs,
+      intitulesROMEs,
+      codesRNCPs,
+      intitulesRNCPs,
+      couplesROMEsIntitules,
+      motsClefsDomaine,
+      motsClefsSpecifiques,
+      appellationsROMEs,
+      codesFAPs,
+      libellesFAPs,
+      sousDomainesOnisep;
 
     const reset = () => {
-      domaines = [];
-      familles = [];
       codesROMEs = [];
       intitulesROMEs = [];
       codesRNCPs = [];
       intitulesRNCPs = [];
       couplesROMEsIntitules = [];
+      motsClefsDomaine = [];
+      motsClefsSpecifiques = [];
+      appellationsROMEs = [];
+      codesFAPs = [];
+      libellesFAPs = [];
+      sousDomainesOnisep = [];
     };
 
     let avertissements = [];
 
-    for (let i = 0; i < workbookDomainesMetiers.sheet_name_list.length; ++i) {
-      logMessage("info", `Début traitement lettre : ${workbookDomainesMetiers.sheet_name_list[i]}`);
+    logMessage("info", `Début traitement`);
 
-      let onglet = XLSX.utils.sheet_to_json(
-        workbookDomainesMetiers.workbook.Sheets[workbookDomainesMetiers.sheet_name_list[i]]
-      );
+    let onglet = XLSX.utils.sheet_to_json(workbookDomainesMetiers.workbook.Sheets["Liste"]);
 
-      reset();
+    reset();
 
-      for (let j = 0; j < onglet.length; j++) {
-        if (onglet[j].isSousDomaine) {
-          // cas de la ligne sur laquelle se trouve le sous-domaine qui va marquer l'insertion d'une ligne dans la db
+    for (let i = 0; i < onglet.length; i++) {
+      let row = onglet[i];
+      if (row.metier) {
+        // cas de la ligne sur laquelle se trouve len nom du métier qui va marquer l'insertion d'une ligne dans la db
 
-          let domainesMetier = new DomainesMetiers({
-            domaine: onglet[j]["Domaine "], // haha, vous l'avez vu cet espace à la fin ? :)
-            sous_domaine: onglet[j]["Sous domaine "], // et celui là ?
-            mots_clefs: onglet[j]["mots clés"],
-            domaines: domaines,
-            familles: familles,
-            codes_romes: codesROMEs,
-            intitules_romes: intitulesROMEs,
-            codes_rncps: codesRNCPs,
-            intitules_rncps: intitulesRNCPs,
-            couples_romes_metiers: couplesROMEsIntitules,
-          });
+        step = 1;
 
-          if (codesROMEs.length > 15)
-            avertissements.push({ domaine: onglet[j]["Sous domaine "], romes: codesROMEs.length });
+        let domainesMetier = new DomainesMetiers({
+          domaine: row.domaine,
+          sous_domaine: row.metier,
+          mots_clefs_specifiques: [...new Set(motsClefsSpecifiques)].join(", "),
+          mots_clefs: [...new Set(motsClefsDomaine)].join(", "),
+          appellations_romes: [...new Set(appellationsROMEs)].join(", "),
+          codes_romes: codesROMEs,
+          intitules_romes: intitulesROMEs,
+          codes_rncps: codesRNCPs,
+          intitules_rncps: intitulesRNCPs,
+          couples_romes_metiers: couplesROMEsIntitules,
+          codes_fap: [...new Set(codesFAPs)],
+          intitules_fap: [...new Set(libellesFAPs)],
+          sous_domaine_onisep: sousDomainesOnisep,
+        });
 
-          await domainesMetier.save();
+        if (codesROMEs.length > 15) {
+          avertissements.push({ domaine: row.metier, romes: codesROMEs.length });
+        }
 
-          logMessage("info", `Added ${domainesMetier.sous_domaine} ${domainesMetier._id} to collection `);
+        await domainesMetier.save();
+        console.log("DomainesMetier à sauver : ", domainesMetier);
 
-          reset();
-        } else {
-          if (onglet[j].Domaine && domaines.indexOf(onglet[j].Domaine.trim()) < 0)
-            domaines.push(onglet[j].Domaine.trim());
-          if (onglet[j].Famille && familles.indexOf(onglet[j].Famille.trim()) < 0)
-            familles.push(onglet[j].Famille.trim());
+        logMessage("info", `Added ${domainesMetier.sous_domaine} ${domainesMetier._id} to collection `);
 
-          //couplesROMEsIntitules
-          if (
-            (onglet[j]["Codes ROME"] &&
-              onglet[j]["Intitulé code ROME"] &&
-              codesROMEs.indexOf(onglet[j]["Codes ROME"].trim()) < 0) ||
-            intitulesROMEs.indexOf(onglet[j]["Intitulé code ROME"].trim()) < 0
-          ) {
+        reset();
+      } else {
+        step = 2;
+
+        //couplesROMEsIntitules
+        if (row.code_rome && row.libelle_rome) {
+          if (codesROMEs.indexOf(row.code_rome.trim()) < 0 || intitulesROMEs.indexOf(row.libelle_rome.trim()) < 0) {
             couplesROMEsIntitules.push({
-              codeRome: onglet[j]["Codes ROME"].trim(),
-              intitule: onglet[j]["Intitulé code ROME"].trim(),
+              codeRome: row.code_rome.trim(),
+              intitule: row.libelle_rome.trim(),
             });
           }
+        }
 
-          let currentROME = onglet[j]["Codes ROME"];
-          if (currentROME && codesROMEs.indexOf(currentROME.trim()) < 0) {
-            codesROMEs.push(currentROME.trim());
-          }
+        step = 3;
 
-          let currentIntituleROME = onglet[j]["Intitulé code ROME"];
-          if (currentIntituleROME && intitulesROMEs.indexOf(currentIntituleROME.trim()) < 0) {
-            intitulesROMEs.push(currentIntituleROME.trim());
-          }
+        let currentROME = row.code_rome;
+        if (currentROME && codesROMEs.indexOf(currentROME.trim()) < 0) {
+          codesROMEs.push(currentROME.trim());
+        }
 
-          let currentRNCP = onglet[j]["Code RNCP"];
-          if (currentRNCP && codesRNCPs.indexOf(currentRNCP.trim()) < 0) {
-            codesRNCPs.push(currentRNCP.trim());
-          }
+        step = 4;
 
-          let currentLibelleRNCP = onglet[j]["Libellé RNCP"];
-          if (currentLibelleRNCP && intitulesRNCPs.indexOf(currentLibelleRNCP.trim()) < 0) {
-            intitulesRNCPs.push(currentLibelleRNCP.trim());
-          }
+        let currentIntituleROME = row.libelle_rome;
+        if (currentIntituleROME && intitulesROMEs.indexOf(currentIntituleROME.trim()) < 0) {
+          intitulesROMEs.push(currentIntituleROME.trim());
+        }
+
+        step = 5;
+
+        let currentRNCP = row.code_rncp;
+        if (currentRNCP && codesRNCPs.indexOf(currentRNCP.trim()) < 0) {
+          codesRNCPs.push(currentRNCP.trim());
+        }
+
+        step = 6;
+
+        let currentLibelleRNCP = row.intitule_rncp;
+        if (currentLibelleRNCP && intitulesRNCPs.indexOf(currentLibelleRNCP.trim()) < 0) {
+          intitulesRNCPs.push(currentLibelleRNCP.trim());
+        }
+
+        step = 7;
+
+        let currentSousDomaineOnisep = row.sous_domaine_onisep_1;
+        if (currentSousDomaineOnisep && sousDomainesOnisep.indexOf(currentSousDomaineOnisep.trim()) < 0) {
+          sousDomainesOnisep.push(currentSousDomaineOnisep.trim());
+        }
+        currentSousDomaineOnisep = row.sous_domaine_onisep_2;
+        if (currentSousDomaineOnisep && sousDomainesOnisep.indexOf(currentSousDomaineOnisep.trim()) < 0) {
+          sousDomainesOnisep.push(currentSousDomaineOnisep.trim());
+        }
+
+        step = 8;
+
+        let currentMotsClefsDomaine = row.mots_clefs_domaine;
+        if (currentMotsClefsDomaine) {
+          motsClefsDomaine = motsClefsDomaine.concat(currentMotsClefsDomaine.split(/[\s,;]+/));
+        }
+
+        step = 9;
+
+        let currentMotsClefsSpecifiques = row.mots_clefs_ligne;
+        if (currentMotsClefsSpecifiques) {
+          motsClefsSpecifiques = motsClefsSpecifiques.concat(currentMotsClefsSpecifiques.split(/[\s,;]+/));
+        }
+
+        step = 10;
+
+        let currentCodesFAP = row.codes_fap;
+        if (currentCodesFAP) {
+          codesFAPs = codesFAPs.concat(currentCodesFAP.split(/[\s,;]+/));
+        }
+
+        step = 11;
+
+        let currentLibellesFAP = row.libelles_fap;
+        if (currentLibellesFAP) {
+          libellesFAPs = libellesFAPs.concat(currentLibellesFAP.split("; "));
+        }
+
+        step = 12;
+
+        let currentAppellationsROMEs = row.appellations_rome;
+        if (currentAppellationsROMEs) {
+          appellationsROMEs = appellationsROMEs.concat(currentAppellationsROMEs.toLowerCase().split(/[\s,/;]+/));
         }
       }
     }
@@ -167,6 +235,7 @@ module.exports = async (optionalFileName) => {
       avertissements,
     };
   } catch (err) {
+    console.log("error step ", step);
     logMessage("error", err);
     let error_msg = _.get(err, "meta.body") ?? err.message;
     return { error: error_msg, fileName: optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx" };
