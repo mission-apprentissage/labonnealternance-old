@@ -21,7 +21,7 @@ const StartForm = (props) => {
   const [domainError, setDomainError] = useState(false);
 
   
-  const domainChanged = async function (valsetLoadingState) {
+  const domainChanged = async function (val, setLoadingState) {
     let res = await fetchRomes(val, () => {
       setDomainError(true);
     }); 
