@@ -41,6 +41,7 @@ export const AutoCompleteField = ({
         items,
         setInputItems,
         selectItem,
+        setLoadingState,
         onInputValueChangeFunction,
         compareItemFunction,
         onSelectedItemChangeFunction,

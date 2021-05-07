@@ -21,13 +21,13 @@ const StartForm = (props) => {
 
   const jobChanged = async function (val, setLoadingState) {
     let res = await domainChanged(val, setDomainError)
-    if (setLoadingState) setLoadingState('done')
+    setLoadingState('done')
     return res;
   };
 
   const addressChanged = async function (val, setLoadingState) {
     let res = await fetchAddresses(val)
-    if (setLoadingState) setLoadingState('done')
+    setLoadingState('done')
     return res
   }
 
