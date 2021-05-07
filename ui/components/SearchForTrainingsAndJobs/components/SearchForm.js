@@ -25,7 +25,6 @@ const SearchForm = (props) => {
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
-
   const jobChanged = async function (val, setLoadingState) {
     let res = await domainChanged(val, setDomainError)
     setLoadingState('done')
@@ -37,7 +36,6 @@ const SearchForm = (props) => {
     setLoadingState('done')
     return res
   }
-
 
   const renderFormik = () => {
     return (
