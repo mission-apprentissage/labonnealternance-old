@@ -88,6 +88,7 @@ export const AutoCompleteField = ({
     id: 'lang-switcher',
     items: inputItems,
     itemToString,
+    defaultHighlightedIndex: 0,
     initialSelectedItem: previouslySelectedItem,
     initialIsOpen,
     onSelectedItemChange: ({ selectedItem }) => {
