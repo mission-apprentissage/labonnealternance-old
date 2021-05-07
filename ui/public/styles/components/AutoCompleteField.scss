@@ -19,6 +19,11 @@
   text-align: left;
 }
 
+.c-autocomplete-minititle {
+  color: $gray-500;
+  font-size: 14px;
+}
+
 .c-autocomplete__menu li {
   padding: .4rem .8rem .4rem .8rem;
   font-size: 14px;
@@ -30,6 +35,7 @@
     cursor: pointer;
   }
 }
+
 .c-autocomplete__menu li.c-autocomplete-neutral {
   &:hover {
     background-color: inherit;
@@ -40,6 +46,7 @@
     height: 1rem;
   }
 }
+
 
 .c-autocomplete__menu li:first-child {
   padding-top: .8rem;

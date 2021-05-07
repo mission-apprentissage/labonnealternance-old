@@ -120,6 +120,7 @@ export const AutoCompleteField = ({
 
   const classesOfContainer = props?.isHome ? '' : 'c-logobar-formgroup'
   const classesOfInsider = props?.isHome ? 'form-control-lg w-100 c-input-work' : 'c-logobar-field'
+  const hasResult = inputValue?.length > 0 && inputItems?.length > 0 && loadingState !== 'loading'
 
   return (
     <div className="">
@@ -143,7 +144,8 @@ export const AutoCompleteField = ({
         />
         {illustration && <img className="c-input-work-img" src={illustration} alt="" />}
       </div>
-      <ul {...getMenuProps()} className="c-autocomplete__menu">
+
+      <ul {...getMenuProps()} className={`c-autocomplete__menu is-open-${isOpen} has-result-${hasResult}`}>
         {(() => {
           if (isOpen) {
             if (inputValue.length === 0) {
@@ -169,15 +171,20 @@ export const AutoCompleteField = ({
             } 
             else {
               return (
-                inputItems.filter((item) => !!item?.label).map((item, index) =>
-                  <li
-                    className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
-                    key={`${index}`}
-                    {...getItemProps({ item: item.label, index })}
-                  >
-                    {ReactHtmlParser(highlightItem(item.label, inputValue))}
-                  </li>
-                )
+                  <>
+                  <span className="c-autocomplete-minititle">Vos résultats :</span>
+                    {
+                      inputItems.filter((item) => !!item?.label).map((item, index) =>
+                      <li
+                      className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
+                      key={`${index}`}
+                      {...getItemProps({ item: item.label, index })}
+                      >
+                          {ReactHtmlParser(highlightItem(item.label, inputValue))}
+                        </li>
+                      )
+                    }
+                  </>
               )
             }
           }
