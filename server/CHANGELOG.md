@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.13.4 [07/05/2021]
+[595] tracking gtm
+
 ## 1.13.3 [05/05/2021]
 [610] Envoi event vers catalogue à l'affichage d'une formation
 
