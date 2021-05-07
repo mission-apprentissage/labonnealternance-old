@@ -25,6 +25,20 @@ const SearchForm = (props) => {
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
+
+  const jobChanged = async function (val, setLoadingState) {
+    let res = await domainChanged(val, setDomainError)
+    setLoadingState('done')
+    return res;
+  };
+
+  const addressChanged = async function (val, setLoadingState) {
+    let res = await fetchAddresses(val)
+    setLoadingState('done')
+    return res
+  }
+
+
   const renderFormik = () => {
     return (
       <Formik
@@ -59,7 +73,7 @@ const SearchForm = (props) => {
                             setDiplomas
                           )}
                           compareItemFunction={compareAutoCompleteValues}
-                          onInputValueChangeFunction={partialRight(domainChanged, setDomainError)}
+                          onInputValueChangeFunction={jobChanged}
                           previouslySelectedItem={formValues?.job ?? null}
                           name="jobField"
                           placeholder="Ex : boulangerie"
@@ -79,7 +93,7 @@ const SearchForm = (props) => {
                     itemToStringFunction={autoCompleteToStringFunction}
                     onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
                     compareItemFunction={compareAutoCompleteValues}
-                    onInputValueChangeFunction={fetchAddresses}
+                    onInputValueChangeFunction={addressChanged}
                     previouslySelectedItem={formValues?.location ?? null}
                     scrollParentId="choiceColumn"
                     name="placeField"
