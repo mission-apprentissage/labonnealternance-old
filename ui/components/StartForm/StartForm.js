@@ -19,7 +19,7 @@ const StartForm = (props) => {
   const { formValues } = useSelector((state) => state.trainings);
   const [domainError, setDomainError] = useState(false);
 
-  const startChanged = async function (val, setLoadingState) {
+  const jobChanged = async function (val, setLoadingState) {
     let res = await domainChanged(val, setDomainError)
     setLoadingState('done')
     return res;
@@ -89,7 +89,7 @@ const StartForm = (props) => {
                   itemToStringFunction={autoCompleteToStringFunction}
                   onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
                   compareItemFunction={compareAutoCompleteValues}
-                  onInputValueChangeFunction={startChanged}
+                  onInputValueChangeFunction={jobChanged}
                   previouslySelectedItem={formValues?.job ?? null}
                   name="jobField"
                   placeholder="Ex : boulangerie"
