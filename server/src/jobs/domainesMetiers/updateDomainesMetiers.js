@@ -11,7 +11,7 @@ const { oleoduc } = require("oleoduc");
 const FILE_LOCAL_PATH = path.join(__dirname, "./assets/domainesMetiers_S3.xlsx");
 
 const logMessage = (level, msg) => {
-  console.log(msg);
+  //console.log(msg);
   if (level === "info") {
     logger.info(msg);
   } else {
@@ -135,7 +135,7 @@ module.exports = async (optionalFileName) => {
         }
 
         await domainesMetier.save();
-        console.log("DomainesMetier à sauver : ", domainesMetier);
+        //console.log("DomainesMetier à sauver : ", domainesMetier);
 
         logMessage("info", `Added ${domainesMetier.sous_domaine} ${domainesMetier._id} to collection `);
 
