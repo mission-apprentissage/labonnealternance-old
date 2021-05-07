@@ -21,8 +21,8 @@ const getMultiMatchTerm = (term) => {
         multi_match: {
           query: term,
           fields: [
-            "appellations_romes^28",
-            "sous_domaine^20",
+            "sous_domaine^80",
+            "appellations_romes^15",
             "intitules_romes^7",
             "intitules_rncps^7",
             "mots_clefs_specifiques^5",
