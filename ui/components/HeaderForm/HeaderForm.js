@@ -64,6 +64,7 @@ const HeaderForm = ({ handleSearchSubmit }) => {
                 previouslySelectedItem={formValues?.job ?? null}
                 name="jobField"
                 placeholder="Ex : boulangerie"
+                searchPlaceholder="Indiquez le métier recherché ci-dessus"
               />
             </div>
             <div className="ml-3">
@@ -78,6 +79,7 @@ const HeaderForm = ({ handleSearchSubmit }) => {
                   previouslySelectedItem={formValues?.location ?? null}
                   name="placeField"
                   placeholder="Adresse, ville ou code postal"
+                  searchPlaceholder="Indiquez le lieu recherché ci-dessus"
                 />
               </div>
             </div>

@@ -75,6 +75,7 @@ const SearchForm = (props) => {
                           previouslySelectedItem={formValues?.job ?? null}
                           name="jobField"
                           placeholder="Ex : boulangerie"
+                          searchPlaceholder="Indiquez le métier recherché ci-dessus"
                         />
                         <ErrorMessage name="job" className="errorField" component="div" />
                       </div>
@@ -96,6 +97,7 @@ const SearchForm = (props) => {
                     scrollParentId="choiceColumn"
                     name="placeField"
                     placeholder="Adresse, ville ou code postal"
+                    searchPlaceholder="Indiquez le lieu recherché ci-dessus"
                   />
                   <ErrorMessage name="location" className="errorField" component="div" />
                 </div>
