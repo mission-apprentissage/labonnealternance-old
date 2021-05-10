@@ -31,6 +31,7 @@ export const AutoCompleteField = ({
   scrollParentId,
   previouslySelectedItem,
   illustration,
+  searchPlaceholder,
   ...props
 }) => {
   useEffect(() => {
@@ -56,7 +57,7 @@ export const AutoCompleteField = ({
 
   const [inputItems, setInputItems] = useState(items);
   const [initialized, setInitialized] = useState(false);
-  const [loadingState, setLoadingState] = useState('loading');
+  const [loadingState, setLoadingState] = useState("loading");
 
   const itemToString = (item) => {
     if (itemToStringFunction) return item ? itemToStringFunction(item) : "";
@@ -86,7 +87,7 @@ export const AutoCompleteField = ({
     openMenu,
     inputValue,
   } = useCombobox({
-    id: 'lang-switcher',
+    id: "lang-switcher",
     items: inputItems,
     itemToString,
     defaultHighlightedIndex: 0,
@@ -99,8 +100,8 @@ export const AutoCompleteField = ({
       }
     },
     onInputValueChange: async ({ inputValue }) => {
-      if (loadingState === 'done') {
-        setLoadingState('loading')
+      if (loadingState === "done") {
+        setLoadingState("loading");
       }
       if (!debouncedOnInputValueChange) {
         debouncedOnInputValueChange = debounce(onInputValueChangeService, 300);
@@ -118,8 +119,8 @@ export const AutoCompleteField = ({
     },
   });
 
-  const classesOfContainer = props?.isHome ? '' : 'c-logobar-formgroup'
-  const classesOfInsider = props?.isHome ? 'form-control-lg w-100 c-input-work' : 'c-logobar-field'
+  const classesOfContainer = props?.isHome ? "" : "c-logobar-formgroup";
+  const classesOfInsider = props?.isHome ? "form-control-lg w-100 c-input-work" : "c-logobar-field";
 
   return (
     <div className="">
@@ -129,9 +130,9 @@ export const AutoCompleteField = ({
           {...getInputProps({
             onFocus: (e) => {
               if (!isOpen) {
-                openMenu()
+                openMenu();
               }
-              onFocusTriggered(e)
+              onFocusTriggered(e);
             },
           })}
           className={`${classesOfInsider} ${
@@ -148,43 +149,33 @@ export const AutoCompleteField = ({
         {(() => {
           if (isOpen) {
             if (inputValue.length === 0) {
+              return <li className="c-autocomplete-neutral">{searchPlaceholder}</li>;
+            } else if (loadingState === "loading") {
               return (
                 <li className="c-autocomplete-neutral">
-                  Entrez du texte
+                  <Spinner color="primary" />
+                  &nbsp;Veuillez patienter
                 </li>
-              )
-            } 
-            else if (loadingState === 'loading') {
+              );
+            } else if (inputValue.length > 0 && inputItems?.length === 0) {
+              return <li className="c-autocomplete-neutral">Pas de résultat, veuillez modifier votre recherche</li>;
+            } else {
               return (
-                <li className="c-autocomplete-neutral">
-                  <Spinner color="primary" />&nbsp;Veuillez patienter
-                </li>
-              )
-            } 
-            else if (inputValue.length > 0 && inputItems?.length === 0) {
-              return (
-                <li className="c-autocomplete-neutral">
-                  Pas de résultat, veuillez modifier votre recherche
-                </li>
-              )
-            } 
-            else {
-              return (
-                  <>
-                    <span className="c-autocomplete-minititle">Vos résultats :</span>
-                    {
-                      inputItems.filter((item) => !!item?.label).map((item, index) =>
+                <>
+                  <li className="c-autocomplete-minititle">Résultats de votre recherche</li>
+                  {inputItems
+                    .filter((item) => !!item?.label)
+                    .map((item, index) => (
                       <li
-                      className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
-                      key={`${index}`}
-                      {...getItemProps({ item: item.label, index })}
+                        className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
+                        key={`${index}`}
+                        {...getItemProps({ item: item.label, index })}
                       >
-                          {ReactHtmlParser(highlightItem(item.label, inputValue))}
-                        </li>
-                      )
-                    }
-                  </>
-              )
+                        {ReactHtmlParser(highlightItem(item.label, inputValue))}
+                      </li>
+                    ))}
+                </>
+              );
             }
           }
         })()}
