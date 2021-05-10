@@ -20,7 +20,12 @@
 }
 
 .c-autocomplete-minititle {
-  color: $gray-500;
+  color: $gray-500 !important;
+  font-size: 14px;
+}
+
+.c-autocomplete-neutral {
+  color: $gray-500 !important;
   font-size: 14px;
 }
 
