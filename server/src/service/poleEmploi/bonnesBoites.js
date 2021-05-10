@@ -135,7 +135,7 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
 
     return companies.data;
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
+    let errorObj = { result: "error", results: [], message: error.message };
 
     if (error?.response?.data) {
       errorObj.status = error.response.status;
