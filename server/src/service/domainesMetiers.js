@@ -25,7 +25,7 @@ const getMultiMatchTerm = (term) => {
             "appellations_romes^15",
             "intitules_romes^7",
             "intitules_rncps^7",
-            "mots_clefs_specifiques^5",
+            "mots_clefs_specifiques^40",
             "domaine^3",
             "mots_clefs^3",
             "sous_domaine_onisep^1",
