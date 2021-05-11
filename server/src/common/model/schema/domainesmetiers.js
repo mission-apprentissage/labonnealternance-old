@@ -9,16 +9,6 @@ const domainesMetiersSchema = {
     default: null,
     description: "Le grand domaine d'un métier",
   },
-  domaines: {
-    type: [String],
-    default: [],
-    description: "Les domaines d'un métier",
-  },
-  familles: {
-    type: [String],
-    default: [],
-    description: "Les familles associées au métier",
-  },
   codes_romes: {
     type: [String],
     default: [],
@@ -43,6 +33,31 @@ const domainesMetiersSchema = {
     type: String,
     default: null,
     description: "Les mots clefs associés au métier",
+  },
+  mots_clefs_specifiques: {
+    type: String,
+    default: null,
+    description: "Les mots clefs associés à une ligne spécifique du métier",
+  },
+  appellations_romes: {
+    type: String,
+    default: null,
+    description: "Mots clefs tirés des appellations associées à un code ROME",
+  },
+  codes_fap: {
+    type: [String],
+    default: null,
+    description: "Liste des codes FAP",
+  },
+  intitules_fap: {
+    type: [String],
+    default: null,
+    description: "Mots clefs issus des libellés FAP",
+  },
+  sous_domaine_onisep: {
+    type: [String],
+    default: null,
+    description: "Les sous-domaines onisep",
   },
   couples_romes_metiers: {
     type: [Object],
