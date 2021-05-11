@@ -2,6 +2,7 @@
 
 ## 1.14.0 [07/05/2021]
 [559] Statut autocomplete
+[519] Tag CFA d'entreprise
 
 ## 1.13.4 [07/05/2021]
 [595] tracking gtm
