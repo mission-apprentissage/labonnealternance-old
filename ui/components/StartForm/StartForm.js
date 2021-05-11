@@ -13,6 +13,7 @@ import { push } from "connected-next-router";
 import { setFormValues, setShouldExecuteSearch } from "store/actions";
 import glassImage from "public/images/glass.svg";
 import localisationImage from "public/images/localisation.svg";
+import { SendTrackEvent } from "utils/gtm";
 
 const StartForm = (props) => {
   const dispatch = useDispatch();
