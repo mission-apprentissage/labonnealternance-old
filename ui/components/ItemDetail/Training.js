@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
 import { useScopeContext } from "context/ScopeContext";
-
+import { isCfaEntreprise } from "services/cfaEntreprise";
 import TagCfaDEntreprise from './TagCfaDEntreprise';
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
@@ -79,7 +79,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
               <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
             </div>
             <div className="col-12 col-lg-6  d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
-              <TagCfaDEntreprise/>
+              <TagCfaDEntreprise isCfa={isCfaEntreprise(training?.company?.siret)} />
             </div>
           </div>
 
