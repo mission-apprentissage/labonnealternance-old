@@ -41,8 +41,8 @@ const AccesRecruteur = () => (
                 </a>
                 &nbsp; ou &nbsp;
                 <a href="https://1jeune1solution.gouv.fr" target="_blank" className="" rel="noopener noreferrer">
-                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien 1jeunesolution.gouv.fr" />
-                  <span className="ml-1">1jeunesolution.gouv.fr</span>
+                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien 1jeune1solution.gouv.fr" />
+                  <span className="ml-1">1jeune1solution.gouv.fr</span>
                 </a>
               </li>
               <li>
