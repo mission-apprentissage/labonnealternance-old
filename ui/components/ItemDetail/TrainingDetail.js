@@ -4,6 +4,7 @@ import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainingsAndSelectedItem } from "store/actions";
 import fetchTrainingDetails from "services/fetchTrainingDetails";
+import sendTrainingOpenedEventToCatalogue from "services/sendTrainingOpenedEventToCatalogue";
 import questionmarkIcon from "public/images/icons/questionmark2.svg";
 import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
@@ -35,6 +36,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   useEffect(() => {
     if (training && !training.lbfLoaded) {
       loadDataFromLbf();
+      sendTrainingOpenedEventToCatalogue(training.idRcoFormation);
     }
   }, [training.idRco]);
 
@@ -115,14 +117,14 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         <p className="mb-3 text-left">
           <span className="c-detail-sizetext d-block">
             <img className="mt-n1" src="/images/square_link.svg" alt="" />
-            <span className="ml-2">En savoir plus sur </span>
+            <span className="ml-2">Voir le site </span>
             <a
               href={companyUrl}
               target="_blank"
               className="c-detail-training-link gtmTrainingLink"
               rel="noopener noreferrer"
             >
-              {training.title}
+              {companyUrl}
             </a>
           </span>
         </p>
@@ -161,7 +163,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
 };
 
 const updateTrainingFromLbf = (training, detailsFromLbf) => {
-  if (training && detailsFromLbf) {
+  if (training && detailsFromLbf && detailsFromLbf.organisme) {
     training.training = detailsFromLbf;
 
     // remplacement des coordonnées de contact catalogue par celles de lbf
@@ -222,9 +224,15 @@ const getTrainingDetails = (training) => {
           <img src={academicCapIcon} alt="cape académique" />
           <div className="c-detail-training media-body">
             <h3 className="c-detail-description-title mb-3 mt-0">Modalités alternance</h3>
-            Heures en centre de formation : {training["sessions"][0]["nombre-heures-centre"]}h
+            Heures en centre de formation :{" "}
+            {training["sessions"][0]["nombre-heures-centre"]
+              ? `${training["sessions"][0]["nombre-heures-centre"]}h`
+              : "non renseigné"}
             <br />
-            Heures en entreprise : {training["sessions"][0]["nombre-heures-entreprise"]}h
+            Heures en entreprise :{" "}
+            {training["sessions"][0]["nombre-heures-entreprise"]
+              ? `${training["sessions"][0]["nombre-heures-entreprise"]}h`
+              : "non renseigné"}
           </div>
         </div>
       ) : (
@@ -240,13 +248,16 @@ const getTrainingDetails = (training) => {
 const getTrainingSessions = (training) => {
   if (training.sessions) {
     let sessions = [];
+    let today = new Date().getTime();
     training.sessions.forEach((s) => {
-      if (sessions.findIndex((v) => s.debut === v.debut && s.fin === v.fin) < 0) {
-        sessions.push({ debut: s.debut, fin: s.fin });
+      if (new Date(s.debut).getTime() > today) {
+        if (sessions.findIndex((v) => s.debut === v.debut && s.fin === v.fin) < 0) {
+          sessions.push({ debut: s.debut, fin: s.fin });
+        }
       }
     });
 
-    return (
+    return sessions.length ? (
       <div className="c-detail-description media">
         <img src={clipboardListIcon} alt="dossier" />
         <div className="c-detail-training media-body">
@@ -260,6 +271,8 @@ const getTrainingSessions = (training) => {
           })}
         </div>
       </div>
+    ) : (
+      ""
     );
   } else {
     return "";
