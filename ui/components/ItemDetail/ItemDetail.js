@@ -10,6 +10,7 @@ import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
 import { capitalizeFirstLetter } from "utils/strutils";
+import { isCfaEntreprise } from "services/cfaEntreprise";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
@@ -97,7 +98,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <div className="">
             <div className="d-flex justify-content-end mb-2">
               <div className="mr-auto">
-                {kind === "formation" ? <TagCfaDEntreprise /> : ""}
+                {kind === "formation" ? (
+                  <TagCfaDEntreprise isCfa={isCfaEntreprise(selectedItem?.company?.siret)} />
+                ) : (
+                  ""
+                )}
                 {includes(["lbb", "lba"], kind) ? <TagCandidatureSpontanee /> : ""}
                 {includes(["peJob", "matcha"], kind) ? <TagOffreEmploi /> : ""}
               </div>
