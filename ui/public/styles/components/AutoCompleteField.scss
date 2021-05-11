@@ -41,7 +41,8 @@
   }
 }
 
-.c-autocomplete__menu li.c-autocomplete-neutral {
+.c-autocomplete__menu li.c-autocomplete-neutral,
+.c-autocomplete__menu li.c-autocomplete-minititle {
   &:hover {
     background-color: inherit;
     cursor: text;
