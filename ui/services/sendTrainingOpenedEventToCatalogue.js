@@ -1,7 +1,7 @@
 import axios from "axios";
 import env from "utils/env";
 
-export default async function fetchTrainingDetails(idRco) {
+export default async function sendTrainingOpenedEventToCatalogue(idRco) {
   if (!idRco) return;
 
   const catalogueApi = `https://catalogue${
