@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.14.1 [12/05/2021]
+[622] API métiers par établissement
+
 ## 1.14.0 [07/05/2021]
 [559] Statut autocomplete
 [519] Tag CFA d'entreprise
