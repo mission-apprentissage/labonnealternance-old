@@ -25,7 +25,7 @@ const itemModel = (type) => {
       address: null, // formation -> etablissement_formateur_adresse, etablissement_formateur_complement_adresse | lbb / lba -> address | matcha -> adresse
       cedex: null, // formation -> etablissement_formateur_cedex
       zipCode: null, // formation -> etablissement_formateur_code_postal | pe -> lieuTravail.codePostal
-      insee: null, // pe -> lieuTravail.commune
+      insee: null, // pe -> lieuTravail.commune, training --> code_commune_insee
       departementNumber: null, // formation -> num_departement
       region: null, // formation -> region
     },

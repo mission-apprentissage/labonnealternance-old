@@ -2,6 +2,7 @@
 
 ## 1.14.1 [12/05/2021]
 [622] API métiers par établissement
+[551] Récupération code_commune_insee pour les formations
 
 ## 1.14.0 [07/05/2021]
 [559] Statut autocomplete
