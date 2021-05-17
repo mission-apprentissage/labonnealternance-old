@@ -10,7 +10,6 @@ import ExtendedSearchButton from "./ExtendedSearchButton";
 import NoJobResult from "./NoJobResult";
 import FilterButton from "./FilterButton";
 import { useScopeContext } from "context/ScopeContext";
-import questionMarkIcon from "public/images/icons/question_mark.svg";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
 import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 
@@ -22,19 +21,6 @@ const ResultLists = (props) => {
   const filterButtonClicked = (filterButton) => {
     props.setActiveFilter(filterButton);
     filterLayers(filterButton);
-  };
-
-  const getBanner = () => {
-    return (
-      <div className="c-trainingresult-warning pl-4 py-3">
-        <div className="c-trainingresult-warningimg">
-          <img src={questionMarkIcon} alt="Interrogation" />
-        </div>
-        <div className="c-trainingresult-warningtxt ml-2">
-          Les résultats affichés concernent uniquement les offres d'apprentissage
-        </div>
-      </div>
-    );
   };
 
   const getTrainingResult = () => {
@@ -391,7 +377,6 @@ const ResultLists = (props) => {
         id="resultList"
         className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}
       >
-        {getBanner()}
         {getTrainingResult()}
         {getJobResult()}
       </div>
