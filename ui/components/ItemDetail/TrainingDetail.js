@@ -10,6 +10,7 @@ import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
 import sablierIcon from "public/images/icons/training-sablier.svg";
 import chainlinkIcon from "public/images/icons/chainlink.svg";
+import { SendTrackEvent } from "utils/gtm";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "utils/strutils";
 
@@ -28,7 +29,16 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
       const el = document.getElementsByClassName("widget-prdv");
 
       if (el.length) {
-        window.initPrdvWidget();
+        async function callWidget() {
+          const result = await window.initPrdvWidget();
+          if (!result[0].error) {
+            console.log("affichage bouton");
+            SendTrackEvent({
+              event: "Prise de rendez-vous - Affichage",
+            });
+          }
+        }
+        callWidget();
       }
     }
   }, [training.idRcoFormation]);
