@@ -21,16 +21,16 @@ const StartForm = (props) => {
   const [domainError, setDomainError] = useState(false);
 
   const jobChanged = async function (val, setLoadingState) {
-    let res = await domainChanged(val, setDomainError)
-    setLoadingState('done')
+    let res = await domainChanged(val, setDomainError);
+    setLoadingState("done");
     return res;
   };
 
   const addressChanged = async function (val, setLoadingState) {
-    let res = await fetchAddresses(val)
-    setLoadingState('done')
-    return res
-  }
+    let res = await fetchAddresses(val);
+    setLoadingState("done");
+    return res;
+  };
 
   const handleSearchSubmit = (values) => {
     dispatch(setFormValues({ job: values.job, location: values.location }));
