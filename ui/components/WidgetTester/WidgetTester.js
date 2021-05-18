@@ -8,7 +8,7 @@ import {
   autoCompleteToStringFunction,
 } from "components/AutoCompleteField/AutoCompleteField";
 import { fetchAddresses } from "services/baseAdresse";
-import fetchRomes from "services/fetchRomes";
+import domainChanged from "services/domainChanged";
 
 const WidgetTester = () => {
   const [locationRadius, setLocationRadius] = useState(0);
@@ -17,6 +17,19 @@ const WidgetTester = () => {
   const [widgetParams, setWidgetParams] = useState(null);
   const [shownRomes, setShownRomes] = useState(null);
   const [shownSearchCenter, setShownSearchCenter] = useState(null);
+  const [domainError, setDomainError] = useState(false);
+
+  const jobChanged = async function (val, setLoadingState) {
+    let res = await domainChanged(val, setDomainError);
+    setLoadingState("done");
+    return res;
+  };
+
+  const addressChanged = async function (val, setLoadingState) {
+    let res = await fetchAddresses(val);
+    setLoadingState("done");
+    return res;
+  };
 
   const getRadioButton = (inputName, value, label, selectedValue, setFieldValue, handleChange) => {
     return (
@@ -179,7 +192,7 @@ const WidgetTester = () => {
                       itemToStringFunction={autoCompleteToStringFunction}
                       onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
                       compareItemFunction={compareAutoCompleteValues}
-                      onInputValueChangeFunction={fetchRomes}
+                      onInputValueChangeFunction={jobChanged}
                       name="jobField"
                       placeholder="Ex : boulangerie"
                       searchPlaceholder="Indiquez le métier recherché ci-dessus"
@@ -201,7 +214,7 @@ const WidgetTester = () => {
                       itemToStringFunction={autoCompleteToStringFunction}
                       onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
                       compareItemFunction={compareAutoCompleteValues}
-                      onInputValueChangeFunction={fetchAddresses}
+                      onInputValueChangeFunction={addressChanged}
                       scrollParentId="choiceColumn"
                       name="placeField"
                       placeholder="Adresse, ville ou code postal"
