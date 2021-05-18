@@ -36,12 +36,18 @@ export const searchForTrainingsFunction = async ({
       },
     });
 
+    let results = response.data.results;
+
     if (response.data.result === "error") {
       logError("Training Search Error", `${response.data.message}`);
       setTrainingSearchError(trainingErrorText);
     }
+    else
+    {
+      tagDoublon(results);
+    }
 
-    dispatch(setTrainings(response.data.results));
+    dispatch(setTrainings(results));
     dispatch(setHasSearch(true));
     dispatch(setIsFormVisible(false));
 
@@ -60,3 +66,12 @@ export const searchForTrainingsFunction = async ({
 
   setIsTrainingSearchLoading(false);
 };
+
+const tagDoublon = (trainings) => {
+  trainings.map((training) => {
+    console.log("training : ",training);
+
+
+
+  });
+}
