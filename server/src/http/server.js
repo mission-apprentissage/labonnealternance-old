@@ -91,7 +91,7 @@ module.exports = async (components) => {
 
   app.use("/api/updateRomesMetiers", limiter1Per5Second, updateRomesMetiers());
 
-  app.use("/api/metiers", limiter5PerSecond, metiers());
+  app.use("/api/metiers", limiter10PerSecond, metiers());
 
   app.get(
     "/api",
