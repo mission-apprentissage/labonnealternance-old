@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import PeJobDetail from "./PeJobDetail";
 import MatchaDetail from "./MatchaDetail";
@@ -25,6 +25,10 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const distance = selectedItem?.place?.distance;
 
   const [seeInfo, setSeeInfo] = useState(false);
+
+  useEffect(() => {
+    setSeeInfo(false);
+  }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
   let actualTitle = selectedItem?.title || selectedItem?.longTitle;
 
