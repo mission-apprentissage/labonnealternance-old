@@ -17,6 +17,12 @@ import { formatDate } from "utils/strutils";
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    SendTrackEvent({
+      event: `Résultats Affichage formation - Consulter fiche formation`,
+    });
+  }, [training.id]);
+
   const { trainings } = useSelector((state) => state.trainings);
 
   useEffect(() => {
