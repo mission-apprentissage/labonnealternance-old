@@ -2,6 +2,7 @@
 
 ## 1.14.2 [19/05/2021]
 [626] Fix bug liste des diplômes
+[623] Tracking des affichages prdv, ...
 
 ## 1.14.1 [18/05/2021]
 [622] API métiers par établissement
