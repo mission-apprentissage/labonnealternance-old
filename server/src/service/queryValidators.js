@@ -92,12 +92,12 @@ const validateDiploma = (diploma, error_messages) => {
   // diploma mal formé si présent
   if (
     diploma &&
-    ["3 (CAP...)", "4 (Bac...)", "5 (BTS, DUT...)", "6 (Licence...)", "7 (Master, titre ingénieur...)"].indexOf(
+    ["3 (CAP...)", "4 (BAC...)", "5 (BTS, DEUST...)", "6 (Licence, BUT...)", "7 (Master, titre ingénieur...)"].indexOf(
       diploma
     ) < 0
   )
     error_messages.push(
-      'diploma : Optional diploma argument used with wrong value. Should contains only one of "3 (CAP...)","4 (Bac...)","5 (BTS, DUT...)","6 (Licence...)","7 (Master, titre ingénieur...)".'
+      'diploma : Optional diploma argument used with wrong value. Should contains only one of "3 (CAP...)","4 (BAC...)","5 (BTS, DEUST...)","6 (Licence, BUT...)","7 (Master, titre ingénieur...)".'
     );
 };
 
