@@ -5,10 +5,17 @@ import { defaultTo } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
+import { SendTrackEvent } from "utils/gtm";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
   let modificationLink = `https://labonneboite.pole-emploi.fr/verification-informations-entreprise/${siret}`;
+
+  useEffect(() => {
+    SendTrackEvent({
+      event: `Résultats Affichage ${lbb?.ideaType.toUpperCase()} - Consulter fiche entreprise`,
+    });
+  }, [lbb?.company?.siret]);
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ

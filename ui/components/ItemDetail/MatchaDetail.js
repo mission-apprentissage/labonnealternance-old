@@ -5,6 +5,7 @@ import contactIcon from "../../public/images/icons/contact_icon.svg";
 import ReactHtmlParser from "react-html-parser";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import TagCandidatureSpontanee from "components/ItemDetail/TagCandidatureSpontanee.js";
+import { SendTrackEvent } from "utils/gtm";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -13,6 +14,12 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
+
+  useEffect(() => {
+    SendTrackEvent({
+      event: `Résultats Affichage Offre Matcha - Consulter fiche entreprise`,
+    });
+  }, [job.id]);
 
   const description = get(job, "job.description", undefined);
 
@@ -117,18 +124,16 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             <img src={questionmarkIcon} alt="point d'interrogation" />
           </div>
           <div className="c-detail-advice__body">
-            <div className="c-detail-advice-title">
-              Le saviez-vous ?
-            </div>
-            <div className="c-detail-advice-text c-detail-advice-text--first" >
-              Diversifiez vos démarches en envoyant aussi des 
-              <span className="c-detail-advice-highlight"> candidatures spontanées </span> 
+            <div className="c-detail-advice-title">Le saviez-vous ?</div>
+            <div className="c-detail-advice-text c-detail-advice-text--first">
+              Diversifiez vos démarches en envoyant aussi des
+              <span className="c-detail-advice-highlight"> candidatures spontanées </span>
               aux entreprises qui n'ont pas diffusé d'offre !
             </div>
-            <div className="c-detail-advice-text c-detail-advice-text--tag" >
+            <div className="c-detail-advice-text c-detail-advice-text--tag">
               Repérez les tags suivants dans la liste de résultats
             </div>
-            <div className="c-detail-advice-tag" >
+            <div className="c-detail-advice-tag">
               <TagCandidatureSpontanee />
             </div>
           </div>
