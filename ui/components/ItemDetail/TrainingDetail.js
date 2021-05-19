@@ -32,7 +32,6 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         async function callWidget() {
           const result = await window.initPrdvWidget();
           if (!result[0].error) {
-            console.log("affichage bouton");
             SendTrackEvent({
               event: "Prise de rendez-vous - Affichage",
             });
