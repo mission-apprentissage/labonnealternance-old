@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Navigation from "components/navigation";
 import HomeHero from "components/HomeHero";
+import HowTo from "components/HowTo";
 import { initParametersFromQuery } from "services/config";
 import DescriptionMissionApprentissage from "components/DescriptionMissionApprentissage";
 import Footer from "components/footer";
@@ -19,6 +20,7 @@ const Home = () => {
       <ScrollToTop />
       <Navigation />
       <HomeHero />
+      <HowTo />
       <DescriptionMissionApprentissage />
       <Footer />
     </div>
