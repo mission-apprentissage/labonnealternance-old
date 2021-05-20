@@ -9,22 +9,22 @@ const HowTo = () => {
       <section className="c-howto container">
 
         <div class="card-deck">
-          <div class="card">
+          <div class="card border-0">
             <img src={howto1} class="card-img-top" alt="Première étape"/>
             <div class="card-body">
               <h5 class="card-title">Le job de vos rêves</h5>
               <p class="card-text">Renseignez le métier que vous souhaitez faire et la localisation (Ville ou Code postal)</p>
             </div>
           </div>
-          <div class="card">
-            <img src={howto2} class="card-img-top" alt="..."/>
+          <div class="card card--middle border-0">
+            <img src={howto2} class="card-img-top" alt="Deuxième étape"/>
             <div class="card-body">
               <h5 class="card-title">En un clin d’oeil</h5>
               <p class="card-text">Obtenez en un clin d’oeil la liste des formations et entreprises proche de chez vous dans le domaine recherché.</p>
             </div>
           </div>
-          <div class="card">
-            <img src={howto3} class="card-img-top" alt="..."/>
+          <div class="card border-0">
+            <img src={howto3} class="card-img-top" alt="Troisième étape"/>
             <div class="card-body">
               <h5 class="card-title">Un contact facile</h5>
               <p class="card-text">Contactez facilement les centres de formations ou les entreprises pour postuler </p>
