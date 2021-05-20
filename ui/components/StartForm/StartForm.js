@@ -27,6 +27,7 @@ const StartForm = (props) => {
     <div className="d-none d-lg-block">
       <WidgetHeader
         handleSearchSubmit={handleSearchSubmit} 
+        isHome={true}
       />
     </div>
   </>;
