@@ -1,6 +1,5 @@
 .c-home-hero {
  @include media-breakpoint-up(sm) { 
-   background-color: $home-background-color;
    background-size: contain;
    background-repeat: no-repeat;
  }
