@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { push } from "connected-next-router";
 import { setFormValues, setShouldExecuteSearch } from "store/actions";
 
+import { pick } from "lodash";
 import SearchForm from "components/SearchForTrainingsAndJobs/components/SearchForm";
 
 const StartForm = (props) => {
@@ -11,7 +12,9 @@ const StartForm = (props) => {
 
   const handleSearchSubmit = (values) => {
     console.log('values', values);
-    dispatch(setFormValues({ job: values.job, location: values.location, radius: values.radius, diploma: values.diploma }));
+    
+    dispatch(setFormValues(pick(values, ['job', 'location', 'radius', 'diploma'])));
+
     dispatch(setShouldExecuteSearch(true));
     dispatch(push({ pathname: "/recherche-apprentissage" }));
   };
