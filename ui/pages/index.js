@@ -19,8 +19,10 @@ const Home = () => {
     <div>
       <ScrollToTop />
       <Navigation />
-      <HomeHero />
-      <HowTo />
+      <div className="c-homebg">
+        <HomeHero />
+        <HowTo />
+      </div>
       <DescriptionMissionApprentissage />
       <Footer />
     </div>

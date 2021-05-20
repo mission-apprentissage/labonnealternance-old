@@ -7,7 +7,7 @@ const HowTo = () => {
   return (
     <>
       <section className="c-howto container">
-        <div className="c-howto-cards">
+        <div className="c-howto-cards card-deck">
           <div className="card border-0">
             <img src={howto1} className="card-img-top" alt="Première étape"/>
             <div className="card-body">
