@@ -1,6 +1,6 @@
 .c-home-hero {
  @include media-breakpoint-up(sm) { 
-   background: url('/images/hero2.svg'), $home-background-color;
+   background-color: $home-background-color;
    background-size: contain;
    background-repeat: no-repeat;
  }
