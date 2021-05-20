@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.15.0 [20/05/2021]
+[592] Nouvelle home
+
 ## 1.14.3 [20/05/2021]
 [623] ...Tracking affichage des fiches détail
 [588] Fix state voir les infos de contact
