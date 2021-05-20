@@ -3,6 +3,7 @@
     margin-left: 0px;
     margin-right: 0px;
     max-width: 241px;
+    background-color: transparent;
     @include media-breakpoint-up(lg) { 
       max-width: 281px;
     }
