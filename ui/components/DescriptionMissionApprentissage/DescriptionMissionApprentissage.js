@@ -3,7 +3,7 @@ import React from "react";
 const DescriptionMissionApprentissage = () => {
   return (
     <>
-      <section className="c-home-descr container my-0 mb-sm-5 p-5">
+      <section className="c-home-descr container mb-0 mb-sm-5 p-5">
         <div className="row">
           <div className="col-12 col-lg-5">
             <h1 className="c-home-descr__title">

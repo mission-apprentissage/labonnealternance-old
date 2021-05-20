@@ -7,6 +7,12 @@
       max-width: 281px;
     }
   }
+  .card + .card {
+    margin-top: 28px;
+    @include media-breakpoint-up(lg) { 
+      margin-top: 0;
+    }
+  }
   .card-body {
     padding: 0;
   }
@@ -15,6 +21,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    margin-top: 42px;
     @include media-breakpoint-up(lg) { 
       flex-direction: row;
     }
