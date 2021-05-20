@@ -8,7 +8,7 @@ const HomeHero = () => {
         <div className="card c-home-hero__card p-0 p-sm-4">
           <h1 className="card-title">
             <span className="c-home-hero__title c-home-hero__title1 d-block">Se former et travailler</span>
-            <span className="c-home-hero__title c-home-hero__title2 d-block">&nbsp;en alternance</span>
+            <span className="c-home-hero__title c-home-hero__title2 d-block">en alternance</span>
           </h1>
           <StartForm/>
         </div>
