@@ -1,4 +1,7 @@
 import React from "react";
+import howto1 from "public/images/howto1.svg";
+import howto2 from "public/images/howto2.svg";
+import howto3 from "public/images/howto3.svg";
 
 const HowTo = () => {
   return (
@@ -7,33 +10,24 @@ const HowTo = () => {
 
         <div class="card-deck">
           <div class="card">
-            <img src="..." class="card-img-top" alt="..."/>
+            <img src={howto1} class="card-img-top" alt="Première étape"/>
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
+              <h5 class="card-title">Le job de vos rêves</h5>
+              <p class="card-text">Renseignez le métier que vous souhaitez faire et la localisation (Ville ou Code postal)</p>
             </div>
           </div>
           <div class="card">
-            <img src="..." class="card-img-top" alt="..."/>
+            <img src={howto2} class="card-img-top" alt="..."/>
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
+              <h5 class="card-title">En un clin d’oeil</h5>
+              <p class="card-text">Obtenez en un clin d’oeil la liste des formations et entreprises proche de chez vous dans le domaine recherché.</p>
             </div>
           </div>
           <div class="card">
-            <img src="..." class="card-img-top" alt="..."/>
+            <img src={howto3} class="card-img-top" alt="..."/>
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
+              <h5 class="card-title">Un contact facile</h5>
+              <p class="card-text">Contactez facilement les centres de formations ou les entreprises pour postuler </p>
             </div>
           </div>
         </div>
