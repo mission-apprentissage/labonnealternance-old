@@ -91,6 +91,13 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
       }, 5);
     });
 
+    map.on("click", "selected-job-point-layer", function (e) {
+      e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
+    });
+    map.on("click", "selected-training-point-layer", function (e) {
+      e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
+    });
+
     // layer contenant les pastilles de compte des
     let clusterCountParams = {
       id: "job-points-cluster-count",
