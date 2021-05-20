@@ -4,6 +4,7 @@
     margin-right: 0px;
     max-width: 241px;
     background-color: transparent;
+    z-index: 1;
     @include media-breakpoint-up(lg) { 
       max-width: 281px;
     }

@@ -1,5 +1,6 @@
 import React from "react";
 import howto1 from "public/images/howto1.svg";
+import howtoline1 from "public/images/howtoline1.svg";
 import howto2 from "public/images/howto2.svg";
 import howto3 from "public/images/howto3.svg";
 
@@ -8,8 +9,9 @@ const HowTo = () => {
     <>
       <section className="c-howto container">
         <div className="c-howto-cards card-deck">
-          <div className="card border-0">
+          <div className="card border-0 position-relative">
             <img src={howto1} className="card-img-top" alt="Première étape"/>
+            <img src={howtoline1} className="position-absolute" alt="Ligne"/>
             <div className="card-body">
               <h5 className="card-title">Le job de vos rêves</h5>
               <p className="card-text">Renseignez le métier que vous souhaitez faire et la localisation (Ville ou Code postal)</p>
