@@ -78,7 +78,6 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
     });
 
     map.on("click", "job-points-layer", function (e) {
-      console.log("jobs");
       const features = e.features;
       setTimeout(() => {
         // setTimeout de 5 ms pour que l'event soit traité au niveau de la layer training et que le flag stop puisse être posé
@@ -93,12 +92,10 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
     });
 
     map.on("click", "selected-job-point-layer", function (e) {
-      console.log("selected job");
       e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
       e.originalEvent.STOP_SOURCE = "selected-job";
     });
     map.on("click", "selected-training-point-layer", function (e) {
-      console.log("selected training");
       e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
       e.originalEvent.STOP_SOURCE = "selected-training";
     });
@@ -155,9 +152,6 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
     map.addLayer(clusterCountParams);
 
     map.on("click", "training-points-layer", function (e) {
-
-      console.log("trainings");
-
       e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
 
       const features = e.features;
@@ -499,7 +493,6 @@ const setJobMarkers = async (jobList, searchCenter) => {
 
     let features = [];
     jobList.map((job, idx) => {
-      //console.log("job : ", idx, job);
       job.ideaType = "job";
 
       features.push({
@@ -517,25 +510,26 @@ const setJobMarkers = async (jobList, searchCenter) => {
 
     let results = { type: "FeatureCollection", features };
 
-    //console.log(" CCC----- ", results.features[0]);
     map.getSource("job-points").setData(results);
   }
 };
 
 const setSelectedMarker = async (item) => {
-  //console.log("item  ", item);
-
-  let marker = null;
   if (item) {
-    marker = { coords: getCoordinates(item), items: [item] };
-  }
+    let marker = { coords: getCoordinates(item), items: [item] };
 
-  if (item.ideaType === "formation") {
-    marker.ideaType = "formation";
-    setSelectedTrainingMarker(marker);
+    if (item.ideaType === "formation") {
+      marker.ideaType = "formation";
+      setSelectedTrainingMarker(marker);
+      setSelectedJobMarker(marker);
+    } else {
+      marker.ideaType = "job";
+      setSelectedJobMarker(marker);
+      setSelectedTrainingMarker(null);
+    }
   } else {
-    marker.ideaType = "job";
-    setSelectedJobMarker(marker);
+    setSelectedJobMarker(null);
+    setSelectedTrainingMarker(null);
   }
 };
 
@@ -548,8 +542,6 @@ const setSelectedTrainingMarker = async (training, searchCenter) => {
 };
 
 const updateSelectedMarkerCollection = async (item, layer) => {
-  //console.log("setSelectedMarker : ", item, layer);
-
   if (isMapInitialized) {
     await waitForMapReadiness();
 
@@ -577,14 +569,11 @@ const updateSelectedMarkerCollection = async (item, layer) => {
 
     let results = { type: "FeatureCollection", features };
 
-    console.log("LARGE------ ", results, layer, map.getSource(layer));
-
     map.getSource(layer).setData(results);
   }
 };
 
 const setTrainingMarkers = async (trainingList) => {
-  //console.log("setTrainingMarkers : ", trainingList);
   if (isMapInitialized) {
     await waitForMapReadiness();
 
@@ -611,8 +600,6 @@ const setTrainingMarkers = async (trainingList) => {
       });
 
       let results = { type: "FeatureCollection", features };
-
-      //console.log(" AA----- ", results.features[0]);
 
       map.getSource("training-points").setData(results);
     } else {
