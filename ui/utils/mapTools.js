@@ -45,12 +45,12 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
 
     map.loadImage("/images/icons/book_large.png", function (error, image) {
       if (error) throw error;
-      map.addImage("training_large", image);
+      map.addImage("training-large", image);
     });
 
     map.loadImage("/images/icons/job_large.png", function (error, image) {
       if (error) throw error;
-      map.addImage("job_large", image);
+      map.addImage("job-large", image);
     });
 
     // ajout layers et events liés aux jobs
