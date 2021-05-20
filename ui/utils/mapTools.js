@@ -491,16 +491,25 @@ const setJobMarkers = async (jobList, searchCenter) => {
 
     let results = { type: "FeatureCollection", features };
 
+    //console.log(" CCC----- ", results.features[0]);
     map.getSource("job-points").setData(results);
   }
 };
 
 const setSelectedMarkerBis = async (item) => {
-  console.log("item  ", item);
+  //console.log("item  ", item);
+
+  let marker = null;
+  if (item) {
+    marker = { coords: getCoordinates(item), items: [item] };
+  }
+
   if (item.ideaType === "formation") {
-    setSelectedTrainingMarker(item);
+    marker.ideaType = "formation";
+    setSelectedTrainingMarker(marker);
   } else {
-    setSelectedJobMarker(item);
+    marker.ideaType = "job";
+    setSelectedJobMarker(marker);
   }
 };
 
@@ -512,39 +521,44 @@ const setSelectedTrainingMarker = async (training, searchCenter) => {
   setSelectedMarker(training, "selected-training-point", searchCenter);
 };
 
-const setSelectedMarker = async (item, layer, searchCenter) => {
-  console.log("setSelectedMarker : ", item, layer);
+const setSelectedMarker = async (item, layer) => {
+  //console.log("setSelectedMarker : ", item, layer);
 
   if (isMapInitialized) {
     await waitForMapReadiness();
 
-    // centrage et zoom si searchCenter est précisé (scope emploi seulement)
-    if (searchCenter) {
-      map.flyTo({ center: searchCenter, zoom: 9 });
-    }
-
     let features = [];
     if (item) {
-      features.push({
+      let feature = {
         type: "Feature",
         geometry: {
           type: "Point",
           coordinates: item.coords,
         },
         properties: {
-          id: 1,
-          item,
+          id: 0,
         },
-      });
+      };
+
+      if (item.ideaType === "formation") {
+        feature.properties.training = item;
+      } else {
+        feature.properties.job = item;
+      }
+
+      features.push(feature);
     }
 
     let results = { type: "FeatureCollection", features };
+
+    console.log("LARGE------ ", results, layer, map.getSource(layer));
 
     map.getSource(layer).setData(results);
   }
 };
 
 const setTrainingMarkers = async (trainingList) => {
+  //console.log("setTrainingMarkers : ", trainingList);
   if (isMapInitialized) {
     await waitForMapReadiness();
 
@@ -571,6 +585,8 @@ const setTrainingMarkers = async (trainingList) => {
       });
 
       let results = { type: "FeatureCollection", features };
+
+      //console.log(" AA----- ", results.features[0]);
 
       map.getSource("training-points").setData(results);
     } else {
