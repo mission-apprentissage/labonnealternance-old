@@ -10,7 +10,8 @@ const StartForm = (props) => {
   const dispatch = useDispatch();
 
   const handleSearchSubmit = (values) => {
-    dispatch(setFormValues({ job: values.job, location: values.location }));
+    console.log('values', values);
+    dispatch(setFormValues({ job: values.job, location: values.location, radius: values.radius, diploma: values.diploma }));
     dispatch(setShouldExecuteSearch(true));
     dispatch(push({ pathname: "/recherche-apprentissage" }));
   };
