@@ -147,6 +147,48 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
       onLayerClick(e, "training", store, selectItemOnMap, unselectItem);
     });
 
+    // ajout des layers et events liés à l'emploi sélectionné
+    map.addSource("selected-job-point", {
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: [],
+      },
+    });
+
+    // Ajout de la layer emploi sélectionné
+    map.addLayer({
+      id: "selected-job-point-layer",
+      source: "selected-job-point",
+      type: "symbol",
+      layout: {
+        "icon-image": "job-large", // cf. images chargées plus haut
+        "icon-padding": 0,
+        "icon-allow-overlap": true,
+      },
+    });
+
+    // ajout des layers et events liés à la formation sélectionnée
+    map.addSource("selected-training-point", {
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: [],
+      },
+    });
+
+    // Ajout de la layer formation sélectionnée
+    map.addLayer({
+      id: "selected-training-point-layer",
+      source: "selected-training-point",
+      type: "symbol",
+      layout: {
+        "icon-image": "training-large", // cf. images chargées plus haut
+        "icon-padding": 0,
+        "icon-allow-overlap": true,
+      },
+    });
+
     if (
       jobs &&
       jobs.peJobs &&
@@ -438,7 +480,9 @@ const setJobMarkers = async (jobList, searchCenter) => {
 
     let features = [];
     jobList.map((job, idx) => {
+      //console.log("job : ", idx, job);
       job.ideaType = "job";
+
       features.push({
         type: "Feature",
         geometry: {
@@ -455,6 +499,55 @@ const setJobMarkers = async (jobList, searchCenter) => {
     let results = { type: "FeatureCollection", features };
 
     map.getSource("job-points").setData(results);
+  }
+};
+
+const setSelectedMarkerBis = async (item) => {
+  console.log("item  ", item);
+  if (item.ideaType === "formation") {
+    setSelectedTrainingMarker(item);
+  } else {
+    setSelectedJobMarker(item);
+  }
+};
+
+const setSelectedJobMarker = async (job, searchCenter) => {
+  setSelectedMarker(job, "selected-job-point", searchCenter);
+};
+
+const setSelectedTrainingMarker = async (training, searchCenter) => {
+  setSelectedMarker(training, "selected-training-point", searchCenter);
+};
+
+const setSelectedMarker = async (item, layer, searchCenter) => {
+  console.log("setSelectedMarker : ", item, layer);
+
+  if (isMapInitialized) {
+    await waitForMapReadiness();
+
+    // centrage et zoom si searchCenter est précisé (scope emploi seulement)
+    if (searchCenter) {
+      map.flyTo({ center: searchCenter, zoom: 9 });
+    }
+
+    let features = [];
+    if (item) {
+      features.push({
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: item.coords,
+        },
+        properties: {
+          id: 1,
+          item,
+        },
+      });
+    }
+
+    let results = { type: "FeatureCollection", features };
+
+    map.getSource(layer).setData(results);
   }
 };
 
@@ -511,4 +604,7 @@ export {
   waitForMapReadiness,
   setTrainingMarkers,
   setJobMarkers,
+  setSelectedJobMarker,
+  setSelectedTrainingMarker,
+  setSelectedMarkerBis,
 };

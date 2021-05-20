@@ -20,7 +20,7 @@ import {
   setExtendedSearch,
   setJobs,
 } from "store/actions";
-import { flyToMarker, flyToLocation, closeMapPopups } from "utils/mapTools";
+import { flyToMarker, flyToLocation, closeMapPopups, setSelectedMarkerBis } from "utils/mapTools";
 
 const ChoiceColumn = ({
   showResultList,
@@ -62,6 +62,9 @@ const ChoiceColumn = ({
     flyToMarker(item, 12);
     closeMapPopups();
     dispatch(setSelectedItem(item));
+
+    setSelectedMarkerBis(item);
+
     setCurrentPage("fiche");
 
     pushHistory({ router, scopeContext, item, page: "fiche", display: "list" });
