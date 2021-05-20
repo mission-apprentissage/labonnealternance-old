@@ -20,7 +20,7 @@ import {
   setExtendedSearch,
   setJobs,
 } from "store/actions";
-import { flyToMarker, flyToLocation, closeMapPopups, setSelectedMarkerBis } from "utils/mapTools";
+import { flyToMarker, flyToLocation, closeMapPopups, setSelectedMarker } from "utils/mapTools";
 
 const ChoiceColumn = ({
   showResultList,
@@ -63,7 +63,7 @@ const ChoiceColumn = ({
     closeMapPopups();
     dispatch(setSelectedItem(item));
 
-    setSelectedMarkerBis(item);
+    setSelectedMarker(item);
 
     setCurrentPage("fiche");
 

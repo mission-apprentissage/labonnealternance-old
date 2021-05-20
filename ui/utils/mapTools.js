@@ -503,7 +503,7 @@ const setJobMarkers = async (jobList, searchCenter) => {
   }
 };
 
-const setSelectedMarkerBis = async (item) => {
+const setSelectedMarker = async (item) => {
   //console.log("item  ", item);
 
   let marker = null;
@@ -521,14 +521,14 @@ const setSelectedMarkerBis = async (item) => {
 };
 
 const setSelectedJobMarker = async (job, searchCenter) => {
-  setSelectedMarker(job, "selected-job-point", searchCenter);
+  updateSelectedMarkerCollection(job, "selected-job-point", searchCenter);
 };
 
 const setSelectedTrainingMarker = async (training, searchCenter) => {
-  setSelectedMarker(training, "selected-training-point", searchCenter);
+  updateSelectedMarkerCollection(training, "selected-training-point", searchCenter);
 };
 
-const setSelectedMarker = async (item, layer) => {
+const updateSelectedMarkerCollection = async (item, layer) => {
   //console.log("setSelectedMarker : ", item, layer);
 
   if (isMapInitialized) {
@@ -621,5 +621,5 @@ export {
   setJobMarkers,
   setSelectedJobMarker,
   setSelectedTrainingMarker,
-  setSelectedMarkerBis,
+  setSelectedMarker,
 };
