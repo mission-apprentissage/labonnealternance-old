@@ -78,6 +78,7 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
     });
 
     map.on("click", "job-points-layer", function (e) {
+      console.log("jobs");
       const features = e.features;
       setTimeout(() => {
         // setTimeout de 5 ms pour que l'event soit traité au niveau de la layer training et que le flag stop puisse être posé
@@ -92,10 +93,14 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
     });
 
     map.on("click", "selected-job-point-layer", function (e) {
+      console.log("selected job");
       e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
+      e.originalEvent.STOP_SOURCE = "selected-job";
     });
     map.on("click", "selected-training-point-layer", function (e) {
+      console.log("selected training");
       e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
+      e.originalEvent.STOP_SOURCE = "selected-training";
     });
 
     // layer contenant les pastilles de compte des
@@ -150,8 +155,22 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
     map.addLayer(clusterCountParams);
 
     map.on("click", "training-points-layer", function (e) {
+
+      console.log("trainings");
+
       e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
-      onLayerClick(e, "training", store, selectItemOnMap, unselectItem);
+
+      const features = e.features;
+      setTimeout(() => {
+        // setTimeout de 5 ms pour que l'event soit traité au niveau de la layer training et que le flag stop puisse être posé
+        // en effet la layer job reçoit l'event en premier du fait de son positionnement dans la liste des layers de la map
+        if (e && e.originalEvent) {
+          if (!e.originalEvent.STOP_SOURCE) {
+            e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
+            onLayerClick(e, "training", store, selectItemOnMap, unselectItem);
+          }
+        }
+      }, 5);
     });
 
     // ajout des layers et events liés à l'emploi sélectionné
