@@ -417,13 +417,6 @@ const computeMissingPositionAndDistance = async (searchCenter, jobs) => {
   return jobs;
 };
 
-const buildJobMarkerIcon = (job) => {
-  const markerNode = document.createElement("div");
-  ReactDOM.render(<Marker type="job" flyToMarker={flyToMarker} item={job} />, markerNode);
-
-  return markerNode;
-};
-
 const filterLayers = (filter) => {
   if (isMapInitialized) {
     let layersToShow = [];
@@ -594,7 +587,6 @@ export {
   initializeMap,
   flyToMarker,
   flyToLocation,
-  buildJobMarkerIcon,
   closeMapPopups,
   getZoomLevelForDistance,
   factorTrainingsForMap,
