@@ -2,12 +2,21 @@
   .card {
     margin-left: 0px;
     margin-right: 0px;
+    max-width: 241px;
+    @include media-breakpoint-up(lg) { 
+      max-width: 281px;
+    }
   }
-  // .card.card--middle {
-    // margin-left: 120px;
-    // margin-right: 120px;
-  // }
   .card-body {
     padding: 0;
+  }
+  .c-howto-cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    @include media-breakpoint-up(lg) { 
+      flex-direction: row;
+    }
   }
 }
