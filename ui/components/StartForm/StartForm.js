@@ -15,6 +15,9 @@ import glassImage from "public/images/glass.svg";
 import localisationImage from "public/images/localisation.svg";
 import { SendTrackEvent } from "utils/gtm";
 
+import { WidgetHeader, InitWidgetSearchParameters } from "components/WidgetHeader";
+
+
 const StartForm = (props) => {
   const dispatch = useDispatch();
   const { formValues } = useSelector((state) => state.trainings);
@@ -60,77 +63,12 @@ const StartForm = (props) => {
     return (
       <div className="card-body c-home-hero__card-body">
         <h1 className="card-title">
-          <span className="d-block c-home-hero__title c-home-hero__title1">Se former et travailler</span>
-          <span className="d-block c-home-hero__title c-home-hero__title2">en alternance</span>
+          <span className="c-home-hero__title c-home-hero__title1">Se former et travailler</span>
+          <span className="c-home-hero__title c-home-hero__title2">&nbsp;en alternance</span>
         </h1>
-        <p className="card-text mb-sm-5">
-          <span className="d-block c-home-hero__subtitle">Trouvez la formation et l’entreprise pour</span>
-          <span className="d-block c-home-hero__subtitle">réaliser votre projet d'alternance</span>
-        </p>
 
-        <Formik
-          validate={(values) => {
-            const errors = {};
-            if (!values.job || !values.job.label || !values.job.romes || !values.job.romes.length > 0) {
-              errors.job = "Veuillez sélectionner un métier proposé";
-            }
-            if (!values.location || !values.location.label) {
-              errors.location = "Veuillez sélectionner un lieu proposé";
-            }
-            return errors;
-          }}
-          initialValues={formValues ?? { job: {}, location: {} }}
-          onSubmit={handleSearchSubmit}
-        >
-          {({ isSubmitting, errors, setFieldValue }) => (
-            <Form>
-              <div className={`form-group c-home-hero__input mb-2 ${errors.job ? "form-group--onerror" : ""}`}>
-                <AutoCompleteField
-                  items={[]}
-                  itemToStringFunction={autoCompleteToStringFunction}
-                  onSelectedItemChangeFunction={updateValuesFromJobAutoComplete}
-                  compareItemFunction={compareAutoCompleteValues}
-                  onInputValueChangeFunction={jobChanged}
-                  previouslySelectedItem={formValues?.job ?? null}
-                  name="jobField"
-                  placeholder="Ex : boulangerie"
-                  illustration={glassImage}
-                  isHome={true}
-                  searchPlaceholder="Indiquez le métier recherché ci-dessus"
-                />
-                <ErrorMessage name="job" className="u-error-text-color" component="div" />
-              </div>
-              <div
-                className={`form-group c-home-hero__input mb-3 mb-sm-4 ${errors.location ? "form-group--onerror" : ""}`}
-              >
-                <AutoCompleteField
-                  items={[]}
-                  itemToStringFunction={autoCompleteToStringFunction}
-                  onSelectedItemChangeFunction={updateValuesFromPlaceAutoComplete}
-                  compareItemFunction={compareAutoCompleteValues}
-                  onInputValueChangeFunction={addressChanged}
-                  previouslySelectedItem={formValues?.location ?? null}
-                  scrollParentId="choiceColumn"
-                  name="placeField"
-                  placeholder="Adresse, ville ou code postal"
-                  illustration={localisationImage}
-                  isHome={true}
-                  searchPlaceholder="Indiquez le lieu recherché ci-dessus"
-                />
-                <ErrorMessage name="location" className="u-error-text-color" component="div" />
-              </div>
-              <div className="form-group c-home-hero__input">
-                <input
-                  type="submit"
-                  value="C'est parti !"
-                  className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn gtmSearch gtmHome"
-                  data-disable-with="C'est parti !"
-                  disabled={isSubmitting}
-                />
-              </div>
-            </Form>
-          )}
-        </Formik>
+        <WidgetHeader handleSearchSubmit={() => {}} isHome={true} />
+
         <p>&nbsp;</p>
       </div>
     );
