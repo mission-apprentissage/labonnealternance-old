@@ -1,6 +1,10 @@
 .c-homebg {
   background-color: #F9F8F6;
-  margin-left: 32px;
-  margin-right: 32px;
+  margin-left: 0;
+  margin-right: 0;
+  @include media-breakpoint-up(xl) { 
+    margin-left: 32px;
+    margin-right: 32px;
+  }
   border-radius: 10px;
 }
