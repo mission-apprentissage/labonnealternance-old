@@ -7,31 +7,31 @@ const HowTo = () => {
   return (
     <>
       <section className="c-howto container">
-        <div class="row row-cols-1 row-cols-lg-3">
-          <div class="col mb-4">
-            <div class="card border-0">
-              <img src={howto1} class="card-img-top" alt="Première étape"/>
-              <div class="card-body">
-                <h5 class="card-title">Le job de vos rêves</h5>
-                <p class="card-text">Renseignez le métier que vous souhaitez faire et la localisation (Ville ou Code postal)</p>
+        <div className="c-howto-cards">
+          <div className="">
+            <div className="card border-0">
+              <img src={howto1} className="card-img-top" alt="Première étape"/>
+              <div className="card-body">
+                <h5 className="card-title">Le job de vos rêves</h5>
+                <p className="card-text">Renseignez le métier que vous souhaitez faire et la localisation (Ville ou Code postal)</p>
               </div>
             </div>
           </div>
-          <div class="col mb-4">
-            <div class="card card--middle border-0">
-              <img src={howto2} class="card-img-top" alt="Deuxième étape"/>
-              <div class="card-body">
-                <h5 class="card-title">En un clin d’oeil</h5>
-                <p class="card-text">Obtenez en un clin d’oeil la liste des formations et entreprises proche de chez vous dans le domaine recherché.</p>
+          <div className="">
+            <div className="card card--middle border-0">
+              <img src={howto2} className="card-img-top" alt="Deuxième étape"/>
+              <div className="card-body">
+                <h5 className="card-title">En un clin d’oeil</h5>
+                <p className="card-text">Obtenez en un clin d’oeil la liste des formations et entreprises proche de chez vous dans le domaine recherché.</p>
               </div>
             </div>
           </div>
-          <div class="col mb-4">
-            <div class="card border-0">
-              <img src={howto3} class="card-img-top" alt="Troisième étape"/>
-              <div class="card-body">
-                <h5 class="card-title">Un contact facile</h5>
-                <p class="card-text">Contactez facilement les centres de formations ou les entreprises pour postuler </p>
+          <div className="">
+            <div className="card border-0">
+              <img src={howto3} className="card-img-top" alt="Troisième étape"/>
+              <div className="card-body">
+                <h5 className="card-title">Un contact facile</h5>
+                <p className="card-text">Contactez facilement les centres de formations ou les entreprises pour postuler </p>
               </div>
             </div>
           </div>
