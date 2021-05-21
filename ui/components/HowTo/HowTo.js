@@ -14,7 +14,7 @@ const HowTo = () => {
         <div className="c-howto-cards card-deck">
           <div className="card border-0 position-relative">
             <img src={howto1} className="card-img-top" alt="Première étape"/>
-            <img src={howtoline1} className="position-absolute c-homebg-img c-homebg-img--1" alt="Ligne"/>
+            <img src={howtoline1} className="position-absolute c-homebg-img c-homebg-img--line c-homebg-img--line1" alt="Ligne"/>
             <div className="card-body">
               <h5 className="card-title">Le job de vos rêves</h5>
               <p className="card-text">Renseignez le métier que vous souhaitez faire et la localisation (Ville ou Code postal)</p>
@@ -22,7 +22,7 @@ const HowTo = () => {
           </div>
           <div className="card border-0  position-relative">
             <img src={howto2} className="card-img-top" alt="Deuxième étape"/>
-            <img src={howtoline2a} className="position-absolute c-homebg-img c-homebg-img--2a" alt="Ligne"/>
+            <img src={howtoline2a} className="position-absolute c-homebg-img c-homebg-img--line c-homebg-img--line2a" alt="Ligne"/>
             <div className="card-body">
               <h5 className="card-title">En un clin d’oeil</h5>
               <p className="card-text">Obtenez en un clin d’oeil la liste des formations et entreprises proche de chez vous dans le domaine recherché.</p>
@@ -30,8 +30,8 @@ const HowTo = () => {
           </div>
           <div className="card border-0  position-relative">
             <img src={howto3} className="card-img-top" alt="Troisième étape"/>
-            <img src={howtoline3a} className="position-absolute c-homebg-img c-homebg-img--3a" alt="Ligne"/>
-            <img src={howtoline3b} className="position-absolute c-homebg-img c-homebg-img--3b" alt="Ligne"/>
+            <img src={howtoline3a} className="position-absolute c-homebg-img c-homebg-img--line c-homebg-img--line3a" alt="Ligne"/>
+            <img src={howtoline3b} className="position-absolute c-homebg-img c-homebg-img--line c-homebg-img--line3b" alt="Ligne"/>
             <div className="card-body">
               <h5 className="card-title">Un contact facile</h5>
               <p className="card-text">Contactez facilement les centres de formations ou les entreprises pour postuler </p>
