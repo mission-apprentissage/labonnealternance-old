@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import jobIcon from "../../public/images/icons/job.svg";
-import TagCandidatureSpontanee from './TagCandidatureSpontanee';
+import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { get } from "lodash";
+import { setSelectedMarker } from "utils/mapTools";
 
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
 
   const currentSearchRadius = formValues?.radius || 30;
 
+  const [allowDim, setAllowDim] = useState(true); // cet état évite un appel qui masque la mise en avant de l'icône lors de l'ouverture du détail
+
   const onSelectItem = () => {
+    setAllowDim(false); // fixation du flag
     handleSelectItem(company, company.ideaType);
   };
 
@@ -53,10 +57,24 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
     searchForTrainingsOnNewCenter(newCenter);
   };
 
+  const highlightItemOnMap = () => {
+    setSelectedMarker(company);
+  };
+
+  const dimItemOnMap = (e) => {
+    if (allowDim) {
+      setSelectedMarker(null);
+    } else {
+      setAllowDim(true);
+    }
+  };
+
   return (
     <div
       className={`resultCard gtmSavoirPlus gtm${capitalizeFirstLetter(company.ideaType)} gtmListe`}
       onClick={onSelectItem}
+      onMouseOver={highlightItemOnMap}
+      onMouseOut={dimItemOnMap}
     >
       <div className="c-media" id={`${company.ideaType}${company.company.siret}`}>
         <div className="c-media-figure">
@@ -64,13 +82,12 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
         </div>
 
         <div className="c-media-body">
-
           <div className="row no-gutters">
             <div className="col-12 col-lg-6 text-left">
               <div className="title d-inline-block">{company.company.name}</div>
             </div>
             <div className="col-12 col-lg-6 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
-              <TagCandidatureSpontanee/>
+              <TagCandidatureSpontanee />
             </div>
           </div>
 
@@ -78,7 +95,6 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
             <div className="cardText pt-2">{get(company, "nafs[0].label", "")}</div>
             <div className="cardText pt-2">{company.place.fullAddress}</div>
           </div>
-        
 
           <span className="cardDistance pt-1">
             {company.place.distance} km(s) du lieu de recherche
@@ -97,7 +113,6 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
           ) : (
             <>{Math.round(company.place.distance) > currentSearchRadius ? getCenterSearchOnCompanyButton() : ""}</>
           )}
-
         </div>
       </div>
     </div>

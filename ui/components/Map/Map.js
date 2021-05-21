@@ -57,7 +57,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
             values.location.insee = null;
           }
         } catch (err) {}
-        await handleSearchSubmit(values,"stayOnMap");
+        await handleSearchSubmit(values, "stayOnMap");
 
         shouldHandleMapSearch = true;
       }
