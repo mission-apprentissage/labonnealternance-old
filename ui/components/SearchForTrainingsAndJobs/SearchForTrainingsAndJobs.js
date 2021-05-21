@@ -30,6 +30,7 @@ import {
   computeMissingPositionAndDistance,
   setJobMarkers,
   setTrainingMarkers,
+  setSelectedMarker,
   resizeMap,
   isMapInitialized,
 } from "utils/mapTools";
@@ -100,6 +101,7 @@ const SearchForTrainingsAndJobs = () => {
     if (item) {
       flyToMarker(item, 12);
       dispatch(setSelectedItem(item));
+      setSelectedMarker(item);
     }
   };
 
@@ -273,6 +275,7 @@ const SearchForTrainingsAndJobs = () => {
 
   const unSelectItem = (doNotSaveToHistory) => {
     dispatch(setSelectedItem(null));
+    setSelectedMarker(null);
     if (selectedItem) {
       dispatch(setItemToScrollTo(selectedItem));
     }
