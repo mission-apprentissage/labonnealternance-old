@@ -3,6 +3,7 @@
 ## 1.14.3 [20/05/2021]
 [623] ...Tracking affichage des fiches détail
 [588] Fix state voir les infos de contact
+[502] Suppression dédoublonnage cfa en précisant la ville
 
 ## 1.14.2 [19/05/2021]
 [626] Fix bug liste des diplômes
