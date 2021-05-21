@@ -1,6 +1,9 @@
 .c-home-descr {
   background-color: $home-background-color;
-  margin-top: 88px;
+  margin-top: 0;
+  @include media-breakpoint-up(md) {
+    margin-top: 88px;
+  } 
 }
 
 .c-home-descr__title {
