@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import jobIcon from "../../public/images/icons/job.svg";
 import TagOffreEmploi from "./TagOffreEmploi";
 import { isDepartmentJob } from "utils/itemListUtils";
@@ -6,15 +6,19 @@ import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import ReactHtmlParser from "react-html-parser";
 import { fetchAddresses } from "../../services/baseAdresse";
+import { setSelectedMarker } from "utils/mapTools";
 
 const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues } = useSelector((state) => state.trainings);
 
   const currentSearchRadius = formValues?.radius || 30;
 
+  const [allowDim, setAllowDim] = useState(true); // cet état évite un appel qui masque la mise en avant de l'icône lors de l'ouverture du détail
+
   const kind = job?.ideaType;
 
   const onSelectItem = () => {
+    setAllowDim(false); // fixation du flag
     handleSelectItem(job);
   };
 
@@ -57,18 +61,34 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
   };
 
   const rootClassList = (actualKind) => {
-    let allClasses = "resultCard gtmSavoirPlus gtmListe "
-    if (actualKind === "peJob" ) {
-      allClasses += "gtmPeJob"
+    let allClasses = "resultCard gtmSavoirPlus gtmListe ";
+    if (actualKind === "peJob") {
+      allClasses += "gtmPeJob";
     } else if (actualKind === "matcha") {
-      allClasses += "gtmMatcha"
+      allClasses += "gtmMatcha";
     }
     return allClasses;
-  }
+  };
+
+  const highlightItemOnMap = () => {
+    setSelectedMarker(job);
+  };
+
+  const dimItemOnMap = (e) => {
+    if (allowDim) {
+      setSelectedMarker(null);
+    } else {
+      setAllowDim(true);
+    }
+  };
 
   return (
-    <div className={rootClassList(kind)} onClick={onSelectItem}>
-      
+    <div
+      className={rootClassList(kind)}
+      onClick={onSelectItem}
+      onMouseOver={highlightItemOnMap}
+      onMouseOut={dimItemOnMap}
+    >
       <div className="c-media" id={`${kind}${job.job.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
@@ -115,4 +135,3 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
 };
 
 export default Job;
-
