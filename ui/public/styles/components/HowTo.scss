@@ -23,8 +23,11 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 42px;
+    margin-top: 12px;
     padding-bottom: 62px;
+    @include media-breakpoint-up(lg) { 
+      margin-top: 42px;
+    }
     @include media-breakpoint-up(lg) { 
       flex-direction: row;
     }

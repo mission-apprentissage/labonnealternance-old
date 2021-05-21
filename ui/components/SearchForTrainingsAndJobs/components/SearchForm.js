@@ -139,7 +139,7 @@ const SearchForm = (props) => {
                 </div>
               </Col>
             </Row>
-            <div className="formGroup">
+            <div className="formGroup submitGroup">
               <button
                 type="submit"
                 className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn mt-5"
