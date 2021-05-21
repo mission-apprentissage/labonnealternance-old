@@ -21,6 +21,7 @@ const StartForm = (props) => {
     <div className="d-lg-none">
       <SearchForm 
         handleSearchSubmit={handleSearchSubmit} 
+        isHome={true}
         showResultList={() => {}}
       />
     </div>

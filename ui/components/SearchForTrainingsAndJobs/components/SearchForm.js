@@ -45,7 +45,7 @@ const SearchForm = (props) => {
         onSubmit={props.handleSearchSubmit}
       >
         {({ isSubmitting, setFieldValue, errors }) => (
-          <Form className="c-searchform c-searchform--column">
+          <Form className={`c-searchform c-searchform--column is-home-${props.isHome}`}>
             <Row>
               {widgetParameters?.parameters?.jobName &&
               widgetParameters?.parameters?.romes &&
@@ -157,7 +157,7 @@ const SearchForm = (props) => {
   return (
     <div className={isFormVisible ? "" : "hiddenSearchForm"}>
       <div className="formGroup">
-        {hasSearch ? (
+        {hasSearch && !props.isHome ? (
           <button className="c-detail-back px-3 py-1" onClick={props.showResultList}>
             ← Retour
           </button>
