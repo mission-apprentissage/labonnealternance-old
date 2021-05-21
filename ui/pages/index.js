@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import ScrollToTop from "components/ScrollToTop";
 import howtocircle1 from "public/images/howtocircle1.svg";
 import howtocircle2 from "public/images/howtocircle2.svg";
+import howtocircle3 from "public/images/howtocircle3.svg";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Home = () => {
       <div className="c-homebg">
         <img src={howtocircle1} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle1" alt="Cercle" />
         <img src={howtocircle2} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle2" alt="Cercle" />
+        <img src={howtocircle3} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle3" alt="Cercle" />
         <HomeHero />
         <HowTo />
       </div>
