@@ -21,6 +21,13 @@
   }
 }
 
+.c-homebg-img--circle {
+  display: none;
+  @include media-breakpoint-up(lg) { 
+    display: block;
+  }
+}
+
 .c-homebg-img--line1 {
   top: 85px;
   left: -162px;
