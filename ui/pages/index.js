@@ -7,6 +7,8 @@ import DescriptionMissionApprentissage from "components/DescriptionMissionAppren
 import Footer from "components/footer";
 import { useDispatch } from "react-redux";
 import ScrollToTop from "components/ScrollToTop";
+import howtocircle1 from "public/images/howtocircle1.svg";
+import howtocircle2 from "public/images/howtocircle2.svg";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,8 @@ const Home = () => {
       <ScrollToTop />
       <Navigation />
       <div className="c-homebg">
+        <img src={howtocircle1} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle1" alt="Cercle" />
+        <img src={howtocircle2} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle2" alt="Cercle" />
         <HomeHero />
         <HowTo />
       </div>
