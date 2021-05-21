@@ -14,19 +14,26 @@
   z-index: -1;
 }
 
-.c-homebg-img--1 {
+.c-homebg-img--line {
+  display: none;
+  @include media-breakpoint-up(xl) { 
+    display: block;
+  }
+}
+
+.c-homebg-img--line1 {
   top: 85px;
   left: -162px;
 }
-.c-homebg-img--2a {
+.c-homebg-img--line2a {
   top: 47px;
   left: -208px;
 }
-.c-homebg-img--3a {
+.c-homebg-img--line3a {
   top: 79px;
   left: -183px;
 }
-.c-homebg-img--3b {
+.c-homebg-img--line3b {
   top: 53px;
   right: -121px;
 }
