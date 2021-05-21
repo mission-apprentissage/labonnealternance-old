@@ -3,6 +3,7 @@ import howto1 from "public/images/howto1.svg";
 import howtoline1 from "public/images/howtoline1.svg";
 import howtoline2a from "public/images/howtoline2a.svg";
 import howtoline3a from "public/images/howtoline3a.svg";
+import howtoline3b from "public/images/howtoline3b.svg";
 import howto2 from "public/images/howto2.svg";
 import howto3 from "public/images/howto3.svg";
 
@@ -29,6 +30,8 @@ const HowTo = () => {
           </div>
           <div className="card border-0  position-relative">
             <img src={howto3} className="card-img-top" alt="Troisième étape"/>
+            <img src={howtoline3a} className="position-absolute c-homebg-img c-homebg-img--3a" alt="Ligne"/>
+            <img src={howtoline3b} className="position-absolute c-homebg-img c-homebg-img--3b" alt="Ligne"/>
             <div className="card-body">
               <h5 className="card-title">Un contact facile</h5>
               <p className="card-text">Contactez facilement les centres de formations ou les entreprises pour postuler </p>
