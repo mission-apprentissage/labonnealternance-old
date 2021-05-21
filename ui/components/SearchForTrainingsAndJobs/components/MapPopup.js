@@ -8,7 +8,6 @@ import { capitalizeFirstLetter } from "../../../utils/strutils";
 import { setSelectedMarker } from "utils/mapTools";
 
 const MapPopup = ({ type, item, handleSelectItem }) => {
-  //console.log("Mappopup : ", type, item);
   const dispatch = useDispatch();
 
   const openItemDetail = (item) => {

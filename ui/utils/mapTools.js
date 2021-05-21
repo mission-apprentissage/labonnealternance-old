@@ -82,7 +82,7 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
       setTimeout(() => {
         // setTimeout de 5 ms pour que l'event soit traité au niveau de la layer training et que le flag stop puisse être posé
         // en effet la layer job reçoit l'event en premier du fait de son positionnement dans la liste des layers de la map
-        if (e && e.originalEvent) {
+        if (e?.originalEvent) {
           if (!e.originalEvent.STOP) {
             e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
             onLayerClick(e, "job", store, selectItemOnMap, unselectItem);
@@ -158,7 +158,7 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
       setTimeout(() => {
         // setTimeout de 5 ms pour que l'event soit traité au niveau de la layer training et que le flag stop puisse être posé
         // en effet la layer job reçoit l'event en premier du fait de son positionnement dans la liste des layers de la map
-        if (e && e.originalEvent) {
+        if (e?.originalEvent) {
           if (!e.originalEvent.STOP_SOURCE) {
             e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
             onLayerClick(e, "training", store, selectItemOnMap, unselectItem);
