@@ -3,6 +3,7 @@
 ## 1.15.0 [21/05/2021]
 [566a] Icône plus large pour représenter l'élément sélectionné
 [592] Nouvelle home
+[634] Gestion mise en avant sur la map au survol des éléments dans la liste
 
 ## 1.14.3 [20/05/2021]
 [623] ...Tracking affichage des fiches détail
