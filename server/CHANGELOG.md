@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## 1.15.1 [25/05/2021]
+[640] Infos de contact pour 1j1s
+[641] Simplification clefs de recherche pour niveau de formation
 [636] Fix ortho
 
 ## 1.15.0 [21/05/2021]
