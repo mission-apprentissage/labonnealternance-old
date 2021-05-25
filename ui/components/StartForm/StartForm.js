@@ -17,6 +17,12 @@ const StartForm = (props) => {
     return res
   }
 
+  const addressChanged = async function (val, setLoadingState) {
+    let res = await fetchAddresses(val)
+    setLoadingState('done')
+    return res
+  }
+
   const handleSearchSubmit = (values) => {
     dispatch(setFormValues(pick(values, ['job', 'location', 'radius', 'diploma'])));
     dispatch(setShouldExecuteSearch(true));
