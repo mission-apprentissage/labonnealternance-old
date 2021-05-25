@@ -90,14 +90,9 @@ const validateLongitude = (longitude, error_messages) => {
 
 const validateDiploma = (diploma, error_messages) => {
   // diploma mal formé si présent
-  if (
-    diploma &&
-    ["3 (CAP...)", "4 (BAC...)", "5 (BTS, DEUST...)", "6 (Licence, BUT...)", "7 (Master, titre ingénieur...)"].indexOf(
-      diploma
-    ) < 0
-  )
+  if (diploma && ["3", "4", "5", "6", "7"].indexOf(diploma[0]) < 0)
     error_messages.push(
-      'diploma : Optional diploma argument used with wrong value. Should contains only one of "3 (CAP...)","4 (BAC...)","5 (BTS, DEUST...)","6 (Licence, BUT...)","7 (Master, titre ingénieur...)".'
+      'diploma : Optional diploma argument used with wrong value. Should contains only one of "3xxx","4xxx","5xxx","6xxx","7xxx". xxx maybe any value'
     );
 };
 
