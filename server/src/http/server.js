@@ -9,6 +9,7 @@ const corsMiddleware = require("./middlewares/corsMiddleware");
 const packageJson = require("../../package.json");
 const rome = require("./routes/rome");
 const updateRomesMetiers = require("./routes/updateRomesMetiers");
+const metiers = require("./routes/metiers");
 const jobDiploma = require("./routes/jobDiploma");
 const formationV1 = require("./routes/formationV1");
 const version = require("./routes/version");
@@ -64,6 +65,11 @@ module.exports = async (components) => {
     max: 10, // limit each IP to 10 requests per windowMs
   });
 
+  const limiter20PerSecond = rateLimit({
+    windowMs: 1000, // 1 second
+    max: 20, // limit each IP to 20 requests per windowMs
+  });
+
   const swaggerUi = require("swagger-ui-express");
   const swaggerDocument = require("../api-docs/swagger.json");
 
@@ -89,6 +95,8 @@ module.exports = async (components) => {
   app.use("/api/romelabels", limiter10PerSecond, rome());
 
   app.use("/api/updateRomesMetiers", limiter1Per5Second, updateRomesMetiers());
+
+  app.use("/api/metiers", limiter20PerSecond, metiers());
 
   app.get(
     "/api",

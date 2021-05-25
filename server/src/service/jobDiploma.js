@@ -13,6 +13,9 @@ const getDiplomasForJobs = async (romes /*, rncps*/) => {
           rome_codes: romes,
         },
         /*
+        //replace match rome_code with the line below to list all available diplomas 
+        match_all: {},*/
+        /*
         FIXME: lors de l'activation du cloisonnement RNCP
         bool: {
           must: [{ match: { rome_codes: romes } }, { match: { rncp_code: rncps } }],

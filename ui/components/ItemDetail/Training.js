@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import trainingIcon from "../../public/images/icons/book.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
 import { useScopeContext } from "context/ScopeContext";
 import { isCfaEntreprise } from "services/cfaEntreprise";
-import TagCfaDEntreprise from './TagCfaDEntreprise';
+import TagCfaDEntreprise from "./TagCfaDEntreprise";
+import { setSelectedMarker } from "utils/mapTools";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
   const { formValues, itemParameters } = useSelector((state) => state.trainings);
@@ -13,7 +14,10 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
   const currentSearchRadius = formValues?.radius || 30;
 
+  const [allowDim, setAllowDim] = useState(true); // cet état évite un appel qui masque la mise en avant de l'icône lors de l'ouverture du détail
+
   const onSelectItem = () => {
+    setAllowDim(false); // fixation du flag
     handleSelectItem(training, "training");
   };
 
@@ -62,10 +66,24 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
     searchForJobsOnNewCenter(newCenter);
   };
 
+  const highlightItemOnMap = () => {
+    setSelectedMarker(training);
+  };
+
+  const dimItemOnMap = (e) => {
+    if (allowDim) {
+      setSelectedMarker(null);
+    } else {
+      setAllowDim(true);
+    }
+  };
+
   return (
     <div
       className={`resultCard trainingCard gtmSavoirPlus gtmFormation gtmListe ${getDebugClass()}`}
       onClick={onSelectItem}
+      onMouseOver={highlightItemOnMap}
+      onMouseOut={dimItemOnMap}
     >
       <div className="c-media" id={`id${training.id}`}>
         <div className="c-media-figure">
@@ -73,7 +91,6 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
         </div>
 
         <div className="c-media-body">
-
           <div className="row no-gutters">
             <div className="col-12 col-lg-6 text-left">
               <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
@@ -83,9 +100,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
             </div>
           </div>
 
-          <div className="cardText pt-3 pt-lg-1">
-            {training.company.name} ({training.company.place.city})
-          </div>
+          <div className="cardText pt-3 pt-lg-1">{training.company.name}</div>
           <div className="cardText pt-2">{training.place.fullAddress}</div>
           {itemParameters?.mode === "debug" ? (
             <div className="cardText pt-2">{`${training.rncpCode} - romes :${training.romes.map(

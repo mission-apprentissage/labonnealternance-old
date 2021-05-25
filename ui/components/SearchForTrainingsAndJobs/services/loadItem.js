@@ -11,7 +11,7 @@ import {
   notFoundErrorText,
 } from "components/SearchForTrainingsAndJobs/services/utils";
 
-import { flyToMarker } from "utils/mapTools";
+import { flyToMarker, setSelectedMarker } from "utils/mapTools";
 
 export const loadItem = async ({
   item,
@@ -52,6 +52,7 @@ export const loadItem = async ({
         setTrainingMarkers(factorTrainingsForMap(response.data.results));
       }
       dispatch(setSelectedItem(response.data.results[0]));
+      setSelectedMarker(response.data.results[0]);
       itemMarker = response.data.results[0];
     } else {
       let results = {
@@ -123,6 +124,7 @@ export const loadItem = async ({
         setJobMarkers(factorJobsForMap(results), null);
 
         dispatch(setSelectedItem(loadedItem));
+        setSelectedMarker(loadedItem);
         itemMarker = loadedItem;
       } else {
         logError("Job Load Error", errorMessage);

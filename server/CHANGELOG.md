@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 1.15.0 [21/05/2021]
+[566a] Icône plus large pour représenter l'élément sélectionné
+[592] Nouvelle home
+[634] Gestion mise en avant sur la map au survol des éléments dans la liste
+
+## 1.14.3 [20/05/2021]
+[623] ...Tracking affichage des fiches détail
+[588] Fix state voir les infos de contact
+[502] Suppression dédoublonnage cfa en précisant la ville
+
+## 1.14.2 [19/05/2021]
+[626] Fix bug liste des diplômes
+[623] Tracking des affichages prdv, ...
+
+## 1.14.1 [18/05/2021]
+[622] API métiers par établissement
+[551] Récupération code_commune_insee pour les formations
+[564] Suppression bandeau apprentissage seulement
+[625] Fix bug page test-widget 
+
 ## 1.14.0 [07/05/2021]
 [559] Statut autocomplete
 [519] Tag CFA d'entreprise

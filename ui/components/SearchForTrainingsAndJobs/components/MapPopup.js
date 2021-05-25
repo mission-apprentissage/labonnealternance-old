@@ -5,13 +5,14 @@ import { getJobAddress } from "../../../utils/jobs";
 import { logError } from "../../../utils/tools";
 import { ErrorMessage } from "../../";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
+import { setSelectedMarker } from "utils/mapTools";
 
 const MapPopup = ({ type, item, handleSelectItem }) => {
-  //console.log("Mappopup : ", type, item);
   const dispatch = useDispatch();
 
   const openItemDetail = (item) => {
     dispatch(setSelectedItem(item));
+    setSelectedMarker(item);
     handleSelectItem(item);
   };
 

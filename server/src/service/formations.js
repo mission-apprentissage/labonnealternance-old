@@ -415,6 +415,7 @@ const transformFormationForIdea = (formation) => {
     //trainingZipCode: formation.source.code_postal,
     departementNumber: formation.source.num_departement,
     region: formation.source.region,
+    insee: formation.source.code_commune_insee,
   };
 
   resultFormation.company = {
@@ -641,6 +642,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "etablissement_gestionnaire_entreprise_raison_sociale",
       "etablissement_gestionnaire_cedex",
       "etablissement_gestionnaire_complement_adresse",
+      "code_commune_insee",
       "rome_codes",
       "cfd",
       "rncp_code",
