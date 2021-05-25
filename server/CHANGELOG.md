@@ -4,6 +4,7 @@
 [640] Infos de contact pour 1j1s
 [641] Simplification clefs de recherche pour niveau de formation
 [636] Fix ortho
+[623] Fix typo et tracking
 
 ## 1.15.0 [21/05/2021]
 [566a] Icône plus large pour représenter l'élément sélectionné
