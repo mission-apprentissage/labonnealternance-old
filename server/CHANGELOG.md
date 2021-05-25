@@ -2,6 +2,7 @@
 
 ## 1.15.1 [25/05/2021]
 [636] Fix ortho
+[623] Fix typo et tracking
 
 ## 1.15.0 [21/05/2021]
 [566a] Icône plus large pour représenter l'élément sélectionné
