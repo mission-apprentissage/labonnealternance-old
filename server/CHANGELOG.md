@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.15.2 [27/05/2021]
+[646] Infos de contact pour 1j1s pour endpoint fiche lba
+
 ## 1.15.1 [25/05/2021]
 [640] Infos de contact pour 1j1s
 [641] Simplification clefs de recherche pour niveau de formation
