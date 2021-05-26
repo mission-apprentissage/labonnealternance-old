@@ -8,7 +8,20 @@ const localOrigin = [
 ];
 
 const isOriginLocal = (origin) => {
-  return origin ? localOrigin.findIndex((element) => origin.toLowerCase().includes(element)) >= 0 : false;
+  if (origin) {
+    if (
+      localOrigin.findIndex((element) => origin.toLowerCase().includes(element)) >= 0 &&
+      origin.indexOf("api-docs") < 0
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+
+  //return origin ? localOrigin.findIndex((element) => origin.toLowerCase().includes(element)) >= 0 : false;
 };
 
 module.exports = { isOriginLocal };
