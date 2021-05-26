@@ -1,10 +1,17 @@
+const config = require("config");
 const axios = require("axios");
 const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
 const { getAccessToken, peApiHeaders } = require("./common.js");
 const { isOriginLocal } = require("../../common/utils/isOriginLocal");
 
-const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius, referer }) => {
+const allowedSources = config.private.allowedSources;
+
+const isAllowedSource = ({ referer, caller }) => {
+  return isOriginLocal(referer) || allowedSources.split("|").indexOf(caller) >= 0;
+};
+
+const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius, referer, caller }) => {
   let companySet = null;
   let currentRadius = strictRadius ? radius : 20000;
   let companyLimit = 100; //TODO: query params options or default value from properties -> size || 100
@@ -24,20 +31,20 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, s
 
   //console.log("companies :", companySet);
   if (companySet.companies && companySet.companies.length) {
-    companySet = transformLbbCompaniesForIdea({ companySet, radius, type, strictRadius, referer });
+    companySet = transformLbbCompaniesForIdea({ companySet, radius, type, strictRadius, referer, caller });
     //console.log("apres refine : ", jobs.resultats[0].lieuTravail.distance);
   }
 
   return companySet;
 };
 
-const transformLbbCompaniesForIdea = ({ companySet, type, referer }) => {
+const transformLbbCompaniesForIdea = ({ companySet, type, referer, caller }) => {
   let resultCompanies = {
     results: [],
   };
 
   if (companySet.companies && companySet.companies.length) {
-    const contactAllowedOrigin = isOriginLocal(referer);
+    const contactAllowedOrigin = isAllowedSource({ referer, caller });
 
     for (let i = 0; i < companySet.companies.length; ++i) {
       let company = transformLbbCompanyForIdea({ company: companySet.companies[i], type, contactAllowedOrigin });

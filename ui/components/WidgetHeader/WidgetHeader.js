@@ -7,16 +7,25 @@ import { useSelector } from "react-redux";
 
 import { Row } from "reactstrap";
 
-const WidgetHeader = ({ handleSearchSubmit }) => {
+const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
   const router = useRouter();
   const { selectedItem } = useSelector((state) => state.trainings);
-  const additionalClassName = selectedItem && includes(router.asPath, "page=fiche") ? "detail" : "global";
+
+  let additionalClassName = selectedItem && includes(router.asPath, "page=fiche") ? "detail" : "global";
+
+  if (isHome) {
+    additionalClassName = "home"
+  }
 
   return (
     <>
       <div className={`c-widgetheader c-widgetheader--${additionalClassName}`}>
         <Row className="c-widgetheader-bar d-none d-md-flex py-2 pl-3">
-          <LogoIdea />
+          {isHome ? (
+            ""
+          ) : (
+            <LogoIdea />
+          )}
           <div>
             <HeaderForm handleSearchSubmit={handleSearchSubmit} />
           </div>

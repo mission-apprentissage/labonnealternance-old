@@ -167,7 +167,7 @@ httpTests(__filename, ({ startServer }) => {
     assert.deepStrictEqual(response.data.error, "wrong_parameters");
     assert.ok(
       response.data.error_messages.indexOf(
-        'diploma : Optional diploma argument used with wrong value. Should contains only one of "3 (CAP...)","4 (Bac...)","5 (BTS, DUT...)","6 (Licence...)","7 (Master, titre ingénieur...)".'
+        'diploma : Optional diploma argument used with wrong value. Should contains only one of "3xxx","4xxx","5xxx","6xxx","7xxx". xxx maybe any value'
       ) >= 0
     );
   });

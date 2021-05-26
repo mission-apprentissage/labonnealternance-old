@@ -19,6 +19,15 @@
   }
 }
 
+.c-searchform--column.is-home-true {
+  padding-bottom: 12px;
+}
+
+.is-home-true .submitGroup {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .c-searchform--onerror
 {
   .c-logobar-formgroup {

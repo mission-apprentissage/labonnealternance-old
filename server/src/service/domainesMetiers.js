@@ -5,6 +5,7 @@ const config = require("config");
 const updateDomainesMetiers = require("../jobs/domainesMetiers/updateDomainesMetiers");
 const getMissingRNCPsFromDomainesMetiers = require("../jobs/domainesMetiers/getMissingRNCPsFromDomainesMetiers");
 const Sentry = require("@sentry/node");
+const { getRomesFromCfd, getRomesFromSiret } = require("./romesFromCatalogue");
 
 const getRomesAndLabelsFromTitleQuery = async (query) => {
   if (!query.title) return { error: "title_missing" };
@@ -129,8 +130,83 @@ const getMissingRNCPs = async (query) => {
   }
 };
 
+const getMetiersPourCfd = async ({ cfd }) => {
+  let romeResponse = await getRomesFromCfd({ cfd });
+
+  if (romeResponse.error) {
+    romeResponse.metiers = [];
+    return romeResponse;
+  }
+
+  const romes = [...new Set(romeResponse.romes)];
+
+  let metiers = await getMetiersFromRomes(romes);
+
+  return metiers;
+};
+
+const getMetiersPourEtablissement = async ({ siret }) => {
+  let romeResponse = await getRomesFromSiret({ siret });
+
+  if (romeResponse.error) {
+    romeResponse.metiers = [];
+    return romeResponse;
+  }
+
+  const romes = [...new Set(romeResponse.romes)];
+
+  let metiers = await getMetiersFromRomes(romes);
+
+  return metiers;
+};
+
+const getMetiersFromRomes = async (romes) => {
+  /**
+   * récupère dans la table custo tous les métiers qui correspondent au tableau de romes en paramètres
+   */
+  try {
+    const esClient = getDomainesMetiersES();
+
+    const response = await esClient.search({
+      index: "domainesmetiers",
+      size: 20,
+      _sourceIncludes: ["sous_domaine"],
+      body: {
+        query: {
+          match: {
+            codes_romes: romes.join(","),
+          },
+        },
+      },
+    });
+
+    let metiers = [];
+
+    response.body.hits.hits.forEach((metier) => {
+      metiers.push(metier._source.sous_domaine);
+    });
+
+    //throw new Error("BOOOOOOOM");
+
+    return { metiers };
+  } catch (err) {
+    Sentry.captureException(err);
+    let error_msg = _.get(err, "meta.body") ?? err.message;
+
+    if (_.get(err, "meta.meta.connection.status") === "dead") {
+      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
+    } else {
+      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
+    }
+
+    return { error: error_msg, metiers: [] };
+  }
+};
+
 module.exports = {
   getRomesAndLabelsFromTitleQuery,
   updateRomesMetiersQuery,
   getMissingRNCPs,
+  getMetiersPourCfd,
+  getMetiersPourEtablissement,
 };

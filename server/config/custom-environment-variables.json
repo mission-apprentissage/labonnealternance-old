@@ -38,7 +38,8 @@
     "esdClientSecret": "ESD_CLIENT_SECRET",
     "serverSentryDsn": "SERVER_SENTRY_DSN",
     "googleAnalyticsUA": "LABONNEALTERNANCE_GOOGLE_ANALYTICS_UA",
-    "secretUpdateRomesMetiers": "LABONNEALTERNANCE_SECRET_UPDATE_ROMES_METIERS"
+    "secretUpdateRomesMetiers": "LABONNEALTERNANCE_SECRET_UPDATE_ROMES_METIERS",
+    "allowedSources": "LABONNEALTERNANCE_ALLOWED_SOURCES"
   }
 
 }

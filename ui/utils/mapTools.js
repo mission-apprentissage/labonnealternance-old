@@ -43,6 +43,16 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
       map.addImage("job", image);
     });
 
+    map.loadImage("/images/icons/book_large_shadow.png", function (error, image) {
+      if (error) throw error;
+      map.addImage("training-large", image);
+    });
+
+    map.loadImage("/images/icons/job_large_shadow.png", function (error, image) {
+      if (error) throw error;
+      map.addImage("job-large", image);
+    });
+
     // ajout layers et events liés aux jobs
     map.addSource("job-points", {
       type: "geojson",
@@ -72,13 +82,22 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
       setTimeout(() => {
         // setTimeout de 5 ms pour que l'event soit traité au niveau de la layer training et que le flag stop puisse être posé
         // en effet la layer job reçoit l'event en premier du fait de son positionnement dans la liste des layers de la map
-        if (e && e.originalEvent) {
+        if (e?.originalEvent) {
           if (!e.originalEvent.STOP) {
             e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
             onLayerClick(e, "job", store, selectItemOnMap, unselectItem);
           }
         }
       }, 5);
+    });
+
+    map.on("click", "selected-job-point-layer", function (e) {
+      e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
+      e.originalEvent.STOP_SOURCE = "selected-job";
+    });
+    map.on("click", "selected-training-point-layer", function (e) {
+      e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
+      e.originalEvent.STOP_SOURCE = "selected-training";
     });
 
     // layer contenant les pastilles de compte des
@@ -134,7 +153,60 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
 
     map.on("click", "training-points-layer", function (e) {
       e.originalEvent.STOP = "STOP"; // un classique stopPropagation ne suffit pour empêcher d'ouvrir deux popups si des points de deux layers se superposent
-      onLayerClick(e, "training", store, selectItemOnMap, unselectItem);
+
+      const features = e.features;
+      setTimeout(() => {
+        // setTimeout de 5 ms pour que l'event soit traité au niveau de la layer training et que le flag stop puisse être posé
+        // en effet la layer job reçoit l'event en premier du fait de son positionnement dans la liste des layers de la map
+        if (e?.originalEvent) {
+          if (!e.originalEvent.STOP_SOURCE) {
+            e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
+            onLayerClick(e, "training", store, selectItemOnMap, unselectItem);
+          }
+        }
+      }, 5);
+    });
+
+    // ajout des layers et events liés à l'emploi sélectionné
+    map.addSource("selected-job-point", {
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: [],
+      },
+    });
+
+    // Ajout de la layer emploi sélectionné
+    map.addLayer({
+      id: "selected-job-point-layer",
+      source: "selected-job-point",
+      type: "symbol",
+      layout: {
+        "icon-image": "job-large", // cf. images chargées plus haut
+        "icon-padding": 0,
+        "icon-allow-overlap": true,
+      },
+    });
+
+    // ajout des layers et events liés à la formation sélectionnée
+    map.addSource("selected-training-point", {
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: [],
+      },
+    });
+
+    // Ajout de la layer formation sélectionnée
+    map.addLayer({
+      id: "selected-training-point-layer",
+      source: "selected-training-point",
+      type: "symbol",
+      layout: {
+        "icon-image": "training-large", // cf. images chargées plus haut
+        "icon-padding": 0,
+        "icon-allow-overlap": true,
+      },
     });
 
     if (
@@ -365,13 +437,6 @@ const computeMissingPositionAndDistance = async (searchCenter, jobs) => {
   return jobs;
 };
 
-const buildJobMarkerIcon = (job) => {
-  const markerNode = document.createElement("div");
-  ReactDOM.render(<Marker type="job" flyToMarker={flyToMarker} item={job} />, markerNode);
-
-  return markerNode;
-};
-
 const filterLayers = (filter) => {
   if (isMapInitialized) {
     let layersToShow = [];
@@ -429,6 +494,7 @@ const setJobMarkers = async (jobList, searchCenter) => {
     let features = [];
     jobList.map((job, idx) => {
       job.ideaType = "job";
+
       features.push({
         type: "Feature",
         geometry: {
@@ -445,6 +511,65 @@ const setJobMarkers = async (jobList, searchCenter) => {
     let results = { type: "FeatureCollection", features };
 
     map.getSource("job-points").setData(results);
+  }
+};
+
+const setSelectedMarker = async (item) => {
+  if (item) {
+    let marker = { coords: getCoordinates(item), items: [item] };
+
+    if (item.ideaType === "formation") {
+      marker.ideaType = "formation";
+      setSelectedTrainingMarker(marker);
+      setSelectedJobMarker(marker);
+    } else {
+      marker.ideaType = "job";
+      setSelectedJobMarker(marker);
+      setSelectedTrainingMarker(null);
+    }
+  } else {
+    setSelectedJobMarker(null);
+    setSelectedTrainingMarker(null);
+  }
+};
+
+const setSelectedJobMarker = async (job, searchCenter) => {
+  updateSelectedMarkerCollection(job, "selected-job-point", searchCenter);
+};
+
+const setSelectedTrainingMarker = async (training, searchCenter) => {
+  updateSelectedMarkerCollection(training, "selected-training-point", searchCenter);
+};
+
+const updateSelectedMarkerCollection = async (item, layer) => {
+  if (isMapInitialized) {
+    await waitForMapReadiness();
+
+    let features = [];
+    if (item) {
+      let feature = {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: item.coords,
+        },
+        properties: {
+          id: 0,
+        },
+      };
+
+      if (item.ideaType === "formation") {
+        feature.properties.training = item;
+      } else {
+        feature.properties.job = item;
+      }
+
+      features.push(feature);
+    }
+
+    let results = { type: "FeatureCollection", features };
+
+    map.getSource(layer).setData(results);
   }
 };
 
@@ -491,7 +616,6 @@ export {
   initializeMap,
   flyToMarker,
   flyToLocation,
-  buildJobMarkerIcon,
   closeMapPopups,
   getZoomLevelForDistance,
   factorTrainingsForMap,
@@ -501,4 +625,7 @@ export {
   waitForMapReadiness,
   setTrainingMarkers,
   setJobMarkers,
+  setSelectedJobMarker,
+  setSelectedTrainingMarker,
+  setSelectedMarker,
 };

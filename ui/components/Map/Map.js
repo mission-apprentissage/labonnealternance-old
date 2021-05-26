@@ -6,7 +6,7 @@ import { currentPage, setCurrentPage } from "utils/currentPage.js";
 import { useScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
 import MapSearchButton from "./MapSearchButton";
-import { map, initializeMap, isMapInitialized } from "utils/mapTools";
+import { map, initializeMap, isMapInitialized, setSelectedMarker } from "utils/mapTools";
 import { fetchAddressFromCoordinates } from "services/baseAdresse";
 
 let mapPosition = {
@@ -32,6 +32,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
 
   const unselectItem = () => {
     dispatch(setSelectedItem(null));
+    setSelectedMarker(null);
     if (currentPage === "fiche") {
       setCurrentPage("");
       pushHistory({ router, scopeContext });
@@ -56,7 +57,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
             values.location.insee = null;
           }
         } catch (err) {}
-        await handleSearchSubmit(values,"stayOnMap");
+        await handleSearchSubmit(values, "stayOnMap");
 
         shouldHandleMapSearch = true;
       }

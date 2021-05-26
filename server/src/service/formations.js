@@ -18,6 +18,22 @@ const publishedMustTerm = {
   },
 };
 
+const diplomaMap = {
+  "3": "3 (CAP...)",
+  "4": "4 (BAC...)",
+  "5": "5 (BTS, DEUST...)",
+  "6": "6 (Licence, BUT...)",
+  "7": "7 (Master, titre ingénieur...)",
+};
+
+const getDiplomaKey = (value) => {
+  if (value) {
+    return diplomaMap[value[0]];
+  } else {
+    return "";
+  }
+};
+
 const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma, limit }) => {
   //console.log(romes, coords, radius, diploma);
 
@@ -54,7 +70,7 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
     if (diploma) {
       mustTerm.push({
         match: {
-          niveau: diploma,
+          niveau: getDiplomaKey(diploma),
         },
       });
     }
@@ -231,7 +247,7 @@ const getRegionFormations = async ({
     if (diploma)
       mustTerm.push({
         match: {
-          niveau: diploma,
+          niveau: getDiplomaKey(diploma),
         },
       });
 
@@ -415,6 +431,7 @@ const transformFormationForIdea = (formation) => {
     //trainingZipCode: formation.source.code_postal,
     departementNumber: formation.source.num_departement,
     region: formation.source.region,
+    insee: formation.source.code_commune_insee,
   };
 
   resultFormation.company = {
@@ -641,6 +658,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "etablissement_gestionnaire_entreprise_raison_sociale",
       "etablissement_gestionnaire_cedex",
       "etablissement_gestionnaire_complement_adresse",
+      "code_commune_insee",
       "rome_codes",
       "cfd",
       "rncp_code",
