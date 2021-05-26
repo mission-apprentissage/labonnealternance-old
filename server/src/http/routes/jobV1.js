@@ -18,8 +18,6 @@ module.exports = () => {
         else res.status(500);
       }
 
-      result.referer = req.headers.referer;
-
       return res.json(result);
     })
   );

@@ -20,8 +20,6 @@ const isOriginLocal = (origin) => {
   } else {
     return false;
   }
-
-  //return origin ? localOrigin.findIndex((element) => origin.toLowerCase().includes(element)) >= 0 : false;
 };
 
 module.exports = { isOriginLocal };
