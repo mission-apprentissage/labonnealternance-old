@@ -158,7 +158,7 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
   }
 };
 
-const getCompanyFromSiret = async ({ siret, referer, type }) => {
+const getCompanyFromSiret = async ({ siret, referer, caller, type }) => {
   try {
     const token = await getAccessToken("lbb");
     let headers = peApiHeaders;
@@ -171,7 +171,7 @@ const getCompanyFromSiret = async ({ siret, referer, type }) => {
     let company = transformLbbCompanyForIdea({
       company: companyQuery.data,
       type,
-      contactAllowedOrigin: isOriginLocal(referer),
+      contactAllowedOrigin: isAllowedSource({ referer, caller }),
     });
 
     return type === "lbb" ? { lbbCompanies: [company] } : { lbaCompanies: [company] };
