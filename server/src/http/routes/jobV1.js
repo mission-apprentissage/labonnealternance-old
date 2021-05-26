@@ -80,6 +80,8 @@ module.exports = () => {
         }
       }
 
+      result.referer = req.headers.referer;
+
       return res.json(result);
     })
   );
