@@ -269,8 +269,13 @@ const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem) => {
       .setDOMContent(buildPopup(item, item.ideaType, store, selectItemOnMap))
       .addTo(map);
 
+    currentPopup.on("close", function (e) {
+      setSelectedMarker(null);
+    });
+
     unselectItem();
     scrollToElementInContainer("resultList", getItemElement(item), 200, "smooth");
+    setSelectedMarker(item);
   }
 };
 
@@ -391,7 +396,11 @@ const isEqualCoords = (coordsA, coordsB) => {
 
 const getCoordinates = (item) => {
   let coords = null;
-  if (item.place.longitude !== undefined) coords = [item.place.longitude, item.place.latitude];
+  if (item?.place?.longitude !== undefined) {
+    coords = [item.place.longitude, item.place.latitude];
+  } else if (item?.coords) {
+    coords = item.coords;
+  }
 
   return coords;
 };
