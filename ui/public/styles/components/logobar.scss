@@ -70,6 +70,13 @@ form.c-logobar-form {
   min-width: 160px;
 }
 
+.c-widgetheader--home .c-logobar-formgroup--diploma {
+  width: auto;
+  @include media-breakpoint-up(md) { 
+    width: 165px;
+  }
+}
+
 .c-logobar-label--diploma {
   margin-left: .6rem;
 }
