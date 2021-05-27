@@ -1,8 +1,11 @@
 const axios = require("axios");
 const Sentry = require("@sentry/node");
 const { itemModel } = require("../model/itemModel");
+const config = require("config");
 
-const matchaApiEndpoint = "https://matcha.apprentissage.beta.gouv.fr/api/formulaire";
+const matchaApiEndpoint = `https://matcha${
+  config.env === "production" ? "" : "-recette"
+}.apprentissage.beta.gouv.fr/api/formulaire`;
 const matchaSearchEndPoint = `${matchaApiEndpoint}/search`;
 const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
