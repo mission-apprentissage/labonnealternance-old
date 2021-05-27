@@ -23,7 +23,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
   const getContent = () => {
     try {
       const list = item.items;
-      
+
       console.log('list', list);
 
       if (type === "job") {
@@ -49,13 +49,13 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
       } else {
         return (
           <>
-            <div className="mapboxPopupTitle">Formations à : </div>
             <div className="mapboxPopupAddress">
               {list[0].company.name}
-              <br />
-              {list[0].place.fullAddress}
             </div>
-            <ul>{getTrainings(list)}</ul>
+            <div className="mapboxPopupBg">
+              <div className="mapboxPopupTitle">Lieux de formations : </div>
+              <ul>{getTrainings(list)}</ul>
+            </div>
           </>
         );
       }
