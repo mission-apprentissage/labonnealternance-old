@@ -123,6 +123,7 @@ const HeaderForm = ({ handleSearchSubmit }) => {
                 alt="Lancer la recherche"
               >
                 <img alt="loupe" src={glassImage} />
+                <div className="d-none d-lg-block">C'est parti</div>
               </button>
             </div>
           </Form>
