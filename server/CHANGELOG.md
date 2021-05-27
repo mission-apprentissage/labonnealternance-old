@@ -4,6 +4,7 @@
 [643] Icône plus grosse au clic sur la map
 [646] Infos de contact pour 1j1s pour endpoint fiche lba
 [645] Masquage infos contact sur api-docs
+[637] Couleurs de la nouvelle home : ajustements
 [649] Utilisation recette matcha 
 
 ## 1.15.1 [25/05/2021]
