@@ -17,7 +17,7 @@ import { fetchAddresses } from "services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
 import validateFormik from "services/validateFormik";
 
-const HeaderForm = ({ handleSearchSubmit }) => {
+const HeaderForm = ({ handleSearchSubmit, isHome }) => {
   const { formValues, widgetParameters } = useSelector((state) => {
     return state.trainings;
   });
@@ -118,12 +118,16 @@ const HeaderForm = ({ handleSearchSubmit }) => {
             <div className="c-logobar-formgroup ml-md-1 ml-lg-3 border-0 c-logobar-submit-container">
               <button
                 type="submit"
-                className="d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn c-logobar-submit"
+                className={`d-block btn btn-lg btn-dark w-100 font-weight-bold c-regular-darkbtn c-logobar-submit is-home-${isHome}`}
                 disabled={isSubmitting}
                 alt="Lancer la recherche"
               >
                 <img alt="loupe" src={glassImage} />
-                <div className="d-none d-lg-block">C'est parti</div>
+                {isHome ? (
+                  <div className="d-none d-lg-inline-block">C'est parti</div>
+                ) : (
+                  ""
+                )}
               </button>
             </div>
           </Form>
