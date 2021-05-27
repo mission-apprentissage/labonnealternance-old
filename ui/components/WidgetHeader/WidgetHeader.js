@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 import { Row } from "reactstrap";
 
-const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
+const WidgetHeader = ({ handleSearchSubmit }) => {
   const router = useRouter();
   const { selectedItem } = useSelector((state) => state.trainings);
 
@@ -15,7 +15,7 @@ const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
 
   return (
     <>
-      <div className={`c-widgetheader c-widgetheader--${additionalClassName} is-home-${isHome}`}>
+      <div className={`c-widgetheader c-widgetheader--${additionalClassName}`}>
         <Row className="c-widgetheader-bar d-none d-md-flex py-2 pl-3">
           {isHome ? (
             ""

@@ -9,13 +9,8 @@ import SearchForm from "components/SearchForTrainingsAndJobs/components/SearchFo
 import WidgetHeader from "components/WidgetHeader/WidgetHeader";
 
 const StartForm = (props) => {
-  const dispatch = useDispatch();
 
-  const addressChanged = async function (val, setLoadingState) {
-    let res = await fetchAddresses(val)
-    setLoadingState('done')
-    return res
-  }
+  const dispatch = useDispatch();
 
   const handleSearchSubmit = (values) => {
     dispatch(setFormValues(pick(values, ['job', 'location', 'radius', 'diploma'])));
@@ -24,17 +19,16 @@ const StartForm = (props) => {
   };
 
   return <>
-    <div className="d-lg-none">
+    <div className="d-lg-none is-home-true">
       <SearchForm 
         handleSearchSubmit={handleSearchSubmit} 
         isHome={true}
         showResultList={() => {}}
       />
     </div>
-    <div className="d-none d-lg-block">
+    <div className="d-none d-lg-block is-home-true">
       <WidgetHeader
         handleSearchSubmit={handleSearchSubmit} 
-        isHome={true}
       />
     </div>
   </>;

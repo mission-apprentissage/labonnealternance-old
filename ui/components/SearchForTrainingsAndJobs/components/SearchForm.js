@@ -45,7 +45,7 @@ const SearchForm = (props) => {
         onSubmit={props.handleSearchSubmit}
       >
         {({ isSubmitting, setFieldValue, errors }) => (
-          <Form className={`c-searchform c-searchform--column is-home-${props.isHome}`}>
+          <Form className={`c-searchform c-searchform--column`}>
             <Row>
               {widgetParameters?.parameters?.jobName &&
               widgetParameters?.parameters?.romes &&
