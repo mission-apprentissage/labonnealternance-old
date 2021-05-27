@@ -6,6 +6,7 @@
 [645] Masquage infos contact sur api-docs
 [637] Couleurs de la nouvelle home : ajustements
 [649] Utilisation recette matcha 
+[638] Select "niveau d'études" plus petit
 
 ## 1.15.1 [25/05/2021]
 [640] Infos de contact pour 1j1s

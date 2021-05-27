@@ -11,12 +11,6 @@ import WidgetHeader from "components/WidgetHeader/WidgetHeader";
 const StartForm = (props) => {
   const dispatch = useDispatch();
 
-  const addressChanged = async function (val, setLoadingState) {
-    let res = await fetchAddresses(val)
-    setLoadingState('done')
-    return res
-  }
-
   const handleSearchSubmit = (values) => {
     dispatch(setFormValues(pick(values, ['job', 'location', 'radius', 'diploma'])));
     dispatch(setShouldExecuteSearch(true));
