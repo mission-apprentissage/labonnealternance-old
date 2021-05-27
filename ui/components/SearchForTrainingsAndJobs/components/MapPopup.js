@@ -23,6 +23,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
   const getContent = () => {
     try {
       const list = item.items;
+      console.log('list', list);
 
       if (type === "job") {
         if (list.length > 1) {
