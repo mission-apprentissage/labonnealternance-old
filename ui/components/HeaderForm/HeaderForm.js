@@ -122,7 +122,7 @@ const HeaderForm = ({ handleSearchSubmit }) => {
                 disabled={isSubmitting}
                 alt="Lancer la recherche"
               >
-                <img alt="" src={glassImage} />
+                <img alt="Image d'une loupe" src={glassImage} />
               </button>
             </div>
           </Form>
