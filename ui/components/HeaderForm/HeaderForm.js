@@ -124,7 +124,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
               >
                 <img alt="loupe" src={glassImage} />
                 {isHome ? (
-                  <div className="d-none d-lg-inline-block">C'est parti</div>
+                  <div className="c-logobar-letstart">C'est parti</div>
                 ) : (
                   ""
                 )}

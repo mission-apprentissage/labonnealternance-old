@@ -70,6 +70,14 @@ form.c-logobar-form {
   min-width: 160px;
 }
 
+.c-logobar-letstart {
+  display: none;
+  @include media-breakpoint-up(xl) { 
+    display: inline-block;
+    margin-left: 8px;
+  }
+}
+
 .c-widgetheader--home .c-logobar-formgroup--diploma {
   width: auto;
   @include media-breakpoint-up(md) { 
@@ -94,6 +102,8 @@ form.c-logobar-form {
   margin: 0;
 }
 .c-regular-darkbtn.c-logobar-submit.is-home-true {
-  padding-left: 42px;
-  padding-right: 42px;
+  @include media-breakpoint-up(xl) { 
+    padding-left: 38px;
+    padding-right: 42px;
+  }
 }
