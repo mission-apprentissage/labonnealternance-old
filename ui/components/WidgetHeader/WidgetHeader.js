@@ -27,7 +27,7 @@ const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
             <LogoIdea />
           )}
           <div>
-            <HeaderForm handleSearchSubmit={handleSearchSubmit} />
+            <HeaderForm handleSearchSubmit={handleSearchSubmit} isHome={isHome} />
           </div>
         </Row>
       </div>
