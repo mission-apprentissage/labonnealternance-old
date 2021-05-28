@@ -63,7 +63,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
         v.lbfLoaded = true;
         let trainingDetail = await fetchTrainingDetails(training);
 
-        await updateTrainingFromLbf(v, trainingDetail);
+        updateTrainingFromLbf(v, trainingDetail);
         dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
       }
     });
