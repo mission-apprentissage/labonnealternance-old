@@ -32,7 +32,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
         } else {
           const job = list[0];
           return (
-            <>
+            <div className="mapboxPopupJob">
               <div className="mapboxPopupTitle">{job.title}</div>
               <div className="mapboxPopupAddress">{getJobAddress(job)}</div>
               <div className="knowMore">
@@ -43,12 +43,12 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
                   En savoir plus
                 </button>
               </div>
-            </>
+            </div>
           );
         }
       } else {
         return (
-          <>
+          <div className="mapboxPopupFormation">
             <div className="mapboxPopupAddress">
               {list[0].company.name}
             </div>
@@ -56,7 +56,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
               <div className="mapboxPopupTitle">Lieux de formations : </div>
               <ul>{getTrainings(list)}</ul>
             </div>
-          </>
+          </div>
         );
       }
     } catch (err) {
