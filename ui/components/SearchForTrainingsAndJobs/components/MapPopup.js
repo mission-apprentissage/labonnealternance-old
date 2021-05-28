@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { setSelectedMapPopupItem, setSelectedItem } from "../../../store/actions";
+import { setSelectedMapPopupItem, setSelectedItem } from "store/actions";
 import { useDispatch } from "react-redux";
-import { getJobAddress } from "../../../utils/jobs";
-import { logError } from "../../../utils/tools";
-import { ErrorMessage } from "../../";
-import { capitalizeFirstLetter } from "../../../utils/strutils";
+import { getJobAddress } from "utils/jobs";
+import { logError } from "utils/tools";
+import { ErrorMessage } from "../..";
+import { capitalizeFirstLetter } from "utils/strutils";
 import { setSelectedMarker } from "utils/mapTools";
 
 const MapPopup = ({ type, item, handleSelectItem }) => {
@@ -53,9 +53,14 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
               {list[0].company.name}
             </div>
             <div className="mapboxPopupBg">
-              <div className="mapboxPopupTitle">Lieux de formations : </div>
-              <ul className="mapboxPopupPlace"> {list[0].place.fullAddress}</ul>
-              <ul className="mapboxPopupDescr">{getTrainings(list)}</ul>
+              <div class="media">
+
+                <div class="media-body">
+                  <div className="mapboxPopupTitle">Lieux de formations : </div>
+                  <ul className="mapboxPopupPlace"> {list[0].place.fullAddress}</ul>
+                  <ul className="mapboxPopupDescr">{getTrainings(list)}</ul>
+                </div>
+              </div>
             </div>
           </div>
         );
