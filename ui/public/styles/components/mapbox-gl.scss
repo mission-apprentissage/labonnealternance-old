@@ -70,21 +70,26 @@ canvas.mapboxgl-canvas:focus {
   margin-bottom: 0;
 }
 .mapboxgl-popup-content li {
-  list-style: none;
   font-weight: bold;
   font-size: 16px;
   line-height: 25px;
   cursor: pointer;
 }
-.mapboxgl-popup-content li:before {
-  content: "·";
-  margin-right: 3px;
-  font-size: 30px;
-  vertical-align: middle;
-  color: #000;
-  line-height: 23px;
-  font-family: auto;
+
+.mapboxgl-popup-content li span {
+  position: relative;
+  left: -10px;
 }
+
+// .mapboxgl-popup-content li:before {
+//   content: "·";
+//   margin-right: 3px;
+//   font-size: 30px;
+//   vertical-align: middle;
+//   color: #000;
+//   line-height: 23px;
+//   font-family: auto;
+// }
 .mapboxgl-popup-content .mapboxPopupTitle {
   width: 100%;
   font-weight: bold;

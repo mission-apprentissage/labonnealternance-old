@@ -89,12 +89,12 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
         <ul>
           {list.map((job, idx) => (
             <li key={idx}>
-              <button
-                className={`c-mapboxpopup--link gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
-                onClick={() => openItemDetail(job)}
-              >
-                {job.title}
-              </button>
+                <button
+                  className={`c-mapboxpopup--link gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
+                  onClick={() => openItemDetail(job)}
+                  >
+                  {job.title}
+                </button>
             </li>
           ))}
         </ul>
@@ -102,18 +102,20 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
     );
     return result;
   };
-
+  
   const getTrainings = (list) => {
     let result = (
       <>
         {list.map((training, idx) => (
           <li key={idx}>
-            <button
-              className={`c-mapboxpopup--link gtmSavoirPlus gtmFormation gtmMap`}
-              onClick={() => openItemDetail(training)}
-            >
-              {training.title ? training.title : training.longTitle}
-            </button>
+            <span>
+              <button
+                className={`c-mapboxpopup--link gtmSavoirPlus gtmFormation gtmMap`}
+                onClick={() => openItemDetail(training)}
+                >
+                {training.title ? training.title : training.longTitle}
+              </button>
+            </span>
           </li>
         ))}
       </>
