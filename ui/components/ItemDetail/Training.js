@@ -26,9 +26,13 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
   };
 
   const shouldBeHighlighted = () => {
-    console.log("training : ", training, selectedMapPopupItem);
-
-    return true;
+    if (selectedMapPopupItem?.ideaType === "formation") {
+      return selectedMapPopupItem.items.find((item) => {
+        return item.id === training.id;
+      });
+    } else {
+      return false;
+    }
   };
 
   const getCenterSearchOnTrainingButton = () => {

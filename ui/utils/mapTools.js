@@ -11,7 +11,16 @@ let currentPopup = null;
 let map = null;
 let isMapInitialized = false;
 
-const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap, onMapHasMoved, unselectMapPopupItem }) => {
+const initializeMap = ({
+  mapContainer,
+  store,
+  unselectItem,
+  trainings,
+  jobs,
+  selectItemOnMap,
+  onMapHasMoved,
+  unselectMapPopupItem,
+}) => {
   isMapInitialized = true;
 
   mapboxgl.accessToken = "pk.eyJ1IjoiYWxhbmxyIiwiYSI6ImNrYWlwYWYyZDAyejQzMHBpYzE0d2hoZWwifQ.FnAOzwsIKsYFRnTUwneUSA";

@@ -119,9 +119,12 @@
   }
 }
 
-.resultCard.debugRemoved
-{
+.resultCard.debugRemoved {
   background: red !important;
+}
+
+.resultCard.c-resultcard--highlight {
+  filter: drop-shadow(0px 0px 8px rgba(30, 30, 30, 0.25));
 }
 
 .resultCard .cardDistance {
@@ -135,12 +138,6 @@
   font-size: 14px;
   margin-left: auto;
   line-height: 17px;
-}
-
-.resultCard.c-resultcard--highlight {
-  color: pink;
-  filter: drop-shadow(0px 0px 8px rgba(30, 30, 30, 0.25));
-  background: grey !important;
 }
 
 .cardText {
