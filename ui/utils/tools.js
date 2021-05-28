@@ -57,7 +57,7 @@ const getItemElement = (item) => {
     }
   }
 
-  let res = document.getElementById(id);
+  let res = document.getElementById(id).parentElement;
 
   return res;
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import distance from "@turf/distance";
-import { Marker, MapPopup } from "../components/SearchForTrainingsAndJobs/components";
+import { MapPopup } from "../components/SearchForTrainingsAndJobs/components";
 import ReactDOM from "react-dom";
 import * as mapboxgl from "mapbox-gl";
 import { Provider } from "react-redux";
@@ -284,7 +284,7 @@ const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem, unselectMa
     });
 
     unselectItem();
-    scrollToElementInContainer("resultList", getItemElement(item), 200, "smooth");
+    scrollToElementInContainer("resultList", getItemElement(item), 150, "smooth");
     setSelectedMarker(item);
   }
 };
