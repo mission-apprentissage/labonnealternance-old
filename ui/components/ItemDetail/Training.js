@@ -9,7 +9,7 @@ import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import { setSelectedMarker } from "utils/mapTools";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
-  const { formValues, itemParameters } = useSelector((state) => state.trainings);
+  const { formValues, itemParameters, selectedMapPopupItem } = useSelector((state) => state.trainings);
   const scopeContext = useScopeContext();
 
   const currentSearchRadius = formValues?.radius || 30;
@@ -19,6 +19,16 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
   const onSelectItem = () => {
     setAllowDim(false); // fixation du flag
     handleSelectItem(training, "training");
+  };
+
+  const getHightlightClass = () => {
+    return shouldBeHighlighted() ? "c-resultcard--highlight" : "";
+  };
+
+  const shouldBeHighlighted = () => {
+    console.log("training : ", training, selectedMapPopupItem);
+
+    return true;
   };
 
   const getCenterSearchOnTrainingButton = () => {
@@ -80,7 +90,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
   return (
     <div
-      className={`resultCard trainingCard gtmSavoirPlus gtmFormation gtmListe ${getDebugClass()}`}
+      className={`resultCard trainingCard gtmSavoirPlus gtmFormation gtmListe ${getHightlightClass()} ${getDebugClass()}`}
       onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
