@@ -54,7 +54,8 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
             </div>
             <div className="mapboxPopupBg">
               <div className="mapboxPopupTitle">Lieux de formations : </div>
-              <ul>{getTrainings(list)}</ul>
+              <ul className="mapboxPopupPlace"> {list[0].place.fullAddress}</ul>
+              <ul className="mapboxPopupDescr">{getTrainings(list)}</ul>
             </div>
           </div>
         );

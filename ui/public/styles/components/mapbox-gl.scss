@@ -24,6 +24,46 @@ canvas.mapboxgl-canvas:focus {
   text-align: left;
   padding: 0;
 }
+
+.mapboxPopupJob {
+  padding: 25px 15px;
+}
+
+.mapboxPopupFormation .mapboxPopupAddress {
+  padding: 25px 15px;
+}
+
+.mapboxPopupFormation .mapboxPopupPlace {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.mapboxPopupFormation .mapboxPopupBg {
+  padding: 25px 15px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.mapboxPopupFormation .mapboxPopupTitle {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.mapboxPopupFormation .mapboxPopupDescr {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #000000;
+}
+
 .mapboxgl-popup-content ul {
   padding-left: 0;
   margin-top: 10px;
@@ -38,10 +78,11 @@ canvas.mapboxgl-canvas:focus {
 }
 .mapboxgl-popup-content li:before {
   content: "·";
-  font-size: 80px;
+  margin-right: 3px;
+  font-size: 30px;
   vertical-align: middle;
-  color: #ccc;
-  line-height: 20px;
+  color: #000;
+  line-height: 23px;
   font-family: auto;
 }
 .mapboxgl-popup-content .mapboxPopupTitle {
@@ -80,22 +121,21 @@ canvas.mapboxgl-canvas:focus {
   }
 }
 
-.c-mapboxpopup--link
-{
-  color: #000;
+.c-mapboxpopup--link {
   background: none;
   border: none;
-  font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   padding: 0;
-  text-align: left;
-  width: 90%;
+  line-height: 17px;
+  letter-spacing: 0px;
+  color: $gray-700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .c-mapboxpopup--link:hover
 {
   color: #000;
-  text-decoration: underline;
 }
 
 .c-map-searchButton
