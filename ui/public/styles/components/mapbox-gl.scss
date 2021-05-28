@@ -43,6 +43,7 @@ canvas.mapboxgl-canvas:focus {
 
 .mapboxPopupFormation .mapboxPopupBg {
   padding: 25px 15px;
+  padding-top: 16px;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
 }
@@ -53,6 +54,7 @@ canvas.mapboxgl-canvas:focus {
   line-height: 19px;
   letter-spacing: 0px;
   color: #000000;
+  margin-bottom: 8px;
 }
 
 .mapboxPopupFormation .mapboxPopupDescr {

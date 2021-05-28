@@ -54,10 +54,10 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
               {list[0].company.name}
             </div>
             <div className="mapboxPopupBg">
+              <div className="mapboxPopupTitle">Lieux de formations : </div>
               <div className="media">
                 <img className="cardIcon" src={bookIcon} alt="" />
                 <div className="media-body ml-2">
-                  <div className="mapboxPopupTitle">Lieux de formations : </div>
                   <ul className="mapboxPopupPlace"> {list[0].place.fullAddress}</ul>
                   <ul className="mapboxPopupDescr">{getTrainings(list)}</ul>
                 </div>
