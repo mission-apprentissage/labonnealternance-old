@@ -6,6 +6,7 @@ import { logError } from "utils/tools";
 import { ErrorMessage } from "../..";
 import { capitalizeFirstLetter } from "utils/strutils";
 import { setSelectedMarker } from "utils/mapTools";
+import bookIcon from "public/images/icons/book.svg";
 
 const MapPopup = ({ type, item, handleSelectItem }) => {
   const dispatch = useDispatch();
@@ -54,8 +55,8 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
             </div>
             <div className="mapboxPopupBg">
               <div class="media">
-
-                <div class="media-body">
+                <img className="cardIcon" src={bookIcon} alt="" />
+                <div class="media-body ml-2">
                   <div className="mapboxPopupTitle">Lieux de formations : </div>
                   <ul className="mapboxPopupPlace"> {list[0].place.fullAddress}</ul>
                   <ul className="mapboxPopupDescr">{getTrainings(list)}</ul>
