@@ -137,6 +137,12 @@
   line-height: 17px;
 }
 
+.resultCard.c-resultcard--highlight {
+  color: pink;
+  filter: drop-shadow(0px 0px 8px rgba(30, 30, 30, 0.25));
+  background: grey !important;
+}
+
 .cardText {
   font-size: 16px;
   font-weight: 400;
