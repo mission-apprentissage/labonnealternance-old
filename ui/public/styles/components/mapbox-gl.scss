@@ -128,6 +128,8 @@ canvas.mapboxgl-canvas:focus {
   color: $gray-700;
   text-decoration: underline;
   text-underline-offset: 3px;
+  max-width: 333px;
+  text-align: left;
 }
 
 .c-mapboxpopup--link:hover
