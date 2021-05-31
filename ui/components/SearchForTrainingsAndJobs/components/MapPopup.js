@@ -17,7 +17,6 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
   };
 
   useEffect(() => {
-    console.log("popup building");
     dispatch(setSelectedMapPopupItem(item));
   }, []);
 

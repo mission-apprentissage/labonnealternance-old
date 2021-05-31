@@ -48,7 +48,6 @@ export const setSelectedItem = (selectedItem = null) => {
 };
 
 export const setSelectedMapPopupItem = (selectedMapPopupItem = null) => {
-  console.log("dispatch : ",selectedMapPopupItem);
   return {
     type: types.SET_SELECTED_MAP_POPUP_ITEM,
     selectedMapPopupItem,
