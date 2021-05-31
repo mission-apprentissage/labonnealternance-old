@@ -1,6 +1,6 @@
 import React from "react";
 import distance from "@turf/distance";
-import { Marker, MapPopup } from "../components/SearchForTrainingsAndJobs/components";
+import { MapPopup } from "../components/SearchForTrainingsAndJobs/components";
 import ReactDOM from "react-dom";
 import * as mapboxgl from "mapbox-gl";
 import { Provider } from "react-redux";
@@ -11,7 +11,16 @@ let currentPopup = null;
 let map = null;
 let isMapInitialized = false;
 
-const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap, onMapHasMoved }) => {
+const initializeMap = ({
+  mapContainer,
+  store,
+  unselectItem,
+  trainings,
+  jobs,
+  selectItemOnMap,
+  onMapHasMoved,
+  unselectMapPopupItem,
+}) => {
   isMapInitialized = true;
 
   mapboxgl.accessToken = "pk.eyJ1IjoiYWxhbmxyIiwiYSI6ImNrYWlwYWYyZDAyejQzMHBpYzE0d2hoZWwifQ.FnAOzwsIKsYFRnTUwneUSA";
@@ -85,7 +94,7 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
         if (e?.originalEvent) {
           if (!e.originalEvent.STOP) {
             e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
-            onLayerClick(e, "job", store, selectItemOnMap, unselectItem);
+            onLayerClick(e, "job", store, selectItemOnMap, unselectItem, unselectMapPopupItem);
           }
         }
       }, 5);
@@ -161,7 +170,7 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
         if (e?.originalEvent) {
           if (!e.originalEvent.STOP_SOURCE) {
             e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
-            onLayerClick(e, "training", store, selectItemOnMap, unselectItem);
+            onLayerClick(e, "training", store, selectItemOnMap, unselectItem, unselectMapPopupItem);
           }
         }
       }, 5);
@@ -239,7 +248,7 @@ const initializeMap = ({ mapContainer, store, unselectItem, trainings, jobs, sel
   map.addControl(nav, "bottom-right");
 };
 
-const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem) => {
+const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem, unselectMapPopupItem) => {
   let coordinates = e.features[0].geometry.coordinates.slice();
 
   // si cluster on a properties: {cluster: true, cluster_id: 125, point_count: 3, point_count_abbreviated: 3}
@@ -271,10 +280,11 @@ const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem) => {
 
     currentPopup.on("close", function (e) {
       setSelectedMarker(null);
+      unselectMapPopupItem();
     });
 
     unselectItem();
-    scrollToElementInContainer("resultList", getItemElement(item), 200, "smooth");
+    scrollToElementInContainer("resultList", getItemElement(item), 150, "smooth");
     setSelectedMarker(item);
   }
 };

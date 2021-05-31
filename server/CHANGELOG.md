@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## 1.15.3 [28/05/2021]
+## 1.15.3 [31/05/2021]
 [639] Changement de texte CTA principal
 [638] Select "niveau d'études" plus petit
 [608] Spinner LBF
+[633] Mise en avant des éléments de la popup ouverte dans la liste principale
 
 ## 1.15.2 [27/05/2021]
 [643] Icône plus grosse au clic sur la map
