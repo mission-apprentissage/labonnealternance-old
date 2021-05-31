@@ -11,15 +11,12 @@ export default async function fetchTrainingDetails(
   _window = window,
   _logError = logError
 ) {
-  function wait(ms, value) {
-    return new Promise(resolve => setTimeout(resolve, ms, value));
-  }
   let res = null;
 
   if (!training) return res;
 
   const trainingsApi = `${_baseUrl}/api/v1/formations/formationDescription/${training.idRco}`;
-  const response = await _axios.get(trainingsApi).then(value => wait(1500, value));;
+  const response = await _axios.get(trainingsApi);
 
   const isAxiosError = !!_.get(response, "data.error");
   const isSimulatedError = _.includes(_.get(_window, "location.href", ""), "trainingDetailError=true");
