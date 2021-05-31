@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,14 +13,19 @@ import chainlinkIcon from "public/images/icons/chainlink.svg";
 import { SendTrackEvent } from "utils/gtm";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "utils/strutils";
+import { Spinner } from "reactstrap";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     SendTrackEvent({
       event: `Résultats Affichage formation - Consulter fiche formation`,
     });
+
+    setLoading(true);
   }, [training.id]);
 
   const { trainings } = useSelector((state) => state.trainings);
@@ -52,19 +57,27 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
     if (training && !training.lbfLoaded) {
       loadDataFromLbf();
       sendTrainingOpenedEventToCatalogue(training.idRcoFormation);
+    } else {
+      setLoading(false);
     }
   }, [training.idRco]);
 
   const loadDataFromLbf = () => {
     let updatedTrainings = trainings;
-
     updatedTrainings.forEach(async (v) => {
       if (v.id === training.id && !v.lbfLoaded) {
         v.lbfLoaded = true;
-        let trainingDetail = await fetchTrainingDetails(training);
 
-        updateTrainingFromLbf(v, trainingDetail);
-        dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
+        try {
+          let trainingDetail = await fetchTrainingDetails(training);
+
+          setLoading(false);
+
+          updateTrainingFromLbf(v, trainingDetail);
+          dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
+        } catch (err) {
+          setLoading(false);
+        }
       }
     });
   };
@@ -100,6 +113,19 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
       )}
     </>
   );
+
+  const getLoading = () => {
+    return loading ? (
+      <span className="trainingColor">
+        <div className="searchLoading">
+          Chargement en cours
+          <Spinner />
+        </div>
+      </span>
+    ) : (
+      ""
+    );
+  };
 
   return (
     <>
@@ -150,6 +176,8 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
 
       <div className="c-detail-prdv mt-3 ml-3 mb-4 w-75">{buildPrdvButton()}</div>
 
+      {getLoading()}
+
       {getTrainingDetails(training.training)}
 
       {training.onisepUrl ? (
@@ -193,7 +221,7 @@ const updateTrainingFromLbf = (training, detailsFromLbf) => {
   }
 };
 
-const getTrainingDetails = (training) => {
+const getTrainingDetails = (training, loading) => {
   if (!training) return "";
 
   let res = (
@@ -257,6 +285,9 @@ const getTrainingDetails = (training) => {
       {getTrainingSessions(training)}
     </>
   );
+
+  //console.log("res : ",res);
+
   return res;
 };
 
