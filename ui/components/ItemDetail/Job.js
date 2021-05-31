@@ -9,7 +9,7 @@ import { fetchAddresses } from "../../services/baseAdresse";
 import { setSelectedMarker } from "utils/mapTools";
 
 const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
-  const { formValues } = useSelector((state) => state.trainings);
+  const { formValues, selectedMapPopupItem } = useSelector((state) => state.trainings);
 
   const currentSearchRadius = formValues?.radius || 30;
 
@@ -20,6 +20,20 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
   const onSelectItem = () => {
     setAllowDim(false); // fixation du flag
     handleSelectItem(job);
+  };
+
+  const getHightlightClass = () => {
+    return shouldBeHighlighted() ? "c-resultcard--highlight" : "";
+  };
+
+  const shouldBeHighlighted = () => {
+    if (selectedMapPopupItem?.ideaType === "job") {
+      return selectedMapPopupItem.items.find((item) => {
+        return item?.job?.id === job.job.id;
+      });
+    } else {
+      return false;
+    }
   };
 
   const getCenterSearchOnJobButton = () => {
@@ -63,10 +77,12 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
   const rootClassList = (actualKind) => {
     let allClasses = "resultCard gtmSavoirPlus gtmListe ";
     if (actualKind === "peJob") {
-      allClasses += "gtmPeJob";
+      allClasses += "gtmPeJob ";
     } else if (actualKind === "matcha") {
-      allClasses += "gtmMatcha";
+      allClasses += "gtmMatcha ";
     }
+    allClasses += getHightlightClass();
+
     return allClasses;
   };
 

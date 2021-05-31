@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.15.3 [31/05/2021]
+[633] Mise en avant des éléments de la popup ouverte dans la liste principale
+
 ## 1.15.2 [27/05/2021]
 [643] Icône plus grosse au clic sur la map
 [646] Infos de contact pour 1j1s pour endpoint fiche lba

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useStore, useDispatch, useSelector } from "react-redux";
-import { setSelectedItem } from "store/actions";
+import { setSelectedItem, setSelectedMapPopupItem } from "store/actions";
 import { currentPage, setCurrentPage } from "utils/currentPage.js";
 import { useScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
@@ -37,6 +37,10 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
       setCurrentPage("");
       pushHistory({ router, scopeContext });
     }
+  };
+
+  const unselectMapPopupItem = () => {
+    dispatch(setSelectedMapPopupItem(null));
   };
 
   const handleSearchClick = async () => {
@@ -96,7 +100,16 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   useEffect(() => {
     if (shouldMapBeInitialized()) {
       setMapInitialized(true);
-      initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap, onMapHasMoved });
+      initializeMap({
+        mapContainer,
+        store,
+        unselectItem,
+        trainings,
+        jobs,
+        selectItemOnMap,
+        onMapHasMoved,
+        unselectMapPopupItem,
+      });
     }
   }, [trainings, jobs]);
 
@@ -105,7 +118,16 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
     if (!mapInitialized && isMapInitialized) {
       setMapInitialized(true);
       setTimeout(() => {
-        initializeMap({ mapContainer, store, unselectItem, trainings, jobs, selectItemOnMap, onMapHasMoved });
+        initializeMap({
+          mapContainer,
+          store,
+          unselectItem,
+          trainings,
+          jobs,
+          selectItemOnMap,
+          onMapHasMoved,
+          unselectMapPopupItem,
+        });
       }, 0);
     }
   }, []);
