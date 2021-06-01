@@ -17,7 +17,7 @@ import { fetchAddresses } from "services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
 import validateFormik from "services/validateFormik";
 
-const HeaderForm = ({ handleSearchSubmit, isHome  }) => {
+const HeaderForm = ({ handleSearchSubmit, isHome }) => {
   const { formValues, widgetParameters } = useSelector((state) => {
     return state.trainings;
   });
@@ -29,16 +29,16 @@ const HeaderForm = ({ handleSearchSubmit, isHome  }) => {
   const [diplomaError, setDiplomaError] = useState(false);
 
   const jobChanged = async function (val, setLoadingState) {
-    let res = await domainChanged(val, setDomainError)
-    setLoadingState('done')
+    let res = await domainChanged(val, setDomainError);
+    setLoadingState("done");
     return res;
   };
 
   const addressChanged = async function (val, setLoadingState) {
-    let res = await fetchAddresses(val)
-    setLoadingState('done')
-    return res
-  }
+    let res = await fetchAddresses(val);
+    setLoadingState("done");
+    return res;
+  };
 
   const renderFormik = () => {
     return (
@@ -123,11 +123,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome  }) => {
                 alt="Lancer la recherche"
               >
                 <img alt="" src={glassImage} />
-                {isHome ? (
-                  <div className="c-logobar-letstart">C'est parti</div>
-                ) : (
-                  ""
-                )}
+                {isHome ? <div className="c-logobar-letstart">C'est parti</div> : ""}
               </button>
             </div>
           </Form>
@@ -137,7 +133,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome  }) => {
   };
 
   return (
-    <div className="c-logobar">
+    <div id="tralala" className="c-logobar">
       {domainError || diplomaError ? (
         <DomainError position="header" setDomainError={setDomainError} setDiplomaError={setDiplomaError} />
       ) : (
