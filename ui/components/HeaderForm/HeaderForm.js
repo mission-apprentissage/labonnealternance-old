@@ -133,7 +133,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
   };
 
   return (
-    <div id="tralala" className="c-logobar">
+    <div className="c-logobar">
       {domainError || diplomaError ? (
         <DomainError position="header" setDomainError={setDomainError} setDiplomaError={setDiplomaError} />
       ) : (
