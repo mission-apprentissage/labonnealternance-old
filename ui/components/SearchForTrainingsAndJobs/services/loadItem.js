@@ -1,6 +1,6 @@
 import axios from "axios";
 import { logError } from "utils/tools";
-
+import { searchForJobsFunction } from "components/SearchForTrainingsAndJobs/services/searchForJobs";
 import {
   trainingApi,
   offreApi,
@@ -54,6 +54,40 @@ export const loadItem = async ({
       dispatch(setSelectedItem(response.data.results[0]));
       setSelectedMarker(response.data.results[0]);
       itemMarker = response.data.results[0];
+
+      // lancement d'une recherche d'emploi autour de la formation chargée
+      let values = {
+        job: {
+          rncps: [itemMarker.rncpCode],
+          romes: [itemMarker.romes[0].code],
+        },
+        location: {
+          value: {
+            coordinates: [itemMarker.place.longitude, itemMarker.place.latitude],
+          },
+          type: "Point",
+        },
+        radius: 30,
+        diploma: "",
+      };
+
+      searchForJobsFunction({
+        values,
+        strictRadius: true,
+        setIsJobSearchLoading,
+        dispatch,
+        setHasSearch,
+        setJobSearchError,
+        computeMissingPositionAndDistance,
+        setJobs,
+        setAllJobSearchError: () => {},
+        setJobMarkers,
+        factorJobsForMap,
+        scopeContext: {
+          isTraining: true,
+          isJob: true,
+        },
+      });
     } else {
       let results = {
         peJobs: null,
