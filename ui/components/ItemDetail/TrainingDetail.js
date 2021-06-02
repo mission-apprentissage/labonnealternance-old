@@ -65,19 +65,18 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   const loadDataFromLbf = () => {
     let updatedTrainings = trainings;
     updatedTrainings.forEach(async (v) => {
-      if (v.id === training.id && !v.lbfLoaded) {
-        v.lbfLoaded = true;
+      if (v.id === training.id) {
+        if (!v.lbfLoaded) {
+          v.lbfLoaded = true;
 
-        try {
-          let trainingDetail = await fetchTrainingDetails(training);
+          try {
+            let trainingDetail = await fetchTrainingDetails(training);
 
-          setLoading(false);
-
-          updateTrainingFromLbf(v, trainingDetail);
-          dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
-        } catch (err) {
-          setLoading(false);
+            updateTrainingFromLbf(v, trainingDetail);
+            dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
+          } catch (err) {}
         }
+        setLoading(false);
       }
     });
   };
