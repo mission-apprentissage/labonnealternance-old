@@ -59,7 +59,7 @@ export const loadItem = async ({
       let values = {
         job: {
           rncps: [itemMarker.rncpCode],
-          romes: [itemMarker.romes[0].code],
+          romes: itemMarker.romes.map((rome) => rome.code),
         },
         location: {
           value: {
