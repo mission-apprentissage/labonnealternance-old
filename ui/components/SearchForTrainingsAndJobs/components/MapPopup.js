@@ -25,8 +25,6 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
     try {
       const list = item.items;
 
-      console.log('list', list);
-
       if (type === "job") {
         if (list.length > 1) {
           return getJobs(list);
@@ -95,12 +93,12 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
         <ul>
           {list.map((job, idx) => (
             <li key={idx}>
-                <button
-                  className={`c-mapboxpopup--link gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
-                  onClick={() => openItemDetail(job)}
-                  >
-                  {job.title}
-                </button>
+              <button
+                className={`c-mapboxpopup--link gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
+                onClick={() => openItemDetail(job)}
+                >
+                {job.title}
+              </button>
             </li>
           ))}
         </ul>
