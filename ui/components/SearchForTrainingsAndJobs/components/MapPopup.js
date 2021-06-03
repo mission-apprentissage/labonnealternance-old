@@ -24,6 +24,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
   const getContent = () => {
     try {
       const list = item.items;
+      console.log('list', list);
 
       if (type === "job") {
         if (list.length > 1) {
@@ -48,15 +49,17 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
       } else {
         return (
           <div className="mapboxPopupFormation">
-            <div className="mapboxPopupAddress">
-              {list[0].company.name}
+            <div className="ml-3 my-3">
+              <img className="cardIcon mr-1" src={bookIcon} alt="" />
+              <span className="mapboxPopupTitle">Formations : </span>
+            </div>
+            <div className="mapboxPopupPlace ml-3 my-2">{list[0].company.name}</div>
+            <div className="mapboxPopupAddress ml-3 my-2">
+              {list[0].place.fullAddress}
             </div>
             <div className="mapboxPopupBg">
-              <div className="mapboxPopupTitle">Lieux de formations : </div>
-              <div className="media">
-                <img className="cardIcon" src={bookIcon} alt="" />
-                <div className="media-body ml-2">
-                  <ul className="mapboxPopupPlace"> {list[0].place.fullAddress}</ul>
+              <div className="">
+                <div className="ml-2">
                   <ul className="mapboxPopupDescr">{getTrainings(list)}</ul>
                 </div>
               </div>
@@ -111,7 +114,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
     let result = (
       <>
         {list.map((training, idx) => (
-          <li key={idx}>
+          <li key={idx} className="c-mapboxpopup-li">
             <span>
               <button
                 className={`c-mapboxpopup--link gtmSavoirPlus gtmFormation gtmMap`}

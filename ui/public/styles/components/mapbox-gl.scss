@@ -29,8 +29,8 @@ canvas.mapboxgl-canvas:focus {
   padding: 25px 15px;
 }
 
-.mapboxPopupFormation .mapboxPopupAddress {
-  padding: 25px 15px;
+.c-mapboxpopup-li + .c-mapboxpopup-li {
+  margin-top: 5px;
 }
 
 .mapboxPopupFormation .mapboxPopupPlace {
