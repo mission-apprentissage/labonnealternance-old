@@ -7,6 +7,7 @@ import { ErrorMessage } from "../..";
 import { capitalizeFirstLetter } from "utils/strutils";
 import { setSelectedMarker } from "utils/mapTools";
 import bookIcon from "public/images/icons/book.svg";
+import jobIcon from "public/images/icons/job.svg";
 
 const MapPopup = ({ type, item, handleSelectItem }) => {
   const dispatch = useDispatch();
@@ -27,25 +28,35 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
       console.log('list', list);
 
       if (type === "job") {
-        if (list.length > 1) {
-          return getJobs(list);
-        } else {
-          const job = list[0];
-          return (
-            <div className="mapboxPopupJob">
-              <div className="mapboxPopupTitle">{job.title}</div>
-              <div className="mapboxPopupAddress">{getJobAddress(job)}</div>
-              <div className="knowMore">
-                <button
-                  className={`gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
-                  onClick={() => openItemDetail(job)}
-                >
-                  En savoir plus
-                </button>
+        return (
+          <div className="c-mapbox-container">
+            <div className="ml-3 my-3">
+              <img className="cardIcon mr-2" src={jobIcon} alt="" />
+              <span className="mapboxPopupTitle">Opportunité(s) d'emploi : </span>
+            </div>
+            <div className="c-mapbox-address ml-3 my-2 mb-3">
+              {getJobAddress(list[0])}
+            </div>
+            <div className="c-mapbox-bg">
+              <div className="ml-2">
+                <ul className="c-mapbox-descr">
+                  <ul>
+                    {list.map((job, idx) => (
+                      <li key={idx}>
+                        <button
+                          className={`c-mapboxpopup--link gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
+                          onClick={() => openItemDetail(job)}
+                        >
+                          {job.title}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </ul>
               </div>
             </div>
-          );
-        }
+          </div>
+        );
       } else {
         return (
           <div className="mapboxPopupFormation">
@@ -85,29 +96,6 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
         />
       );
     }
-  };
-
-  const getJobs = (list) => {
-    let result = (
-      <>
-        <div className="mapboxPopupTitle">Opportunités d'emploi : </div>
-        <div className="mapboxPopupAddress">{getJobAddress(list[0])}</div>
-
-        <ul>
-          {list.map((job, idx) => (
-            <li key={idx}>
-              <button
-                className={`c-mapboxpopup--link gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
-                onClick={() => openItemDetail(job)}
-                >
-                {job.title}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </>
-    );
-    return result;
   };
   
   const getTrainings = (list) => {
