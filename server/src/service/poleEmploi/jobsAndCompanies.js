@@ -4,44 +4,38 @@ const offresPoleEmploi = require("./offresPoleEmploi");
 const bonnnesBoites = require("./bonnesBoites");
 const matcha = require("../matcha");
 const { jobsQueryValidator } = require("./jobsQueryValidator");
-const { trackEvent } = require("../../common/utils/sendTrackingEvent");
+const { trackApiCall } = require("../../common/utils/sendTrackingEvent");
 
 const getJobsQuery = async (query) => {
   const queryValidationResult = jobsQueryValidator(query);
 
   if (queryValidationResult.error) return queryValidationResult;
 
-  if (query.caller) {
-    trackEvent({ category: "Appel API", action: "jobV1", label: query.caller });
-  }
-
   return getJobsFromApi(query);
 };
 
 const getPeJobQuery = async (query) => {
-  if (query.caller) {
-    trackEvent({ category: "Appel API", action: "loadPeJobV1", label: query.caller });
-  }
-
   try {
     const job = await offresPoleEmploi.getPeJobFromId({
       id: query.id,
     });
 
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "loadPeJobV1", result: "OK" });
+    }
     //throw new Error("BIG BANG");
     return job;
   } catch (err) {
     console.error("Error ", err.message);
     Sentry.captureException(err);
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "loadPeJobV1", result: "Error" });
+    }
     return { error: "internal_error" };
   }
 };
 
 const getCompanyQuery = async (query) => {
-  if (query.caller) {
-    trackEvent({ category: "Appel API", action: "loadCompanyV1", label: query.caller });
-  }
-
   try {
     const company = await bonnnesBoites.getCompanyFromSiret({
       siret: query.siret,
@@ -51,10 +45,17 @@ const getCompanyQuery = async (query) => {
     });
 
     //throw new Error("BIG BANG");
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "loadCompanyV1", result: "OK" });
+    }
+
     return company;
   } catch (err) {
     console.error("Error ", err.message);
     Sentry.captureException(err);
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "loadCompanyV1", result: "Error" });
+    }
     return { error: "internal_error" };
   }
 };
@@ -116,10 +117,19 @@ const getJobsFromApi = async (query) => {
     }
     //throw new Error("kaboom");
 
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "jobV1", result: "OK" });
+    }
+
     return { peJobs, matchas, lbaCompanies, lbbCompanies };
   } catch (err) {
     console.log("Error ", err.message);
     Sentry.captureException(err);
+
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "jobV1", result: "Error" });
+    }
+
     return { error: "internal_error" };
   }
 };

@@ -3,16 +3,12 @@ const Sentry = require("@sentry/node");
 const { getFormations, transformFormationsForIdea } = require("./formations");
 const { getJobsFromApi } = require("./poleEmploi/jobsAndCompanies");
 const { jobsEtFormationsQueryValidator } = require("./jobsEtFormationsQueryValidator");
-const { trackEvent } = require("../common/utils/sendTrackingEvent");
+const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 
 const getJobsEtFormationsQuery = async (query) => {
   const queryValidationResult = jobsEtFormationsQueryValidator(query);
 
   if (queryValidationResult.error) return queryValidationResult;
-
-  if (query.caller) {
-    trackEvent({ category: "Appel API", action: "jobEtFormationV1", label: query.caller });
-  }
 
   try {
     const sources = !query.sources ? ["formations", "lba", "lbb", "offres"] : query.sources.split(",");
@@ -39,10 +35,19 @@ const getJobsEtFormationsQuery = async (query) => {
 
     if (formations && !formations.error) formations = transformFormationsForIdea(formations);
 
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "jobEtFormationV1", result: "OK" });
+    }
+
     return { formations, jobs };
   } catch (err) {
     console.log("Error ", err.message);
     Sentry.captureException(err);
+
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "jobEtFormationV1", result: "Error" });
+    }
+
     return { error: "internal_error" };
   }
 };

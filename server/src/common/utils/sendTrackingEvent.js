@@ -1,21 +1,18 @@
 const { ApiCalls } = require("../../common/model");
-const logger = require("../logger");
 
-const trackEvent = async ({ action, label, value }) => {
-  //visitor.event(category, action, label, value).send();
-
-  logger.info("about to save event");
+const trackApiCall = async ({ caller, api, result_count, result }) => {
   try {
     let apiCall = new ApiCalls({
-      caller: label,
-      api: action,
-      result_count: value,
+      caller,
+      api,
+      result_count,
+      result,
     });
 
     apiCall.save();
   } catch (err) {
-    logger.error(`error saving event - ${err.message}`);
+    console.log("Error tracking api call.", err);
   }
 };
 
-module.exports = { trackEvent };
+module.exports = { trackApiCall };
