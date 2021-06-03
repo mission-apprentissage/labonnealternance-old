@@ -1,10 +1,15 @@
-const ua = require("universal-analytics");
-const config = require("config");
+const { ApiCalls } = require("../../common/model");
 
-const visitor = ua(config.private.googleAnalyticsUA);
+const trackEvent = async ({ action, label, value }) => {
+  //visitor.event(category, action, label, value).send();
 
-const trackEvent = ({ category, action, label, value }) => {
-  visitor.event(category, action, label, value).send();
+  let apiCall = new ApiCalls({
+    caller: label,
+    api: action,
+    result_count: value,
+  });
+
+  apiCall.save();
 };
 
 module.exports = { trackEvent };
