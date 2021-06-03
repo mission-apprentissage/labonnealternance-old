@@ -50,11 +50,11 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
         return (
           <div className="mapboxPopupFormation">
             <div className="ml-3 my-3">
-              <img className="cardIcon mr-1" src={bookIcon} alt="" />
+              <img className="cardIcon mr-2" src={bookIcon} alt="" />
               <span className="mapboxPopupTitle">Formations : </span>
             </div>
             <div className="mapboxPopupPlace ml-3 my-2">{list[0].company.name}</div>
-            <div className="mapboxPopupAddress ml-3 my-2">
+            <div className="mapboxPopupAddress ml-3 my-2 mb-3">
               {list[0].place.fullAddress}
             </div>
             <div className="mapboxPopupBg">
