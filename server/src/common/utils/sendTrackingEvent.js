@@ -1,5 +1,5 @@
 const { ApiCalls } = require("../../common/model");
-const logger = require("../common/logger");
+const logger = require("../logger");
 
 const trackEvent = async ({ action, label, value }) => {
   //visitor.event(category, action, label, value).send();
