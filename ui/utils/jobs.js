@@ -4,7 +4,6 @@ const getJobAddress = (job) => {
   if (job.ideaType === "peJob")
     return (
       <>
-        {job.company && job.company.name ? job.company.name : ""}
         {job.place.fullAddress}
       </>
     );

@@ -48,6 +48,13 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
                       >
                         {job.title}
                       </button>
+                      <span>
+                        {job?.company?.name ? (
+                          <span> - {job.company.name}</span>
+                        ) : (
+                          ""
+                        )}
+                      </span>
                     </li>
                   ))}
                 </ul>
