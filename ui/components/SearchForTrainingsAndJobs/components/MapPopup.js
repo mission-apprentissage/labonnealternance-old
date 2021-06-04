@@ -50,7 +50,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
                       >
                         {truncateWithEllipses(job.title, 25)}
                       </button>
-                      {job?.company?.name ? (
+                      {job.ideaType === "peJob" && job?.company?.name ? (
                         <span className='c-mapbox-companyname'>
                           - {job.company.name}
                         </span>
