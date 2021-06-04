@@ -44,10 +44,34 @@ canvas.mapboxgl-canvas:focus {
 
 .c-mapbox-bg {
   background-color: #F9F8F6;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 
 .c-mapbox-list-item + .c-mapbox-list-item {
   margin-top: 5px;
+}
+
+.c-mapbox-list-item.is-first {
+  margin-top: 15px;
+}
+.c-mapbox-list-item.is-last {
+  margin-bottom: 15px;
+}
+
+.c-mapbox-list-item button {
+  position: relative;
+  left: -5px;
+}
+
+.c-mapbox-list {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.mapboxgl-popup-close-button {
+  font-size: 18px;
+  color: #383838;
 }
 
 .mapboxPopupFormation .mapboxPopupBg {
