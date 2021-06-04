@@ -38,7 +38,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
               {getJobAddress(list[0])}
             </div>
             <div className="c-mapbox-bg">
-              <div className="ml-2">
+              <div className="ml-3">
                 <ul className="c-mapbox-descr">
                   <ul>
                     {list.map((job, idx) => (
