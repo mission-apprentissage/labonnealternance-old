@@ -46,6 +46,10 @@ canvas.mapboxgl-canvas:focus {
   background-color: #F9F8F6;
 }
 
+.c-mapbox-list-item + .c-mapbox-list-item {
+  margin-top: 5px;
+}
+
 .mapboxPopupFormation .mapboxPopupBg {
   padding: 25px 15px;
   padding-top: 16px;

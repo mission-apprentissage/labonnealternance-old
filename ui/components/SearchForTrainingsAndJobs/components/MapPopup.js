@@ -41,7 +41,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
               <div className="ml-3">
                 <ul className="c-mapbox-list">
                   {list.map((job, idx) => (
-                    <li key={idx}>
+                    <li className="c-mapbox-list-item" key={idx}>
                       <button
                         className={`c-mapboxpopup--link gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
                         onClick={() => openItemDetail(job)}
