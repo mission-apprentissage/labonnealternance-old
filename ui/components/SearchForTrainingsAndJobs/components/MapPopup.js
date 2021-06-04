@@ -22,6 +22,8 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
     dispatch(setSelectedMapPopupItem(item));
   }, []);
 
+  const truncateWithEllipses = function(text, max) { return text.substr(0, max - 1) + (text.length > max ? '...' : ''); }
+
   const getContent = () => {
     try {
       const list = item.items;
@@ -46,9 +48,9 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
                         className={`c-mapboxpopup--link gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
                         onClick={() => openItemDetail(job)}
                       >
-                        {job.title}
+                        {truncateWithEllipses(job.title, 25)}
                       </button>
-                      <span>
+                      <span className='c-mapbox-companyname'>
                         {job?.company?.name ? (
                           <span> - {job.company.name}</span>
                         ) : (
