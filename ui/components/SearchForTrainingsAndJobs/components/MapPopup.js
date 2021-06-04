@@ -32,26 +32,24 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
           <div className="c-mapbox-container">
             <div className="ml-3 my-3">
               <img className="cardIcon mr-2" src={jobIcon} alt="" />
-              <span className="mapboxPopupTitle">Opportunité(s) d'emploi : </span>
+              <span className="mapboxPopupTitle">Opportunité<span className={`${list.length > 1 ? '' : 'd-none'}`}>s</span> d'emploi : </span>
             </div>
             <div className="c-mapbox-address ml-3 my-2 mb-3">
               {getJobAddress(list[0])}
             </div>
             <div className="c-mapbox-bg">
               <div className="ml-3">
-                <ul className="c-mapbox-descr">
-                  <ul>
-                    {list.map((job, idx) => (
-                      <li key={idx}>
-                        <button
-                          className={`c-mapboxpopup--link gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
-                          onClick={() => openItemDetail(job)}
-                        >
-                          {job.title}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
+                <ul className="c-mapbox-list">
+                  {list.map((job, idx) => (
+                    <li key={idx}>
+                      <button
+                        className={`c-mapboxpopup--link gtmSavoirPlus gtm${capitalizeFirstLetter(job.ideaType)} gtmMap`}
+                        onClick={() => openItemDetail(job)}
+                      >
+                        {job.title}
+                      </button>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
