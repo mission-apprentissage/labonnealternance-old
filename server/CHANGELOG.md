@@ -7,6 +7,7 @@
 [633] Mise en avant des éléments de la popup ouverte dans la liste principale
 [664] Fix scroll to autocomplétion
 [666] Chargement d'emplois sur acccès direct à fiche formation
+[670] Fix appel bonne boîte LBA
 [638b] Taille "niveau d'études" 
 
 ## 1.15.2 [27/05/2021]

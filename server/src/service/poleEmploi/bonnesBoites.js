@@ -164,7 +164,7 @@ const getCompanyFromSiret = async ({ siret, referer, caller, type }) => {
     let headers = peApiHeaders;
     headers.Authorization = `Bearer ${token}`;
 
-    const companyQuery = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details`, {
+    const companyQuery = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details?contract=alternance`, {
       headers,
     });
 
