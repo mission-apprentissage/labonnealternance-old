@@ -5,7 +5,6 @@ const getJobAddress = (job) => {
     return (
       <>
         {job.company && job.company.name ? job.company.name : ""}
-        <br />
         {job.place.fullAddress}
       </>
     );
