@@ -1,11 +1,12 @@
 # CHANGELOG
 
-## 1.15.3 [31/05/2021]
+## 1.15.3 [08/08/2021]
 [639] Changement de texte CTA principal
 [638] Select "niveau d'études" plus petit
 [608] Spinner LBF
 [633] Mise en avant des éléments de la popup ouverte dans la liste principale
 [664] Fix scroll to autocomplétion
+[658] Modification des tris de requêtes PE
 [666] Chargement d'emplois sur acccès direct à fiche formation
 [670] Fix appel bonne boîte LBA
 [638b] Taille "niveau d'études" 
