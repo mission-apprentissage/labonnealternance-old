@@ -9,9 +9,30 @@ const { trackApiCall } = require("../../common/utils/sendTrackingEvent");
 const getJobsQuery = async (query) => {
   const queryValidationResult = jobsQueryValidator(query);
 
-  if (queryValidationResult.error) return queryValidationResult;
+  if (queryValidationResult.error) {
+    return queryValidationResult;
+  }
 
-  return getJobsFromApi({ query, api: "jobsV1" });
+  const result = await getJobsFromApi({ query, api: "jobV1/jobs" });
+
+  if (query.caller) {
+    let nb_emplois = 0;
+    if (result?.lbaCompanies?.results) {
+      nb_emplois += result.lbaCompanies.results.length;
+    }
+
+    if (result?.peJobs?.results) {
+      nb_emplois += result.peJobs.results.length;
+    }
+
+    if (result?.matchas?.results) {
+      nb_emplois += result.matchas.results.length;
+    }
+
+    trackApiCall({ caller: query.caller, nb_emplois, result_count: nb_emplois, api: "jobV1/jobs", result: "OK" });
+  }
+
+  return result;
 };
 
 const getPeJobQuery = async (query) => {
@@ -116,23 +137,6 @@ const getJobsFromApi = async ({ query, api }) => {
       lbbCompanies = { results: [] };
     }
     //throw new Error("kaboom");
-
-    if (query.caller) {
-      let nb_emplois = 0;
-      if (lbaCompanies?.results) {
-        nb_emplois += lbaCompanies.results.length;
-      }
-
-      if (peJobs?.results) {
-        nb_emplois += peJobs.results.length;
-      }
-
-      if (matchas?.results) {
-        nb_emplois += matchas.results.length;
-      }
-
-      trackApiCall({ caller: query.caller, nb_emplois, result_counts: nb_emplois, api, result: "OK" });
-    }
 
     return { peJobs, matchas, lbaCompanies, lbbCompanies };
   } catch (err) {
