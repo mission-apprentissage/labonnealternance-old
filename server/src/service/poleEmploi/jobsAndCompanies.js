@@ -11,7 +11,7 @@ const getJobsQuery = async (query) => {
 
   if (queryValidationResult.error) return queryValidationResult;
 
-  return getJobsFromApi(query);
+  return getJobsFromApi({ query, api: "jobsV1" });
 };
 
 const getPeJobQuery = async (query) => {
@@ -21,7 +21,7 @@ const getPeJobQuery = async (query) => {
     });
 
     if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "loadPeJobV1", result: "OK" });
+      trackApiCall({ caller: query.caller, nb_emplois: 1, result_count: 1, api: "loadPeJobV1", result: "OK" });
     }
     //throw new Error("BIG BANG");
     return job;
@@ -46,7 +46,7 @@ const getCompanyQuery = async (query) => {
 
     //throw new Error("BIG BANG");
     if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "loadCompanyV1", result: "OK" });
+      trackApiCall({ caller: query.caller, api: "loadCompanyV1", nb_emplois: 1, result_count: 1, result: "OK" });
     }
 
     return company;
@@ -60,7 +60,7 @@ const getCompanyQuery = async (query) => {
   }
 };
 
-const getJobsFromApi = async (query) => {
+const getJobsFromApi = async ({ query, api }) => {
   try {
     const sources = !query.sources ? ["lba", /*"lbb",*/ "offres", "matcha"] : query.sources.split(",");
 
@@ -118,7 +118,20 @@ const getJobsFromApi = async (query) => {
     //throw new Error("kaboom");
 
     if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "jobV1", result: "OK" });
+      let nb_emplois = 0;
+      if (lbaCompanies?.results) {
+        nb_emplois += lbaCompanies.results.length;
+      }
+
+      if (peJobs?.results) {
+        nb_emplois += peJobs.results.length;
+      }
+
+      if (matchas?.results) {
+        nb_emplois += matchas.results.length;
+      }
+
+      trackApiCall({ caller: query.caller, nb_emplois, result_counts: nb_emplois, api, result: "OK" });
     }
 
     return { peJobs, matchas, lbaCompanies, lbbCompanies };
@@ -127,7 +140,7 @@ const getJobsFromApi = async (query) => {
     Sentry.captureException(err);
 
     if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "jobV1", result: "Error" });
+      trackApiCall({ caller: query.caller, api, result: "Error" });
     }
 
     return { error: "internal_error" };

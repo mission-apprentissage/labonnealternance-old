@@ -29,14 +29,22 @@ const getJobsEtFormationsQuery = async (query) => {
       sources.indexOf("lbb") >= 0 ||
       sources.indexOf("offres") >= 0 ||
       sources.indexOf("matcha") >= 0
-        ? getJobsFromApi(query)
+        ? getJobsFromApi({ query, api: "jobEtFormationV1" })
         : null,
     ]);
 
-    if (formations && !formations.error) formations = transformFormationsForIdea(formations);
+    if (formations && !formations.error) {
+      formations = transformFormationsForIdea(formations);
 
-    if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "jobEtFormationV1", result: "OK" });
+      if (query.caller) {
+        trackApiCall({
+          caller: query.caller,
+          api: "jobEtFormationV1",
+          nb_formations: formations.lenth,
+          result_count: formations.length,
+          result: "OK",
+        });
+      }
     }
 
     return { formations, jobs };
