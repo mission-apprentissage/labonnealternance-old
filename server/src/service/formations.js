@@ -525,7 +525,13 @@ const getFormationsQuery = async (query) => {
     });
 
     if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "formationV1", result_count: formations.length, result: "OK" });
+      trackApiCall({
+        caller: query.caller,
+        api: "formationV1",
+        nb_formations: formations.lenth,
+        result_count: formations.length,
+        result: "OK",
+      });
     }
 
     //throw new Error("BIG BANG");
@@ -547,7 +553,13 @@ const getFormationQuery = async (query) => {
     });
 
     if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "formationV1/formation", result_count: 1, result: "OK" });
+      trackApiCall({
+        caller: query.caller,
+        api: "formationV1/formation",
+        nb_formations: 1,
+        result_count: 1,
+        result: "OK",
+      });
     }
 
     //throw new Error("BIG BANG");
@@ -612,7 +624,13 @@ const getFormationsParRegionQuery = async (query) => {
     });
 
     if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "formationRegionV1", result_count: formations.length, result: "OK" });
+      trackApiCall({
+        caller: query.caller,
+        api: "formationRegionV1",
+        nb_formations: formations.length,
+        result_count: formations.length,
+        result: "OK",
+      });
     }
 
     formations = transformFormationsForIdea(formations);
