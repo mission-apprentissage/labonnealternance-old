@@ -25,7 +25,11 @@ module.exports = () => {
   router.get(
     "/job/:id",
     tryCatch(async (req, res) => {
-      const result = await peApi.getPeJobQuery({ id: req.params.id, referer: req.headers.referer });
+      const result = await peApi.getPeJobQuery({
+        id: req.params.id,
+        referer: req.headers.referer,
+        caller: req.query.caller,
+      });
 
       if (result.error) {
         if (result.error === "wrong_parameters") {
