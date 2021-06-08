@@ -528,8 +528,8 @@ const getFormationsQuery = async (query) => {
       trackApiCall({
         caller: query.caller,
         api: "formationV1",
-        nb_formations: formations.lenth,
-        result_count: formations.length,
+        nb_formations: formations?.results.length,
+        result_count: formations?.results.length,
         result: "OK",
       });
     }
