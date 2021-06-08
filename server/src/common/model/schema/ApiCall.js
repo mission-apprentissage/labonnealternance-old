@@ -14,6 +14,16 @@ const apiCallSchema = {
     default: null,
     description: "...",
   },
+  nb_formations: {
+    type: Number,
+    default: 0,
+    description: "...",
+  },
+  nb_emplois: {
+    type: Number,
+    default: 0,
+    description: "...",
+  },
   result_count: {
     type: Number,
     default: 0,
