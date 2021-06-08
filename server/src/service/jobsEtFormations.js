@@ -35,16 +35,32 @@ const getJobsEtFormationsQuery = async (query) => {
 
     if (formations && !formations.error) {
       formations = transformFormationsForIdea(formations);
+    }
 
-      if (query.caller) {
-        trackApiCall({
-          caller: query.caller,
-          api: "jobEtFormationV1",
-          nb_formations: formations.lenth,
-          result_count: formations.length,
-          result: "OK",
-        });
+    if (query.caller) {
+      let nb_emplois = 0;
+      if (jobs?.lbaCompanies?.results) {
+        nb_emplois += jobs.lbaCompanies.results.length;
       }
+
+      if (jobs?.peJobs?.results) {
+        nb_emplois += jobs.peJobs.results.length;
+      }
+
+      if (jobs?.matchas?.results) {
+        nb_emplois += jobs.matchas.results.length;
+      }
+
+      const nb_formations = formations?.results ? formations.results.length : 0;
+
+      trackApiCall({
+        caller: query.caller,
+        api: "jobEtFormationV1",
+        nb_formations,
+        nb_emplois,
+        result_count: nb_emplois + nb_formations,
+        result: "OK",
+      });
     }
 
     return { formations, jobs };
