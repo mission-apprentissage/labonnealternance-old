@@ -21,7 +21,7 @@ const getPeJobQuery = async (query) => {
     });
 
     if (query.caller) {
-      trackApiCall({ caller: query.caller, nb_emplois: 1, result_count: 1, api: "loadPeJobV1", result: "OK" });
+      trackApiCall({ caller: query.caller, nb_emplois: 1, result_count: 1, api: "jobV1/job", result: "OK" });
     }
     //throw new Error("BIG BANG");
     return job;
@@ -29,7 +29,7 @@ const getPeJobQuery = async (query) => {
     console.error("Error ", err.message);
     Sentry.captureException(err);
     if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "loadPeJobV1", result: "Error" });
+      trackApiCall({ caller: query.caller, api: "jobV1/job", result: "Error" });
     }
     return { error: "internal_error" };
   }
@@ -46,7 +46,7 @@ const getCompanyQuery = async (query) => {
 
     //throw new Error("BIG BANG");
     if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "loadCompanyV1", nb_emplois: 1, result_count: 1, result: "OK" });
+      trackApiCall({ caller: query.caller, api: "jobV1/company", nb_emplois: 1, result_count: 1, result: "OK" });
     }
 
     return company;
@@ -54,7 +54,7 @@ const getCompanyQuery = async (query) => {
     console.error("Error ", err.message);
     Sentry.captureException(err);
     if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "loadCompanyV1", result: "Error" });
+      trackApiCall({ caller: query.caller, api: "jobV1/company", result: "Error" });
     }
     return { error: "internal_error" };
   }
