@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.15.3 [08/08/2021]
+## 1.15.3 [08/06/2021]
 [639] Changement de texte CTA principal
 [638] Select "niveau d'études" plus petit
 [608] Spinner LBF
@@ -10,6 +10,7 @@
 [666] Chargement d'emplois sur acccès direct à fiche formation
 [670] Fix appel bonne boîte LBA
 [638b] Taille "niveau d'études" 
+[662] Enregistrer en base les appels API
 
 ## 1.15.2 [27/05/2021]
 [643] Icône plus grosse au clic sur la map

@@ -68,6 +68,21 @@ services:
     environment:
       - SERVER_BASEPATH=/kibana
 
+  metabase:
+    image: metabase/metabase
+    volumes:
+      - /opt/labonnealternance/data/metabase:/metabase-data
+    depends_on:
+      - mongodb
+    environment:
+      JAVA_TIMEZONE: Europe/Paris
+      MB_DB_FILE: /metabase-data/metabase.db
+      MB_SITE_LOCALE: fr
+      MB_SITE_URL: http://0.0.0.0/metabase
+    restart: always
+    networks:
+      - labonnealternance_network    
+
 networks:
   labonnealternance_network:
     name: labonnealternance_network
