@@ -234,8 +234,6 @@ const ResultLists = (props) => {
       } else if (!props.trainingSearchError) {
         trainingCount = props.trainings ? props.trainings.length : 0;
 
-        //trainingCount = 0;
-
         count += trainingCount;
 
         trainingPart = `${trainingCount === 0 ? "Aucune formation" : trainingCount}`;

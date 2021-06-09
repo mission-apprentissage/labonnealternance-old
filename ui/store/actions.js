@@ -15,6 +15,7 @@ export const types = {
   SET_WIDGET_PARAMETERS: "trainings/SET_WIDGET_PARAMETERS",
   SET_ITEM_PARAMETERS: "trainings/SET_ITEM_PARAMETERS",
   SET_TRAININGS_AND_SELECTED_ITEM: "trainings/SET_TRAININGS_AND_SELECTED_ITEM",
+  SET_SELECTED_MAP_POPUP_ITEM: "trainings/SET_SELECTED_MAP_POPUP_ITEM",
 };
 
 export const setResults = (trainings = [], jobs = []) => {
@@ -43,6 +44,13 @@ export const setSelectedItem = (selectedItem = null) => {
   return {
     type: types.SET_SELECTED_ITEM,
     selectedItem,
+  };
+};
+
+export const setSelectedMapPopupItem = (selectedMapPopupItem = null) => {
+  return {
+    type: types.SET_SELECTED_MAP_POPUP_ITEM,
+    selectedMapPopupItem,
   };
 };
 

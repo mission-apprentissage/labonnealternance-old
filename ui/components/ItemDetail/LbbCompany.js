@@ -9,7 +9,7 @@ import { get } from "lodash";
 import { setSelectedMarker } from "utils/mapTools";
 
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
-  const { formValues } = useSelector((state) => state.trainings);
+  const { formValues, selectedMapPopupItem } = useSelector((state) => state.trainings);
 
   const currentSearchRadius = formValues?.radius || 30;
 
@@ -69,9 +69,25 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
     }
   };
 
+  const getHightlightClass = () => {
+    return shouldBeHighlighted() ? "c-resultcard--highlight" : "";
+  };
+
+  const shouldBeHighlighted = () => {
+    if (selectedMapPopupItem?.ideaType === "job") {
+      return selectedMapPopupItem.items.find((item) => {
+        return item?.company?.siret === company.company.siret;
+      });
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div
-      className={`resultCard gtmSavoirPlus gtm${capitalizeFirstLetter(company.ideaType)} gtmListe`}
+      className={`resultCard gtmSavoirPlus gtm${capitalizeFirstLetter(
+        company.ideaType
+      )} gtmListe ${getHightlightClass()}`}
       onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}

@@ -15,6 +15,7 @@ const initialState = {
   shouldMapBeVisible: false,
   widgetParameters: null,
   itemParameters: null,
+  selectedMapPopupItem: null,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -104,6 +105,11 @@ const mainReducer = (state = initialState, action) => {
     res = {
       ...state_copy,
       itemParameters: action.itemParameters,
+    };
+  } else if (action.type === actionsTypes.SET_SELECTED_MAP_POPUP_ITEM) {
+    res = {
+      ...state_copy,
+      selectedMapPopupItem: action.selectedMapPopupItem,
     };
   } else {
     res = state_copy;
