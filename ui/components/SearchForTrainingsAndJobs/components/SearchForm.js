@@ -26,16 +26,16 @@ const SearchForm = (props) => {
   const [diplomaError, setDiplomaError] = useState(false);
 
   const jobChanged = async function (val, setLoadingState) {
-    let res = await domainChanged(val, setDomainError)
-    setLoadingState('done')
+    let res = await domainChanged(val, setDomainError);
+    setLoadingState("done");
     return res;
   };
 
   const addressChanged = async function (val, setLoadingState) {
-    let res = await fetchAddresses(val)
-    setLoadingState('done')
-    return res
-  }
+    let res = await fetchAddresses(val);
+    setLoadingState("done");
+    return res;
+  };
 
   const renderFormik = () => {
     return (
@@ -94,7 +94,6 @@ const SearchForm = (props) => {
                     compareItemFunction={compareAutoCompleteValues}
                     onInputValueChangeFunction={addressChanged}
                     previouslySelectedItem={formValues?.location ?? null}
-                    scrollParentId="choiceColumn"
                     name="placeField"
                     placeholder="Adresse, ville ou code postal"
                     searchPlaceholder="Indiquez le lieu recherché ci-dessus"

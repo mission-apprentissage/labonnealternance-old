@@ -52,7 +52,7 @@ const ChoiceColumn = ({
       const itemElement = getItemElement(itemToScrollTo);
 
       if (itemElement) {
-        scrollToElementInContainer("resultList", itemElement, 200, "auto");
+        scrollToElementInContainer("resultList", itemElement, 150, "auto");
         dispatch(setItemToScrollTo(null));
       }
     }

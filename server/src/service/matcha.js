@@ -2,6 +2,7 @@ const axios = require("axios");
 const Sentry = require("@sentry/node");
 const { itemModel } = require("../model/itemModel");
 const config = require("config");
+const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 
 const matchaApiEndpoint = `https://matcha${
   config.env === "production" ? "" : "-recette"
@@ -55,10 +56,14 @@ const transformMatchaJobsForIdea = (jobs) => {
   return resultJobs;
 };
 
-const getMatchaJobById = async ({ id }) => {
+const getMatchaJobById = async ({ id, caller }) => {
   try {
     const jobs = await axios.get(`${matchaJobEndPoint}/${id}`);
     const job = transformMatchaJobForIdea(jobs.data);
+
+    if (caller) {
+      trackApiCall({ caller: caller, nb_emplois: 1, result_count: 1, api: "jobV1/matcha", result: "OK" });
+    }
 
     return { matchas: job };
   } catch (error) {
@@ -72,6 +77,10 @@ const getMatchaJobById = async ({ id }) => {
     }
 
     console.log("error getting Matcha Job by id", errorObj);
+
+    if (caller) {
+      trackApiCall({ caller: caller, api: "jobV1/matcha", result: "Error" });
+    }
 
     return errorObj;
   }

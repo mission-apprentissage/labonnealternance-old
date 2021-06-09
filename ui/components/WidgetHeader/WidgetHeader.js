@@ -14,20 +14,16 @@ const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
   let additionalClassName = selectedItem && includes(router.asPath, "page=fiche") ? "detail" : "global";
 
   if (isHome) {
-    additionalClassName = "home"
+    additionalClassName = "home";
   }
 
   return (
     <>
       <div className={`c-widgetheader c-widgetheader--${additionalClassName}`}>
         <Row className="c-widgetheader-bar d-none d-md-flex py-2 pl-3">
-          {isHome ? (
-            ""
-          ) : (
-            <LogoIdea />
-          )}
+          {isHome ? "" : <LogoIdea />}
           <div>
-            <HeaderForm handleSearchSubmit={handleSearchSubmit} />
+            <HeaderForm handleSearchSubmit={handleSearchSubmit} isHome={isHome} />
           </div>
         </Row>
       </div>

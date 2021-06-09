@@ -4,7 +4,7 @@ const Sentry = require("@sentry/node");
 const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
 const { formationsQueryValidator, formationsRegionQueryValidator } = require("./formationsQueryValidator");
-const { trackEvent } = require("../common/utils/sendTrackingEvent");
+const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const crypto = require("crypto");
 
 const formationResultLimit = 500;
@@ -513,10 +513,6 @@ const getFormationsQuery = async (query) => {
 
   if (queryValidationResult.error) return queryValidationResult;
 
-  if (query.caller) {
-    trackEvent({ category: "Appel API", action: "formationV1", label: query.caller });
-  }
-
   try {
     const formations = await getAtLeastSomeFormations({
       romes: query.romes ? query.romes.split(",") : null,
@@ -528,30 +524,54 @@ const getFormationsQuery = async (query) => {
       romeDomain: query.romeDomain,
     });
 
+    if (query.caller) {
+      trackApiCall({
+        caller: query.caller,
+        api: "formationV1",
+        nb_formations: formations?.results.length,
+        result_count: formations?.results.length,
+        result: "OK",
+      });
+    }
+
     //throw new Error("BIG BANG");
     return formations;
   } catch (err) {
     console.error("Error ", err.message);
     Sentry.captureException(err);
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "formationV1", result: "Error" });
+    }
     return { error: "internal_error" };
   }
 };
 
 const getFormationQuery = async (query) => {
-  if (query.caller) {
-    trackEvent({ category: "Appel API", action: "formationV1", label: query.caller });
-  }
-
   try {
     const formation = await getOneFormationFromId({
       id: query.id,
     });
+
+    if (query.caller) {
+      trackApiCall({
+        caller: query.caller,
+        api: "formationV1/formation",
+        nb_formations: 1,
+        result_count: 1,
+        result: "OK",
+      });
+    }
 
     //throw new Error("BIG BANG");
     return formation;
   } catch (err) {
     console.error("Error ", err.message);
     Sentry.captureException(err);
+
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "formationV1/formation", result: "Error" });
+    }
+
     return { error: "internal_error" };
   }
 };
@@ -590,10 +610,8 @@ const getFormationsParRegionQuery = async (query) => {
 
   const queryValidationResult = formationsRegionQueryValidator(query);
 
-  if (queryValidationResult.error) return queryValidationResult;
-
-  if (query.caller) {
-    trackEvent({ category: "Appel API", action: "formationRegionV1", label: query.caller });
+  if (queryValidationResult.error) {
+    return queryValidationResult;
   }
 
   try {
@@ -605,6 +623,16 @@ const getFormationsParRegionQuery = async (query) => {
       romeDomain: query.romeDomain,
     });
 
+    if (query.caller) {
+      trackApiCall({
+        caller: query.caller,
+        api: "formationRegionV1",
+        nb_formations: formations.length,
+        result_count: formations.length,
+        result: "OK",
+      });
+    }
+
     formations = transformFormationsForIdea(formations);
 
     sortFormations(formations);
@@ -614,6 +642,11 @@ const getFormationsParRegionQuery = async (query) => {
   } catch (err) {
     console.error("Error ", err.message);
     Sentry.captureException(err);
+
+    if (query.caller) {
+      trackApiCall({ caller: query.caller, api: "formationRegionV1", result: "Error" });
+    }
+
     return { error: "internal_error" };
   }
 };

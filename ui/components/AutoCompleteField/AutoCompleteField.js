@@ -66,13 +66,23 @@ export const AutoCompleteField = ({
 
   // hack pour scroller un champ autocomplete dont les valeurs pourraient être cachées par le clavier du mobile
   const onFocusTriggered = (e) => {
-    let ancestor = e.currentTarget.closest(`#${scrollParentId}`);
-    if (ancestor) {
-      setTimeout(() => {
-        if (typeof window !== "undefined") {
-          if (window.innerHeight < 650) ancestor.scrollTop = ancestor.scrollTop + 150;
-        }
-      }, 350);
+    if (typeof window !== "undefined") {
+      if (window.innerHeight < 650) {
+        let target = e.currentTarget;
+        setTimeout(() => {
+          if (scrollParentId) {
+            let ancestor = target.closest(`#${scrollParentId}`);
+
+            if (ancestor) {
+              ancestor.scrollTop = ancestor.scrollTop + 150;
+            }
+          } else {
+            const closest = target.closest(".c-input-work-container");
+            const y = closest.getBoundingClientRect().top + window.pageYOffset - 20;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        }, 350);
+      }
     }
   };
 

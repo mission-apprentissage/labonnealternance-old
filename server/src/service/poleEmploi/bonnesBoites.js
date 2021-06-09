@@ -126,7 +126,7 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
     let params = {
       rome_codes: romes,
       latitude: latitude,
-      sort: "distance",
+      sort: "score",
       longitude: longitude,
       contract: type === "lbb" ? "dpae" : "alternance",
       page_size: companyLimit,
@@ -164,7 +164,7 @@ const getCompanyFromSiret = async ({ siret, referer, caller, type }) => {
     let headers = peApiHeaders;
     headers.Authorization = `Bearer ${token}`;
 
-    const companyQuery = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details`, {
+    const companyQuery = await axios.get(`${lbbCompanyApiEndPoint}${siret}/details?contract=alternance`, {
       headers,
     });
 

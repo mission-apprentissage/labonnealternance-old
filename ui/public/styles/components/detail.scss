@@ -170,6 +170,11 @@
   text-align: left;
   margin-bottom: 0;
   margin-top: 21px;
+
+  pre 
+  {
+    white-space: pre-wrap;
+  }
 }
 
 .c-detail-description-me {

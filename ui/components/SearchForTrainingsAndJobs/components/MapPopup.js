@@ -1,5 +1,5 @@
-import React from "react";
-import { setSelectedItem } from "../../../store/actions";
+import React, { useEffect } from "react";
+import { setSelectedMapPopupItem, setSelectedItem } from "../../../store/actions";
 import { useDispatch } from "react-redux";
 import { getJobAddress } from "../../../utils/jobs";
 import { logError } from "../../../utils/tools";
@@ -15,6 +15,10 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
     setSelectedMarker(item);
     handleSelectItem(item);
   };
+
+  useEffect(() => {
+    dispatch(setSelectedMapPopupItem(item));
+  }, []);
 
   const getContent = () => {
     try {

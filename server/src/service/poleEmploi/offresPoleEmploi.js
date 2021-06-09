@@ -182,7 +182,7 @@ const getPeJobs = async (romes, insee, radius, limit) => {
       codeROME: romes,
       commune: codeInsee,
       distance,
-      sort: 2,
+      sort: 0,
       natureContrat: peContratsAlternances,
       range: `0-${limit - 1}`,
     };
