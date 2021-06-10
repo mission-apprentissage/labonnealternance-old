@@ -36,7 +36,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
               <img className="cardIcon mr-2" src={jobIcon} alt="" />
               <span className="mapboxPopupTitle">Opportunité<span className={`${list.length > 1 ? '' : 'd-none'}`}>s</span> d'emploi : </span>
             </div>
-            <div className="c-mapbox-address ml-3 my-2 mb-3">
+            <div className="c-mapbox-address mx-3 my-2 mb-3">
               {getJobAddress(list[0])}
             </div>
             <div className="c-mapbox-bg">
