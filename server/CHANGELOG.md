@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## 1.15.4 [10/06/2021]
+[591] Nouvelle charte popin formation
 
 ## 1.15.3 [08/06/2021]
 [639] Changement de texte CTA principal
@@ -12,7 +14,6 @@
 [670] Fix appel bonne boîte LBA
 [638b] Taille "niveau d'études" 
 [662] Enregistrer en base les appels API
-[591] Nouvelle charte popin formation
 
 ## 1.15.2 [27/05/2021]
 [643] Icône plus grosse au clic sur la map
