@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.15.4 [10/06/2021]
+[669] Affinage remontées Sentry
+
 ## 1.15.3 [08/06/2021]
 [639] Changement de texte CTA principal
 [638] Select "niveau d'études" plus petit
