@@ -127,9 +127,18 @@ const transformPeJobForIdea = (job, lat, long) => {
   resultJob.company = {};
 
   if (job.entreprise) {
-    if (job.entreprise.nom) resultJob.company.name = job.entreprise.nom;
-    if (job.entreprise.logo) resultJob.company.logo = job.entreprise.logo;
-    if (job.entreprise.description) resultJob.company.description = job.entreprise.description;
+    if (job.entreprise.nom) {
+      resultJob.company.name = job.entreprise.nom;
+    }
+    if (job.entreprise.logo) {
+      resultJob.company.logo = job.entreprise.logo;
+    }
+    if (job.entreprise.description) {
+      resultJob.company.description = job.entreprise.description;
+    }
+    if (job.entreprise.siret) {
+      resultJob.company.siret = job.entreprise.siret;
+    }
   }
 
   resultJob.url = `https://candidat.pole-emploi.fr/offres/recherche/detail/${job.id}`;
@@ -232,6 +241,7 @@ const getPeJobFromId = async ({ id, caller }) => {
 
       return { result: "not_found", message: "Offre non trouvée" };
     } else {
+      console.log(job.data);
       let peJob = transformPeJobForIdea(job.data, null, null);
 
       if (caller) {
