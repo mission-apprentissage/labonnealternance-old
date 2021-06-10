@@ -175,7 +175,7 @@ canvas.mapboxgl-canvas:focus {
   color: $gray-700;
   text-decoration: underline;
   text-underline-offset: 3px;
-  max-width: 333px;
+  /*max-width: 333px; TODO: à réétudier*/
   text-align: left;
 }
 
