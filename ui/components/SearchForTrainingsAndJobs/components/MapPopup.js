@@ -72,7 +72,7 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
               <span className="mapboxPopupTitle">Formations : </span>
             </div>
             <div className="mapboxPopupPlace ml-3 my-2">{list[0].company.name}</div>
-            <div className="mapboxPopupAddress ml-3 my-2 mb-3">
+            <div className="mapboxPopupAddress mx-3 my-2 mb-3">
               {list[0].place.fullAddress}
             </div>
             <div className="mapboxPopupBg">
