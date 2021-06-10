@@ -1,25 +1,3 @@
-.c-organisme-link a {
-  color: $gray-750;
-  word-break: break-all;
-  border-bottom: none;
-  @include media-breakpoint-up(sm) { 
-    &:hover {
-      text-decoration: none;
-    }
-    border-bottom: solid $info 2px;
-  }
-}
-
-.c-organisme-help {
-  @extend .pt-4, .pb-3;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-a.c-organisme-contact-link {
-  @extend .btn, .btn-outline-primary, .px-3;
-}
-
 .c-recruteur-hero {
   background-color: white;
   border-radius: 1rem;
@@ -28,5 +6,9 @@ a.c-organisme-contact-link {
 
 .c-recruteur-hero-title {
   font-size: 26px;
+  font-weight: 700;
+}
+
+.c-recruteur-title {
   font-weight: 700;
 }
