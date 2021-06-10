@@ -229,7 +229,6 @@ const getPeJobFromId = async ({ id, caller }) => {
 
       return { result: "not_found", message: "Offre non trouvée" };
     } else {
-      console.log(job.data);
       let peJob = transformPeJobForIdea(job.data, null, null);
 
       if (caller) {
