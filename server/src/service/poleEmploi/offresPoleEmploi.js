@@ -1,6 +1,5 @@
 const distance = require("@turf/distance");
 const axios = require("axios");
-const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
 const { trackApiCall } = require("../../common/utils/sendTrackingEvent");
 const { manageApiError } = require("../../common/utils/errorManager");
@@ -8,7 +7,7 @@ const { manageApiError } = require("../../common/utils/errorManager");
 //const poleEmploi = require("./common.js");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
 
-const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius }) => {
+const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius, caller }) => {
   // la liste des romes peut être supérieure au maximum de trois autorisés par l'api offre de PE
   // on segmente les romes en blocs de max 3 et lance autant d'appels parallèles que nécessaires
   let chunkedRomes = [];
@@ -22,7 +21,7 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius }) 
 
   const jobs = await Promise.all(
     chunkedRomes.map(async (chunk) => {
-      const res = await getSomePeJobsForChunkedRomes({ romes: chunk, insee, radius, lat, long, strictRadius });
+      const res = await getSomePeJobsForChunkedRomes({ romes: chunk, insee, radius, lat, long, strictRadius, caller });
       return res;
     })
   );
@@ -55,7 +54,7 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius }) 
 };
 
 // appel de l'api offres pour un bloc de 1 à 3 romes
-const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, strictRadius }) => {
+const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, strictRadius, caller }) => {
   let jobResult = null;
   let currentRadius = strictRadius ? radius : 20000;
   let jobLimit = 50; //TODO: query params options or default value from properties -> size || 50
@@ -63,7 +62,7 @@ const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, s
   let trys = 0;
 
   while (trys < 3) {
-    jobResult = await getPeJobs(romes, insee, currentRadius, jobLimit);
+    jobResult = await getPeJobs({ romes, insee, currentRadius, jobLimit, caller });
 
     if (jobResult.status === 429) {
       console.log("PE jobs api quota exceeded. Retrying : ", trys + 1);
@@ -175,7 +174,7 @@ const peJobsApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/
 const peJobApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/";
 const peContratsAlternances = "E2,FS"; //E2 -> Contrat d'Apprentissage, FS -> contrat de professionalisation
 
-const getPeJobs = async (romes, insee, radius, limit) => {
+const getPeJobs = async ({ romes, insee, radius, limit, caller }) => {
   try {
     const token = await getAccessToken("pe");
     let headers = peApiHeaders;
@@ -207,18 +206,7 @@ const getPeJobs = async (romes, insee, radius, limit) => {
 
     return jobs.data;
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
-
-    Sentry.captureException(error);
-
-    if (error.response) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
-    }
-
-    console.log("error get PE Jobs", errorObj);
-
-    return errorObj;
+    return manageApiError({ error, api: "jobV1", caller, errorTitle: "getting jobs from PE" });
   }
 };
 
