@@ -126,7 +126,7 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
     let params = {
       rome_codes: romes,
       latitude: latitude,
-      sort: "score",
+      sort: "distance", //sort: "score", TODO: remettre sort score après expérimentation CBS
       longitude: longitude,
       contract: type === "lbb" ? "dpae" : "alternance",
       page_size: companyLimit,

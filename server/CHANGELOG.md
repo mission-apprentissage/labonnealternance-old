@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.15.4 [10/06/2021]
+[684] Rollback tri apis 
 [591] Nouvelle charte popin formation
 
 ## 1.15.3 [08/06/2021]
