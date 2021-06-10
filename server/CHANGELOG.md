@@ -17,6 +17,7 @@
 [670] Fix appel bonne boîte LBA
 [638b] Taille "niveau d'études" 
 [662] Enregistrer en base les appels API
+[628] Redesign fiche Matcha
 
 ## 1.15.2 [27/05/2021]
 [643] Icône plus grosse au clic sur la map
