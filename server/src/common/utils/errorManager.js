@@ -1,5 +1,5 @@
 const Sentry = require("@sentry/node");
-const { trackApiCall } = require("../../common/utils/sendTrackingEvent");
+const { trackApiCall } = require("./sendTrackingEvent");
 
 const manageApiError = ({ error, api, caller, errorTitle }) => {
   let errorObj = { result: "error", message: error.message };
