@@ -39,19 +39,13 @@ const getPeJobQuery = async (query) => {
   try {
     const job = await offresPoleEmploi.getPeJobFromId({
       id: query.id,
+      caller: query.caller,
     });
 
-    if (query.caller) {
-      trackApiCall({ caller: query.caller, nb_emplois: 1, result_count: 1, api: "jobV1/job", result: "OK" });
-    }
     //throw new Error("BIG BANG");
     return job;
   } catch (err) {
-    console.error("Error ", err.message);
     Sentry.captureException(err);
-    if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "jobV1/job", result: "Error" });
-    }
     return { error: "internal_error" };
   }
 };
