@@ -24,16 +24,6 @@ const Organisme = (props) => {
             <hr className="c-page-title-separator" align="left" />
           </div>
           <div className="col-12 col-md-7">
-            <div className="c-organisme-hero p-5 mb-5">
-              <h2 className="c-organisme-hero-title">Exprimez votre besoin en alternance</h2>
-              <p className="c-organisme-hero-text">Notre service Matcha vous permet de publier en quelques minutes vos offres sur <strong>La Bonne Alternance.</strong></p>
-              <div className="mb-2">
-                <button className="btn btn-primary ml-1">Publier une offre d'emploi en alternance</button>
-              </div>
-              <div>
-                <small><em>Aucune inscription ne vous sera demandé</em></small>
-              </div>
-            </div>
             <p>La Bonne Alternance expose des données provenant du réseau Carif-oref.</p>
             <p>Pour référencer votre formation, rendez-vous sur le site du Carif-Oref :</p>
             <p className="c-organisme-link">

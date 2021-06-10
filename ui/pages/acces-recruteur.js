@@ -15,15 +15,28 @@ const AccesRecruteur = () => (
       <div className="row">
         <div className="col-12 col-md-5">
           <h1>
-            <span className="d-block c-page-title is-color-2">Informations Recruteur</span>
+            <span className="d-block c-page-title is-color-1">Informations </span>
+            <span className="d-block c-page-title is-color-2">Recruteur</span>
           </h1>
           <hr className="c-page-title-separator" align="left" />
         </div>
 
         <div className="col-12 col-md-7">
           <p className="mb-3">Dernière mise à jour le : 06/05/2021</p>
+          <div className="c-recruteur-hero p-5 mb-5">
+            <h2 className="c-recruteur-hero-title">Exprimez votre besoin en alternance</h2>
+            <p className="c-recruteur-hero-text">Notre service Matcha vous permet de publier en quelques minutes vos offres sur <strong>La Bonne Alternance.</strong></p>
+            <div className="mb-2">
+              <a href="https://matcha.apprentissage.beta.gouv.fr/" target="_blank" className="btn btn-primary ml-1" rel="noopener noreferrer">
+                Publier une offre d'emploi en alternance
+              </a>
+            </div>
+            <div>
+              <small><em>Aucune inscription ne vous sera demandé</em></small>
+            </div>
+          </div>
           <section>
-            <h2 className="mb-3 h3">Conditions d’affichage des offres d’emploi sur La Bonne Alternance</h2>
+            <h2 className="mb-3 h5 c-recruteur-title">Conditions d’affichage des offres d’emploi sur La Bonne Alternance</h2>
             <p>
               Seules les offres d’emploi en contrat d’apprentissage et en contrat de professionnalisation sont visibles
               sur La Bonne Alternance.
@@ -78,7 +91,7 @@ const AccesRecruteur = () => (
             </p>
           </section>
           <section className="mt-4">
-            <h2 className="mb-3 h3">
+            <h2 className="mb-3 h5 c-recruteur-title">
               Condition d’affichage des entreprises sans offre, pour réception de candidatures spontanées
             </h2>
             <p>
@@ -102,7 +115,7 @@ const AccesRecruteur = () => (
             </p>
           </section>
           <section className="mt-4">
-            <h2 className="mb-3 h3">
+            <h2 className="mb-3 h5 c-recruteur-title">
               Vous souhaitez modifier vos coordonnées de contact ou obtenir une autre information ?
             </h2>
             <p>

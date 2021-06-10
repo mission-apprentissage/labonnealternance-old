@@ -19,3 +19,14 @@
 a.c-organisme-contact-link {
   @extend .btn, .btn-outline-primary, .px-3;
 }
+
+.c-recruteur-hero {
+  background-color: white;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.c-recruteur-hero-title {
+  font-size: 26px;
+  font-weight: 700;
+}
