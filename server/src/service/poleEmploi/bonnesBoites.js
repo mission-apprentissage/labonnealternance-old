@@ -1,9 +1,9 @@
 const config = require("config");
 const axios = require("axios");
-const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
 const { getAccessToken, peApiHeaders } = require("./common.js");
 const { isOriginLocal } = require("../../common/utils/isOriginLocal");
+const { manageApiError } = require("../../common/utils/errorManager");
 
 const allowedSources = config.private.allowedSources;
 
@@ -19,7 +19,15 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, s
   let trys = 0;
 
   while (trys < 3) {
-    companySet = await getLbbCompanies({ romes, latitude, longitude, radius: currentRadius, companyLimit, type });
+    companySet = await getLbbCompanies({
+      romes,
+      latitude,
+      longitude,
+      radius: currentRadius,
+      companyLimit,
+      type,
+      caller,
+    });
 
     if (companySet.status === 429) {
       console.log("Lbb api quota exceeded. Retrying : ", trys + 1);
@@ -114,7 +122,7 @@ const lbbApiEndpoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/c
 const lbaApiEndpoint = "https://api.emploi-store.fr/partenaire/labonnealternance/v1/company/";
 const lbbCompanyApiEndPoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/office/";
 
-const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type }) => {
+const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type, caller }) => {
   try {
     const token = await getAccessToken(type);
     //console.log(token);
@@ -142,19 +150,7 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
 
     return companies.data;
   } catch (error) {
-    let errorObj = { result: "error", results: [], message: error.message };
-
-    if (error?.response?.data) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = `${error.response.statusText}: ${error.response.data}`;
-
-      Sentry.captureMessage(errorObj.statusText);
-    }
-    Sentry.captureException(error);
-
-    console.log("error get " + type + " Companies", errorObj);
-
-    return errorObj;
+    return manageApiError({ error, api: "jobV1", caller, errorTitle: "getting companies from PE" });
   }
 };
 
@@ -176,21 +172,11 @@ const getCompanyFromSiret = async ({ siret, referer, caller, type }) => {
 
     return type === "lbb" ? { lbbCompanies: [company] } : { lbaCompanies: [company] };
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
-
-    if (error.response) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
-    }
-
-    if (errorObj.status === 404) {
+    if (error?.response?.status === 404) {
       return { result: "not_found", message: "Société non trouvée" };
+    } else {
+      return manageApiError({ error, api: "jobV1/company", caller, errorTitle: "getting company by Siret from PE" });
     }
-
-    Sentry.captureException(error);
-    console.log("error getting company by siret", errorObj);
-
-    return errorObj;
   }
 };
 
