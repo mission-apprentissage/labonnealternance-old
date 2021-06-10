@@ -3,6 +3,7 @@ const axios = require("axios");
 const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
 const { trackApiCall } = require("../../common/utils/sendTrackingEvent");
+const { manageApiError } = require("../../common/utils/errorManager");
 
 //const poleEmploi = require("./common.js");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
@@ -240,25 +241,7 @@ const getPeJobFromId = async ({ id, caller }) => {
       return { peJobs: [peJob] };
     }
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
-    error.name = `API error ${error?.response?.status ? error.response.status + " " : ""}getting job by id from PE`;
-    if (error?.config) {
-      Sentry.setExtra("config", error?.config);
-    }
-    Sentry.captureException(error);
-
-    if (caller) {
-      trackApiCall({ caller, api: "jobV1/job", result: "Error" });
-    }
-
-    if (error.response) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
-    }
-
-    console.log("error get PE Job by id", errorObj);
-
-    return errorObj;
+    return manageApiError({ error, api: "jobV1/job", caller, errorTitle: "getting job by id from PE" });
   }
 };
 
