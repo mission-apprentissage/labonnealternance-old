@@ -20,6 +20,7 @@ import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
+  console.log('selectedItem', selectedItem);
   const kind = selectedItem?.ideaType;
 
   const distance = selectedItem?.place?.distance;
@@ -30,7 +31,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     setSeeInfo(false);
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
-  let actualTitle = selectedItem?.title || selectedItem?.longTitle;
+  let actualTitle = selectedItem?.company?.name || selectedItem?.title || selectedItem?.longTitle;
 
   const { extendedSearch } = useSelector((state) => state.trainings);
 
