@@ -2,6 +2,7 @@ const distance = require("@turf/distance");
 const axios = require("axios");
 const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
+const { trackApiCall } = require("../../common/utils/sendTrackingEvent");
 
 //const poleEmploi = require("./common.js");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
@@ -211,7 +212,7 @@ const getPeJobs = async (romes, insee, radius, limit) => {
   }
 };
 
-const getPeJobFromId = async ({ id }) => {
+const getPeJobFromId = async ({ id, caller }) => {
   try {
     const token = await getAccessToken("pe");
     let headers = peApiHeaders;
@@ -224,16 +225,31 @@ const getPeJobFromId = async ({ id }) => {
     //throw new Error("boom");
 
     if (job.status === 204 || job.status === 400) {
+      if (caller) {
+        trackApiCall({ caller, api: "jobV1/job", result: "Error" });
+      }
+
       return { result: "not_found", message: "Offre non trouvée" };
     } else {
       let peJob = transformPeJobForIdea(job.data, null, null);
+
+      if (caller) {
+        trackApiCall({ caller, nb_emplois: 1, result_count: 1, api: "jobV1/job", result: "OK" });
+      }
 
       return { peJobs: [peJob] };
     }
   } catch (error) {
     let errorObj = { result: "error", message: error.message };
-
+    error.name = `API error ${error?.response?.status ? error.response.status + " " : ""}getting job by id from PE`;
+    if (error?.config) {
+      Sentry.setExtra("config", error?.config);
+    }
     Sentry.captureException(error);
+
+    if (caller) {
+      trackApiCall({ caller, api: "jobV1/job", result: "Error" });
+    }
 
     if (error.response) {
       errorObj.status = error.response.status;
