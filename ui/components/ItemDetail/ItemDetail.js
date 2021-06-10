@@ -145,12 +145,16 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             <p className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</p>
 
-            <p className={`c-detail-activity c-detail-title--${kind}`}>
-              {kind === "lba" || kind === "lbb"
-                ? get(selectedItem, "nafs[0].label", "Candidature spontanée")
-                : get(selectedItem, "company.name", "")}
-              {kind === "formation" ? ` (${selectedItem.company.place.city})` : ""}
-            </p>
+            {
+              ["lba", "lbb", "formation"].includes(kind) ? 
+                <p className={`c-detail-activity c-detail-title--${kind}`}>
+                  {kind === "lba" || kind === "lbb" ? get(selectedItem, "nafs[0].label", "Candidature spontanée") : ""}
+                  {kind === "formation" ? ` (${selectedItem.company.place.city})` : ""}
+                </p>
+                :
+                ""
+            }
+            {kind === "matcha" ? "Coiffure" : ""}
             <p className="d-flex mt-4 text-left">
               <span className="d-block">
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
