@@ -11,7 +11,17 @@ const isAllowedSource = ({ referer, caller }) => {
   return isOriginLocal(referer) || allowedSources.split("|").indexOf(caller) >= 0;
 };
 
-const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, strictRadius, referer, caller }) => {
+const getSomeLbbCompanies = async ({
+  romes,
+  latitude,
+  longitude,
+  radius,
+  type,
+  strictRadius,
+  referer,
+  caller,
+  api = "jobV1",
+}) => {
   let companySet = null;
   let currentRadius = strictRadius ? radius : 20000;
   let companyLimit = 100; //TODO: query params options or default value from properties -> size || 100
@@ -27,6 +37,7 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, s
       companyLimit,
       type,
       caller,
+      api,
     });
 
     if (companySet.status === 429) {
@@ -122,7 +133,7 @@ const lbbApiEndpoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/c
 const lbaApiEndpoint = "https://api.emploi-store.fr/partenaire/labonnealternance/v1/company/";
 const lbbCompanyApiEndPoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/office/";
 
-const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type, caller }) => {
+const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type, caller, api = "jobV1" }) => {
   try {
     const token = await getAccessToken(type);
     //console.log(token);
@@ -150,7 +161,7 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
 
     return companies.data;
   } catch (error) {
-    return manageApiError({ error, api: "jobV1", caller, errorTitle: "getting companies from PE" });
+    return manageApiError({ error, api, caller, errorTitle: `getting companies from PE (${api})` });
   }
 };
 

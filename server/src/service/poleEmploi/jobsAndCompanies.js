@@ -89,6 +89,7 @@ const getJobsFromApi = async ({ query, api }) => {
             long: query.longitude,
             strictRadius: query.strictRadius,
             caller: query.caller,
+            api,
           })
         : null,
       sources.indexOf("lba") >= 0
@@ -101,6 +102,7 @@ const getJobsFromApi = async ({ query, api }) => {
             strictRadius: query.strictRadius,
             referer: query.referer,
             caller: query.caller,
+            api,
           })
         : null,
       sources.indexOf("lbb") >= 0
@@ -113,6 +115,7 @@ const getJobsFromApi = async ({ query, api }) => {
             strictRadius: query.strictRadius,
             referer: query.referer,
             caller: query.caller,
+            api,
           })
         : null,
       sources.indexOf("matcha") >= 0
@@ -121,6 +124,7 @@ const getJobsFromApi = async ({ query, api }) => {
             latitude: query.latitude,
             longitude: query.longitude,
             radius: parseInt(query.radius),
+            api,
           })
         : null,
     ]);
