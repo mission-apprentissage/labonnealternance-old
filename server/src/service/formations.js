@@ -174,7 +174,7 @@ const getFormation = async ({ id }) => {
 };
 
 // Charge la formation ayant l'id en paramètre
-const getOneFormationFromId = async ({ id }) => {
+const getOneFormationFromId = async ({ id, caller }) => {
   try {
     let formation = [];
 
@@ -188,18 +188,12 @@ const getOneFormationFromId = async ({ id }) => {
 
     return formation;
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
-
-    Sentry.captureException(error);
-
-    if (error.response) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
-    }
-
-    console.error("error get Training", errorObj);
-
-    return errorObj;
+    return manageApiError({
+      error,
+      api: "formationV1/formation",
+      caller,
+      errorTitle: "getting training by id from Catalogue",
+    });
   }
 };
 
@@ -551,7 +545,12 @@ const getFormationQuery = async (query) => {
   try {
     const formation = await getOneFormationFromId({
       id: query.id,
+      caller: query.caller,
     });
+
+    if (formation?.result === "error") {
+      return { error: "internal_error" };
+    }
 
     if (query.caller) {
       trackApiCall({
