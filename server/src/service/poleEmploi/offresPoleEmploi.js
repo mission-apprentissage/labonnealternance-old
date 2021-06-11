@@ -174,7 +174,7 @@ const peJobsApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/
 const peJobApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/";
 const peContratsAlternances = "E2,FS"; //E2 -> Contrat d'Apprentissage, FS -> contrat de professionalisation
 
-const getPeJobs = async ({ romes, insee, radius, limit, caller }) => {
+const getPeJobs = async ({ romes, insee, radius, jobLimit, caller }) => {
   try {
     const token = await getAccessToken("pe");
     let headers = peApiHeaders;
@@ -194,7 +194,7 @@ const getPeJobs = async ({ romes, insee, radius, limit, caller }) => {
       distance,
       sort: 0,
       natureContrat: peContratsAlternances,
-      range: `0-${limit - 1}`,
+      range: `0-${jobLimit - 1}`,
     };
 
     const jobs = await axios.get(`${peJobsApiEndpoint}`, {
