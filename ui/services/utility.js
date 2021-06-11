@@ -6,4 +6,8 @@ const amongst = (item, collection) => {
   return includes(collection, item);
 };
 
-export { amongst }
+const isNonEmptyString = (x) => {
+  return Object.prototype.toString.call(x) === "[object String]" && x.length > 0
+};
+
+export { amongst, isNonEmptyString }
