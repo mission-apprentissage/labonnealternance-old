@@ -1,6 +1,7 @@
 import { includes } from "lodash";
 
-// indique l'attribut de l'objet contenant le texte de l'item sélectionné à afficher
+// indique si un élément fait parti d'une collection.
+// L'inverse de "includes". S'appui sur lodash pour plus de compatibilité.
 const amongst = (item, collection) => {
   return includes(collection, item);
 };
