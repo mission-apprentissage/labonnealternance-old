@@ -82,6 +82,15 @@
   color: $gray-700;
 }
 
+.c-detail-square {
+  display: inline-block;
+  color: rgba(0, 0, 0, 0);
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  background-color: $pinksoft750;
+}
+
 .c-detail-title.c-detail-title--matcha {
   margin-bottom: 0;
 }

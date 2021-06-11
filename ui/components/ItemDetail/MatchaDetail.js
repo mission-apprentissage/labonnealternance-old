@@ -96,8 +96,13 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
       </p>
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
       <div>
-        <div className="c-detail-company">
-          {get(job, "company.name", ReactHtmlParser("<em>Entreprise non précisée</em>"))}
+        <div className="c-detail-company position-relative">
+          <span class="c-detail-square">
+            &nbsp;
+          </span>
+          <span class="d-inline-block ml-2">
+            {get(job, "company.name", ReactHtmlParser("<em>Entreprise non précisée</em>"))}
+          </span>
           <span className="c-detail-proposal"> propose actuellement cette offre</span>
         </div>
         <h2 className="c-detail-jobtitle">{get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))}</h2>
