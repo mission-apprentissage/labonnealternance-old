@@ -131,7 +131,7 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
   }
 };
 
-const getFormation = async ({ id }) => {
+const getFormation = async ({ id, caller }) => {
   try {
     let mustTerm = [
       {
@@ -163,13 +163,13 @@ const getFormation = async ({ id }) => {
     });
 
     return formations;
-  } catch (err) {
-    let error_msg = _.get(err, "meta.body", err.message);
-    console.error("Error getting training from id ", error_msg);
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      console.error("Elastic search is down or unreachable");
-    }
-    return { result: "error", error: error_msg, message: error_msg };
+  } catch (error) {
+    return manageApiError({
+      error,
+      api: "formationV1/formation",
+      caller,
+      errorTitle: "getting training by id from Catalogue",
+    });
   }
 };
 
@@ -180,6 +180,7 @@ const getOneFormationFromId = async ({ id, caller }) => {
 
     formation = await getFormation({
       id,
+      caller,
     });
 
     if (!formation.error) {
