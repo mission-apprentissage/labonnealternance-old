@@ -155,7 +155,14 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 :
                 ""
             }
-            {kind === "matcha" ? "Coiffure" : ""}
+            {
+              kind === "matcha" ? 
+                <div className="c-detail-matcha-subtitle">
+                  {selectedItem.title}
+                </div> 
+              : 
+              ""
+            }
             <p className="d-flex mt-4 text-left">
               <span className="d-block">
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
