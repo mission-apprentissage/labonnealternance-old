@@ -161,6 +161,7 @@
   text-align: left;
   margin-bottom: 0;
   margin-top: 21px;
+  color: $gray-700;
 }
 .c-detail-meta {
   font-size: 16px;
@@ -185,6 +186,7 @@
 
 .c-detail-description {
   margin-top: 41px;
+  text-align: left;
   &.is-first {
     margin-top: 20px;
   }
@@ -225,6 +227,7 @@
   text-align: left;
   margin-bottom: 0;
   margin-top: 24px;
+  color: $gray-700;
 }
 
 .c-detail-pelink {
@@ -444,6 +447,16 @@ a.c-detail-lbb-siretbutton {
 .c-see-info.c-see-info--matcha {
   max-width: 320px;
   padding: 11px 0px;
+  margin-bottom: 20px;
+  margin-top: 4px;
+}
+
+.c-detail-header-separator.c-detail-header-separator--matcha {
+  margin: 0;
+}
+
+.c-detail-sizetext.c-detail-sizetext--matcha {
+  margin-bottom: 32px;
 }
 
 .c-detail-stickynav {

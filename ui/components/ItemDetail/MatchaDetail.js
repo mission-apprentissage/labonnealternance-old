@@ -63,7 +63,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   return (
     <>
       {contactPhone || contactEmail ? (
-        <div className="d-flex mb-3">
+        <div className="d-flex">
           {seeInfo ? (
             <>
               <span className="d-block">
@@ -85,8 +85,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
       ) : (
         ""
       )}
-      <p className="mb-3 text-left">
-        <span className="c-detail-sizetext d-block">
+      <p className="text-left">
+        <span className={"d-block c-detail-sizetext c-detail-sizetext--" + kind}>
           <img className="mt-n1" src="/images/info.svg" alt="information" />
           <span className="ml-2 c-detail-knowmore">En savoir plus sur </span>
           <a
@@ -99,13 +99,13 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </a>
         </span>
       </p>
-      <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
+      <hr className={"mb-4 c-detail-header-separator c-detail-header-separator--" + kind} />
       <div>
         <div className="c-detail-company position-relative">
-          <span class="c-detail-square">
+          <span className="c-detail-square">
             &nbsp;
           </span>
-          <span class="d-inline-block ml-2">
+          <span className="d-inline-block ml-2">
             {get(job, "company.name", ReactHtmlParser("<em>Entreprise non précisée</em>"))}
           </span>
           <span className="c-detail-proposal"> propose actuellement cette offre</span>
