@@ -10,6 +10,7 @@ import { SendTrackEvent } from "utils/gtm";
 let md = require("markdown-it")().disable(["link", "image"]);
 
 const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
+  console.log('job', job);
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
@@ -22,6 +23,10 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   }, [job?.job?.id]);
 
   const description = get(job, "job.description", undefined);
+
+  const isNonEmptyString = (x) => {
+    return Object.prototype.toString.call(x) === "[object String]" && x.length > 0
+  }
 
   const kind = job?.ideaType;
 
@@ -109,6 +114,14 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
         <div className="c-detail-description">
           <h3 className="c-detail-description-title">Niveau requis</h3>
+          {
+            isNonEmptyString(job?.diplomaLevel) ? 
+              job.diplomaLevel.split(", ").forEach(diploma => {
+                <span>{diploma}</span>
+              })
+            :
+            "Non défini"
+          }
           <div className="c-detail-description-text">{job.diplomaLevel}</div>
         </div>
 
