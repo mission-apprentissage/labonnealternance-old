@@ -5,7 +5,7 @@ import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { findIndex, concat, pick, get, defaultTo, round } from "lodash";
-import { amongst } from "services/utility";
+import { amongst } from "utils/arrayutils";
 import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";

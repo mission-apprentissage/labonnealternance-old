@@ -4,9 +4,8 @@ import { get } from "lodash";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
 import ReactHtmlParser from "react-html-parser";
 import { capitalizeFirstLetter } from "../../utils/strutils";
-import TagCandidatureSpontanee from "components/ItemDetail/TagCandidatureSpontanee.js";
 import { SendTrackEvent } from "utils/gtm";
-import { isNonEmptyString } from "services/utility";
+import { isNonEmptyString } from "utils/strutils";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
