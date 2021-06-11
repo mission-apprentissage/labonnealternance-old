@@ -3,9 +3,8 @@ import questionmarkIcon from "../../public/images/icons/questionmark.svg";
 import { get } from "lodash";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
 import ReactHtmlParser from "react-html-parser";
-import { capitalizeFirstLetter } from "../../utils/strutils";
 import { SendTrackEvent } from "utils/gtm";
-import { isNonEmptyString } from "utils/strutils";
+import { isNonEmptyString, capitalizeFirstLetter } from "utils/strutils";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
