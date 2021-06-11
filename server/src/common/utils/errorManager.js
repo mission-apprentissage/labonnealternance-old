@@ -3,7 +3,7 @@ const { trackApiCall } = require("./sendTrackingEvent");
 
 const manageApiError = ({ error, api, caller, errorTitle }) => {
   let errorObj = { result: "error", message: error.message };
-  const status = error?.response?.status ? error.response.status : "";
+  const status = error?.response?.status || "";
   error.name = `API error ${status ? status + " " : ""}${errorTitle}`;
   if (error?.config) {
     Sentry.setExtra("config", error?.config);
