@@ -5,6 +5,7 @@ import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { findIndex, concat, pick, get, defaultTo, round } from "lodash";
+import { amongst } from "services/utility";
 import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
@@ -37,11 +38,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   const currentList = useSelector((store) => {
     let picked = pick(store.trainings, ["trainings", "jobs"]);
-    let trainingsArray = ["all", "trainings"].includes(activeFilter) ? get(picked, "trainings", []) : [];
+    let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
 
     let jobList = [];
     let companyList = [];
-    if (["all", "jobs"].includes(activeFilter)) {
+    if (amongst(activeFilter, ["all", "jobs"])) {
       if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
       else {
         jobList = mergeJobs(get(picked, "jobs"));
@@ -108,8 +109,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 ) : (
                   ""
                 )}
-                {["lbb", "lba"].includes(kind) ? <TagCandidatureSpontanee /> : ""}
-                {["peJob", "matcha"].includes(kind) ? <TagOffreEmploi /> : ""}
+                {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
+                {amongst(kind, ["peJob", "matcha"])? <TagOffreEmploi /> : ""}
               </div>
               <div>
                 <button
@@ -147,7 +148,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <p className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</p>
 
             {
-              ["lba", "lbb", "formation"].includes(kind) ? 
+              amongst(kind, ["lba", "lbb", "formation"]) ? 
                 <p className={`c-detail-activity c-detail-title--${kind}`}>
                   {kind === "lba" || kind === "lbb" ? get(selectedItem, "nafs[0].label", "Candidature spontanée") : ""}
                   {kind === "formation" ? ` (${selectedItem.company.place.city})` : ""}
@@ -196,7 +197,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           )}
           {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
           {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
-          {["lbb", "lba"].includes(kind) ? (
+          {amongst(kind, ["lbb", "lba"]) ? (
             <LbbCompanyDetail lbb={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
           ) : (
             ""
