@@ -204,7 +204,7 @@ const getPeJobs = async ({ romes, insee, radius, jobLimit, caller, api = "jobV1"
       codeROME: romes,
       commune: codeInsee,
       distance,
-      sort: 0,
+      sort: 2, //sort: 0, TODO: remettre sort 0 après expérimentation CBS
       natureContrat: peContratsAlternances,
       range: `0-${jobLimit - 1}`,
     };

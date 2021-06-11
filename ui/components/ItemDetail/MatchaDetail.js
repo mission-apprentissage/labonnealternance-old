@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import questionmarkIcon from "../../public/images/icons/questionmark.svg";
+import questionmarkIcon from "public/images/icons/questionmark.svg";
 import { get } from "lodash";
-import contactIcon from "../../public/images/icons/contact_icon.svg";
+import contactIcon from "public/images/icons/contact_icon.svg";
 import ReactHtmlParser from "react-html-parser";
-import { capitalizeFirstLetter } from "../../utils/strutils";
-import TagCandidatureSpontanee from "components/ItemDetail/TagCandidatureSpontanee.js";
 import { SendTrackEvent } from "utils/gtm";
+import { isNonEmptyString, capitalizeFirstLetter } from "utils/strutils";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -27,6 +26,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
   let contactEmail = job?.contact?.email;
   let contactPhone = job?.contact?.phone;
+
+  const jobTitle =  get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))
 
   let contactInfo = (
     <>
@@ -57,17 +58,66 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
   return (
     <>
-      <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
+      {contactPhone || contactEmail ? (
+        <div className="d-flex">
+          {seeInfo ? (
+            <>
+              <span className="d-block">
+                <img className="cardIcon" src={contactIcon} alt="" />
+              </span>
+              <span className="ml-2 d-block">
+                <span className="c-detail-address d-block">{contactInfo}</span>
+              </span>
+            </>
+          ) : (
+            <button
+                className={`c-see-info c-see-info--matcha d-block btn btn-outline-primary gtmContact gtm${capitalizeFirstLetter(kind)}`}
+              onClick={() => setSeeInfo(true)}
+            >
+              Voir les informations de contact
+            </button>
+          )}
+        </div>
+      ) : (
+        ""
+      )}
+      <p className="text-left">
+        <span className={"d-block c-detail-sizetext c-detail-sizetext--" + kind}>
+          <img className="mt-n1" src="/images/info.svg" alt="information" />
+          <span className="ml-2 c-detail-knowmore">En savoir plus sur </span>
+          <a
+            href={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
+            target="_blank"
+            className="c-detail-google-search gtmGoogleLink"
+            rel="noopener noreferrer"
+          >
+            {job.company.name}
+          </a>
+        </span>
+      </p>
+      <hr className={"mb-4 c-detail-header-separator c-detail-header-separator--" + kind} />
       <div>
-        <div className="c-detail-company">
-          {get(job, "company.name", ReactHtmlParser("<em>Entreprise non précisée</em>"))}
+        <div className="c-detail-company position-relative">
+          <span className="c-detail-square">
+            &nbsp;
+          </span>
+          <span className="d-inline-block ml-2">
+            {get(job, "company.name", ReactHtmlParser("<em>Entreprise non précisée</em>"))}
+          </span>
           <span className="c-detail-proposal"> propose actuellement cette offre</span>
         </div>
-        <h2 className="c-detail-jobtitle">{get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))}</h2>
+        <h2 className="c-detail-jobtitle">{jobTitle}</h2>
 
         <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Niveau requis</h3>
-          <div className="c-detail-description-text">{job.diplomaLevel}</div>
+          <h3 className="c-detail-description-title c-detail-description-title--matcha1">Niveau requis</h3>
+          {
+            isNonEmptyString(job?.diplomaLevel) ? 
+              job.diplomaLevel.split(", ").map(diploma => {
+                return <div className="c-detail-diploma d-inline-block">{diploma}</div>
+              })
+            :
+            "Non défini"
+          }
         </div>
 
         {description ? (
@@ -79,62 +129,21 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           ""
         )}
 
-        {contactPhone || contactEmail ? (
-          <div className="d-flex mb-3">
-            {seeInfo ? (
-              <>
-                <span className="d-block">
-                  <img className="cardIcon" src={contactIcon} alt="" />
-                </span>
-                <span className="ml-2 d-block">
-                  <span className="c-detail-address d-block">{contactInfo}</span>
-                </span>
-              </>
-            ) : (
-              <button
-                className={`c-see-info d-block btn btn-outline-primary gtmContact gtm${capitalizeFirstLetter(kind)}`}
-                onClick={() => setSeeInfo(true)}
-              >
-                Voir les informations de contact
-              </button>
-            )}
-          </div>
-        ) : (
-          ""
-        )}
-        <p className="mb-3 text-left">
-          <span className="c-detail-sizetext d-block">
-            <img className="mt-n1" src="/images/square_link.svg" alt="" />
-            <span className="ml-2">En savoir plus sur </span>
-            <a
-              href={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
-              target="_blank"
-              className="c-detail-google-search gtmGoogleLink"
-              rel="noopener noreferrer"
-            >
-              {job.company.name}
-            </a>
-          </span>
-        </p>
 
         <hr className="c-detail-header-separator" />
 
-        <div className="c-detail-advice">
+        <div className="c-detail-advice c-detail-advice--matcha">
           <div className="c-detail-advice__figure">
             <img src={questionmarkIcon} alt="point d'interrogation" />
           </div>
           <div className="c-detail-advice__body">
-            <div className="c-detail-advice-title">Le saviez-vous ?</div>
-            <div className="c-detail-advice-text c-detail-advice-text--first">
-              Diversifiez vos démarches en envoyant aussi des
-              <span className="c-detail-advice-highlight"> candidatures spontanées </span>
-              aux entreprises qui n'ont pas diffusé d'offre !
+            <div className="c-detail-advice-text mt-0">
+              L'entreprise <span className="c-detail-advice-highlight"> {job.company.name} </span> nous a récemment fait parvenir un besoin de recrutement :  
+              <span className="c-detail-advice-highlight"> {jobTitle}</span>.
+              Cela signifie qu’elle est activement à la recherche d’un.e candidat.e pour rejoindre son équipe.
             </div>
             <div className="c-detail-advice-text c-detail-advice-text--tag">
-              Repérez les tags suivants dans la liste de résultats
-            </div>
-            <div className="c-detail-advice-tag">
-              <TagCandidatureSpontanee />
+              Vous avez donc tout intérêt à la contacter rapidement, avant que l’offre ne soit pourvue !
             </div>
           </div>
         </div>
