@@ -11,7 +11,6 @@ import { isNonEmptyString } from "services/utility";
 let md = require("markdown-it")().disable(["link", "image"]);
 
 const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
-  console.log('job', job);
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
@@ -110,7 +109,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         <h2 className="c-detail-jobtitle">{get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))}</h2>
 
         <div className="c-detail-description">
-          <h3 className="c-detail-description-title">Niveau requis</h3>
+          <h3 className="c-detail-description-title c-detail-description-title--matcha1">Niveau requis</h3>
           {
             isNonEmptyString(job?.diplomaLevel) ? 
               job.diplomaLevel.split(", ").map(diploma => {
@@ -119,7 +118,6 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             :
             "Non défini"
           }
-          <div className="c-detail-description-text">{job.diplomaLevel}</div>
         </div>
 
         {description ? (
