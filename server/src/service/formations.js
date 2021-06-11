@@ -6,6 +6,7 @@ const { itemModel } = require("../model/itemModel");
 const { formationsQueryValidator, formationsRegionQueryValidator } = require("./formationsQueryValidator");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const crypto = require("crypto");
+const { manageApiError } = require("../common/utils/errorManager");
 
 const formationResultLimit = 500;
 const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
@@ -209,6 +210,7 @@ const getRegionFormations = async ({
   departement,
   diploma,
   limit = formationResultLimit,
+  caller,
 }) => {
   //console.log(romes, coords, radius, diploma);
 
@@ -274,14 +276,13 @@ const getRegionFormations = async ({
     });
 
     return formations;
-  } catch (err) {
-    Sentry.captureException(err);
-    let error_msg = _.get(err, "meta.body", err.message);
-    console.error("Error getting trainings from romes ", error_msg);
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      console.error("Elastic search is down or unreachable");
-    }
-    return { error: error_msg };
+  } catch (error) {
+    return manageApiError({
+      error,
+      api: "formationRegionV1",
+      caller,
+      errorTitle: "getting trainings by regions from Catalogue",
+    });
   }
 };
 
@@ -621,7 +622,16 @@ const getFormationsParRegionQuery = async (query) => {
       departement: query.departement,
       diploma: query.diploma,
       romeDomain: query.romeDomain,
+      caller: query.caller,
     });
+
+    if (formations?.result === "error") {
+      return { error: "internal_error" };
+    }
+
+    formations = transformFormationsForIdea(formations);
+
+    sortFormations(formations);
 
     if (query.caller) {
       trackApiCall({
@@ -632,10 +642,6 @@ const getFormationsParRegionQuery = async (query) => {
         result: "OK",
       });
     }
-
-    formations = transformFormationsForIdea(formations);
-
-    sortFormations(formations);
 
     //throw new Error("BIG BANG");
     return formations;
