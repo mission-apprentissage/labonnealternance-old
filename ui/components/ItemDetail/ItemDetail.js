@@ -167,7 +167,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               <span className="d-block">
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
               </span>
-              <span className="ml-2 d-block">
+              <span className="ml-3 d-block">
                 <span className="c-detail-address d-block">{get(selectedItem, "place.fullAddress", "")}</span>
                 {distance ? (
                   <span className="c-detail-km d-block">
