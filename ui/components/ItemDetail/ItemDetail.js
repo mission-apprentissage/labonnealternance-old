@@ -4,7 +4,7 @@ import PeJobDetail from "./PeJobDetail";
 import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { findIndex, concat, pick, get, includes, defaultTo, round } from "lodash";
+import { findIndex, concat, pick, get, defaultTo, round } from "lodash";
 import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
@@ -37,11 +37,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   const currentList = useSelector((store) => {
     let picked = pick(store.trainings, ["trainings", "jobs"]);
-    let trainingsArray = includes(["all", "trainings"], activeFilter) ? get(picked, "trainings", []) : [];
+    let trainingsArray = ["all", "trainings"].includes(activeFilter) ? get(picked, "trainings", []) : [];
 
     let jobList = [];
     let companyList = [];
-    if (includes(["all", "jobs"], activeFilter)) {
+    if (["all", "jobs"].includes(activeFilter)) {
       if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
       else {
         jobList = mergeJobs(get(picked, "jobs"));
@@ -108,8 +108,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 ) : (
                   ""
                 )}
-                {includes(["lbb", "lba"], kind) ? <TagCandidatureSpontanee /> : ""}
-                {includes(["peJob", "matcha"], kind) ? <TagOffreEmploi /> : ""}
+                {["lbb", "lba"].includes(kind) ? <TagCandidatureSpontanee /> : ""}
+                {["peJob", "matcha"].includes(kind) ? <TagOffreEmploi /> : ""}
               </div>
               <div>
                 <button
@@ -196,7 +196,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           )}
           {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
           {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
-          {includes(["lbb", "lba"], kind) ? (
+          {["lbb", "lba"].includes(kind) ? (
             <LbbCompanyDetail lbb={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
           ) : (
             ""
