@@ -157,7 +157,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             }
             {
               kind === "matcha" ? 
-                <div className="c-detail-matcha-subtitle">
+                <div className="c-detail-matcha-subtitle text-left">
                   {selectedItem.title}
                 </div> 
               : 
