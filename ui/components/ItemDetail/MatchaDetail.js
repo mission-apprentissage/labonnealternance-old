@@ -29,6 +29,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   let contactEmail = job?.contact?.email;
   let contactPhone = job?.contact?.phone;
 
+  const jobTitle =  get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))
+
   let contactInfo = (
     <>
       {contactEmail ? (
@@ -106,7 +108,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </span>
           <span className="c-detail-proposal"> propose actuellement cette offre</span>
         </div>
-        <h2 className="c-detail-jobtitle">{get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))}</h2>
+        <h2 className="c-detail-jobtitle">{jobTitle}</h2>
 
         <div className="c-detail-description">
           <h3 className="c-detail-description-title c-detail-description-title--matcha1">Niveau requis</h3>
@@ -132,22 +134,18 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
         <hr className="c-detail-header-separator" />
 
-        <div className="c-detail-advice">
+        <div className="c-detail-advice c-detail-advice--matcha">
           <div className="c-detail-advice__figure">
             <img src={questionmarkIcon} alt="point d'interrogation" />
           </div>
           <div className="c-detail-advice__body">
-            <div className="c-detail-advice-title">Le saviez-vous ?</div>
-            <div className="c-detail-advice-text c-detail-advice-text--first">
-              Diversifiez vos démarches en envoyant aussi des
-              <span className="c-detail-advice-highlight"> candidatures spontanées </span>
-              aux entreprises qui n'ont pas diffusé d'offre !
+            <div className="c-detail-advice-text mt-0">
+              L'entreprise <span className="c-detail-advice-highlight"> {job.company.name} </span> nous a récemment fait parvenir un besoin de recrutement :  
+              <span className="c-detail-advice-highlight"> {jobTitle}</span>.
+              Cela signifie qu’elle est activement à la recherche d’un.e candidat.e pour rejoindre son équipe.
             </div>
             <div className="c-detail-advice-text c-detail-advice-text--tag">
-              Repérez les tags suivants dans la liste de résultats
-            </div>
-            <div className="c-detail-advice-tag">
-              <TagCandidatureSpontanee />
+              Vous avez donc tout intérêt à la contacter rapidement, avant que l’offre ne soit pourvue !
             </div>
           </div>
         </div>
