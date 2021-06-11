@@ -185,3 +185,6 @@ $small-font-size: 85%;
   cursor: pointer;
 }
 
+body {
+  -webkit-font-smoothing: antialiased;
+}
