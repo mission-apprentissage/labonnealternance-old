@@ -5,6 +5,7 @@
 [684] Rollback tri apis 
 [591] Nouvelle charte popin formation
 [630] Bloc matcha page "recruteur"
+[628] Redesign fiche Matcha
 
 ## 1.15.3 [08/06/2021]
 [639] Changement de texte CTA principal
