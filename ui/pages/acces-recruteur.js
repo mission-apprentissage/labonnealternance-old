@@ -32,7 +32,7 @@ const AccesRecruteur = () => (
               </a>
             </div>
             <div>
-              <small><em>Aucune inscription ne vous sera demandé</em></small>
+              <small><em>Aucune inscription ne vous sera demandée</em></small>
             </div>
           </div>
           <section>
