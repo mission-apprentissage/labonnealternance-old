@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import questionmarkIcon from "../../public/images/icons/questionmark.svg";
+import questionmarkIcon from "public/images/icons/questionmark.svg";
 import { get } from "lodash";
-import contactIcon from "../../public/images/icons/contact_icon.svg";
+import contactIcon from "public/images/icons/contact_icon.svg";
 import ReactHtmlParser from "react-html-parser";
 import { SendTrackEvent } from "utils/gtm";
 import { isNonEmptyString, capitalizeFirstLetter } from "utils/strutils";
