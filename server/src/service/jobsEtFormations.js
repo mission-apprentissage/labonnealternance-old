@@ -23,6 +23,8 @@ const getJobsEtFormationsQuery = async (query) => {
             diploma: query.diploma,
             limit: 500,
             romeDomain: query.romeDomain,
+            caller: query.caller,
+            api: "jobEtFormationV1",
           })
         : null,
       sources.indexOf("lba") >= 0 ||
@@ -33,7 +35,7 @@ const getJobsEtFormationsQuery = async (query) => {
         : null,
     ]);
 
-    if (formations && !formations.error) {
+    if (formations && formations?.result !== "error") {
       formations = transformFormationsForIdea(formations);
     }
 

@@ -4,7 +4,8 @@ import PeJobDetail from "./PeJobDetail";
 import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { findIndex, concat, pick, get, includes, defaultTo, round } from "lodash";
+import { findIndex, concat, pick, get, defaultTo, round } from "lodash";
+import { amongst } from "utils/arrayutils";
 import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
@@ -30,17 +31,20 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     setSeeInfo(false);
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
-  let actualTitle = selectedItem?.title || selectedItem?.longTitle;
+  let actualTitle =
+    kind === "formation"
+      ? selectedItem?.title || selectedItem?.longTitle
+      : selectedItem?.company?.name || selectedItem?.title || selectedItem?.longTitle;
 
   const { extendedSearch } = useSelector((state) => state.trainings);
 
   const currentList = useSelector((store) => {
     let picked = pick(store.trainings, ["trainings", "jobs"]);
-    let trainingsArray = includes(["all", "trainings"], activeFilter) ? get(picked, "trainings", []) : [];
+    let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
 
     let jobList = [];
     let companyList = [];
-    if (includes(["all", "jobs"], activeFilter)) {
+    if (amongst(activeFilter, ["all", "jobs"])) {
       if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
       else {
         jobList = mergeJobs(get(picked, "jobs"));
@@ -107,8 +111,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 ) : (
                   ""
                 )}
-                {includes(["lbb", "lba"], kind) ? <TagCandidatureSpontanee /> : ""}
-                {includes(["peJob", "matcha"], kind) ? <TagOffreEmploi /> : ""}
+                {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
+                {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
               </div>
               <div>
                 <button
@@ -145,17 +149,26 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             <p className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</p>
 
-            <p className={`c-detail-activity c-detail-title--${kind}`}>
-              {kind === "lba" || kind === "lbb"
-                ? get(selectedItem, "nafs[0].label", "Candidature spontanée")
-                : get(selectedItem, "company.name", "")}
-              {kind === "formation" ? ` (${selectedItem.company.place.city})` : ""}
-            </p>
+            {amongst(kind, ["lba", "lbb"]) ? (
+              <p className={`c-detail-activity c-detail-title--${kind}`}>
+                {kind === "lba" || kind === "lbb" ? get(selectedItem, "nafs[0].label", "Candidature spontanée") : ""}
+              </p>
+            ) : (
+              ""
+            )}
+            {amongst(kind, ["formation"]) ? (
+              <p className={`c-detail-activity c-detail-title--formation`}>
+                {`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}
+              </p>
+            ) : (
+              ""
+            )}
+            {kind === "matcha" ? <div className="c-detail-matcha-subtitle text-left">{selectedItem.title}</div> : ""}
             <p className="d-flex mt-4 text-left">
               <span className="d-block">
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
               </span>
-              <span className="ml-2 d-block">
+              <span className="ml-3 d-block">
                 <span className="c-detail-address d-block">{get(selectedItem, "place.fullAddress", "")}</span>
                 {distance ? (
                   <span className="c-detail-km d-block">
@@ -184,7 +197,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           )}
           {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
           {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
-          {includes(["lbb", "lba"], kind) ? (
+          {amongst(kind, ["lbb", "lba"]) ? (
             <LbbCompanyDetail lbb={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
           ) : (
             ""

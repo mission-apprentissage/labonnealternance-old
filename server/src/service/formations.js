@@ -6,6 +6,7 @@ const { itemModel } = require("../model/itemModel");
 const { formationsQueryValidator, formationsRegionQueryValidator } = require("./formationsQueryValidator");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const crypto = require("crypto");
+const { manageApiError } = require("../common/utils/errorManager");
 
 const formationResultLimit = 500;
 const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
@@ -34,7 +35,17 @@ const getDiplomaKey = (value) => {
   }
 };
 
-const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma, limit }) => {
+const getFormations = async ({
+  romes,
+  rncps,
+  romeDomain,
+  coords,
+  radius,
+  diploma,
+  limit,
+  caller,
+  api = "formationV1",
+}) => {
   //console.log(romes, coords, radius, diploma);
 
   try {
@@ -120,17 +131,17 @@ const getFormations = async ({ romes, rncps, romeDomain, coords, radius, diploma
     });
 
     return formations;
-  } catch (err) {
-    let error_msg = _.get(err, "meta.body", err.message);
-    console.error("Error getting trainings from romes ", error_msg);
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      console.error("Elastic search is down or unreachable");
-    }
-    return { result: "error", error: error_msg, message: error_msg };
+  } catch (error) {
+    return manageApiError({
+      error,
+      api,
+      caller,
+      errorTitle: `getting trainings from Catalogue (${api})`,
+    });
   }
 };
 
-const getFormation = async ({ id }) => {
+const getFormation = async ({ id, caller }) => {
   try {
     let mustTerm = [
       {
@@ -162,23 +173,24 @@ const getFormation = async ({ id }) => {
     });
 
     return formations;
-  } catch (err) {
-    let error_msg = _.get(err, "meta.body", err.message);
-    console.error("Error getting training from id ", error_msg);
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      console.error("Elastic search is down or unreachable");
-    }
-    return { result: "error", error: error_msg, message: error_msg };
+  } catch (error) {
+    return manageApiError({
+      error,
+      api: "formationV1/formation",
+      caller,
+      errorTitle: "getting training by id from Catalogue",
+    });
   }
 };
 
 // Charge la formation ayant l'id en paramètre
-const getOneFormationFromId = async ({ id }) => {
+const getOneFormationFromId = async ({ id, caller }) => {
   try {
     let formation = [];
 
     formation = await getFormation({
       id,
+      caller,
     });
 
     if (!formation.error) {
@@ -187,18 +199,12 @@ const getOneFormationFromId = async ({ id }) => {
 
     return formation;
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
-
-    Sentry.captureException(error);
-
-    if (error.response) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
-    }
-
-    console.error("error get Training", errorObj);
-
-    return errorObj;
+    return manageApiError({
+      error,
+      api: "formationV1/formation",
+      caller,
+      errorTitle: "getting training by id from Catalogue",
+    });
   }
 };
 
@@ -209,6 +215,7 @@ const getRegionFormations = async ({
   departement,
   diploma,
   limit = formationResultLimit,
+  caller,
 }) => {
   //console.log(romes, coords, radius, diploma);
 
@@ -274,14 +281,13 @@ const getRegionFormations = async ({
     });
 
     return formations;
-  } catch (err) {
-    Sentry.captureException(err);
-    let error_msg = _.get(err, "meta.body", err.message);
-    console.error("Error getting trainings from romes ", error_msg);
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      console.error("Elastic search is down or unreachable");
-    }
-    return { error: error_msg };
+  } catch (error) {
+    return manageApiError({
+      error,
+      api: "formationRegionV1",
+      caller,
+      errorTitle: "getting trainings by regions from Catalogue",
+    });
   }
 };
 
@@ -294,6 +300,7 @@ const getAtLeastSomeFormations = async ({
   radius,
   diploma,
   maxOutLimitFormation,
+  caller,
 }) => {
   try {
     let formations = [];
@@ -308,6 +315,7 @@ const getAtLeastSomeFormations = async ({
       radius: currentRadius,
       diploma,
       limit: formationLimit,
+      caller,
     });
 
     // si pas de résultat on étend le rayon de recherche et on réduit le nombre de résultats autorisés
@@ -322,30 +330,35 @@ const getAtLeastSomeFormations = async ({
         radius: currentRadius,
         diploma,
         limit: formationLimit,
+        caller,
       });
     }
 
-    if (!formations.error) {
+    if (formations?.result !== "error") {
       formations = deduplicateFormations(formations);
 
       //throw new Error("BANG");
       formations = transformFormationsForIdea(formations);
+
+      if (caller) {
+        trackApiCall({
+          caller: caller,
+          api: "formationV1",
+          nb_formations: formations?.results.length,
+          result_count: formations?.results.length,
+          result: "OK",
+        });
+      }
     }
 
     return formations;
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
-
-    Sentry.captureException(error);
-
-    if (error.response) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
-    }
-
-    console.error("error get Trainings", errorObj);
-
-    return errorObj;
+    return manageApiError({
+      error,
+      api: "formationV1",
+      caller,
+      errorTitle: "getting trainings from Catalogue",
+    });
   }
 };
 
@@ -522,16 +535,11 @@ const getFormationsQuery = async (query) => {
       diploma: query.diploma,
       maxOutLimitFormation: 5,
       romeDomain: query.romeDomain,
+      caller: query.caller,
     });
 
-    if (query.caller) {
-      trackApiCall({
-        caller: query.caller,
-        api: "formationV1",
-        nb_formations: formations?.results.length,
-        result_count: formations?.results.length,
-        result: "OK",
-      });
+    if (formations?.result === "error") {
+      return { error: "internal_error" };
     }
 
     //throw new Error("BIG BANG");
@@ -550,7 +558,12 @@ const getFormationQuery = async (query) => {
   try {
     const formation = await getOneFormationFromId({
       id: query.id,
+      caller: query.caller,
     });
+
+    if (formation?.result === "error") {
+      return { error: "internal_error" };
+    }
 
     if (query.caller) {
       trackApiCall({
@@ -598,9 +611,12 @@ const getFormationDescriptionQuery = async (params) => {
     const formationDescription = await axios.get(`${lbfDescriptionUrl}?${getLbfQueryParams(params)}`);
 
     return formationDescription.data;
-  } catch (err) {
-    console.error("Error ", err.message);
-    Sentry.captureException(err);
+  } catch (error) {
+    manageApiError({
+      error,
+      errorTitle: `getting training description from Labonneformation`,
+    });
+
     return { error: "internal_error" };
   }
 };
@@ -621,7 +637,16 @@ const getFormationsParRegionQuery = async (query) => {
       departement: query.departement,
       diploma: query.diploma,
       romeDomain: query.romeDomain,
+      caller: query.caller,
     });
+
+    if (formations?.result === "error") {
+      return { error: "internal_error" };
+    }
+
+    formations = transformFormationsForIdea(formations);
+
+    sortFormations(formations);
 
     if (query.caller) {
       trackApiCall({
@@ -632,10 +657,6 @@ const getFormationsParRegionQuery = async (query) => {
         result: "OK",
       });
     }
-
-    formations = transformFormationsForIdea(formations);
-
-    sortFormations(formations);
 
     //throw new Error("BIG BANG");
     return formations;

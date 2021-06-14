@@ -1,12 +1,13 @@
 const distance = require("@turf/distance");
 const axios = require("axios");
-const Sentry = require("@sentry/node");
 const { itemModel } = require("../../model/itemModel");
+const { trackApiCall } = require("../../common/utils/sendTrackingEvent");
+const { manageApiError } = require("../../common/utils/errorManager");
 
 //const poleEmploi = require("./common.js");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
 
-const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius }) => {
+const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius, caller, api }) => {
   // la liste des romes peut être supérieure au maximum de trois autorisés par l'api offre de PE
   // on segmente les romes en blocs de max 3 et lance autant d'appels parallèles que nécessaires
   let chunkedRomes = [];
@@ -20,7 +21,16 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius }) 
 
   const jobs = await Promise.all(
     chunkedRomes.map(async (chunk) => {
-      const res = await getSomePeJobsForChunkedRomes({ romes: chunk, insee, radius, lat, long, strictRadius });
+      const res = await getSomePeJobsForChunkedRomes({
+        romes: chunk,
+        insee,
+        radius,
+        lat,
+        long,
+        strictRadius,
+        caller,
+        api,
+      });
       return res;
     })
   );
@@ -53,7 +63,7 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius }) 
 };
 
 // appel de l'api offres pour un bloc de 1 à 3 romes
-const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, strictRadius }) => {
+const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, strictRadius, caller, api }) => {
   let jobResult = null;
   let currentRadius = strictRadius ? radius : 20000;
   let jobLimit = 50; //TODO: query params options or default value from properties -> size || 50
@@ -61,7 +71,7 @@ const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, s
   let trys = 0;
 
   while (trys < 3) {
-    jobResult = await getPeJobs(romes, insee, currentRadius, jobLimit);
+    jobResult = await getPeJobs({ romes, insee, currentRadius, jobLimit, caller, api });
 
     if (jobResult.status === 429) {
       console.log("PE jobs api quota exceeded. Retrying : ", trys + 1);
@@ -71,8 +81,11 @@ const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, s
     } else break;
   }
 
-  if (jobResult.error) return jobResult;
-  else return transformPeJobsForIdea(jobResult, radius, lat, long);
+  if (jobResult?.result === "error") {
+    return jobResult;
+  } else {
+    return transformPeJobsForIdea(jobResult, radius, lat, long);
+  }
 };
 
 // update du contenu avec des résultats pertinents par rapport au rayon
@@ -125,9 +138,18 @@ const transformPeJobForIdea = (job, lat, long) => {
   resultJob.company = {};
 
   if (job.entreprise) {
-    if (job.entreprise.nom) resultJob.company.name = job.entreprise.nom;
-    if (job.entreprise.logo) resultJob.company.logo = job.entreprise.logo;
-    if (job.entreprise.description) resultJob.company.description = job.entreprise.description;
+    if (job.entreprise.nom) {
+      resultJob.company.name = job.entreprise.nom;
+    }
+    if (job.entreprise.logo) {
+      resultJob.company.logo = job.entreprise.logo;
+    }
+    if (job.entreprise.description) {
+      resultJob.company.description = job.entreprise.description;
+    }
+    if (job.entreprise.siret) {
+      resultJob.company.siret = job.entreprise.siret;
+    }
   }
 
   resultJob.url = `https://candidat.pole-emploi.fr/offres/recherche/detail/${job.id}`;
@@ -164,7 +186,7 @@ const peJobsApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/
 const peJobApiEndpoint = "https://api.emploi-store.fr/partenaire/offresdemploi/v2/offres/";
 const peContratsAlternances = "E2,FS"; //E2 -> Contrat d'Apprentissage, FS -> contrat de professionalisation
 
-const getPeJobs = async (romes, insee, radius, limit) => {
+const getPeJobs = async ({ romes, insee, radius, jobLimit, caller, api = "jobV1" }) => {
   try {
     const token = await getAccessToken("pe");
     let headers = peApiHeaders;
@@ -182,9 +204,9 @@ const getPeJobs = async (romes, insee, radius, limit) => {
       codeROME: romes,
       commune: codeInsee,
       distance,
-      sort: 0,
+      sort: 2, //sort: 0, TODO: remettre sort 0 après expérimentation CBS
       natureContrat: peContratsAlternances,
-      range: `0-${limit - 1}`,
+      range: `0-${jobLimit - 1}`,
     };
 
     const jobs = await axios.get(`${peJobsApiEndpoint}`, {
@@ -196,22 +218,11 @@ const getPeJobs = async (romes, insee, radius, limit) => {
 
     return jobs.data;
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
-
-    Sentry.captureException(error);
-
-    if (error.response) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
-    }
-
-    console.log("error get PE Jobs", errorObj);
-
-    return errorObj;
+    return manageApiError({ error, api, caller, errorTitle: `getting jobs from PE (${api})` });
   }
 };
 
-const getPeJobFromId = async ({ id }) => {
+const getPeJobFromId = async ({ id, caller }) => {
   try {
     const token = await getAccessToken("pe");
     let headers = peApiHeaders;
@@ -224,25 +235,22 @@ const getPeJobFromId = async ({ id }) => {
     //throw new Error("boom");
 
     if (job.status === 204 || job.status === 400) {
+      if (caller) {
+        trackApiCall({ caller, api: "jobV1/job", result: "Error" });
+      }
+
       return { result: "not_found", message: "Offre non trouvée" };
     } else {
       let peJob = transformPeJobForIdea(job.data, null, null);
 
+      if (caller) {
+        trackApiCall({ caller, nb_emplois: 1, result_count: 1, api: "jobV1/job", result: "OK" });
+      }
+
       return { peJobs: [peJob] };
     }
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
-
-    Sentry.captureException(error);
-
-    if (error.response) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
-    }
-
-    console.log("error get PE Job by id", errorObj);
-
-    return errorObj;
+    return manageApiError({ error, api: "jobV1/job", caller, errorTitle: "getting job by id from PE" });
   }
 };
 
