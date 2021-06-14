@@ -28,9 +28,12 @@ httpTests(__filename, ({ startServer }) => {
     );
 
     assert.strictEqual(response.status, 200);
-    assert.ok(response.data.peJobs.results instanceof Array);
+    /*assert.ok(response.data.peJobs.results instanceof Array);
     assert.ok(response.data.lbaCompanies.results instanceof Array);
-    assert.ok(response.data.lbbCompanies.results instanceof Array);
+    assert.ok(response.data.lbbCompanies.results instanceof Array);*/
+    assert.strictEqual(response.data.peJobs.status, 401);
+    assert.strictEqual(response.data.lbaCompanies.status, 401);
+    assert.ok(response.data.matchas.results instanceof Array);
   });
 
   it("Vérifie que les requêtes sans ROME sont refusées", async () => {

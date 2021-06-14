@@ -67,6 +67,34 @@
   text-align: left;
 }
 
+.c-detail-matcha-subtitle {
+  font-size: 14px;
+  line-height: 17px;
+  color: $gray-700;
+}
+
+.c-detail-knowmore {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: $gray-700;
+}
+
+.c-detail-square {
+  display: inline-block;
+  color: rgba(0, 0, 0, 0);
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  background-color: $pinksoft750;
+}
+
+.c-detail-title.c-detail-title--matcha {
+  margin-bottom: 0;
+}
+
 .c-detail-address {
   font-size: 16px;
   font-weight: 400;
@@ -133,6 +161,7 @@
   text-align: left;
   margin-bottom: 0;
   margin-top: 21px;
+  color: $gray-700;
 }
 .c-detail-meta {
   font-size: 16px;
@@ -157,6 +186,7 @@
 
 .c-detail-description {
   margin-top: 41px;
+  text-align: left;
   &.is-first {
     margin-top: 20px;
   }
@@ -197,6 +227,23 @@
   text-align: left;
   margin-bottom: 0;
   margin-top: 24px;
+  color: $gray-700;
+}
+
+.c-detail-description-title.c-detail-description-title--matcha1 {
+  margin-bottom: 13px;
+}
+
+.c-detail-advice.c-detail-advice--matcha {
+  padding-bottom: 6px;
+}
+
+.c-detail-diploma {
+  border: 1px solid $gray-300;
+  box-sizing: border-box;
+  border-radius: 32px;
+  padding: 5px 12px;
+  margin-right: 7px;
 }
 
 .c-detail-pelink {
@@ -411,6 +458,21 @@ a.c-detail-lbb-siretbutton {
   padding: 11px 40px;
   width: 100%;
   max-width: 400px;
+}
+
+.c-see-info.c-see-info--matcha {
+  max-width: 320px;
+  padding: 11px 0px;
+  margin-bottom: 20px;
+  margin-top: 4px;
+}
+
+.c-detail-header-separator.c-detail-header-separator--matcha {
+  margin: 0;
+}
+
+.c-detail-sizetext.c-detail-sizetext--matcha {
+  margin-bottom: 32px;
 }
 
 .c-detail-stickynav {

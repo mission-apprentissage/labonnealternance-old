@@ -1,8 +1,8 @@
 const axios = require("axios");
-const Sentry = require("@sentry/node");
 const { itemModel } = require("../model/itemModel");
 const config = require("config");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
+const { manageApiError } = require("../common/utils/errorManager");
 
 const matchaApiEndpoint = `https://matcha${
   config.env === "production" ? "" : "-recette"
@@ -10,7 +10,7 @@ const matchaApiEndpoint = `https://matcha${
 const matchaSearchEndPoint = `${matchaApiEndpoint}/search`;
 const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
-const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
+const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, caller }) => {
   try {
     const distance = radius || 10;
 
@@ -25,18 +25,7 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude }) => {
 
     return transformMatchaJobsForIdea(jobs.data, radius, latitude, longitude);
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
-
-    Sentry.captureException(error);
-
-    if (error.response) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
-    }
-
-    console.log("error get Matcha Jobs", errorObj);
-
-    return errorObj;
+    return manageApiError({ error, api, caller, errorTitle: `getting jobs from Matcha (${api})` });
   }
 };
 
@@ -67,22 +56,7 @@ const getMatchaJobById = async ({ id, caller }) => {
 
     return { matchas: job };
   } catch (error) {
-    let errorObj = { result: "error", message: error.message };
-
-    Sentry.captureException(error);
-
-    if (error.response) {
-      errorObj.status = error.response.status;
-      errorObj.statusText = error.response.statusText;
-    }
-
-    console.log("error getting Matcha Job by id", errorObj);
-
-    if (caller) {
-      trackApiCall({ caller: caller, api: "jobV1/matcha", result: "Error" });
-    }
-
-    return errorObj;
+    return manageApiError({ error, api: "jobV1/matcha", caller, errorTitle: "getting job by id from Matcha" });
   }
 };
 

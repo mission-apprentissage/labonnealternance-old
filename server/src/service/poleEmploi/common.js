@@ -107,7 +107,6 @@ const getPeApiReferentiels = async (referentiel) => {
 
     console.log(`Référentiel ${referentiel} :`, referentiels); // retour car utilisation en mode CLI uniquement
   } catch (error) {
-    //console.log("error getPeJobs ", error);
     console.log("error getReferentiel ", error);
   }
 };
