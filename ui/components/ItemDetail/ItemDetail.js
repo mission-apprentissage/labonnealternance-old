@@ -31,7 +31,10 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     setSeeInfo(false);
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
-  let actualTitle = selectedItem?.company?.name || selectedItem?.title || selectedItem?.longTitle;
+  let actualTitle =
+    kind === "formation"
+      ? selectedItem?.title || selectedItem?.longTitle
+      : selectedItem?.company?.name || selectedItem?.title || selectedItem?.longTitle;
 
   const { extendedSearch } = useSelector((state) => state.trainings);
 
@@ -109,7 +112,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                   ""
                 )}
                 {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
-                {amongst(kind, ["peJob", "matcha"])? <TagOffreEmploi /> : ""}
+                {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
               </div>
               <div>
                 <button
@@ -146,23 +149,21 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             <p className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</p>
 
-            {
-              amongst(kind, ["lba", "lbb", "formation"]) ? 
-                <p className={`c-detail-activity c-detail-title--${kind}`}>
-                  {kind === "lba" || kind === "lbb" ? get(selectedItem, "nafs[0].label", "Candidature spontanée") : ""}
-                  {kind === "formation" ? ` (${selectedItem.company.place.city})` : ""}
-                </p>
-                :
-                ""
-            }
-            {
-              kind === "matcha" ? 
-                <div className="c-detail-matcha-subtitle text-left">
-                  {selectedItem.title}
-                </div> 
-              : 
+            {amongst(kind, ["lba", "lbb"]) ? (
+              <p className={`c-detail-activity c-detail-title--${kind}`}>
+                {kind === "lba" || kind === "lbb" ? get(selectedItem, "nafs[0].label", "Candidature spontanée") : ""}
+              </p>
+            ) : (
               ""
-            }
+            )}
+            {amongst(kind, ["formation"]) ? (
+              <p className={`c-detail-activity c-detail-title--formation`}>
+                {`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}
+              </p>
+            ) : (
+              ""
+            )}
+            {kind === "matcha" ? <div className="c-detail-matcha-subtitle text-left">{selectedItem.title}</div> : ""}
             <p className="d-flex mt-4 text-left">
               <span className="d-block">
                 <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
