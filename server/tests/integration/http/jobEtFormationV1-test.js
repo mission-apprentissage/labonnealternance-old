@@ -31,9 +31,12 @@ httpTests(__filename, ({ startServer }) => {
 
     assert.strictEqual(response.status, 200);
     assert.ok(response.data.formations.results instanceof Array);
-    assert.ok(response.data.jobs.peJobs.results instanceof Array);
+    /*assert.ok(response.data.jobs.peJobs.results instanceof Array);
     assert.ok(response.data.jobs.lbaCompanies.results instanceof Array);
-    assert.ok(response.data.jobs.lbbCompanies.results instanceof Array);
+    assert.ok(response.data.jobs.lbbCompanies.results instanceof Array);*/
+    assert.ok(response.data.jobs.matchas.results instanceof Array);
+    assert.strictEqual(response.data.jobs.peJobs.status, 401);
+    assert.strictEqual(response.data.jobs.lbaCompanies.status, 401);
   });
 
   it("Vérifie que la recherche répond avec des résultats", async () => {
@@ -46,7 +49,8 @@ httpTests(__filename, ({ startServer }) => {
     assert.strictEqual(response.status, 200);
     assert.ok(response.data.formations === null);
     assert.ok(response.data.jobs.peJobs === null);
-    assert.ok(response.data.jobs.lbaCompanies.results instanceof Array);
+    //assert.ok(response.data.jobs.lbaCompanies.results instanceof Array);
+    assert.strictEqual(response.data.jobs.lbaCompanies.status, 401);
     assert.ok(response.data.jobs.lbbCompanies === null);
   });
 
