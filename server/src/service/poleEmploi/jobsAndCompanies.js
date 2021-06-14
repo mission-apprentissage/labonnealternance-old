@@ -39,19 +39,13 @@ const getPeJobQuery = async (query) => {
   try {
     const job = await offresPoleEmploi.getPeJobFromId({
       id: query.id,
+      caller: query.caller,
     });
 
-    if (query.caller) {
-      trackApiCall({ caller: query.caller, nb_emplois: 1, result_count: 1, api: "jobV1/job", result: "OK" });
-    }
     //throw new Error("BIG BANG");
     return job;
   } catch (err) {
-    console.error("Error ", err.message);
     Sentry.captureException(err);
-    if (query.caller) {
-      trackApiCall({ caller: query.caller, api: "jobV1/job", result: "Error" });
-    }
     return { error: "internal_error" };
   }
 };
@@ -94,6 +88,8 @@ const getJobsFromApi = async ({ query, api }) => {
             lat: query.latitude,
             long: query.longitude,
             strictRadius: query.strictRadius,
+            caller: query.caller,
+            api,
           })
         : null,
       sources.indexOf("lba") >= 0
@@ -106,6 +102,7 @@ const getJobsFromApi = async ({ query, api }) => {
             strictRadius: query.strictRadius,
             referer: query.referer,
             caller: query.caller,
+            api,
           })
         : null,
       sources.indexOf("lbb") >= 0
@@ -118,6 +115,7 @@ const getJobsFromApi = async ({ query, api }) => {
             strictRadius: query.strictRadius,
             referer: query.referer,
             caller: query.caller,
+            api,
           })
         : null,
       sources.indexOf("matcha") >= 0
@@ -126,6 +124,8 @@ const getJobsFromApi = async ({ query, api }) => {
             latitude: query.latitude,
             longitude: query.longitude,
             radius: parseInt(query.radius),
+            api,
+            caller: query.caller,
           })
         : null,
     ]);
