@@ -17,6 +17,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   useEffect(() => {
     SendTrackEvent({
       event: `Résultats Affichage Offre Matcha - Consulter fiche entreprise`,
+      itemId: job?.job?.id,
     });
   }, [job?.job?.id]);
 
