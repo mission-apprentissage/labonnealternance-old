@@ -22,7 +22,6 @@ const MapPopup = ({ type, item, handleSelectItem }) => {
     dispatch(setSelectedMapPopupItem(item));
   }, []);
 
-
   const getContent = () => {
     try {
       const list = item.items;
