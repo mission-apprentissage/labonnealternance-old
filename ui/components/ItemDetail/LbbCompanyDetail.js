@@ -14,6 +14,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   useEffect(() => {
     SendTrackEvent({
       event: `Résultats Affichage ${lbb?.ideaType.toUpperCase()} - Consulter fiche entreprise`,
+      itemId: lbb?.company?.siret,
     });
   }, [lbb?.company?.siret]);
 

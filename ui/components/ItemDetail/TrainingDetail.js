@@ -23,6 +23,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
   useEffect(() => {
     SendTrackEvent({
       event: `Résultats Affichage formation - Consulter fiche formation`,
+      itemId: training.idRcoFormation,
     });
 
     setLoading(true);
@@ -45,6 +46,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
           if (!result[0].error) {
             SendTrackEvent({
               event: "Prise de rendez-vous - Affichage",
+              itemId: training.idRcoFormation,
             });
           }
         }

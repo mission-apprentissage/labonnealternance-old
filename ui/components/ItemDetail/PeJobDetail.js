@@ -17,6 +17,7 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
   useEffect(() => {
     SendTrackEvent({
       event: `Résultats Affichage Offre PE - Consulter fiche entreprise`,
+      itemId: job?.job?.id,
     });
   }, [job?.job?.id]);
 
