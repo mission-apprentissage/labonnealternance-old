@@ -611,9 +611,12 @@ const getFormationDescriptionQuery = async (params) => {
     const formationDescription = await axios.get(`${lbfDescriptionUrl}?${getLbfQueryParams(params)}`);
 
     return formationDescription.data;
-  } catch (err) {
-    console.error("Error ", err.message);
-    Sentry.captureException(err);
+  } catch (error) {
+    manageApiError({
+      error,
+      errorTitle: `getting training description from Labonneformation`,
+    });
+
     return { error: "internal_error" };
   }
 };
