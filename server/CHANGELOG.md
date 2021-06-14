@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.15.4 [10/06/2021]
+[687] Update tracking ouvertures fiches avec itemId
 [669] Affinage remontées Sentry
 [684] Rollback tri apis 
 [591] Nouvelle charte popin formation
