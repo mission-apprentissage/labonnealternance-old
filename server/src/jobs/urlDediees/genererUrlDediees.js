@@ -4,6 +4,11 @@ const axios = require("axios");
 const XLSX = require("xlsx");
 const logger = require("../../common/logger");
 
+/**
+ * Mode d'emploi :
+ * dans une fenêtre de terminal, sous /server exécuter : clear & node -e 'require("./src/jobs/urlDediees/genererUrlDediees")'
+ */
+
 const FICHIER_SOURCE = path.join(__dirname, "./assets/Test_ARA_1.xlsx");
 
 const logMessage = (level, msg) => {
@@ -20,12 +25,10 @@ const resultFilePath = path.join(__dirname, "./assets/urlDediees.xlsx");
 //https://labonnealternance.apprentissage.beta.gouv.fr/recherche-apprentissage?&caller=conseil%20pole%20emploi&romes=D1102&lon=2.347&lat=48.859&radius=30
 
 const creationAdresseWidget = async ({ codePostal, romeProjet, rome1 }) => {
-  console.log("AAAA ", codePostal, romeProjet, rome1);
-
   const coords = await getCoordinatesForZipcode(codePostal);
 
   if (coords) {
-    return `https://labonnealternance.pole-emploi.fr/recherche-apprentissage?&caller=conseil%20pole%20emploi&romes=${
+    return `https://labonnealternance.pole-emploi.fr/recherche-apprentissage?caller=expeara&romes=${
       romeProjet || rome1
     }&lon=${coords.lon}&lat=${coords.lat}&radius=30&utm_source=pole-emploi&utm_medium=mail&utm_campaign=pe_ara`;
   }
@@ -45,8 +48,6 @@ const getCoordinatesForZipcode = async (zipcode) => {
   const addressURL = `https://api-adresse.data.gouv.fr/search/?limit=1&q=${zipcode}&type=municipality`;
 
   const address = await axios.get(addressURL);
-
-  console.log("address : ", address.data.features[0].geometry);
 
   if (address?.data?.features.length) {
     coords = {
@@ -72,7 +73,6 @@ const saveResultToFile = (rows) => {
   let wsResult = [["URL personnalisée", "ROME 1", "ROME PROJET", "CODE POSTAL", "IDE"]];
 
   rows.map((row) => {
-    console.log("LE ROW ? ", row);
     wsResult.push([row["URL personnalisée"], row["ROME 1"], row["ROME PROJET"], row["CODE POSTAL"], row["IDE"]]);
   });
 
