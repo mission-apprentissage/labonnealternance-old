@@ -134,7 +134,7 @@
         {
             "get": 
             {
-                "description": "Rechercher les entreprises recrutant ou susceptibles de recruter en apprentissage référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique",
+                "description": "Rechercher les entreprises recrutant ou susceptibles de recruter en alternance référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique",
                 
                 "parameters": [
                     {
@@ -188,7 +188,7 @@
         {
             "get": 
             {
-                "description": "Rechercher des formations en apprentissage et des entreprises recrutant ou susceptibles de recruter en apprentissage référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique",
+                "description": "Rechercher des formations en apprentissage et des entreprises recrutant ou susceptibles de recruter en alternance référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique",
                 "parameters": [
                     {
                         "$ref": "#/parameters/requiredRomes"                        
