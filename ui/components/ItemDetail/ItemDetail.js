@@ -80,6 +80,12 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     let prevIndex = currentIndex == 0 ? currentList.length - 1 : currentIndex - 1;
     handleSelectItem(currentList[prevIndex]);
   };
+  const getPathLink = () => {
+    console.log(selectedItem);
+    return `https://www.google.fr/maps/dir/${encodeURIComponent(
+      selectedItem.company.name + ", " + selectedItem.place.fullAddress
+    )}/@${selectedItem.place.latitude},${selectedItem.place.longitude},14z/`;
+  };
 
   return (
     <>
@@ -166,7 +172,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             {kind === "matcha" ? <div className="c-detail-matcha-subtitle text-left">{selectedItem.title}</div> : ""}
             <p className="d-flex mt-4 text-left">
               <span className="d-block">
-                <img className="cardIcon" src={smallMapPointIcon} alt="Illustration d'un point sur la carte" />
+                <img className="cardIcon" src={smallMapPointIcon} alt="" />
               </span>
               <span className="ml-3 d-block">
                 <span className="c-detail-address d-block">{get(selectedItem, "place.fullAddress", "")}</span>
@@ -174,6 +180,24 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                   <span className="c-detail-km d-block">
                     {round(distance, 1) + " "}
                     km(s) du lieu de recherche
+                  </span>
+                ) : (
+                  ""
+                )}
+
+                {distance ? (
+                  <span className="c-detail-sizetext d-block">
+                    <img className="mt-n1" src="/images/square_link.svg" alt="" />
+                    <a
+                      href={getPathLink()}
+                      target="_blank"
+                      className={`c-detail-googledir-${
+                        kind === "training" ? "training" : "job"
+                      }-link gtm${capitalizeFirstLetter(kind)}PathLink`}
+                      rel="noopener noreferrer"
+                    >
+                      Obtenir l'itinéraire
+                    </a>
                   </span>
                 ) : (
                   ""
