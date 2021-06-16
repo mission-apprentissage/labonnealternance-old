@@ -80,11 +80,33 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     let prevIndex = currentIndex == 0 ? currentList.length - 1 : currentIndex - 1;
     handleSelectItem(currentList[prevIndex]);
   };
+
   const getPathLink = () => {
-    console.log(selectedItem);
-    return `https://www.google.fr/maps/dir/${encodeURIComponent(
-      selectedItem.company.name + ", " + selectedItem.place.fullAddress
-    )}/@${selectedItem.place.latitude},${selectedItem.place.longitude},14z/`;
+    return selectedItem
+      ? `https://www.google.fr/maps/dir/${encodeURIComponent(
+          selectedItem.company.name + ", " + selectedItem.place.fullAddress
+        )}/@${selectedItem.place.latitude},${selectedItem.place.longitude},14z/`
+      : null;
+  };
+
+  const getPathBlock = () => {
+    return selectedItem ? (
+      <span className="c-detail-sizetext d-block">
+        <img className="mt-n1" src="/images/square_link.svg" alt="" />
+        <a
+          href={getPathLink()}
+          target="_blank"
+          className={`c-detail-googledir-${kind === "training" ? "training" : "job"}-link gtm${capitalizeFirstLetter(
+            kind
+          )}PathLink`}
+          rel="noopener noreferrer"
+        >
+          Obtenir l'itinéraire
+        </a>
+      </span>
+    ) : (
+      ""
+    );
   };
 
   return (
@@ -184,24 +206,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 ) : (
                   ""
                 )}
-
-                {distance ? (
-                  <span className="c-detail-sizetext d-block">
-                    <img className="mt-n1" src="/images/square_link.svg" alt="" />
-                    <a
-                      href={getPathLink()}
-                      target="_blank"
-                      className={`c-detail-googledir-${
-                        kind === "training" ? "training" : "job"
-                      }-link gtm${capitalizeFirstLetter(kind)}PathLink`}
-                      rel="noopener noreferrer"
-                    >
-                      Obtenir l'itinéraire
-                    </a>
-                  </span>
-                ) : (
-                  ""
-                )}
+                {getPathBlock()}
               </span>
             </p>
           </div>
