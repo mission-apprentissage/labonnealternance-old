@@ -146,7 +146,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
 
     if(misc!=="stayOnMap")
-      pushHistory({ router, scopeContext, display: "list" });
+      pushHistory({ router, scopeContext, display: "list", searchParameters:values });
   };
 
   const handleItemLoad = async (item) => {
