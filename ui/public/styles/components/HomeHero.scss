@@ -24,6 +24,8 @@
     max-width: 1110px;
     border-radius: 10px;    
   } 
+  padding-top: 11px;
+  padding-bottom: 36px;
 }
 
 .c-home-hero__submit {
@@ -78,7 +80,18 @@
 
 .c-input-work-container {
   position: relative;
+  @include media-breakpoint-up(lg) {
+    width: 232px;
+  }
 }
+.c-input-work-container input::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0px;
+  color: $gray-500;
+}
+
 .c-input-work-container--demo {
   width: 370px;
 }

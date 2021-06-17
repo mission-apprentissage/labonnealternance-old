@@ -63,7 +63,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 onInputValueChangeFunction={jobChanged}
                 previouslySelectedItem={formValues?.job ?? null}
                 name="jobField"
-                placeholder="Ex : boulangerie"
+                placeholder={isHome ? "Indiquez le métier recherché" : "Ex : boulangerie"}
                 searchPlaceholder="Indiquez le métier recherché ci-dessus"
               />
             </div>
@@ -78,7 +78,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                   onInputValueChangeFunction={addressChanged}
                   previouslySelectedItem={formValues?.location ?? null}
                   name="placeField"
-                  placeholder="Adresse, ville ou code postal"
+                  placeholder={isHome ? "A quel endroit ?" : "Adresse, ville ou code postal"}
                   searchPlaceholder="Indiquez le lieu recherché ci-dessus"
                 />
               </div>

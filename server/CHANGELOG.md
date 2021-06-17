@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.15.6 [21/06/2021]
+[673] Ajustements homepage
+
 ## 1.15.5 [15/06/2021]
 [563] Màj api-docs
 [427] Script génération de liens widgets selon profil DE de Pôle emploi
