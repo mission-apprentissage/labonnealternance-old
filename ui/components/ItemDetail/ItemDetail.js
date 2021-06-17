@@ -83,9 +83,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   const getPathLink = () => {
     return selectedItem
-      ? `https://www.google.fr/maps/dir/${encodeURIComponent(
-          selectedItem.company.name + ", " + selectedItem.place.fullAddress
-        )}/@${selectedItem.place.latitude},${selectedItem.place.longitude},14z/`
+      ? `https://www.google.fr/maps/dir//${encodeURIComponent(selectedItem.place.fullAddress)}/@${
+          selectedItem.place.latitude
+        },${selectedItem.place.longitude},14z/`
       : null;
   };
 
@@ -99,7 +99,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <a
             href={getPathLink()}
             target="_blank"
-            className={`c-detail-googledir-link gtm${capitalizeFirstLetter(kind)}PathLink`}
+            className={`c-detail-googledir-link gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
             rel="noopener noreferrer"
           >
             <span>
