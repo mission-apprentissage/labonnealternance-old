@@ -14,7 +14,7 @@ import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "utils/strutils";
 import { Spinner } from "reactstrap";
 
-const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
+const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
@@ -186,15 +186,22 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
             <img src={questionmarkIcon} alt="point d'interrogation" />
           </div>
           <div className="c-detail-advice__body">
-            <div className="c-detail-advice-text">
-              <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
-              <span className="c-detail-traininglink">
-                <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
-                  <img src={gotoIcon} alt="Lien" />
-                  &nbsp;le site Onisep
-                </a>
-              </span>
-            </div>
+            {
+              isCfa ? 
+              <div className="c-detail-advice-text">
+                Ceci est un Cfa
+              </div>
+              :  
+              <div className="c-detail-advice-text">
+                <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
+                <span className="c-detail-traininglink">
+                  <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
+                    <img src={gotoIcon} alt="Lien" />
+                    &nbsp;le site Onisep
+                  </a>
+                </span>
+              </div>
+            }
           </div>
         </div>
       ) : (

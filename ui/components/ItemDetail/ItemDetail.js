@@ -22,6 +22,9 @@ import TagCfaDEntreprise from "./TagCfaDEntreprise";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
+  console.log('kind', kind);
+
+  const isCfa = isCfaEntreprise(selectedItem?.company?.siret)
 
   const distance = selectedItem?.place?.distance;
 
@@ -137,7 +140,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <div className="d-flex justify-content-end mb-2">
               <div className="mr-auto">
                 {kind === "formation" ? (
-                  <TagCfaDEntreprise isCfa={isCfaEntreprise(selectedItem?.company?.siret)} />
+                  <TagCfaDEntreprise isCfa={isCfa} />
                 ) : (
                   ""
                 )}
@@ -231,7 +234,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             ""
           )}
           {kind === "formation" ? (
-            <TrainingDetail training={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
+            <TrainingDetail training={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} isCfa={isCfa} />
           ) : (
             ""
           )}
