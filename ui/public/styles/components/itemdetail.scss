@@ -225,6 +225,15 @@
   text-decoration: none;
 }
 
+.c-detail-googledir-link,
+.c-detail-googledir-link:hover
+{
+  color: $gray-700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
 .c-detail-training-link,
 .c-detail-training-link:hover
 {
