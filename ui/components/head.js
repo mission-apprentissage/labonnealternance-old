@@ -25,6 +25,7 @@ const HeadLaBonneAlternance = (props) => {
         name="description"
         content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
       />
+      <meta name="google-site-verification" content="jn0jqDBg1s2kxFXJTtRsGBTNUfBI8PErYF-_YgxxHDk" />
       <meta property="og:site_name" content="La Bonne Alternance" />
       <meta property="og:title" content="La Bonne Alternance - Trouvez votre alternance" />
       <meta property="og:type" content="site" />

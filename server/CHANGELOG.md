@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.15.5 [15/06/2021]
+[563] Màj api-docs
+[427] Script génération de liens widgets selon profil DE de Pôle emploi
+[681] Lien vers l'itinéraire
+
 ## 1.15.4 [10/06/2021]
 [687] Update tracking ouvertures fiches avec itemId
 [669] Affinage remontées Sentry

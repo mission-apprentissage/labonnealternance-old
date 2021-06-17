@@ -4,7 +4,7 @@
     "info": 
     {
       "title": "La Bonne Alternance",
-      "description": "Cherchez des formations et des emplois en apprentissages",
+      "description": "Cherchez des formations et des emplois en alternance",
       "version": "V1.0",
       "contact": "equipelba@pole-emploi.fr"
     },
@@ -24,7 +24,7 @@
         {
             "get": 
             {
-                "description": "Rechercher des formations en apprentissage pour un métier ou un ensemble de métiers autour d'un point géographique",
+                "description": "Rechercher des formations en alternance pour un métier ou un ensemble de métiers autour d'un point géographique",
 
                 "produces": [
                     "application/xml",
@@ -83,7 +83,7 @@
         {
             "get": 
             {
-                "description": "Rechercher des formations en apprentissage dans un département ou dans une région ou dans la France entière pour un métier ou un ensemble de métiers",
+                "description": "Rechercher des formations en alternance dans un département ou dans une région ou dans la France entière pour un métier ou un ensemble de métiers",
                 
                 "parameters": [
                     {
@@ -134,7 +134,7 @@
         {
             "get": 
             {
-                "description": "Rechercher les entreprises recrutant ou susceptibles de recruter en apprentissage référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique",
+                "description": "Rechercher les entreprises recrutant ou susceptibles de recruter en alternance référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique",
                 
                 "parameters": [
                     {
@@ -188,7 +188,7 @@
         {
             "get": 
             {
-                "description": "Rechercher des formations en apprentissage et des entreprises recrutant ou susceptibles de recruter en apprentissage référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique",
+                "description": "Rechercher des formations en alternance et des entreprises recrutant ou susceptibles de recruter en alternance référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique",
                 "parameters": [
                     {
                         "$ref": "#/parameters/requiredRomes"                        
