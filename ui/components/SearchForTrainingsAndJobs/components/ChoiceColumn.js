@@ -67,13 +67,18 @@ const ChoiceColumn = ({
 
     setCurrentPage("fiche");
 
+    console.log("handleSelectItem ChoiceColumn : ",formValues);
+
     pushHistory({ router, scopeContext, item, page: "fiche", display: "list" });
   };
 
   const handleClose = () => {
+
+    console.log("handleClose ChoiceColumn : ",formValues);
+
     setCurrentPage("");
-    pushHistory({ router, scopeContext });
-    unSelectItem();
+    pushHistory({ router, scopeContext, display: "list", searchParameters: formValues });
+    unSelectItem("doNotSaveToHistory");
   };
 
   const searchForJobsOnNewCenter = async (newCenter) => {

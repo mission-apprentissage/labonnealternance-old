@@ -1,5 +1,5 @@
 export const getSearchQueryParameters = (searchParameters) => {
-  let result = `job=${encodeURIComponent(
+  let result = `job_name=${encodeURIComponent(
     searchParameters.job.label
   )}&romes=${searchParameters.job.romes.toString()}&diploma=${searchParameters.diploma}&radius=${
     searchParameters.radius

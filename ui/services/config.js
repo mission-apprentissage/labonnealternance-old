@@ -5,13 +5,10 @@ import { push } from "connected-next-router";
 export const getWidgetParameters = () => {
   let widgetParameters = { parameters: null, applyWidgetParameters: false };
 
-  if (getValueFromPath("caller")) {
     let parameters = {};
     let applyWidgetParameters = true;
 
-    parameters = {
-      caller: getValueFromPath("caller"),
-    };
+    parameters = {};
 
     let p = getValueFromPath("lat");
     if (p && !isNaN(p)) parameters.lat = parseFloat(p);
@@ -40,6 +37,13 @@ export const getWidgetParameters = () => {
     p = getValueFromPath("frozen_job");
     if (p) parameters.frozenJob = p;
 
+    p = getValueFromPath("caller");
+    if (p) parameters.caller = p;
+
+
+    //reprendre zip, insee, diploma, radius, label adresse et coller ça dans l'url / à contrario gérer le cas d'absence pour éviter les undefined
+
+
     /*
         radius : Optionnel . Valeur numérique. Valeurs autorisées : 10 | 30 | 60 | 100. Le rayon de recherche autour du lieu en km. Valeur par défaut 30.
         job_name : Optionnel. Texte libre. Si job_name est précisé il ne sera pas possible de modifier le métier
@@ -50,8 +54,9 @@ export const getWidgetParameters = () => {
 
     widgetParameters.parameters = parameters;
     widgetParameters.applyWidgetParameters = applyWidgetParameters;
-  }
 
+    console.log("widgetParameters : ",widgetParameters);
+  
   return widgetParameters;
 };
 

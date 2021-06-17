@@ -146,7 +146,9 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
 
     if(misc!=="stayOnMap")
-      pushHistory({ router, scopeContext, display: "list", searchParameters:values });
+      {
+        console.log("handleSearchSubmit SearchForTrainingAndJobs : ",values);
+        pushHistory({ router, scopeContext, display: "list", searchParameters:values });}
   };
 
   const handleItemLoad = async (item) => {
@@ -231,6 +233,7 @@ const SearchForTrainingsAndJobs = () => {
 
     if (!doNotSaveToHistory) {
       unSelectItem("doNotSaveToHistory");
+      console.log("showSearchForm SearchForTrainingAndJobs : ",formValues);
       pushHistory({ router, scopeContext, display: "form" });
     }
   };
@@ -246,6 +249,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setVisiblePane("resultMap"));
 
     if (!doNotSaveToHistory) {
+      console.log("showResultMap SearchForTrainingAndJobs : ",formValues);
       pushHistory({ router, scopeContext, display: "map" });
     }
 
@@ -256,9 +260,6 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   const showResultList = (e, doNotSaveToHistory) => {
-
-    console.log("AAAA");
-
     if (e) {
       e.stopPropagation();
     }
@@ -268,6 +269,7 @@ const SearchForTrainingsAndJobs = () => {
     console.log("formValues : ",formValues);
 
     if (!doNotSaveToHistory) {
+      console.log("showResultList SearhForTrainingAndJobs : ",formValues);
       pushHistory({ router, scopeContext, display: "list", searchParameters:formValues });
     }
   };
@@ -275,6 +277,7 @@ const SearchForTrainingsAndJobs = () => {
   const selectItemOnMap = (item) => {
     showResultList(null, "doNotSaveToHistory");
     setCurrentPage("fiche");
+    console.log("selectItemOnMap SearchFor... : ",formValues);
     pushHistory({ router, scopeContext, item, page: "fiche", display: "list" });
   };
 
@@ -286,6 +289,7 @@ const SearchForTrainingsAndJobs = () => {
     }
 
     if (!doNotSaveToHistory) {
+      console.log("unselectItem SearchForTrai... : ",formValues);
       pushHistory({ router, scopeContext });
     }
   };
