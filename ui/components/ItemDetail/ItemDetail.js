@@ -82,11 +82,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   };
 
   const getPathLink = () => {
-    return selectedItem
-      ? `https://www.google.fr/maps/dir//${encodeURIComponent(selectedItem.place.fullAddress)}/@${
-          selectedItem.place.latitude
-        },${selectedItem.place.longitude},14z/`
-      : null;
+    return `https://www.google.fr/maps/dir//${encodeURIComponent(selectedItem.place.fullAddress)}/@${
+      selectedItem.place.latitude
+    },${selectedItem.place.longitude},14z/`;
   };
 
   const getPathBlock = () => {
