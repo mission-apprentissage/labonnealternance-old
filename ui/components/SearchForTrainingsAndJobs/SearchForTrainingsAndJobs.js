@@ -48,7 +48,7 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useScopeContext();
 
-  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible } = useSelector(
+  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues } = useSelector(
     (state) => state.trainings
   );
 
@@ -256,14 +256,19 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   const showResultList = (e, doNotSaveToHistory) => {
+
+    console.log("AAAA");
+
     if (e) {
       e.stopPropagation();
     }
     dispatch(setVisiblePane("resultList"));
     dispatch(setIsFormVisible(false));
 
+    console.log("formValues : ",formValues);
+
     if (!doNotSaveToHistory) {
-      pushHistory({ router, scopeContext, display: "list" });
+      pushHistory({ router, scopeContext, display: "list", searchParameters:formValues });
     }
   };
 
