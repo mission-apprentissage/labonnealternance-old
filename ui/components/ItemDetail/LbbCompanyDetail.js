@@ -111,7 +111,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
       <div className="c-detail-body">
         <div className="c-detail-advice p-2">
           <img src={questionmarkIcon} alt="point d'interrogation" />
-          <div className="c-detail-advice-text text-left">
+          <div className="c-detail-advice-text text-left mt-0 ml-2">
             <p>Cette entreprise a des salariés qui exercent le métier auquel vous vous destinez.</p>
             <p className="mb-0">
               Faites-lui découvrir les avantages d'un recrutement en alternance dans votre candidature !
