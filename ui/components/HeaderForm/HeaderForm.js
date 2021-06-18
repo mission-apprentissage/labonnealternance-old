@@ -23,11 +23,11 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
   });
 
   useEffect(() => {
-    setLocationRadius(initialFormValues?.radius ?? 30);
-    setDiploma(initialFormValues?.diploma ?? "");
+    setLocationRadius(contextFormValues?.radius ?? 30);
+    setDiploma(contextFormValues?.diploma ?? "");
   }, [widgetParameters?.applyFormValues]);
 
-  const initialFormValues =
+  const contextFormValues =
     widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
 
   const [locationRadius, setLocationRadius] = useState(30);
