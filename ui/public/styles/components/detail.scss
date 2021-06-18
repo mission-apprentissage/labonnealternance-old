@@ -292,6 +292,11 @@
     padding-bottom: 57px;
   }
 }
+.c-detail-advice.c-detail-advice--training.c-detail-advice--training-cfa-true {
+  @include media-breakpoint-up(md) { 
+    padding-bottom: 10px;
+  }
+}
 .c-detail-advice.c-detail-advice--training .c-detail-advice-text {
   margin-top: 0;
   margin-bottom: 0;
@@ -311,6 +316,12 @@
   margin-top: 18px;
   margin-bottom: 18px;
 }
+
+.c-detail-advice-cfatitle {
+  color: $greensoft750;
+  font-weight: bold;
+}
+
 .c-detail-advice-text.c-detail-advice-text--first {
   margin-top: 0;
   @include media-breakpoint-up(md) { 

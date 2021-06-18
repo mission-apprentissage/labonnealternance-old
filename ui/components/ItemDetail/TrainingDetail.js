@@ -181,7 +181,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
       {getTrainingDetails(training.training)}
 
       {training.onisepUrl ? (
-        <div className="c-detail-advice c-detail-advice--training mt-4">
+        <div className={"c-detail-advice mt-4 c-detail-advice--training c-detail-advice--training-cfa-" + isCfa}>
           <div className="c-detail-advice__figure">
             <img src={questionmarkIcon} alt="point d'interrogation" />
           </div>
@@ -189,7 +189,22 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
             {
               isCfa ? 
               <div className="c-detail-advice-text">
-                Ceci est un Cfa
+                <p className="c-detail-advice-cfatitle">
+                  Cet établissement est un CFA d’entreprise.
+                </p>
+                <p>
+                  La particularité ? Il s’agit d’une formule complète Emploi + Formation !
+                </p>
+                <p>
+                  Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :
+                </p>
+                <ul>
+                    <li>commencez par vous inscrire à a formation pour accéder ensuite au contrat,</li>
+                    <li>ou commencez par postuler à une offre d'emploi pour être ensuite inscrit en formation.</li>
+                </ul>
+                <p>
+                  Prenez contact avec cet établissement ou consultez son site web pour en savoir + !
+                </p>
               </div>
               :  
               <div className="c-detail-advice-text">

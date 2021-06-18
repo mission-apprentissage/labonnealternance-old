@@ -180,7 +180,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               </div>
             </div>
 
-            <p className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</p>
+            <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
 
             {amongst(kind, ["lba", "lbb"]) ? (
               <p className={`c-detail-activity c-detail-title--${kind}`}>
