@@ -46,28 +46,34 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
     setIsLoading(true);
     const p = widgetParameters.parameters;
     try {
-      // récupération du code insee depuis la base d'adresse
-      const addresses = await fetchAddressFromCoordinates([p.lon, p.lat]);
-
-      if (addresses.length) {
-        let values = {
-          location: {
-            value: {
-              type: "Point",
-              coordinates: [p.lon, p.lat],
-            },
-            insee: addresses[0].insee,
-          },
-          job: {
-            romes: p.romes.split(","),
-          },
-          radius: p.radius || 30,
-          ...addresses[0],
-        };
-
-        handleSearchSubmit(values);
+      if (widgetParameters.applyFormValues) {
+        //console.log("PLUTOT DE LA !!! ",widgetParameters.formValues);
+        handleSearchSubmit(widgetParameters.formValues);
       } else {
-        console.log("aucun lieu trouvé");
+        // récupération du code insee depuis la base d'adresse
+        const addresses = await fetchAddressFromCoordinates([p.lon, p.lat]);
+
+        if (addresses.length) {
+          let values = {
+            location: {
+              value: {
+                type: "Point",
+                coordinates: [p.lon, p.lat],
+              },
+              insee: addresses[0].insee,
+            },
+            job: {
+              romes: p.romes.split(","),
+            },
+            radius: p.radius || 30,
+            ...addresses[0],
+          };
+
+          //console.log("OU DE LA ?", values);
+          handleSearchSubmit(values);
+        } else {
+          console.log("aucun lieu trouvé");
+        }
       }
       setIsLoading(false);
     } catch (err) {
