@@ -2,6 +2,7 @@
 
 ## 1.15.6 [21/06/2021]
 [673] Ajustements homepage
+[565] Bloc info homogène
 
 ## 1.15.5 [15/06/2021]
 [563] Màj api-docs
