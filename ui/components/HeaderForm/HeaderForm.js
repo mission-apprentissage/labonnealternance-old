@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import glassImage from "public/images/glass_white.svg";
 import { Formik, Form, Field } from "formik";
@@ -22,9 +22,17 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
     return state.trainings;
   });
 
-  const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
+  useEffect(() => {
+    setLocationRadius(initialFormValues?.radius ?? 30);
+    setDiploma(initialFormValues?.diploma ?? "");
+  }, [widgetParameters?.applyFormValues]);
+
+  const initialFormValues =
+    widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
+
+  const [locationRadius, setLocationRadius] = useState(30);
   const [diplomas, setDiplomas] = useState([]);
-  const [diploma, setDiploma] = useState(formValues?.diploma ?? "");
+  const [diploma, setDiploma] = useState("");
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
@@ -44,7 +52,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
     return (
       <Formik
         validate={(values) => validateFormik(values, widgetParameters)}
-        initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
+        initialValues={{ job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={handleSearchSubmit}
       >
         {({ isSubmitting, setFieldValue, errors, touched }) => (

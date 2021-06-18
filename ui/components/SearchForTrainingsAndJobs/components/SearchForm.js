@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Row, Col, Input } from "reactstrap";
 import { Formik, Form, ErrorMessage } from "formik";
@@ -19,9 +19,18 @@ import validateFormik from "services/validateFormik";
 const SearchForm = (props) => {
   const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
 
-  const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
+  useEffect(() => {
+    setLocationRadius(initialFormValues?.radius ?? 30);
+    setDiploma(initialFormValues?.diploma ?? "");
+  }, [widgetParameters?.applyFormValues]);
+
+  const initialFormValues =
+    widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
+  //console.log("initialFormValues : ")
+
+  const [locationRadius, setLocationRadius] = useState(30);
   const [diplomas, setDiplomas] = useState([]);
-  const [diploma, setDiploma] = useState(formValues?.diploma ?? "");
+  const [diploma, setDiploma] = useState("");
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
@@ -41,7 +50,7 @@ const SearchForm = (props) => {
     return (
       <Formik
         validate={(values) => validateFormik(values, widgetParameters)}
-        initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
+        initialValues={{ job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={props.handleSearchSubmit}
       >
         {({ isSubmitting, setFieldValue, errors }) => (
