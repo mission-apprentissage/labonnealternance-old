@@ -1,13 +1,13 @@
 export const getSearchQueryParameters = (searchParameters) => {
-  let result = `job_name=${encodeURIComponent(
-    searchParameters.job.label
-  )}&romes=${searchParameters.job.romes.toString()}&diploma=${searchParameters.diploma}&radius=${
-    searchParameters.radius
-  }&lat=${searchParameters.location.value.coordinates[1]}&lon=${
+  let result = `job_name=${
+    searchParameters.job.label ? encodeURIComponent(searchParameters.job.label) : ""
+  }&romes=${searchParameters.job.romes.toString()}${
+    searchParameters.diploma ? "&diploma=" + searchParameters.diploma : ""
+  }&radius=${searchParameters.radius || 30}&lat=${searchParameters.location.value.coordinates[1]}&lon=${
     searchParameters.location.value.coordinates[0]
-  }&zipcode=${searchParameters.location.zipcode}&insee=${searchParameters.location.insee}&address=${encodeURIComponent(
-    searchParameters.location.label
-  )}`;
+  }&zipcode=${searchParameters.location.zipcode || ""}&insee=${searchParameters.location.insee || ""}&address=${
+    searchParameters.location.label ? encodeURIComponent(searchParameters.location.label) : ""
+  }`;
 
   return result;
 };
