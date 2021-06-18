@@ -98,12 +98,11 @@ const buildFormValuesFromParameters = (params) => {
   return formValues;
 };
 
-export const initParametersFromQuery = ({ dispatch, shouldPush, setFormValues }) => {
+export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
   const widgetParameters = getWidgetParameters();
   if (widgetParameters && widgetParameters.applyWidgetParameters) {
     if (widgetParameters.applyFormValues) {
       widgetParameters.formValues = buildFormValuesFromParameters(widgetParameters.parameters);
-      dispatch(setFormValues(widgetParameters.formValues));
     }
     dispatch(setWidgetParameters(widgetParameters));
     if (shouldPush) {
