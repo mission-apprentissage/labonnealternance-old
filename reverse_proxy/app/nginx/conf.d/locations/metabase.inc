@@ -4,4 +4,7 @@ location /metabase/ {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-Host $server_name;
     proxy_set_header X-Forwarded-Proto $scheme;
+
+    add_header X-Frame-Options "ALLOW-FROM *";
+    add_header Content-Security-Policy "frame-ancestors *";
 }
