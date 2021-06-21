@@ -15,13 +15,6 @@ const Fonts = () => {
         ></link>
         <link
           rel="preload"
-          href={`${url}/fonts/Marianne/Marianne-Medium.woff`}
-          as="font"
-          type="font/woff"
-          crossOrigin="anonymous"
-        ></link>
-        <link
-          rel="preload"
           href={`${url}/fonts/Inter/Inter-Bold.ttf`}
           as="font"
           type="font/ttf"
@@ -32,13 +25,6 @@ const Fonts = () => {
           href={`${url}/fonts/Inter/Inter-SemiBold.ttf`}
           as="font"
           type="font/ttf"
-          crossOrigin="anonymous"
-        ></link>
-        <link
-          rel="preload"
-          href={`${url}/fonts/Marianne/Marianne-Bold.woff`}
-          as="font"
-          type="font/woff"
           crossOrigin="anonymous"
         ></link>
       </>
