@@ -35,6 +35,8 @@ export const AutoCompleteField = ({
   ...props
 }) => {
   useEffect(() => {
+
+    console.log("useEffect Auto ",kind,previouslySelectedItem);
     if (!initialized && previouslySelectedItem) {
       setInitialized(true);
       onInputValueChangeService({

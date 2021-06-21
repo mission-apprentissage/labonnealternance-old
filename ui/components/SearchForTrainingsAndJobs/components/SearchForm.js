@@ -22,12 +22,20 @@ const SearchForm = (props) => {
   useEffect(() => {
     setLocationRadius(contextFormValues?.radius ?? 30);
     setDiploma(contextFormValues?.diploma ?? "");
+    setJobValue(contextFormValues?.job ?? null);
+
+    console.log(contextFormValues?.job);
+
+    // restaurer jobValue précédent pour init du champ autocomplete sinon  perte de la liaison avec le passage de la home vers la liste + carte 
+
   }, [widgetParameters?.applyFormValues]);
 
   const contextFormValues =
     widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
   //console.log("initialFormValues : ")
 
+
+  const [jobValue, setJobValue] = useState(null);
   const [locationRadius, setLocationRadius] = useState(30);
   const [diplomas, setDiplomas] = useState([]);
   const [diploma, setDiploma] = useState("");
@@ -79,9 +87,10 @@ const SearchForm = (props) => {
                             setDiplomaError,
                             setDiplomas
                           )}
+                          initialItem={contextFormValues?.job?.label}
                           compareItemFunction={compareAutoCompleteValues}
                           onInputValueChangeFunction={jobChanged}
-                          previouslySelectedItem={formValues?.job ?? null}
+                          previouslySelectedItem={jobValue}
                           name="jobField"
                           placeholder="Ex : boulangerie"
                           searchPlaceholder="Indiquez le métier recherché ci-dessus"
