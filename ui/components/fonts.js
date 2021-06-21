@@ -1,10 +1,10 @@
 import React from "react";
 
 const Fonts = () => {
-  const url = "https://labonnealternance-recette.apprentissage.beta.gouv.fr";
+  //const url = "https://labonnealternance-recette.apprentissage.beta.gouv.fr";
 
   const getFontPreloadLinks = () => {
-    return (
+    return "";/*(
       <>
         <link
           rel="preload"
@@ -28,7 +28,7 @@ const Fonts = () => {
           crossOrigin="anonymous"
         ></link>
       </>
-    );
+    );*/
   };
 
   return <>{getFontPreloadLinks()}</>;
