@@ -10,7 +10,7 @@ const Fonts = () => {
           rel="preload"
           href={`${url}/fonts/Marianne/Marianne-Regular.woff`}
           as="font"
-          type="font/ttf"
+          type="font/woff"
           crossOrigin="anonymous"
         ></link>
         <link
