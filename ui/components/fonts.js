@@ -1,34 +1,34 @@
 import React from "react";
 
 const Fonts = () => {
-  //const url = "https://labonnealternance-recette.apprentissage.beta.gouv.fr";
+  const url = "https://labonnealternance-recette.apprentissage.beta.gouv.fr";
 
   const getFontPreloadLinks = () => {
-    return "";/*(
+    return (
       <>
         <link
           rel="preload"
-          href={`${url}/fonts/Inter/Inter-Regular.ttf`}
+          href={`${url}/fonts/Marianne/Marianne-Regular.woff`}
           as="font"
           type="font/ttf"
           crossOrigin="anonymous"
         ></link>
         <link
           rel="preload"
-          href={`${url}/fonts/Inter/Inter-Bold.ttf`}
+          href={`${url}/fonts/Marianne/Marianne-Medium.woff`}
           as="font"
-          type="font/ttf"
+          type="font/woff"
           crossOrigin="anonymous"
         ></link>
         <link
           rel="preload"
-          href={`${url}/fonts/Inter/Inter-SemiBold.ttf`}
+          href={`${url}/fonts/Marianne/Marianne-Bold.woff`}
           as="font"
-          type="font/ttf"
+          type="font/woff"
           crossOrigin="anonymous"
         ></link>
       </>
-    );*/
+    );
   };
 
   return <>{getFontPreloadLinks()}</>;
