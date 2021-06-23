@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.16.0 [05/07/2021]
+[651] Recherche par diplôme
+
 ## 1.15.6 [21/06/2021]
 [673] Ajustements homepage
 
