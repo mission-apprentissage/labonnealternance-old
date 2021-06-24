@@ -37,10 +37,8 @@
 
 .c-home-hero__title {
   font-size: 26px;
-  text-align: center;
   font-weight: bold;
   line-height: 90.2%;
-  margin-top: 20px;
   @include media-breakpoint-up(sm) {
     margin-top: 0;
     font-size: 29px;
