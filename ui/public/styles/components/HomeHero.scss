@@ -24,7 +24,10 @@
     max-width: 1110px;
     border-radius: 10px;    
   } 
-  padding-top: 11px;
+  padding-top: 0;
+  @include media-breakpoint-up(lg) {
+    padding-top: 11px;
+  } 
   padding-bottom: 36px;
 }
 
