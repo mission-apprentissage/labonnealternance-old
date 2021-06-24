@@ -3,6 +3,9 @@
 ## 1.15.6 [21/06/2021]
 [673] Ajustements homepage
 [565] Bloc info homogène
+[680] Explication CFA d'entreprise
+[694] Remplacement de la police Inter par la police Marianne
+[699] Utilisation du protocole HTTP2
 
 ## 1.15.5 [15/06/2021]
 [563] Màj api-docs
