@@ -2,6 +2,7 @@
 
 ## 1.15.6 [21/06/2021]
 [673] Ajustements homepage
+[680] Explication CFA d'entreprise
 [694] Remplacement de la police Inter par la police Marianne
 [699] Utilisation du protocole HTTP2
 [691] Historique et accès direct sur liens de recherche

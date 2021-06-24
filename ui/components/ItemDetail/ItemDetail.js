@@ -23,6 +23,8 @@ import TagCfaDEntreprise from "./TagCfaDEntreprise";
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
+  const isCfa = isCfaEntreprise(selectedItem?.company?.siret)
+
   const distance = selectedItem?.place?.distance;
 
   const [seeInfo, setSeeInfo] = useState(false);
@@ -107,7 +109,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <div className="d-flex justify-content-end mb-2">
               <div className="mr-auto">
                 {kind === "formation" ? (
-                  <TagCfaDEntreprise isCfa={isCfaEntreprise(selectedItem?.company?.siret)} />
+                  <TagCfaDEntreprise isCfa={isCfa} />
                 ) : (
                   ""
                 )}
@@ -147,7 +149,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               </div>
             </div>
 
-            <p className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</p>
+            <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
 
             {amongst(kind, ["lba", "lbb"]) ? (
               <p className={`c-detail-activity c-detail-title--${kind}`}>
@@ -203,7 +205,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             ""
           )}
           {kind === "formation" ? (
-            <TrainingDetail training={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
+            <TrainingDetail training={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} isCfa={isCfa} />
           ) : (
             ""
           )}
