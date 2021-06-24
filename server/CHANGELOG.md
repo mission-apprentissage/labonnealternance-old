@@ -1,6 +1,9 @@
 # CHANGELOG
 
-## 1.15.6 [22/06/2021]
+## 1.15.6 [21/06/2021]
+[673] Ajustements homepage
+[694] Remplacement de la police Inter par la police Marianne
+[699] Utilisation du protocole HTTP2
 [691] Historique et accès direct sur liens de recherche
 
 ## 1.15.5 [15/06/2021]
