@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.15.7 [21/06/2021]
+[700] Changement lien matcha
+
 ## 1.15.6 [21/06/2021]
 [673] Ajustements homepage
 [565] Bloc info homogène
