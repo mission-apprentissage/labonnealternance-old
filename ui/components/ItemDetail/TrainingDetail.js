@@ -14,7 +14,7 @@ import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "utils/strutils";
 import { Spinner } from "reactstrap";
 
-const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
+const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
@@ -181,20 +181,42 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo }) => {
       {getTrainingDetails(training.training)}
 
       {training.onisepUrl ? (
-        <div className="c-detail-advice c-detail-advice--training mt-4">
+        <div className={"c-detail-advice mt-4 c-detail-advice--training c-detail-advice--training-cfa-" + isCfa}>
           <div className="c-detail-advice__figure">
             <img src={questionmarkIcon} alt="point d'interrogation" />
           </div>
           <div className="c-detail-advice__body">
-            <div className="c-detail-advice-text">
-              <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
-              <span className="c-detail-traininglink">
-                <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
-                  <img src={gotoIcon} alt="Lien" />
-                  &nbsp;le site Onisep
-                </a>
-              </span>
-            </div>
+            {
+              isCfa ? 
+              <div className="c-detail-advice-text">
+                <p className="c-detail-advice-cfatitle">
+                  Cet établissement est un CFA d’entreprise.
+                </p>
+                <p>
+                  La particularité ? Il s’agit d’une formule complète Emploi + Formation !
+                </p>
+                <p>
+                  Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :
+                </p>
+                <ul>
+                    <li>commencez par vous inscrire à a formation pour accéder ensuite au contrat,</li>
+                    <li>ou commencez par postuler à une offre d'emploi pour être ensuite inscrit en formation.</li>
+                </ul>
+                <p>
+                  Prenez contact avec cet établissement ou consultez son site web pour en savoir + !
+                </p>
+              </div>
+              :  
+              <div className="c-detail-advice-text">
+                <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
+                <span className="c-detail-traininglink">
+                  <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
+                    <img src={gotoIcon} alt="Lien" />
+                    &nbsp;le site Onisep
+                  </a>
+                </span>
+              </div>
+            }
           </div>
         </div>
       ) : (
