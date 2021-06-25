@@ -104,7 +104,6 @@ export const AutoCompleteField = ({
     items: inputItems,
     itemToString,
     defaultHighlightedIndex: 0,
-    initialInputValue: initialSelectedItem?.label||"",
     initialSelectedItem,
     initialIsOpen,
     inputValue: inputTextValue,
