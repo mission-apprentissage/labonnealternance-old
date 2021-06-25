@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ## 1.15.6 [21/06/2021]
 [174] Optimisations SEO
 [700] Changement lien matcha
