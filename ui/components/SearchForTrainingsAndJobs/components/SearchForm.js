@@ -74,16 +74,15 @@ const SearchForm = (props) => {
                         <AutoCompleteField
                           kind="Métier *"
                           items={[]}
+                          initialSelectedItem={contextFormValues?.job || null}
                           itemToStringFunction={autoCompleteToStringFunction}
                           onSelectedItemChangeFunction={partialRight(
                             updateValuesFromJobAutoComplete,
                             setDiplomaError,
                             setDiplomas
                           )}
-                          initialItem={contextFormValues?.job?.label}
                           compareItemFunction={compareAutoCompleteValues}
                           onInputValueChangeFunction={jobChanged}
-                          initialSelectedItem={jobValue}
                           name="jobField"
                           placeholder="Ex : boulangerie"
                           searchPlaceholder="Indiquez le métier recherché ci-dessus"
@@ -100,11 +99,11 @@ const SearchForm = (props) => {
                   <AutoCompleteField
                     kind="Lieu *"
                     items={[]}
+                    initialSelectedItem={contextFormValues?.location ?? null}
                     itemToStringFunction={autoCompleteToStringFunction}
                     onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
                     compareItemFunction={compareAutoCompleteValues}
                     onInputValueChangeFunction={addressChanged}
-                    initialSelectedItem={formValues?.location ?? null}
                     name="placeField"
                     placeholder="Adresse, ville ou code postal"
                     searchPlaceholder="Indiquez le lieu recherché ci-dessus"

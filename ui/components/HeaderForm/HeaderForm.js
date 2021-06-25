@@ -80,7 +80,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 <AutoCompleteField
                   kind="Lieu *"
                   items={[]}
-                  initialSelectedItem={formValues?.location ?? null}
+                  initialSelectedItem={contextFormValues?.location ?? null}
                   itemToStringFunction={autoCompleteToStringFunction}
                   onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
                   compareItemFunction={compareAutoCompleteValues}
