@@ -23,17 +23,10 @@ const SearchForm = (props) => {
     setLocationRadius(contextFormValues?.radius ?? 30);
     setDiploma(contextFormValues?.diploma ?? "");
     setJobValue(contextFormValues?.job ?? null);
-
-    console.log(contextFormValues?.job);
-
-    // restaurer jobValue précédent pour init du champ autocomplete sinon  perte de la liaison avec le passage de la home vers la liste + carte 
-
   }, [widgetParameters?.applyFormValues]);
 
   const contextFormValues =
     widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
-  //console.log("initialFormValues : ")
-
 
   const [jobValue, setJobValue] = useState(null);
   const [locationRadius, setLocationRadius] = useState(30);
@@ -90,7 +83,7 @@ const SearchForm = (props) => {
                           initialItem={contextFormValues?.job?.label}
                           compareItemFunction={compareAutoCompleteValues}
                           onInputValueChangeFunction={jobChanged}
-                          previouslySelectedItem={jobValue}
+                          initialSelectedItem={jobValue}
                           name="jobField"
                           placeholder="Ex : boulangerie"
                           searchPlaceholder="Indiquez le métier recherché ci-dessus"
@@ -111,7 +104,7 @@ const SearchForm = (props) => {
                     onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
                     compareItemFunction={compareAutoCompleteValues}
                     onInputValueChangeFunction={addressChanged}
-                    previouslySelectedItem={formValues?.location ?? null}
+                    initialSelectedItem={formValues?.location ?? null}
                     name="placeField"
                     placeholder="Adresse, ville ou code postal"
                     searchPlaceholder="Indiquez le lieu recherché ci-dessus"

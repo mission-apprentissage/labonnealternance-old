@@ -60,7 +60,8 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
             <div className={`formGroup formGroup--logobar ${errors.job ? "formGroup--logobar-onerror" : ""}`}>
               <AutoCompleteField
                 kind="Métier *"
-                items={[]}
+                items={contextFormValues?.job ? [contextFormValues.job] : []}
+                initialSelectedItem={contextFormValues?.job || null}
                 itemToStringFunction={autoCompleteToStringFunction}
                 onSelectedItemChangeFunction={partialRight(
                   updateValuesFromJobAutoComplete,
@@ -69,7 +70,6 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 )}
                 compareItemFunction={compareAutoCompleteValues}
                 onInputValueChangeFunction={jobChanged}
-                previouslySelectedItem={formValues?.job ?? null}
                 name="jobField"
                 placeholder="Ex : boulangerie"
                 searchPlaceholder="Indiquez le métier recherché ci-dessus"
@@ -80,11 +80,11 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 <AutoCompleteField
                   kind="Lieu *"
                   items={[]}
+                  initialSelectedItem={formValues?.location ?? null}
                   itemToStringFunction={autoCompleteToStringFunction}
                   onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
                   compareItemFunction={compareAutoCompleteValues}
                   onInputValueChangeFunction={addressChanged}
-                  previouslySelectedItem={formValues?.location ?? null}
                   name="placeField"
                   placeholder="Adresse, ville ou code postal"
                   searchPlaceholder="Indiquez le lieu recherché ci-dessus"

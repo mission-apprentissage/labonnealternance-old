@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFormikContext } from "formik";
-import { useCombobox } from "downshift";
+import { useCombobox } from "downshift"; //https://github.com/downshift-js/downshift/tree/master/src/hooks/useCombobox
 import { debounce } from "lodash";
 import onInputValueChangeService from "./onInputValueChangeService";
 import highlightItem from "services/hightlightItem";
@@ -25,22 +25,21 @@ export const AutoCompleteField = ({
   onInputValueChangeFunction,
   onSelectedItemChangeFunction,
   compareItemFunction,
-  initialItem,
+  initialSelectedItem,
   items,
   initialIsOpen,
   scrollParentId,
-  previouslySelectedItem,
   illustration,
   searchPlaceholder,
   ...props
 }) => {
   useEffect(() => {
-
-    console.log("useEffect Auto ",kind,previouslySelectedItem);
-    if (!initialized && previouslySelectedItem) {
+    if (!initialized && initialSelectedItem) {
       setInitialized(true);
+
+      // provoque un appel pour charger la liste des valeurs en fonction de la value de l'input text
       onInputValueChangeService({
-        inputValue,
+        inputValue:initialSelectedItem.label,
         inputItems,
         items,
         setInputItems,
@@ -49,14 +48,16 @@ export const AutoCompleteField = ({
         onInputValueChangeFunction,
         compareItemFunction,
         onSelectedItemChangeFunction,
-        previouslySelectedItem,
+        initialSelectedItem,
         setFieldValue,
+        setInputTextValue,
       });
     }
-  }, []);
+  }, [initialSelectedItem?.label]);
 
   const { setFieldValue } = useFormikContext();
 
+  const [inputTextValue, setInputTextValue] = useState("");
   const [inputItems, setInputItems] = useState(items);
   const [initialized, setInitialized] = useState(false);
   const [loadingState, setLoadingState] = useState("loading");
@@ -103,8 +104,10 @@ export const AutoCompleteField = ({
     items: inputItems,
     itemToString,
     defaultHighlightedIndex: 0,
-    initialSelectedItem: previouslySelectedItem,
+    initialInputValue: initialSelectedItem?.label||"",
+    initialSelectedItem,
     initialIsOpen,
+    inputValue: inputTextValue,
     onSelectedItemChange: ({ selectedItem }) => {
       // modifie les valeurs sélectionnées du formulaire en fonction de l'item sélectionné
       if (onSelectedItemChangeFunction) {
@@ -118,6 +121,7 @@ export const AutoCompleteField = ({
       if (!debouncedOnInputValueChange) {
         debouncedOnInputValueChange = debounce(onInputValueChangeService, 300);
       }
+      setInputTextValue(inputValue);
       debouncedOnInputValueChange({
         inputValue,
         inputItems,
@@ -127,6 +131,7 @@ export const AutoCompleteField = ({
         selectItem,
         onInputValueChangeFunction,
         compareItemFunction,
+        setInputTextValue,
       });
     },
   });
