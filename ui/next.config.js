@@ -2,6 +2,9 @@ const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
 const path = require("path");
 const config = require("config");
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 /*
  * BEGIN OF SENTRY---------------------------
@@ -31,13 +34,13 @@ process.env.publicUrl = config.publicUrl;
 
 module.exports = withPlugins(
   [
+    [withBundleAnalyzer],
     [
       withImages,
       {
         /* plugin config here ... */
       },
     ],
-
     [
       withSourceMaps,
       {

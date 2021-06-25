@@ -4,6 +4,9 @@ import Fonts from "./fonts";
 import env from "utils/env";
 
 const HeadLaBonneAlternance = (props) => {
+
+
+  
   return (
     <Head>
       <title>La Bonne Alternance | Trouvez votre alternance</title>

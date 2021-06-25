@@ -8,7 +8,10 @@
     "build": "next build",
     "start": "next start",
     "test": "react-scripts test --passWithNoTests",
-    "serve": "next start"
+    "serve": "next start",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.11.7",
@@ -17,6 +20,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@material-ui/lab": "^4.0.0-alpha.50",
+    "@next/bundle-analyzer": "11.0.1",
     "@sentry/browser": "^5.15.5",
     "@sentry/node": "^5.15.5",
     "@sentry/react": "^5.22.3",
