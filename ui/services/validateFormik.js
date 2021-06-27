@@ -1,4 +1,3 @@
-
 export default function validateFormik(values, widgetParameters) {
   const errors = {};
 

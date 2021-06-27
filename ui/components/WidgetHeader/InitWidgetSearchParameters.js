@@ -47,7 +47,6 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
     const p = widgetParameters.parameters;
     try {
       if (widgetParameters.applyFormValues) {
-        //console.log("PLUTOT DE LA !!! ",widgetParameters.formValues);
         handleSearchSubmit(widgetParameters.formValues);
       } else {
         // récupération du code insee depuis la base d'adresse
@@ -69,7 +68,6 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
             ...addresses[0],
           };
 
-          //console.log("OU DE LA ?", values);
           handleSearchSubmit(values);
         } else {
           console.log("aucun lieu trouvé");

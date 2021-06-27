@@ -67,15 +67,10 @@ const ChoiceColumn = ({
 
     setCurrentPage("fiche");
 
-    console.log("handleSelectItem ChoiceColumn : ",formValues);
-
     pushHistory({ router, scopeContext, item, page: "fiche", display: "list" });
   };
 
   const handleClose = () => {
-
-    console.log("handleClose ChoiceColumn : ",formValues);
-
     setCurrentPage("");
     pushHistory({ router, scopeContext, display: "list", searchParameters: formValues });
     unSelectItem("doNotSaveToHistory");

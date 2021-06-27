@@ -35,9 +35,6 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
     setSelectedMarker(null);
     if (currentPage === "fiche") {
       setCurrentPage("");
-
-      console.log("unselectItem Map : ",formValues);
-
       pushHistory({ router, scopeContext });
     }
   };
