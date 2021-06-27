@@ -39,7 +39,7 @@ export const AutoCompleteField = ({
 
       // provoque un appel pour charger la liste des valeurs en fonction de la value de l'input text
       onInputValueChangeService({
-        inputValue:initialSelectedItem.label,
+        inputValue: initialSelectedItem.label,
         inputItems,
         items,
         setInputItems,
