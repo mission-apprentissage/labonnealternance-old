@@ -131,6 +131,7 @@ export const AutoCompleteField = ({
         onInputValueChangeFunction,
         compareItemFunction,
         setInputTextValue,
+        setFieldValue,
       });
     },
   });

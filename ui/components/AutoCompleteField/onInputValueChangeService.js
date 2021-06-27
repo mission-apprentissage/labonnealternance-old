@@ -19,7 +19,8 @@ export default async function onInputValueChangeService({
     const newItems = await onInputValueChangeFunction(inputValue, setLoadingState);
     setInputItems(newItems);
 
-    if (initialSelectedItem) { // uniquement appelé lors d'une réinitialisation de l'input après navigation
+    if (initialSelectedItem) {
+      // uniquement appelé lors d'une réinitialisation de l'input après navigation
       setTimeout(() => {
         onSelectedItemChangeFunction(initialSelectedItem, setFieldValue);
       }, 0); // hack timeout pour passer après le changement de valeurs suite au fetch
