@@ -7,10 +7,11 @@ export default async function onInputValueChangeService({
   setInputItems = noop,
   setLoadingState = noop,
   selectItem = noop,
+  setInputTextValue = noop,
   onInputValueChangeFunction = null,
   compareItemFunction = null,
   onSelectedItemChangeFunction = null,
-  previouslySelectedItem = null,
+  initialSelectedItem = null,
   setFieldValue = null,
 }) {
   // fixe la liste d'items en fonction de la valeur courante du champ input. S'il y a appel à une API c'est ici
@@ -18,9 +19,10 @@ export default async function onInputValueChangeService({
     const newItems = await onInputValueChangeFunction(inputValue, setLoadingState);
     setInputItems(newItems);
 
-    if (previouslySelectedItem) { // uniquement appelé lors d'une réinitialisation de l'input après navigation
+    if (initialSelectedItem) {
+      // uniquement appelé lors d'une réinitialisation de l'input après navigation
       setTimeout(() => {
-        onSelectedItemChangeFunction(previouslySelectedItem, setFieldValue);
+        onSelectedItemChangeFunction(initialSelectedItem, setFieldValue);
       }, 0); // hack timeout pour passer après le changement de valeurs suite au fetch
     }
   } else {
@@ -36,4 +38,5 @@ export default async function onInputValueChangeService({
       selectItem(null);
     }
   }
+  setInputTextValue(inputValue);
 }

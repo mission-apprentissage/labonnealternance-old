@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import glassImage from "public/images/glass_white.svg";
 import { Formik, Form, Field } from "formik";
@@ -22,9 +22,17 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
     return state.trainings;
   });
 
-  const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
+  useEffect(() => {
+    setLocationRadius(contextFormValues?.radius ?? 30);
+    setDiploma(contextFormValues?.diploma ?? "");
+  }, [widgetParameters?.applyFormValues]);
+
+  const contextFormValues =
+    widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
+
+  const [locationRadius, setLocationRadius] = useState(30);
   const [diplomas, setDiplomas] = useState([]);
-  const [diploma, setDiploma] = useState(formValues?.diploma ?? "");
+  const [diploma, setDiploma] = useState("");
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
@@ -44,7 +52,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
     return (
       <Formik
         validate={(values) => validateFormik(values, widgetParameters)}
-        initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
+        initialValues={{ job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={handleSearchSubmit}
       >
         {({ isSubmitting, setFieldValue, errors, touched }) => (
@@ -53,6 +61,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
               <AutoCompleteField
                 kind="Métier *"
                 items={[]}
+                initialSelectedItem={contextFormValues?.job || null}
                 itemToStringFunction={autoCompleteToStringFunction}
                 onSelectedItemChangeFunction={partialRight(
                   updateValuesFromJobAutoComplete,
@@ -61,7 +70,6 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 )}
                 compareItemFunction={compareAutoCompleteValues}
                 onInputValueChangeFunction={jobChanged}
-                previouslySelectedItem={formValues?.job ?? null}
                 name="jobField"
                 placeholder={isHome ? "Indiquez le métier recherché" : "Ex : boulangerie"}
                 searchPlaceholder="Indiquez le métier recherché ci-dessus"
@@ -72,11 +80,11 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 <AutoCompleteField
                   kind="Lieu *"
                   items={[]}
+                  initialSelectedItem={contextFormValues?.location ?? null}
                   itemToStringFunction={autoCompleteToStringFunction}
                   onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
                   compareItemFunction={compareAutoCompleteValues}
                   onInputValueChangeFunction={addressChanged}
-                  previouslySelectedItem={formValues?.location ?? null}
                   name="placeField"
                   placeholder={isHome ? "A quel endroit ?" : "Adresse, ville ou code postal"}
                   searchPlaceholder="Indiquez le lieu recherché ci-dessus"

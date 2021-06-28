@@ -1,4 +1,3 @@
-
 export default function validateFormik(values, widgetParameters) {
   const errors = {};
 
@@ -16,5 +15,6 @@ export default function validateFormik(values, widgetParameters) {
   if (!values.location || !values.location.label) {
     errors.location = "Veuillez sélectionner un lieu proposé";
   }
+
   return errors;
 }

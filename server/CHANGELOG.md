@@ -7,6 +7,7 @@
 [680] Explication CFA d'entreprise
 [694] Remplacement de la police Inter par la police Marianne
 [699] Utilisation du protocole HTTP2
+[691] Historique et accès direct sur liens de recherche
 
 ## 1.15.5 [15/06/2021]
 [563] Màj api-docs
