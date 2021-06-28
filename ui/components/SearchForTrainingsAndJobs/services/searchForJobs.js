@@ -12,6 +12,7 @@ import {
 export const searchForJobsFunction = async ({
   values,
   strictRadius,
+  searchTimestamp,
   setIsJobSearchLoading,
   dispatch,
   setHasSearch,

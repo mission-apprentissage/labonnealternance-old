@@ -125,7 +125,7 @@ const SearchForTrainingsAndJobs = () => {
   const handleSearchSubmit = async (values, misc) => {
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
-
+    const searchTimestamp = new Date().getTime();
     setShouldShowWelcomeMessage(false);
 
     dispatch(setHasSearch(false));
@@ -137,16 +137,16 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setFormValues({ ...values }));
 
     if (scopeContext.isTraining) {
-      searchForTrainings(values);
+      searchForTrainings({values,searchTimestamp});
     }
 
     if (scopeContext.isJob) {
-      searchForJobsWithStrictRadius(values);
+      searchForJobsWithStrictRadius({values,searchTimestamp});
     }
     dispatch(setIsFormVisible(false));
 
     if(misc!=="stayOnMap") {
-      pushHistory({ router, scopeContext, display: "list", searchParameters:values });
+      pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp });
     }
   };
 
@@ -179,9 +179,10 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
   };
 
-  const searchForTrainings = async (values) => {
+  const searchForTrainings = async ({values,searchTimestamp}) => {
     searchForTrainingsFunction({
       values,
+      searchTimestamp,
       dispatch,
       setIsTrainingSearchLoading,
       setTrainingSearchError,
@@ -195,14 +196,15 @@ const SearchForTrainingsAndJobs = () => {
     });
   };
 
-  const searchForJobsWithStrictRadius = async (values) => {
-    searchForJobs(values, "strict");
+  const searchForJobsWithStrictRadius = async ({values,searchTimestamp}) => {
+    searchForJobs({values,searchTimestamp,strictRadius:"strict"});
   };
 
-  const searchForJobs = async (values, strictRadius) => {
+  const searchForJobs = async ({values, searchTimestamp, strictRadius}) => {
     searchForJobsFunction({
       values,
       strictRadius,
+      searchTimestamp,
       setIsJobSearchLoading,
       dispatch,
       setHasSearch,

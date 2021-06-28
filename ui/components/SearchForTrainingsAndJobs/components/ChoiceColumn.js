@@ -108,10 +108,14 @@ const ChoiceColumn = ({
 
     flyToLocation({ center: formValues.location.value.coordinates, zoom: 10 });
 
-    searchForJobsWithStrictRadius(formValues);
+    const searchTimestamp = new Date().getTime();
+
+    //TODO: ajouter de l'historique ici ?
+
+    searchForJobsWithStrictRadius({ formValues, searchTimestamp });
 
     if (isTrainingSearch) {
-      searchForTrainings(formValues);
+      searchForTrainings({ formValues, searchTimestamp });
     }
   };
 

@@ -10,6 +10,7 @@ import {
 
 export const searchForTrainingsFunction = async ({
   values,
+  searchTimestamp,
   dispatch,
   setIsTrainingSearchLoading,
   setTrainingSearchError,
