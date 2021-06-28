@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Row, Col, Input } from "reactstrap";
 import { Formik, Form, ErrorMessage } from "formik";
@@ -19,9 +19,19 @@ import validateFormik from "services/validateFormik";
 const SearchForm = (props) => {
   const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
 
-  const [locationRadius, setLocationRadius] = useState(formValues?.radius ?? 30);
+  useEffect(() => {
+    setLocationRadius(contextFormValues?.radius ?? 30);
+    setDiploma(contextFormValues?.diploma ?? "");
+    setJobValue(contextFormValues?.job ?? null);
+  }, [widgetParameters?.applyFormValues]);
+
+  const contextFormValues =
+    widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
+
+  const [jobValue, setJobValue] = useState(null);
+  const [locationRadius, setLocationRadius] = useState(30);
   const [diplomas, setDiplomas] = useState([]);
-  const [diploma, setDiploma] = useState(formValues?.diploma ?? "");
+  const [diploma, setDiploma] = useState("");
   const [domainError, setDomainError] = useState(false);
   const [diplomaError, setDiplomaError] = useState(false);
 
@@ -41,7 +51,7 @@ const SearchForm = (props) => {
     return (
       <Formik
         validate={(values) => validateFormik(values, widgetParameters)}
-        initialValues={formValues ?? { job: {}, location: {}, radius: 30, diploma: "" }}
+        initialValues={{ job: {}, location: {}, radius: 30, diploma: "" }}
         onSubmit={props.handleSearchSubmit}
       >
         {({ isSubmitting, setFieldValue, errors }) => (
@@ -58,12 +68,17 @@ const SearchForm = (props) => {
               ) : (
                 <>
                   <Col xs="12">
+                    <h1 className="card-title">
+                      <span className="c-home-hero__title c-home-hero__title1 d-block d-md-inline">Se former et travailler </span>
+                        <span className="c-home-hero__title c-home-hero__title2 d-block d-md-inline">en alternance</span>
+                    </h1>
                     <div className="formGroup">
                       <h1 className="h6 font-weight-bold">Votre recherche</h1>
                       <div className={`${errors.job ? "c-searchform--onerror" : ""}`}>
                         <AutoCompleteField
                           kind="Métier *"
                           items={[]}
+                          initialSelectedItem={contextFormValues?.job || null}
                           itemToStringFunction={autoCompleteToStringFunction}
                           onSelectedItemChangeFunction={partialRight(
                             updateValuesFromJobAutoComplete,
@@ -72,7 +87,6 @@ const SearchForm = (props) => {
                           )}
                           compareItemFunction={compareAutoCompleteValues}
                           onInputValueChangeFunction={jobChanged}
-                          previouslySelectedItem={formValues?.job ?? null}
                           name="jobField"
                           placeholder="Ex : boulangerie"
                           searchPlaceholder="Indiquez le métier recherché ci-dessus"
@@ -89,11 +103,11 @@ const SearchForm = (props) => {
                   <AutoCompleteField
                     kind="Lieu *"
                     items={[]}
+                    initialSelectedItem={contextFormValues?.location ?? null}
                     itemToStringFunction={autoCompleteToStringFunction}
                     onSelectedItemChangeFunction={partialRight(formikUpdateValue, "location")}
                     compareItemFunction={compareAutoCompleteValues}
                     onInputValueChangeFunction={addressChanged}
-                    previouslySelectedItem={formValues?.location ?? null}
                     name="placeField"
                     placeholder="Adresse, ville ou code postal"
                     searchPlaceholder="Indiquez le lieu recherché ci-dessus"

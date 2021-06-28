@@ -10,7 +10,7 @@ const RechercheApprentissage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    initParametersFromQuery(dispatch);
+    initParametersFromQuery({ dispatch });
   }, []);
 
   return (
