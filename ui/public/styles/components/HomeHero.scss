@@ -24,6 +24,11 @@
     max-width: 1110px;
     border-radius: 10px;    
   } 
+  padding-top: 0;
+  @include media-breakpoint-up(lg) {
+    padding-top: 11px;
+  } 
+  padding-bottom: 36px;
 }
 
 .c-home-hero__submit {
@@ -35,10 +40,8 @@
 
 .c-home-hero__title {
   font-size: 26px;
-  text-align: center;
   font-weight: bold;
   line-height: 90.2%;
-  margin-top: 20px;
   @include media-breakpoint-up(sm) {
     margin-top: 0;
     font-size: 29px;
@@ -78,7 +81,18 @@
 
 .c-input-work-container {
   position: relative;
+  @include media-breakpoint-up(lg) {
+    width: 232px;
+  }
 }
+.c-input-work-container input::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0px;
+  color: $gray-500;
+}
+
 .c-input-work-container--demo {
   width: 370px;
 }

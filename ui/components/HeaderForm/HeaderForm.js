@@ -71,7 +71,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 compareItemFunction={compareAutoCompleteValues}
                 onInputValueChangeFunction={jobChanged}
                 name="jobField"
-                placeholder="Ex : boulangerie"
+                placeholder={isHome ? "Indiquez le métier recherché" : "Ex : boulangerie"}
                 searchPlaceholder="Indiquez le métier recherché ci-dessus"
               />
             </div>
@@ -86,7 +86,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                   compareItemFunction={compareAutoCompleteValues}
                   onInputValueChangeFunction={addressChanged}
                   name="placeField"
-                  placeholder="Adresse, ville ou code postal"
+                  placeholder={isHome ? "A quel endroit ?" : "Adresse, ville ou code postal"}
                   searchPlaceholder="Indiquez le lieu recherché ci-dessus"
                 />
               </div>

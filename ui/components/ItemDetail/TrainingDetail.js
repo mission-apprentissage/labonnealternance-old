@@ -9,7 +9,6 @@ import questionmarkIcon from "public/images/icons/questionmark2.svg";
 import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
 import sablierIcon from "public/images/icons/training-sablier.svg";
-import chainlinkIcon from "public/images/icons/chainlink.svg";
 import { SendTrackEvent } from "utils/gtm";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "utils/strutils";
