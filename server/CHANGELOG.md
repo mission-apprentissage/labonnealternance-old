@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.15.7 [30/06/2021]
+[708] Adaptation script d'export test ARA
+
 ## 1.15.6 [21/06/2021]
 [700] Changement lien matcha
 [673] Ajustements homepage

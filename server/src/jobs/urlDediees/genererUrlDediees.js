@@ -9,7 +9,7 @@ const logger = require("../../common/logger");
  * dans une fenêtre de terminal, sous /server exécuter : clear & node -e 'require("./src/jobs/urlDediees/genererUrlDediees")'
  */
 
-const FICHIER_SOURCE = path.join(__dirname, "./assets/Test_ARA_1.xlsx");
+const FICHIER_SOURCE = path.join(__dirname, "./assets/fichier_isere.xlsx");
 
 const logMessage = (level, msg) => {
   //console.log(msg);
@@ -27,9 +27,23 @@ const resultFilePath = path.join(__dirname, "./assets/urlDediees.xlsx");
 const creationAdresseWidget = async ({ codePostal, romeProjet, rome1 }) => {
   const coords = await getCoordinatesForZipcode(codePostal);
 
+  let codeRomeProjet = romeProjet ? romeProjet.substring(0, 5) : null;
+
+  let codeRome1 = null;
+
+  if (rome1) {
+    if (rome1.startsWith("Non")) {
+      codeRome1 = rome1.substring(rome1.indexOf("\n") + 1, rome1.indexOf("\n") + 6);
+    } else {
+      codeRome1 = rome1.substring(0, 5);
+    }
+  }
+
+  //console.log("props : ", codePostal, codeRomeProjet, codeRome1);
+
   if (coords) {
     return `https://labonnealternance.pole-emploi.fr/recherche-apprentissage?caller=expeara&romes=${
-      romeProjet || rome1
+      codeRomeProjet || codeRome1
     }&lon=${coords.lon}&lat=${coords.lat}&radius=30&utm_source=pole-emploi&utm_medium=mail&utm_campaign=pe_ara`;
   }
 
@@ -70,10 +84,24 @@ const saveResultToFile = (rows) => {
     console.log("error removing file : ", err.message);
   }
 
-  let wsResult = [["URL personnalisée", "ROME 1", "ROME PROJET", "CODE POSTAL", "IDE"]];
+  let wsResult = [
+    [
+      "URL personnalisée",
+      "ROME Métier recherché",
+      "ROME Projet d'évolution professionnelle",
+      "Code postal",
+      "Identifiant",
+    ],
+  ];
 
   rows.map((row) => {
-    wsResult.push([row["URL personnalisée"], row["ROME 1"], row["ROME PROJET"], row["CODE POSTAL"], row["IDE"]]);
+    wsResult.push([
+      row["URL personnalisée"],
+      row["ROME Métier recherché"],
+      row["ROME Projet d'évolution professionnelle"],
+      row["Code postal"],
+      row["Identifiant"],
+    ]);
   });
 
   // Ecriture résultat
@@ -97,16 +125,16 @@ const init = async () => {
 
     logMessage("info", `Début traitement`);
 
-    let onglet = XLSX.utils.sheet_to_json(workbookDomainesMetiers.workbook.Sheets["Feuil1"]);
+    let onglet = XLSX.utils.sheet_to_json(workbookDomainesMetiers.workbook.Sheets["R58"]);
     let rows = [];
 
     for (let i = 0; i < onglet.length; i++) {
       let row = onglet[i];
 
       row["URL personnalisée"] = await creationAdresseWidget({
-        codePostal: row["CODE POSTAL"],
-        romeProjet: row["ROME PROJET"],
-        rome1: row["ROME 1"],
+        codePostal: row["Code postal"],
+        romeProjet: row["ROME Projet d'évolution professionnelle"],
+        rome1: row["ROME Métier recherché"],
       });
 
       //console.log(row);
