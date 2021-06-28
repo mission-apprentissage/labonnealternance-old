@@ -72,8 +72,8 @@ const ChoiceColumn = ({
 
   const handleClose = () => {
     setCurrentPage("");
-    pushHistory({ router, scopeContext });
-    unSelectItem();
+    pushHistory({ router, scopeContext, display: "list", searchParameters: formValues });
+    unSelectItem("doNotSaveToHistory");
   };
 
   const searchForJobsOnNewCenter = async (newCenter) => {

@@ -48,7 +48,7 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useScopeContext();
 
-  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible } = useSelector(
+  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues } = useSelector(
     (state) => state.trainings
   );
 
@@ -145,8 +145,9 @@ const SearchForTrainingsAndJobs = () => {
     }
     dispatch(setIsFormVisible(false));
 
-    if(misc!=="stayOnMap")
-      pushHistory({ router, scopeContext, display: "list" });
+    if(misc!=="stayOnMap") {
+      pushHistory({ router, scopeContext, display: "list", searchParameters:values });
+    }
   };
 
   const handleItemLoad = async (item) => {
@@ -263,7 +264,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
 
     if (!doNotSaveToHistory) {
-      pushHistory({ router, scopeContext, display: "list" });
+      pushHistory({ router, scopeContext, display: "list", searchParameters:formValues });
     }
   };
 
