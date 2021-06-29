@@ -8,6 +8,7 @@ import {
   partialJobSearchErrorText,
   getRomeFromParameters,
 } from "components/SearchForTrainingsAndJobs/services/utils";
+import { storeJobsInSession } from "./handleSessionStorage";
 
 export const searchForJobsFunction = async ({
   values,
@@ -110,6 +111,7 @@ export const searchForJobsFunction = async ({
 
     dispatch(setJobs(results));
     dispatch(setHasSearch(true));
+    storeJobsInSession({ jobs: results, searchTimestamp });
 
     setJobMarkers(factorJobsForMap(results), scopeContext.isTraining ? null : searchCenter);
   } catch (err) {

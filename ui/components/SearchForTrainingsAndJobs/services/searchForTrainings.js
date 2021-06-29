@@ -7,6 +7,7 @@ import {
   getRomeFromParameters,
   getRncpsFromParameters,
 } from "components/SearchForTrainingsAndJobs/services/utils";
+import { storeTrainingsInSession } from "./handleSessionStorage";
 
 export const searchForTrainingsFunction = async ({
   values,
@@ -43,6 +44,7 @@ export const searchForTrainingsFunction = async ({
     }
 
     dispatch(setTrainings(response.data.results));
+    storeTrainingsInSession({ trainings: response.data.results, searchTimestamp });
     dispatch(setHasSearch(true));
     dispatch(setIsFormVisible(false));
 
