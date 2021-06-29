@@ -82,6 +82,9 @@ const SearchForTrainingsAndJobs = () => {
         showResultMap,
         showResultList,
         showSearchForm,
+        dispatch,
+        setTrainings,
+        setJobs,
       });
     };
 
