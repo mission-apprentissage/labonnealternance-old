@@ -1,3 +1,5 @@
+import { setJobMarkers, setTrainingMarkers, factorTrainingsForMap, factorJobsForMap } from "utils/mapTools";
+
 export const storeTrainingsInSession = ({ trainings, searchTimestamp }) => {
   let search = JSON.parse(sessionStorage.getItem(searchTimestamp));
   sessionStorage.setItem(searchTimestamp, JSON.stringify({ trainings, ...search }));
@@ -13,9 +15,11 @@ export const restoreSearchFromSession = ({ searchTimestamp, dispatch, setTrainin
 
   if (search?.jobs) {
     dispatch(setJobs(search.jobs));
+    setJobMarkers(factorJobsForMap(search.jobs));
   }
 
   if (search?.trainings) {
     dispatch(setTrainings(search.trainings));
+    setTrainingMarkers(factorTrainingsForMap(search.trainings));
   }
 };
