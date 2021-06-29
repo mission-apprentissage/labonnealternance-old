@@ -110,7 +110,7 @@ const ChoiceColumn = ({
 
     const searchTimestamp = new Date().getTime();
 
-    //TODO: ajouter de l'historique ici ?
+    console.log("AJOUTER DE L'HISTORIQUE");
 
     searchForJobsWithStrictRadius({ formValues, searchTimestamp });
 

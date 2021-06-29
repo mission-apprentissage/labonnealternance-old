@@ -12,6 +12,7 @@ import {
 } from "components/SearchForTrainingsAndJobs/services/utils";
 
 import { flyToMarker, setSelectedMarker } from "utils/mapTools";
+import { storeTrainingsInSession } from "./handleSessionStorage";
 
 export const loadItem = async ({
   item,
@@ -49,6 +50,7 @@ export const loadItem = async ({
       const searchTimestamp = new Date().getTime();
 
       dispatch(setTrainings(response.data.results));
+      storeTrainingsInSession({ trainings: response.data.results, searchTimestamp });
 
       if (response.data.results.length) {
         setTrainingMarkers(factorTrainingsForMap(response.data.results));
