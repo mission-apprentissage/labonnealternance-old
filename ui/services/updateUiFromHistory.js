@@ -3,6 +3,8 @@
  * sans qu'il y ait de changement de page
  */
 
+import { restoreSearchFromSession } from "components/SearchForTrainingsAndJobs/services/handleSessionStorage";
+
 export const updateUiFromHistory = ({
   url,
   jobs,
@@ -17,6 +19,9 @@ export const updateUiFromHistory = ({
   showResultMap,
   showResultList,
   showSearchForm,
+  dispatch,
+  setTrainings,
+  setJobs,
 }) => {
   // récupération des query parameters donnant des indications sur l'état de l'interface
   let urlParams;
@@ -27,6 +32,21 @@ export const updateUiFromHistory = ({
   const pageFromUrl = urlParams ? urlParams.get("page") : "";
   const display = urlParams ? urlParams.get("display") : "";
   const itemId = urlParams ? urlParams.get("itemId") : "";
+  const searchTimestamp = urlParams ? urlParams.get("s") : "";
+
+  // réconciliation entre le store et l'état des résultats de recherche
+  if(searchTimestamp)
+  {
+    console.log("Y a searchtimestamp");
+    /**
+     maintenir dans le store un état de la recherche
+     gérer ici l'historique de cet état, reprendre les résultats dans le store
+     refresh map aussi
+     */
+    restoreSearchFromSession({ searchTimestamp, dispatch, setTrainings, setJobs });
+  }
+
+  // réconciliation entre le store et l'état des formulaires de recherche
 
   // réconciliation entre le store et l'état attendu indiqué par les query parameters pour les éléments sélectionnés
   if (currentPage !== pageFromUrl) {
