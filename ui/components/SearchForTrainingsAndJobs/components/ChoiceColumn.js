@@ -89,7 +89,7 @@ const ChoiceColumn = ({
     scrollToTop("choiceColumn");
 
     dispatch(setJobs([]));
-    searchForJobs(formValues, null);
+    searchForJobs({ values:formValues, searchTimestamp: new Date().getTime() });
   };
 
   const searchOnNewCenter = async (newCenter, isTrainingSearch, isJobSearch) => {
