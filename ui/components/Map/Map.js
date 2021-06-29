@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useStore, useDispatch, useSelector } from "react-redux";
 import { setSelectedItem, setSelectedMapPopupItem } from "store/actions";
-import { currentPage, setCurrentPage } from "utils/currentPage.js";
+import { currentPage, setCurrentPage, currentSearch, } from "utils/currentPage.js";
 import { useScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
 import MapSearchButton from "./MapSearchButton";
@@ -35,7 +35,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
     setSelectedMarker(null);
     if (currentPage === "fiche") {
       setCurrentPage("");
-      pushHistory({ router, scopeContext });
+      pushHistory({ router, scopeContext, searchTimestamp: currentSearch });
     }
   };
 

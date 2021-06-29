@@ -8,7 +8,7 @@ import ItemDetail from "components/ItemDetail/ItemDetail";
 import LoadingScreen from "components/LoadingScreen";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
-import { setCurrentPage } from "utils/currentPage.js";
+import { setCurrentPage, currentSearch } from "utils/currentPage.js";
 import pushHistory from "utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
 
@@ -67,12 +67,18 @@ const ChoiceColumn = ({
 
     setCurrentPage("fiche");
 
-    pushHistory({ router, scopeContext, item, page: "fiche", display: "list" });
+    pushHistory({ router, scopeContext, item, page: "fiche", display: "list", searchTimestamp: currentSearch });
   };
 
   const handleClose = () => {
     setCurrentPage("");
-    pushHistory({ router, scopeContext, display: "list", searchParameters: formValues });
+    pushHistory({
+      router,
+      scopeContext,
+      display: "list",
+      searchParameters: formValues,
+      searchTimestamp: currentSearch,
+    });
     unSelectItem("doNotSaveToHistory");
   };
 
@@ -89,7 +95,7 @@ const ChoiceColumn = ({
     scrollToTop("choiceColumn");
 
     dispatch(setJobs([]));
-    searchForJobs({ values:formValues, searchTimestamp: new Date().getTime() });
+    searchForJobs({ values: formValues, searchTimestamp: new Date().getTime() });
   };
 
   const searchOnNewCenter = async (newCenter, isTrainingSearch, isJobSearch) => {

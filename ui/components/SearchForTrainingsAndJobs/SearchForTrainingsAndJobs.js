@@ -41,7 +41,7 @@ import Map from "components/Map";
 import { Row, Col } from "reactstrap";
 import { MapListSwitchButton, ChoiceColumn } from "./components";
 import { WidgetHeader, InitWidgetSearchParameters } from "components/WidgetHeader";
-import { currentPage, setCurrentPage } from "utils/currentPage";
+import { currentPage, setCurrentPage, currentSearch, setCurrentSearch } from "utils/currentPage";
 import updateUiFromHistory from "services/updateUiFromHistory";
 
 const SearchForTrainingsAndJobs = () => {
@@ -148,8 +148,13 @@ const SearchForTrainingsAndJobs = () => {
     }
     dispatch(setIsFormVisible(false));
 
+    setCurrentSearch(searchTimestamp);
     if(misc!=="stayOnMap") {
       pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp });
+    }
+    else
+    {
+      console.log("METTRE à jour l'historique avec le nouveau searchTimestamp");
     }
   };
 
@@ -237,7 +242,7 @@ const SearchForTrainingsAndJobs = () => {
 
     if (!doNotSaveToHistory) {
       unSelectItem("doNotSaveToHistory");
-      pushHistory({ router, scopeContext, display: "form" });
+      pushHistory({ router, scopeContext, display: "form", searchTimestamp: currentSearch });
     }
   };
 
@@ -252,7 +257,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setVisiblePane("resultMap"));
 
     if (!doNotSaveToHistory) {
-      pushHistory({ router, scopeContext, display: "map" });
+      pushHistory({ router, scopeContext, display: "map", searchTimestamp: currentSearch });
     }
 
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
@@ -269,14 +274,14 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
 
     if (!doNotSaveToHistory) {
-      pushHistory({ router, scopeContext, display: "list", searchParameters:formValues });
+      pushHistory({ router, scopeContext, display: "list", searchParameters:formValues, searchTimestamp: currentSearch });
     }
   };
 
   const selectItemOnMap = (item) => {
     showResultList(null, "doNotSaveToHistory");
     setCurrentPage("fiche");
-    pushHistory({ router, scopeContext, item, page: "fiche", display: "list" });
+    pushHistory({ router, scopeContext, item, page: "fiche", display: "list", searchTimestamp: currentSearch });
   };
 
   const unSelectItem = (doNotSaveToHistory) => {
@@ -287,7 +292,7 @@ const SearchForTrainingsAndJobs = () => {
     }
 
     if (!doNotSaveToHistory) {
-      pushHistory({ router, scopeContext });
+      pushHistory({ router, scopeContext, searchTimestamp: currentSearch });
     }
   };
 

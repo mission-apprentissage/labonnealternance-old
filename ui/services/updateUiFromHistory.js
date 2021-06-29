@@ -4,6 +4,7 @@
  */
 
 import { restoreSearchFromSession } from "components/SearchForTrainingsAndJobs/services/handleSessionStorage";
+import { currentSearch, setCurrentSearch } from "utils/currentPage";
 
 export const updateUiFromHistory = ({
   url,
@@ -35,14 +36,14 @@ export const updateUiFromHistory = ({
   const searchTimestamp = urlParams ? urlParams.get("s") : "";
 
   // réconciliation entre le store et l'état des résultats de recherche
-  if(searchTimestamp)
-  {
+  if (searchTimestamp && searchTimestamp !== currentSearch) {
     console.log("Y a searchtimestamp");
     /**
      maintenir dans le store un état de la recherche
      gérer ici l'historique de cet état, reprendre les résultats dans le store
      refresh map aussi
      */
+    setCurrentSearch(searchTimestamp);
     restoreSearchFromSession({ searchTimestamp, dispatch, setTrainings, setJobs });
   }
 
