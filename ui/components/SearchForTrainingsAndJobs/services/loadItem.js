@@ -46,6 +46,8 @@ export const loadItem = async ({
         setTrainingSearchError(trainingErrorText);
       }
 
+      const searchTimestamp = new Date().getTime();
+
       dispatch(setTrainings(response.data.results));
 
       if (response.data.results.length) {
@@ -74,6 +76,7 @@ export const loadItem = async ({
       searchForJobsFunction({
         values,
         strictRadius: true,
+        searchTimestamp,
         setIsJobSearchLoading,
         dispatch,
         setHasSearch,
