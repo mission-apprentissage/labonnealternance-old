@@ -5,6 +5,7 @@
 
 import { restoreSearchFromSession } from "components/SearchForTrainingsAndJobs/services/handleSessionStorage";
 import { currentSearch, setCurrentSearch } from "utils/currentPage";
+import { filterLayers } from "utils/mapTools";
 
 export const updateUiFromHistory = ({
   url,
@@ -23,6 +24,7 @@ export const updateUiFromHistory = ({
   dispatch,
   setTrainings,
   setJobs,
+  setActiveFilter,
 }) => {
   // récupération des query parameters donnant des indications sur l'état de l'interface
   let urlParams;
@@ -35,14 +37,13 @@ export const updateUiFromHistory = ({
   const itemId = urlParams ? urlParams.get("itemId") : "";
   const searchTimestamp = urlParams ? urlParams.get("s") : "";
 
+  setActiveFilter("all"); // restauration des onglets à all pour assurer la présence de marker dans le dom
+  filterLayers("all");
+
   // réconciliation entre le store et l'état des résultats de recherche
   if (searchTimestamp && searchTimestamp !== currentSearch) {
     console.log("Y a searchtimestamp");
-    /**
-     maintenir dans le store un état de la recherche
-     gérer ici l'historique de cet état, reprendre les résultats dans le store
-     refresh map aussi
-     */
+    
     setCurrentSearch(searchTimestamp);
     restoreSearchFromSession({ searchTimestamp, dispatch, setTrainings, setJobs });
   }
