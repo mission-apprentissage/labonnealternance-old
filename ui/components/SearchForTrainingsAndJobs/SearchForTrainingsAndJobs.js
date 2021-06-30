@@ -55,6 +55,7 @@ const SearchForTrainingsAndJobs = () => {
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
   const [shouldShowWelcomeMessage, setShouldShowWelcomeMessage] = useState(hasSearch ? false : true);
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const [isJobSearchLoading, setIsJobSearchLoading] = useState(hasSearch ? false : true);
   const [jobSearchError, setJobSearchError] = useState("");
@@ -85,6 +86,7 @@ const SearchForTrainingsAndJobs = () => {
         dispatch,
         setTrainings,
         setJobs,
+        setActiveFilter,
       });
     };
 
@@ -322,6 +324,8 @@ const SearchForTrainingsAndJobs = () => {
             jobSearchError={jobSearchError}
             allJobSearchError={allJobSearchError}
             isLoading={isLoading}
+            setActiveFilter={setActiveFilter}
+            activeFilter={activeFilter}
           />
         </Col>
         <Col className={`p-0 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">

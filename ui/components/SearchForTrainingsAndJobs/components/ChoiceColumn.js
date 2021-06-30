@@ -38,6 +38,8 @@ const ChoiceColumn = ({
   jobSearchError,
   allJobSearchError,
   isLoading,
+  activeFilter,
+  setActiveFilter,
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -149,8 +151,6 @@ const ChoiceColumn = ({
     }
     dispatch(setTrainings(trainings));
   };
-
-  const [activeFilter, setActiveFilter] = useState("all");
 
   const getResultLists = () => {
     return (
