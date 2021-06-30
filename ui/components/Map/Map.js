@@ -57,8 +57,12 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
 
           if (addresses.length) {
             values.location.insee = addresses[0].insee;
+            values.location.zipcode = addresses[0].zipcode;
+            values.location.label = addresses[0].label;
           } else {
             values.location.insee = null;
+            values.location.label = null;
+            values.location.zipcode = null;
           }
         } catch (err) {}
         await handleSearchSubmit(values);
