@@ -69,7 +69,15 @@ const ChoiceColumn = ({
 
     setCurrentPage("fiche");
 
-    pushHistory({ router, scopeContext, item, page: "fiche", display: "list", searchTimestamp: currentSearch });
+    pushHistory({
+      router,
+      scopeContext,
+      item,
+      page: "fiche",
+      display: "list",
+      searchParameters: formValues,
+      searchTimestamp: currentSearch,
+    });
   };
 
   const handleClose = () => {

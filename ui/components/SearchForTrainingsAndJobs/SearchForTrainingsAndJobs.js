@@ -238,7 +238,7 @@ const SearchForTrainingsAndJobs = () => {
 
     if (!doNotSaveToHistory) {
       unSelectItem("doNotSaveToHistory");
-      pushHistory({ router, scopeContext, display: "form", searchTimestamp: currentSearch });
+      pushHistory({ router, scopeContext, display: "form", searchParameters:formValues, searchTimestamp: currentSearch });
     }
   };
 
@@ -253,7 +253,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setVisiblePane("resultMap"));
 
     if (!doNotSaveToHistory) {
-      pushHistory({ router, scopeContext, display: "map", searchTimestamp: currentSearch });
+      pushHistory({ router, scopeContext, display: "map", searchParameters:formValues, searchTimestamp: currentSearch });
     }
 
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
@@ -277,7 +277,7 @@ const SearchForTrainingsAndJobs = () => {
   const selectItemOnMap = (item) => {
     showResultList(null, "doNotSaveToHistory");
     setCurrentPage("fiche");
-    pushHistory({ router, scopeContext, item, page: "fiche", display: "list", searchTimestamp: currentSearch });
+    pushHistory({ router, scopeContext, item, page: "fiche", display: "list", searchParameters:formValues, searchTimestamp: currentSearch });
   };
 
   const unSelectItem = (doNotSaveToHistory) => {
@@ -288,7 +288,7 @@ const SearchForTrainingsAndJobs = () => {
     }
 
     if (!doNotSaveToHistory) {
-      pushHistory({ router, scopeContext, searchTimestamp: currentSearch });
+      pushHistory({ router, scopeContext, searchParameters:formValues, searchTimestamp: currentSearch });
     }
   };
 
