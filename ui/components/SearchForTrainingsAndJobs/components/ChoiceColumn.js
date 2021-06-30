@@ -96,6 +96,13 @@ const ChoiceColumn = ({
 
     dispatch(setJobs([]));
     const searchTimestamp = new Date().getTime();
+    pushHistory({
+      router,
+      scopeContext,
+      display: "list",
+      searchParameters: formValues,
+      searchTimestamp,
+    });
     setCurrentSearch(searchTimestamp);
     searchForJobs({ values: formValues, searchTimestamp });
   };
