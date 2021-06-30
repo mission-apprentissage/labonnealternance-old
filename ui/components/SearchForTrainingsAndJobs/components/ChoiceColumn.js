@@ -8,7 +8,7 @@ import ItemDetail from "components/ItemDetail/ItemDetail";
 import LoadingScreen from "components/LoadingScreen";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
-import { setCurrentPage, currentSearch } from "utils/currentPage.js";
+import { setCurrentPage, setCurrentSearch, currentSearch } from "utils/currentPage.js";
 import pushHistory from "utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
 
@@ -95,7 +95,9 @@ const ChoiceColumn = ({
     scrollToTop("choiceColumn");
 
     dispatch(setJobs([]));
-    searchForJobs({ values: formValues, searchTimestamp: new Date().getTime() });
+    const searchTimestamp = new Date().getTime();
+    setCurrentSearch(searchTimestamp);
+    searchForJobs({ values: formValues, searchTimestamp });
   };
 
   const searchOnNewCenter = async (newCenter, isTrainingSearch, isJobSearch) => {
