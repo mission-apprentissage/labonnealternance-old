@@ -118,12 +118,19 @@ const ChoiceColumn = ({
 
     const searchTimestamp = new Date().getTime();
 
-    console.log("AJOUTER DE L'HISTORIQUE");
+    pushHistory({
+      router,
+      scopeContext,
+      display: "list",
+      searchParameters: formValues,
+      searchTimestamp,
+    });
+    setCurrentSearch(searchTimestamp);
 
-    searchForJobsWithStrictRadius({ formValues, searchTimestamp });
+    searchForJobsWithStrictRadius({ values: formValues, searchTimestamp });
 
     if (isTrainingSearch) {
-      searchForTrainings({ formValues, searchTimestamp });
+      searchForTrainings({ values: formValues, searchTimestamp });
     }
   };
 
