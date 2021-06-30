@@ -125,7 +125,7 @@ const SearchForTrainingsAndJobs = () => {
     return item;
   };
 
-  const handleSearchSubmit = async (values, misc) => {
+  const handleSearchSubmit = async (values) => {
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
     const searchTimestamp = new Date().getTime();
@@ -148,10 +148,8 @@ const SearchForTrainingsAndJobs = () => {
     }
     dispatch(setIsFormVisible(false));
 
-    if(misc!=="stayOnMap") {
-      pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp/*, isReplace:currentSearch?false:true*/ });
-      setCurrentSearch(searchTimestamp);
-    }
+    pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp/*, isReplace:currentSearch?false:true*/ });
+    setCurrentSearch(searchTimestamp);
   };
 
   const handleItemLoad = async (item) => {
