@@ -148,13 +148,9 @@ const SearchForTrainingsAndJobs = () => {
     }
     dispatch(setIsFormVisible(false));
 
-    setCurrentSearch(searchTimestamp);
     if(misc!=="stayOnMap") {
-      pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp });
-    }
-    else
-    {
-      console.log("METTRE à jour l'historique avec le nouveau searchTimestamp");
+      pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp/*, isReplace:currentSearch?false:true*/ });
+      setCurrentSearch(searchTimestamp);
     }
   };
 
