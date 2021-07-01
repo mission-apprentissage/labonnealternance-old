@@ -99,20 +99,23 @@ const buildFormValuesFromParameters = (params) => {
 };
 
 export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
+  let hasParameters = false;
+
   const widgetParameters = getWidgetParameters();
   if (widgetParameters && widgetParameters.applyWidgetParameters) {
     if (widgetParameters.applyFormValues) {
       widgetParameters.formValues = buildFormValuesFromParameters(widgetParameters.parameters);
     }
     dispatch(setWidgetParameters(widgetParameters));
-    if (shouldPush) {
-      dispatch(push({ pathname: "/recherche-apprentissage" }));
-    }
-  } else {
-    const itemParameters = getItemParameters();
-    if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {
-      dispatch(setItemParameters(itemParameters));
-      if (shouldPush) dispatch(push({ pathname: "/recherche-apprentissage" }));
-    }
+  }
+
+  const itemParameters = getItemParameters();
+  if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {
+    dispatch(setItemParameters(itemParameters));
+    hasParameters = true;
+  }
+
+  if (hasParameters && shouldPush) {
+    dispatch(push({ pathname: "/recherche-apprentissage" }));
   }
 };
