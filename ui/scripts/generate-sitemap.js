@@ -1,4 +1,3 @@
-import baseUrl from "utils/baseUrl";
 
 const fs = require('fs');
 
@@ -25,9 +24,11 @@ const prettier = require('prettier');
           .replace('.mdx', '');
         const route = path === '/index' ? '' : path;
 
+        // The URL is hardcoded because the sitemap is built
+        // during next build phase, thus the hostname is NOT available
         return `
                         <url>
-                            <loc>${`${baseUrl}${route}`}</loc>
+                            <loc>${`https://labonnealternance.pole-emploi.fr${route}`}</loc>
                         </url>
                     `;
       })

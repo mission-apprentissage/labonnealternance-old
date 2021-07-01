@@ -42,6 +42,12 @@ module.exports = withPlugins(
       withSourceMaps,
       {
         webpack: (config, options) => {
+
+          // generate sitemap
+          // only one "webpack" prop is allowed inside this file
+          // See https://github.com/cyrilwanner/next-compose-plugins/issues/22
+          require('./scripts/generate-sitemap');
+
           config.module.rules.push({
             test: /\.(svg|png|jpg|gif)$/,
             use: {
@@ -98,14 +104,15 @@ module.exports = withPlugins(
   ],
   {
     /* global config here ... */
+    // webpack: (config, { isServer }) => {
+    //   console.log('-------------------------------------------- isServer --------------------------', isServer);
+    //   if (isServer) {
+    //     require('./scripts/generate-sitemap');
+    //   }
+    //   return config;
+    // },
     sassOptions: {
       includePaths: [path.join(__dirname, "/public/styles")],
     },
-    webpack: (config, { isServer }) => {
-      if (isServer) {
-        require('./scripts/generate-sitemap');
-      }
-      return config;
-    }
   }
 );
