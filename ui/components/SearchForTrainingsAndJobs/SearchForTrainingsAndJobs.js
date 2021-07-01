@@ -127,7 +127,7 @@ const SearchForTrainingsAndJobs = () => {
     return item;
   };
 
-  const handleSearchSubmit = async (values) => {
+  const handleSearchSubmit = async ({values,followUpItem=null}) => {
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
     const searchTimestamp = new Date().getTime();
@@ -152,6 +152,15 @@ const SearchForTrainingsAndJobs = () => {
 
     pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp/*, isReplace:currentSearch?false:true*/ });
     setCurrentSearch(searchTimestamp);
+
+    if(followUpItem)
+    {
+      console.log("on enchaine sur la sélection d'un item provenant des paramètes ",followUpItem);
+    }
+    else
+    {
+      console.log("pas de followUpItem");
+    }
   };
 
   const handleItemLoad = async (item) => {

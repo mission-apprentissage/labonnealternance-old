@@ -14,11 +14,27 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
   const { widgetParameters, itemParameters, shouldExecuteSearch, formValues } = useSelector((state) => state.trainings);
 
   useEffect(() => {
-    if (widgetParameters && widgetParameters.applyWidgetParameters) {
-      launchWidgetSearch(widgetParameters);
+    // initialisation par les query params
+
+    console.log("PARAMS : ",{widgetParameters,itemParameters});
+
+    if (
+      widgetParameters &&
+      widgetParameters.applyWidgetParameters &&
+      itemParameters &&
+      itemParameters.applyItemParameters
+    ) {
+      console.log("launchWidget AND item");
+      launchWidgetSearch({ selectItem: true });
+      dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
+      dispatch(setItemParameters({ ...itemParameters, applyItemParameters: false })); // action one shot
+    } else if (widgetParameters && widgetParameters.applyWidgetParameters) {
+      console.log("launchWidget only");
+      launchWidgetSearch({ selectItem: false });
       dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
     } else if (itemParameters && itemParameters.applyItemParameters) {
-      launchItemFetch(itemParameters);
+      console.log("launchItem only");
+      launchItemFetch();
       dispatch(setItemParameters({ ...itemParameters, applyItemParameters: false })); // action one shot
     } else {
       setIsLoading(false);
@@ -27,6 +43,7 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
 
   useEffect(() => {
     if (shouldExecuteSearch) {
+      // provient du submit formulaire de la homepage
       executeSearch(formValues);
     }
   }, []);
@@ -34,7 +51,7 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
   const executeSearch = (values) => {
     setIsLoading(true);
     try {
-      handleSearchSubmit(values);
+      handleSearchSubmit({ values });
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
@@ -42,12 +59,15 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
     }
   };
 
-  const launchWidgetSearch = async () => {
+  const launchWidgetSearch = async ({ selectItem = false }) => {
     setIsLoading(true);
     const p = widgetParameters.parameters;
     try {
       if (widgetParameters.applyFormValues) {
-        handleSearchSubmit(widgetParameters.formValues);
+        handleSearchSubmit({ values: widgetParameters.formValues, followUpItem: selectItem ? itemParameters : null });
+        if (selectItem) {
+          console.log("on select l'item aussi 1");
+        }
       } else {
         // récupération du code insee depuis la base d'adresse
         const addresses = await fetchAddressFromCoordinates([p.lon, p.lat]);
@@ -68,7 +88,10 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
             ...addresses[0],
           };
 
-          handleSearchSubmit(values);
+          handleSearchSubmit({ values, followUpItem: selectItem ? itemParameters : null });
+          if (selectItem) {
+            console.log("on select l'item aussi 2 ");
+          }
         } else {
           console.log("aucun lieu trouvé");
         }
