@@ -104,13 +104,6 @@ module.exports = withPlugins(
   ],
   {
     /* global config here ... */
-    // webpack: (config, { isServer }) => {
-    //   console.log('-------------------------------------------- isServer --------------------------', isServer);
-    //   if (isServer) {
-    //     require('./scripts/generate-sitemap');
-    //   }
-    //   return config;
-    // },
     sassOptions: {
       includePaths: [path.join(__dirname, "/public/styles")],
     },
