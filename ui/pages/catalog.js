@@ -5,19 +5,30 @@ import Breadcrumb from "components/breadcrumb";
 
 import Footer from "components/footer";
 
-const Catalog = () => {
+export default function Catalog(props) {
+  console.log('props', props);
   return (
-  <div>
+    <div>
+      <ScrollToTop />
+      <Navigation />
+      <Breadcrumb forPage="catalog" label="Catalogue" />
+      
+      <h1>Catalogue {props.dataval}</h1>
+      
+      <Footer />
+    </div>
+  )
+}
 
-    <ScrollToTop />
-    <Navigation />
-    <Breadcrumb forPage="catalog" label="Catalogue" />
-    
-    <h1>Catalogue</h1>
-    
-    <Footer />
+export async function getStaticProps() {
+  // Get external data from the file system, API, DB, etc.
+  const data = 42;
 
-  </div>
-)}
-
-export default Catalog
+  // The value of the `props` key will be
+  //  passed to the `Home` component
+  return {
+    props: {
+      dataval: 45
+    }
+  }
+}
