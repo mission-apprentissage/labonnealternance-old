@@ -13,7 +13,7 @@ export default function Catalog(props) {
       <Navigation />
       <Breadcrumb forPage="catalog" label="Catalogue" />
       
-      <h1>Catalogue {props.dataval}</h1>
+      <h1>Catalogue</h1>
       
       <Footer />
     </div>
@@ -23,6 +23,7 @@ export default function Catalog(props) {
 // See https://nextjs.org/learn/basics/data-fetching/with-data
 // Static data, please restart nextjs each time this function change
 export async function getStaticProps() {
+  const uniq = require("lodash").uniq;
   const path = require('path');
   const fs = require('fs');
   const postsDirectory = path.join(process.cwd(), 'config')
@@ -31,9 +32,12 @@ export async function getStaticProps() {
   const arrayOfLines = lineString.match(/[^\r\n]+/g);
   const dataJobs = arrayOfLines.map(function(singleLine) {
     const splitted = singleLine.split(' [')
-    const actualName = splitted[0]
+    const actualName = splitted[0].trim()
+    // const romes = uniq(JSON.parse('[' + splitted[1]))
+    const romes = uniq(splitted[1].split(',').slice(0, -1))
     return {
-      name: actualName
+      name: actualName,
+      romes: romes
     };
   })
   // Get external data from the file system, API, DB, etc.
@@ -43,8 +47,7 @@ export async function getStaticProps() {
   //  passed to the `Home` component
   return {
     props: {
-      dataval: data,
-      datatxt: dataJobs
+      dataJobs: dataJobs
     }
   }
 }
