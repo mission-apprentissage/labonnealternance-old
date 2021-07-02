@@ -18,7 +18,7 @@ export default function Catalog(props) {
         <p>Ensemble des métiers</p>
         {
           props.dataJobs.map((item, index) => {
-            return <div key={index}><a href="#">{item.name}</a></div>
+            return <div key={index}><a href={`/catalog/${item.slug}`}>{item.name}</a></div>
           })
         }
       </div>
@@ -32,6 +32,7 @@ export default function Catalog(props) {
 // Static data, please restart nextjs each time this function change
 export async function getStaticProps() {
   const uniq = require("lodash").uniq;
+  const kebabCase = require("lodash").kebabCase;
   const path = require('path');
   const fs = require('fs');
   const txtDirectory = path.join(process.cwd(), 'config')
@@ -46,6 +47,7 @@ export async function getStaticProps() {
     const romes = uniq(splitted[1].split(',').slice(0, -1))
     return {
       name: actualName,
+      slug: kebabCase(actualName),
       romes: romes
     };
   })
