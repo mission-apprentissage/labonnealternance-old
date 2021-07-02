@@ -33,18 +33,15 @@ export async function getStaticProps() {
   const dataJobs = arrayOfLines.map(function(singleLine) {
     const splitted = singleLine.split(' [')
     const actualName = splitted[0].trim()
-    // const romes = uniq(JSON.parse('[' + splitted[1]))
     const romes = uniq(splitted[1].split(',').slice(0, -1))
     return {
       name: actualName,
       romes: romes
     };
   })
-  // Get external data from the file system, API, DB, etc.
-  const data = 48;
 
   // The value of the `props` key will be
-  //  passed to the `Home` component
+  //  passed to the `Catalog` component
   return {
     props: {
       dataJobs: dataJobs
