@@ -22,6 +22,8 @@ export const searchForTrainingsFunction = async ({
   setTrainingMarkers,
   factorTrainingsForMap,
   widgetParameters,
+  followUpItem,
+  selectFollowUpItem,
 }) => {
   setIsTrainingSearchLoading(true);
   setTrainingSearchError("");
@@ -50,11 +52,19 @@ export const searchForTrainingsFunction = async ({
 
     if (response.data.results.length) {
       setTrainingMarkers(factorTrainingsForMap(response.data.results));
+
+      if (followUpItem?.parameters.type === "training") {
+        selectFollowUpItem({
+          itemId: followUpItem.parameters.itemId,
+          type: followUpItem.parameters.type,
+          trainings: response.data.results,
+        });
+      }
     }
   } catch (err) {
     console.log(
-      `Erreur interne lors de la recherche de formations (${err.response ? err.response.status : ""} : ${
-        err.response.data ? err.response.data.error : ""
+      `Erreur interne lors de la recherche de formations (${err.response ? err.response?.status : ""} : ${
+        err?.response?.data ? err.response.data?.error : ""
       })`
     );
     logError("Training search error", err);
