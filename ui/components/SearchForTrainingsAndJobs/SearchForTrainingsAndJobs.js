@@ -100,34 +100,62 @@ const SearchForTrainingsAndJobs = () => {
   }, [trainings, jobs]);
 
   const selectItemFromHistory = (itemId, type) => {
-    const item = findItem(itemId, type);
+    const item = findItem({itemId, type, jobs, trainings});
+    selectItem(item);
+  };
 
+  const selectItem = (item) =>
+  {
     closeMapPopups();
     if (item) {
       flyToMarker(item, 12);
       dispatch(setSelectedItem(item));
       setSelectedMarker(item);
     }
-  };
+  }
 
-  const findItem = (id, type) => {
+  const selectFollowUpItem = ({itemId, type, jobs, trainings, searchTimestamp}) =>
+  {
+    const item = findItem({itemId, type, jobs, trainings}); 
+
+    if(item)
+    {
+      selectItem(item);
+      try
+      {
+        pushHistory({ router, scopeContext, item:{itemId,type}, page: "fiche", display: "list", searchParameters:formValues, searchTimestamp, isReplace:true });
+      }
+      catch(err){
+        console.log("err ",err);
+      }
+    }
+  }
+
+  const findItem = ({itemId, type, jobs, trainings}) => {
     let item;
+
+    console.log("fondIdte m ",itemId,type, jobs,trainings);
+
     if (type === "training") {
-      item = trainings.find((el) => el.id === id);
+      item = trainings.find((el) => el.id === itemId);
     } else if (type === "peJob") {
-      item = jobs.peJobs.find((el) => el.job.id === id);
+      item = jobs.peJobs.find((el) => el.job.id === itemId);
     } else if (type === "lba") {
-      item = jobs.lbaCompanies.find((el) => el.company.siret === id);
+      item = jobs.lbaCompanies.find((el) => el.company.siret === itemId);
     } else if (type === "lbb") {
-      item = jobs.lbbCompanies.find((el) => el.company.siret === id);
+      item = jobs.lbbCompanies.find((el) => el.company.siret === itemId);
     } else if (type === "matcha") {
-      item = jobs.matchas.find((el) => el.job.id === id);
+      item = jobs.matchas.find((el) => el.job.id === itemId);
     }
 
     return item;
   };
 
   const handleSearchSubmit = async ({values,followUpItem=null}) => {
+
+
+    console.log("values ",values,"- item : ",followUpItem);
+
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
     const searchTimestamp = new Date().getTime();
@@ -142,7 +170,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setFormValues({ ...values }));
 
     if (scopeContext.isTraining) {
-      searchForTrainings({values,searchTimestamp});
+      searchForTrainings({values,searchTimestamp,followUpItem,selectFollowUpItem});
     }
 
     if (scopeContext.isJob) {
@@ -192,7 +220,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
   };
 
-  const searchForTrainings = async ({values,searchTimestamp}) => {
+  const searchForTrainings = async ({values,searchTimestamp,followUpItem,selectFollowUpItem}) => {
     searchForTrainingsFunction({
       values,
       searchTimestamp,
@@ -206,6 +234,8 @@ const SearchForTrainingsAndJobs = () => {
       setTrainingMarkers,
       factorTrainingsForMap,
       widgetParameters,
+      followUpItem,
+      selectFollowUpItem,
     });
   };
 
