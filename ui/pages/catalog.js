@@ -13,7 +13,15 @@ export default function Catalog(props) {
       <Navigation />
       <Breadcrumb forPage="catalog" label="Catalogue" />
       
-      <h1>Catalogue</h1>
+      <div className="c-page-container container my-0 mb-sm-5 p-5">
+        <h1>Catalogue</h1>
+        <p>Ensemble des métiers</p>
+        {
+          props.dataJobs.map((item, index) => {
+            return <div key={index}><a href="#">{item.name}</a></div>
+          })
+        }
+      </div>
       
       <Footer />
     </div>
