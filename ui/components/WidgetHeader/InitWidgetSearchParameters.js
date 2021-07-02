@@ -15,25 +15,22 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
 
   useEffect(() => {
     // initialisation par les query params
-
-    console.log("PARAMS : ",{widgetParameters,itemParameters});
-
     if (
       widgetParameters &&
       widgetParameters.applyWidgetParameters &&
       itemParameters &&
       itemParameters.applyItemParameters
     ) {
-      console.log("launchWidget AND item");
+      // launchWidget AND item
       launchWidgetSearch({ selectItem: true });
       dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
       dispatch(setItemParameters({ ...itemParameters, applyItemParameters: false })); // action one shot
     } else if (widgetParameters && widgetParameters.applyWidgetParameters) {
-      console.log("launchWidget only");
+      // launchWidget only
       launchWidgetSearch({ selectItem: false });
       dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
     } else if (itemParameters && itemParameters.applyItemParameters) {
-      console.log("launchItem only");
+      // launchItem only
       launchItemFetch();
       dispatch(setItemParameters({ ...itemParameters, applyItemParameters: false })); // action one shot
     } else {
@@ -65,9 +62,6 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
     try {
       if (widgetParameters.applyFormValues) {
         handleSearchSubmit({ values: widgetParameters.formValues, followUpItem: selectItem ? itemParameters : null });
-        if (selectItem) {
-          console.log("on select l'item aussi 1");
-        }
       } else {
         // récupération du code insee depuis la base d'adresse
         const addresses = await fetchAddressFromCoordinates([p.lon, p.lat]);
@@ -89,9 +83,6 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
           };
 
           handleSearchSubmit({ values, followUpItem: selectItem ? itemParameters : null });
-          if (selectItem) {
-            console.log("on select l'item aussi 2 ");
-          }
         } else {
           console.log("aucun lieu trouvé");
         }
