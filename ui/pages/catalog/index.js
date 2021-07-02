@@ -12,7 +12,7 @@ export default function Catalog(props) {
       <ScrollToTop />
       <Navigation />
       <Breadcrumb forPage="catalog" label="Catalogue" />
-      
+
       <div className="c-page-container container my-0 mb-sm-5 p-5">
         <h1>Catalogue</h1>
         <p>Ensemble des métiers</p>
@@ -22,7 +22,7 @@ export default function Catalog(props) {
           })
         }
       </div>
-      
+
       <Footer />
     </div>
   )
@@ -41,7 +41,7 @@ export async function getStaticProps() {
   const fileJobPath = path.join(txtDirectory, 'metiers.txt')
   const lineJobString = fs.readFileSync(fileJobPath, 'utf8')
   const arrayOfJobLines = lineJobString.match(/[^\r\n]+/g);
-  const dataJobs = arrayOfJobLines.map(function(singleLine) {
+  const dataJobs = arrayOfJobLines.map(function (singleLine) {
     const splitted = singleLine.split(' [')
     const actualName = splitted[0].trim()
     const romes = uniq(splitted[1].split(',').slice(0, -1))
@@ -57,7 +57,7 @@ export async function getStaticProps() {
   const fileTownPath = path.join(txtDirectory, 'villes.txt')
   const lineTownString = fs.readFileSync(fileTownPath, 'utf8')
   const arrayOfTownLines = lineTownString.match(/[^\r\n]+/g);
-  const dataTowns = arrayOfTownLines.map(function(singleLine) {
+  const dataTowns = arrayOfTownLines.map(function (singleLine) {
     const splitted = singleLine.split('/')
     const townName = splitted[0].trim()
     const lon = splitted[4].trim()
