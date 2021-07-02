@@ -26,11 +26,13 @@ export async function getStaticProps() {
   const uniq = require("lodash").uniq;
   const path = require('path');
   const fs = require('fs');
-  const postsDirectory = path.join(process.cwd(), 'config')
-  const filePath = path.join(postsDirectory, 'metiers.txt')
-  const lineString = fs.readFileSync(filePath, 'utf8')
-  const arrayOfLines = lineString.match(/[^\r\n]+/g);
-  const dataJobs = arrayOfLines.map(function(singleLine) {
+  const txtDirectory = path.join(process.cwd(), 'config')
+
+  //metiers
+  const fileJobPath = path.join(txtDirectory, 'metiers.txt')
+  const lineJobString = fs.readFileSync(fileJobPath, 'utf8')
+  const arrayOfJobLines = lineJobString.match(/[^\r\n]+/g);
+  const dataJobs = arrayOfJobLines.map(function(singleLine) {
     const splitted = singleLine.split(' [')
     const actualName = splitted[0].trim()
     const romes = uniq(splitted[1].split(',').slice(0, -1))
@@ -40,11 +42,31 @@ export async function getStaticProps() {
     };
   })
 
+
+  //villes
+  const fileTownPath = path.join(txtDirectory, 'villes.txt')
+  const lineTownString = fs.readFileSync(fileTownPath, 'utf8')
+  const arrayOfTownLines = lineTownString.match(/[^\r\n]+/g);
+  const dataTowns = arrayOfTownLines.map(function(singleLine) {
+    const splitted = singleLine.split('/')
+    const townName = splitted[0].trim()
+    const lon = splitted[4].trim()
+    const lat = splitted[5].trim()
+    const insee = splitted[2].trim()
+    return {
+      name: townName,
+      lon: lon,
+      lat: lat,
+      insee: insee,
+    };
+  })
+
   // The value of the `props` key will be
   //  passed to the `Catalog` component
   return {
     props: {
-      dataJobs: dataJobs
+      dataJobs: dataJobs,
+      dataTowns: dataTowns
     }
   }
 }
