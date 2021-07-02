@@ -29,6 +29,13 @@ export async function getStaticProps() {
   const filePath = path.join(postsDirectory, 'metiers.txt')
   const lineString = fs.readFileSync(filePath, 'utf8')
   const arrayOfLines = lineString.match(/[^\r\n]+/g);
+  const dataJobs = arrayOfLines.map(function(singleLine) {
+    const splitted = singleLine.split(' [')
+    const actualName = splitted[0]
+    return {
+      name: actualName
+    };
+  })
   // Get external data from the file system, API, DB, etc.
   const data = 48;
 
@@ -37,7 +44,7 @@ export async function getStaticProps() {
   return {
     props: {
       dataval: data,
-      datatxt: arrayOfLines
+      datatxt: dataJobs
     }
   }
 }
