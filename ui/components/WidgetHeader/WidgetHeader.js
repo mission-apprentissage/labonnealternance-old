@@ -13,6 +13,10 @@ const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
 
   let additionalClassName = selectedItem && includes(router.asPath, "page=fiche") ? "detail" : "global";
 
+  const handleSearchSubmitFunction = (values) => {
+    handleSearchSubmit({ values });
+  };
+
   if (isHome) {
     additionalClassName = "home";
   }
@@ -20,23 +24,25 @@ const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
   return (
     <>
       <div className={`c-widgetheader c-widgetheader--${additionalClassName}`}>
-
         <Row className={`c-widgetheader-bar c-widgetheader-bar--${additionalClassName}`}>
           {isHome ? "" : <LogoIdea />}
-          
+
           <div>
-            {isHome ? 
+            {isHome ? (
               <h1 className="card-title">
-                <span className="c-home-hero__title c-home-hero__title1 d-block d-lg-inline">Se former et travailler</span>
-                <span className="c-home-hero__title c-home-hero__title2 d-block d-lg-inline"><span className="d-none d-lg-inline">&nbsp;</span>en alternance</span>
+                <span className="c-home-hero__title c-home-hero__title1 d-block d-lg-inline">
+                  Se former et travailler
+                </span>
+                <span className="c-home-hero__title c-home-hero__title2 d-block d-lg-inline">
+                  <span className="d-none d-lg-inline">&nbsp;</span>en alternance
+                </span>
               </h1>
-              : 
+            ) : (
               ""
-            }
-            <HeaderForm handleSearchSubmit={handleSearchSubmit} isHome={isHome} />
+            )}
+            <HeaderForm handleSearchSubmit={handleSearchSubmitFunction} isHome={isHome} />
           </div>
         </Row>
-
       </div>
     </>
   );
