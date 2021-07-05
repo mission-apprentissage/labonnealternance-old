@@ -60,6 +60,10 @@ const ChoiceColumn = ({
     }
   });
 
+  const handleSearchSubmitFunction = (values) => {
+    handleSearchSubmit({ values });
+  };
+
   const handleSelectItem = (item) => {
     flyToMarker(item, 12);
     closeMapPopups();
@@ -187,7 +191,7 @@ const ChoiceColumn = ({
   const getSearchForm = () => {
     return (
       <div className="d-block d-md-none">
-        <SearchForm showResultList={showResultList} handleSearchSubmit={handleSearchSubmit} />
+        <SearchForm showResultList={showResultList} handleSearchSubmit={handleSearchSubmitFunction} />
       </div>
     );
   };

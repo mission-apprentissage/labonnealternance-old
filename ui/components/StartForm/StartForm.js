@@ -11,16 +11,20 @@ import WidgetHeader from "components/WidgetHeader/WidgetHeader";
 const StartForm = (props) => {
   const dispatch = useDispatch();
 
-  const handleSearchSubmit = (values) => {
+  const handleSearchSubmit = ({ values }) => {
     dispatch(setFormValues(pick(values, ["job", "location", "radius", "diploma"])));
     dispatch(setShouldExecuteSearch(true));
     dispatch(push({ pathname: "/recherche-apprentissage" }));
   };
 
+  const handleSearchSubmitFunction = (values) => {
+    handleSearchSubmit({ values });
+  };
+
   return (
     <>
       <div className="d-lg-none">
-        <SearchForm handleSearchSubmit={handleSearchSubmit} isHome={true} showResultList={() => {}} />
+        <SearchForm handleSearchSubmit={handleSearchSubmitFunction} isHome={true} showResultList={() => {}} />
       </div>
       <div className="d-none d-lg-block">
         <WidgetHeader handleSearchSubmit={handleSearchSubmit} isHome={true} />
