@@ -14,7 +14,7 @@ const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
   let additionalClassName = selectedItem && includes(router.asPath, "page=fiche") ? "detail" : "global";
 
   const handleSearchSubmitFunction = (values) => {
-    handleSearchSubmit({ values });
+    return handleSearchSubmit({ values });
   };
 
   if (isHome) {

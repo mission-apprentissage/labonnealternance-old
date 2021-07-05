@@ -61,7 +61,7 @@ const ChoiceColumn = ({
   });
 
   const handleSearchSubmitFunction = (values) => {
-    handleSearchSubmit({ values });
+    return handleSearchSubmit({ values });
   };
 
   const handleSelectItem = (item) => {

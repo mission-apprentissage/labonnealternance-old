@@ -18,7 +18,7 @@ const StartForm = (props) => {
   };
 
   const handleSearchSubmitFunction = (values) => {
-    handleSearchSubmit({ values });
+    return handleSearchSubmit({ values });
   };
 
   return (
