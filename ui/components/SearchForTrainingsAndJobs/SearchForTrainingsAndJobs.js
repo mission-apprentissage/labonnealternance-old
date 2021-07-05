@@ -117,7 +117,7 @@ const SearchForTrainingsAndJobs = () => {
   const selectFollowUpItem = ({itemId, type, jobs, trainings, searchTimestamp}) =>
   {
     const item = findItem({itemId, type, jobs, trainings}); 
-
+/*
     if(item)
     {
       selectItem(item);
@@ -128,7 +128,7 @@ const SearchForTrainingsAndJobs = () => {
       catch(err){
         console.log("err ",err);
       }
-    }
+    }*/
   }
 
   const findItem = ({itemId, type, jobs, trainings}) => {
@@ -180,15 +180,6 @@ const SearchForTrainingsAndJobs = () => {
 
     pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp/*, isReplace:currentSearch?false:true*/ });
     setCurrentSearch(searchTimestamp);
-
-    if(followUpItem)
-    {
-      console.log("on enchaine sur la sélection d'un item provenant des paramètes ",followUpItem);
-    }
-    else
-    {
-      console.log("pas de followUpItem");
-    }
   };
 
   const handleItemLoad = async (item) => {

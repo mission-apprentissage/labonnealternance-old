@@ -3,6 +3,9 @@ export const getItemId = (item) => {
 };
 
 export const getItemIdAndType = (item) => {
+
+  console.log("getItemIdAndType item ",item);
+
   let itemId = item.id;
   let type = "training";
   if (item.ideaType === "peJob") {
