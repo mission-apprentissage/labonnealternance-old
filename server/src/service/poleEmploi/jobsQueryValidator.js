@@ -32,7 +32,7 @@ const jobsQueryValidator = (query) => {
   }
 
   // source mal formée si présente
-  validateApiSources(query.sources, error_messages, ["lbb", "lba", "offres"]);
+  validateApiSources(query.sources, error_messages, ["lbb", "lba", "offres", "matcha"]);
 
   // strictRadius devient valeur par défaut, l'inverse doit être explicite
 

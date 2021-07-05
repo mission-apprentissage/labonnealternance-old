@@ -420,11 +420,11 @@
                 "type": "array",
                 "minItems": 1,
                 "collectionFormat": "csv",
-                "default": "formations,lba,lbb,offres",
+                "default": "formations,lba,matcha,offres",
                 "items":
                     {
                         "type": "string",
-                        "enum": ["formations", "lba", "lbb", "offres"]                            
+                        "enum": ["formations", "lba", "matcha", "offres"]                            
                     }
             },
             "description": "Les sources de données dans lesquelles la recherche aura lieu. Ces sources doivent être séparées par des virgules", 
@@ -441,11 +441,11 @@
                 "type": "array",
                 "minItems": 1,
                 "collectionFormat": "csv",
-                "default": "lba,lbb,offres",
+                "default": "lba,offres,matcha",
                 "items":
                     {
                         "type": "string",
-                        "enum": ["lba", "lbb", "offres"]                            
+                        "enum": ["lba", "offres", "matcha"]                            
                     }
             },
             "description": "Les sources de données dans lesquelles la recherche aura lieu. Ces sources doivent être séparées par des virgules", 
@@ -516,9 +516,9 @@
                 {
                     "$ref": "#/definitions/Societes"
                 },
-                "lbbCompanies":
+                "matchas":
                 {
-                    "$ref": "#/definitions/Societes"
+                    "$ref": "#/definitions/OffresMatchas"
                 }
             }
         },
@@ -554,6 +554,25 @@
                     "items":
                     {
                         "$ref": "#/definitions/Societe"
+                    }
+                    
+                }
+            }
+        },
+
+        "OffresMatchas" : 
+        {
+            "type": "object",
+            "required" : ["results"],
+            "description": "Un tableau d'offres d'emploi en alternance correspondantes aux critères.",
+            "properties":
+            {
+                "results": 
+                { 
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "#/definitions/OffreMatcha"
                     }
                     
                 }
@@ -732,6 +751,58 @@
             }
         },
 
+        "OffreMatcha" : 
+        {
+            "type": "object",
+            "required": ["title","ideaType","job"],
+            "properties":
+            {
+                "title": 
+                { 
+                    "type": "string",
+                    "example": "Monteur / Monteuse en chauffage (H/F)",
+                    "description": "Le titre de l'offre"
+                },
+                "ideaType": 
+                { 
+                    "type": "string",
+                    "value": "matcha",
+                    "example": "matcha",
+                    "description": "Le type d'objet, ici la seule valeur possible est 'matcha'"
+                },
+                "job":
+                {
+                    "$ref": "#/definitions/Job"
+                },
+                "contact":
+                {
+                    "$ref": "#/definitions/Contact"
+                },
+                "place":
+                {
+                    "description": "Les coordonnées de la société proposant l'offre",
+                    "$ref": "#/definitions/Place"
+                },
+                "company":
+                {
+                    "$ref": "#/definitions/Company"
+                },
+                "romes":
+                {
+                   "type": "array",
+                   "items":{
+                       "$ref": "#/definitions/Rome"
+                   }
+                },
+                "diplomaLevel":
+                {
+                    "type": "string",
+                    "example": "CAP, BEP",
+                    "description": "Le(s) niveau(x) d'étude requis"
+                }
+            }
+        },
+
         "Societe" : 
         {
             "type": "object",
@@ -890,7 +961,7 @@
         "Job":
         {
             "type": "object",
-            "description": "Les informations d'une offre d'emploi servie par l'api Offres de Pôle emploi",
+            "description": "Les informations d'une offre d'emploi servie par l'api Offres de Pôle emploi ou par l'api Matcha de la mission apprentissage",
             "required": ["id","description"],
             "properties":
             {
@@ -905,7 +976,7 @@
                 {
                     "type": "string",
                     "example": "2020-10-01T16:43:24+02:00",
-                    "description": "La date de création de l'offre sur le site de Pôle emploi"
+                    "description": "La date de création de l'offre"
                 },
                 "description":
                 {
