@@ -34,7 +34,7 @@ const jobsEtFormationsQueryValidator = (query) => {
   validateInsee(query.insee, error_messages);
 
   // source mal formée si présente
-  validateApiSources(query.sources, error_messages, ["formations", "lbb", "lba", "offres"]);
+  validateApiSources(query.sources, error_messages, ["formations", "lbb", "lba", "offres", "matcha"]);
 
   if (error_messages.length) return { error: "wrong_parameters", error_messages };
 

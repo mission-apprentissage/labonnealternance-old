@@ -236,7 +236,7 @@ httpTests(__filename, ({ startServer }) => {
     assert.deepStrictEqual(response.data.error, "wrong_parameters");
     assert.ok(
       response.data.error_messages.indexOf(
-        "sources : Optional sources argument used with wrong value. Should contains comma separated values among 'lbb', 'lba', 'offres'."
+        "sources : Optional sources argument used with wrong value. Should contains comma separated values among 'lbb', 'lba', 'offres', 'matcha'."
       ) >= 0
     );
   });
