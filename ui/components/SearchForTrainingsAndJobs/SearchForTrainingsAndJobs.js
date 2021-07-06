@@ -132,8 +132,6 @@ const SearchForTrainingsAndJobs = () => {
   const findItem = ({itemId, type, jobs, trainings}) => {
     let item;
 
-    console.log("fondIdte m ",itemId,type, jobs,trainings);
-
     if (type === "training") {
       item = trainings.find((el) => el.id === itemId);
     } else if (type === "peJob") {
