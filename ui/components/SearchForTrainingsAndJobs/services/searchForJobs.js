@@ -25,6 +25,8 @@ export const searchForJobsFunction = async ({
   factorJobsForMap,
   scopeContext,
   widgetParameters,
+  followUpItem,
+  selectFollowUpItem,
 }) => {
   setIsJobSearchLoading(true);
   setJobSearchError("");
@@ -71,6 +73,15 @@ export const searchForJobsFunction = async ({
             ? null
             : response.data.lbaCompanies.results,
       };
+
+      if (followUpItem && followUpItem.parameters.type !== "training") {
+        selectFollowUpItem({
+          itemId: followUpItem.parameters.itemId,
+          type: followUpItem.parameters.type,
+          jobs: results,
+          formValues: values,
+        });
+      }
     }
 
     // gestion des erreurs
@@ -107,7 +118,9 @@ export const searchForJobsFunction = async ({
       }
     }
 
-    if (jobErrorMessage) setJobSearchError(jobErrorMessage);
+    if (jobErrorMessage) {
+      setJobSearchError(jobErrorMessage);
+    }
 
     dispatch(setJobs(results));
     dispatch(setHasSearch(true));

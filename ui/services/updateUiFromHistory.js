@@ -36,18 +36,14 @@ export const updateUiFromHistory = ({
   const searchTimestamp = urlParams ? urlParams.get("s") : "";
 
   setActiveFilter("all"); // restauration des onglets à all pour assurer la présence de marker dans le dom
-  try
-  {
+  try {
     filterLayers("all");
-  }
-  catch(err){
+  } catch (err) {
     //notice: gère des erreurs qui se présentent à l'initialisation de la page quand mapbox n'est pas prêt.
   }
 
   // réconciliation entre le store et l'état des résultats de recherche
   if (searchTimestamp && searchTimestamp !== currentSearch) {
-    console.log("Y a searchtimestamp");
-    
     setCurrentSearch(searchTimestamp);
     restoreSearchFromSession({ searchTimestamp, dispatch, setTrainings, setJobs });
   }

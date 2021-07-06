@@ -116,16 +116,14 @@ const SearchForTrainingsAndJobs = () => {
 
   const selectFollowUpItem = ({itemId, type, jobs, trainings, searchTimestamp, formValues}) =>
   {
-    console.log("selectFollowUpItem ",itemId,type,jobs,trainings, formValues);
     const item = findItem({itemId, type, jobs, trainings}); 
 
-    console.log("ITEM ",itemId,type,item);
     if(item)
     {
       selectItem(item);
       try
       {
-        pushHistory({ router, scopeContext, item:{id:itemId,ideaType:type==="training"?"formation":type}, page: "fiche", display: "list", searchParameters:formValues, searchTimestamp, isReplace:true });
+        pushHistory({ router, scopeContext, item:{id:itemId,ideaType:type==="training"?"formation":type, directId:true}, page: "fiche", display: "list", searchParameters:formValues, searchTimestamp, isReplace:true });
       }
       catch(err){}
     }
@@ -174,7 +172,7 @@ const SearchForTrainingsAndJobs = () => {
     }
 
     if (scopeContext.isJob) {
-      searchForJobsWithStrictRadius({values,searchTimestamp});
+      searchForJobsWithStrictRadius({values,searchTimestamp,followUpItem,selectFollowUpItem});
     }
     dispatch(setIsFormVisible(false));
 
@@ -230,11 +228,11 @@ const SearchForTrainingsAndJobs = () => {
     });
   };
 
-  const searchForJobsWithStrictRadius = async ({values,searchTimestamp}) => {
-    searchForJobs({values,searchTimestamp,strictRadius:"strict"});
+  const searchForJobsWithStrictRadius = async ({values,searchTimestamp,followUpItem,selectFollowUpItem}) => {
+    searchForJobs({values,searchTimestamp,strictRadius:"strict",followUpItem,selectFollowUpItem});
   };
 
-  const searchForJobs = async ({values, searchTimestamp, strictRadius}) => {
+  const searchForJobs = async ({values, searchTimestamp, strictRadius, followUpItem, selectFollowUpItem}) => {
     searchForJobsFunction({
       values,
       strictRadius,
@@ -250,6 +248,8 @@ const SearchForTrainingsAndJobs = () => {
       factorJobsForMap,
       scopeContext,
       widgetParameters,
+      followUpItem,
+      selectFollowUpItem,      
     });
   };
 
