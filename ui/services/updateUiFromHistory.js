@@ -9,8 +9,6 @@ import { filterLayers } from "utils/mapTools";
 
 export const updateUiFromHistory = ({
   url,
-  jobs,
-  trainings,
   currentPage,
   unSelectItem,
   selectedItem,
@@ -38,7 +36,13 @@ export const updateUiFromHistory = ({
   const searchTimestamp = urlParams ? urlParams.get("s") : "";
 
   setActiveFilter("all"); // restauration des onglets à all pour assurer la présence de marker dans le dom
-  filterLayers("all");
+  try
+  {
+    filterLayers("all");
+  }
+  catch(err){
+    //notice: gère des erreurs qui se présentent à l'initialisation de la page quand mapbox n'est pas prêt.
+  }
 
   // réconciliation entre le store et l'état des résultats de recherche
   if (searchTimestamp && searchTimestamp !== currentSearch) {

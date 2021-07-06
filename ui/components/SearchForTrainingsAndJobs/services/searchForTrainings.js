@@ -58,6 +58,7 @@ export const searchForTrainingsFunction = async ({
           itemId: followUpItem.parameters.itemId,
           type: followUpItem.parameters.type,
           trainings: response.data.results,
+          formValues: values,
         });
       }
     }

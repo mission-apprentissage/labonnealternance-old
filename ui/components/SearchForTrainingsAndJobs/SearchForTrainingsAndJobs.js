@@ -114,21 +114,21 @@ const SearchForTrainingsAndJobs = () => {
     }
   }
 
-  const selectFollowUpItem = ({itemId, type, jobs, trainings, searchTimestamp}) =>
+  const selectFollowUpItem = ({itemId, type, jobs, trainings, searchTimestamp, formValues}) =>
   {
+    console.log("selectFollowUpItem ",itemId,type,jobs,trainings, formValues);
     const item = findItem({itemId, type, jobs, trainings}); 
-/*
+
+    console.log("ITEM ",itemId,type,item);
     if(item)
     {
       selectItem(item);
       try
       {
-        pushHistory({ router, scopeContext, item:{itemId,type}, page: "fiche", display: "list", searchParameters:formValues, searchTimestamp, isReplace:true });
+        pushHistory({ router, scopeContext, item:{id:itemId,ideaType:type==="training"?"formation":type}, page: "fiche", display: "list", searchParameters:formValues, searchTimestamp, isReplace:true });
       }
-      catch(err){
-        console.log("err ",err);
-      }
-    }*/
+      catch(err){}
+    }
   }
 
   const findItem = ({itemId, type, jobs, trainings}) => {
