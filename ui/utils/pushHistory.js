@@ -19,9 +19,4 @@ const pushHistory = ({ router, scopeContext, item, page, display, searchParamete
   }
 };
 
-/**
- * 
-voir dans l'historique la récup des paramètres pour mise à jour de l'interface formulaire et des résutlats
- */
-
 export default pushHistory;
