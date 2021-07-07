@@ -34,6 +34,8 @@ export const updateUiFromHistory = ({
   const display = urlParams ? urlParams.get("display") : "";
   const itemId = urlParams ? urlParams.get("itemId") : "";
   const searchTimestamp = urlParams ? urlParams.get("s") : "";
+  const jobName = urlParams ? urlParams.get("job_name") : "";
+  const address = urlParams ? urlParams.get("address") : "";
 
   setActiveFilter("all"); // restauration des onglets à all pour assurer la présence de marker dans le dom
   try {
@@ -49,6 +51,9 @@ export const updateUiFromHistory = ({
   }
 
   // réconciliation entre le store et l'état des formulaires de recherche
+  if (jobName || address) {
+    // TODO: à faire
+  }
 
   // réconciliation entre le store et l'état attendu indiqué par les query parameters pour les éléments sélectionnés
   if (currentPage !== pageFromUrl) {
