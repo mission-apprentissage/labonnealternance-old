@@ -3,7 +3,6 @@
 ## 1.15.8 [07/07/2021]
 [724] Augmentation de quota
 
-
 ## 1.15.7 [06/07/2021]
 [708] Adaptation script d'export test ARA
 [716] Sitemap
