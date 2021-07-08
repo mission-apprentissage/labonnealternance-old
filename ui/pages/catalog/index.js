@@ -6,7 +6,6 @@ import Breadcrumb from "components/breadcrumb";
 import Footer from "components/footer";
 
 export default function Catalog(props) {
-  console.log('props', props);
   return (
     <div>
       <ScrollToTop />
