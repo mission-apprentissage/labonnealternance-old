@@ -1,12 +1,11 @@
 import React from 'react'
 import { getStaticMetiers, getStaticVilles } from 'utils/getStaticData'
 import { buildLinkForTownAndJob } from 'utils/buildLinkForTownAndJob'
-import Navigation from '../../components/navigation'
+import Navigation from 'components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
 
 export default function ForJob(props) {
-console.log('props', props);
 
   const routerState = useSelector(state => state.router)
   const find = require("lodash").find;
