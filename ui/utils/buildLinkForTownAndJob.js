@@ -1,7 +1,7 @@
 /*
 job
  name: "Soins aux animaux"
- romes: (5)["A1501", "A1502", "A1407", "A1503", "A1504"]
+ romes: ["A1501", "A1502", "A1407", "A1503", "A1504"]
  slug: "soins-aux-animaux"
 */
 
