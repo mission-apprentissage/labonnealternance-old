@@ -1,5 +1,6 @@
 import React from 'react'
 import { getStaticMetiers, getStaticVilles } from 'utils/getStaticData'
+import { buildLinkForTownAndJob } from 'utils/buildLinkForTownAndJob'
 import Navigation from '../../components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
@@ -23,7 +24,7 @@ console.log('props', props);
 
         {
           sortedTowns.map((town, index) => {
-            return <div key={index}><a href={`#`}>{town.name}</a></div>
+            return <div key={index}><a href={buildLinkForTownAndJob(town, currentJob)}>{town.name}</a></div>
           })
         }
       </div>
