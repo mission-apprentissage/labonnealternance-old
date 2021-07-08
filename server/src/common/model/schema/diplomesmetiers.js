@@ -4,11 +4,6 @@ const diplomesMetiersSchema = {
     default: null,
     description: "Le nom long d'un diplôme",
   },
-  intitule_court: {
-    type: String,
-    default: null,
-    description: "Le nom raccourci d'un diplôme",
-  },
   codes_romes: {
     type: [String],
     default: [],

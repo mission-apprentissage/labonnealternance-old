@@ -9,6 +9,7 @@ const corsMiddleware = require("./middlewares/corsMiddleware");
 const packageJson = require("../../package.json");
 const rome = require("./routes/rome");
 const updateRomesMetiers = require("./routes/updateRomesMetiers");
+const updateDiplomesMetiers = require("./routes/updateDiplomesMetiers");
 const metiers = require("./routes/metiers");
 const jobDiploma = require("./routes/jobDiploma");
 const formationV1 = require("./routes/formationV1");
@@ -95,6 +96,8 @@ module.exports = async (components) => {
   app.use("/api/romelabels", limiter10PerSecond, rome());
 
   app.use("/api/updateRomesMetiers", limiter1Per5Second, updateRomesMetiers());
+
+  app.use("/api/updateDiplomesMetiers", limiter1Per5Second, updateDiplomesMetiers());
 
   app.use("/api/metiers", limiter20PerSecond, metiers());
 

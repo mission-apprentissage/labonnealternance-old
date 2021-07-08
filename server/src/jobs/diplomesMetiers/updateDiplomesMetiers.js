@@ -2,7 +2,7 @@ const _ = require("lodash");
 const logger = require("../../common/logger");
 const { DiplomesMetiers } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
-
+const { getIntitulesFormations } = require("../../service/formations");
 const logMessage = (level, msg) => {
   // remplacer par les outils disponibles de manière générale
 
@@ -35,6 +35,20 @@ const createIndex = async () => {
   await DiplomesMetiers.createMapping(requireAsciiFolding);
 };
 
+const buildAcronyms = (intitule) => {
+  let acronymeLong = "";
+  let acronymeCourt = "";
+
+  const tokens = intitule.toLowerCase().split(/[\s;:,()]+/);
+  ///[;,—]+/
+  console.log(tokens);
+  tokens.map((token) => {
+    acronymeLong += token[0];
+  });
+
+  return acronymeCourt + " " + acronymeLong;
+};
+
 module.exports = async () => {
   let step = 0;
 
@@ -50,6 +64,17 @@ module.exports = async () => {
 
     logMessage("info", `Début traitement`);
 
+    const intitules = await getIntitulesFormations();
+
+    console.log("intitules ", intitules.length);
+
+    for (let i = 0, l = intitules.length; i < l; ++i) {
+      let intitule = intitules[i];
+      let acronymes = buildAcronyms(intitule);
+
+      console.log("int ac ", acronymes, intitule);
+    }
+
     /*
       Récupération aggregation intitule_long + intitule_courts
 
@@ -63,7 +88,7 @@ module.exports = async () => {
     */
 
     return {
-      result: "Table domainesMetiers mise à jour",
+      result: "Table diplomesMetiers mise à jour",
       avertissements,
     };
   } catch (err) {

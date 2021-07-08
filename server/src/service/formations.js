@@ -767,6 +767,47 @@ const sortFormations = (formations) => {
   });
 };
 
+const getIntitulesFormations = async () => {
+  console.log("AIAIAIAI");
+
+  try {
+    const body = {
+      aggs: {
+        intitules: {
+          terms: {
+            field: "intitule_long.keyword",
+            size: 10000,
+          },
+        },
+      },
+      size: 0,
+    };
+
+    const responseIntitulesFormations = await axios.post(urlCatalogueSearch, body);
+
+    let intitules = [];
+
+    //console.log(responseIntitulesFormations.data.aggregations.intitules);
+
+    responseIntitulesFormations.data.aggregations.intitules.buckets.forEach((intitule) => {
+      intitules.push(intitule.key);
+    });
+
+    //console.log("et la l'int : ",intitules);
+
+    return intitules;
+  } catch (err) {
+    Sentry.captureException(err);
+
+    let error_msg = _.get(err, "meta.body") ? err.meta.body : err.message;
+    console.log("Error getting jobDiplomas from romes and rncps", error_msg);
+    if (_.get(err, "meta.meta.connection.status") === "dead") {
+      console.log("Elastic search is down or unreachable");
+    }
+    return { error: error_msg };
+  }
+};
+
 module.exports = {
   getFormationsQuery,
   getFormationQuery,
@@ -775,4 +816,5 @@ module.exports = {
   getFormations,
   deduplicateFormations,
   getFormationDescriptionQuery,
+  getIntitulesFormations,
 };
