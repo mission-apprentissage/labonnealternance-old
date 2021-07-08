@@ -10,19 +10,23 @@ export default function ForJob(props) {
   return (
     <div>
       <Navigation />
-      <pre>{JSON.stringify(routerState)}</pre>
-      <h1>ForJob</h1>
+      <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
+        <h1>Villes où chercher le métier</h1>
+        <h1>" {props.dataJobs[0].name} "</h1>
+      </div>
     </div>
   )
 }
 
-
-
+// Required.
+// See https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation
 export async function getStaticPaths() {
   const path = require('path');
   const fs = require('fs');
   const txtDirectory = path.join(process.cwd(), 'config')
+
   const dataJobs = getStaticMetiers(path, fs, txtDirectory)
+  
   return {
     paths: dataJobs.map((e) => { return { params: { forJob: e.slug } } }),
     fallback: false
@@ -35,14 +39,14 @@ export async function getStaticProps() {
   const path = require('path');
   const fs = require('fs');
   const txtDirectory = path.join(process.cwd(), 'config')
-
+  
   const dataTowns = getStaticVilles(path, fs, txtDirectory)
-
-  // The value of the `props` key will be
-  //  passed to the `Catalog` component
+  const dataJobs = getStaticMetiers(path, fs, txtDirectory)
+  
   return {
     props: {
-      dataTowns: dataTowns
+      dataTowns: dataTowns,
+      dataJobs: dataJobs
     }
   }
 }
