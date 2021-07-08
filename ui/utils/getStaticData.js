@@ -1,7 +1,7 @@
 export const getStaticMetiers = (path, fs, txtDirectory) => {
   const uniq = require("lodash").uniq;
   const kebabCase = require("lodash").kebabCase;
-
+  
   //metiers
   const fileJobPath = path.join(txtDirectory, 'metiers.txt')
   const lineJobString = fs.readFileSync(fileJobPath, 'utf8')
@@ -21,6 +21,7 @@ export const getStaticMetiers = (path, fs, txtDirectory) => {
 
 export const getStaticVilles = (path, fs, txtDirectory) => {
   //villes
+  const kebabCase = require("lodash").kebabCase;
   const fileTownPath = path.join(txtDirectory, 'villes.txt')
   const lineTownString = fs.readFileSync(fileTownPath, 'utf8')
   const arrayOfTownLines = lineTownString.match(/[^\r\n]+/g);
@@ -31,6 +32,7 @@ export const getStaticVilles = (path, fs, txtDirectory) => {
     const lat = splitted[5].trim()
     const insee = splitted[2].trim()
     return {
+      slug: kebabCase(townName),
       name: townName,
       lon: lon,
       lat: lat,

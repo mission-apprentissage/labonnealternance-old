@@ -2,21 +2,31 @@ import React from 'react'
 import { getStaticMetiers, getStaticVilles } from 'utils/getStaticData'
 import Navigation from '../../components/navigation'
 import { useSelector } from 'react-redux'
+import Footer from "components/footer";
 
 export default function ForJob(props) {
 
   const routerState = useSelector(state => state.router)
   const find = require("lodash").find;
   const last = require("lodash").last;
+  const sortBy = require("lodash").sortBy;
   const currentSlug = last(routerState.location.href.split('/'))
   const currentJob = find(props.dataJobs, (e) => e.slug === currentSlug)
+  const sortedTowns = sortBy(props.dataTowns, (e) => e.slug)
   return (
     <div>
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <h1>Villes où chercher le métier</h1>
-        <h1>" {currentJob.name} "</h1>
+        <h1 className="mb-5">" {currentJob.name} "</h1>
+
+        {
+          sortedTowns.map((town, index) => {
+            return <div key={index}><a href={`#`}>{town.name}</a></div>
+          })
+        }
       </div>
+      <Footer />
     </div>
   )
 }

@@ -16,8 +16,8 @@ export default function Catalog(props) {
         <h1>Catalogue</h1>
         <p>Ensemble des métiers</p>
         {
-          props.dataJobs.map((item, index) => {
-            return <div key={index}><a href={`/catalog/${item.slug}`}>{item.name}</a></div>
+          props.dataJobs.map((job, index) => {
+            return <div key={index}><a href={`/catalog/${job.slug}`}>{job.name}</a></div>
           })
         }
       </div>
