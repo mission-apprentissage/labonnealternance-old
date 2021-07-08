@@ -5,14 +5,17 @@ import { useSelector } from 'react-redux'
 
 export default function ForJob(props) {
 
-  // console.log('props', props);
   const routerState = useSelector(state => state.router)
+  const find = require("lodash").find;
+  const last = require("lodash").last;
+  const currentSlug = last(routerState.location.href.split('/'))
+  const currentJob = find(props.dataJobs, (e) => e.slug === currentSlug)
   return (
     <div>
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <h1>Villes où chercher le métier</h1>
-        <h1>" {props.dataJobs[0].name} "</h1>
+        <h1>" {currentJob.name} "</h1>
       </div>
     </div>
   )
