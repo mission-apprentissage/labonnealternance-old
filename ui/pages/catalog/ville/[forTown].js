@@ -5,28 +5,21 @@ import Navigation from 'components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
 
-export default function ForJob(props) {
+export default function ForTown(props) {
 
   const routerState = useSelector(state => state.router)
   const find = require("lodash").find;
   const last = require("lodash").last;
   const sortBy = require("lodash").sortBy;
-  const currentSlug = last(routerState.location.href.split('/'))
+  const currentTownSlug = last(routerState.location.href.split('/'))
   const currentJob = find(props.dataJobs, (e) => e.slug === currentSlug)
   const sortedTowns = sortBy(props.dataTowns, (e) => e.slug)
-
   return (
     <div>
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
-        <h1>Villes où chercher le métier</h1>
-        <h1 className="mb-5">" {currentJob.name} "</h1>
-
-        {
-          sortedTowns.map((town, index) => {
-            return <div key={index}><a href={buildLinkForTownAndJob(town, currentJob)}>{town.name}</a></div>
-          })
-        }
+        <h1>Le métier XYZ</h1>
+        <h2>Villes où chercher la ville {currentTownSlug}</h2>
       </div>
       <Footer />
     </div>
@@ -41,12 +34,24 @@ export async function getStaticPaths() {
   const txtDirectory = path.join(process.cwd(), 'config')
 
   const dataJobs = getStaticMetiers(path, fs, txtDirectory)
-  
-  const mapped_pathes = dataJobs.map((e) => { return { params: { forJob: e.slug } } })
-  // console.log('mapped_pathes', mapped_pathes);
+  const dataTowns = getStaticVilles(path, fs, txtDirectory)
+  const concat = require("lodash").concat;
+
+  const mapped_pathes = dataJobs.map((job) => {
+    return dataTowns.map((town) => {
+      return {
+        params: {
+          forJob: job.slug,
+          forJob: town.slug,
+        }
+      }
+    })
+  })
+
+  console.log('mapped_pathes', mapped_pathes);
 
   return {
-    paths: mapped_pathes,
+    paths: concat(mapped_pathes),
     fallback: false
   }
 }
