@@ -9,24 +9,28 @@ export default function ForTown(props) {
 
   const routerState = useSelector(state => state.router)
   const find = require("lodash").find;
-  const last = require("lodash").last;
-  const sortBy = require("lodash").sortBy;
   const nth = require("lodash").nth;
   const slugs = routerState.location.href.split('/')
   const currentTownSlug = nth(slugs, -1)
   const currentJobSlug = nth(slugs, -2)
   const currentJob = find(props.dataJobs, (e) => e.slug === currentJobSlug)
   const currentTown = find(props.dataTowns, (e) => e.slug === currentTownSlug)
-  // const currentJob = find(props.dataJobs, (e) => e.slug === currentSlug)
-  // const sortedTowns = sortBy(props.dataTowns, (e) => e.slug)
   
   return (
     <div>
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
-        <h1>Le métier {currentJob.name} à {currentTown.name}</h1>
-        <h2>Rechercher un métier, une formation dans le domaine "{currentJob.name}"</h2>
-        <h2>à {currentTown.name} ou ses environs</h2>
+        <h1 className="mb-5">Le métier {currentJob.name} à {currentTown.name}</h1>
+        <h2 className="h6">Rechercher un métier, une formation dans le domaine "{currentJob.name}"</h2>
+        <h2 className="h6 mb-5">à {currentTown.name} ou ses environs</h2>
+
+        <a 
+          href={buildLinkForTownAndJob(currentTown, currentJob)}
+          className="btn btn-primary"
+        >
+            Lancer cette recherche
+        </a>
+
       </div>
       <Footer />
     </div>
