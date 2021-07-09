@@ -1,6 +1,5 @@
 import React from 'react'
 import { getStaticMetiers, getStaticVilles } from 'utils/getStaticData'
-import { buildLinkForTownAndJob } from 'utils/buildLinkForTownAndJob'
 import Navigation from 'components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
@@ -19,12 +18,13 @@ export default function ForJob(props) {
     <div>
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
-        <h1>Villes où chercher le métier</h1>
-        <h1 className="mb-5">" {currentJob.name} "</h1>
+        <a href="/catalog/">Revenir</a>
+        <h1 className="mt-4">Villes où chercher le métier</h1>
+        <h1 className="mb-4">" {currentJob.name} "</h1>
 
         {
-          sortedTowns.map((town, index) => {
-            return <div key={index}><a href={buildLinkForTownAndJob(town, currentJob)}>{town.name}</a></div>
+          sortedTowns.map((currentTown, index) => {
+            return <div key={index}><a href={`/catalog/${currentJob.slug}/${currentTown.slug}`}>{currentTown.name}</a></div>
           })
         }
       </div>

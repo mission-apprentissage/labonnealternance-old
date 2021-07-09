@@ -20,7 +20,8 @@ export default function ForTown(props) {
     <div>
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
-        <h1 className="mb-5">Le métier {currentJob.name} à {currentTown.name}</h1>
+        <a href={`/catalog/${currentJob.slug}`}>Revenir</a>
+        <h1 className="mb-4 mt-4">Le métier {currentJob.name} à {currentTown.name}</h1>
         <h2 className="h6">Rechercher un métier, une formation dans le domaine "{currentJob.name}"</h2>
         <h2 className="h6 mb-5">à {currentTown.name} ou ses environs</h2>
 

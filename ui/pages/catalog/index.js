@@ -16,7 +16,8 @@ export default function Catalog(props) {
       <Breadcrumb forPage="catalog" label="Catalogue" />
 
       <div className="c-page-container container my-0 mb-sm-5 p-5">
-        <h1>Catalogue</h1>
+        <a href="/">Revenir</a>
+        <h1 className="mt-4">Catalogue</h1>
         <p>Ensemble des métiers</p>
         {
           props.dataJobs.map((job, index) => {
