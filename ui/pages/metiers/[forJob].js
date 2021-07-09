@@ -18,13 +18,13 @@ export default function ForJob(props) {
     <div>
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
-        <a href="/catalog/">Revenir</a>
+        <a href="/metiers/">Revenir</a>
         <h1 className="mt-4">Villes où chercher le métier</h1>
         <h1 className="mb-4">" {currentJob.name} "</h1>
 
         {
           sortedTowns.map((currentTown, index) => {
-            return <div key={index}><a href={`/catalog/${currentJob.slug}/${currentTown.slug}`}>{currentTown.name}</a></div>
+            return <div key={index}><a href={`/metiers/${currentJob.slug}/${currentTown.slug}`}>{currentTown.name}</a></div>
           })
         }
       </div>

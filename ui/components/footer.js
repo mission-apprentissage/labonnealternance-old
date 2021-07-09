@@ -114,11 +114,11 @@ const Footer = (props) => {
                     className="c-footer-links__link"
                     onClick={(e) => {
                       e.preventDefault();
-                      dispatch(push({ pathname: "/catalog" }));
+                      dispatch(push({ pathname: "/metiers" }));
                     }}
-                    href="/catalog"
+                    href="/metiers"
                   >
-                    Catalogue
+                    Métiers
                   </a>
                 </li>
 

@@ -13,7 +13,7 @@ export default function Catalog(props) {
     <div>
       <ScrollToTop />
       <Navigation />
-      <Breadcrumb forPage="catalog" label="Catalogue" />
+      <Breadcrumb forPage="metiers" label="Metiers" />
 
       <div className="c-page-container container my-0 mb-sm-5 p-5">
         <a href="/">Revenir</a>
@@ -21,7 +21,7 @@ export default function Catalog(props) {
         <p>Ensemble des métiers</p>
         {
           props.dataJobs.map((job, index) => {
-            return <div key={index}><a href={`/catalog/${job.slug}`}>{job.name}</a></div>
+            return <div key={index}><a href={`/metiers/${job.slug}`}>{job.name}</a></div>
           })
         }
       </div>
