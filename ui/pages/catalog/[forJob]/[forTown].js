@@ -11,15 +11,22 @@ export default function ForTown(props) {
   const find = require("lodash").find;
   const last = require("lodash").last;
   const sortBy = require("lodash").sortBy;
-  const currentTownSlug = last(routerState.location.href.split('/'))
-  const currentJob = find(props.dataJobs, (e) => e.slug === currentSlug)
-  const sortedTowns = sortBy(props.dataTowns, (e) => e.slug)
+  const nth = require("lodash").nth;
+  const slugs = routerState.location.href.split('/')
+  const currentTownSlug = nth(slugs, -1)
+  const currentJobSlug = nth(slugs, -2)
+  const currentJob = find(props.dataJobs, (e) => e.slug === currentJobSlug)
+  const currentTown = find(props.dataTowns, (e) => e.slug === currentTownSlug)
+  // const currentJob = find(props.dataJobs, (e) => e.slug === currentSlug)
+  // const sortedTowns = sortBy(props.dataTowns, (e) => e.slug)
+  
   return (
     <div>
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
-        <h1>Le métier XYZ</h1>
-        <h2>Villes où chercher la ville {currentTownSlug}</h2>
+        <h1>Le métier {currentJob.name} à {currentTown.name}</h1>
+        <h2>Rechercher un métier, une formation dans le domaine "{currentJob.name}"</h2>
+        <h2>à {currentTown.name} ou ses environs</h2>
       </div>
       <Footer />
     </div>
@@ -35,23 +42,25 @@ export async function getStaticPaths() {
 
   const dataJobs = getStaticMetiers(path, fs, txtDirectory)
   const dataTowns = getStaticVilles(path, fs, txtDirectory)
-  const concat = require("lodash").concat;
+  const flatten = require("lodash").flatten;
 
-  const mapped_pathes = dataJobs.map((job) => {
+
+
+  const mapped_pathes = flatten(dataJobs.map((job) => {
     return dataTowns.map((town) => {
-      return {
-        params: {
+      return { 
+        params: { 
           forJob: job.slug,
-          forJob: town.slug,
-        }
-      }
+          forTown: town.slug,
+        } 
+      } 
     })
-  })
+  }))
 
   console.log('mapped_pathes', mapped_pathes);
 
   return {
-    paths: concat(mapped_pathes),
+    paths: mapped_pathes,
     fallback: false
   }
 }
