@@ -3,6 +3,7 @@ import { getStaticMetiers, getStaticVilles } from 'utils/getStaticData'
 import Navigation from 'components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
+import { NextSeo } from 'next-seo';
 
 export default function ForJob(props) {
 
@@ -14,8 +15,13 @@ export default function ForJob(props) {
   const currentJob = find(props.dataJobs, (e) => e.slug === currentSlug)
   const sortedTowns = sortBy(props.dataTowns, (e) => e.slug)
 
+
   return (
     <div>
+      <NextSeo
+        title={`Métier : ${currentJob.name} | La Bonne Alternance | Trouvez votre alternance`}
+        description={`Villes où chercher le métier ${currentJob.name}`}
+      />
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <a href="/metiers/">Revenir</a>

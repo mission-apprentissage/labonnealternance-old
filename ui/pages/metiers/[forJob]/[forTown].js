@@ -4,6 +4,8 @@ import { buildLinkForTownAndJob } from 'utils/buildLinkForTownAndJob'
 import Navigation from 'components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
+import { NextSeo } from 'next-seo';
+
 
 export default function ForTown(props) {
 
@@ -15,9 +17,14 @@ export default function ForTown(props) {
   const currentJobSlug = nth(slugs, -2)
   const currentJob = find(props.dataJobs, (e) => e.slug === currentJobSlug)
   const currentTown = find(props.dataTowns, (e) => e.slug === currentTownSlug)
-  
+
+
   return (
     <div>
+      <NextSeo
+        title={`Métier : ${currentJob.name}, à ${currentTown.name} | La Bonne Alternance | Trouvez votre alternance`}
+        description={`Chercher le métier ${currentJob.name} dans la ville suivante : ${currentTown.name}`}
+      />
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <a href={`/metiers/${currentJob.slug}`}>Revenir</a>

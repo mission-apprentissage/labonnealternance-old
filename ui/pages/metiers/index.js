@@ -6,11 +6,16 @@ import Breadcrumb from "components/breadcrumb";
 import Footer from "components/footer";
 
 import { getStaticMetiers, getStaticVilles } from "utils/getStaticData";
+import { NextSeo } from 'next-seo';
 
 
 export default function Catalog(props) {
   return (
     <div>
+      <NextSeo
+        title={`Liste des métiers | La Bonne Alternance | Trouvez votre alternance`}
+        description={`Listes de métiers où chercher son alternance`}
+      />
       <ScrollToTop />
       <Navigation />
       <Breadcrumb forPage="metiers" label="Metiers" />

@@ -46,6 +46,7 @@
     "next-compose-plugins": "^2.2.1",
     "next-images": "1.6.2",
     "next-redux-wrapper": "^6.0.0",
+    "next-seo": "4.26.0",
     "node-less-chokidar": "^0.4.1",
     "react": "^16.13.1",
     "react-autocomplete": "^1.8.1",
