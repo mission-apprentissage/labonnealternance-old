@@ -118,8 +118,7 @@ const SearchForTrainingsAndJobs = () => {
   {
     const item = findItem({itemId, type, jobs, trainings}); 
 
-    if(item)
-    {
+    if(item) {
       selectItem(item);
       try
       {
@@ -203,7 +202,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
   };
 
-  const searchForTrainings = async ({values,searchTimestamp,followUpItem,selectFollowUpItem}) => {
+  const searchForTrainings = async ({values, searchTimestamp, followUpItem, selectFollowUpItem}) => {
     searchForTrainingsFunction({
       values,
       searchTimestamp,
@@ -222,8 +221,8 @@ const SearchForTrainingsAndJobs = () => {
     });
   };
 
-  const searchForJobsWithStrictRadius = async ({values,searchTimestamp,followUpItem,selectFollowUpItem}) => {
-    searchForJobs({values,searchTimestamp,strictRadius:"strict",followUpItem,selectFollowUpItem});
+  const searchForJobsWithStrictRadius = async ({values, searchTimestamp, followUpItem, selectFollowUpItem}) => {
+    searchForJobs({values, searchTimestamp, strictRadius:"strict", followUpItem, selectFollowUpItem});
   };
 
   const searchForJobs = async ({values, searchTimestamp, strictRadius, followUpItem, selectFollowUpItem}) => {
