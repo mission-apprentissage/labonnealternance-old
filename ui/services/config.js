@@ -121,7 +121,7 @@ export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
   let hasParameters = false;
 
   const widgetParameters = getWidgetParameters();
-  if (widgetParameters && widgetParameters.applyWidgetParameters) {
+  if (widgetParameters?.applyWidgetParameters) {
     if (widgetParameters.applyFormValues) {
       widgetParameters.formValues = buildFormValuesFromParameters(widgetParameters.parameters);
     }
