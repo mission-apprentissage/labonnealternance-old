@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.15.9 [19/07/2021]
+[736] Correction récupération détail lbb avec score alternance 0
+
+## 1.15.8 [07/07/2021]
+[724] Augmentation de quota
+
 ## 1.15.8 [07/07/2021]
 [724] Augmentation de quota
 
