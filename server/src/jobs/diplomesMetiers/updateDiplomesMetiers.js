@@ -14,6 +14,8 @@ const logMessage = (level, msg) => {
   }
 };
 
+const motsIgnores = ["a", "au", "aux", "l", "le", "la", "les", "d", "de", "du", "des", "et", "en"];
+
 const emptyMongo = async () => {
   logMessage("info", `Clearing diplomesmetiers db...`);
   await DiplomesMetiers.deleteMany({});
@@ -39,11 +41,21 @@ const buildAcronyms = (intitule) => {
   let acronymeLong = "";
   let acronymeCourt = "";
 
-  const tokens = intitule.toLowerCase().split(/[\s;:,()]+/);
-  ///[;,—]+/
-  console.log(tokens);
+  let intitule_sans_parenthese = intitule;
+
+  if (intitule.indexOf(" (") >= 0) {
+    intitule_sans_parenthese = intitule.substring(0, intitule.indexOf(" ("));
+  }
+
+  const tokens = intitule_sans_parenthese.toLowerCase().split(/[\s-';:,)]+/);
   tokens.map((token) => {
-    acronymeLong += token[0];
+    if (token) {
+      acronymeLong += token[0];
+
+      if (motsIgnores.indexOf(token) < 0) {
+        acronymeCourt += token[0];
+      }
+    }
   });
 
   return acronymeCourt + " " + acronymeLong;
@@ -72,15 +84,24 @@ module.exports = async () => {
       let intitule = intitules[i];
       let acronymes = buildAcronyms(intitule);
 
-      console.log("int ac ", acronymes, intitule);
+      console.log(intitule, " --- ", acronymes);
+
+      let diplomesMetier = new DiplomesMetiers({
+        intitule_long: intitule,
+        codes_romes: [],
+        codes_rncps: [],
+        acronymes_intitule: acronymes,
+      });
+
+      await diplomesMetier.save();
     }
 
     /*
-      Récupération aggregation intitule_long + intitule_courts
+      OK Récupération aggregation intitule_long + intitule_courts
 
       parcourt de cette liste sur la recette catalogue
 
-      construction d'un ou plusieurs acronymes
+      OK construction d'un ou plusieurs acronymes
 
       pour chaque intitule_long récupération des romes et des rncps
 

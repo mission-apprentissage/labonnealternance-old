@@ -8,8 +8,6 @@ const { updateDiplomesMetiersQuery } = require("../../service/diplomesMetiers");
 module.exports = () => {
   const router = express.Router();
 
-  console.log("A");
-
   router.get(
     "/",
     tryCatch(async (req, res) => {
