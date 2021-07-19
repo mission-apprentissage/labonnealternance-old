@@ -57,9 +57,11 @@ const getItemElement = (item) => {
     }
   }
 
-  let res = document.getElementById(id).parentElement;
-
-  return res;
+  try {
+    return document.getElementById(id).parentElement;
+  } catch (err) {
+    return null;
+  }
 };
 
 const logError = (title, error) => {

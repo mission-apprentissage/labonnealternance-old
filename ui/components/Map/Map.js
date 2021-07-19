@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useStore, useDispatch, useSelector } from "react-redux";
 import { setSelectedItem, setSelectedMapPopupItem } from "store/actions";
-import { currentPage, setCurrentPage } from "utils/currentPage.js";
+import { currentPage, setCurrentPage, currentSearch } from "utils/currentPage.js";
 import { useScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
 import MapSearchButton from "./MapSearchButton";
@@ -35,7 +35,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
     setSelectedMarker(null);
     if (currentPage === "fiche") {
       setCurrentPage("");
-      pushHistory({ router, scopeContext });
+      pushHistory({ router, scopeContext, searchParameters: formValues, searchTimestamp: currentSearch });
     }
   };
 
@@ -57,11 +57,15 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
 
           if (addresses.length) {
             values.location.insee = addresses[0].insee;
+            values.location.zipcode = addresses[0].zipcode;
+            values.location.label = addresses[0].label;
           } else {
             values.location.insee = null;
+            values.location.label = null;
+            values.location.zipcode = null;
           }
         } catch (err) {}
-        await handleSearchSubmit(values, "stayOnMap");
+        await handleSearchSubmit(values);
 
         shouldHandleMapSearch = true;
       }

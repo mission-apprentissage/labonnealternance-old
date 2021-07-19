@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.15.9 [19/07/2021]
+[736] Correction récupération détail lbb avec score alternance 0
+[707] Conservation des résultats de recherche dans l'historique navigateur
+[740] Conservation des query parameters utm_
+
 ## 1.15.8 [07/07/2021]
 [724] Augmentation de quota
 
