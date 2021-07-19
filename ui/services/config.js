@@ -1,4 +1,5 @@
 import { getValueFromPath } from "utils/tools";
+import { campaignParameters } from "utils/campaignParameters";
 import { setWidgetParameters, setItemParameters } from "store/actions";
 import { push } from "connected-next-router";
 
@@ -36,6 +37,13 @@ export const getWidgetParameters = () => {
   parameters.insee = getValueFromPath("insee");
   parameters.diploma = getValueFromPath("diploma");
   parameters.address = getValueFromPath("address");
+
+  p = getValueFromPath("utm_campaign");
+  if (p) {
+    campaignParameters.utm_campaign = p;
+    campaignParameters.utm_source = getValueFromPath("utm_source");
+    campaignParameters.utm_medium = getValueFromPath("utm_medium");
+  }
 
   widgetParameters.parameters = parameters;
   widgetParameters.applyWidgetParameters = applyWidgetParameters;
@@ -112,7 +120,9 @@ export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
     const itemParameters = getItemParameters();
     if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {
       dispatch(setItemParameters(itemParameters));
-      if (shouldPush) dispatch(push({ pathname: "/recherche-apprentissage" }));
+      if (shouldPush) {
+        dispatch(push({ pathname: "/recherche-apprentissage" }));
+      }
     }
   }
 };
