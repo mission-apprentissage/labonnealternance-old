@@ -7,9 +7,11 @@ import {
   getRomeFromParameters,
   getRncpsFromParameters,
 } from "components/SearchForTrainingsAndJobs/services/utils";
+import { storeTrainingsInSession } from "./handleSessionStorage";
 
 export const searchForTrainingsFunction = async ({
   values,
+  searchTimestamp,
   dispatch,
   setIsTrainingSearchLoading,
   setTrainingSearchError,
@@ -20,6 +22,8 @@ export const searchForTrainingsFunction = async ({
   setTrainingMarkers,
   factorTrainingsForMap,
   widgetParameters,
+  followUpItem,
+  selectFollowUpItem,
 }) => {
   setIsTrainingSearchLoading(true);
   setTrainingSearchError("");
@@ -42,16 +46,26 @@ export const searchForTrainingsFunction = async ({
     }
 
     dispatch(setTrainings(response.data.results));
+    storeTrainingsInSession({ trainings: response.data.results, searchTimestamp });
     dispatch(setHasSearch(true));
     dispatch(setIsFormVisible(false));
 
     if (response.data.results.length) {
       setTrainingMarkers(factorTrainingsForMap(response.data.results));
+
+      if (followUpItem?.parameters.type === "training") {
+        selectFollowUpItem({
+          itemId: followUpItem.parameters.itemId,
+          type: followUpItem.parameters.type,
+          trainings: response.data.results,
+          formValues: values,
+        });
+      }
     }
   } catch (err) {
     console.log(
-      `Erreur interne lors de la recherche de formations (${err.response ? err.response.status : ""} : ${
-        err.response.data ? err.response.data.error : ""
+      `Erreur interne lors de la recherche de formations (${err.response ? err.response?.status : ""} : ${
+        err?.response?.data ? err.response.data?.error : ""
       })`
     );
     logError("Training search error", err);
