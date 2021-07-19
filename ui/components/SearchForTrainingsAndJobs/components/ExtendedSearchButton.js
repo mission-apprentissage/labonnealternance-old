@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "reactstrap";
 import { useScopeContext } from "context/ScopeContext";
 
 const ExtendedSearchButton = ({ title, hasJob, handleExtendedSearch }) => {

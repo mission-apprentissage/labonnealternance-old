@@ -8,7 +8,7 @@ import ItemDetail from "components/ItemDetail/ItemDetail";
 import LoadingScreen from "components/LoadingScreen";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
-import { setCurrentPage } from "utils/currentPage.js";
+import { setCurrentPage, setCurrentSearch, currentSearch } from "utils/currentPage.js";
 import pushHistory from "utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
 
@@ -38,6 +38,8 @@ const ChoiceColumn = ({
   jobSearchError,
   allJobSearchError,
   isLoading,
+  activeFilter,
+  setActiveFilter,
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -58,6 +60,10 @@ const ChoiceColumn = ({
     }
   });
 
+  const handleSearchSubmitFunction = (values) => {
+    return handleSearchSubmit({ values });
+  };
+
   const handleSelectItem = (item) => {
     flyToMarker(item, 12);
     closeMapPopups();
@@ -67,12 +73,26 @@ const ChoiceColumn = ({
 
     setCurrentPage("fiche");
 
-    pushHistory({ router, scopeContext, item, page: "fiche", display: "list" });
+    pushHistory({
+      router,
+      scopeContext,
+      item,
+      page: "fiche",
+      display: "list",
+      searchParameters: formValues,
+      searchTimestamp: currentSearch,
+    });
   };
 
   const handleClose = () => {
     setCurrentPage("");
-    pushHistory({ router, scopeContext, display: "list", searchParameters: formValues });
+    pushHistory({
+      router,
+      scopeContext,
+      display: "list",
+      searchParameters: formValues,
+      searchTimestamp: currentSearch,
+    });
     unSelectItem("doNotSaveToHistory");
   };
 
@@ -89,7 +109,16 @@ const ChoiceColumn = ({
     scrollToTop("choiceColumn");
 
     dispatch(setJobs([]));
-    searchForJobs(formValues, null);
+    const searchTimestamp = new Date().getTime();
+    pushHistory({
+      router,
+      scopeContext,
+      display: "list",
+      searchParameters: formValues,
+      searchTimestamp,
+    });
+    setCurrentSearch(searchTimestamp);
+    searchForJobs({ values: formValues, searchTimestamp });
   };
 
   const searchOnNewCenter = async (newCenter, isTrainingSearch, isJobSearch) => {
@@ -108,10 +137,21 @@ const ChoiceColumn = ({
 
     flyToLocation({ center: formValues.location.value.coordinates, zoom: 10 });
 
-    searchForJobsWithStrictRadius(formValues);
+    const searchTimestamp = new Date().getTime();
+
+    pushHistory({
+      router,
+      scopeContext,
+      display: "list",
+      searchParameters: formValues,
+      searchTimestamp,
+    });
+    setCurrentSearch(searchTimestamp);
+
+    searchForJobsWithStrictRadius({ values: formValues, searchTimestamp });
 
     if (isTrainingSearch) {
-      searchForTrainings(formValues);
+      searchForTrainings({ values: formValues, searchTimestamp });
     }
   };
 
@@ -123,8 +163,6 @@ const ChoiceColumn = ({
     }
     dispatch(setTrainings(trainings));
   };
-
-  const [activeFilter, setActiveFilter] = useState("all");
 
   const getResultLists = () => {
     return (
@@ -153,7 +191,7 @@ const ChoiceColumn = ({
   const getSearchForm = () => {
     return (
       <div className="d-block d-md-none">
-        <SearchForm showResultList={showResultList} handleSearchSubmit={handleSearchSubmit} />
+        <SearchForm showResultList={showResultList} handleSearchSubmit={handleSearchSubmitFunction} />
       </div>
     );
   };
