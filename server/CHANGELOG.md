@@ -3,12 +3,18 @@
 ## 1.15.9 [19/07/2021]
 [736] Correction récupération détail lbb avec score alternance 0
 [707] Conservation des résultats de recherche dans l'historique navigateur
+[740] Conservation des query parameters utm_
 
 ## 1.15.8 [07/07/2021]
 [724] Augmentation de quota
 
-## 1.15.7 [30/06/2021]
+## 1.15.8 [07/07/2021]
+[724] Augmentation de quota
+
+## 1.15.7 [06/07/2021]
 [708] Adaptation script d'export test ARA
+[716] Sitemap
+[528] Ouverture publique API Matcha
 
 ## 1.15.6 [21/06/2021]
 [700] Changement lien matcha
