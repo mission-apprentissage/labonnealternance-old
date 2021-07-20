@@ -1,8 +1,13 @@
+const axios = require("axios");
+const config = require("config");
 const _ = require("lodash");
+const Sentry = require("@sentry/node");
 const logger = require("../../common/logger");
 const { DiplomesMetiers } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
-const { getIntitulesFormations } = require("../../service/formations");
+
+const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
+
 const logMessage = (level, msg) => {
   // remplacer par les outils disponibles de manière générale
 
@@ -61,6 +66,12 @@ const buildAcronyms = (intitule) => {
   return acronymeCourt + " " + acronymeLong;
 };
 
+let diplomesMetiers = [];
+let rank = 0;
+let shouldStop = false;
+const size = 1500;
+let lastIdToSearchAfter = null;
+
 module.exports = async () => {
   let step = 0;
 
@@ -76,24 +87,20 @@ module.exports = async () => {
 
     logMessage("info", `Début traitement`);
 
-    const intitules = await getIntitulesFormations();
+    while (!shouldStop && rank < 30) {
+      await getIntitulesFormations({ size });
+      rank++;
+    }
 
-    console.log("intitules ", intitules.length);
+    console.log("diplomesMetiers ", Object.keys(diplomesMetiers).length);
 
-    for (let i = 0, l = intitules.length; i < l; ++i) {
-      let intitule = intitules[i];
-      let acronymes = buildAcronyms(intitule);
+    for (const k in diplomesMetiers) {
+      diplomesMetiers[k].acronymes_intitule = buildAcronyms(diplomesMetiers[k].intitule_long);
 
-      console.log(intitule, " --- ", acronymes);
-
-      let diplomesMetier = new DiplomesMetiers({
-        intitule_long: intitule,
-        codes_romes: [],
-        codes_rncps: [],
-        acronymes_intitule: acronymes,
-      });
-
+      let diplomesMetier = new DiplomesMetiers(diplomesMetiers[k]);
       await diplomesMetier.save();
+
+      console.log("diplomeMetier saved : ", diplomesMetiers[k]);
     }
 
     /*
@@ -118,4 +125,110 @@ module.exports = async () => {
     let error_msg = _.get(err, "meta.body") ?? err.message;
     return { error: error_msg };
   }
+};
+
+const getIntitulesFormations = async ({ size = 0 }) => {
+  try {
+    /*const body = {
+      aggs: {
+        intitules: {
+          terms: {
+            field: "intitule_long.keyword",
+            size: 10000,
+          },
+        },
+      },
+      size: 0,
+    };*/
+
+    const body = {
+      query: {
+        bool: {
+          must: {
+            match_all: {},
+          },
+        },
+      },
+      sort: [{ _id: "asc" }],
+    };
+
+    console.log("lastId : ", lastIdToSearchAfter);
+    if (lastIdToSearchAfter) {
+      body.search_after = [lastIdToSearchAfter];
+    }
+
+    const responseIntitulesFormations = await axios.post(urlCatalogueSearch, body, {
+      params: getFormationCodesEsQueryIndexFragment({ size }),
+    });
+
+    let intitules = [];
+    //console.log(responseIntitulesFormations.data.hits);
+
+    responseIntitulesFormations.data.hits.hits.forEach((intitule) => {
+      //console.log(intitule._source);
+
+      if (!diplomesMetiers[intitule._source.intitule_long]) {
+        //console.log("inited : ", intitule._source.intitule_long);
+        diplomesMetiers[intitule._source.intitule_long] = {
+          intitule_long: intitule._source.intitule_long,
+          rome_codes: intitule._source.rome_codes,
+          rncp_codes: [intitule._source.rncp_code],
+        };
+      } else {
+        //console.log("updating : ", intitule._source.intitule_long);
+        diplomesMetiers[intitule._source.intitule_long] = updateDiplomeMetier({
+          initial: diplomesMetiers[intitule._source.intitule_long],
+          toAdd: intitule._source,
+        });
+      }
+
+      lastIdToSearchAfter = intitule._id;
+    });
+
+    if (responseIntitulesFormations.data.hits.hits.length < size) {
+      shouldStop = true;
+    }
+
+    console.log(responseIntitulesFormations.data.hits.hits.length);
+    //console.log("et la l'int : ",intitules);
+
+    return intitules;
+  } catch (err) {
+    Sentry.captureException(err);
+
+    let error_msg = _.get(err, "meta.body") ? err.meta.body : err.message;
+    console.log("Error getting diplomesMetiers", error_msg);
+    console.log(err);
+    if (_.get(err, "meta.meta.connection.status") === "dead") {
+      console.log("Elastic search is down or unreachable");
+    }
+    return { error: error_msg };
+  }
+};
+
+const updateDiplomeMetier = ({ initial, toAdd }) => {
+  //console.log("updateDiplomeMetier : ",initial,toAdd);
+
+  toAdd.rome_codes.forEach((rome_code) => {
+    if (initial.rome_codes.indexOf(rome_code) < 0) {
+      initial.rome_codes.push(rome_code);
+      console.log("added rome ", rome_code, " to ", initial.intitule_long);
+    }
+  });
+
+  if (initial.rncp_codes.indexOf(toAdd.rncp_code) < 0) {
+    initial.rncp_codes.push(toAdd.rncp_code);
+    console.log("added rncp ", toAdd.rncp_code, " to ", initial.intitule_long);
+  }
+
+  return initial;
+};
+
+const getFormationCodesEsQueryIndexFragment = ({ size = 10000 }) => {
+  return {
+    //index: "mnaformation",
+    index: "convertedformation",
+    size,
+    _sourceIncludes: ["_id", "intitule_long", "rome_codes", "rncp_code"],
+  };
 };
