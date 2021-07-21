@@ -151,8 +151,8 @@ const getIntitulesFormations = async ({ size = 0 }) => {
         //console.log("inited : ", intitule._source.intitule_long);
         diplomesMetiers[intitule._source.intitule_long] = {
           intitule_long: intitule._source.intitule_long,
-          rome_codes: intitule._source.rome_codes,
-          rncp_codes: [intitule._source.rncp_code],
+          codes_romes: intitule._source.rome_codes,
+          codes_rncps: [intitule._source.rncp_code],
         };
       } else {
         //console.log("updating : ", intitule._source.intitule_long);
@@ -189,15 +189,17 @@ const getIntitulesFormations = async ({ size = 0 }) => {
 const updateDiplomeMetier = ({ initial, toAdd }) => {
   //console.log("updateDiplomeMetier : ",initial,toAdd);
 
-  toAdd.rome_codes.forEach((rome_code) => {
-    if (initial.rome_codes.indexOf(rome_code) < 0) {
-      initial.rome_codes.push(rome_code);
-      //console.log("added rome ", rome_code, " to ", initial.intitule_long);
-    }
-  });
+  if (toAdd.codes_romes) {
+    toAdd.codes_romes.forEach((rome_code) => {
+      if (initial.codes_romes.indexOf(rome_code) < 0) {
+        initial.codes_romes.push(rome_code);
+        //console.log("added rome ", rome_code, " to ", initial.intitule_long);
+      }
+    });
+  }
 
-  if (initial.rncp_codes.indexOf(toAdd.rncp_code) < 0) {
-    initial.rncp_codes.push(toAdd.rncp_code);
+  if (initial.codes_rncps.indexOf(toAdd.rncp_code) < 0) {
+    initial.codes_rncps.push(toAdd.rncp_code);
     //console.log("added rncp ", toAdd.rncp_code, " to ", initial.intitule_long);
   }
 
