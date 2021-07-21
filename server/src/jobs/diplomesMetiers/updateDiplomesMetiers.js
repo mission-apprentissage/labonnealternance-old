@@ -92,7 +92,9 @@ module.exports = async () => {
       rank++;
     }
 
-    console.log("diplomesMetiers ", Object.keys(diplomesMetiers).length);
+    //console.log("diplomesMetiers ", Object.keys(diplomesMetiers).length);
+
+    step = 1;
 
     for (const k in diplomesMetiers) {
       diplomesMetiers[k].acronymes_intitule = buildAcronyms(diplomesMetiers[k].intitule_long);
@@ -100,20 +102,10 @@ module.exports = async () => {
       let diplomesMetier = new DiplomesMetiers(diplomesMetiers[k]);
       await diplomesMetier.save();
 
-      console.log("diplomeMetier saved : ", diplomesMetiers[k]);
+      //console.log("diplomeMetier saved : ", diplomesMetiers[k]);
     }
 
-    /*
-      OK Récupération aggregation intitule_long + intitule_courts
-
-      parcourt de cette liste sur la recette catalogue
-
-      OK construction d'un ou plusieurs acronymes
-
-      pour chaque intitule_long récupération des romes et des rncps
-
-      enregistrement d'une ligne dans la mongo + indexation
-    */
+    logMessage("info", `Fin traitement`);
 
     return {
       result: "Table diplomesMetiers mise à jour",
@@ -129,18 +121,6 @@ module.exports = async () => {
 
 const getIntitulesFormations = async ({ size = 0 }) => {
   try {
-    /*const body = {
-      aggs: {
-        intitules: {
-          terms: {
-            field: "intitule_long.keyword",
-            size: 10000,
-          },
-        },
-      },
-      size: 0,
-    };*/
-
     const body = {
       query: {
         bool: {
@@ -152,7 +132,7 @@ const getIntitulesFormations = async ({ size = 0 }) => {
       sort: [{ _id: "asc" }],
     };
 
-    console.log("lastId : ", lastIdToSearchAfter);
+    //console.log("lastId : ", lastIdToSearchAfter);
     if (lastIdToSearchAfter) {
       body.search_after = [lastIdToSearchAfter];
     }
@@ -189,7 +169,7 @@ const getIntitulesFormations = async ({ size = 0 }) => {
       shouldStop = true;
     }
 
-    console.log(responseIntitulesFormations.data.hits.hits.length);
+    //console.log(responseIntitulesFormations.data.hits.hits.length);
     //console.log("et la l'int : ",intitules);
 
     return intitules;
@@ -212,13 +192,13 @@ const updateDiplomeMetier = ({ initial, toAdd }) => {
   toAdd.rome_codes.forEach((rome_code) => {
     if (initial.rome_codes.indexOf(rome_code) < 0) {
       initial.rome_codes.push(rome_code);
-      console.log("added rome ", rome_code, " to ", initial.intitule_long);
+      //console.log("added rome ", rome_code, " to ", initial.intitule_long);
     }
   });
 
   if (initial.rncp_codes.indexOf(toAdd.rncp_code) < 0) {
     initial.rncp_codes.push(toAdd.rncp_code);
-    console.log("added rncp ", toAdd.rncp_code, " to ", initial.intitule_long);
+    //console.log("added rncp ", toAdd.rncp_code, " to ", initial.intitule_long);
   }
 
   return initial;
