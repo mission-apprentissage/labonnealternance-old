@@ -2,7 +2,7 @@
 
 ## 1.15.10 [21/07/2021]
 [743] Fix recherche sur map
-[751] Marges latérales écran de détail
+[751] Marges latérales écran de détail LBB
 
 ## 1.15.9 [19/07/2021]
 [736] Correction récupération détail lbb avec score alternance 0
