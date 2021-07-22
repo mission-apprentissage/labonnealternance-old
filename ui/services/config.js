@@ -1,4 +1,5 @@
 import { getValueFromPath } from "utils/tools";
+import { campaignParameters } from "utils/campaignParameters";
 import { setWidgetParameters, setItemParameters } from "store/actions";
 import { push } from "connected-next-router";
 
@@ -36,6 +37,13 @@ export const getWidgetParameters = () => {
   parameters.insee = getValueFromPath("insee");
   parameters.diploma = getValueFromPath("diploma");
   parameters.address = getValueFromPath("address");
+
+  p = getValueFromPath("utm_campaign");
+  if (p) {
+    campaignParameters.utm_campaign = p;
+    campaignParameters.utm_source = getValueFromPath("utm_source");
+    campaignParameters.utm_medium = getValueFromPath("utm_medium");
+  }
 
   widgetParameters.parameters = parameters;
   widgetParameters.applyWidgetParameters = applyWidgetParameters;
@@ -75,7 +83,26 @@ export const getItemParameters = () => {
   return itemParameters;
 };
 
+/* à conserver
+export const buildFormValuesFromParameterString = (urlParams) => 
+{
+  let params = {};
+
+  params.lat = parseFloat(urlParams.get("lat"));
+  params.lon = parseFloat(urlParams.get("lon"));
+  params.jobName = urlParams.get("job_name");
+  params.zipcode = urlParams.get("zipcode");
+  params.insee = urlParams.get("insee");
+  params.diploma = urlParams.get("diploma");
+  params.address = urlParams.get("address");
+  params.romes = urlParams.get("romes");
+  params.radius = urlParams.get("radius");
+
+  return buildFormValuesFromParameters(params);
+}*/
+
 const buildFormValuesFromParameters = (params) => {
+
   let formValues = {
     job: {
       label: params.jobName,
@@ -99,20 +126,23 @@ const buildFormValuesFromParameters = (params) => {
 };
 
 export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
+  let hasParameters = false;
+
   const widgetParameters = getWidgetParameters();
-  if (widgetParameters && widgetParameters.applyWidgetParameters) {
+  if (widgetParameters?.applyWidgetParameters) {
     if (widgetParameters.applyFormValues) {
       widgetParameters.formValues = buildFormValuesFromParameters(widgetParameters.parameters);
     }
     dispatch(setWidgetParameters(widgetParameters));
-    if (shouldPush) {
-      dispatch(push({ pathname: "/recherche-apprentissage" }));
-    }
-  } else {
-    const itemParameters = getItemParameters();
-    if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {
-      dispatch(setItemParameters(itemParameters));
-      if (shouldPush) dispatch(push({ pathname: "/recherche-apprentissage" }));
-    }
+  }
+
+  const itemParameters = getItemParameters();
+  if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {
+    dispatch(setItemParameters(itemParameters));
+    hasParameters = true;
+  }
+
+  if (hasParameters && shouldPush) {
+    dispatch(push({ pathname: "/recherche-apprentissage" }));
   }
 };
