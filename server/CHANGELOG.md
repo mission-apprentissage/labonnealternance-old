@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.15.10 [21/07/2021]
+[743] Fix recherche sur map
+[695] Didask : Formations
+[751] Marges latérales écran de détail LBB
+[750] Didask : Intégration Capsules recherche employeur + préparation entretien employeur
+
 ## 1.15.9 [19/07/2021]
 [736] Correction récupération détail lbb avec score alternance 0
 [707] Conservation des résultats de recherche dans l'historique navigateur

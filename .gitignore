@@ -18,7 +18,7 @@
 .env.production.local
 
 # sitemaps
-ui/public/sitemap.xml
+ui/public/sitemap*.xml
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template

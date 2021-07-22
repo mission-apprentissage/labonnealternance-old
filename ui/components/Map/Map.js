@@ -65,7 +65,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
             values.location.zipcode = null;
           }
         } catch (err) {}
-        await handleSearchSubmit(values);
+        await handleSearchSubmit({ values });
 
         shouldHandleMapSearch = true;
       }
