@@ -24,6 +24,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret)
+  console.log('isCfa', isCfa);
 
   const distance = selectedItem?.place?.distance;
 
