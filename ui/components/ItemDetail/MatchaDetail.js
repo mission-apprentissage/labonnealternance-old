@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import questionmarkIcon from "public/images/icons/questionmark.svg";
-import { get } from "lodash";
+import { get, random } from "lodash";
 import contactIcon from "public/images/icons/contact_icon.svg";
 import ReactHtmlParser from "react-html-parser";
 import { SendTrackEvent } from "utils/gtm";
 import { isNonEmptyString, capitalizeFirstLetter } from "utils/strutils";
+import DidAsk1 from "./DidAsk1";
+import DidAsk2 from "./DidAsk2";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -146,6 +148,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             <div className="c-detail-advice-text c-detail-advice-text--tag">
               Vous avez donc tout intérêt à la contacter rapidement, avant que l’offre ne soit pourvue !
             </div>
+            {!!random(0, 1) ? <DidAsk1 /> : <DidAsk2 />}
           </div>
         </div>
 
