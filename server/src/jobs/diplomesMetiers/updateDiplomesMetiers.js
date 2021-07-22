@@ -99,10 +99,10 @@ module.exports = async () => {
     for (const k in diplomesMetiers) {
       diplomesMetiers[k].acronymes_intitule = buildAcronyms(diplomesMetiers[k].intitule_long);
 
-      let diplomesMetier = new DiplomesMetiers(diplomesMetiers[k]);
-      await diplomesMetier.save();
-
-      //console.log("diplomeMetier saved : ", diplomesMetiers[k]);
+      if (diplomesMetiers[k]?.codes_romes.length) {
+        let diplomesMetier = new DiplomesMetiers(diplomesMetiers[k]);
+        await diplomesMetier.save();
+      }
     }
 
     logMessage("info", `Fin traitement`);
@@ -144,25 +144,25 @@ const getIntitulesFormations = async ({ size = 0 }) => {
     let intitules = [];
     //console.log(responseIntitulesFormations.data.hits);
 
-    responseIntitulesFormations.data.hits.hits.forEach((intitule) => {
+    responseIntitulesFormations.data.hits.hits.forEach((formation) => {
       //console.log(intitule._source);
 
-      if (!diplomesMetiers[intitule._source.intitule_long]) {
+      if (!diplomesMetiers[formation._source.intitule_long]) {
         //console.log("inited : ", intitule._source.intitule_long);
-        diplomesMetiers[intitule._source.intitule_long] = {
-          intitule_long: intitule._source.intitule_long,
-          codes_romes: intitule._source.rome_codes,
-          codes_rncps: [intitule._source.rncp_code],
+        diplomesMetiers[formation._source.intitule_long] = {
+          intitule_long: formation._source.intitule_long,
+          codes_romes: formation._source.rome_codes,
+          codes_rncps: [formation._source.rncp_code],
         };
       } else {
         //console.log("updating : ", intitule._source.intitule_long);
-        diplomesMetiers[intitule._source.intitule_long] = updateDiplomeMetier({
-          initial: diplomesMetiers[intitule._source.intitule_long],
-          toAdd: intitule._source,
+        diplomesMetiers[formation._source.intitule_long] = updateDiplomeMetier({
+          initial: diplomesMetiers[formation._source.intitule_long],
+          toAdd: formation._source,
         });
       }
 
-      lastIdToSearchAfter = intitule._id;
+      lastIdToSearchAfter = formation._id;
     });
 
     if (responseIntitulesFormations.data.hits.hits.length < size) {
