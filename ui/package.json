@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap --config next-sitemap.js",
     "start": "next start",
     "test": "react-scripts test --passWithNoTests",
     "serve": "next start"
