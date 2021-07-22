@@ -108,7 +108,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
         </p>
       </div>
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
-      <div className="c-detail-body">
+      <div className="c-detail-body c-detail-body--inside">
         <div className="c-detail-advice p-2">
           <img src={questionmarkIcon} alt="point d'interrogation" />
           <div className="c-detail-advice-text text-left mt-0 ml-2">
