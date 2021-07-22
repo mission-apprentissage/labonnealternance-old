@@ -7,7 +7,7 @@ const DidAsk2 = () => {
     <p>
       Un employeur vous a proposé un entretien ? Préparez le en vous aidant des cas pratiques proposés
       <span className="c-detail-traininglink ml-1">
-        <a href="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e" target="_blank" rel="noopener noreferrer" className="gtmDidask2">
+        <a href="https://dinum-beta.didask.com/courses/demonstration/60d1adbb877dae00003f0eac" target="_blank" rel="noopener noreferrer" className="gtmDidask2">
           <img src={gotoIcon} alt="Lien" />
           &nbsp;ici&nbsp;
         </a>
