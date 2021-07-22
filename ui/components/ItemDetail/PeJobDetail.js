@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import questionmarkIcon from "public/images/icons/questionmark.svg";
-import gotoIcon from "public/images/icons/goto.svg";
 import { get, defaultTo } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import TagCandidatureSpontanee from "components/ItemDetail/TagCandidatureSpontanee.js";
 import { formatDate } from "utils/strutils";
 import { SendTrackEvent } from "utils/gtm";
+import DidAsk1 from "./DidAsk1";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -77,18 +77,7 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
             <div className="c-detail-advice-tag">
               <TagCandidatureSpontanee />
             </div>
-            <div className="c-detail-advice-text">
-              <p>
-                Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ?
-                Préparez votre premier contact avec un CFA
-                <span className="c-detail-traininglink ml-1">
-                  <a href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987" target="_blank" rel="noopener noreferrer" className="gtmDidaskFormation">
-                    <img src={gotoIcon} alt="Lien" />
-                    &nbsp;en cliquant ici
-                  </a>
-                </span>
-              </p>
-            </div>
+            <DidAsk1/>
           </div>
         </div>
 
