@@ -9,10 +9,11 @@ const DidAsk1 = () => {
       <span className="c-detail-traininglink ml-1">
         <a href="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e" target="_blank" rel="noopener noreferrer" className="gtmDidask1">
           <img src={gotoIcon} alt="Lien" />
-          &nbsp; ici
+          &nbsp;ici&nbsp;
         </a>
       </span>
-      pour vous aider !
+      <span className="ml-1">pour vous aider !</span>
+      
     </p>
   </div>
 }
