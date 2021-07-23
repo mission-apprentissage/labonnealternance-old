@@ -3,7 +3,12 @@ import Link from "next/link";
 
 import separator from "public/images/breadcrumb_separator.svg";
 
-const Breadcrumb = ({ forPage, label }) => {
+const Breadcrumb = ({ forPage, label, items = null }) => {
+  console.log('forPage', forPage);
+
+  const links = forPage.split('/')
+  console.log('links', links);
+
   let suffix = forPage ? <Link href={{ pathname: `/${forPage}` }}>{label}</Link> : <div></div>;
 
   return (
@@ -11,11 +16,27 @@ const Breadcrumb = ({ forPage, label }) => {
       <div className="container d-flex pl-0 pt-5 pb-4">
         <Link href={{ pathname: "/" }}>Accueil</Link>
 
-        <div className="c-breadcrumb-separator mx-3">
-          <img className="c-breadcrumb-separator-img" src={separator} alt="" />
-        </div>
+        {
+          !items ?
+          <>
+            <div className="c-breadcrumb-separator mx-3">
+              <img className="c-breadcrumb-separator-img" src={separator} alt="" />
+            </div>
+            {suffix}
+            </>
+            :
+            <>
+              {
+                links.map((a_link, index) => {
+                  return <div key={index}>
+                    <a href={`/metiers/${a_link}`}>#</a>
+                  </div>
+                })
+              }
+            </>
+        }
 
-        {suffix}
+
       </div>
     </div>
   );
