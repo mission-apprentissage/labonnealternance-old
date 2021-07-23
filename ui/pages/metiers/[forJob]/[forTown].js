@@ -59,8 +59,6 @@ export async function getStaticPaths() {
   const dataTowns = getStaticVilles(path, fs, txtDirectory)
   const flatten = require("lodash").flatten;
 
-
-
   const mapped_pathes = flatten(dataJobs.map((job) => {
     return dataTowns.map((town) => {
       return { 

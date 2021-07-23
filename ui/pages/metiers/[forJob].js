@@ -39,11 +39,17 @@ export default function ForJob(props) {
             return <div key={index}>
               <span className="d-block d-lg-inline">Emploi en alternance et formation en alternance en </span>
               <span className="d-block d-lg-inline">
-                <a href={`/metiers/${currentJob.slug}/${currentTown.slug}`}>{currentJob.name} à {currentTown.name}</a>
+                <a 
+                  href={`/metiers/${currentJob.slug}/${currentTown.slug}`}
+                  className="c-catalog-link"
+                >
+                  {currentJob.name} à {currentTown.name}
+                </a>
               </span>
             </div>
           })
         }
+
       </div>
       <Footer />
     </div>
