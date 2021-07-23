@@ -18,7 +18,6 @@ export default function ForTown(props) {
   const currentJobSlug = nth(slugs, -2)
   const currentJob = find(props.dataJobs, (e) => e.slug === currentJobSlug)
   const currentTown = find(props.dataTowns, (e) => e.slug === currentTownSlug)
-  console.log('currentTown', currentTown);
 
   const navigationItems = [{ title: 'Métiers', path: 'metiers' }, { title: currentJob.name, path: `metiers/${currentJobSlug}` }, { title: currentTown.name, path: `metiers/${currentJobSlug}/${currentTownSlug}` }]
 
