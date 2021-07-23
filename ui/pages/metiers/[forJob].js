@@ -16,6 +16,7 @@ export default function ForJob(props) {
   const currentJob = find(props.dataJobs, (e) => e.slug === currentSlug)
   const sortedTowns = sortBy(props.dataTowns, (e) => e.slug)
 
+  const navigationItems = [{ title: 'Métiers', path: 'metiers' }, { title: currentJob.name, path: `metiers/${currentSlug}` }]
 
   return (
     <div>
@@ -24,7 +25,7 @@ export default function ForJob(props) {
         description={`Villes où chercher le métier ${currentJob.name}`}
       />
       <Navigation />
-      <Breadcrumb forPage="unkonwn" label="none" items="[{title: 'Métiers', path: 'metiers'}, {title: 'Villes, path: 'metiers/villes'}]" />
+      <Breadcrumb forPage="none" label="none" items={navigationItems} />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <h1 className="mt-4">Villes où chercher le métier</h1>
         <h1 className="mb-4">" {currentJob.name} "</h1>
