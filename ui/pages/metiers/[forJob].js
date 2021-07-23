@@ -1,5 +1,5 @@
 import React from 'react'
-import { getStaticMetiers, getStaticVilles } from 'utils/getStaticData'
+import { getStaticMetiers, getStaticVilles, extractFromFile } from 'utils/getStaticData'
 import Navigation from 'components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
