@@ -22,11 +22,13 @@ export default function Catalog(props) {
 
       <div className="c-page-container container my-0 mb-sm-5 p-5">
         <a href="/">Revenir</a>
-        <h1 className="mt-4">Catalogue</h1>
-        <p>Ensemble des métiers</p>
+        <h1 className="mt-4">
+          <span className="d-block">Domaines</span>
+          <span className="d-block">Métiers</span>
+        </h1>
         {
           props.dataJobs.map((job, index) => {
-            return <div key={index}><a href={`/metiers/${job.slug}`}>{job.name}</a></div>
+            return <div key={index}>Emploi en alternance et formation en alternance en <a href={`/metiers/${job.slug}`}>{job.name}</a></div>
           })
         }
       </div>
