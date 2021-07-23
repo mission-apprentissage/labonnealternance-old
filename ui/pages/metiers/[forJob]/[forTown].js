@@ -72,8 +72,6 @@ export async function getStaticPaths() {
     })
   }))
 
-  console.log('mapped_pathes', mapped_pathes);
-
   return {
     paths: mapped_pathes,
     fallback: false

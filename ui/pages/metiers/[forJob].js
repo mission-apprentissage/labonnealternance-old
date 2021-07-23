@@ -27,12 +27,21 @@ export default function ForJob(props) {
       <Navigation />
       <Breadcrumb forPage="none" label="none" items={navigationItems} />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
-        <h1 className="mt-4">Villes où chercher le métier</h1>
-        <h1 className="mb-4">" {currentJob.name} "</h1>
+
+        <h1 className="mt-0">
+          <span className="d-block c-page-title is-color-1">Liste des villes pour</span>
+          <span className="d-block c-page-title is-color-2">" {currentJob.name} "</span>
+        </h1>
+        <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
 
         {
           sortedTowns.map((currentTown, index) => {
-            return <div key={index}><a href={`/metiers/${currentJob.slug}/${currentTown.slug}`}>{currentTown.name}</a></div>
+            return <div key={index}>
+              <span className="d-block d-lg-inline">Emploi en alternance et formation en alternance en </span>
+              <span className="d-block d-lg-inline">
+                <a href={`/metiers/${currentJob.slug}/${currentTown.slug}`}>{currentJob.name} à {currentTown.name}</a>
+              </span>
+            </div>
           })
         }
       </div>
@@ -51,7 +60,6 @@ export async function getStaticPaths() {
   const dataJobs = getStaticMetiers(path, fs, txtDirectory)
   
   const mapped_pathes = dataJobs.map((e) => { return { params: { forJob: e.slug } } })
-  // console.log('mapped_pathes', mapped_pathes);
 
   return {
     paths: mapped_pathes,
