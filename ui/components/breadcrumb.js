@@ -11,6 +11,10 @@ const Breadcrumb = ({ forPage, label, items = null }) => {
 
   let suffix = forPage ? <Link href={{ pathname: `/${forPage}` }}>{label}</Link> : <div></div>;
 
+  if (items) {
+    let parsedItems = JSON.parse(items)
+  }
+
   return (
     <div className="c-breadcrumb d-none d-sm-block">
       <div className="container d-flex pl-0 pt-5 pb-4">
@@ -26,10 +30,11 @@ const Breadcrumb = ({ forPage, label, items = null }) => {
             </>
             :
             <>
-              {
-                links.map((a_link, index) => {
+              { 
+                
+                parsedItems.map((parsedItem, index) => {
                   return <div key={index}>
-                    <a href={`/metiers/${a_link}`}>#</a>
+                    <a href={`/metiers/${parsedItem.path}`}>#</a>
                   </div>
                 })
               }
