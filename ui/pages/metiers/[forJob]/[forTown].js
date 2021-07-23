@@ -29,7 +29,7 @@ export default function ForTown(props) {
         description={`Chercher le métier ${currentJob.name} dans la ville suivante : ${currentTown.name}`}
       />
       <Navigation />
-      <Breadcrumb forPage="none" label="none" items={navigationItems} />
+      <Breadcrumb items={navigationItems} />
 
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
 

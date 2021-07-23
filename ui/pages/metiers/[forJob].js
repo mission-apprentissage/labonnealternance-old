@@ -25,7 +25,7 @@ export default function ForJob(props) {
         description={`Villes où chercher le métier ${currentJob.name}`}
       />
       <Navigation />
-      <Breadcrumb forPage="none" label="none" items={navigationItems} />
+      <Breadcrumb items={navigationItems} />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
 
         <h1 className="mt-0">
