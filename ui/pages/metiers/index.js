@@ -18,7 +18,7 @@ export default function Catalog(props) {
       />
       <ScrollToTop />
       <Navigation />
-      <Breadcrumb forPage="metiers" label="Metiers" />
+      <Breadcrumb forPage="metiers" label="Métiers" />
 
       <div className="c-page-container container my-0 mb-sm-5 pl-5 pt-3 pb-5">
         <h1 className="mt-4">

@@ -5,6 +5,7 @@ import Navigation from 'components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
 import { NextSeo } from 'next-seo';
+import Breadcrumb from "components/breadcrumb";
 
 
 export default function ForTown(props) {
@@ -18,6 +19,7 @@ export default function ForTown(props) {
   const currentJob = find(props.dataJobs, (e) => e.slug === currentJobSlug)
   const currentTown = find(props.dataTowns, (e) => e.slug === currentTownSlug)
 
+  const navigationItems = [{ title: 'Métiers', path: 'metiers' }, { title: currentJob.name, path: `metiers/${currentJobSlug}` }, { title: currentTown.name, path: `metiers/${currentJobSlug}/${currentTownSlug}` }]
 
   return (
     <div>
@@ -26,6 +28,8 @@ export default function ForTown(props) {
         description={`Chercher le métier ${currentJob.name} dans la ville suivante : ${currentTown.name}`}
       />
       <Navigation />
+      <Breadcrumb forPage="none" label="none" items={navigationItems} />
+
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <a href={`/metiers/${currentJob.slug}`}>Revenir</a>
         <h1 className="mb-4 mt-4">Le métier {currentJob.name} à {currentTown.name}</h1>
