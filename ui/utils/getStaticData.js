@@ -12,10 +12,8 @@ export const getStaticMetiers = (path, fs, txtDirectory, stubbedExtractionFuncti
   const kebabCase = require("lodash").kebabCase;
   const dataJobs = arrayOfJobLines.map(function (singleLine) {
     const splitted = singleLine.split('[')
-    console.log('splitted', splitted);
     const actualName = splitted[0].trim()
     const romes = includes(splitted[1], ',') ? uniq(splitted[1].slice(0, -1).split(',')) : [splitted[1].slice(0, -1)]
-    // const romes = uniq(splitted[1].split(',').slice(0, -1))
 
     return {
       name: actualName,
