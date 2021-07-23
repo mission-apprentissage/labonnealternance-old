@@ -4,6 +4,7 @@ import Navigation from 'components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
 import { NextSeo } from 'next-seo';
+import Breadcrumb from "components/breadcrumb";
 
 export default function ForJob(props) {
 
@@ -24,7 +25,6 @@ export default function ForJob(props) {
       />
       <Navigation />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
-        <a href="/metiers/">Revenir</a>
         <h1 className="mt-4">Villes où chercher le métier</h1>
         <h1 className="mb-4">" {currentJob.name} "</h1>
 
