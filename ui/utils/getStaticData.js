@@ -4,7 +4,6 @@ import { includes } from "lodash";
 export const getStaticMetiers = (path, fs, txtDirectory, stubbedExtractionFunction = null) => {
 
   const extractionFunction = stubbedExtractionFunction || extractFromFile
-  console.log('extractionFunction', extractionFunction);
 
   const arrayOfJobLines = extractionFunction(path, fs, txtDirectory, 'metiers.txt')
 
