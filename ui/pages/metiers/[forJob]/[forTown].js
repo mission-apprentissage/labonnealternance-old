@@ -5,6 +5,7 @@ import Navigation from 'components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
 import { NextSeo } from 'next-seo';
+import Breadcrumb from "components/breadcrumb";
 
 
 export default function ForTown(props) {
@@ -18,6 +19,7 @@ export default function ForTown(props) {
   const currentJob = find(props.dataJobs, (e) => e.slug === currentJobSlug)
   const currentTown = find(props.dataTowns, (e) => e.slug === currentTownSlug)
 
+  const navigationItems = [{ title: 'Métiers', path: 'metiers' }, { title: currentJob.name, path: `metiers/${currentJobSlug}` }, { title: currentTown.name, path: `metiers/${currentJobSlug}/${currentTownSlug}` }]
 
   return (
     <div>
@@ -26,11 +28,18 @@ export default function ForTown(props) {
         description={`Chercher le métier ${currentJob.name} dans la ville suivante : ${currentTown.name}`}
       />
       <Navigation />
+      <Breadcrumb items={navigationItems} />
+
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
-        <a href={`/metiers/${currentJob.slug}`}>Revenir</a>
-        <h1 className="mb-4 mt-4">Le métier {currentJob.name} à {currentTown.name}</h1>
+
+        <h1 className="mt-0">
+          <span className="d-block c-page-title is-color-1">Le métier "{currentJob.name}"</span>
+          <span className="d-block c-page-title is-color-2">à {currentTown.name}</span>
+        </h1>
+        <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
+
         <h2 className="h6">Rechercher un métier, une formation dans le domaine "{currentJob.name}"</h2>
-        <h2 className="h6 mb-5">à {currentTown.name} ou ses environs</h2>
+        <h2 className="h6 mb-5">à {currentTown.name} ou ses environs.</h2>
 
         <a 
           href={buildLinkForTownAndJob(currentTown, currentJob)}
@@ -56,8 +65,6 @@ export async function getStaticPaths() {
   const dataTowns = getStaticVilles(path, fs, txtDirectory)
   const flatten = require("lodash").flatten;
 
-
-
   const mapped_pathes = flatten(dataJobs.map((job) => {
     return dataTowns.map((town) => {
       return { 
@@ -68,8 +75,6 @@ export async function getStaticPaths() {
       } 
     })
   }))
-
-  console.log('mapped_pathes', mapped_pathes);
 
   return {
     paths: mapped_pathes,

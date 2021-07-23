@@ -18,15 +18,25 @@ export default function Catalog(props) {
       />
       <ScrollToTop />
       <Navigation />
-      <Breadcrumb forPage="metiers" label="Metiers" />
+      <Breadcrumb forPage="metiers" label="Métiers" />
 
-      <div className="c-page-container container my-0 mb-sm-5 p-5">
-        <a href="/">Revenir</a>
-        <h1 className="mt-4">Catalogue</h1>
-        <p>Ensemble des métiers</p>
+      <div className="c-page-container container my-0 mb-sm-5 pl-5 pt-3 pb-5">
+        <h1 className="mt-4">
+          <span className="d-block c-page-title is-color-1">Domaines</span>
+          <span className="d-block c-page-title is-color-2">Métiers</span>
+        </h1>
+        <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
+
         {
           props.dataJobs.map((job, index) => {
-            return <div key={index}><a href={`/metiers/${job.slug}`}>{job.name}</a></div>
+            return <div key={index} className="mb-2 mb-lg-0">
+                <span className="d-block d-lg-inline">Emploi en alternance et formation en alternance en </span>
+                <span className="d-block d-lg-inline">
+                  <a href={`/metiers/${job.slug}`} className="c-catalog-link">
+                    {job.name}
+                  </a>
+                </span>
+              </div>
           })
         }
       </div>

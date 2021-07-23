@@ -1,9 +1,10 @@
 import React from 'react'
-import { getStaticMetiers, getStaticVilles } from 'utils/getStaticData'
+import { getStaticMetiers, getStaticVilles, extractFromFile } from 'utils/getStaticData'
 import Navigation from 'components/navigation'
 import { useSelector } from 'react-redux'
 import Footer from "components/footer";
 import { NextSeo } from 'next-seo';
+import Breadcrumb from "components/breadcrumb";
 
 export default function ForJob(props) {
 
@@ -15,6 +16,7 @@ export default function ForJob(props) {
   const currentJob = find(props.dataJobs, (e) => e.slug === currentSlug)
   const sortedTowns = sortBy(props.dataTowns, (e) => e.slug)
 
+  const navigationItems = [{ title: 'Métiers', path: 'metiers' }, { title: currentJob.name, path: `metiers/${currentSlug}` }]
 
   return (
     <div>
@@ -23,16 +25,31 @@ export default function ForJob(props) {
         description={`Villes où chercher le métier ${currentJob.name}`}
       />
       <Navigation />
+      <Breadcrumb items={navigationItems} />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
-        <a href="/metiers/">Revenir</a>
-        <h1 className="mt-4">Villes où chercher le métier</h1>
-        <h1 className="mb-4">" {currentJob.name} "</h1>
+
+        <h1 className="mt-0">
+          <span className="d-block c-page-title is-color-1">Liste des villes pour</span>
+          <span className="d-block c-page-title is-color-2">" {currentJob.name} "</span>
+        </h1>
+        <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
 
         {
           sortedTowns.map((currentTown, index) => {
-            return <div key={index}><a href={`/metiers/${currentJob.slug}/${currentTown.slug}`}>{currentTown.name}</a></div>
+            return <div key={index}>
+              <span className="d-block d-lg-inline">Emploi en alternance et formation en alternance en </span>
+              <span className="d-block d-lg-inline">
+                <a 
+                  href={`/metiers/${currentJob.slug}/${currentTown.slug}`}
+                  className="c-catalog-link"
+                >
+                  {currentJob.name} à {currentTown.name}
+                </a>
+              </span>
+            </div>
           })
         }
+
       </div>
       <Footer />
     </div>
@@ -49,7 +66,6 @@ export async function getStaticPaths() {
   const dataJobs = getStaticMetiers(path, fs, txtDirectory)
   
   const mapped_pathes = dataJobs.map((e) => { return { params: { forJob: e.slug } } })
-  // console.log('mapped_pathes', mapped_pathes);
 
   return {
     paths: mapped_pathes,

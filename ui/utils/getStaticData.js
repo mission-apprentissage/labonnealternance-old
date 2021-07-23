@@ -1,33 +1,43 @@
+import { includes } from "lodash";
 
-export const getStaticMetiers = (path, fs, txtDirectory) => {
+
+export const getStaticMetiers = (path, fs, txtDirectory, stubbedExtractionFunction = null) => {
+
+  const extractionFunction = stubbedExtractionFunction || extractFromFile
+
+  const arrayOfJobLines = extractionFunction(path, fs, txtDirectory, 'metiers.txt')
+
   const uniq = require("lodash").uniq;
   const kebabCase = require("lodash").kebabCase;
-  
-  const fileJobPath = path.join(txtDirectory, 'metiers.txt')
-  const lineJobString = fs.readFileSync(fileJobPath, 'utf8')
-  const arrayOfJobLines = lineJobString.match(/[^\r\n]+/g);
-
   const dataJobs = arrayOfJobLines.map(function (singleLine) {
-    const splitted = singleLine.split(' [')
+    const splitted = singleLine.split('[')
     const actualName = splitted[0].trim()
-    const romes = uniq(splitted[1].split(',').slice(0, -1))
+    const romes = includes(splitted[1], ',') ? uniq(splitted[1].slice(0, -1).split(',')) : [splitted[1].slice(0, -1)]
+
     return {
       name: actualName,
       slug: kebabCase(actualName),
       romes: romes
     };
   })
-
+  
   return dataJobs;
 };
 
-export const getStaticVilles = (path, fs, txtDirectory) => {
+export const extractFromFile = (path, fs, txtDirectory, fileName) => {
+  const filePath = path.join(txtDirectory, fileName)
+  const lineString = fs.readFileSync(filePath, 'utf8')
+  const arrayOfLines = lineString.match(/[^\r\n]+/g);
+  return arrayOfLines;
+}
+
+export const getStaticVilles = (path, fs, txtDirectory, stubbedExtractionFunction = null) => {
+  
+  const extractionFunction = stubbedExtractionFunction || extractFromFile
+  
+  const arrayOfTownLines = extractionFunction(path, fs, txtDirectory, 'villes.txt')
+  
   const kebabCase = require("lodash").kebabCase;
-
-  const fileTownPath = path.join(txtDirectory, 'villes.txt')
-  const lineTownString = fs.readFileSync(fileTownPath, 'utf8')
-  const arrayOfTownLines = lineTownString.match(/[^\r\n]+/g);
-
   const dataTowns = arrayOfTownLines.map(function (singleLine) {
     const splitted = singleLine.split('/')
     const townName = splitted[0].trim()
