@@ -6,15 +6,14 @@ import Breadcrumb from "components/breadcrumb";
 import Footer from "components/footer";
 
 import { getStaticMetiers, getStaticVilles } from "utils/getStaticData";
-import { NextSeo } from 'next-seo';
-
+import { NextSeo } from "next-seo";
 
 export default function Catalog(props) {
   return (
     <div>
       <NextSeo
         title={`Liste des métiers | La Bonne Alternance | Trouvez votre alternance`}
-        description={`Listes de métiers où chercher son alternance`}
+        description={`Liste de métiers où chercher son alternance`}
       />
       <ScrollToTop />
       <Navigation />
@@ -27,41 +26,41 @@ export default function Catalog(props) {
         </h1>
         <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
 
-        {
-          props.dataJobs.map((job, index) => {
-            return <div key={index} className="mb-2 mb-lg-0">
-                <span className="d-block d-lg-inline">Emploi en alternance et formation en alternance en </span>
-                <span className="d-block d-lg-inline">
-                  <a href={`/metiers/${job.slug}`} className="c-catalog-link">
-                    {job.name}
-                  </a>
-                </span>
-              </div>
-          })
-        }
+        {props.dataJobs.map((job, index) => {
+          return (
+            <div key={index} className="mb-2 mb-lg-0">
+              <span className="d-block d-lg-inline">Emploi en alternance et formation en alternance en </span>
+              <span className="d-block d-lg-inline">
+                <a href={`/metiers/${job.slug}`} className="c-catalog-link">
+                  {job.name}
+                </a>
+              </span>
+            </div>
+          );
+        })}
       </div>
 
       <Footer />
     </div>
-  )
+  );
 }
 
 // See https://nextjs.org/learn/basics/data-fetching/with-data
 // Static data, please restart nextjs each time this function change
 export async function getStaticProps() {
-  const path = require('path');
-  const fs = require('fs');
-  const txtDirectory = path.join(process.cwd(), 'config')
+  const path = require("path");
+  const fs = require("fs");
+  const txtDirectory = path.join(process.cwd(), "config");
 
-  const dataTowns = getStaticVilles(path, fs, txtDirectory)
-  const dataJobs = getStaticMetiers(path, fs, txtDirectory)
+  const dataTowns = getStaticVilles(path, fs, txtDirectory);
+  const dataJobs = getStaticMetiers(path, fs, txtDirectory);
 
   // The value of the `props` key will be
   //  passed to the `Catalog` component
   return {
     props: {
       dataJobs: dataJobs,
-      dataTowns: dataTowns
-    }
-  }
+      dataTowns: dataTowns,
+    },
+  };
 }
