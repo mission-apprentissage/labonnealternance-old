@@ -13,7 +13,7 @@ export default function Catalog(props) {
     <div>
       <NextSeo
         title={`Liste des métiers | La Bonne Alternance | Trouvez votre alternance`}
-        description={`Liste de métiers où chercher son alternance`}
+        description={`Liste de métiers à réaliser en alternance`}
       />
       <ScrollToTop />
       <Navigation />
