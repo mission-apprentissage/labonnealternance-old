@@ -23,7 +23,7 @@ export default function ForJob(props) {
   return (
     <div>
       <NextSeo
-        title={`Emploi et formations en alternance pour le métier ${currentJob.name} | La Bonne Alternance | Trouvez votre alternance`}
+        title={`Emplois et formations en alternance pour le métier ${currentJob.name} | La Bonne Alternance | Trouvez votre alternance`}
         description={`Villes où chercher des emplois et formations en alternance pour le métier ${currentJob.name}`}
       />
       <Navigation />

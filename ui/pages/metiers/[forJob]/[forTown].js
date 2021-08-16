@@ -26,7 +26,7 @@ export default function ForTown(props) {
   return (
     <div>
       <NextSeo
-        title={`Emploi et formations en alternance pour le métier ${currentJob.name} à ${currentTown.name} | La Bonne Alternance | Trouvez votre alternance`}
+        title={`Emplois et formations en alternance pour le métier ${currentJob.name} à ${currentTown.name} | La Bonne Alternance | Trouvez votre alternance`}
         description={`Chercher des emplois et formations en alternance pour le métier ${currentJob.name} dans la ville de ${currentTown.name}`}
       />
       <Navigation />
