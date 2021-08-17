@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## 1.15.11 [22/07/2021]
+## 1.15.11 [17/08/2021]
+[715] Catalogue de liens
 [719] Sitemap avancé
 
 ## 1.15.10 [21/07/2021]
@@ -15,7 +16,6 @@
 [740] Conservation des query parameters utm_
 
 ## 1.15.8 [07/07/2021]
-[715] Catalogue
 [724] Augmentation de quota
 
 ## 1.15.7 [06/07/2021]
