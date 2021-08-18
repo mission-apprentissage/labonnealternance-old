@@ -20,7 +20,7 @@ const HeadLaBonneAlternance = (props) => {
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="theme-color" content="#ffffff" />
       <meta id="robots-meta" name="robots" content="index, follow" />
-      <meta name="keywords" content="contrat offres alternance" />
+      <meta name="keywords" content="contrat offres alternance emploi formation apprentissage" />
       <meta
         name="description"
         content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"

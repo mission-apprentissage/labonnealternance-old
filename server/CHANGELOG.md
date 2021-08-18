@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.15.11 [17/08/2021]
+[715] Catalogue de liens
+[719] Sitemap avancé
+
 ## 1.15.10 [21/07/2021]
 [743] Fix recherche sur map
 [695] Didask : Formations
