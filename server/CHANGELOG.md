@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.15.12 [19/08/2021]
+[705] Vérification des balises meta et title de chaque page
+
 ## 1.15.11 [22/07/2021]
 [719] Sitemap avancé
 
