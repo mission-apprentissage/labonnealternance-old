@@ -15,7 +15,6 @@ const filteredInput = (input) => {
 export default async function fetchDiplomas(
   arrayOfRome,
   arrayOfRncp,
-  errorCallbackFn = _.noop,
   _baseUrl = baseUrl,
   _axios = axios,
   _window = window,
@@ -50,7 +49,6 @@ export default async function fetchDiplomas(
   const isError = isAxiosError || hasNoValidData || isSimulatedError;
 
   if (isError) {
-    errorCallbackFn();
     if (isAxiosError) {
       _logError("Diploma API error", `Diploma API error`);
     } else if (hasNoValidData) {
