@@ -23,15 +23,15 @@ export default function ForJob(props) {
   return (
     <div>
       <NextSeo
-        title={`Emplois et formations en alternance pour le métier ${currentJob.name} | La Bonne Alternance | Trouvez votre alternance`}
+        title={`Tous les emplois et formations en alternance en ${currentJob.name} | La Bonne Alternance | Trouvez votre alternance`}
         description={`Villes où chercher des emplois et formations en alternance pour le métier ${currentJob.name}`}
       />
       <Navigation />
       <Breadcrumb items={navigationItems} />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <h1 className="mt-0">
-          <span className="d-block c-page-title is-color-1">Liste des villes pour</span>
-          <span className="d-block c-page-title is-color-2">" {currentJob.name} "</span>
+          <span className="d-block c-page-title is-color-1">Tous les emplois et formations</span>
+          <span className="d-block c-page-title is-color-2">en alternance en {currentJob.name}</span>
         </h1>
         <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
 
