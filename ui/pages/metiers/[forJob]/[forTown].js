@@ -39,10 +39,18 @@ export default function ForTown(props) {
         </h1>
         <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
 
-        <h2 className="h6">Rechercher un métier, une formation dans le domaine "{currentJob.name}"</h2>
-        <h2 className="h6 mb-5">à {currentTown.name} ou ses environs.</h2>
+        <p>
+          Vous voulez travailler en contrat d'apprentissage ou en contrat de professionnalisation en <i>{currentJob.name}</i> à proximité de <i>{currentTown.name}</i> ?
+        </p>
+        <p>
+          Vous voulez obtenir un diplôme en alternance en <i>{currentJob.name}</i> à proximité de <i>{currentTown.name}</i> ?
+        </p>
+        <p>
+          Cliquez sur "lancer cette recherche " pour accéder aux résultats que La Bonne Alternance a trouvés pour vous  !
+        </p>
 
-        <a href={buildLinkForTownAndJob(currentTown, currentJob)} className="btn btn-primary">
+
+        <a href={buildLinkForTownAndJob(currentTown, currentJob)} className="btn btn-primary mt-3">
           Lancer cette recherche
         </a>
       </div>

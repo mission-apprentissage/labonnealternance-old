@@ -26,6 +26,15 @@ export default function Catalog(props) {
         </h1>
         <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
 
+        <p>
+          Vous voulez travailler en alternance ? Vous voulez obtenir un diplôme en alternance ? Toutes les informations pour trouver une alternance rapidement sont sur La Bonne Alternance :
+          <ul className="mt-2">
+            <li>Offres d’emploi en contrat d’apprentissage ou en contrat de professionnalisation</li>
+            <li>Liste d’entreprises qui recrutent en alternance</li>
+            <li>Formations en apprentissage en CAP, Bac pro, Mention complémentaire, BTS, BUT, DEUST, Licence, Master</li>
+          </ul>
+        </p>
+
         {props.dataJobs.map((job, index) => {
           return (
             <div key={index} className="mb-2 mb-lg-0">
