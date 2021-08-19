@@ -2,12 +2,18 @@ import React, { useEffect } from "react";
 import Navigation from "components/navigation";
 import Breadcrumb from "components/breadcrumb";
 import ScrollToTop from "components/ScrollToTop";
+import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
 
 const FAQ = (props) => {
   return (
     <div>
+      <NextSeo
+        title="F.A.Q | La Bonne Alternance | Trouvez votre alternance"
+        description="Questions fréquemment posées. Résultats entreprises, résultats formations, etc."
+      />
+
       <ScrollToTop />
       <Navigation bgcolor="is-white" />
 
