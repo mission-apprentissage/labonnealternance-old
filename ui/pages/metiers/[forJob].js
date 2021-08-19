@@ -31,7 +31,7 @@ export default function ForJob(props) {
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <h1 className="mt-0">
           <span className="d-block c-page-title is-color-1">Tous les emplois et formations</span>
-          <span className="d-block c-page-title is-color-2">en alternance en {currentJob.name}</span>
+          <span className="d-block c-page-title is-color-2">en alternance en <i>{currentJob.name}</i></span>
         </h1>
         <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
 
