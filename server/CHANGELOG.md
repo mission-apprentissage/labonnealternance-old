@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.15.12 [19/08/2021]
+[728] Refactoring des titres des erreurs
+
 ## 1.15.11 [22/07/2021]
 [719] Sitemap avancé
 
