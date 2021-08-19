@@ -46,9 +46,8 @@ export default function ForTown(props) {
           Vous voulez obtenir un diplôme en alternance en <i>{currentJob.name}</i> à proximité de <i>{currentTown.name}</i> ?
         </p>
         <p>
-          Cliquez sur "lancer cette recherche " pour accéder aux résultats que La Bonne Alternance a trouvés pour vous  !
+          Cliquez sur "lancer cette recherche" pour accéder aux résultats que La Bonne Alternance a trouvés pour vous  !
         </p>
-
 
         <a href={buildLinkForTownAndJob(currentTown, currentJob)} className="btn btn-primary mt-3">
           Lancer cette recherche

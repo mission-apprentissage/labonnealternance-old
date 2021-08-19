@@ -30,7 +30,7 @@ const RGPD = () => (
 
           <h2 class="h3">Finalité</h2>
           <p>
-            <span className="d-block">Le site « La Bonne Alternance » vise à faciliter les entrées en alternance des usagers en informant sur les formations en apprentissage ainsi que les offres d’emplois et entreprises auprès desquelles adresser une candidature. Le traitement de données a donc pour finalité de fournir, sur requête de l’utilisateur, des résultats de recherche pertinents correspondant aux attentes de l’usager.</span>
+            <span className="d-block">Le site « La Bonne Alternance » vise à faciliter les entrées en alternance des usagers en informant sur les formations en apprentissage ainsi que les offres d'emplois et entreprises auprès desquelles adresser une candidature. Le traitement de données a donc pour finalité de fournir, sur requête de l’utilisateur, des résultats de recherche pertinents correspondant aux attentes de l’usager.</span>
           </p>
           
           <h2 class="h3">Données à caractère personnel traitées</h2>
