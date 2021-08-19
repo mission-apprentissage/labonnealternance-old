@@ -5,6 +5,7 @@ import Breadcrumb from "components/breadcrumb";
 import logoPrdv from "public/images/logo_prdv.svg";
 import logoMatcha from "public/images/logo_matcha.svg";
 import logoCatalogue from "public/images/logo_catalogue.svg";
+import { NextSeo } from "next-seo";
 
 import logoLbb from "public/images/logo-lbb.svg";
 import logoLbf from "public/images/logo-labonneformation.svg";
@@ -16,6 +17,12 @@ import logoClara from "public/images/logo-clara.svg";
 import Footer from "components/footer";
 const APROPOS = () => (
   <div>
+
+    <NextSeo
+      title='A propos | La Bonne Alternance | Trouvez votre alternance'
+      description="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance."
+    />
+
     <ScrollToTop />
     <Navigation />
 
