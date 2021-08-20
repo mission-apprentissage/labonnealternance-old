@@ -7,6 +7,7 @@ import { SendTrackEvent } from "utils/gtm";
 import { isNonEmptyString, capitalizeFirstLetter } from "utils/strutils";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
+import GoingToContactQuestion from "./GoingToContactQuestion";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -151,6 +152,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             {!!random(0, 1) ? <DidAsk1 /> : <DidAsk2 />}
           </div>
         </div>
+
+        <GoingToContactQuestion />
 
         <div className="mt-3">&nbsp;</div>
       </div>
