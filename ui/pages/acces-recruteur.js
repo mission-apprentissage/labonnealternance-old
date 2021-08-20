@@ -3,10 +3,18 @@ import Navigation from "components/navigation";
 import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
 
+import { NextSeo } from "next-seo";
+
 import Footer from "components/footer";
 
 const AccesRecruteur = () => (
   <div>
+
+    <NextSeo
+      title='Acces recruteur | La Bonne Alternance | Trouvez votre alternance'
+      description="Exprimez votre besoin en alternance. Aucune inscription ne vous sera demandée."
+    />
+
     <ScrollToTop />
     <Navigation />
     <Breadcrumb forPage="acces-recruteur" label="Accès recruteur" />

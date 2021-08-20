@@ -2,10 +2,16 @@ import React from "react";
 import Navigation from "components/navigation";
 import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
+import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
 const RGPD = () => (
   <div>
+    <NextSeo
+      title="RGPD | La Bonne Alternance | Trouvez votre alternance"
+      description="Politique de confidentialité, traitement des données à caractère personnel sur le site de La Bonne Alternance."
+    />
+
     <ScrollToTop />
     <Navigation />
     <Breadcrumb forPage="rgpd" label="RGPD" />

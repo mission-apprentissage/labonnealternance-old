@@ -3,11 +3,19 @@ import Navigation from "components/navigation";
 import Breadcrumb from "components/breadcrumb";
 import ScrollToTop from "components/ScrollToTop";
 
+import { NextSeo } from "next-seo";
+
 import Footer from "components/footer";
 
 const CGU = (props) => {
   return (
     <div>
+      
+      <NextSeo
+        title="Conditions générales d'utilisation | La Bonne Alternance | Trouvez votre alternance"
+        description="Conditions générales d’utilisation de La Bonne Alternance."
+      />
+
       <ScrollToTop />
       <Navigation bgcolor="is-white" />
 
