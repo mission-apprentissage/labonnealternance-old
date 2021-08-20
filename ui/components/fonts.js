@@ -8,9 +8,9 @@ const Fonts = () => {
       <>
         <link
           rel="preload"
-          href={`${url}/fonts/Inter/Inter-Regular.ttf`}
+          href={`${url}/fonts/Marianne/Marianne-Regular.woff`}
           as="font"
-          type="font/ttf"
+          type="font/woff"
           crossOrigin="anonymous"
         ></link>
         <link
@@ -18,20 +18,6 @@ const Fonts = () => {
           href={`${url}/fonts/Marianne/Marianne-Medium.woff`}
           as="font"
           type="font/woff"
-          crossOrigin="anonymous"
-        ></link>
-        <link
-          rel="preload"
-          href={`${url}/fonts/Inter/Inter-Bold.ttf`}
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        ></link>
-        <link
-          rel="preload"
-          href={`${url}/fonts/Inter/Inter-SemiBold.ttf`}
-          as="font"
-          type="font/ttf"
           crossOrigin="anonymous"
         ></link>
         <link

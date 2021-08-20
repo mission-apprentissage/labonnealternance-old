@@ -103,7 +103,11 @@ const validateInsee = (insee, error_messages) => {
     error_messages.push("insee : Badly formatted insee city code. Must be 5 digit number.");
 };
 
-const validateApiSources = (apiSources, error_messages, allowedSources = ["formations", "lbb", "lba", "offres"]) => {
+const validateApiSources = (
+  apiSources,
+  error_messages,
+  allowedSources = ["formations", "lbb", "lba", "offres", "matcha"]
+) => {
   // source mal formée si présente
   if (apiSources) {
     let sources = apiSources.split(",");

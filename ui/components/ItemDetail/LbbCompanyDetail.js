@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
-import bulbIcon from "../../public/images/icons/bulb.svg";
-import gotoIcon from "../../public/images/icons/goto.svg";
-import { defaultTo } from "lodash";
+import questionmarkIcon from "public/images/icons/questionmark.svg";
+import gotoIcon from "public/images/icons/goto.svg";
+import { defaultTo, random } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { SendTrackEvent } from "utils/gtm";
+import DidAsk1 from "./DidAsk1";
+import DidAsk2 from "./DidAsk2";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
@@ -107,14 +109,15 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
         </p>
       </div>
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
-      <div className="c-detail-body">
+      <div className="c-detail-body c-detail-body--inside">
         <div className="c-detail-advice p-2">
-          <img src={bulbIcon} alt="" />
-          <div className="c-detail-advice-text">
+          <img src={questionmarkIcon} alt="point d'interrogation" />
+          <div className="c-detail-advice-text text-left mt-0 ml-2">
             <p>Cette entreprise a des salariés qui exercent le métier auquel vous vous destinez.</p>
             <p className="mb-0">
               Faites-lui découvrir les avantages d'un recrutement en alternance dans votre candidature !
             </p>
+            {!!random(0, 1) ? <DidAsk1 /> : <DidAsk2 />}
           </div>
         </div>
 

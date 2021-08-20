@@ -3,6 +3,7 @@ import SearchForTrainingsAndJobs from "../components/SearchForTrainingsAndJobs";
 import { useDispatch } from "react-redux";
 import { initParametersFromQuery } from "services/config";
 import { ScopeContextProvider } from "context/ScopeContext.js";
+import { NextSeo } from "next-seo";
 
 import Head from "next/head";
 
@@ -10,11 +11,15 @@ const RechercheApprentissage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    initParametersFromQuery(dispatch);
+    initParametersFromQuery({ dispatch });
   }, []);
 
   return (
     <>
+      <NextSeo
+        title="Recherche d'apprentissage | La Bonne Alternance | Trouvez votre alternance"
+        description="Recherche d'apprentissage sur le site de La Bonne Alternance"
+      />
       <Head>
         <link
           href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"

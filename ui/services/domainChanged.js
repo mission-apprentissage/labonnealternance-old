@@ -7,7 +7,7 @@ export default async function domainChanged(val, setDomainErrorFunc) {
   });
 
   // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caractères
-  if (val.length > 2) {
+  if (val && val.length > 2) {
     SendTrackEvent({
       event: "Moteur de recherche - Metier",
       terme: val,

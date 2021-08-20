@@ -3,10 +3,12 @@
  * sans qu'il y ait de changement de page
  */
 
+import { restoreSearchFromSession } from "components/SearchForTrainingsAndJobs/services/handleSessionStorage";
+import { currentSearch, setCurrentSearch } from "utils/currentPage";
+import { filterLayers } from "utils/mapTools";
+
 export const updateUiFromHistory = ({
   url,
-  jobs,
-  trainings,
   currentPage,
   unSelectItem,
   selectedItem,
@@ -17,6 +19,10 @@ export const updateUiFromHistory = ({
   showResultMap,
   showResultList,
   showSearchForm,
+  dispatch,
+  setTrainings,
+  setJobs,
+  setActiveFilter,
 }) => {
   // récupération des query parameters donnant des indications sur l'état de l'interface
   let urlParams;
@@ -27,6 +33,27 @@ export const updateUiFromHistory = ({
   const pageFromUrl = urlParams ? urlParams.get("page") : "";
   const display = urlParams ? urlParams.get("display") : "";
   const itemId = urlParams ? urlParams.get("itemId") : "";
+  const searchTimestamp = urlParams ? urlParams.get("s") : "";
+  const jobName = urlParams ? urlParams.get("job_name") : "";
+  const address = urlParams ? urlParams.get("address") : "";
+
+  setActiveFilter("all"); // restauration des onglets à all pour assurer la présence de marker dans le dom
+  try {
+    filterLayers("all");
+  } catch (err) {
+    //notice: gère des erreurs qui se présentent à l'initialisation de la page quand mapbox n'est pas prêt.
+  }
+
+  // réconciliation entre le store et l'état des résultats de recherche
+  if (searchTimestamp && searchTimestamp !== currentSearch) {
+    setCurrentSearch(searchTimestamp);
+    restoreSearchFromSession({ searchTimestamp, dispatch, setTrainings, setJobs });
+  }
+
+  // réconciliation entre le store et l'état des formulaires de recherche
+  if (jobName || address) {
+    // TODO: à faire
+  }
 
   // réconciliation entre le store et l'état attendu indiqué par les query parameters pour les éléments sélectionnés
   if (currentPage !== pageFromUrl) {

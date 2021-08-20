@@ -3,10 +3,18 @@ import Navigation from "components/navigation";
 import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
 
+import { NextSeo } from "next-seo";
+
 import Footer from "components/footer";
 
 const AccesRecruteur = () => (
   <div>
+
+    <NextSeo
+      title='Acces recruteur | La Bonne Alternance | Trouvez votre alternance'
+      description="Exprimez votre besoin en alternance. Aucune inscription ne vous sera demandée."
+    />
+
     <ScrollToTop />
     <Navigation />
     <Breadcrumb forPage="acces-recruteur" label="Accès recruteur" />
@@ -27,7 +35,7 @@ const AccesRecruteur = () => (
             <h2 className="c-recruteur-hero-title">Exprimez votre besoin en alternance</h2>
             <p className="c-recruteur-hero-text">Notre service Matcha vous permet de publier en quelques minutes vos offres sur <strong>La Bonne Alternance.</strong></p>
             <div className="mb-2">
-              <a href="https://matcha.apprentissage.beta.gouv.fr/" target="_blank" className="btn btn-primary ml-1" rel="noopener noreferrer">
+              <a href="https://matcha.apprentissage.beta.gouv.fr/lba/" target="_blank" className="btn btn-primary ml-1" rel="noopener noreferrer">
                 Publier une offre d'emploi en alternance
               </a>
             </div>
@@ -36,9 +44,9 @@ const AccesRecruteur = () => (
             </div>
           </div>
           <section>
-            <h2 className="mb-3 h5 c-recruteur-title">Conditions d’affichage des offres d’emploi sur La Bonne Alternance</h2>
+            <h2 className="mb-3 h5 c-recruteur-title">Conditions d’affichage des offres d'emploi sur La Bonne Alternance</h2>
             <p>
-              Seules les offres d’emploi en contrat d’apprentissage et en contrat de professionnalisation sont visibles
+              Seules les offres d'emploi en contrat d’apprentissage et en contrat de professionnalisation sont visibles
               sur La Bonne Alternance.
             </p>
             <p>
