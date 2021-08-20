@@ -8,11 +8,11 @@ const GoingToContactQuestion = ({  }) => {
     <div className="">
       <button type="button" className="c-button-thumb">
         <img src={thumbup} alt="oui : pouce vers le haut" />
-        <span className="">oui</span>
+        <span className="ml-1">Oui</span>
       </button>
       <button type="button" className="c-button-thumb ml-2">
         <img src={thumbdown} alt="non : pouce vers le bas" />
-        <span className="">non</span>
+        <span className="ml-1">Non</span>
       </button>
     </div>
   );
