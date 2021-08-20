@@ -69,7 +69,7 @@ const APROPOS = () => (
             <a href="https://mission-apprentissage.gitbook.io/general/" rel="nooepener noreferrer" target="_blank">
               Mission apprentissage
             </a>{" "}
-            en 2020, le site ajoute désormais des informations sur les formations en apprentissage et les offres d’emploi en alternance.
+            en 2020, le site ajoute désormais des informations sur les formations en apprentissage et les offres d'emploi en alternance.
           </p>
 
           <h2 className="c-about-title">Les services de La Bonne Alternance</h2>

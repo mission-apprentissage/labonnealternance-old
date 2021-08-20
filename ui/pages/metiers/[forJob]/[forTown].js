@@ -26,7 +26,7 @@ export default function ForTown(props) {
   return (
     <div>
       <NextSeo
-        title={`Emplois et formations en alternance pour le métier ${currentJob.name} à ${currentTown.name} | La Bonne Alternance | Trouvez votre alternance`}
+        title={`Tous les emplois et formations en alternance en ${currentJob.name} à ${currentTown.name} | La Bonne Alternance | Trouvez votre alternance`}
         description={`Chercher des emplois et formations en alternance pour le métier ${currentJob.name} dans la ville de ${currentTown.name}`}
       />
       <Navigation />
@@ -34,15 +34,22 @@ export default function ForTown(props) {
 
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <h1 className="mt-0">
-          <span className="d-block c-page-title is-color-1">Le métier "{currentJob.name}"</span>
-          <span className="d-block c-page-title is-color-2">à {currentTown.name}</span>
+          <span className="d-block c-page-title is-color-1">Tous les emplois et formations en alternance</span>
+          <span className="d-block c-page-title is-color-2"> en <i>{currentJob.name}</i> à {currentTown.name}</span>
         </h1>
         <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
 
-        <h2 className="h6">Rechercher un métier, une formation dans le domaine "{currentJob.name}"</h2>
-        <h2 className="h6 mb-5">à {currentTown.name} ou ses environs.</h2>
+        <p>
+          Vous voulez travailler en contrat d'apprentissage ou en contrat de professionnalisation en <i>{currentJob.name}</i> à proximité de <i>{currentTown.name}</i> ?
+        </p>
+        <p>
+          Vous voulez obtenir un diplôme en alternance en <i>{currentJob.name}</i> à proximité de <i>{currentTown.name}</i> ?
+        </p>
+        <p>
+          Cliquez sur "lancer cette recherche" pour accéder aux résultats que La Bonne Alternance a trouvés pour vous  !
+        </p>
 
-        <a href={buildLinkForTownAndJob(currentTown, currentJob)} className="btn btn-primary">
+        <a href={buildLinkForTownAndJob(currentTown, currentJob)} className="btn btn-primary mt-3">
           Lancer cette recherche
         </a>
       </div>

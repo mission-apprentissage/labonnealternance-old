@@ -2,6 +2,9 @@
 
 ## 1.15.12 [19/08/2021]
 [705] Vérification des balises meta et title de chaque page
+[726][727] Memoization pour limiter des appels redondants
+[761] Erreurs catalogue HS non bloquantes
+[758] SEO des titres du catalogue
 
 ## 1.15.11 [22/07/2021]
 [719] Sitemap avancé
