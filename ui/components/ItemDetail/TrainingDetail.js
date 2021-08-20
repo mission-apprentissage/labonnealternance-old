@@ -245,8 +245,6 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
         ""
       )}
 
-      <GoingToContactQuestion kind={kind} uniqId={training.idRcoFormation}/>
-
       <br />
     </>
   );
@@ -332,8 +330,6 @@ const getTrainingDetails = (training, loading) => {
       {getTrainingSessions(training)}
     </>
   );
-
-  //console.log("res : ",res);
 
   return res;
 };

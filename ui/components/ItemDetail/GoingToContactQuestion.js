@@ -6,15 +6,14 @@ import { capitalizeFirstLetter } from "utils/strutils";
 
 import { useSessionStorage } from "utils/useSessionStorage";
 
-const GoingToContactQuestion = ({ kind, uniqId }) => {
+const GoingToContactQuestion = ({ kind, uniqId, sayThanks, setSayThanks }) => {
 
-  const [thanksGoingto, setThanksGoingto] = useSessionStorage(`goingto-${kind}-${uniqId}`, false);
 
   return (
     <div className="c-goingto mt-4">
       <span className="c-goingto-title">Allez-vous contacter cet établissement ?</span>
       <div className="d-flex-center mt-2">
-        {thanksGoingto ? (
+        {sayThanks ? (
           <>
             <span>Merci pour votre retour !</span>  
           </>
@@ -24,7 +23,7 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
               type="button" 
               className={`c-goingto-thumb gtmThumbUp gtm${capitalizeFirstLetter(kind)}`}
               onClick={() => {
-                setThanksGoingto(true);
+                setSayThanks(true);
               }}>
               <img src={thumbup} alt="oui : pouce vers le haut" />
               <span className="ml-1">Oui</span>
@@ -33,7 +32,7 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
               type="button" 
               className={`c-goingto-thumb ml-2 gtmThumbDown gtm${capitalizeFirstLetter(kind)}`}
               onClick={() => {
-                setThanksGoingto(true);
+                setSayThanks(true);
               }}>
               <img src={thumbdown} alt="non : pouce vers le bas" />
               <span className="ml-1">Non</span>

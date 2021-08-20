@@ -22,5 +22,6 @@ export function useSessionStorage(key, defaultValue) {
     sessionStorage.setItem(key, JSON.stringify(value));
   }, [key, value]);
 
+  console.log('final value', value);
   return [value, setValue];
 }

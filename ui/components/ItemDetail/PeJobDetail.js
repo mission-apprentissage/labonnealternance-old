@@ -11,7 +11,7 @@ import GoingToContactQuestion from "./GoingToContactQuestion";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
-const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
+const PeJobDetail = ({ job }) => {
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
@@ -83,7 +83,6 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
         
-        <GoingToContactQuestion kind={kind} />
 
         <div className="mt-5">&nbsp;</div>
       </div>

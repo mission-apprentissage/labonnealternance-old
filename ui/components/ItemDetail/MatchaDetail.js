@@ -75,7 +75,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             </>
           ) : (
             <button
-                className={`c-see-info c-see-info--matcha d-block btn btn-outline-primary gtmContact gtm${capitalizeFirstLetter(kind)}`}
+              className={`c-see-info c-see-info--matcha d-block btn btn-outline-primary gtmContact gtm${capitalizeFirstLetter(kind)}`}
               onClick={() => setSeeInfo(true)}
             >
               Voir les informations de contact
@@ -153,7 +153,6 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
-        <GoingToContactQuestion kind={kind} />
 
         <div className="mt-3">&nbsp;</div>
       </div>

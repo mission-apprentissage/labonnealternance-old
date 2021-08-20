@@ -20,6 +20,9 @@ import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 
+import GoingToContactQuestion from "./GoingToContactQuestion";
+import { getItemId } from "utils/getItemId";
+
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
   console.log('kind', kind);
@@ -29,9 +32,14 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const distance = selectedItem?.place?.distance;
 
   const [seeInfo, setSeeInfo] = useState(false);
+  const [sayThanks, setSayThanks] = useState(false);
 
   useEffect(() => {
     setSeeInfo(false);
+  }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
+
+  useEffect(() => {
+    setSayThanks(false);
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
   let actualTitle =
@@ -239,6 +247,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             ""
           )}
         </div>
+
+        <GoingToContactQuestion kind={kind} uniqId={getItemId(selectedItem)} sayThanks={sayThanks} setSayThanks={setSayThanks} />
+
       </section>
     </>
   );
