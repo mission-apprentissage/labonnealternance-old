@@ -36,7 +36,12 @@ export default async function fetchRomes(
       _logError("Rome API error simulated with a query param :)");
     }
   } else {
-    res = response.data.labelsAndRomes;
+    if (response?.data?.labelsAndRomes.length) {
+      res = res.concat(response.data.labelsAndRomes);
+    }
+    if (response?.data?.labelsAndRomesForDiplomas.length) {
+      res = res.concat(response.data.labelsAndRomesForDiplomas);
+    }
   }
 
   return res;
