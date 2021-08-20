@@ -1,6 +1,7 @@
 import axios from "axios";
+import memoize from "utils/memoize";
 
-export const fetchAddresses = (value, type) => {
+export const fetchAddresses = memoize((value, type) => {
   if (value) {
     let term = value;
     const limit = 10;
@@ -47,7 +48,7 @@ export const fetchAddresses = (value, type) => {
       return returnedItems;
     });
   } else return [];
-};
+});
 
 // récupère cp et insee à partir de lat / lon
 export const fetchAddressFromCoordinates = (coordinates, type) => {

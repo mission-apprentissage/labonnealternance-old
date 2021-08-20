@@ -31,7 +31,7 @@ describe("fetchDiplomas", () => {
     const mockedLoggerFn = jest.fn();
     const axiosStub = { get: jest.fn().mockReturnValue({ data: { error: "remote_error_message" } }) };
     // when
-    const res = await fetchDiplomas(["D1208", "D1203"], ["D1208", "D1203"], "urlMock", axiosStub, {}, mockedLoggerFn);
+    const res = await fetchDiplomas(["D1208", "D1203", "D1204"], ["D1208", "D1203", "D1204"], "urlMock", axiosStub, {}, mockedLoggerFn);
     // then
     expect(mockedLoggerFn).toHaveBeenCalledWith("Diploma API error", "Diploma API error");
     expect(res).toEqual([]);
@@ -42,7 +42,7 @@ describe("fetchDiplomas", () => {
     const mockedLoggerFn = jest.fn();
     const axiosStub = { get: jest.fn().mockReturnValue({ data: { unexpected_prop: "unexpected_val" } }) };
     // when
-    const res = await fetchDiplomas(["D1208", "D1203"], ["D1208", "D1203"], "urlMock", axiosStub, {}, mockedLoggerFn);
+    const res = await fetchDiplomas(["D1208", "D1203", "D1205"], ["D1208", "D1203", "D1205"], "urlMock", axiosStub, {}, mockedLoggerFn);
     // then
     expect(mockedLoggerFn).toHaveBeenCalledWith("Diploma API error : API call worked, but returned unexpected data");
     expect(res).toEqual([]);
@@ -54,8 +54,8 @@ describe("fetchDiplomas", () => {
     const axiosStub = { get: jest.fn().mockReturnValue({ data: ["remotely_returned_array"] }) };
     // when
     const res = await fetchDiplomas(
-      ["D1208", "D1203"],
-      ["D1208", "D1203"],
+      ["D1208", "D1203", "D1206"],
+      ["D1208", "D1203", "D1206"],
       "urlMock",
       axiosStub,
       { location: { href: "anyurl.com?diplomaError=true" } },
