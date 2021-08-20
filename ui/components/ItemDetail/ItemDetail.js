@@ -23,6 +23,16 @@ import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import GoingToContactQuestion from "./GoingToContactQuestion";
 import { getItemId } from "utils/getItemId";
 
+import { useSessionStorage } from "utils/useSessionStorage";
+
+function getSessionStorageOrDefault(key, defaultValue) {
+  const stored = sessionStorage.getItem(key);
+  if (!stored) {
+    return defaultValue;
+  }
+  return JSON.parse(stored);
+}
+
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
   console.log('kind', kind);
@@ -32,17 +42,25 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const distance = selectedItem?.place?.distance;
 
   const [seeInfo, setSeeInfo] = useState(false);
-  const [sayThanks, setSayThanks] = useState(false);
+  // const [sayThanks, setSayThanks] = useState(false);
+  // const [goCall, setGoCall] = useSessionStorage('gocall', false);
+  const [goCall, setGoCall] = useState(
+    getSessionStorageOrDefault('gocall', false)
+  );
 
   useEffect(() => {
     setSeeInfo(false);
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
   useEffect(() => {
-    setSayThanks(false);
+    sessionStorage.setItem('gocall', JSON.stringify(goCall));
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
-  let actualTitle =
+  // useEffect(() => {
+  //   setSayThanks(false);
+  // }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
+
+  let actualTitle = 
     kind === "formation"
       ? selectedItem?.title || selectedItem?.longTitle
       : selectedItem?.company?.name || selectedItem?.title || selectedItem?.longTitle;
@@ -248,7 +266,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           )}
         </div>
 
-        <GoingToContactQuestion kind={kind} uniqId={getItemId(selectedItem)} sayThanks={sayThanks} setSayThanks={setSayThanks} />
+        <GoingToContactQuestion kind={kind} uniqId={getItemId(selectedItem)} sayThanks={goCall} setSayThanks={setGoCall} />
 
       </section>
     </>

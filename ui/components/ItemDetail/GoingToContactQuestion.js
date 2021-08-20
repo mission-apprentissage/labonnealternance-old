@@ -4,7 +4,6 @@ import thumbup from "public/images/thumbup.svg";
 import thumbdown from "public/images/thumbdown.svg";
 import { capitalizeFirstLetter } from "utils/strutils";
 
-import { useSessionStorage } from "utils/useSessionStorage";
 
 const GoingToContactQuestion = ({ kind, uniqId, sayThanks, setSayThanks }) => {
 
