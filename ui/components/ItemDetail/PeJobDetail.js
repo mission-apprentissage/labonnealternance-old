@@ -81,6 +81,9 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
             {!!random(0, 1) ? <DidAsk1 /> : <DidAsk2 />}
           </div>
         </div>
+        <div className="c-goingto-contact">
+          Allez-vous contacter cet établissement ?
+        </div>
 
         <div className="mt-5">&nbsp;</div>
       </div>
