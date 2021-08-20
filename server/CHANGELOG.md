@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.15.12 [19/08/2021]
+[726][727] Memoization pour limiter des appels redondants
 [758] SEO des titres du catalogue
 
 ## 1.15.11 [22/07/2021]
