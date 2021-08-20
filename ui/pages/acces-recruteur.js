@@ -36,9 +36,9 @@ const AccesRecruteur = () => (
             </div>
           </div>
           <section>
-            <h2 className="mb-3 h5 c-recruteur-title">Conditions d’affichage des offres d’emploi sur La Bonne Alternance</h2>
+            <h2 className="mb-3 h5 c-recruteur-title">Conditions d’affichage des offres d'emploi sur La Bonne Alternance</h2>
             <p>
-              Seules les offres d’emploi en contrat d’apprentissage et en contrat de professionnalisation sont visibles
+              Seules les offres d'emploi en contrat d’apprentissage et en contrat de professionnalisation sont visibles
               sur La Bonne Alternance.
             </p>
             <p>
