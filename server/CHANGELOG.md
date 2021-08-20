@@ -2,6 +2,8 @@
 
 ## 1.16.0 [05/07/2021]
 [744] Recherche par diplôme : alimentation de la base
+[745] Recherche par diplôme : remontée des résutats de recherche
+[747] Recherche par diplôme : recherche de formations/métiers sur la base d'un diplôome
 
 ## 1.15.6 [21/06/2021]
 [673] Ajustements homepage
