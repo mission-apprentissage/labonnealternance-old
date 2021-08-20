@@ -17,7 +17,6 @@ const fetchDiplomas = memoize(
   async (
     arrayOfRome,
     arrayOfRncp,
-    errorCallbackFn = _.noop,
     _baseUrl = baseUrl,
     _axios = axios,
     _window = window,
@@ -52,7 +51,6 @@ const fetchDiplomas = memoize(
     const isError = isAxiosError || hasNoValidData || isSimulatedError;
 
     if (isError) {
-      errorCallbackFn();
       if (isAxiosError) {
         _logError("Diploma API error", `Diploma API error`);
       } else if (hasNoValidData) {

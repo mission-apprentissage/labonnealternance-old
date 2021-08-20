@@ -69,8 +69,10 @@ const SearchForm = (props) => {
                 <>
                   <Col xs="12">
                     <h1 className="card-title">
-                      <span className="c-home-hero__title c-home-hero__title1 d-block d-md-inline">Se former et travailler </span>
-                        <span className="c-home-hero__title c-home-hero__title2 d-block d-md-inline">en alternance</span>
+                      <span className="c-home-hero__title c-home-hero__title1 d-block d-md-inline">
+                        Se former et travailler{" "}
+                      </span>
+                      <span className="c-home-hero__title c-home-hero__title2 d-block d-md-inline">en alternance</span>
                     </h1>
                     <div className="formGroup">
                       <h1 className="h6 font-weight-bold">Votre recherche</h1>
@@ -80,11 +82,7 @@ const SearchForm = (props) => {
                           items={[]}
                           initialSelectedItem={contextFormValues?.job || null}
                           itemToStringFunction={autoCompleteToStringFunction}
-                          onSelectedItemChangeFunction={partialRight(
-                            updateValuesFromJobAutoComplete,
-                            setDiplomaError,
-                            setDiplomas
-                          )}
+                          onSelectedItemChangeFunction={partialRight(updateValuesFromJobAutoComplete, setDiplomas)}
                           compareItemFunction={compareAutoCompleteValues}
                           onInputValueChangeFunction={jobChanged}
                           name="jobField"
