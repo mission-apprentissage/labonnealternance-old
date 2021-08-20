@@ -9,6 +9,7 @@ import { SendTrackEvent } from "utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
 import GoingToContactQuestion from "./GoingToContactQuestion";
+import { getItemId } from "utils/getItemId";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
@@ -200,7 +201,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           ""
         )}
       </div>
-      <GoingToContactQuestion kind={kind} />
+      <GoingToContactQuestion kind={kind} uniqId={getItemId(lbb)} key={getItemId(lbb)} />
 
     </>
   );
