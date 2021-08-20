@@ -90,6 +90,7 @@ const getLabelsAndRomes = async (searchKeyword) => {
         label: labelAndRome._source.sous_domaine,
         romes: labelAndRome._source.codes_romes,
         rncps: labelAndRome._source.codes_rncps,
+        type: "job",
       });
     });
 
@@ -142,6 +143,7 @@ const getLabelsAndRomesForDiplomas = async (searchKeyword) => {
         label: labelAndRomeForDiploma._source.intitule_long,
         romes: labelAndRomeForDiploma._source.codes_romes,
         rncps: labelAndRomeForDiploma._source.codes_rncps,
+        type: "diploma",
       });
     });
 
