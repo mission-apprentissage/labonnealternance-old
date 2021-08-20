@@ -5,16 +5,16 @@ import thumbdown from "public/images/thumbdown.svg";
 
 const GoingToContactQuestion = ({  }) => {
   return (
-    <>
-      <span className="c-media-tag c-media-tag--thumb">
+    <div className="">
+      <button type="button" className="c-button-thumb">
         <img src={thumbup} alt="oui : pouce vers le haut" />
-        <span className="ml-1">oui</span>
-      </span>
-      <span className="c-media-tag c-media-tag--thumb ml-3">
+        <span className="">oui</span>
+      </button>
+      <button type="button" className="c-button-thumb ml-2">
         <img src={thumbdown} alt="non : pouce vers le bas" />
-        <span className="ml-1">non</span>
-      </span>
-    </>
+        <span className="">non</span>
+      </button>
+    </div>
   );
 };
 

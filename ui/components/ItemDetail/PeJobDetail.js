@@ -84,7 +84,7 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
         </div>
         <div className="c-goingto-contact">
           Allez-vous contacter cet établissement ?
-          <div>
+          <div className="d-flex-center">
             <GoingToContactQuestion/>
           </div>
         </div>
