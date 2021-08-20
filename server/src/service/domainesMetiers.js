@@ -147,6 +147,7 @@ const getLabelsAndRomesForDiplomas = async (searchKeyword) => {
       });
     });
 
+    labelsAndRomesForDiplomas = removeDuplicateDiplomas(labelsAndRomesForDiplomas);
     //throw new Error("BOOOOOOOM");
 
     return { labelsAndRomesForDiplomas };
@@ -162,6 +163,23 @@ const getLabelsAndRomesForDiplomas = async (searchKeyword) => {
 
     return { error: error_msg };
   }
+};
+
+const removeDuplicateDiplomas = (diplomas) => {
+  let labelsAndRomesForDiplomas = [];
+  let diplomasWithoutLevel = [];
+
+  diplomas.forEach((diploma) => {
+    let diplomaWithoutLevel =
+      diploma.label.indexOf("(") > 0 ? diploma.label.substring(0, diploma.label.indexOf("(")).trim() : diploma.label;
+
+    if (diplomasWithoutLevel.indexOf(diplomaWithoutLevel) < 0) {
+      labelsAndRomesForDiplomas.push({ ...diploma, label: diplomaWithoutLevel });
+      diplomasWithoutLevel.push(diplomaWithoutLevel);
+    }
+  });
+
+  return labelsAndRomesForDiplomas;
 };
 
 const updateRomesMetiersQuery = async (query) => {
