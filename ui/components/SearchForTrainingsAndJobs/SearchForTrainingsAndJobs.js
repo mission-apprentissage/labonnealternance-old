@@ -41,20 +41,21 @@ import Map from "components/Map";
 import { Row, Col } from "reactstrap";
 import { MapListSwitchButton, ChoiceColumn } from "./components";
 import { WidgetHeader, InitWidgetSearchParameters } from "components/WidgetHeader";
-import { currentPage, setCurrentPage } from "utils/currentPage";
+import { currentPage, setCurrentPage, currentSearch, setCurrentSearch } from "utils/currentPage";
 import updateUiFromHistory from "services/updateUiFromHistory";
 
 const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useScopeContext();
 
-  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible } = useSelector(
+  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues } = useSelector(
     (state) => state.trainings
   );
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
   const [shouldShowWelcomeMessage, setShouldShowWelcomeMessage] = useState(hasSearch ? false : true);
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const [isJobSearchLoading, setIsJobSearchLoading] = useState(hasSearch ? false : true);
   const [jobSearchError, setJobSearchError] = useState("");
@@ -82,6 +83,10 @@ const SearchForTrainingsAndJobs = () => {
         showResultMap,
         showResultList,
         showSearchForm,
+        dispatch,
+        setTrainings,
+        setJobs,
+        setActiveFilter,
       });
     };
 
@@ -95,37 +100,56 @@ const SearchForTrainingsAndJobs = () => {
   }, [trainings, jobs]);
 
   const selectItemFromHistory = (itemId, type) => {
-    const item = findItem(itemId, type);
+    const item = findItem({itemId, type, jobs, trainings});
+    selectItem(item);
+  };
 
+  const selectItem = (item) =>
+  {
     closeMapPopups();
     if (item) {
       flyToMarker(item, 12);
       dispatch(setSelectedItem(item));
       setSelectedMarker(item);
     }
-  };
+  }
 
-  const findItem = (id, type) => {
+  const selectFollowUpItem = ({itemId, type, jobs, trainings, searchTimestamp, formValues}) =>
+  {
+    const item = findItem({itemId, type, jobs, trainings}); 
+
+    if(item) {
+      selectItem(item);
+      try
+      {
+        pushHistory({ router, scopeContext, item:{id:itemId,ideaType:type==="training"?"formation":type, directId:true}, page: "fiche", display: "list", searchParameters:formValues, searchTimestamp, isReplace:true });
+      }
+      catch(err){}
+    }
+  }
+
+  const findItem = ({itemId, type, jobs, trainings}) => {
     let item;
+
     if (type === "training") {
-      item = trainings.find((el) => el.id === id);
+      item = trainings.find((el) => el.id === itemId);
     } else if (type === "peJob") {
-      item = jobs.peJobs.find((el) => el.job.id === id);
+      item = jobs.peJobs.find((el) => el.job.id === itemId);
     } else if (type === "lba") {
-      item = jobs.lbaCompanies.find((el) => el.company.siret === id);
+      item = jobs.lbaCompanies.find((el) => el.company.siret === itemId);
     } else if (type === "lbb") {
-      item = jobs.lbbCompanies.find((el) => el.company.siret === id);
+      item = jobs.lbbCompanies.find((el) => el.company.siret === itemId);
     } else if (type === "matcha") {
-      item = jobs.matchas.find((el) => el.job.id === id);
+      item = jobs.matchas.find((el) => el.job.id === itemId);
     }
 
     return item;
   };
 
-  const handleSearchSubmit = async (values, misc) => {
+  const handleSearchSubmit = async ({values,followUpItem=null}) => {
     // centrage de la carte sur le lieu de recherche
     const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
-
+    const searchTimestamp = new Date().getTime();
     setShouldShowWelcomeMessage(false);
 
     dispatch(setHasSearch(false));
@@ -137,16 +161,16 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setFormValues({ ...values }));
 
     if (scopeContext.isTraining) {
-      searchForTrainings(values);
+      searchForTrainings({values,searchTimestamp,followUpItem,selectFollowUpItem});
     }
 
     if (scopeContext.isJob) {
-      searchForJobsWithStrictRadius(values);
+      searchForJobsWithStrictRadius({values,searchTimestamp,followUpItem,selectFollowUpItem});
     }
     dispatch(setIsFormVisible(false));
 
-    if(misc!=="stayOnMap")
-      pushHistory({ router, scopeContext, display: "list" });
+    pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp });
+    setCurrentSearch(searchTimestamp);
   };
 
   const handleItemLoad = async (item) => {
@@ -178,9 +202,10 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
   };
 
-  const searchForTrainings = async (values) => {
+  const searchForTrainings = async ({values, searchTimestamp, followUpItem, selectFollowUpItem}) => {
     searchForTrainingsFunction({
       values,
+      searchTimestamp,
       dispatch,
       setIsTrainingSearchLoading,
       setTrainingSearchError,
@@ -191,17 +216,20 @@ const SearchForTrainingsAndJobs = () => {
       setTrainingMarkers,
       factorTrainingsForMap,
       widgetParameters,
+      followUpItem,
+      selectFollowUpItem,
     });
   };
 
-  const searchForJobsWithStrictRadius = async (values) => {
-    searchForJobs(values, "strict");
+  const searchForJobsWithStrictRadius = async ({values, searchTimestamp, followUpItem, selectFollowUpItem}) => {
+    searchForJobs({values, searchTimestamp, strictRadius:"strict", followUpItem, selectFollowUpItem});
   };
 
-  const searchForJobs = async (values, strictRadius) => {
+  const searchForJobs = async ({values, searchTimestamp, strictRadius, followUpItem, selectFollowUpItem}) => {
     searchForJobsFunction({
       values,
       strictRadius,
+      searchTimestamp,
       setIsJobSearchLoading,
       dispatch,
       setHasSearch,
@@ -213,6 +241,8 @@ const SearchForTrainingsAndJobs = () => {
       factorJobsForMap,
       scopeContext,
       widgetParameters,
+      followUpItem,
+      selectFollowUpItem,      
     });
   };
 
@@ -231,7 +261,7 @@ const SearchForTrainingsAndJobs = () => {
 
     if (!doNotSaveToHistory) {
       unSelectItem("doNotSaveToHistory");
-      pushHistory({ router, scopeContext, display: "form" });
+      pushHistory({ router, scopeContext, display: "form", searchParameters:formValues, searchTimestamp: currentSearch });
     }
   };
 
@@ -246,7 +276,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setVisiblePane("resultMap"));
 
     if (!doNotSaveToHistory) {
-      pushHistory({ router, scopeContext, display: "map" });
+      pushHistory({ router, scopeContext, display: "map", searchParameters:formValues, searchTimestamp: currentSearch });
     }
 
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
@@ -263,14 +293,14 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setIsFormVisible(false));
 
     if (!doNotSaveToHistory) {
-      pushHistory({ router, scopeContext, display: "list" });
+      pushHistory({ router, scopeContext, display: "list", searchParameters:formValues, searchTimestamp: currentSearch });
     }
   };
 
   const selectItemOnMap = (item) => {
     showResultList(null, "doNotSaveToHistory");
     setCurrentPage("fiche");
-    pushHistory({ router, scopeContext, item, page: "fiche", display: "list" });
+    pushHistory({ router, scopeContext, item, page: "fiche", display: "list", searchParameters:formValues, searchTimestamp: currentSearch });
   };
 
   const unSelectItem = (doNotSaveToHistory) => {
@@ -281,7 +311,7 @@ const SearchForTrainingsAndJobs = () => {
     }
 
     if (!doNotSaveToHistory) {
-      pushHistory({ router, scopeContext });
+      pushHistory({ router, scopeContext, searchParameters:formValues, searchTimestamp: currentSearch });
     }
   };
 
@@ -317,6 +347,8 @@ const SearchForTrainingsAndJobs = () => {
             jobSearchError={jobSearchError}
             allJobSearchError={allJobSearchError}
             isLoading={isLoading}
+            setActiveFilter={setActiveFilter}
+            activeFilter={activeFilter}
           />
         </Col>
         <Col className={`p-0 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">

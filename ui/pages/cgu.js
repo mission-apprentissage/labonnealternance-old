@@ -3,11 +3,19 @@ import Navigation from "components/navigation";
 import Breadcrumb from "components/breadcrumb";
 import ScrollToTop from "components/ScrollToTop";
 
+import { NextSeo } from "next-seo";
+
 import Footer from "components/footer";
 
 const CGU = (props) => {
   return (
     <div>
+      
+      <NextSeo
+        title="Conditions générales d'utilisation | La Bonne Alternance | Trouvez votre alternance"
+        description="Conditions générales d’utilisation de La Bonne Alternance."
+      />
+
       <ScrollToTop />
       <Navigation bgcolor="is-white" />
 
@@ -44,7 +52,7 @@ const CGU = (props) => {
                   labonnealternance.pole-emploi.fr
                 </a>{" "}
                 a pour objet de faciliter les entrées en alternance des usagers en informant sur les formations en
-                apprentissage ainsi que les offres d’emplois et entreprises auprès desquelles adresser une candidature.
+                apprentissage ainsi que les offres d'emplois et entreprises auprès desquelles adresser une candidature.
               </p>
               <p>
                 L’utilisateur peut filtrer tout ou partie des informations à l’aide des filtres suivants : niveau de
@@ -139,7 +147,7 @@ const CGU = (props) => {
             <section>
               <h2 className="c-faq-question mt-2">Article 6 - Protection des données à caractère personnel</h2>
               <p>
-               L’utilisation du moteur de recherche disponible sur le site internet La Bonne Alternance nécessite d’indiquer le(s) métier(s) recherché(s) ainsi que le périmètre géographique souhaité. Ces données sont collectées et traitées par Pôle emploi uniquement dans le but de fournir, à la requête de l’utilisateur, la liste des entreprises ou organismes ayant un potentiel d’embauche dans un secteur d’emploi et géographique donné, une liste de formations en apprentissage dans un secteur d’emploi et géographique donné, une liste d’offres d’emploi dans un secteur d’emploi et géographique donné.<br />
+               L’utilisation du moteur de recherche disponible sur le site internet La Bonne Alternance nécessite d’indiquer le(s) métier(s) recherché(s) ainsi que le périmètre géographique souhaité. Ces données sont collectées et traitées par Pôle emploi uniquement dans le but de fournir, à la requête de l’utilisateur, la liste des entreprises ou organismes ayant un potentiel d’embauche dans un secteur d’emploi et géographique donné, une liste de formations en apprentissage dans un secteur d’emploi et géographique donné, une liste d’offres d'emploi dans un secteur d’emploi et géographique donné.<br />
                Pôle emploi traite également des données relatives aux entreprises qui peuvent concerner directement des personnes physiques, notamment les coordonnées des interlocuteurs personnes physiques de ces entreprises.
               </p>
             </section>

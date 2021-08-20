@@ -17,6 +17,10 @@
 .env.test.local
 .env.production.local
 
+ui/public/sitemap.xml
+ui/public/sitemap*.xml
+ui/public/robots.txt
+
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs

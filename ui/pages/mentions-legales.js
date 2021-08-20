@@ -2,10 +2,15 @@ import React from "react";
 import Navigation from "components/navigation";
 import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
+import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
 const MentionsLegales = () => (
   <div>
+    <NextSeo
+      title="Mentions Légales | La Bonne Alternance | Trouvez votre alternance"
+      description="Mentions légales du site."
+    />
     <ScrollToTop />
     <Navigation />
     <Breadcrumb forPage="mentions-legales" label="Mentions légales" />

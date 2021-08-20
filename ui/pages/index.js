@@ -17,7 +17,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    initParametersFromQuery(dispatch, "shouldPushPathname");
+    initParametersFromQuery({ dispatch, shouldPush: "shouldPushPathname" });
   }, []);
 
   return (

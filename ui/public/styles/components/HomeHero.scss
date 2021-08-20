@@ -24,7 +24,10 @@
     max-width: 1110px;
     border-radius: 10px;    
   } 
-  padding-top: 11px;
+  padding-top: 0;
+  @include media-breakpoint-up(lg) {
+    padding-top: 11px;
+  } 
   padding-bottom: 36px;
 }
 
@@ -37,10 +40,8 @@
 
 .c-home-hero__title {
   font-size: 26px;
-  text-align: center;
   font-weight: bold;
   line-height: 90.2%;
-  margin-top: 20px;
   @include media-breakpoint-up(sm) {
     margin-top: 0;
     font-size: 29px;

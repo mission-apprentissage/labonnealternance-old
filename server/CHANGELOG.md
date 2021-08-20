@@ -3,8 +3,43 @@
 ## 1.16.0 [05/07/2021]
 [744] Recherche par diplôme : alimentation de la base
 
+## 1.15.12 [19/08/2021]
+[705] Vérification des balises meta et title de chaque page
+[726][727] Memoization pour limiter des appels redondants
+[761] Erreurs catalogue HS non bloquantes
+[758] SEO des titres du catalogue
+
+## 1.15.11 [22/07/2021]
+[719] Sitemap avancé
+
+## 1.15.10 [21/07/2021]
+[743] Fix recherche sur map
+[695] Didask : Formations
+[751] Marges latérales écran de détail LBB
+[750] Didask : Intégration Capsules recherche employeur + préparation entretien employeur
+
+## 1.15.9 [19/07/2021]
+[736] Correction récupération détail lbb avec score alternance 0
+[707] Conservation des résultats de recherche dans l'historique navigateur
+[740] Conservation des query parameters utm_
+
+## 1.15.8 [07/07/2021]
+[715] Catalogue
+[724] Augmentation de quota
+
+## 1.15.7 [06/07/2021]
+[708] Adaptation script d'export test ARA
+[716] Sitemap
+[528] Ouverture publique API Matcha
+
 ## 1.15.6 [21/06/2021]
+[700] Changement lien matcha
 [673] Ajustements homepage
+[565] Bloc info homogène
+[680] Explication CFA d'entreprise
+[694] Remplacement de la police Inter par la police Marianne
+[699] Utilisation du protocole HTTP2
+[691] Historique et accès direct sur liens de recherche
 
 ## 1.15.5 [15/06/2021]
 [563] Màj api-docs

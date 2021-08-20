@@ -61,6 +61,10 @@ module.exports = async (components) => {
     windowMs: 1000, // 1 second
     max: 5, // limit each IP to 5 requests per windowMs
   });
+  const limiter7PerSecond = rateLimit({
+    windowMs: 1000, // 1 second
+    max: 7, // limit each IP to 7 requests per windowMs
+  });
   const limiter10PerSecond = rateLimit({
     windowMs: 1000, // 1 second
     max: 10, // limit each IP to 10 requests per windowMs
@@ -83,13 +87,13 @@ module.exports = async (components) => {
 
   app.use("/api/error500", limiter3PerSecond, error500());
 
-  app.use("/api/v1/formations", limiter5PerSecond, formationV1());
+  app.use("/api/v1/formations", limiter7PerSecond, formationV1());
 
   app.use("/api/v1/formationsParRegion", limiter5PerSecond, formationRegionV1());
 
-  app.use("/api/v1/jobs", limiter3PerSecond, jobV1());
+  app.use("/api/v1/jobs", limiter5PerSecond, jobV1());
 
-  app.use("/api/v1/jobsEtFormations", limiter3PerSecond, jobEtFormationV1());
+  app.use("/api/v1/jobsEtFormations", limiter5PerSecond, jobEtFormationV1());
 
   app.use("/api/jobsdiplomas", limiter10PerSecond, jobDiploma());
 
