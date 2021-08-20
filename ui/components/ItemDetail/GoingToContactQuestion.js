@@ -4,11 +4,11 @@ import thumbup from "public/images/thumbup.svg";
 import thumbdown from "public/images/thumbdown.svg";
 import { capitalizeFirstLetter } from "utils/strutils";
 
-import useSessionStorage from "utils/useSessionStorage";
+import { useSessionStorage } from "utils/useSessionStorage";
 
-const GoingToContactQuestion = ({ kind }) => {
+const GoingToContactQuestion = ({ kind, uniqId }) => {
 
-  const [thanksGoingto, setThanksGoingto] = useSessionStorage('goingto', false);
+  const [thanksGoingto, setThanksGoingto] = useSessionStorage(`goingto-${kind}-${uniqId}`, false);
 
   return (
     <div className="c-goingto mt-4">

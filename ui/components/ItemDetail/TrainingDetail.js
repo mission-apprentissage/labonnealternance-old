@@ -245,7 +245,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
         ""
       )}
 
-      <GoingToContactQuestion kind={kind}/>
+      <GoingToContactQuestion kind={kind} uniqId={training.idRcoFormation}/>
 
       <br />
     </>
