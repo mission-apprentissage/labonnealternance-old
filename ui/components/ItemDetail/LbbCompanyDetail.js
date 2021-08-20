@@ -200,7 +200,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           ""
         )}
       </div>
-      <GoingToContactQuestion />
+      <GoingToContactQuestion kind={kind} />
 
     </>
   );

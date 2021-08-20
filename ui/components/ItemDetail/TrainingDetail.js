@@ -13,6 +13,7 @@ import { SendTrackEvent } from "utils/gtm";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "utils/strutils";
 import { Spinner } from "reactstrap";
+import GoingToContactQuestion from "./GoingToContactQuestion";
 
 const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   const dispatch = useDispatch();
@@ -243,6 +244,9 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
       ) : (
         ""
       )}
+
+      <GoingToContactQuestion kind={kind}/>
+
       <br />
     </>
   );

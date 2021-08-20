@@ -83,7 +83,7 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
         
-        <GoingToContactQuestion/>
+        <GoingToContactQuestion kind={kind} />
 
         <div className="mt-5">&nbsp;</div>
       </div>

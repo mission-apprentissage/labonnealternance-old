@@ -153,7 +153,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
-        <GoingToContactQuestion />
+        <GoingToContactQuestion kind={kind} />
 
         <div className="mt-3">&nbsp;</div>
       </div>
