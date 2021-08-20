@@ -43,8 +43,8 @@ describe("fetchDiplomas", () => {
     const axiosStub = { get: jest.fn().mockReturnValue({ data: { error: "remote_error_message" } }) };
     // when
     const res = await fetchDiplomas(
-      ["D1208", "D1203"],
-      ["D1208", "D1203"],
+      ["D1208", "D1203", "D1204"],
+      ["D1208", "D1203", "D1204"],
       mockedErrorFn,
       "urlMock",
       axiosStub,
@@ -64,8 +64,8 @@ describe("fetchDiplomas", () => {
     const axiosStub = { get: jest.fn().mockReturnValue({ data: { unexpected_prop: "unexpected_val" } }) };
     // when
     const res = await fetchDiplomas(
-      ["D1208", "D1203"],
-      ["D1208", "D1203"],
+      ["D1208", "D1203", "D1205"],
+      ["D1208", "D1203", "D1205"],
       mockedErrorFn,
       "urlMock",
       axiosStub,
@@ -85,8 +85,8 @@ describe("fetchDiplomas", () => {
     const axiosStub = { get: jest.fn().mockReturnValue({ data: ["remotely_returned_array"] }) };
     // when
     const res = await fetchDiplomas(
-      ["D1208", "D1203"],
-      ["D1208", "D1203"],
+      ["D1208", "D1203", "D1206"],
+      ["D1208", "D1203", "D1206"],
       mockedErrorFn,
       "urlMock",
       axiosStub,
