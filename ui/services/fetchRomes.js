@@ -20,7 +20,8 @@ export default async function fetchRomes(
   const response = await _axios.get(romeLabelsApi, { params: { title: value } });
 
   const isAxiosError = !!_.get(response, "data.error");
-  const hasNoLabelsAndRomes = !_.get(response, "data.labelsAndRomes");
+  const hasNoLabelsAndRomes =
+    !_.get(response, "data.labelsAndRomes") && !_.get(response, "data.labelsAndRomesForDiplomas");
   const isSimulatedError = _.includes(_.get(_window, "location.href", ""), "romeError=true");
 
   const isError = isAxiosError || hasNoLabelsAndRomes || isSimulatedError;

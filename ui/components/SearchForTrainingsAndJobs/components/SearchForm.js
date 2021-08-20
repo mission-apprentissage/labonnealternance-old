@@ -62,7 +62,7 @@ const SearchForm = (props) => {
                       <h1 className="h6 font-weight-bold">Votre recherche</h1>
                       <div className={`${errors.job ? "c-searchform--onerror" : ""}`}>
                         <AutoCompleteField
-                          kind="Métier *"
+                          kind="Métier ou diplôme *"
                           items={[]}
                           itemToStringFunction={autoCompleteToStringFunction}
                           onSelectedItemChangeFunction={partialRight(
