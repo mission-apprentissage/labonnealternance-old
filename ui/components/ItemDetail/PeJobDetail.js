@@ -7,6 +7,7 @@ import { formatDate } from "utils/strutils";
 import { SendTrackEvent } from "utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
+import GoingToContactQuestion from "./GoingToContactQuestion";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -83,6 +84,9 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
         </div>
         <div className="c-goingto-contact">
           Allez-vous contacter cet établissement ?
+          <div>
+            <GoingToContactQuestion/>
+          </div>
         </div>
 
         <div className="mt-5">&nbsp;</div>
