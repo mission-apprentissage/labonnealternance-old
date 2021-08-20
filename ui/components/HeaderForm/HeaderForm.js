@@ -63,11 +63,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 items={[]}
                 initialSelectedItem={contextFormValues?.job || null}
                 itemToStringFunction={autoCompleteToStringFunction}
-                onSelectedItemChangeFunction={partialRight(
-                  updateValuesFromJobAutoComplete,
-                  setDiplomaError,
-                  setDiplomas
-                )}
+                onSelectedItemChangeFunction={partialRight(updateValuesFromJobAutoComplete, setDiplomas)}
                 compareItemFunction={compareAutoCompleteValues}
                 onInputValueChangeFunction={jobChanged}
                 name="jobField"
