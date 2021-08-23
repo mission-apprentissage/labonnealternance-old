@@ -7,10 +7,12 @@ import { formatDate } from "utils/strutils";
 import { SendTrackEvent } from "utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
+import GoingToContactQuestion from "./GoingToContactQuestion";
+import { getItemId } from "utils/getItemId";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
-const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
+const PeJobDetail = ({ job }) => {
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
@@ -81,6 +83,8 @@ const PeJobDetail = ({ job, seeInfo, setSeeInfo }) => {
             {!!random(0, 1) ? <DidAsk1 /> : <DidAsk2 />}
           </div>
         </div>
+        
+        <GoingToContactQuestion kind={kind} uniqId={getItemId(job)} key={getItemId(job)} />
 
         <div className="mt-5">&nbsp;</div>
       </div>
