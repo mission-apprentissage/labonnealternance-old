@@ -69,19 +69,22 @@ export const AutoCompleteField = ({
   };
 
   const buildInputItems = () => {
-    /* le bloc ci-dessous n'est valable que si le paramètre splitItemByTypes est renseigné */
+    /* le bloc ci-dessous n'est valable que si le paramètre splitItemByTypes est renseigné, il permet de construire des titres de catégories d'items */
     let currentTitleCnt = 0;
     let currentType = "";
     const returnTitleLi = (item) => {
-      if (splitItemsByTypes && item.type != currentType && currentTitleCnt < splitItemsByTypes.length) {
-        const res = <li className="c-autocomplete-neutral">{splitItemsByTypes[currentTitleCnt].typeLabel}</li>;
-        currentType = splitItemsByTypes[currentTitleCnt].type;
-        currentTitleCnt++;
-        return res;
-      } else {
-        return "";
+      let res = "";
+      if (splitItemsByTypes && item.type !== currentType && currentTitleCnt < splitItemsByTypes.length) {
+        while (item.type !== currentType && currentTitleCnt < splitItemsByTypes.length) {
+          currentType = splitItemsByTypes[currentTitleCnt].type;
+          currentTitleCnt++;
+        }
+        res = <li className="c-autocomplete-neutral">{splitItemsByTypes[currentTitleCnt - 1].typeLabel}</li>;
       }
+
+      return res;
     };
+    /*fin*/
 
     return inputItems
       .filter((item) => !!item?.label)
