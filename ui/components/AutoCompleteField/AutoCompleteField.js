@@ -90,7 +90,7 @@ export const AutoCompleteField = ({
           <>
             {returnTitleLi(item)}
             <li
-              className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
+              className={inputValue === item.label ? "c-autocomplete__option--highlighted" : ""}
               key={`${index}`}
               {...getItemProps({ item: item.label, index })}
             >
