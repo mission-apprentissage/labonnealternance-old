@@ -79,7 +79,11 @@ export const AutoCompleteField = ({
           currentType = splitItemsByTypes[currentTitleCnt].type;
           currentTitleCnt++;
         }
-        res = <li className="c-autocomplete-neutral">{splitItemsByTypes[currentTitleCnt - 1].typeLabel}</li>;
+        res = (
+          <li key={`autocomplete_title_${currentTitleCnt - 1}`} className="c-autocomplete-neutral">
+            {splitItemsByTypes[currentTitleCnt - 1].typeLabel}
+          </li>
+        );
       }
 
       return res;
@@ -203,20 +207,30 @@ export const AutoCompleteField = ({
         {(() => {
           if (isOpen) {
             if (inputValue.length === 0) {
-              return <li className="c-autocomplete-neutral">{searchPlaceholder}</li>;
+              return (
+                <li key={`placeholder`} className="c-autocomplete-neutral">
+                  {searchPlaceholder}
+                </li>
+              );
             } else if (loadingState === "loading") {
               return (
-                <li className="c-autocomplete-neutral">
+                <li key={`spinner`} className="c-autocomplete-neutral">
                   <Spinner color="primary" />
                   &nbsp;Veuillez patienter
                 </li>
               );
             } else if (inputValue.length > 0 && inputItems?.length === 0) {
-              return <li className="c-autocomplete-neutral">Pas de résultat, veuillez modifier votre recherche</li>;
+              return (
+                <li key={`noresult`} className="c-autocomplete-neutral">
+                  Pas de résultat, veuillez modifier votre recherche
+                </li>
+              );
             } else {
               return (
                 <>
-                  <li className="c-autocomplete-minititle">Résultats de votre recherche</li>
+                  <li key={`result`} className="c-autocomplete-minititle">
+                    Résultats de votre recherche
+                  </li>
                   {buildInputItems()}
                 </>
               );
