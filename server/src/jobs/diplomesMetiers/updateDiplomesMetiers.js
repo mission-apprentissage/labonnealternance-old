@@ -9,9 +9,6 @@ const { getElasticInstance } = require("../../common/esClient");
 const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
 
 const logMessage = (level, msg) => {
-  // remplacer par les outils disponibles de manière générale
-
-  //console.log(msg);
   if (level === "info") {
     logger.info(msg);
   } else {
@@ -91,8 +88,6 @@ module.exports = async () => {
       await getIntitulesFormations({ size });
       rank++;
     }
-
-    //console.log("diplomesMetiers ", Object.keys(diplomesMetiers).length);
 
     step = 1;
 
