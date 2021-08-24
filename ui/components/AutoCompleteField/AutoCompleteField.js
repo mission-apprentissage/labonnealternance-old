@@ -31,6 +31,7 @@ export const AutoCompleteField = ({
   scrollParentId,
   illustration,
   searchPlaceholder,
+  splitItemsByTypes = null,
   ...props
 }) => {
   useEffect(() => {
@@ -65,6 +66,39 @@ export const AutoCompleteField = ({
   const itemToString = (item) => {
     if (itemToStringFunction) return item ? itemToStringFunction(item) : "";
     else return item;
+  };
+
+  const buildInputItems = () => {
+    /* le bloc ci-dessous n'est valable que si le paramètre splitItemByTypes est renseigné */
+    let currentTitleCnt = 0;
+    let currentType = "";
+    const returnTitleLi = (item) => {
+      if (splitItemsByTypes && item.type != currentType && currentTitleCnt < splitItemsByTypes.length) {
+        const res = <li className="c-autocomplete-neutral">{splitItemsByTypes[currentTitleCnt].typeLabel}</li>;
+        currentType = splitItemsByTypes[currentTitleCnt].type;
+        currentTitleCnt++;
+        return res;
+      } else {
+        return "";
+      }
+    };
+
+    return inputItems
+      .filter((item) => !!item?.label)
+      .map((item, index) => {
+        return (
+          <>
+            {returnTitleLi(item)}
+            <li
+              className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
+              key={`${index}`}
+              {...getItemProps({ item: item.label, index })}
+            >
+              {ReactHtmlParser(highlightItem(item.label, inputValue))}
+            </li>
+          </>
+        );
+      });
   };
 
   // hack pour scroller un champ autocomplete dont les valeurs pourraient être cachées par le clavier du mobile
@@ -180,17 +214,7 @@ export const AutoCompleteField = ({
               return (
                 <>
                   <li className="c-autocomplete-minititle">Résultats de votre recherche</li>
-                  {inputItems
-                    .filter((item) => !!item?.label)
-                    .map((item, index) => (
-                      <li
-                        className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
-                        key={`${index}`}
-                        {...getItemProps({ item: item.label, index })}
-                      >
-                        {ReactHtmlParser(highlightItem(item.label, inputValue))}
-                      </li>
-                    ))}
+                  {buildInputItems()}
                 </>
               );
             }
