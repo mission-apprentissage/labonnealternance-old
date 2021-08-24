@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.16.0 [05/07/2021]
+## 1.16.0 [25/08/2021]
 [744] Recherche par diplôme : alimentation de la base
 [745] Recherche par diplôme : remontée des résutats de recherche
 [746] Recherche par diplôme : présentation du champ de recherche avec séparations par titre
