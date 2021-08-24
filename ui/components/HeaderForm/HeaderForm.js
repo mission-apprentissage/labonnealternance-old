@@ -59,7 +59,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
           <Form className="c-logobar-form c-searchform">
             <div className={`formGroup formGroup--logobar ${errors.job ? "formGroup--logobar-onerror" : ""}`}>
               <AutoCompleteField
-                kind="Métier *"
+                kind="Métier ou diplôme *"
                 items={[]}
                 initialSelectedItem={contextFormValues?.job || null}
                 itemToStringFunction={autoCompleteToStringFunction}

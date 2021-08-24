@@ -87,7 +87,12 @@ const SearchForm = (props) => {
                           onInputValueChangeFunction={jobChanged}
                           name="jobField"
                           placeholder="Ex : boulangerie"
-                          searchPlaceholder="Indiquez le métier recherché ci-dessus"
+                          searchPlaceholder="Indiquez un métier ou diplôme ci-dessus"
+                          splitItemsByTypes={[
+                            { type: "job", typeLabel: "Métiers", size: 4 },
+                            { type: "diploma", typeLabel: "Diplômes", size: 4 },
+                            { typeLabel: "...autres métiers et diplômes" },
+                          ]}
                         />
                         <ErrorMessage name="job" className="errorField" component="div" />
                       </div>
