@@ -4,13 +4,14 @@ import thumbup from "public/images/thumbup.svg";
 import thumbdown from "public/images/thumbdown.svg";
 import { capitalizeFirstLetter } from "utils/strutils";
 
-import {useSessionStorage} from "utils/useSessionStorage";
+import { useSessionStorage } from "utils/useSessionStorage";
+import { getItemId } from "utils/getItemId";
+
+
 
 const GoingToContactQuestion = ({ kind, uniqId }) => {
 
-  const storeId = `goingto-${kind}-${uniqId}`
-
-  const [thanks, setThanks] = useSessionStorage(storeId, false);
+  const [thanks, setThanks] = useSessionStorage(uniqId, false);
 
   return (
     <div className="c-goingto mt-4">
@@ -46,5 +47,9 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
     </div>
   );
 };
+
+export function getGoingtoId(kind, item) {
+  return `goingto-${kind}-${getItemId(item)}`
+}
 
 export default GoingToContactQuestion;
