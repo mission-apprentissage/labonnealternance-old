@@ -4,25 +4,13 @@ import thumbup from "public/images/thumbup.svg";
 import thumbdown from "public/images/thumbdown.svg";
 import { capitalizeFirstLetter } from "utils/strutils";
 
+import {useSessionStorage} from "utils/useSessionStorage";
+
 const GoingToContactQuestion = ({ kind, uniqId }) => {
 
   const storeId = `goingto-${kind}-${uniqId}`
 
-  function getSessionStorageOrDefault(key, defaultValue) {
-    const stored = sessionStorage.getItem(key);
-    if (!stored) {
-      return defaultValue;
-    }
-    return JSON.parse(stored);
-  }
-
-  const [thanks, setThanks] = useState(
-    getSessionStorageOrDefault(storeId, false)
-  );
-
-  useEffect(() => {
-    sessionStorage.setItem(storeId, JSON.stringify(thanks));
-  }, [thanks]);
+  const [thanks, setThanks] = useSessionStorage(storeId, false);
 
   return (
     <div className="c-goingto mt-4">
