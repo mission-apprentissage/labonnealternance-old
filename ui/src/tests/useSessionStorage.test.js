@@ -1,6 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 import { useSessionStorage } from '../../utils/useSessionStorage'
-import { noop } from 'lodash'
 
 
 function buildFakeStorage() {
