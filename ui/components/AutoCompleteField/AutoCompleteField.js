@@ -94,16 +94,15 @@ export const AutoCompleteField = ({
       .filter((item) => !!item?.label)
       .map((item, index) => {
         return (
-          <>
+          <React.Fragment key={index}>
             {returnTitleLi(item)}
             <li
               className={inputValue === item.label ? "c-autocomplete__option--highlighted" : ""}
-              key={`${index}`}
               {...getItemProps({ item: item.label, index })}
             >
               {ReactHtmlParser(highlightItem(item.label, inputValue))}
             </li>
-          </>
+          </React.Fragment>
         );
       });
   };
