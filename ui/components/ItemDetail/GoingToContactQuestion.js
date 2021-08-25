@@ -7,6 +7,7 @@ import { capitalizeFirstLetter } from "utils/strutils";
 import {useSessionStorage} from "utils/useSessionStorage";
 
 const GoingToContactQuestion = ({ kind, uniqId }) => {
+console.log('key', key);
 
   const storeId = `goingto-${kind}-${uniqId}`
 
