@@ -14,6 +14,13 @@ if (process.env.uiSentryDsn) {
   SentryReact.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
 }
 
+export function reportWebVitals(metric) {
+  if (sessionStorage && sessionStorage.getItem('lba-metrics-please')) {
+    console.log(metric)
+  }
+}
+
+
 class ExampleApp extends App {
   static async getInitialProps(context) {
     // récupération du hostname pour initialiser les fonts en preload
