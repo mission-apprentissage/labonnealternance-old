@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.15.13 [26/08/2021]
+[709] Correction bug responsive design
+
 ## 1.15.12 [19/08/2021]
 [705] Vérification des balises meta et title de chaque page
 [726][727] Memoization pour limiter des appels redondants
