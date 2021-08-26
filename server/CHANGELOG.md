@@ -2,6 +2,7 @@
 
 ## 1.15.13 [25/08/2021]
 [774] Se souvenir des actions d'un utilisateur lors d'une session
+[706] Performances
 
 ## 1.15.12 [19/08/2021]
 [705] Vérification des balises meta et title de chaque page
