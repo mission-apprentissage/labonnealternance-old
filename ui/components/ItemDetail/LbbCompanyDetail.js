@@ -8,6 +8,7 @@ import { capitalizeFirstLetter } from "../../utils/strutils";
 import { SendTrackEvent } from "utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
+import GoingToContactQuestion, {getGoingtoId} from "./GoingToContactQuestion";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
@@ -199,6 +200,8 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           ""
         )}
       </div>
+      <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, lbb)} key={getGoingtoId(kind, lbb)} />
+
     </>
   );
 };
