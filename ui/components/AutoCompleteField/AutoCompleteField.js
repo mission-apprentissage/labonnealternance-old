@@ -80,7 +80,10 @@ export const AutoCompleteField = ({
           currentTitleCnt++;
         }
         res = (
-          <li key={`autocomplete_title_${currentTitleCnt - 1}`} className="c-autocomplete-neutral">
+          <li
+            key={`autocomplete_title_${currentTitleCnt - 1}`}
+            className={`c-autocomplete-title ${currentTitleCnt > 1 ? "c-autocomplete-title_bordered" : ""} `}
+          >
             {splitItemsByTypes[currentTitleCnt - 1].typeLabel}
           </li>
         );
@@ -97,7 +100,10 @@ export const AutoCompleteField = ({
           <React.Fragment key={index}>
             {returnTitleLi(item)}
             <li
-              className={inputValue === item.label ? "c-autocomplete__option--highlighted" : ""}
+              key={index}
+              className={`c-autocomplete_option${
+                highlightedIndex === index ? " c-autocomplete__option--highlighted" : ""
+              }`}
               {...getItemProps({ item: item.label, index })}
             >
               {ReactHtmlParser(highlightItem(item.label, inputValue))}

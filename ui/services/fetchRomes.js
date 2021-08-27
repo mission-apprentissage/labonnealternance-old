@@ -36,20 +36,32 @@ export default async function fetchRomes(
       _logError("Rome API error simulated with a query param :)");
     }
   } else {
+    // transformation des textes des diplômes
+    let diplomas = [];
+
+    if (response?.data?.labelsAndRomesForDiplomas.length) {
+      diplomas = response.data.labelsAndRomesForDiplomas.map(
+        (diploma) => (diploma = { ...diploma, label: _.capitalize(diploma.label) })
+      );
+    }
+    console.log("diplomas : ", diplomas);
+
     // on affiche d'abord jusqu'à 4 métiers puis jusqu'à 4 diplômes puis le reste s'il y a
+    if (diplomas.length) {
+      res = res.concat(diplomas.slice(0, 4));
+    }
     if (response?.data?.labelsAndRomes.length) {
       res = res.concat(response.data.labelsAndRomes.slice(0, 4));
     }
-    if (response?.data?.labelsAndRomesForDiplomas.length) {
-      res = res.concat(response.data.labelsAndRomesForDiplomas.slice(0, 4));
+    if (diplomas.length) {
+      res = res.concat(diplomas.slice(4));
     }
     if (response?.data?.labelsAndRomes.length) {
       res = res.concat(response.data.labelsAndRomes.slice(4));
     }
-    if (response?.data?.labelsAndRomesForDiplomas.length) {
-      res = res.concat(response.data.labelsAndRomesForDiplomas.slice(4));
-    }
   }
+
+  console.log("res : ",res);
 
   return res;
 }

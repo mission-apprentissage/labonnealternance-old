@@ -70,8 +70,8 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 placeholder={isHome ? "Indiquez un métier ou diplôme" : "Ex : boulangerie"}
                 searchPlaceholder="Indiquez un métier ou diplôme ci-dessus"
                 splitItemsByTypes={[
-                  { type: "job", typeLabel: "Métiers", size: 4 },
                   { type: "diploma", typeLabel: "Diplômes", size: 4 },
+                  { type: "job", typeLabel: "Métiers", size: 4 },
                   { typeLabel: "...autres métiers et diplômes" },
                 ]}
               />
