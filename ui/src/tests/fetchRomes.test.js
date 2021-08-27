@@ -14,7 +14,10 @@ describe("fetchRomes", () => {
     // given
     const mockedErrorFn = jest.fn();
     const axiosMockGet = jest.fn().mockReturnValue({
-      data: { labelsAndRomes: ["remotely_returned_array"], labelsAndRomesForDiplomas: ["remotely_returned_array"] },
+      data: {
+        labelsAndRomes: [{ label: "remotely_returned_array" }],
+        labelsAndRomesForDiplomas: [{ label: "remotely_returned_array_capitalized" }],
+      },
     });
     const axiosStub = { get: axiosMockGet };
     // when
@@ -29,7 +32,7 @@ describe("fetchRomes", () => {
     // then
     expect(axiosMockGet).toHaveBeenCalledWith("urlMock/api/romelabels", { params: { title: "plomberie" } });
     expect(mockedErrorFn).not.toHaveBeenCalled();
-    expect(res).toEqual(["remotely_returned_array", "remotely_returned_array"]);
+    expect(res).toEqual([{ label: "Remotely_returned_array_capitalized" }, { label: "remotely_returned_array" }]);
   });
 
   it("error case : axios returns an non-empty data.error property", async () => {

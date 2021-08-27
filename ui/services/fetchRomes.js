@@ -44,7 +44,6 @@ export default async function fetchRomes(
         (diploma) => (diploma = { ...diploma, label: _.capitalize(diploma.label) })
       );
     }
-    console.log("diplomas : ", diplomas);
 
     // on affiche d'abord jusqu'à 4 métiers puis jusqu'à 4 diplômes puis le reste s'il y a
     if (diplomas.length) {
@@ -60,8 +59,6 @@ export default async function fetchRomes(
       res = res.concat(response.data.labelsAndRomes.slice(4));
     }
   }
-
-  console.log("res : ",res);
 
   return res;
 }
