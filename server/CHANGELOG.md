@@ -7,11 +7,15 @@
 [747] Recherche par diplôme : recherche de formations/métiers sur la base d'un diplôme
 [748] Recherche par diplôme : utilisation urls directes
 
+## 1.15.13 [25/08/2021]
+[774] Se souvenir des actions d'un utilisateur lors d'une session
+
 ## 1.15.12 [19/08/2021]
 [705] Vérification des balises meta et title de chaque page
 [726][727] Memoization pour limiter des appels redondants
 [761] Erreurs catalogue HS non bloquantes
 [758] SEO des titres du catalogue
+[682] Sur les détails, positionner une question "allez-vous contacter cet établissement ?"
 
 ## 1.15.11 [22/07/2021]
 [719] Sitemap avancé
