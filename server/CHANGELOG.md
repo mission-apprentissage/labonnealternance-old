@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.16.0 [03/09/2021]
+[772] Internalisation ES catalogue
+
 ## 1.15.13 [25/08/2021]
 [774] Se souvenir des actions d'un utilisateur lors d'une session
 
