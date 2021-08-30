@@ -1,11 +1,11 @@
 const { connectToMongo } = require("../mongodb");
-const createUsers = require("./users");
+const createCatalogue = require("./catalogue");
 
 module.exports = async (options = {}) => {
-  const users = options.users || (await createUsers());
+  const catalogue = options.catalogue || createCatalogue();
 
   return {
-    users,
+    catalogue,
     db: options.db || (await connectToMongo()).db,
   };
 };
