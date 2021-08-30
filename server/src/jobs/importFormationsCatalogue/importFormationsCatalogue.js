@@ -23,7 +23,7 @@ const clearIndex = async () => {
   try {
     let client = getElasticInstance();
     logMessage("info", `Removing formations index...`);
-    await client.indices.delete({ index: "domainesmetiers" });
+    await client.indices.delete({ index: "convertedformation" });
   } catch (err) {
     logMessage("error", `Error emptying es index : ${err.message}`);
   }
@@ -36,6 +36,10 @@ const createIndex = async () => {
 };
 
 const importFormations = async (catalogue) => {
+  //TODO: faire un appel à countFormations
+
+  // passer à la suite seulement si le count est > 0
+
   logMessage("info", `Début import`);
 
   const stats = {
@@ -78,12 +82,43 @@ module.exports = async () => {
   try {
     logMessage("info", " -- Debut import formations catalogue -- ");
 
+    // step 1 : compte formations distantes.
+
+    // si ok
+
+    /* 
+      récupération dans base de la base de formations active = mnaFormations_0 | mnaFormations_1 .absolute
+
+      lancement travail dans autre base 
+      
+      quand travail terminé 
+
+      modification alias index principal
+
+      enregistrement en base de la nouvelle base / index master
+
+      POST _aliases
+      {
+        "actions": [
+          {
+            "add": {
+              "index": "convertedformations_1" | "convertedformations_2",
+              "alias": "convertedformations"
+            }
+          }
+        ]
+      }
+
+
+
+    */
+
     await emptyMongo();
     await clearIndex();
     await createIndex();
 
     logMessage("info", `Début traitement`);
-    //
+
     importFormations();
 
     logMessage("info", `Fin traitement`);
