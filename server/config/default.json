@@ -8,6 +8,9 @@
   },
   "slackWebhookUrl": null,
   "outputDir": ".local/output",
+  "tableCorrespondance": {
+    "endPoint": "placeholder"
+  },
   "private":
   {
     "apiKey": "12345",
