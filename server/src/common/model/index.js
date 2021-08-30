@@ -22,4 +22,5 @@ module.exports = {
     esIndexName: "convertedformation",
   }),
   ApiCalls: createModel("apicalls", schema.apiCallSchema),
+  SourceFormations: createModel("sourceformations", schema.sourceFormationsSchema),
 };

@@ -89,6 +89,12 @@ module.exports = async () => {
     /* 
       récupération dans base de la base de formations active = mnaFormations_0 | mnaFormations_1 .absolute
 
+      --> currentIndex = sourceFormations.getCurrentFormationsSource
+
+      currentIndex = currentIndex==="mnaFormations_0"?"mnaFormations_1":"mnaFormations_0";
+
+
+
       lancement travail dans autre base 
       
       quand travail terminé 
@@ -97,12 +103,14 @@ module.exports = async () => {
 
       enregistrement en base de la nouvelle base / index master
 
+      --> sourceFormations.updateFormationsSource(currentIndex)
+
       POST _aliases
       {
         "actions": [
           {
             "add": {
-              "index": "convertedformations_1" | "convertedformations_2",
+              "index": mnaFormations_0,
               "alias": "convertedformations"
             }
           }
