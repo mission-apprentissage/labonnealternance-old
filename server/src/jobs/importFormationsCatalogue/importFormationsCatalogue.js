@@ -1,8 +1,9 @@
 const _ = require("lodash");
 const logger = require("../../common/logger");
-const { DomainesMetiers } = require("../../common/model");
+const { ConvertedFormation } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
-//const { oleoduc } = require("oleoduc");
+const { oleoduc, writeData } = require("oleoduc");
+const { Readable } = require("stream");
 
 const logMessage = (level, msg) => {
   //console.log(msg);
@@ -15,7 +16,7 @@ const logMessage = (level, msg) => {
 
 const emptyMongo = async () => {
   logMessage("info", `Clearing formations db...`);
-  await DomainesMetiers.deleteMany({});
+  await ConvertedFormation.deleteMany({});
 };
 
 const clearIndex = async () => {
@@ -31,7 +32,44 @@ const clearIndex = async () => {
 const createIndex = async () => {
   let requireAsciiFolding = true;
   logMessage("info", `Creating formations index...`);
-  await DomainesMetiers.createMapping(requireAsciiFolding);
+  await ConvertedFormation.createMapping(requireAsciiFolding);
+};
+
+const importFormations = async (catalogue) => {
+  logMessage("info", `Début import`);
+
+  const stats = {
+    total: 0,
+    created: 0,
+    failed: 0,
+  };
+
+  try {
+    await catalogue.getConvertedFormations({ limit: 1000, query: {} }, async (chunck) => {
+      logger.info(`Inserting ${chunck.length} formations ...`);
+      await oleoduc(
+        Readable.from(chunck),
+        writeData(
+          async (e) => {
+            stats.total++;
+            try {
+              await ConvertedFormation.create(e);
+              stats.created++;
+            } catch (e) {
+              stats.failed++;
+              logger.error(e);
+            }
+          },
+          { parallel: 5 }
+        )
+      );
+    });
+    console.log({ stats });
+  } catch (e) {
+    // stop here if not able to get etablissements (keep existing ones)
+    logger.error("ConvertedFormation", e);
+    return;
+  }
 };
 
 module.exports = async () => {
@@ -42,12 +80,11 @@ module.exports = async () => {
 
     await emptyMongo();
     await clearIndex();
-
     await createIndex();
 
     logMessage("info", `Début traitement`);
-
     //
+    importFormations();
 
     logMessage("info", `Fin traitement`);
 
