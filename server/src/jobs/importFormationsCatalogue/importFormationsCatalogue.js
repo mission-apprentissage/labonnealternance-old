@@ -1,7 +1,9 @@
 const _ = require("lodash");
 const logger = require("../../common/logger");
-const { ConvertedFormation } = require("../../common/model");
+const { ConvertedFormation_0, ConvertedFormation_1 } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
+const { getConvertedFormations, countFormations } = require("../../common/components/catalogue");
+const { getCurrentFormationsSource /*, updateFormationsSource*/ } = require("../../common/components/sourceFormations");
 const { oleoduc, writeData } = require("oleoduc");
 const { Readable } = require("stream");
 
@@ -14,31 +16,35 @@ const logMessage = (level, msg) => {
   }
 };
 
-const emptyMongo = async () => {
+const emptyMongo = async (model) => {
   logMessage("info", `Clearing formations db...`);
-  await ConvertedFormation.deleteMany({});
+  await model.deleteMany({});
 };
 
-const clearIndex = async () => {
+const clearIndex = async (index) => {
   try {
     let client = getElasticInstance();
-    logMessage("info", `Removing formations index...`);
-    await client.indices.delete({ index: "convertedformation" });
+    logMessage("info", `Removing formations index ${index} ...`);
+    await client.indices.delete({ index });
   } catch (err) {
     logMessage("error", `Error emptying es index : ${err.message}`);
   }
 };
 
-const createIndex = async () => {
+const createIndex = async (workMongo) => {
   let requireAsciiFolding = true;
-  logMessage("info", `Creating formations index...`);
-  await ConvertedFormation.createMapping(requireAsciiFolding);
+  logMessage("info", `Creating formations index ...`);
+  await workMongo.createMapping(requireAsciiFolding);
 };
 
-const importFormations = async (catalogue) => {
-  //TODO: faire un appel à countFormations
+const cleanIndexAndDb = async ({ workIndex, workMongo }) => {
+  await emptyMongo(workMongo);
+  await clearIndex(workIndex);
+  await createIndex(workIndex);
+};
 
-  // passer à la suite seulement si le count est > 0
+const importFormations = async ({ workIndex, workMongo }) => {
+  //TODO: faire un appel à countFormations
 
   logMessage("info", `Début import`);
 
@@ -49,7 +55,7 @@ const importFormations = async (catalogue) => {
   };
 
   try {
-    await catalogue.getConvertedFormations({ limit: 1000, query: {} }, async (chunck) => {
+    await getConvertedFormations({ limit: 10, query: {} }, async (chunck) => {
       logger.info(`Inserting ${chunck.length} formations ...`);
       await oleoduc(
         Readable.from(chunck),
@@ -57,7 +63,7 @@ const importFormations = async (catalogue) => {
           async (e) => {
             stats.total++;
             try {
-              await ConvertedFormation.create(e);
+              await workMongo.create(e);
               stats.created++;
             } catch (e) {
               stats.failed++;
@@ -71,7 +77,7 @@ const importFormations = async (catalogue) => {
     console.log({ stats });
   } catch (e) {
     // stop here if not able to get etablissements (keep existing ones)
-    logger.error("ConvertedFormation", e);
+    logger.error("ConvertedFormation", workIndex, e);
     return;
   }
 };
@@ -80,18 +86,44 @@ module.exports = async () => {
   let step = 0;
 
   try {
-    logMessage("info", " -- Debut import formations catalogue -- ");
+    logMessage("info", " -- Import formations catalogue -- ");
+
+    logMessage("info", `Début traitement`);
 
     // step 1 : compte formations distantes.
 
-    // si ok
+    const formationCount = await countFormations();
 
-    /* 
-      récupération dans base de la base de formations active = mnaFormations_0 | mnaFormations_1 .absolute
+    console.log("décompte ? ", formationCount);
+
+    // passer à la suite seulement si le count est > 0
+
+    if (formationCount > 0) {
+      // si ok
+
+      const currentIndex = await getCurrentFormationsSource();
+
+      console.log("currentIndex : ", currentIndex);
+
+      let workIndex = "convertedformation_0";
+      let workMongo = ConvertedFormation_0;
+
+      if (currentIndex === "convertedformation_0") {
+        workIndex = "convertedformation_1";
+        workMongo = ConvertedFormation_1;
+      }
+
+      cleanIndexAndDb({ workIndex, workMongo });
+      importFormations({ workIndex, workMongo });
+
+      //await updateFormationsSource(currentIndex);
+
+      /* 
+      récupération dans base de la base de formations active = convertedformation_0 | convertedformation_1 .absolute
 
       --> currentIndex = sourceFormations.getCurrentFormationsSource
 
-      currentIndex = currentIndex==="mnaFormations_0"?"mnaFormations_1":"mnaFormations_0";
+      currentIndex = ;
 
 
 
@@ -121,14 +153,14 @@ module.exports = async () => {
 
     */
 
+      /*
     await emptyMongo();
     await clearIndex();
     await createIndex();
+      */
 
-    logMessage("info", `Début traitement`);
-
-    importFormations();
-
+      //importFormations();
+    }
     logMessage("info", `Fin traitement`);
 
     return {
