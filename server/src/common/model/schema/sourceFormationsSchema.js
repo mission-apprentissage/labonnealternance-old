@@ -3,7 +3,7 @@ const sourceFormationsSchema = {
     type: String,
     default: null,
     description:
-      "Base de données source des formations derrière l'alias convertedformations. mnaFormations_0 OU mnaFormations_1",
+      "Base de données source des formations derrière l'alias convertedformations. convertedformation_0 OU convertedformation_1",
   },
   created_at: {
     type: Date,
