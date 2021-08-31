@@ -18,8 +18,11 @@ module.exports = {
   DomainesMetiers: createModel("domainesmetiers", schema.domainesMetiersSchema, {
     esIndexName: "domainesmetiers",
   }),
-  ConvertedFormation: createModel("convertedformation", schema.mnaFormationSchema, {
-    esIndexName: "convertedformation",
+  ConvertedFormation_0: createModel("convertedformation_0", schema.mnaFormationSchema, {
+    esIndexName: "convertedformation_0",
+  }),
+  ConvertedFormation_1: createModel("convertedformation_1", schema.mnaFormationSchema, {
+    esIndexName: "convertedformation_1",
   }),
   ApiCalls: createModel("apicalls", schema.apiCallSchema),
   SourceFormations: createModel("sourceformations", schema.sourceFormationsSchema),
