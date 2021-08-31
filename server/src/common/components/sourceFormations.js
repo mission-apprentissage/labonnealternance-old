@@ -1,33 +1,45 @@
 const { SourceFormations } = require("../model");
 
-module.exports = async () => {
-  return {
-    getCurrentFormationsSource: async () => {
-      const sourceFormation = await SourceFormations.find({});
-      return sourceFormation[0]?.currentIndex || "mnaFormations_1";
-    },
-    updateFormationsSource: async (newSource) => {
-      let currentSourceFormation = await SourceFormations.find({});
+const getCurrentFormationsSource = async () => {
+  try {
+    const sourceFormation = await SourceFormations.find({});
 
-      let sourceFormation = null;
+    console.log("getCurrentFormationsSource ", sourceFormation);
 
-      if (currentSourceFormation && currentSourceFormation[0]) {
-        sourceFormation = currentSourceFormation[0];
-        sourceFormation.currentIndex = newSource;
-      } else {
-        sourceFormation = new SourceFormations({
-          currentIndex: newSource,
-        });
-      }
-      await sourceFormation.save();
+    return sourceFormation[0]?.currentIndex || "convertedformation_1";
+  } catch (err) {
+    console.log("err getCurrentFormationSource ", err);
 
-      /*
-        todo: jouer avec les requêtes pour voir les résultats de find vs. findOne 
+    return "convertedformation_1";
+  }
+};
 
-        voir ce qu'on retourne, gérer les erreurs
-      */
+const updateFormationsSource = async (newSource) => {
+  try {
+    let currentSourceFormation = await SourceFormations.find({});
 
-      return "";
-    },
-  };
+    let sourceFormation = null;
+
+    if (currentSourceFormation && currentSourceFormation[0]) {
+      console.log("source actuelle ", currentSourceFormation);
+      sourceFormation = currentSourceFormation[0];
+      sourceFormation.currentIndex = newSource;
+      sourceFormation.last_update_at = new Date();
+    } else {
+      console.log("pas encore de source sauvée ");
+      sourceFormation = new SourceFormations({
+        currentIndex: newSource,
+      });
+    }
+    let saveResult = await sourceFormation.save();
+
+    console.log("source sauvée ", saveResult);
+  } catch (err) {
+    console.log("error saving formationSource ", err);
+  }
+};
+
+module.exports = {
+  getCurrentFormationsSource,
+  updateFormationsSource,
 };
