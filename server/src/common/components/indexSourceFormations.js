@@ -1,6 +1,6 @@
 const { SourceFormations } = require("../model");
 
-const getCurrentFormationsSource = async () => {
+const getCurrentFormationsSourceIndex = async () => {
   try {
     const sourceFormation = await SourceFormations.find({});
 
@@ -14,7 +14,7 @@ const getCurrentFormationsSource = async () => {
   }
 };
 
-const updateFormationsSource = async (newSource) => {
+const updateFormationsSourceIndex = async (newSource) => {
   try {
     let currentSourceFormation = await SourceFormations.find({});
 
@@ -40,6 +40,6 @@ const updateFormationsSource = async (newSource) => {
 };
 
 module.exports = {
-  getCurrentFormationsSource,
-  updateFormationsSource,
+  getCurrentFormationsSourceIndex,
+  updateFormationsSourceIndex,
 };

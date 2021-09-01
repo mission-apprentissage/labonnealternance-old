@@ -3,7 +3,10 @@ const logger = require("../../common/logger");
 const { ConvertedFormation_0, ConvertedFormation_1 } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
 const { getConvertedFormations, countFormations } = require("../../common/components/catalogue");
-const { getCurrentFormationsSource /*, updateFormationsSource*/ } = require("../../common/components/sourceFormations");
+const {
+  getCurrentFormationsSourceIndex,
+  updateFormationsSourceIndex,
+} = require("../../common/components/indexSourceFormations");
 const { oleoduc, writeData } = require("oleoduc");
 const { Readable } = require("stream");
 
@@ -101,7 +104,7 @@ module.exports = async () => {
     if (formationCount > 0) {
       // si ok
 
-      const currentIndex = await getCurrentFormationsSource();
+      const currentIndex = await getCurrentFormationsSourceIndex();
 
       console.log("currentIndex : ", currentIndex);
 
@@ -116,7 +119,7 @@ module.exports = async () => {
       cleanIndexAndDb({ workIndex, workMongo });
       importFormations({ workIndex, workMongo });
 
-      //await updateFormationsSource(currentIndex);
+      await updateFormationsSourceIndex(currentIndex);
 
       /* 
       récupération dans base de la base de formations active = convertedformation_0 | convertedformation_1 .absolute
