@@ -116,10 +116,12 @@ module.exports = async () => {
         workMongo = ConvertedFormation_1;
       }
 
-      cleanIndexAndDb({ workIndex, workMongo });
-      importFormations({ workIndex, workMongo });
+      await cleanIndexAndDb({ workIndex, workMongo });
+      await importFormations({ workIndex, workMongo });
 
-      await updateFormationsSourceIndex(currentIndex);
+      await updateFormationsSourceIndex(workIndex);
+
+      console.log("updated at ", workIndex);
 
       /* 
       récupération dans base de la base de formations active = convertedformation_0 | convertedformation_1 .absolute
