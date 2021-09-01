@@ -40,7 +40,7 @@ const createIndex = async (workMongo) => {
 const cleanIndexAndDb = async ({ workIndex, workMongo }) => {
   await emptyMongo(workMongo);
   await clearIndex(workIndex);
-  await createIndex(workIndex);
+  await createIndex(workMongo);
 };
 
 const importFormations = async ({ workIndex, workMongo }) => {
