@@ -61,7 +61,7 @@ const importFormations = async ({ workIndex, workMongo }) => {
   try {
     // TODO: ajouter filtre publié dans la query
 
-    await getConvertedFormations({ limit: 10, query: {} }, async (chunck) => {
+    await getConvertedFormations({ limit: 100, query: { published: true } }, async (chunck) => {
       logger.info(`Inserting ${chunck.length} formations ...`);
       await oleoduc(
         Readable.from(chunck),
