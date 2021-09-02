@@ -46,11 +46,13 @@ export const searchForTrainingsFunction = async ({
       setTrainingSearchError(trainingErrorText);
     } else {
       if (values?.job?.type) {
-        SendTrackEvent({
-          event: `Résultat recherche formation par ${values.job.type === "job" ? "Métier" : "Diplôme"}`,
-          label: values.job.label,
-          nb_formations: response.data.results.length,
-        });
+        try {
+          SendTrackEvent({
+            event: `Résultat recherche formation par ${values.job.type === "job" ? "Métier" : "Diplôme"}`,
+            label: values.job.label,
+            nb_formations: response.data.results.length,
+          });
+        } catch (err) {}
       }
     }
 
