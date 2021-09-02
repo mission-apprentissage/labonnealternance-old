@@ -7,8 +7,9 @@ import { SendTrackEvent } from "utils/gtm";
 import { isNonEmptyString, capitalizeFirstLetter } from "utils/strutils";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
-import GoingToContactQuestion from "./GoingToContactQuestion";
-import { getItemId } from "utils/getItemId";
+
+import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -154,7 +155,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
-        <GoingToContactQuestion kind={kind} uniqId={getItemId(job)} key={getItemId(job)} />
+        <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, job)} key={getGoingtoId(kind, job)} />
 
         <div className="mt-3">&nbsp;</div>
       </div>

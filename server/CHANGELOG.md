@@ -1,6 +1,13 @@
 # CHANGELOG
+## 1.16.0 [25/08/2021]
+[744] Recherche par diplôme : alimentation de la base
+[745] Recherche par diplôme : remontée des résutats de recherche
+[746] Recherche par diplôme : présentation du champ de recherche avec séparations par titre
+[747] Recherche par diplôme : recherche de formations/métiers sur la base d'un diplôme
+[748] Recherche par diplôme : utilisation urls directes
 
-## 1.15.13 [26/08/2021]
+## 1.15.13 [25/08/2021]
+[774] Se souvenir des actions d'un utilisateur lors d'une session
 [709] Correction bug responsive design
 
 ## 1.15.12 [19/08/2021]
