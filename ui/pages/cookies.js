@@ -27,7 +27,7 @@ const Cookies = () => (
           <hr className="c-page-title-separator" align="left" />
         </div>
         <div className="col-12 col-md-7">
-          <h2 class="h3">1. Qu'est-ce qu'un cookie ?</h2>
+          <h2 className="h3">1. Qu'est-ce qu'un cookie ?</h2>
           <p>
             <span className="d-block">Un cookie est un petit fichier texte déposé sur le terminal des utilisateurs (par  exemple un ordinateur, une tablette, un « Smartphone», etc.) lors de la visite d’un site internet.</span>
           </p>
@@ -38,9 +38,9 @@ const Cookies = () => (
             <span className="d-block">Seul l’émetteur d’un cookie est susceptible de lire, enregistrer ou de modifier les informations qui y sont contenues.</span>
           </p>
 
-          <h2 class="h3">2. Les cookies déposés sur le site</h2>
-          <h3 class="h4">Cookies strictement nécessaires au fonctionnement du site</h3>
-          <p>
+          <h2 className="h3">2. Les cookies déposés sur le site</h2>
+          <h3 className="h4 mt-4">Cookies strictement nécessaires au fonctionnement du site</h3>
+          <p className="mt-3">
             <span className="d-block">
               Des cookies sont utilisés sur le site 
               <a href="https://labonnealternance.pole-emploi.fr/" target="_blank" rel="noopener noreferrer">La Bonne Alternance</a>
@@ -53,7 +53,7 @@ const Cookies = () => (
             <span className="d-block">L’utilisateur peut cependant s’opposer à leur dépôt en suivant les indications données au point 3.</span>
           </p>
           
-          <h3 class="h4">Cookies statistiques ou de mesure d’audience</h3>
+          <h3 className="h4 mt-4">Cookies statistiques ou de mesure d’audience</h3>
           <p>
             <span className="d-block">
               Des cookies sont utilisés sur le site 
@@ -75,7 +75,7 @@ const Cookies = () => (
             <span className="d-block">Pour plus d’informations sur les cookies notamment sur le type de cookies déposés ainsi que leurs finalités précises, vous pouvez consulter la plateforme de gestion du consentement, disponible ici.</span>
           </p>
 
-          <h2 class="h3">3. Accepter ou refuser les cookies</h2>
+          <h2 className="h3">3. Accepter ou refuser les cookies</h2>
           <p>
             <span className="d-block">
               L’utilisateur dispose de différents moyens pour gérer ses choix en matière de cookies. 
@@ -87,12 +87,12 @@ const Cookies = () => (
             </span>
           </p>
 
-          <h3 class="h4">Cookies statistiques ou de mesure d’audience</h3>
+          <h3 className="h4">Cookies statistiques ou de mesure d’audience</h3>
           <p>
             <span className="d-block">Pour les cookies donnant lieu à consentement préalable, l’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en formulant des choix sur la plateforme de gestion du consentement via  ce lien dédié.</span>
           </p>
 
-          <h3 class="h4">Le paramétrage du navigateur</h3>
+          <h3 className="h4">Le paramétrage du navigateur</h3>
           <p>
             <span className="d-block">L’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en modifiant les paramètres de son navigateur (consulter la fonction « Aide » du navigateur pour en savoir plus) ou en se rendant sur l’une des pages suivantes, selon le navigateur utilisé :</span>
           </p>
@@ -101,7 +101,7 @@ const Cookies = () => (
           <li>Mozilla Firefox : <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies" target="_blank" rel="noopener noreferrer">(https://support.mozilla.org/fr/kb/activer-desactiver-cookies)</a></li>
           <li>Safari : <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">(https://support.apple.com/fr-fr/guide/safari/sfri11471/mac)</a></li>
 
-          <p>
+          <p className="mt-3">
             <span className="d-block">Pour information, la plupart des navigateurs acceptent par défaut le dépôt de cookies. L’utilisateur peut modifier ses choix en matière de cookies à tout moment. Le paramétrage des cookies est susceptible de modifier les conditions de navigation sur le site internet, ainsi que les conditions d’accès à certains services, et d'entraîner des dysfonctionnements de certaines fonctionnalités.</span>
           </p>
           <p>
