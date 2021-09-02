@@ -61,7 +61,7 @@ const importFormations = async ({ workIndex, workMongo }) => {
   try {
     // TODO: ajouter filtre publié dans la query
 
-    await getConvertedFormations({ limit: 100, query: { published: true } }, async (chunck) => {
+    await getConvertedFormations({ limit: 1000, query: { published: true } }, async (chunck) => {
       logger.info(`Inserting ${chunck.length} formations ...`);
       await oleoduc(
         Readable.from(chunck),
@@ -129,10 +129,20 @@ module.exports = async () => {
 
       stats = await importFormations({ workIndex, workMongo });
 
-      await updateFormationsSourceIndex(workIndex);
-      await updateFormationsIndexAlias({ masterIndex: workIndex, indexToUnAlias: currentIndex });
+      const savedSource = await updateFormationsSourceIndex(workIndex);
 
-      console.log("updated at ", workIndex);
+      logMessage("info", "Source updated in mongo ", savedSource.currentIndex);
+
+      const savedIndexAliasResult = await updateFormationsIndexAlias({
+        masterIndex: workIndex,
+        indexToUnAlias: currentIndex,
+      });
+
+      if (savedIndexAliasResult === "ok") {
+        logMessage("info", "Alias updated in ES ", workIndex);
+      } else {
+        logMessage("error", "Alias not updated in ES ", workIndex);
+      }
     }
     logMessage("info", `Fin traitement`);
 
