@@ -80,11 +80,11 @@ const importFormations = async ({ workIndex, workMongo }) => {
         )
       );
     });
-    console.log({ stats });
+    return stats;
   } catch (e) {
     // stop here if not able to get etablissements (keep existing ones)
-    logger.error("ConvertedFormation", workIndex, e);
-    return;
+    logger.error("Error fetching formations from Catalogue", workIndex, e);
+    throw new Error("Error fetching formations from Catalogue");
   }
 };
 
@@ -104,6 +104,13 @@ module.exports = async () => {
 
     // passer à la suite seulement si le count est > 0
 
+    let stats = {
+      total: 0,
+      created: 0,
+      failed: 0,
+    };
+    let workIndex = "convertedformation_0";
+
     if (formationCount > 0) {
       // si ok
 
@@ -111,7 +118,6 @@ module.exports = async () => {
 
       console.log("currentIndex : ", currentIndex);
 
-      let workIndex = "convertedformation_0";
       let workMongo = ConvertedFormation_0;
 
       if (currentIndex === "convertedformation_0") {
@@ -120,10 +126,11 @@ module.exports = async () => {
       }
 
       await cleanIndexAndDb({ workIndex, workMongo });
-      await importFormations({ workIndex, workMongo });
+
+      stats = await importFormations({ workIndex, workMongo });
 
       await updateFormationsSourceIndex(workIndex);
-      await updateFormationsIndexAlias(workIndex);
+      await updateFormationsIndexAlias({ masterIndex: workIndex, indexToUnAlias: currentIndex });
 
       console.log("updated at ", workIndex);
     }
@@ -131,7 +138,9 @@ module.exports = async () => {
 
     return {
       result: "Import formations catalogue terminé",
-      //avertissements,
+      index_maitre: workIndex,
+      nb_formations: stats.created,
+      erreurs: stats.failed,
     };
   } catch (err) {
     console.log("error step ", step);
