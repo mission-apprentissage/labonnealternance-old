@@ -1,5 +1,4 @@
 # CHANGELOG
-
 ## 1.16.0 [25/08/2021]
 [744] Recherche par diplôme : alimentation de la base
 [745] Recherche par diplôme : remontée des résutats de recherche
@@ -9,6 +8,7 @@
 
 ## 1.15.13 [25/08/2021]
 [774] Se souvenir des actions d'un utilisateur lors d'une session
+[709] Correction bug responsive design
 
 ## 1.15.12 [19/08/2021]
 [705] Vérification des balises meta et title de chaque page
