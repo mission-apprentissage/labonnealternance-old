@@ -1,4 +1,9 @@
 # CHANGELOG
+
+## 1.16.1 [02/09/2021]
+[749] Mise en conformité RGPD
+
+
 ## 1.16.0 [25/08/2021]
 [744] Recherche par diplôme : alimentation de la base
 [745] Recherche par diplôme : remontée des résutats de recherche
