@@ -75,7 +75,38 @@ const Cookies = () => (
             <span className="d-block">Pour plus d’informations sur les cookies notamment sur le type de cookies déposés ainsi que leurs finalités précises, vous pouvez consulter la plateforme de gestion du consentement, disponible ici.</span>
           </p>
 
+          <h2 class="h3">3. Accepter ou refuser les cookies</h2>
+          <p>
+            <span className="d-block">
+              L’utilisateur dispose de différents moyens pour gérer ses choix en matière de cookies. 
+              Les modalités de gestion diffèrent selon que le cookie est soumis ou non à consentement préalable. 
+              L’utilisateur peut modifier ses choix à tout moment. 
+              Pour information, le paramétrage des cookies est susceptible de modifier les conditions de navigation 
+              sur le site internet <a href="https://labonnealternance.pole-emploi.fr/" target="_blank" rel="noopener noreferrer">La Bonne Alternance</a>,
+              ainsi que les conditions d’accès à certains services et d’entrainer des dysfonctionnements de certaines fonctionnalités.
+            </span>
+          </p>
 
+          <h3 class="h4">Cookies statistiques ou de mesure d’audience</h3>
+          <p>
+            <span className="d-block">Pour les cookies donnant lieu à consentement préalable, l’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en formulant des choix sur la plateforme de gestion du consentement via  ce lien dédié.</span>
+          </p>
+
+          <h3 class="h4">Le paramétrage du navigateur</h3>
+          <p>
+            <span className="d-block">L’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en modifiant les paramètres de son navigateur (consulter la fonction « Aide » du navigateur pour en savoir plus) ou en se rendant sur l’une des pages suivantes, selon le navigateur utilisé :</span>
+          </p>
+          <li>Google Chrome : <a href="https://support.google.com/chrome/answer/95647?hl=fr" target="_blank" rel="noopener noreferrer">(https://support.google.com/chrome/answer/95647?hl=fr)</a></li>
+          <li>Internet Explorer : <a href="https://support.microsoft.com/fr-fr/help/17442" target="_blank" rel="noopener noreferrer">(https://support.microsoft.com/fr-fr/help/17442)</a></li>
+          <li>Mozilla Firefox : <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies" target="_blank" rel="noopener noreferrer">(https://support.mozilla.org/fr/kb/activer-desactiver-cookies)</a></li>
+          <li>Safari : <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">(https://support.apple.com/fr-fr/guide/safari/sfri11471/mac)</a></li>
+
+          <p>
+            <span className="d-block">Pour information, la plupart des navigateurs acceptent par défaut le dépôt de cookies. L’utilisateur peut modifier ses choix en matière de cookies à tout moment. Le paramétrage des cookies est susceptible de modifier les conditions de navigation sur le site internet, ainsi que les conditions d’accès à certains services, et d'entraîner des dysfonctionnements de certaines fonctionnalités.</span>
+          </p>
+          <p>
+            <span className="d-block">Pour plus d’informations sur les cookies et les moyens permettant d’empêcher leur installation, l’utilisateur peut se rendre sur la page dédiée sur le site internet de la CNIL : <a href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser." target="_blank" rel="noopener noreferrer">https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser</a>.</span>
+          </p>
         </div>
       </div>
     </div>
