@@ -105,6 +105,7 @@ const getLabelsAndRomes = async (searchKeyword) => {
       logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
     } else {
       logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
+      console.log(error_msg);
     }
 
     return { error: error_msg };
