@@ -127,11 +127,11 @@ const Footer = (props) => {
                     className="c-footer-links__link"
                     onClick={(e) => {
                       e.preventDefault();
-                      dispatch(push({ pathname: "/rgpd" }));
+                      dispatch(push({ pathname: "/cookies" }));
                     }}
-                    href="/rgpd"
+                    href="/cookies"
                   >
-                    RGPD
+                    Cookies
                   </a>
                 </li>
 

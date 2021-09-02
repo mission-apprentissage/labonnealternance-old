@@ -5,16 +5,17 @@ import Breadcrumb from "components/breadcrumb";
 import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
-const RGPD = () => (
+
+const Cookies = () => (
   <div>
     <NextSeo
-      title="RGPD | La Bonne Alternance | Trouvez votre alternance"
+      title="Cookies | La Bonne Alternance | Trouvez votre alternance"
       description="Politique de confidentialité, traitement des données à caractère personnel sur le site de La Bonne Alternance."
     />
 
     <ScrollToTop />
     <Navigation />
-    <Breadcrumb forPage="rgpd" label="RGPD" />
+    <Breadcrumb forPage="cookies" label="Cookies" />
 
     <div className="c-page-container container my-0 mb-sm-5 p-5">
       <div className="row">
@@ -233,4 +234,4 @@ dans l'économie numérique et par les articles 1 et 3 du décret n°2011-219 du
   </div>
 );
 
-export default RGPD;
+export default Cookies;
