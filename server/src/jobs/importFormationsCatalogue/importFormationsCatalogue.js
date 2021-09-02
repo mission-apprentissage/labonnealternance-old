@@ -6,6 +6,7 @@ const { getConvertedFormations, countFormations } = require("../../common/compon
 const {
   getCurrentFormationsSourceIndex,
   updateFormationsSourceIndex,
+  updateFormationsIndexAlias,
 } = require("../../common/components/indexSourceFormations");
 const { oleoduc, writeData } = require("oleoduc");
 const { Readable } = require("stream");
@@ -58,6 +59,8 @@ const importFormations = async ({ workIndex, workMongo }) => {
   };
 
   try {
+    // TODO: ajouter filtre publié dans la query
+
     await getConvertedFormations({ limit: 10, query: {} }, async (chunck) => {
       logger.info(`Inserting ${chunck.length} formations ...`);
       await oleoduc(
@@ -120,51 +123,9 @@ module.exports = async () => {
       await importFormations({ workIndex, workMongo });
 
       await updateFormationsSourceIndex(workIndex);
+      await updateFormationsIndexAlias(workIndex);
 
       console.log("updated at ", workIndex);
-
-      /* 
-      récupération dans base de la base de formations active = convertedformation_0 | convertedformation_1 .absolute
-
-      --> currentIndex = sourceFormations.getCurrentFormationsSource
-
-      currentIndex = ;
-
-
-
-      lancement travail dans autre base 
-      
-      quand travail terminé 
-
-      modification alias index principal
-
-      enregistrement en base de la nouvelle base / index master
-
-      --> sourceFormations.updateFormationsSource(currentIndex)
-
-      POST _aliases
-      {
-        "actions": [
-          {
-            "add": {
-              "index": mnaFormations_0,
-              "alias": "convertedformations"
-            }
-          }
-        ]
-      }
-
-
-
-    */
-
-      /*
-    await emptyMongo();
-    await clearIndex();
-    await createIndex();
-      */
-
-      //importFormations();
     }
     logMessage("info", `Fin traitement`);
 
