@@ -19,7 +19,7 @@ const getConvertedFormations = async (options, chunckCallback = null) => {
         await chunckCallback(allFormations);
         allFormations = [];
       }
-      return getConvertedFormations({ page: page + 1, allFormations, limit }, chunckCallback);
+      return getConvertedFormations({ page: page + 1, allFormations, limit, query }, chunckCallback);
     } else {
       if (chunckCallback) {
         await chunckCallback(allFormations);
