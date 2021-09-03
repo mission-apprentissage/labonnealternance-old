@@ -172,8 +172,8 @@ const Styleguide = () => {
 
         <p>Un simple paragraphe avec du texte. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius iure sapiente, ab ea aliquid minima animi maxime incidunt accusantium, sunt cupiditate soluta perferendis deleniti vitae commodi ratione fugiat ut quidem.</p>
         
-        <p>Et voici&nbsp;
-          <a href="https://labonnealternance.pole-emploi.fr/" target="_blank" rel="noopener noreferrer">un lien vers la home</a>.
+        <p>Et voici
+          {" "}<a href="https://labonnealternance.pole-emploi.fr/" rel="noopener noreferrer">un lien vers la home</a>.
         </p>
         <p className="lead">Ceci est un paragraphe avec de l'emphase (classe "lead" appliquée).</p>
 

@@ -42,9 +42,7 @@ const Cookies = () => (
           <h3 className="h4 c-faq-question-small mt-4">Cookies strictement nécessaires au fonctionnement du site</h3>
           <p className="mt-3">
             <span className="d-block">
-              Des cookies sont utilisés sur le site 
-              <a href="https://labonnealternance.pole-emploi.fr/" target="_blank" rel="noopener noreferrer">La Bonne Alternance</a>
-              La Bonne Alternance pour permettre le bon fonctionnement du site internet et l’utilisation des principales fonctionnalités du site.</span>
+              Des cookies sont utilisés sur le site <a href="https://labonnealternance.pole-emploi.fr/" target="_blank" rel="noopener noreferrer">La Bonne Alternance</a> pour permettre le bon fonctionnement du site internet et l’utilisation des principales fonctionnalités du site.</span>
           </p>
           <p>
             <span className="d-block">Ces cookies ne sont pas soumis au consentement de l’utilisateur. Ils permettent par exemple le maintien de la connexion ou la conservation du choix de l’usager sur le dépôt des cookies. Sans ces cookies, l’utilisation du site peut être dégradée et l’accès à certains services être rendu impossible. Il est déconseillé de les désactiver.</span>
@@ -57,7 +55,7 @@ const Cookies = () => (
           <p>
             <span className="d-block">
               Des cookies sont utilisés sur le site 
-              <a href="https://labonnealternance.pole-emploi.fr/" target="_blank" rel="noopener noreferrer">La Bonne Alternance</a>
+              {" "}<a href="https://labonnealternance.pole-emploi.fr/" target="_blank" rel="noopener noreferrer">La Bonne Alternance</a>{" "}
               afin d’effectuer de la mesure d’audience, des analyses statistiques dans le but d'améliorer l'expérience utilisateur et la performance du site internet. Ces cookies sont déposés par des tiers pour le compte de Pôle emploi.
             </span>
           </p>
@@ -65,7 +63,7 @@ const Cookies = () => (
             <span className="d-block">
               Concernant le dépôt des cookies Google Analytics et Google Optimize, 
               la société Google collecte par l’intermédiaire de ce cookie des données pour son propre compte dans les conditions définies dans sa politique de confidentialité accessible par le lien suivant : 
-              <a href="https://policies.google.com/technologies/partner-sites?gl=fr" target="_blank" rel="noopener noreferrer">https://policies.google.com/technologies/partner-sites?gl=fr</a>
+              {" "}<a href="https://policies.google.com/technologies/partner-sites?gl=fr" target="_blank" rel="noopener noreferrer">https://policies.google.com/technologies/partner-sites?gl=fr</a>{" "}
             </span>
           </p>
           <p>
