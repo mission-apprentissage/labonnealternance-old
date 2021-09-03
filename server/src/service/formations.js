@@ -1,3 +1,4 @@
+const { getFormationsES } = require("../common/esClient");
 const axios = require("axios");
 const config = require("config");
 const Sentry = require("@sentry/node");
@@ -12,6 +13,8 @@ const formationResultLimit = 500;
 const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
 
 const lbfDescriptionUrl = "https://labonneformation.pole-emploi.fr/api/v1/detail";
+
+const esClient = getFormationsES();
 
 const publishedMustTerm = {
   match: {
@@ -90,43 +93,42 @@ const getFormations = async ({
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
-    const body = {
-      query: {
-        bool: {
-          must: mustTerm,
-          filter: {
-            geo_distance: {
-              distance: `${distance}km`,
-              idea_geo_coordonnees_etablissement: {
-                lat: coords[1],
-                lon: coords[0],
+    const responseFormations = await esClient.search({
+      ...esQueryIndexFragment,
+      body: {
+        query: {
+          bool: {
+            must: mustTerm,
+            filter: {
+              geo_distance: {
+                distance: `${distance}km`,
+                idea_geo_coordonnees_etablissement: {
+                  lat: coords[1],
+                  lon: coords[0],
+                },
               },
             },
           },
         },
-      },
-      sort: [
-        {
-          _geo_distance: {
-            idea_geo_coordonnees_etablissement: [parseFloat(coords[0]), parseFloat(coords[1])],
-            order: "asc",
-            unit: "km",
-            mode: "min",
-            distance_type: "arc",
-            ignore_unmapped: true,
+        sort: [
+          {
+            _geo_distance: {
+              idea_geo_coordonnees_etablissement: [parseFloat(coords[0]), parseFloat(coords[1])],
+              order: "asc",
+              unit: "km",
+              mode: "min",
+              distance_type: "arc",
+              ignore_unmapped: true,
+            },
           },
-        },
-      ],
-    };
-
-    const responseFormations = await axios.post(urlCatalogueSearch, body, {
-      params: esQueryIndexFragment,
+        ],
+      },
     });
 
     //throw new Error("BOOM");
     let formations = [];
 
-    responseFormations.data.hits.hits.forEach((formation) => {
+    responseFormations.body.hits.hits.forEach((formation) => {
       formations.push({ source: formation._source, sort: formation.sort, id: formation._id });
     });
 
@@ -675,7 +677,7 @@ const getFormationsParRegionQuery = async (query) => {
 const getFormationEsQueryIndexFragment = (limit) => {
   return {
     //index: "mnaformation",
-    index: "convertedformation",
+    index: "convertedformations",
     size: limit,
     _sourceIncludes: [
       "etablissement_formateur_siret",
