@@ -59,7 +59,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
           <Form className="c-logobar-form c-searchform">
             <div className={`formGroup formGroup--logobar ${errors.job ? "formGroup--logobar-onerror" : ""}`}>
               <AutoCompleteField
-                kind="Métier *"
+                kind="Métier ou diplôme *"
                 items={[]}
                 initialSelectedItem={contextFormValues?.job || null}
                 itemToStringFunction={autoCompleteToStringFunction}
@@ -67,8 +67,13 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 compareItemFunction={compareAutoCompleteValues}
                 onInputValueChangeFunction={jobChanged}
                 name="jobField"
-                placeholder={isHome ? "Indiquez le métier recherché" : "Ex : boulangerie"}
-                searchPlaceholder="Indiquez le métier recherché ci-dessus"
+                placeholder={isHome ? "Indiquez un métier ou diplôme" : "Ex : boulangerie"}
+                searchPlaceholder="Indiquez un métier ou diplôme ci-dessus"
+                splitItemsByTypes={[
+                  { type: "diploma", typeLabel: "Diplômes", size: 4 },
+                  { type: "job", typeLabel: "Métiers", size: 4 },
+                  { typeLabel: "...autres métiers et diplômes" },
+                ]}
               />
             </div>
             <div className="ml-3">

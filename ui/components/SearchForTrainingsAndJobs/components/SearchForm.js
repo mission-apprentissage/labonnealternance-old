@@ -78,7 +78,7 @@ const SearchForm = (props) => {
                       <h1 className="h6 font-weight-bold">Votre recherche</h1>
                       <div className={`${errors.job ? "c-searchform--onerror" : ""}`}>
                         <AutoCompleteField
-                          kind="Métier *"
+                          kind="Métier ou diplôme *"
                           items={[]}
                           initialSelectedItem={contextFormValues?.job || null}
                           itemToStringFunction={autoCompleteToStringFunction}
@@ -87,7 +87,12 @@ const SearchForm = (props) => {
                           onInputValueChangeFunction={jobChanged}
                           name="jobField"
                           placeholder="Ex : boulangerie"
-                          searchPlaceholder="Indiquez le métier recherché ci-dessus"
+                          searchPlaceholder="Indiquez un métier ou diplôme ci-dessus"
+                          splitItemsByTypes={[
+                            { type: "diploma", typeLabel: "Diplômes", size: 4 },
+                            { type: "job", typeLabel: "Métiers", size: 4 },
+                            { typeLabel: "...autres métiers et diplômes" },
+                          ]}
                         />
                         <ErrorMessage name="job" className="errorField" component="div" />
                       </div>

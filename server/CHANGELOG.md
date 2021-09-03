@@ -1,10 +1,20 @@
 # CHANGELOG
 
-## 1.16.1 [03/09/2021]
+## 1.16.1 [06/09/2021]
 [772] Internalisation ES catalogue
+
+## 1.16.0 [25/08/2021]
+[744] Recherche par diplôme : alimentation de la base
+[745] Recherche par diplôme : remontée des résutats de recherche
+[746] Recherche par diplôme : présentation du champ de recherche avec séparations par titre
+[747] Recherche par diplôme : recherche de formations/métiers sur la base d'un diplôme
+[748] Recherche par diplôme : utilisation urls directes
+[783] Bug de parenthèses dans la recherche de domaine métiers
+[784] Tracking recherche métier vs. diplôme
 
 ## 1.15.13 [25/08/2021]
 [774] Se souvenir des actions d'un utilisateur lors d'une session
+[709] Correction bug responsive design
 
 ## 1.15.12 [19/08/2021]
 [705] Vérification des balises meta et title de chaque page
@@ -13,7 +23,8 @@
 [758] SEO des titres du catalogue
 [682] Sur les détails, positionner une question "allez-vous contacter cet établissement ?"
 
-## 1.15.11 [22/07/2021]
+## 1.15.11 [17/08/2021]
+[715] Catalogue de liens
 [719] Sitemap avancé
 
 ## 1.15.10 [21/07/2021]

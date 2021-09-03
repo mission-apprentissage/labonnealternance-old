@@ -229,6 +229,8 @@ module.exports = async (optionalFileName) => {
       }
     }
 
+    logMessage("info", `Fin traitement`);
+
     return {
       result: "Table mise à jour",
       fileName: optionalFileName ? optionalFileName : "currentDomainesMetiers.xlsx",
