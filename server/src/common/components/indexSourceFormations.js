@@ -3,8 +3,9 @@ const { Client } = require("@elastic/elasticsearch");
 const _ = require("lodash");
 const logger = require("../logger");
 const Sentry = require("@sentry/node");
+const config = require("config");
 
-const esClient = new Client({ node: "http://localhost:9200" });
+const esClient = new Client({ node: config.env === "local" ? "http://localhost:9200" : "http://elasticsearch:9200" });
 
 const getCurrentFormationsSourceIndex = async () => {
   try {
