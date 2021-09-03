@@ -14,5 +14,8 @@ describe('hightlightItem', () => {
   it('call : left initial String as-is if no match', async () => {
     expect(hightlightItem('Aaron', 'bb')).toEqual('Aaron');
   });
+  it('call : accept parenthesis', async () => {
+    expect(hightlightItem('(aaron)', '(aa')).toEqual('<strong>(aa</strong>ron)');
+  });
 
 });

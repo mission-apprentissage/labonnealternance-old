@@ -1,12 +1,18 @@
 import React from "react";
 import Navigation from "components/navigation";
 import Breadcrumb from "components/breadcrumb";
+import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
 
 const Organisme = (props) => {
   return (
     <div>
+      <NextSeo
+        title="Organisme de formation | La Bonne Alternance | Trouvez votre alternance"
+        description="Comment référencer ma formation ? Nous sommes là pour vous aider."
+      />
+
       <Navigation bgcolor="is-white" />
 
       <Breadcrumb forPage="organisme-de-formation" label="Organisme de formation" />
