@@ -12,7 +12,7 @@ export default function Catalog(props) {
   return (
     <div>
       <NextSeo
-        title={`Liste des métiers | La Bonne Alternance | Trouvez votre alternance`}
+        title={`Tous les emplois et formations en alternance | La Bonne Alternance | Trouvez votre alternance`}
         description={`Liste de métiers où trouver une formation ou un emploi en alternance`}
       />
       <ScrollToTop />
@@ -21,10 +21,19 @@ export default function Catalog(props) {
 
       <div className="c-page-container container my-0 mb-sm-5 pl-5 pt-3 pb-5">
         <h1 className="mt-4">
-          <span className="d-block c-page-title is-color-1">Domaines</span>
-          <span className="d-block c-page-title is-color-2">Métiers</span>
+          <span className="d-block c-page-title is-color-1">Tous les emplois</span>
+          <span className="d-block c-page-title is-color-2">et formations en alternance</span>
         </h1>
         <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
+
+        <p>
+          Vous voulez travailler en alternance ? Vous voulez obtenir un diplôme en alternance ? Toutes les informations pour trouver une alternance rapidement sont sur La Bonne Alternance :
+          <ul className="mt-2">
+            <li>Offres d'emploi en contrat d'apprentissage ou en contrat de professionnalisation</li>
+            <li>Liste d’entreprises qui recrutent en alternance</li>
+            <li>Formations en apprentissage en CAP, Bac pro, Mention complémentaire, BTS, BUT, DEUST, Licence, Master</li>
+          </ul>
+        </p>
 
         {props.dataJobs.map((job, index) => {
           return (

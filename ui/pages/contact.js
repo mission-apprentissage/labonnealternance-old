@@ -3,10 +3,16 @@ import Navigation from "components/navigation";
 import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
 
+import { NextSeo } from "next-seo";
+
 import Footer from "components/footer";
 
 const contact = () => (
   <div>
+    <NextSeo
+      title="Contact | La Bonne Alternance | Trouvez votre alternance"
+      description="Une remarque, un avis, une suggestion d’amélioration ? Contactez-nous !"
+    />
     <ScrollToTop />
     <Navigation />
     <Breadcrumb forPage="contact" label="Contact" />

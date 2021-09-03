@@ -9,6 +9,7 @@ import {
   getRomeFromParameters,
 } from "components/SearchForTrainingsAndJobs/services/utils";
 import { storeJobsInSession } from "./handleSessionStorage";
+import { SendTrackEvent } from "utils/gtm";
 
 export const searchForJobsFunction = async ({
   values,
@@ -122,6 +123,7 @@ export const searchForJobsFunction = async ({
       setJobSearchError(jobErrorMessage);
     }
 
+    sendJobSearchTrackEvent(values, results);
     dispatch(setJobs(results));
     dispatch(setHasSearch(true));
     storeJobsInSession({ jobs: results, searchTimestamp });
@@ -139,4 +141,18 @@ export const searchForJobsFunction = async ({
   }
 
   setIsJobSearchLoading(false);
+};
+
+const sendJobSearchTrackEvent = (values, results) => {
+  if (values?.job?.type) {
+    try {
+      SendTrackEvent({
+        event: `Résultat recherche emploi par ${values.job.type === "job" ? "Métier" : "Diplôme"}`,
+        label: values.job.label,
+        nb_peJobs: results.peJobs.length,
+        nb_matchas: results.matchas.length,
+        nb_lbas: results.lbaCompanies.length,
+      });
+    } catch (err) {}
+  }
 };

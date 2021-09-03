@@ -10,8 +10,11 @@ const { getRomesFromCfd, getRomesFromSiret } = require("./romesFromCatalogue");
 const getRomesAndLabelsFromTitleQuery = async (query) => {
   if (!query.title) return { error: "title_missing" };
   else {
-    const romes = await getLabelsAndRomes(query.title);
-    return romes;
+    let [romesMetiers, romesDiplomes] = await Promise.all([
+      getLabelsAndRomes(query.title),
+      getLabelsAndRomesForDiplomas(query.title),
+    ]);
+    return { ...romesMetiers, ...romesDiplomes };
   }
 };
 
@@ -32,6 +35,21 @@ const getMultiMatchTerm = (term) => {
             "sous_domaine_onisep^1",
             "intitules_fap^1",
           ],
+          type: "phrase_prefix",
+          operator: "or",
+        },
+      },
+    },
+  };
+};
+
+const getMultiMatchTermForDiploma = (term) => {
+  return {
+    bool: {
+      must: {
+        multi_match: {
+          query: term,
+          fields: ["intitule_long^1", "acronymes_intitule^2"],
           type: "phrase_prefix",
           operator: "or",
         },
@@ -72,6 +90,7 @@ const getLabelsAndRomes = async (searchKeyword) => {
         label: labelAndRome._source.sous_domaine,
         romes: labelAndRome._source.codes_romes,
         rncps: labelAndRome._source.codes_rncps,
+        type: "job",
       });
     });
 
@@ -90,6 +109,77 @@ const getLabelsAndRomes = async (searchKeyword) => {
 
     return { error: error_msg };
   }
+};
+
+const getLabelsAndRomesForDiplomas = async (searchKeyword) => {
+  try {
+    let terms = [];
+
+    searchKeyword.split(" ").forEach((term, idx) => {
+      if (idx === 0 || term.length > 2) {
+        terms.push(getMultiMatchTermForDiploma(term));
+      }
+    });
+
+    const esClient = getDomainesMetiersES();
+
+    const response = await esClient.search({
+      index: "diplomesmetiers",
+      size: 20,
+      _sourceIncludes: ["intitule_long", "codes_romes", "codes_rncps"],
+      body: {
+        query: {
+          bool: {
+            should: terms,
+          },
+        },
+      },
+    });
+
+    let labelsAndRomesForDiplomas = [];
+
+    response.body.hits.hits.forEach((labelAndRomeForDiploma) => {
+      labelsAndRomesForDiplomas.push({
+        label: labelAndRomeForDiploma._source.intitule_long,
+        romes: labelAndRomeForDiploma._source.codes_romes,
+        rncps: labelAndRomeForDiploma._source.codes_rncps,
+        type: "diploma",
+      });
+    });
+
+    labelsAndRomesForDiplomas = removeDuplicateDiplomas(labelsAndRomesForDiplomas);
+    //throw new Error("BOOOOOOOM");
+
+    return { labelsAndRomesForDiplomas };
+  } catch (err) {
+    Sentry.captureException(err);
+    let error_msg = _.get(err, "meta.body") ?? err.message;
+
+    if (_.get(err, "meta.meta.connection.status") === "dead") {
+      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
+    } else {
+      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
+    }
+
+    return { error: error_msg };
+  }
+};
+
+const removeDuplicateDiplomas = (diplomas) => {
+  let labelsAndRomesForDiplomas = [];
+  let diplomasWithoutLevel = [];
+
+  diplomas.forEach((diploma) => {
+    let diplomaWithoutLevel =
+      diploma.label.indexOf("(") > 0 ? diploma.label.substring(0, diploma.label.indexOf("(")).trim() : diploma.label;
+
+    if (diplomasWithoutLevel.indexOf(diplomaWithoutLevel) < 0) {
+      labelsAndRomesForDiplomas.push({ ...diploma, label: diplomaWithoutLevel });
+      diplomasWithoutLevel.push(diplomaWithoutLevel);
+    }
+  });
+
+  return labelsAndRomesForDiplomas;
 };
 
 const updateRomesMetiersQuery = async (query) => {

@@ -39,7 +39,7 @@ const Navigation = (props) => {
                   }}
                   href="/acces-recruteur"
                 >
-                  <span className="ml-2">Recruteur</span>
+                  <span className="ml-1">Recruteur</span>
                 </a>
               </NavItem>
               <NavItem className="ml-lg-5">

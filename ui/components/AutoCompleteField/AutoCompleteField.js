@@ -31,6 +31,7 @@ export const AutoCompleteField = ({
   scrollParentId,
   illustration,
   searchPlaceholder,
+  splitItemsByTypes = null,
   ...props
 }) => {
   useEffect(() => {
@@ -65,6 +66,51 @@ export const AutoCompleteField = ({
   const itemToString = (item) => {
     if (itemToStringFunction) return item ? itemToStringFunction(item) : "";
     else return item;
+  };
+
+  const buildInputItems = () => {
+    /* le bloc ci-dessous n'est valable que si le paramètre splitItemByTypes est renseigné, il permet de construire des titres de catégories d'items */
+    let currentTitleCnt = 0;
+    let currentType = "";
+    const returnTitleLi = (item) => {
+      let res = "";
+      if (splitItemsByTypes && item.type !== currentType && currentTitleCnt < splitItemsByTypes.length) {
+        while (item.type !== currentType && currentTitleCnt < splitItemsByTypes.length) {
+          currentType = splitItemsByTypes[currentTitleCnt].type;
+          currentTitleCnt++;
+        }
+        res = (
+          <li
+            key={`autocomplete_title_${currentTitleCnt - 1}`}
+            className={`c-autocomplete-title ${currentTitleCnt > 1 ? "c-autocomplete-title_bordered" : ""} `}
+          >
+            {splitItemsByTypes[currentTitleCnt - 1].typeLabel}
+          </li>
+        );
+      }
+
+      return res;
+    };
+    /*fin*/
+
+    return inputItems
+      .filter((item) => !!item?.label)
+      .map((item, index) => {
+        return (
+          <React.Fragment key={index}>
+            {returnTitleLi(item)}
+            <li
+              key={index}
+              className={`c-autocomplete_option${
+                highlightedIndex === index ? " c-autocomplete__option--highlighted" : ""
+              }`}
+              {...getItemProps({ item: item.label, index })}
+            >
+              {ReactHtmlParser(highlightItem(item.label, inputValue))}
+            </li>
+          </React.Fragment>
+        );
+      });
   };
 
   // hack pour scroller un champ autocomplete dont les valeurs pourraient être cachées par le clavier du mobile
@@ -166,31 +212,31 @@ export const AutoCompleteField = ({
         {(() => {
           if (isOpen) {
             if (inputValue.length === 0) {
-              return <li className="c-autocomplete-neutral">{searchPlaceholder}</li>;
+              return (
+                <li key={`placeholder`} className="c-autocomplete-neutral">
+                  {searchPlaceholder}
+                </li>
+              );
             } else if (loadingState === "loading") {
               return (
-                <li className="c-autocomplete-neutral">
+                <li key={`spinner`} className="c-autocomplete-neutral">
                   <Spinner color="primary" />
                   &nbsp;Veuillez patienter
                 </li>
               );
             } else if (inputValue.length > 0 && inputItems?.length === 0) {
-              return <li className="c-autocomplete-neutral">Pas de résultat, veuillez modifier votre recherche</li>;
+              return (
+                <li key={`noresult`} className="c-autocomplete-neutral">
+                  Pas de résultat, veuillez modifier votre recherche
+                </li>
+              );
             } else {
               return (
                 <>
-                  <li className="c-autocomplete-minititle">Résultats de votre recherche</li>
-                  {inputItems
-                    .filter((item) => !!item?.label)
-                    .map((item, index) => (
-                      <li
-                        className={highlightedIndex === index ? "c-autocomplete__option--highlighted" : ""}
-                        key={`${index}`}
-                        {...getItemProps({ item: item.label, index })}
-                      >
-                        {ReactHtmlParser(highlightItem(item.label, inputValue))}
-                      </li>
-                    ))}
+                  <li key={`result`} className="c-autocomplete-minititle">
+                    Résultats de votre recherche
+                  </li>
+                  {buildInputItems()}
                 </>
               );
             }

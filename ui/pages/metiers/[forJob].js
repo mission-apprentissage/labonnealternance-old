@@ -23,17 +23,26 @@ export default function ForJob(props) {
   return (
     <div>
       <NextSeo
-        title={`Emplois et formations en alternance pour le métier ${currentJob.name} | La Bonne Alternance | Trouvez votre alternance`}
+        title={`Tous les emplois et formations en alternance en ${currentJob.name} | La Bonne Alternance | Trouvez votre alternance`}
         description={`Villes où chercher des emplois et formations en alternance pour le métier ${currentJob.name}`}
       />
       <Navigation />
       <Breadcrumb items={navigationItems} />
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <h1 className="mt-0">
-          <span className="d-block c-page-title is-color-1">Liste des villes pour</span>
-          <span className="d-block c-page-title is-color-2">" {currentJob.name} "</span>
+          <span className="d-block c-page-title is-color-1">Tous les emplois et formations</span>
+          <span className="d-block c-page-title is-color-2">en alternance en <i>{currentJob.name}</i></span>
         </h1>
         <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
+
+        <p>
+          Vous êtes à seulement 2 clics d'obtenir toutes les informations pour trouver une alternance rapidement sur La Bonne Alternance :
+          <ul className="mt-2">
+            <li>Offres d'emploi en contrat d'apprentissage ou en contrat de professionnalisation en <i>{currentJob.name}</i></li>
+            <li>Liste d’entreprises qui recrutent en alternance en <i>{currentJob.name}</i></li>
+            <li>Formations en apprentissage en CAP, Bac pro, Mention complémentaire, BTS, BUT, DEUST, Licence, Master en <i>{currentJob.name}</i></li>
+          </ul>
+        </p>
 
         {sortedTowns.map((currentTown, index) => {
           return (

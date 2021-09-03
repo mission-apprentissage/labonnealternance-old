@@ -2,11 +2,16 @@ import React from "react";
 import Navigation from "components/navigation";
 import ScrollToTop from "components/ScrollToTop";
 import Breadcrumb from "components/breadcrumb";
+import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
 
 const developpeurs = () => (
   <div>
+    <NextSeo
+      title="Développeurs | La Bonne Alternance | Trouvez votre alternance"
+      description="Afin de faciliter l’accès aux informations pour les publics là où ils se trouvent, nous avons développé 4 API et un Widget"
+    />
     <ScrollToTop />
     <Navigation />
     <Breadcrumb forPage="developpeurs" label="Développeurs" />
