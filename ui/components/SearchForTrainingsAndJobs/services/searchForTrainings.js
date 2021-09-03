@@ -8,6 +8,7 @@ import {
   getRncpsFromParameters,
 } from "components/SearchForTrainingsAndJobs/services/utils";
 import { storeTrainingsInSession } from "./handleSessionStorage";
+import { SendTrackEvent } from "utils/gtm";
 
 export const searchForTrainingsFunction = async ({
   values,
@@ -43,6 +44,16 @@ export const searchForTrainingsFunction = async ({
     if (response.data.result === "error") {
       logError("Training Search Error", `${response.data.message}`);
       setTrainingSearchError(trainingErrorText);
+    } else {
+      if (values?.job?.type) {
+        try {
+          SendTrackEvent({
+            event: `Résultat recherche formation par ${values.job.type === "job" ? "Métier" : "Diplôme"}`,
+            label: values.job.label,
+            nb_formations: response.data.results.length,
+          });
+        } catch (err) {}
+      }
     }
 
     dispatch(setTrainings(response.data.results));
