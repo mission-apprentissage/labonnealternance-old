@@ -83,10 +83,14 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     handleSelectItem(currentList[prevIndex]);
   };
 
+  console.log('place', selectedItem.place);
   const getPathLink = () => {
     return `https://www.google.fr/maps/dir//${encodeURIComponent(selectedItem.place.fullAddress)}/@${
       selectedItem.place.latitude
     },${selectedItem.place.longitude},14z/`;
+    // return `http://maps.google.com/maps?q=${
+    //   selectedItem.place.latitude
+    // },${selectedItem.place.longitude}`;
   };
 
   const getPathBlock = () => {
