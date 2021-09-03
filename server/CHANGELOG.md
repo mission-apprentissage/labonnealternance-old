@@ -20,7 +20,8 @@
 [758] SEO des titres du catalogue
 [682] Sur les détails, positionner une question "allez-vous contacter cet établissement ?"
 
-## 1.15.11 [22/07/2021]
+## 1.15.11 [17/08/2021]
+[715] Catalogue de liens
 [719] Sitemap avancé
 
 ## 1.15.10 [21/07/2021]
