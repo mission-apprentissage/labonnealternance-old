@@ -23,6 +23,7 @@ module.exports = {
   }),
   ConvertedFormation_1: createModel("convertedformation_1", schema.mnaFormationSchema, {
     esIndexName: "convertedformation_1",
+  }),
   DiplomesMetiers: createModel("diplomesmetiers", schema.diplomesMetiersSchema, {
     esIndexName: "diplomesmetiers",
   }),
