@@ -125,13 +125,9 @@ module.exports = async () => {
         workMongo = ConvertedFormation_1;
       }
 
-      let value = false;
+      await cleanIndexAndDb({ workIndex, workMongo });
 
-      if (value) {
-        await cleanIndexAndDb({ workIndex, workMongo });
-
-        stats = await importFormations({ workIndex, workMongo });
-      }
+      stats = await importFormations({ workIndex, workMongo });
 
       const savedSource = await updateFormationsSourceIndex(workIndex);
 
