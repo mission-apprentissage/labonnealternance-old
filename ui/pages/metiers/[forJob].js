@@ -44,7 +44,6 @@ export default function ForJob(props) {
           </ul>
         </p>
 
-
         {sortedTowns.map((currentTown, index) => {
           return (
             <div key={index}>
