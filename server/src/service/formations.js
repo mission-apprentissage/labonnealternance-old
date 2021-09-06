@@ -155,22 +155,21 @@ const getFormation = async ({ id, caller }) => {
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(1);
 
-    const body = {
-      query: {
-        bool: {
-          must: mustTerm,
+    const responseFormation = await esClient.search({
+      ...esQueryIndexFragment,
+      body: {
+        query: {
+          bool: {
+            must: mustTerm,
+          },
         },
       },
-    };
-
-    const responseFormations = await axios.post(urlCatalogueSearch, body, {
-      params: esQueryIndexFragment,
     });
 
     //throw new Error("BOOM");
     let formations = [];
 
-    responseFormations.data.hits.hits.forEach((formation) => {
+    responseFormation.body.hits.hits.forEach((formation) => {
       formations.push({ source: formation._source, id: formation._id });
     });
 
