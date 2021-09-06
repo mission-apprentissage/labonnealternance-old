@@ -10,7 +10,6 @@ const crypto = require("crypto");
 const { manageApiError } = require("../common/utils/errorManager");
 
 const formationResultLimit = 500;
-const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
 
 const lbfDescriptionUrl = "https://labonneformation.pole-emploi.fr/api/v1/detail";
 
@@ -263,21 +262,20 @@ const getRegionFormations = async ({
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
-    const body = {
-      query: {
-        bool: {
-          must: mustTerm,
+    const responseFormations = await esClient.search({
+      ...esQueryIndexFragment,
+      body: {
+        query: {
+          bool: {
+            must: mustTerm,
+          },
         },
       },
-    };
-
-    const responseFormations = await axios.post(urlCatalogueSearch, body, {
-      params: esQueryIndexFragment,
     });
 
     let formations = [];
 
-    responseFormations.data.hits.hits.forEach((formation) => {
+    responseFormations.body.hits.hits.forEach((formation) => {
       formations.push({ source: formation._source, sort: formation.sort, id: formation._id });
     });
 
