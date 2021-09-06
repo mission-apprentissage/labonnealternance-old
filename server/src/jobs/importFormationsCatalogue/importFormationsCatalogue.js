@@ -117,11 +117,6 @@ module.exports = async ({ onlyChangeMasterIndex = false }) => {
       }
 
       logMessage("info", `Début process sur : ${workIndex}`);
-      /*
-      TODO:
-      - avoir les deux versions de recherche : api vs. es local avant mep
-      - répercuter la recherche locale sur api région et sur api formation seule
-      */
 
       if (!onlyChangeMasterIndex) {
         await cleanIndexAndDb({ workIndex, workMongo });
