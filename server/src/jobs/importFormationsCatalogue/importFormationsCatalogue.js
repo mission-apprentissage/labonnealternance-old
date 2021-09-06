@@ -48,8 +48,6 @@ const cleanIndexAndDb = async ({ workIndex, workMongo }) => {
 };
 
 const importFormations = async ({ workIndex, workMongo }) => {
-  //TODO: faire un appel à countFormations
-
   logMessage("info", `Début import`);
 
   const stats = {
@@ -59,8 +57,6 @@ const importFormations = async ({ workIndex, workMongo }) => {
   };
 
   try {
-    // TODO: ajouter filtre publié dans la query
-
     await getConvertedFormations({ limit: 1000, query: { published: true } }, async (chunck) => {
       logger.info(`Inserting ${chunck.length} formations ...`);
       await oleoduc(
@@ -88,7 +84,7 @@ const importFormations = async ({ workIndex, workMongo }) => {
   }
 };
 
-module.exports = async () => {
+module.exports = async ({ onlyChangeMasterIndex = false }) => {
   let step = 0;
 
   try {
@@ -100,9 +96,7 @@ module.exports = async () => {
 
     const formationCount = await countFormations();
 
-    console.log("décompte ? ", formationCount);
-
-    // passer à la suite seulement si le count est > 0
+    logMessage("info", `${formationCount} à importer`);
 
     let stats = {
       total: 0,
@@ -112,11 +106,9 @@ module.exports = async () => {
     let workIndex = "convertedformation_0";
 
     if (formationCount > 0) {
-      // si ok
-
       const currentIndex = await getCurrentFormationsSourceIndex();
 
-      console.log("currentIndex : ", currentIndex);
+      logMessage("info", `Index courant : ${currentIndex}`);
 
       let workMongo = ConvertedFormation_0;
 
@@ -125,13 +117,24 @@ module.exports = async () => {
         workMongo = ConvertedFormation_1;
       }
 
-      await cleanIndexAndDb({ workIndex, workMongo });
+      logMessage("info", `Début process sur : ${workIndex}`);
+      /*
+      TODO:
+      - avoir les deux versions de recherche : api vs. es local avant mep
+      - répercuter la recherche locale sur api région et sur api formation seule
+      */
 
-      stats = await importFormations({ workIndex, workMongo });
+      if (!onlyChangeMasterIndex) {
+        await cleanIndexAndDb({ workIndex, workMongo });
+
+        stats = await importFormations({ workIndex, workMongo });
+      } else {
+        logMessage("info", `Permutation d'index seule`);
+      }
 
       const savedSource = await updateFormationsSourceIndex(workIndex);
 
-      logMessage("info", "Source updated in mongo ", savedSource.currentIndex);
+      logMessage("info", "Source mise à jour en base ", savedSource.currentIndex);
 
       const savedIndexAliasResult = await updateFormationsIndexAlias({
         masterIndex: workIndex,
@@ -139,9 +142,9 @@ module.exports = async () => {
       });
 
       if (savedIndexAliasResult === "ok") {
-        logMessage("info", "Alias updated in ES ", workIndex);
+        logMessage("info", "Alias mis à jour dans l'ES ", workIndex);
       } else {
-        logMessage("error", "Alias not updated in ES ", workIndex);
+        logMessage("error", "Alias pas mis à jour dans l'ES ", workIndex);
       }
     }
     logMessage("info", `Fin traitement`);
