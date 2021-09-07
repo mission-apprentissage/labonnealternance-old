@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## 1.16.1 [02/09/2021]
+## 1.16.1 [07/09/2021]
 [749] Mise en conformité RGPD
+[772] Internalisation ES catalogue + import
 
 ## 1.16.0 [25/08/2021]
 [744] Recherche par diplôme : alimentation de la base
