@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## 1.16.1 [06/09/2021]
+## 1.16.1 [07/09/2021]
+[749] Mise en conformité RGPD
 [772] Internalisation ES catalogue + import
 
 ## 1.16.0 [25/08/2021]
