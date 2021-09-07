@@ -80,7 +80,7 @@ module.exports = async (components) => {
   const swaggerUi = require("swagger-ui-express");
   const swaggerDocument = require("../api-docs/swagger.json");
 
-  app.use("/api/v1/es/search", esSearch());
+  app.use("/api/v1/es/search", limiter3PerSecond, esSearch());
 
   app.get("/api-docs/swagger.json", (req, res) => {
     res.sendFile(path.resolve("./src/api-docs/swagger.json"));
