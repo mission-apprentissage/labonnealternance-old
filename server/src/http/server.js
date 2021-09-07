@@ -18,6 +18,7 @@ const version = require("./routes/version");
 const error500 = require("./routes/error500");
 const formationRegionV1 = require("./routes/formationRegionV1");
 const jobV1 = require("./routes/jobV1");
+const esSearch = require("./routes/esSearch");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
 const rateLimit = require("express-rate-limit");
 var path = require("path");
@@ -78,6 +79,8 @@ module.exports = async (components) => {
 
   const swaggerUi = require("swagger-ui-express");
   const swaggerDocument = require("../api-docs/swagger.json");
+
+  app.use("/api/v1/es/search", limiter3PerSecond, esSearch());
 
   app.get("/api-docs/swagger.json", (req, res) => {
     res.sendFile(path.resolve("./src/api-docs/swagger.json"));
