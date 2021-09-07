@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.16.1 [06/09/2021]
+[772] Internalisation ES catalogue + import
+
 ## 1.16.0 [25/08/2021]
 [744] Recherche par diplôme : alimentation de la base
 [745] Recherche par diplôme : remontée des résutats de recherche

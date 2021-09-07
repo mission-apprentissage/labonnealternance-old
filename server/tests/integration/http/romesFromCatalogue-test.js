@@ -23,7 +23,7 @@ httpTests(__filename, ({ startServer }) => {
     assert.ok(response.data.metiers.length === 0);
     assert.ok(response.data.error.length > 0);
   });
-
+  /*
   it("Vérifie que la requête metiersParFormation répond avec des résultats", async () => {
     const { httpClient } = await startServer();
 
@@ -40,5 +40,5 @@ httpTests(__filename, ({ startServer }) => {
 
     assert.strictEqual(response.status, 200);
     assert.ok(response.data.metiers instanceof Array);
-  });
+  });*/
 });

@@ -1,9 +1,7 @@
-const axios = require("axios");
-const config = require("config");
 const Sentry = require("@sentry/node");
 const _ = require("lodash");
-
-const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
+const { getFormationsES } = require("../common/esClient");
+const esClient = getFormationsES();
 
 const getRomesFromCatalogue = async ({ cfd, siret }) => {
   try {
@@ -27,22 +25,21 @@ const getRomesFromCatalogue = async ({ cfd, siret }) => {
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment();
 
-    const body = {
-      query: {
-        bool: {
-          must: mustTerm,
+    const responseFormations = await esClient.search({
+      ...esQueryIndexFragment,
+      body: {
+        query: {
+          bool: {
+            must: mustTerm,
+          },
         },
       },
-    };
-
-    const responseFormations = await axios.post(urlCatalogueSearch, body, {
-      params: esQueryIndexFragment,
     });
 
     //throw new Error("BOOM");
     let romes = [];
 
-    responseFormations.data.hits.hits.forEach((formation) => {
+    responseFormations.body.hits.hits.forEach((formation) => {
       romes = romes.concat(formation._source.rome_codes);
     });
 
@@ -75,7 +72,7 @@ const getRomesFromSiret = ({ siret }) => {
 
 const getFormationEsQueryIndexFragment = () => {
   return {
-    index: "convertedformation",
+    index: "convertedformations",
     size: 1000,
     _sourceIncludes: ["rome_codes"],
   };

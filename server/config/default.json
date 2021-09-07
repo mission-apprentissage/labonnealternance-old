@@ -8,6 +8,7 @@
   },
   "slackWebhookUrl": null,
   "outputDir": ".local/output",
+  "formationsEndPoint": "/api/v1/entity/formations2021",
   "private":
   {
     "apiKey": "12345",
