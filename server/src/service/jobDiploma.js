@@ -1,42 +1,43 @@
 const _ = require("lodash");
-const config = require("config");
 const Sentry = require("@sentry/node");
-const axios = require("axios");
-
-const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
+const { getFormationsES } = require("../common/esClient");
+const esClient = getFormationsES();
 
 const getDiplomasForJobs = async (romes /*, rncps*/) => {
   try {
-    const body = {
-      query: {
-        match: {
-          rome_codes: romes,
-        },
-        /*
+    const esQueryIndexFragment = getFormationEsQueryIndexFragment();
+
+    const responseDiplomas = await esClient.search({
+      ...esQueryIndexFragment,
+      body: {
+        query: {
+          match: {
+            rome_codes: romes,
+          },
+          /*
         //replace match rome_code with the line below to list all available diplomas 
         match_all: {},*/
-        /*
+          /*
         FIXME: lors de l'activation du cloisonnement RNCP
         bool: {
           must: [{ match: { rome_codes: romes } }, { match: { rncp_code: rncps } }],
         },*/
-      },
-      aggs: {
-        niveaux: {
-          terms: {
-            field: "niveau.keyword",
-            size: 10,
+        },
+        aggs: {
+          niveaux: {
+            terms: {
+              field: "niveau.keyword",
+              size: 10,
+            },
           },
         },
+        size: 0,
       },
-      size: 0,
-    };
-
-    const responseDiplomas = await axios.post(urlCatalogueSearch, body);
+    });
 
     let diplomas = [];
 
-    responseDiplomas.data.aggregations.niveaux.buckets.forEach((diploma) => {
+    responseDiplomas.body.aggregations.niveaux.buckets.forEach((diploma) => {
       diplomas.push(diploma.key);
     });
 
@@ -69,6 +70,13 @@ const getDiplomasForJobsQuery = async (query) => {
       return { error: "internal_error" };
     }
   }
+};
+
+const getFormationEsQueryIndexFragment = () => {
+  return {
+    index: "convertedformations",
+    size: 1000,
+  };
 };
 
 module.exports = {
