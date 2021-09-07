@@ -1,7 +1,6 @@
 const Sentry = require("@sentry/node");
-const { getFormationsES } = require("../common/esClient");
 const _ = require("lodash");
-
+const { getFormationsES } = require("../common/esClient");
 const esClient = getFormationsES();
 
 const getRomesFromCatalogue = async ({ cfd, siret }) => {
