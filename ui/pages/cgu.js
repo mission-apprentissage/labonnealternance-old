@@ -147,8 +147,33 @@ const CGU = (props) => {
             <section>
               <h2 className="c-faq-question mt-2">Article 6 - Protection des données à caractère personnel</h2>
               <p>
-               L’utilisation du moteur de recherche disponible sur le site internet La Bonne Alternance nécessite d’indiquer le(s) métier(s) recherché(s) ainsi que le périmètre géographique souhaité. Ces données sont collectées et traitées par Pôle emploi uniquement dans le but de fournir, à la requête de l’utilisateur, la liste des entreprises ou organismes ayant un potentiel d’embauche dans un secteur d’emploi et géographique donné, une liste de formations en apprentissage dans un secteur d’emploi et géographique donné, une liste d’offres d'emploi dans un secteur d’emploi et géographique donné.<br />
-               Pôle emploi traite également des données relatives aux entreprises qui peuvent concerner directement des personnes physiques, notamment les coordonnées des interlocuteurs personnes physiques de ces entreprises.
+                L’utilisation du moteur de recherche disponible sur le site internet <a href="https://labonnealternance.pole-emploi.fr/" target="_blank" rel="noopener noreferrer">La Bonne Alternance</a> nécessite d’indiquer le(s) métier(s) recherché(s), le périmètre géographique souhaité et de manière facultative le niveau d’études. 
+                Ces données sont collectées et traitées par Pôle emploi dans le but de fournir, à la requête de l’utilisateur, la liste des entreprises ou organismes ayant un potentiel d’embauche dans un secteur d’emploi et géographique donné, une liste de formations en apprentissage dans un secteur d’emploi et géographique donné, une liste d’offres d’emploi dans un secteur d’emploi et géographique donné.
+              </p>
+              <p>
+                Les données à caractère personnel de l’utilisateur mentionnées ci-dessus sont destinées aux agents de Pôle emploi en charge du service de <a href="https://labonnealternance.pole-emploi.fr/" target="_blank" rel="noopener noreferrer">La Bonne Alternance</a>.
+              </p>
+              <p>
+                Pôle emploi traite également des données relatives aux entreprises qui peuvent concerner directement des personnes physiques, notamment les coordonnées des interlocuteurs personnes physiques de ces entreprises.
+              </p>
+              <p>
+                Les coordonnées de contact mentionnées ci-dessus sont destinées aux agents de Pôle emploi en charge du service et aux utilisateurs du service de <a href="https://labonnealternance.pole-emploi.fr/" target="_blank" rel="noopener noreferrer">La Bonne Alternance</a>.
+              </p>
+              <p>
+                Les données traitées sont conservées pour une durée de 13 mois.
+              </p>
+              <p>
+                Pôle emploi est le responsable de ce traitement. Au titre de la licéité du traitement exigée par l’article 6 du règlement général (UE) sur la protection des données n°2016/679 du 27 avril 2016 (RGPD), le fondement juridique du traitement est la mission d’intérêt public dont est investi Pôle emploi en vertu de l’article L.5312-1 du code du travail qui consiste notamment à mettre en relation l’offre et la demande d’emploi.
+              </p>
+              <p>
+                Conformément aux articles 12 à 23 du règlement général (UE) sur la protection des données n°2016/679 
+                du 27 avril 2016 et à la loi Informatique et libertés n°78-17 du 6 janvier 1978 modifiée, 
+                vous bénéficiez d’un droit d’accès, de rectification, de limitation, 
+                de définir des directives sur le sort des données après votre mort et le droit de porter une réclamation 
+                devant la Commission nationale de l’informatique et des libertés pour les données vous concernant. 
+                Pour exercer vos droits, vous pouvez vous adresser au délégué à la protection des données de Pôle emploi 
+                (1 avenue du Docteur Gley, 75987 Paris cedex 20) 
+                ou à l’adresse courriel suivante : <a href="mailto:contact-dpd@pole-emploi.fr">contact-dpd@pole-emploi.fr</a>.
               </p>
             </section>
             <section>

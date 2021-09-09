@@ -1,9 +1,14 @@
 # CHANGELOG
 
-## 1.16.1 [03/09/2021]
+## 1.16.2 [10/09/2021]
 [787] Bug itinéraire
 
-## 1.16.0 [02/09/2021]
+## 1.16.1 [07/09/2021]
+[749] Mise en conformité RGPD
+[772] Internalisation ES catalogue + import
+[781] Exposition api search sur l'es catalogue
+
+## 1.16.0 [25/08/2021]
 [744] Recherche par diplôme : alimentation de la base
 [745] Recherche par diplôme : remontée des résutats de recherche
 [746] Recherche par diplôme : présentation du champ de recherche avec séparations par titre

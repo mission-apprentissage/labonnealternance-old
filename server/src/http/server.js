@@ -9,6 +9,7 @@ const corsMiddleware = require("./middlewares/corsMiddleware");
 const packageJson = require("../../package.json");
 const rome = require("./routes/rome");
 const updateRomesMetiers = require("./routes/updateRomesMetiers");
+const updateFormations = require("./routes/updateFormations");
 const updateDiplomesMetiers = require("./routes/updateDiplomesMetiers");
 const metiers = require("./routes/metiers");
 const jobDiploma = require("./routes/jobDiploma");
@@ -17,6 +18,7 @@ const version = require("./routes/version");
 const error500 = require("./routes/error500");
 const formationRegionV1 = require("./routes/formationRegionV1");
 const jobV1 = require("./routes/jobV1");
+const esSearch = require("./routes/esSearch");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
 const rateLimit = require("express-rate-limit");
 var path = require("path");
@@ -78,6 +80,8 @@ module.exports = async (components) => {
   const swaggerUi = require("swagger-ui-express");
   const swaggerDocument = require("../api-docs/swagger.json");
 
+  app.use("/api/v1/es/search", limiter3PerSecond, esSearch());
+
   app.get("/api-docs/swagger.json", (req, res) => {
     res.sendFile(path.resolve("./src/api-docs/swagger.json"));
   });
@@ -100,6 +104,8 @@ module.exports = async (components) => {
   app.use("/api/romelabels", limiter10PerSecond, rome());
 
   app.use("/api/updateRomesMetiers", limiter1Per5Second, updateRomesMetiers());
+
+  app.use("/api/updateFormations", limiter1Per5Second, updateFormations());
 
   app.use("/api/updateDiplomesMetiers", limiter1Per5Second, updateDiplomesMetiers());
 

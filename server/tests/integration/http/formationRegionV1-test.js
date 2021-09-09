@@ -10,31 +10,31 @@ httpTests(__filename, ({ startServer }) => {
     assert.strictEqual(response.status, 400);
   });
 
-  it("Vérifie que la recherche répond", async () => {
+  /*it("Vérifie que la recherche répond", async () => {
     const { httpClient } = await startServer();
 
     const response = await httpClient.get("/api/V1/formationsParRegion?romes=F1603,I1308&region=01&caller=a");
 
     assert.strictEqual(response.status, 200);
-  });
+  });*/
 
-  it("Vérifie que la recherche avec Rome et region répond avec des résultats", async () => {
+  /*it("Vérifie que la recherche avec Rome et region répond avec des résultats", async () => {
     const { httpClient } = await startServer();
 
     const response = await httpClient.get("/api/V1/formationsParRegion?romes=F1603,I1308&region=01&caller=a");
 
     assert.strictEqual(response.status, 200);
     assert.ok(response.data.results instanceof Array);
-  });
+  });*/
 
-  it("Vérifie que la recherche avec département répond avec des résultats", async () => {
+  /*it("Vérifie que la recherche avec département répond avec des résultats", async () => {
     const { httpClient } = await startServer();
 
     const response = await httpClient.get("/api/V1/formationsParRegion?departement=44&caller=a");
 
     assert.strictEqual(response.status, 200);
     assert.ok(response.data.results instanceof Array);
-  });
+  });*/
 
   it("Vérifie que les requêtes avec region et departement sont refusées", async () => {
     const { httpClient } = await startServer();
