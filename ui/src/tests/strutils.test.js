@@ -1,4 +1,4 @@
-import {isNonEmptyString} from '../../utils/strutils';
+import { isNonEmptyString, countInstances} from '../../utils/strutils';
 
 describe('strutils', () => {
 
@@ -18,6 +18,12 @@ describe('strutils', () => {
       expect(isNonEmptyString('a')).toEqual(true);
       expect(isNonEmptyString('hello world')).toEqual(true);
       expect(isNonEmptyString('   t   ')).toEqual(true);
+    });
+
+    it('.countInstances : count the number of instances in a String', async () => {
+      expect(countInstances('aa', 'a')).toEqual(2);
+      expect(countInstances('aaa', 'a')).toEqual(3);
+      expect(countInstances('Service Plus, 2 RUE TRUC, 32300 MOUCHES', ', ')).toEqual(2);
     });
 
 
