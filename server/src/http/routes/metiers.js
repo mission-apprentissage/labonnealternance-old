@@ -1,6 +1,11 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
-const { getMetiersPourCfd, getMetiersPourEtablissement, getTousLesMetiers } = require("../../service/domainesMetiers");
+const {
+  getMetiers,
+  getMetiersPourCfd,
+  getMetiersPourEtablissement,
+  getTousLesMetiers,
+} = require("../../service/domainesMetiers");
 /**
  * API romes
  */
@@ -24,9 +29,17 @@ module.exports = () => {
   );
 
   router.get(
-    "/",
+    "/all",
     tryCatch(async (req, res) => {
       const result = await getTousLesMetiers();
+      return res.json(result);
+    })
+  );
+
+  router.get(
+    "/",
+    tryCatch(async (req, res) => {
+      const result = await getMetiers({ title: req.query.title, romes: req.query.romes, rncps: req.query.rncps });
       return res.json(result);
     })
   );
