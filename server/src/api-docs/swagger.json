@@ -249,8 +249,48 @@
                     }
                 }            
             }
-        }
+        },
 
+        "/api/V1/metiers": 
+        {
+            "get": 
+            {
+                "description": "Rechercher des métiers et les codes ROMEs et RNCPs correspondants pour un titre, des codes ROMEs ou des codes RNCPs",
+
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/romes"
+                    }
+                ],
+
+                "responses": {
+                    "200": 
+                    {
+                        "description": "Un tableau contenant la liste des métiers correspondants aux critères transmis en paramètre de la requête. Le tableau peut être vide si aucun métier ne correspond.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/definitions/Metiers"
+                                }
+                            }
+                        }
+                    },
+                    
+                    "400": 
+                    {
+                        "$ref": "#/responses/WrongParameters"
+                    }
+                }            
+            }
+        }
     },
  
     "responses":
@@ -1135,6 +1175,70 @@
                     "description": "Le libellé correspondant au code NAF"
                 }                      
             }
+        },
+
+        "Metiers" : 
+        {
+            "type": "object",
+            "required" : ["results"],
+            "properties":
+            {
+                "results": 
+                { 
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "#/definitions/Metier"
+                    },
+                    "description": "Un tableau de métiers correspondantes aux critères"
+                }
+            }
+        },
+
+        "Metier":
+        {
+            "type": "object",
+            "description": "Les informations d'un métier de la liste définie par la mission apprentissage",
+            "required": ["id","description"],
+            "properties":
+            {
+                "id":
+                {
+                    "type": "string",
+                    "example": "106CBHM",
+                    "description": "L'identifiant de l'offre"
+                },
+
+                "creationDate":
+                {
+                    "type": "string",
+                    "example": "2020-10-01T16:43:24+02:00",
+                    "description": "La date de création de l'offre"
+                },
+                "description":
+                {
+                    "type": "string",
+                    "description": "La description de l'offre d'emploi"
+                },
+                "contractType":
+                {
+                    "type": "string",
+                    "example" : "CDD",
+                    "description": "Le type de contrat proposé"
+                },
+                "contractDescription":
+                {
+                    "type": "string",
+                    "example": "Contrat à durée déterminée - 24 Mois",
+                    "description": "Des informations plus détaillées sur le type de contrat proposé"
+                },
+                "duration":
+                {
+                    "type": "string",
+                    "example": "39H Horaires normaux",
+                    "description": "Le volume horaire de l'offre d'emploi"
+                }
+            }      
         }
     }
 
