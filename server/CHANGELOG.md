@@ -3,6 +3,7 @@
 ## 1.16.2 [09/09/2021]
 [759] Mise à jour liste des cfas d'entreprise
 [787] Bug itinéraire
+[806] Métier positionné avant diplôme pour la recherche
 
 ## 1.16.1 [07/09/2021]
 [749] Mise en conformité RGPD
