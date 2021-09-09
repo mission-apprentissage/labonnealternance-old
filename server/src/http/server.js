@@ -111,6 +111,8 @@ module.exports = async (components) => {
 
   app.use("/api/metiers", limiter20PerSecond, metiers());
 
+  app.use("/api/v1/metiers", limiter20PerSecond, metiers());
+
   app.get(
     "/api",
     tryCatch(async (req, res) => {

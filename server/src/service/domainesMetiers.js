@@ -293,10 +293,53 @@ const getMetiersFromRomes = async (romes) => {
   }
 };
 
+const getTousLesMetiers = async () => {
+  /**
+   * récupère dans la table custo tous les métiers qui correspondent au tableau de romes en paramètres
+   */
+  try {
+    const esClient = getDomainesMetiersES();
+
+    const response = await esClient.search({
+      index: "domainesmetiers",
+      size: 200,
+      _sourceIncludes: ["sous_domaine"],
+      body: {
+        query: {
+          match_all: {},
+        },
+      },
+    });
+
+    let metiers = [];
+
+    response.body.hits.hits.forEach((metier) => {
+      metiers.push(metier._source.sous_domaine);
+    });
+
+    metiers.sort();
+    //throw new Error("BOOOOOOOM");
+
+    return { metiers };
+  } catch (err) {
+    Sentry.captureException(err);
+    let error_msg = _.get(err, "meta.body") ?? err.message;
+
+    if (_.get(err, "meta.meta.connection.status") === "dead") {
+      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
+    } else {
+      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
+    }
+
+    return { error: error_msg, metiers: [] };
+  }
+};
+
 module.exports = {
   getRomesAndLabelsFromTitleQuery,
   updateRomesMetiersQuery,
   getMissingRNCPs,
   getMetiersPourCfd,
   getMetiersPourEtablissement,
+  getTousLesMetiers,
 };
