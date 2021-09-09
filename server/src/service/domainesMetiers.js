@@ -18,6 +18,19 @@ const getRomesAndLabelsFromTitleQuery = async (query) => {
   }
 };
 
+const manageError = ({ error, msgToLog }) => {
+  Sentry.captureException(error);
+  let error_msg = _.get(error, "meta.body") ?? error.message;
+
+  if (error?.meta?.meta?.connection?.status === "dead") {
+    logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
+  } else {
+    logger.error(`Error getting ${msgToLog}. error_message=${error_msg}`);
+  }
+
+  return { error: error_msg };
+};
+
 const getMultiMatchTerm = (term) => {
   return {
     bool: {
@@ -126,20 +139,9 @@ const getMetiers = async ({ title = null, romes = null, rncps = null }) => {
         });
       });
 
-      //throw new Error("BOOOOOOOM");
-
       return { labelsAndRomes };
-    } catch (err) {
-      Sentry.captureException(err);
-      let error_msg = _.get(err, "meta.body") ?? err.message;
-
-      if (_.get(err, "meta.meta.connection.status") === "dead") {
-        logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
-      } else {
-        logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
-      }
-
-      return { error: error_msg };
+    } catch (error) {
+      manageError({ error, msgToLog: "getting metiers from title romes and rncps" });
     }
   }
 };
@@ -180,20 +182,9 @@ const getLabelsAndRomes = async (searchKeyword) => {
       });
     });
 
-    //throw new Error("BOOOOOOOM");
-
     return { labelsAndRomes };
-  } catch (err) {
-    Sentry.captureException(err);
-    let error_msg = _.get(err, "meta.body") ?? err.message;
-
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
-    } else {
-      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
-    }
-
-    return { error: error_msg };
+  } catch (error) {
+    manageError({ error, msgToLog: "getting metiers from title" });
   }
 };
 
@@ -234,20 +225,10 @@ const getLabelsAndRomesForDiplomas = async (searchKeyword) => {
     });
 
     labelsAndRomesForDiplomas = removeDuplicateDiplomas(labelsAndRomesForDiplomas);
-    //throw new Error("BOOOOOOOM");
 
     return { labelsAndRomesForDiplomas };
-  } catch (err) {
-    Sentry.captureException(err);
-    let error_msg = _.get(err, "meta.body") ?? err.message;
-
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
-    } else {
-      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
-    }
-
-    return { error: error_msg };
+  } catch (error) {
+    manageError({ error, msgToLog: "getting diplomes from title" });
   }
 };
 
@@ -362,26 +343,15 @@ const getMetiersFromRomes = async (romes) => {
       metiers.push(metier._source.sous_domaine);
     });
 
-    //throw new Error("BOOOOOOOM");
-
     return { metiers };
-  } catch (err) {
-    Sentry.captureException(err);
-    let error_msg = _.get(err, "meta.body") ?? err.message;
-
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
-    } else {
-      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
-    }
-
-    return { error: error_msg, metiers: [] };
+  } catch (error) {
+    manageError({ error, msgToLog: "getting metiers from romes" });
   }
 };
 
 const getTousLesMetiers = async () => {
   /**
-   * récupère dans la table custo tous les métiers qui correspondent au tableau de romes en paramètres
+   * récupère dans la table custo tous les métiers
    */
   try {
     const esClient = getDomainesMetiersES();
@@ -404,20 +374,10 @@ const getTousLesMetiers = async () => {
     });
 
     metiers.sort();
-    //throw new Error("BOOOOOOOM");
 
     return { metiers };
-  } catch (err) {
-    Sentry.captureException(err);
-    let error_msg = _.get(err, "meta.body") ?? err.message;
-
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
-    } else {
-      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
-    }
-
-    return { error: error_msg, metiers: [] };
+  } catch (error) {
+    manageError({ error, msgToLog: "getting all metiers" });
   }
 };
 
