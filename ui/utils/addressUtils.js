@@ -11,13 +11,14 @@ import { isNonEmptyString, countInstances } from "./strutils";
 const rawPostalAddress = (address) => {
   let result = ''
   if (isNonEmptyString(address)) {
-    if (countInstances(address, ' ,') > 1) {
-      let elements = address.split(' ,');
+    if (countInstances(address, ', ') > 1) {
+      let elements = address.split(', ');
       elements.shift() // Retire le premier élément : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/shift
-      result = elements.join()
+      result = elements.join(', ')
+    } else {
+      result = address
     }
   }
-  console.log('result', result);
   return result;
 }
 
