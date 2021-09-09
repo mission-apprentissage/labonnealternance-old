@@ -1,4 +1,4 @@
-import {isNonEmptyString} from './strutils';
+import {isNonEmptyString} from '../../utils/strutils';
 
 describe('strutils', () => {
 

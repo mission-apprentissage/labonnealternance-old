@@ -17,6 +17,7 @@ const rawPostalAddress = (address) => {
       result = elements.join()
     }
   }
+  console.log('result', result);
   return result;
 }
 
