@@ -11,6 +11,7 @@ import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
 import { capitalizeFirstLetter } from "utils/strutils";
+import { rawPostalAddress } from "utils/addressUtils";
 import { isCfaEntreprise } from "services/cfaEntreprise";
 
 import { useSwipeable } from "react-swipeable";
@@ -21,6 +22,7 @@ import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
+  
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret)
@@ -84,9 +86,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   };
 
   const getPathLink = () => {
-    return `https://www.google.fr/maps/dir//${encodeURIComponent(selectedItem.place.fullAddress)}/@${
-      selectedItem.place.latitude
-    },${selectedItem.place.longitude},14z/`;
+    return `https://www.google.fr/maps/dir//
+            ${encodeURIComponent(rawPostalAddress(selectedItem.place.fullAddress))}/@
+            ${selectedItem.place.latitude},
+            ${selectedItem.place.longitude},
+            14z/`;
   };
 
   const getPathBlock = () => {

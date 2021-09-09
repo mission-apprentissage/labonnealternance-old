@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.16.2 [10/09/2021]
+[787] Bug itinéraire
+
 ## 1.16.1 [07/09/2021]
 [749] Mise en conformité RGPD
 [772] Internalisation ES catalogue + import
