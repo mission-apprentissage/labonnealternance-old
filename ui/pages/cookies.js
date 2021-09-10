@@ -97,7 +97,7 @@ const Cookies = () => (
 
           <h3 className="h4 c-faq-question-small">Cookies statistiques ou de mesure d’audience</h3>
           <p>
-            <span className="d-block">Pour les cookies donnant lieu à consentement préalable, l’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en formulant des choix sur la plateforme de gestion du consentement via <a href="#" onClick={() => { this.handleClick }}> via ce lien dédié </a>.</span>
+            <span className="d-block">Pour les cookies donnant lieu à consentement préalable, l’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en formulant des choix sur la plateforme de gestion du consentement via <a href="#" onClick={handleTagCo}> via ce lien dédié </a>.</span>
           </p>
 
           <h3 className="h4 c-faq-question-small">Le paramétrage du navigateur</h3>
