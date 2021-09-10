@@ -298,8 +298,6 @@
             }
         },
 
-        /*"/api/V1/metiers/metiersParFormation/:cfd"
-        "/api/V1/metiers/metiersParEtablissement/:siret"*/
         "/api/V1/metiers/all":
         {
             "get": 
@@ -321,19 +319,14 @@
                             {
                                 "schema":
                                 {
-                                    "$ref": "#/definitions/Metiers"
+                                    "$ref": "#/definitions/Liste_des_metiers"
                                 }
                             }
                         }
-                    },
-                    
-                    "400": 
-                    {
-                        "$ref": "#/responses/WrongParameters"
                     }
                 }            
             }
-        },
+        }
     },
  
     "responses":
@@ -1264,6 +1257,26 @@
                         "$ref": "#/definitions/Metier"
                     },
                     "description": "Un tableau de métiers correspondantes aux critères"
+                }
+            }
+        },
+
+        "Liste_des_metiers" :
+        {
+            "type": "object",
+            "required" : ["metiers"],
+            "properties":
+            {
+                "metiers": 
+                { 
+                    "type": "array",
+                    "items":
+                    {
+                        "type": "string",
+                        "example": "Accueil touristique",
+                        "description": "Un nom de métier du référentiel La Bonne Alternance"
+                    },
+                    "description": "Un tableau des noms des métiers triés par ordre alphabétique"
                 }
             }
         },
