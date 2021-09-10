@@ -32,7 +32,7 @@ describe("fetchRomes", () => {
     // then
     expect(axiosMockGet).toHaveBeenCalledWith("urlMock/api/romelabels", { params: { title: "plomberie" } });
     expect(mockedErrorFn).not.toHaveBeenCalled();
-    expect(res).toEqual([{ label: "Remotely_returned_array_capitalized" }, { label: "remotely_returned_array" }]);
+    expect(res).toEqual([{ label: "remotely_returned_array" }, { label: "Remotely_returned_array_capitalized" }]);
   });
 
   it("error case : axios returns an non-empty data.error property", async () => {
