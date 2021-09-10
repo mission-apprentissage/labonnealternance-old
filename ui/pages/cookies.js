@@ -6,6 +6,13 @@ import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
 
+const handleTagCo = (e) => {
+  e.preventDefault();
+  console.log('handleTagCo...')
+  tC.privacyCenter.showPrivacyCenter(); 
+  return false;
+}
+
 const Cookies = () => (
   <div>
     <NextSeo
@@ -70,7 +77,7 @@ const Cookies = () => (
             <span className="d-block">L’utilisateur peut paramétrer le dépôt des cookies en suivant les indications données au point 3. Le fait de refuser la mise en œuvre de tels cookies n'a pas d'incidence sur la navigation sur le site.</span>
           </p>
           <p>
-            <span className="d-block">Pour plus d’informations sur les cookies notamment sur le type de cookies déposés ainsi que leurs finalités précises, vous pouvez consulter la plateforme de gestion du consentement, disponible ici.</span>
+            <span className="d-block">Pour plus d’informations sur les cookies notamment sur le type de cookies déposés ainsi que leurs finalités précises, vous pouvez consulter la plateforme de gestion du consentement, <a href="#" onClick={handleTagCo}> disponible ici </a>.</span>
           </p>
 
           <h2 className="h3 c-faq-question">3. Accepter ou refuser les cookies</h2>
@@ -87,7 +94,7 @@ const Cookies = () => (
 
           <h3 className="h4 c-faq-question-small">Cookies statistiques ou de mesure d’audience</h3>
           <p>
-            <span className="d-block">Pour les cookies donnant lieu à consentement préalable, l’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en formulant des choix sur la plateforme de gestion du consentement via  ce lien dédié.</span>
+            <span className="d-block">Pour les cookies donnant lieu à consentement préalable, l’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en formulant des choix sur la plateforme de gestion du consentement via <a href="#" onClick={() => { this.handleClick }}> via ce lien dédié </a>.</span>
           </p>
 
           <h3 className="h4 c-faq-question-small">Le paramétrage du navigateur</h3>
