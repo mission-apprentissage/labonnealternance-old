@@ -74,8 +74,8 @@ const getMultiMatchTermForDiploma = (term) => {
 const getMetiers = async ({ title = null, romes = null, rncps = null }) => {
   if (!title && !romes && !rncps) {
     return {
-      error: "parameters_missing",
-      msg: "Parameters must include at least once from 'title', 'romes' and 'rncps'",
+      error: "missing_parameters",
+      error_messages: ["Parameters must include at least one from 'title', 'romes' and 'rncps'"],
     };
   } else {
     try {
