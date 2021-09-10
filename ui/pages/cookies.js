@@ -8,8 +8,11 @@ import Footer from "components/footer";
 
 const handleTagCo = (e) => {
   e.preventDefault();
-  console.log('handleTagCo...')
-  tC.privacyCenter.showPrivacyCenter(); 
+  if (tC?.privacyCenter?.showPrivacyCenter) {
+    tC.privacyCenter.showPrivacyCenter(); 
+  } else  {
+    console.log('Privacy center was required by user.')
+  }
   return false;
 }
 
