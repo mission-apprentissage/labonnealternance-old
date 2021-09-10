@@ -296,7 +296,44 @@
                     }
                 }            
             }
-        }
+        },
+
+        /*"/api/V1/metiers/metiersParFormation/:cfd"
+        "/api/V1/metiers/metiersParEtablissement/:siret"*/
+        "/api/V1/metiers/all":
+        {
+            "get": 
+            {
+                "description": "Récupérer la liste des noms des métiers du référentiel de La Bonne Alternance",
+
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+
+                "responses": {
+                    "200": 
+                    {
+                        "description": "Un tableau contenant la liste de tous les noms de métiers.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/definitions/Metiers"
+                                }
+                            }
+                        }
+                    },
+                    
+                    "400": 
+                    {
+                        "$ref": "#/responses/WrongParameters"
+                    }
+                }            
+            }
+        },
     },
  
     "responses":
