@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## 1.16.3 [10/09/2021]
+## 1.16.3 [13/09/2021]
+[812] Màj code google site verification
 [770] Réordonnancer liens footer
 
 ## 1.16.2 [09/09/2021]
