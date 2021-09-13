@@ -326,6 +326,85 @@
                     }
                 }            
             }
+        },
+
+        
+        "/api/V1/metiers/metiersParFormation/{cfd}":
+        {
+            "get": 
+            {
+                "description": "Récupérer la liste des noms des métiers du référentiel de La Bonne Alternance pour une formation donnée",
+
+                "parameters": [{
+                    "name": "cfd",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": "L'identifiant CFD de la formation.",
+                    "example": "50022137"                    
+                }],
+
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+
+                "responses": {
+                    "200": 
+                    {
+                        "description": "Un tableau contenant la liste de tous les noms de métiers.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/definitions/Liste_des_metiers"
+                                }
+                            }
+                        }
+                    }
+                }            
+            }
+        },
+
+        "/api/V1/metiers/metiersParEtablissement/{siret}":
+        {
+            "get": 
+            {
+                "description": "Récupérer la liste des noms des métiers du référentiel de La Bonne Alternance pour un établissement de formation",
+
+                "parameters": [{
+                    "name": "siret",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": "Le siret de l'établissement de formation.",
+                    "example": "1234567890123"                    
+                }],
+
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+
+                "responses": {
+                    "200": 
+                    {
+                        "description": "Un tableau contenant la liste de tous les noms de métiers.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/definitions/Liste_des_metiers"
+                                }
+                            }
+                        }
+                    }
+                }            
+            }
         }
     },
  
