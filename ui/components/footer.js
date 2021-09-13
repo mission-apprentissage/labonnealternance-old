@@ -34,18 +34,6 @@ const Footer = (props) => {
                     className="c-footer-links__link"
                     onClick={(e) => {
                       e.preventDefault();
-                      dispatch(push({ pathname: "/a-propos" }));
-                    }}
-                    href="/a-propos"
-                  >
-                    A propos
-                  </a>
-                </li>
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
                       dispatch(push({ pathname: "/faq" }));
                     }}
                     href="/faq"
@@ -64,6 +52,32 @@ const Footer = (props) => {
                     href="/contact"
                   >
                     Contact
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/metiers" }));
+                    }}
+                    href="/metiers"
+                  >
+                    Métiers
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/a-propos" }));
+                    }}
+                    href="/a-propos"
+                  >
+                    A propos
                   </a>
                 </li>
 
@@ -109,18 +123,6 @@ const Footer = (props) => {
                   </a>
                 </li>
 
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/metiers" }));
-                    }}
-                    href="/metiers"
-                  >
-                    Métiers
-                  </a>
-                </li>
 
                 <li className="c-footer-links__line">
                   <a
