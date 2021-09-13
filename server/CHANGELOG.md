@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.16.3 [13/09/2021]
+[812] Màj code google site verification
+
 ## 1.16.2 [09/09/2021]
 [759] Mise à jour liste des cfas d'entreprise
 [787] Bug itinéraire
