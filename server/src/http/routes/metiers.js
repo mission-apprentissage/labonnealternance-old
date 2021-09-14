@@ -16,6 +16,11 @@ module.exports = () => {
     "/metiersParFormation/:cfd",
     tryCatch(async (req, res) => {
       const result = await getMetiersPourCfd({ cfd: req.params.cfd });
+
+      if (result.error) {
+        res.status(500);
+      }
+
       return res.json(result);
     })
   );
@@ -24,6 +29,11 @@ module.exports = () => {
     "/metiersParEtablissement/:siret",
     tryCatch(async (req, res) => {
       const result = await getMetiersPourEtablissement({ siret: req.params.siret });
+
+      if (result.error) {
+        res.status(500);
+      }
+
       return res.json(result);
     })
   );
@@ -32,6 +42,11 @@ module.exports = () => {
     "/all",
     tryCatch(async (req, res) => {
       const result = await getTousLesMetiers();
+
+      if (result.error) {
+        res.status(500);
+      }
+
       return res.json(result);
     })
   );
@@ -40,6 +55,15 @@ module.exports = () => {
     "/",
     tryCatch(async (req, res) => {
       const result = await getMetiers({ title: req.query.title, romes: req.query.romes, rncps: req.query.rncps });
+
+      if (result.error) {
+        if (res.error === "missing_parameters") {
+          res.status(400);
+        } else {
+          res.status(500);
+        }
+      }
+
       return res.json(result);
     })
   );
