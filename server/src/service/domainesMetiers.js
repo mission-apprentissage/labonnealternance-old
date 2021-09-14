@@ -141,7 +141,7 @@ const getMetiers = async ({ title = null, romes = null, rncps = null }) => {
 
       return { labelsAndRomes };
     } catch (error) {
-      manageError({ error, msgToLog: "getting metiers from title romes and rncps" });
+      return manageError({ error, msgToLog: "getting metiers from title romes and rncps" });
     }
   }
 };
@@ -184,7 +184,7 @@ const getLabelsAndRomes = async (searchKeyword) => {
 
     return { labelsAndRomes };
   } catch (error) {
-    manageError({ error, msgToLog: "getting metiers from title" });
+    return manageError({ error, msgToLog: "getting metiers from title" });
   }
 };
 
@@ -228,7 +228,7 @@ const getLabelsAndRomesForDiplomas = async (searchKeyword) => {
 
     return { labelsAndRomesForDiplomas };
   } catch (error) {
-    manageError({ error, msgToLog: "getting diplomes from title" });
+    return manageError({ error, msgToLog: "getting diplomes from title" });
   }
 };
 
@@ -345,7 +345,7 @@ const getMetiersFromRomes = async (romes) => {
 
     return { metiers };
   } catch (error) {
-    manageError({ error, msgToLog: "getting metiers from romes" });
+    return manageError({ error, msgToLog: "getting metiers from romes" });
   }
 };
 
@@ -377,7 +377,7 @@ const getTousLesMetiers = async () => {
 
     return { metiers };
   } catch (error) {
-    manageError({ error, msgToLog: "getting all metiers" });
+    return manageError({ error, msgToLog: "getting all metiers" });
   }
 };
 
