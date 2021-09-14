@@ -215,7 +215,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
                   Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :
                 </p>
                 <ul>
-                  <li>commencez par vous inscrire à a formation pour accéder ensuite au contrat,</li>
+                  <li>commencez par vous inscrire à la formation pour accéder ensuite au contrat,</li>
                   <li>ou commencez par postuler à une offre d'emploi pour être ensuite inscrit en formation.</li>
                 </ul>
                 <p>
