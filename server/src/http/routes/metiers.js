@@ -57,7 +57,7 @@ module.exports = () => {
       const result = await getMetiers({ title: req.query.title, romes: req.query.romes, rncps: req.query.rncps });
 
       if (result.error) {
-        if (res.error === "missing_parameters") {
+        if (result.error === "missing_parameters") {
           res.status(400);
         } else {
           res.status(500);
