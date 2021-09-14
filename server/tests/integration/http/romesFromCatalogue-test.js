@@ -7,13 +7,16 @@ httpTests(__filename, ({ startServer }) => {
 
     const response = await httpClient.get("/api/metiers/metiersParFormation/a");
 
-    assert.notStrictEqual(response.status, 404);
-
-    if (response.status === 200) {
+    if (response.status !== 500) {
       // test en local avec es bien renseigné
+
+      assert.strictEqual(response.status, 200);
+
       assert.ok(response.data.metiers instanceof Array);
       assert.ok(response.data.metiers.length === 0);
       assert.ok(response.data.error.length > 0);
+    } else {
+      assert.strictEqual(response.status, 500);
     }
   });
 
@@ -22,13 +25,16 @@ httpTests(__filename, ({ startServer }) => {
 
     const response = await httpClient.get("/api/metiers/metiersParEtablissement/a");
 
-    assert.notStrictEqual(response.status, 404);
-
-    if (response.status === 200) {
+    if (response.status !== 500) {
       // test en local avec es bien renseigné
+
+      assert.strictEqual(response.status, 200);
+
       assert.ok(response.data.metiers instanceof Array);
       assert.ok(response.data.metiers.length === 0);
       assert.ok(response.data.error.length > 0);
+    } else {
+      assert.strictEqual(response.status, 500);
     }
   });
 
@@ -37,11 +43,13 @@ httpTests(__filename, ({ startServer }) => {
 
     const response = await httpClient.get("/api/metiers/metiersParFormation/50022137");
 
-    assert.notStrictEqual(response.status, 404);
-
-    if (response.status === 200) {
+    if (response.status !== 500) {
       // test en local avec es bien renseigné
+      assert.strictEqual(response.status, 200);
+
       assert.ok(response.data.metiers instanceof Array);
+    } else {
+      assert.strictEqual(response.status, 500);
     }
   });
 
@@ -50,11 +58,12 @@ httpTests(__filename, ({ startServer }) => {
 
     const response = await httpClient.get("/api/metiers/metiersParEtablissement/77566202600225");
 
-    assert.notStrictEqual(response.status, 404);
-
-    if (response.status === 200) {
+    if (response.status !== 500) {
       // test en local avec es bien renseigné
+      assert.strictEqual(response.status, 200);
       assert.ok(response.data.metiers instanceof Array);
+    } else {
+      assert.strictEqual(response.status, 500);
     }
   });
 });
