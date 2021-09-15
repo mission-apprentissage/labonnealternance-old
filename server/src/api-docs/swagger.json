@@ -249,8 +249,163 @@
                     }
                 }            
             }
-        }
+        },
 
+        "/api/V1/metiers": 
+        {
+            "get": 
+            {
+                "description": "Rechercher des métiers et les codes ROMEs et RNCPs correspondants pour un titre, des codes ROMEs ou des codes RNCPs",
+
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/title"
+                    },
+                    {
+                        "$ref": "#/parameters/romes_2"
+                    },
+                    {
+                        "$ref": "#/parameters/rncps"
+                    }
+                ],
+
+                "responses": {
+                    "200": 
+                    {
+                        "description": "Un tableau contenant la liste des métiers correspondants aux critères transmis en paramètre de la requête. Le tableau peut être vide si aucun métier ne correspond.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/definitions/Metiers"
+                                }
+                            }
+                        }
+                    },
+                    
+                    "400": 
+                    {
+                        "$ref": "#/responses/WrongParameters"
+                    }
+                }            
+            }
+        },
+
+        "/api/V1/metiers/all":
+        {
+            "get": 
+            {
+                "description": "Récupérer la liste des noms des métiers du référentiel de La Bonne Alternance",
+
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+
+                "responses": {
+                    "200": 
+                    {
+                        "description": "Un tableau contenant la liste de tous les noms de métiers.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/definitions/Liste_des_metiers"
+                                }
+                            }
+                        }
+                    }
+                }            
+            }
+        },
+
+        
+        "/api/V1/metiers/metiersParFormation/{cfd}":
+        {
+            "get": 
+            {
+                "description": "Récupérer la liste des noms des métiers du référentiel de La Bonne Alternance pour une formation donnée",
+
+                "parameters": [{
+                    "name": "cfd",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": "L'identifiant CFD de la formation.",
+                    "example": "50022137"                    
+                }],
+
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+
+                "responses": {
+                    "200": 
+                    {
+                        "description": "Un tableau contenant la liste de tous les noms de métiers.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/definitions/Liste_des_metiers"
+                                }
+                            }
+                        }
+                    }
+                }            
+            }
+        },
+
+        "/api/V1/metiers/metiersParEtablissement/{siret}":
+        {
+            "get": 
+            {
+                "description": "Récupérer la liste des noms des métiers du référentiel de La Bonne Alternance pour un établissement de formation",
+
+                "parameters": [{
+                    "name": "siret",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": "Le siret de l'établissement de formation.",
+                    "example": "1234567890123"                    
+                }],
+
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+
+                "responses": {
+                    "200": 
+                    {
+                        "description": "Un tableau contenant la liste de tous les noms de métiers.",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "$ref": "#/definitions/Liste_des_metiers"
+                                }
+                            }
+                        }
+                    }
+                }            
+            }
+        }
     },
  
     "responses":
@@ -291,6 +446,36 @@
             "type": "string",
             "description": "Une liste de codes ROME séparés par des virgules correspondant au(x) métier(s) recherché(s). Maximum 9.<br />rome et romeDomain sont incompatibles.<br/><strong>Au moins un des deux doit être renseigné.</strong>",
             "example": "F1603,I1308"
+        },
+
+        "romes_2":
+        {
+            "name": "romes",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Une liste de codes ROME séparés par des virgules correspondant au(x) métier(s) recherché(s).",
+            "example": "F1603,I1308"
+        },
+
+        "title":
+        {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Un terme libre de recherche de métier.",
+            "example": "Décoration"
+        },
+
+        "rncps":
+        {
+            "name": "rncps",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Une liste de codes RNCP séparés par des virgules correspondant au(x) métier(s) recherché(s).",
+            "example": "RNCP500,RNCP806"
         },
 
         "regionRomes":
@@ -1135,6 +1320,79 @@
                     "description": "Le libellé correspondant au code NAF"
                 }                      
             }
+        },
+
+        "Metiers" : 
+        {
+            "type": "object",
+            "required" : ["labelsAndRomes"],
+            "properties":
+            {
+                "labelsAndRomes": 
+                { 
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "#/definitions/Metier"
+                    },
+                    "description": "Un tableau de métiers correspondantes aux critères"
+                }
+            }
+        },
+
+        "Liste_des_metiers" :
+        {
+            "type": "object",
+            "required" : ["metiers"],
+            "properties":
+            {
+                "metiers": 
+                { 
+                    "type": "array",
+                    "items":
+                    {
+                        "type": "string",
+                        "example": "Accueil touristique",
+                        "description": "Un nom de métier du référentiel La Bonne Alternance"
+                    },
+                    "description": "Un tableau des noms des métiers triés par ordre alphabétique"
+                }
+            }
+        },
+
+        "Metier":
+        {
+            "type": "object",
+            "description": "Les informations d'un métier de la liste définie par la mission apprentissage",
+            "required": ["label","romes","rncps","type"],
+            "properties":
+            {
+                "label":
+                {
+                    "type": "string",
+                    "example": "Décor et accessoires pour le spectacle",
+                    "description": "Le nom du métier"
+                },
+
+                "romes":
+                {
+                    "type": "array",
+                    "example": ["L1503","L1502","L1506"],
+                    "description": "La liste des codes ROMEs correspondants au métier"
+                },
+                "rncps":
+                {
+                    "type": "array",
+                    "example": ["RNCP500","RNCP806"],
+                    "description": "La liste des codes RNCPs correspondants au métier"
+                },
+                "type":
+                {
+                    "type": "string",
+                    "example" : "job",
+                    "description": "Indique que l'objet est de type job"
+                }
+            }      
         }
     }
 
