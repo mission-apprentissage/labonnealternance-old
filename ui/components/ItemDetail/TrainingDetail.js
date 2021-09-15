@@ -16,7 +16,6 @@ import { Spinner } from "reactstrap";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 
-
 const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   const dispatch = useDispatch();
 
@@ -96,16 +95,21 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
 
   let didask = (
     <p>
-      Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ?
-      Préparez votre premier contact avec un CFA
+      Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ? Préparez votre premier contact
+      avec un CFA
       <span className="c-detail-traininglink ml-1">
-        <a href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987" target="_blank" rel="noopener noreferrer" className="gtmDidaskFormation">
+        <a
+          href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="gtmDidaskFormation"
+        >
           <img src={gotoIcon} alt="Lien" />
           &nbsp;en cliquant ici
         </a>
       </span>
     </p>
-  )
+  );
 
   let contactInfo = (
     <>
@@ -202,30 +206,20 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
             <img src={questionmarkIcon} alt="point d'interrogation" />
           </div>
           <div className="c-detail-advice__body">
-            {
-              isCfa ? 
+            {isCfa ? (
               <div className="c-detail-advice-text">
-                <p className="c-detail-advice-cfatitle">
-                  Cet établissement est un CFA d’entreprise.
-                </p>
-                <p>
-                  La particularité ? Il s’agit d’une formule complète Emploi + Formation !
-                </p>
-                <p>
-                  Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :
-                </p>
+                <p className="c-detail-advice-cfatitle">Cet établissement est un CFA d’entreprise.</p>
+                <p>La particularité ? Il s’agit d’une formule complète Emploi + Formation !</p>
+                <p>Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :</p>
                 <ul>
-                  <li>commencez par vous inscrire à a formation pour accéder ensuite au contrat,</li>
+                  <li>commencez par vous inscrire à la formation pour accéder ensuite au contrat,</li>
                   <li>ou commencez par postuler à une offre d'emploi pour être ensuite inscrit en formation.</li>
                 </ul>
-                <p>
-                  Prenez contact avec cet établissement ou consultez son site web pour en savoir + !
-                </p>
-                
-                {didask}
+                <p>Prenez contact avec cet établissement ou consultez son site web pour en savoir + !</p>
 
+                {didask}
               </div>
-              :  
+            ) : (
               <div className="c-detail-advice-text">
                 <p>
                   <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
@@ -238,9 +232,8 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
                 </p>
 
                 {didask}
-
               </div>
-            }
+            )}
           </div>
         </div>
       ) : (
