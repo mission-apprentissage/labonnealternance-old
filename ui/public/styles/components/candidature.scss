@@ -1,3 +1,10 @@
+.c-candidature-modal .modal-content {
+  padding: 2rem;
+}
+.c-candidature-modal .modal-footer {
+  border-top: none;
+}
+
 .c-candidature-modal-header.modal-header {
   border-bottom: none;
   border-radius: 0;
@@ -8,5 +15,15 @@
     font-weight: 400;
     line-height: 24px;
     letter-spacing: 0em;
+    text-transform: capitalize;
+    padding: 0;
   }
+}
+
+h1.c-candidature-title {
+  font-family: Marianne;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0em;
 }
