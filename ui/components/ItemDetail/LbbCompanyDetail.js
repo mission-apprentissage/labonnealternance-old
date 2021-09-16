@@ -8,7 +8,7 @@ import { capitalizeFirstLetter } from "../../utils/strutils";
 import { SendTrackEvent } from "utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
-import GoingToContactQuestion, {getGoingtoId} from "./GoingToContactQuestion";
+import CandidatureSpontanee from "./CandidatureSpontanee";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
@@ -200,8 +200,10 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           ""
         )}
       </div>
+            <CandidatureSpontanee/>
       <div>&nbsp;</div>
       <div>&nbsp;</div>
+
       <div className="c-detail-description-me col-12 col-md-5">
         <div className="c-detail-pelink my-3">
           <a className="btn btn-dark ml-1" href={'#'}>
