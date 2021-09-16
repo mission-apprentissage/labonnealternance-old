@@ -12,7 +12,7 @@ const CandidatureSpontanee = (props) => {
   const toggle = () => setModal(!modal);
 
   return (
-    <div>
+    <div className="c-candidature">
 
 
       <div className="c-detail-description-me col-12 col-md-5">
