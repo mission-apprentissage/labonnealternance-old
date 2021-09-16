@@ -200,17 +200,10 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           ""
         )}
       </div>
-            <CandidatureSpontanee/>
       <div>&nbsp;</div>
       <div>&nbsp;</div>
 
-      <div className="c-detail-description-me col-12 col-md-5">
-        <div className="c-detail-pelink my-3">
-          <a className="btn btn-dark ml-1" href={'#'}>
-            J’envoie une candidature spontanée
-          </a>
-        </div>
-      </div>
+      <CandidatureSpontanee/>
 
     </>
   );

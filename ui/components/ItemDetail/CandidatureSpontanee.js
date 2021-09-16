@@ -13,7 +13,17 @@ const CandidatureSpontanee = (props) => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+
+
+      <div className="c-detail-description-me col-12 col-md-5">
+        <div className="c-detail-pelink my-3">
+          <Button onClick={toggle} className="btn btn-dark ml-1">
+                J’envoie une candidature spontanée
+          </Button>
+        </div>
+      </div>
+
+
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
