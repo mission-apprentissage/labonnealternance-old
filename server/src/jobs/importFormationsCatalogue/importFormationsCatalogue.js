@@ -83,7 +83,7 @@ const importFormations = async ({ workIndex, workMongo }) => {
   }
 };
 
-module.exports = async ({ onlyChangeMasterIndex = false }) => {
+module.exports = async (onlyChangeMasterIndex = false) => {
   let step = 0;
 
   try {
