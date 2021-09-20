@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.16.4 [20/09/2021]
+[802] Nouveaux paramètres api métiers
+[741] Suppression lien crédit photo
+[762-777] Wording
+
 ## 1.16.3 [13/09/2021]
 [808] Tagco à implémenter sur la page cookies
 [812] Màj code google site verification

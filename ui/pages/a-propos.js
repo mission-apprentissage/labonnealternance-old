@@ -328,16 +328,6 @@ const APROPOS = () => (
               </div>
             </div>
           </div>
-
-          <h2 className="c-about-title">Crédits images</h2>
-
-          <p>
-            <small>
-              <a href="https://www.freepik.com/vectors/people" rel="noopener noreferrer" target="_blank">
-                Illustration de la page d'accueil réalisée par pikisuperstar - www.freepik.com
-              </a>
-            </small>
-          </p>
         </div>
       </div>
     </div>

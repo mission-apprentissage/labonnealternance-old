@@ -18,6 +18,19 @@ const getRomesAndLabelsFromTitleQuery = async (query) => {
   }
 };
 
+const manageError = ({ error, msgToLog }) => {
+  Sentry.captureException(error);
+  let error_msg = _.get(error, "meta.body") ?? error.message;
+
+  if (error?.meta?.meta?.connection?.status === "dead") {
+    logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
+  } else {
+    logger.error(`Error getting ${msgToLog}. error_message=${error_msg}`);
+  }
+
+  return { error: error_msg };
+};
+
 const getMultiMatchTerm = (term) => {
   return {
     bool: {
@@ -58,6 +71,81 @@ const getMultiMatchTermForDiploma = (term) => {
   };
 };
 
+const getMetiers = async ({ title = null, romes = null, rncps = null }) => {
+  if (!title && !romes && !rncps) {
+    return {
+      error: "missing_parameters",
+      error_messages: ["Parameters must include at least one from 'title', 'romes' and 'rncps'"],
+    };
+  } else {
+    try {
+      let terms = [];
+
+      if (title) {
+        title.split(" ").forEach((term, idx) => {
+          if (idx === 0 || term.length > 2) {
+            terms.push(getMultiMatchTerm(term));
+          }
+        });
+      }
+
+      if (romes) {
+        terms.push({
+          bool: {
+            must: {
+              match: {
+                codes_romes: romes,
+              },
+            },
+          },
+        });
+      }
+
+      if (rncps) {
+        terms.push({
+          bool: {
+            must: {
+              match: {
+                codes_rncps: rncps,
+              },
+            },
+          },
+        });
+      }
+
+      const esClient = getDomainesMetiersES();
+
+      const response = await esClient.search({
+        index: "domainesmetiers",
+        size: 20,
+        _sourceIncludes: ["sous_domaine", "codes_romes", "codes_rncps"],
+        body: {
+          query: {
+            bool: {
+              must: terms,
+            },
+          },
+        },
+      });
+
+      let labelsAndRomes = [];
+
+      response.body.hits.hits.forEach((labelAndRome) => {
+        labelsAndRomes.push({
+          label: labelAndRome._source.sous_domaine,
+          romes: labelAndRome._source.codes_romes,
+          rncps: labelAndRome._source.codes_rncps,
+          type: "job",
+        });
+      });
+
+      return { labelsAndRomes };
+    } catch (error) {
+      return manageError({ error, msgToLog: "getting metiers from title romes and rncps" });
+    }
+  }
+};
+
 const getLabelsAndRomes = async (searchKeyword) => {
   try {
     let terms = [];
@@ -94,20 +182,9 @@ const getLabelsAndRomes = async (searchKeyword) => {
       });
     });
 
-    //throw new Error("BOOOOOOOM");
-
     return { labelsAndRomes };
-  } catch (err) {
-    Sentry.captureException(err);
-    let error_msg = _.get(err, "meta.body") ?? err.message;
-
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
-    } else {
-      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
-    }
-
-    return { error: error_msg };
+  } catch (error) {
+    return manageError({ error, msgToLog: "getting metiers from title" });
   }
 };
 
@@ -148,20 +225,10 @@ const getLabelsAndRomesForDiplomas = async (searchKeyword) => {
     });
 
     labelsAndRomesForDiplomas = removeDuplicateDiplomas(labelsAndRomesForDiplomas);
-    //throw new Error("BOOOOOOOM");
 
     return { labelsAndRomesForDiplomas };
-  } catch (err) {
-    Sentry.captureException(err);
-    let error_msg = _.get(err, "meta.body") ?? err.message;
-
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
-    } else {
-      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
-    }
-
-    return { error: error_msg };
+  } catch (error) {
+    return manageError({ error, msgToLog: "getting diplomes from title" });
   }
 };
 
@@ -276,20 +343,41 @@ const getMetiersFromRomes = async (romes) => {
       metiers.push(metier._source.sous_domaine);
     });
 
-    //throw new Error("BOOOOOOOM");
+    return { metiers };
+  } catch (error) {
+    return manageError({ error, msgToLog: "getting metiers from romes" });
+  }
+};
+
+const getTousLesMetiers = async () => {
+  /**
+   * récupère dans la table custo tous les métiers
+   */
+  try {
+    const esClient = getDomainesMetiersES();
+
+    const response = await esClient.search({
+      index: "domainesmetiers",
+      size: 200,
+      _sourceIncludes: ["sous_domaine"],
+      body: {
+        query: {
+          match_all: {},
+        },
+      },
+    });
+
+    let metiers = [];
+
+    response.body.hits.hits.forEach((metier) => {
+      metiers.push(metier._source.sous_domaine);
+    });
+
+    metiers.sort();
 
     return { metiers };
-  } catch (err) {
-    Sentry.captureException(err);
-    let error_msg = _.get(err, "meta.body") ?? err.message;
-
-    if (_.get(err, "meta.meta.connection.status") === "dead") {
-      logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
-    } else {
-      logger.error(`Error getting romes from keyword. error_message=${error_msg}`);
-    }
-
-    return { error: error_msg, metiers: [] };
+  } catch (error) {
+    return manageError({ error, msgToLog: "getting all metiers" });
   }
 };
 
@@ -299,4 +387,6 @@ module.exports = {
   getMissingRNCPs,
   getMetiersPourCfd,
   getMetiersPourEtablissement,
+  getTousLesMetiers,
+  getMetiers,
 };
