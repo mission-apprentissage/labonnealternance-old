@@ -43,6 +43,14 @@
     "googleAnalyticsUA": "1234",
     "serverSentryDsn": "https://61156c2d46b54369b777900d475ee0f9@o154210.ingest.sentry.io/5562203",
     "secretUpdateRomesMetiers": "1234",
-    "allowedSources": "allowed"
+    "allowedSources": "allowed",
+    "smtp":
+    {
+      "host": "localhost",
+      "port": "25",
+      "user": "1234",
+      "password": "1234",
+      "sendinblueToken": "1234"
+    }
   }
 }
