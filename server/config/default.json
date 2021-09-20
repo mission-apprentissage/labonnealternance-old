@@ -48,8 +48,12 @@
     {
       "host": "localhost",
       "port": "25",
-      "user": "1234",
-      "password": "1234",
+
+      "auth": {
+        "user": "1234",
+        "pass": "1234"
+      },
+
       "sendinblueToken": "1234"
     }
   }

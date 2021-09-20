@@ -44,8 +44,10 @@
     {
       "host": "LABONNEALTERNANCE_SMTP_HOST",
       "port": "LABONNEALTERNANCE_SMTP_PORT",
-      "user": "LABONNEALTERNANCE_SMTP_AUTH_USER",
-      "password": "LABONNEALTERNANCE_SMTP_AUTH_PASS",
+      "auth": {
+        "user": "LABONNEALTERNANCE_SMTP_AUTH_USER",
+        "pass": "LABONNEALTERNANCE_SMTP_AUTH_PASS"
+      },
       "sendinblueToken": "LABONNEALTERNANCE_SMTP_SENDINBLUE_TOKEN"
     }
   }
