@@ -20,6 +20,7 @@ const formationRegionV1 = require("./routes/formationRegionV1");
 const jobV1 = require("./routes/jobV1");
 const esSearch = require("./routes/esSearch");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
+const sendMail = require("./routes/sendMail");
 const rateLimit = require("express-rate-limit");
 var path = require("path");
 
@@ -112,6 +113,8 @@ module.exports = async (components) => {
   app.use("/api/metiers", limiter20PerSecond, metiers());
 
   app.use("/api/v1/metiers", limiter20PerSecond, metiers());
+
+  app.use("/api/mail", limiter1Per5Second, sendMail(components));
 
   app.get(
     "/api",
