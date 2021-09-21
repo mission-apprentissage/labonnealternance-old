@@ -1,0 +1,44 @@
+<mjml>
+    <mj-head>
+        <mj-title>Nous allons vous rappeler</mj-title>
+        <mj-font name="Inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'" />
+        <mj-style inline="inline">
+            a:link,a:visited, a:hover, a:active {color: #206BC4;}, a {color: #3A55D1;}, body{background: #F9F8F6;}
+            a.purple {color: #3A55D1; text-decoration: none}
+        </mj-style>
+        <mj-attributes>
+            <mj-text padding="0px" color="#232E3C" font-family="Inter,sans-serif" font-size="14px" line-height="23px" />
+            <mj-divider padding="0px" />
+        </mj-attributes>
+    </mj-head>
+    <mj-body background-color="#F9F8F6">
+        <mj-section padding-bottom="0px">
+            <mj-column padding="0px" vertical-align="middle" width="50px">
+                Image
+            </mj-column>
+            <mj-column padding="0px" vertical-align="middle" width="400px">
+                <mj-text padding="0px" font-size="22px" font-weight="700" color="#383838" line-height="26px" text-decoration="none" padding-left="1rem">
+                    Candidature de <%= data.user.email %>
+                </mj-text>
+                <mj-text padding="0px" font-size="22px" font-weight="700" line-height="26.63px" text-decoration="none" color="#3A55D1" padding-left="1rem">à bien reçu votre demande de RDV !</mj-text>
+            </mj-column>
+            <mj-column padding="0px" vertical-align="middle" width="150px">
+                Image
+            </mj-column>
+        </mj-section>
+        <mj-wrapper padding="0px" padding-bottom="50px">
+            <mj-section background-color="#ffffff" padding-top="65px">
+                <mj-column width="420px">
+                    <mj-text padding-bottom="32px" font-size="20px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#3A55D1">
+                        Bonjour
+                    </mj-text>
+                    <mj-text font-size="16px" line-height="20px">
+                        Postulation</mj-text>
+                    <mj-text font-size="16px" line-height="20px" padding-top="40px">
+                        A très bientôt !
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+    </mj-body>
+</mjml>
