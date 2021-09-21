@@ -42,5 +42,14 @@ module.exports = (config, transporter = createTransporter(config.smtp)) => {
         list: {},
       });
     },
+    sendPlainTextEmail: async (to, subject) => {
+      return transporter.sendMail({
+        from: "no-reply@apprentissage.beta.gouv.fr",
+        to,
+        subject,
+        body: `Mail pour ${to}`,
+        list: {},
+      });
+    },
   };
 };
