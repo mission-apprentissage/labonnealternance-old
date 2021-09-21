@@ -5,6 +5,6 @@ const config = require("config");
 module.exports = async (options = {}) => {
   return {
     db: options.db || (await connectToMongo()).db,
-    mailer: options.mailer || createMailer({ smtp: { ...config.smtp, secure: false } }),
+    mailer: options.mailer || createMailer({ smtp: { ...config.private.smtp, secure: false } }),
   };
 };
