@@ -1,6 +1,6 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
-const { sendTestMail } = require("../../service/sendMail");
+const { sendTestMail } = require("../../service/applications");
 
 /**
  * API romes
