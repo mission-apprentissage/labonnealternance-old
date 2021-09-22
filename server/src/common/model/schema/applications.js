@@ -4,6 +4,21 @@ const applicationSchema = {
     default: null,
     description: "Adresse email candidat",
   },
+  applicant_first_name: {
+    type: String,
+    default: null,
+    description: "Prénom du candidat",
+  },
+  applicant_last_name: {
+    type: String,
+    default: null,
+    description: "Nom du candidat",
+  },
+  applicant_phone: {
+    type: String,
+    default: null,
+    description: "Téléphone du candidat",
+  },
   application_id: {
     type: String,
     default: null,
@@ -24,6 +39,11 @@ const applicationSchema = {
     type: String,
     default: null,
     description: "L'adresse email de destination de la candidature",
+  },
+  company_name: {
+    type: String,
+    default: null,
+    description: "Le nom de la société",
   },
   to_applicant_message_id: {
     type: String,
