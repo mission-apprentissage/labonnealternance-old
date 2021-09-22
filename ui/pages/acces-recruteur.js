@@ -84,19 +84,6 @@ const AccesRecruteur = () => (
                 multidiffusion.
               </li>
             </ul>
-            <p>
-              Bientôt, nous expérimenterons un autre canal de recueil de besoins en recrutement (
-              <a
-                href="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/untitled"
-                target="_blank"
-                className=""
-                rel="noopener noreferrer"
-              >
-                <img className="mt-n1" src="/images/square_link.svg" alt="Lien matcha" />
-                <span className="ml-1">projet Matcha</span>
-              </a>
-              ).
-            </p>
           </section>
           <section className="mt-4">
             <h2 className="mb-3 h5 c-recruteur-title">
