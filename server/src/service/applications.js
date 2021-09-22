@@ -2,23 +2,9 @@ const _ = require("lodash");
 const config = require("config");
 const Sentry = require("@sentry/node");
 const path = require("path");
+const { Application } = require("../common/model");
 
 const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
-  /*const [emailCandidat, emailCfa] = await Promise.all([
-        mailer.sendEmail(
-          user.email,
-          `Le CFA a bien reçu votre demande de RDV via ${referrerObj.full_name}`,
-          getEmailTemplate("mail-candidat"),
-          mailData
-        ),
-        mailer.sendEmail(
-          widgetParameter.email_rdv,
-          `[RDV via ${referrerObj.full_name}] Un candidat souhaite être recontacté`,
-          getEmailTemplate("mail-formation"),
-          mailData
-        ),
-      ]);*/
-
   if (shouldCheckSecret && !query.secret) {
     return { error: "secret_missing" };
   } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
@@ -58,7 +44,10 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         ),
       ]);
 
-      return { emailCandidat, emailCompany };
+      const application = new Application({});
+      let after = await application.save();
+
+      return { emailCandidat, emailCompany, application, after };
     } catch (err) {
       Sentry.captureException(err);
 
