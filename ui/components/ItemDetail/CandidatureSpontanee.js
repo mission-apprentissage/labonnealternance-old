@@ -52,7 +52,7 @@ const CandidatureSpontanee = (props) => {
 
             <div className="d-flex flex-column flex-md-row mt-4">
 
-              <div className={`mr-0 mr-md-2 c-candidature-field ${formik.touched.lastName ? `is-valid-${!formik.errors.lastName}` : '' }`}>
+              <div className={`mr-0 mr-md-2 c-candidature-field ${formik.touched.lastName ? `is-valid-${!formik.errors.lastName}` : 'is-not-validated' }`}>
                 <label htmlFor="lastName">Nom *</label>
                 <input
                   id="lastName"
@@ -67,7 +67,7 @@ const CandidatureSpontanee = (props) => {
                 ) : null}
               </div>
 
-              <div className={`mt-4 mt-md-0 c-candidature-field ${formik.touched.firstName ? `is-valid-${!formik.errors.firstName}` : '' }`}>
+              <div className={`mt-4 mt-md-0 c-candidature-field ${formik.touched.firstName ? `is-valid-${!formik.errors.firstName}` : 'is-not-validated' }`}>
                 <label htmlFor="firstName">Prénom *</label>
                 <input
                   id="firstName"
@@ -86,7 +86,7 @@ const CandidatureSpontanee = (props) => {
 
             <div className="d-flex flex-column flex-md-row mt-0 mt-md-3">
 
-              <div className={`mr-0 mr-md-2 mt-4 mt-md-0 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : '' }`}>
+              <div className={`mr-0 mr-md-2 mt-4 mt-md-0 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : 'is-not-validated' }`}>
                 <label htmlFor="email">E-mail *</label>
                 <input
                   id="email"
@@ -95,14 +95,13 @@ const CandidatureSpontanee = (props) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
-                  className={formik.touched.email ? `c-candidature-input is-valid-${!formik.errors.email}` : 'c-candidature-input' }
                 />
                 {formik.touched.email && formik.errors.email ? (
                   <div>{formik.errors.email}</div>
                 ) : null}
               </div>
 
-              <div className={`mr-0 mr-md-2 mt-4 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : '' }`}>
+              <div className={`mr-0 mr-md-2 mt-4 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : 'is-not-validated' }`}>
                 <label htmlFor="email">Téléphone *</label>
                 <input
                   id="phone"

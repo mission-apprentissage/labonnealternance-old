@@ -33,6 +33,20 @@
   }
 }
 
+.c-candidature-field input {
+  border: none;
+  background: #F0F0F0;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.c-candidature-field   input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus,  input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px #F0F0F0 inset !important;
+}
+
+.c-candidature-field.is-not-validated {
+  border-bottom: 2px solid #6A6A6A;
+}
+
 .c-candidature-modal .modal-content {
   padding: 2rem;
 }
