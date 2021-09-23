@@ -66,7 +66,7 @@ const CandidatureSpontanee = (props) => {
                 ) : null}
               </div>
 
-              <div>
+              <div className="mt-4 mt-md-0">
                 <label htmlFor="firstName">Prénom *</label>
                 <input
                   id="firstName"
@@ -85,7 +85,7 @@ const CandidatureSpontanee = (props) => {
 
             <div className="d-flex flex-column flex-md-row mt-0 mt-md-3">
 
-              <div className="mr-0 mr-md-2">
+              <div className="mr-0 mr-md-2 mt-4 mt-md-0">
                 <label htmlFor="email">E-mail *</label>
                 <input
                   id="email"
@@ -100,7 +100,7 @@ const CandidatureSpontanee = (props) => {
                 ) : null}
               </div>
 
-              <div className="mr-0 mr-md-2">
+              <div className="mr-0 mr-md-2 mt-4 mt-md-0">
                 <label htmlFor="email">Téléphone *</label>
                 <input
                   id="phone"
