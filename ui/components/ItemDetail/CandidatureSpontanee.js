@@ -16,6 +16,7 @@ const CandidatureSpontanee = (props) => {
       firstName: '',
       lastName: '',
       email: '',
+      phone: '',
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -51,7 +52,7 @@ const CandidatureSpontanee = (props) => {
 
             <div className="d-flex flex-column flex-md-row mt-4">
 
-              <div className="mr-0 mr-md-2">
+              <div className={`mr-0 mr-md-2 c-candidature-field ${formik.touched.lastName ? `is-valid-${!formik.errors.lastName}` : '' }`}>
                 <label htmlFor="lastName">Nom *</label>
                 <input
                   id="lastName"
@@ -66,7 +67,7 @@ const CandidatureSpontanee = (props) => {
                 ) : null}
               </div>
 
-              <div className="mt-4 mt-md-0">
+              <div className={`mt-4 mt-md-0 c-candidature-field ${formik.touched.firstName ? `is-valid-${!formik.errors.firstName}` : '' }`}>
                 <label htmlFor="firstName">Prénom *</label>
                 <input
                   id="firstName"
@@ -85,7 +86,7 @@ const CandidatureSpontanee = (props) => {
 
             <div className="d-flex flex-column flex-md-row mt-0 mt-md-3">
 
-              <div className="mr-0 mr-md-2 mt-4 mt-md-0">
+              <div className={`mr-0 mr-md-2 mt-4 mt-md-0 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : '' }`}>
                 <label htmlFor="email">E-mail *</label>
                 <input
                   id="email"
@@ -101,7 +102,7 @@ const CandidatureSpontanee = (props) => {
                 ) : null}
               </div>
 
-              <div className="mr-0 mr-md-2 mt-4 mt-md-0">
+              <div className={`mr-0 mr-md-2 mt-4 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : '' }`}>
                 <label htmlFor="email">Téléphone *</label>
                 <input
                   id="phone"
