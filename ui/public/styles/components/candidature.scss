@@ -6,10 +6,21 @@
   letter-spacing: 0em;
 }
 
+.c-candidature-modal button.close span::before {
+  content: "Fermer ";
+}
+
 .c-candidature-form {
   // See https://stackoverflow.com/a/6046196/2595513
   input, label {
     display:block;
+  }
+  label {
+    font-family: Marianne;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
   }
 }
 

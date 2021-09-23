@@ -49,10 +49,10 @@ const CandidatureSpontanee = (props) => {
           <ModalBody>
             <h1 className="c-candidature-title">Candidature spontanée</h1>
 
-            <div className="d-flex flex-column flex-md-row">
+            <div className="d-flex flex-column flex-md-row mt-4">
 
               <div className="mr-0 mr-md-2">
-                <label htmlFor="lastName">Nom</label>
+                <label htmlFor="lastName">Nom *</label>
                 <input
                   id="lastName"
                   name="lastName"
@@ -67,7 +67,7 @@ const CandidatureSpontanee = (props) => {
               </div>
 
               <div>
-                <label htmlFor="firstName">Prénom</label>
+                <label htmlFor="firstName">Prénom *</label>
                 <input
                   id="firstName"
                   name="firstName"
@@ -83,10 +83,10 @@ const CandidatureSpontanee = (props) => {
 
             </div>
 
-            <div className="d-flex flex-column flex-md-row">
+            <div className="d-flex flex-column flex-md-row mt-0 mt-md-3">
 
               <div className="mr-0 mr-md-2">
-                <label htmlFor="email">address e-mail</label>
+                <label htmlFor="email">E-mail *</label>
                 <input
                   id="email"
                   name="email"
@@ -101,7 +101,7 @@ const CandidatureSpontanee = (props) => {
               </div>
 
               <div className="mr-0 mr-md-2">
-                <label htmlFor="email">Téléphone</label>
+                <label htmlFor="email">Téléphone *</label>
                 <input
                   id="phone"
                   name="phone"
