@@ -38,83 +38,89 @@ const CandidatureSpontanee = (props) => {
       <div className="c-detail-description-me col-12 col-md-5">
         <div className="c-detail-pelink my-3">
           <Button onClick={toggle} className="btn btn-dark ml-1">
-                J’envoie une candidature spontanée
+            J’envoie une candidature spontanée
           </Button>
         </div>
       </div>
 
       <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"}>
         <form onSubmit={formik.handleSubmit} className="c-candidature-form">
-            <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
-            <ModalBody>
-              <h1 className="c-candidature-title">Candidature spontanée</h1>
+          <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
+          <ModalBody>
+            <h1 className="c-candidature-title">Candidature spontanée</h1>
 
             <div className="d-flex flex-column flex-md-row">
 
-                <div className="mr-0 mr-md-2">
-                  <label htmlFor="lastName">Nom</label>
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.lastName}
-                  />
-                  {formik.touched.lastName && formik.errors.lastName ? (
-                    <div>{formik.errors.lastName}</div>
-                  ) : null}
-                </div>
-
-                <div>
-                  <label htmlFor="firstName">Prénom</label>
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.firstName}
-                  />
-                  {formik.touched.firstName && formik.errors.firstName ? (
-                    <div>{formik.errors.firstName}</div>
-                  ) : null}
-                </div>
-                
+              <div className="mr-0 mr-md-2">
+                <label htmlFor="lastName">Nom</label>
+                <input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.lastName}
+                />
+                {formik.touched.lastName && formik.errors.lastName ? (
+                  <div>{formik.errors.lastName}</div>
+                ) : null}
               </div>
 
+              <div>
+                <label htmlFor="firstName">Prénom</label>
+                <input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.firstName}
+                />
+                {formik.touched.firstName && formik.errors.firstName ? (
+                  <div>{formik.errors.firstName}</div>
+                ) : null}
+              </div>
 
-            <label htmlFor="email">address e-mail</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-            />
-            {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
-            ) : null}
+            </div>
 
-            <label htmlFor="email">Téléphone</label>
-            <input
-              id="phone"
-              name="phone"
-              type="text"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.phone}
-            />
-            {formik.touched.phone && formik.errors.phone ? (
-              <div>{formik.errors.phone}</div>
-            ) : null}
+            <div className="d-flex flex-column flex-md-row">
 
-            </ModalBody>
-            <ModalFooter>
-              <button className="btn btn-dark btn-dark-action" type="submit">Submit</button>
-            </ModalFooter>
-          </form>
+              <div className="mr-0 mr-md-2">
+                <label htmlFor="email">address e-mail</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
+                />
+                {formik.touched.email && formik.errors.email ? (
+                  <div>{formik.errors.email}</div>
+                ) : null}
+              </div>
+
+              <div className="mr-0 mr-md-2">
+                <label htmlFor="email">Téléphone</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="text"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.phone}
+                />
+                {formik.touched.phone && formik.errors.phone ? (
+                  <div>{formik.errors.phone}</div>
+                ) : null}
+              </div>
+
+            </div>
+          </ModalBody>
+          <ModalFooter>
+            <button className="btn btn-dark btn-dark-action" type="submit">Submit</button>
+          </ModalFooter>
+        </form>
       </Modal>
     </div>
   );
