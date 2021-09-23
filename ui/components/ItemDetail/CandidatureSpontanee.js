@@ -44,25 +44,12 @@ const CandidatureSpontanee = (props) => {
       </div>
 
       <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"}>
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} className="c-candidature-form">
             <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
             <ModalBody>
               <h1 className="c-candidature-title">Candidature spontanée</h1>
 
-            <label htmlFor="firstName">First Name</label>
-            <input
-              id="firstName"
-              name="firstName"
-              type="text"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.firstName}
-            />
-            {formik.touched.firstName && formik.errors.firstName ? (
-              <div>{formik.errors.firstName}</div>
-            ) : null}
-
-            <label htmlFor="lastName">Last Name</label>
+            <label htmlFor="lastName">Nom</label>
             <input
               id="lastName"
               name="lastName"
@@ -75,7 +62,20 @@ const CandidatureSpontanee = (props) => {
               <div>{formik.errors.lastName}</div>
             ) : null}
 
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="firstName">Prénom</label>
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.firstName}
+            />
+            {formik.touched.firstName && formik.errors.firstName ? (
+              <div>{formik.errors.firstName}</div>
+            ) : null}
+
+            <label htmlFor="email">address e-mail</label>
             <input
               id="email"
               name="email"

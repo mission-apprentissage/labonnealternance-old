@@ -6,6 +6,13 @@
   letter-spacing: 0em;
 }
 
+.c-candidature-form {
+  // See https://stackoverflow.com/a/6046196/2595513
+  input, label {
+    display:block;
+  }
+}
+
 .c-candidature-modal .modal-content {
   padding: 2rem;
 }
