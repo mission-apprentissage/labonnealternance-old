@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.0 [30/09/2021]
+Envoi de messages de candidature
+
 ## 1.16.4 [14/09/2021]
 [802] Nouveaux paramètres api métiers
 [741] Suppression lien crédit photo
