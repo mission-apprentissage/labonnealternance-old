@@ -94,6 +94,7 @@ const CandidatureSpontanee = (props) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
+                  className={formik.touched.email ? `c-candidature-input is-valid-${!formik.errors.email}` : 'c-candidature-input' }
                 />
                 {formik.touched.email && formik.errors.email ? (
                   <div>{formik.errors.email}</div>
