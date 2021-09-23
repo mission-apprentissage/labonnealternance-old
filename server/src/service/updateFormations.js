@@ -10,9 +10,9 @@ const updateFormationsQuery = async (query) => {
     return { error: "wrong_secret" };
   } else {
     try {
-      let onlyChangeMasterIndex = query.onlyChangeMasterIndex ? true : false;
+      let onlyChangeMasterIndex = query?.onlyChangeMasterIndex ? true : false;
 
-      let result = await updateFormations({ onlyChangeMasterIndex });
+      let result = await updateFormations(onlyChangeMasterIndex);
       return result;
     } catch (err) {
       Sentry.captureException(err);
