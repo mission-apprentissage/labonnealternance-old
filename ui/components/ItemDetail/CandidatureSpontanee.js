@@ -52,7 +52,7 @@ const CandidatureSpontanee = (props) => {
 
             <div className="d-flex flex-column flex-md-row mt-4">
 
-              <div className={`mr-0 mr-md-2 c-candidature-field ${formik.touched.lastName ? `is-valid-${!formik.errors.lastName}` : 'is-not-validated' }`}>
+              <div className={`mr-0 mr-md-3 c-candidature-field ${formik.touched.lastName ? `is-valid-${!formik.errors.lastName}` : 'is-not-validated' }`}>
                 <label htmlFor="lastName">Nom *</label>
                 <input
                   id="lastName"
@@ -86,7 +86,7 @@ const CandidatureSpontanee = (props) => {
 
             <div className="d-flex flex-column flex-md-row mt-0 mt-md-3">
 
-              <div className={`mr-0 mr-md-2 mt-4 mt-md-0 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : 'is-not-validated' }`}>
+              <div className={`mr-0 mr-md-3 mt-4 mt-md-0 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : 'is-not-validated' }`}>
                 <label htmlFor="email">E-mail *</label>
                 <input
                   id="email"
@@ -101,7 +101,7 @@ const CandidatureSpontanee = (props) => {
                 ) : null}
               </div>
 
-              <div className={`mr-0 mr-md-2 mt-4 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : 'is-not-validated' }`}>
+              <div className={`mt-4 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : 'is-not-validated' }`}>
                 <label htmlFor="email">Téléphone *</label>
                 <input
                   id="phone"
