@@ -1,8 +1,13 @@
-const _ = require("lodash");
 const config = require("config");
 const Sentry = require("@sentry/node");
 const path = require("path");
 const { Application } = require("../common/model");
+
+const images = {
+  images: {
+    logo: `${config.publicUrl}/images/emails/logo_lba.png?raw=true`,
+  },
+};
 
 const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   if (shouldCheckSecret && !query.secret) {
@@ -11,8 +16,6 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
     return { error: "wrong_secret" };
   } else {
     try {
-      console.log("sending application mail to : ", query.email);
-
       let application = new Application({
         applicant_email: query.applicant_email,
         applicant_first_name: query.applicant_first_name,
@@ -24,19 +27,19 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         company_name: query.company_name,
       });
 
-      // Sends email to "candidate" and "formation"
+      // Sends ack email to "candidate" and application email to "company"
       const [emailCandidat, emailCompany] = await Promise.all([
         mailer.sendEmail(
           application.applicant_email,
           `Votre candidature chez ${application.company_email}`,
           getEmailTemplate("mail-candidat"),
-          application
+          { ...application, ...images }
         ),
         mailer.sendEmail(
           application.company_email,
           `Candidature spontanée via La bonne alternance`,
           getEmailTemplate("mail-spontanee"),
-          application
+          { ...application, ...images }
         ),
       ]);
 
@@ -47,13 +50,10 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
 
       await application.save();
 
-      return { /*emailCandidat, emailCompany,*/ application };
+      return { emailCandidat, emailCompany, application };
     } catch (err) {
       Sentry.captureException(err);
-
-      let error_msg = _.get(err, "meta.body") ?? err.message;
-
-      return { error: error_msg };
+      return { error: "error_sending_application" };
     }
   }
 };
@@ -74,8 +74,8 @@ const sendTestMail = async ({ mailer, query }) => {
       };
 
       let result = await mailer.sendEmail(
-        query.email,
-        `Envoi mail de test`,
+        query.applicant_email,
+        "Envoi mail de test",
         getEmailTemplate("mail-candidat"),
         mailData
       );
@@ -83,10 +83,7 @@ const sendTestMail = async ({ mailer, query }) => {
       return result;
     } catch (err) {
       Sentry.captureException(err);
-
-      let error_msg = _.get(err, "meta.body") ?? err.message;
-
-      return { error: error_msg };
+      return { error: "error_sending_test_mail" };
     }
   }
 };
