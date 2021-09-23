@@ -119,7 +119,7 @@ const CandidatureSpontanee = (props) => {
             </div>
           </ModalBody>
           <ModalFooter>
-            <button className="btn btn-dark btn-dark-action" type="submit">Je postule</button>
+            <button className="btn btn-dark btn-dark-action c-candidature-submit" type="submit">Je postule</button>
           </ModalFooter>
         </form>
       </Modal>
