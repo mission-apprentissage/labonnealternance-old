@@ -63,11 +63,11 @@ const CandidatureSpontanee = (props) => {
                   value={formik.values.lastName}
                 />
                 {formik.touched.lastName && formik.errors.lastName ? (
-                  <div>{formik.errors.lastName}</div>
-                ) : <div>{' '}</div>}
+                  <div className="c-candidature-erreur visible">{formik.errors.lastName}</div>
+                ) : <div className="invisible">{"pas d'erreur"}</div>}
               </div>
 
-              <div className={`mt-4 mt-md-0 c-candidature-field ${formik.touched.firstName ? `is-valid-${!formik.errors.firstName}` : 'is-not-validated' }`}>
+              <div className={`mt-1 mt-md-0 c-candidature-field ${formik.touched.firstName ? `is-valid-${!formik.errors.firstName}` : 'is-not-validated' }`}>
                 <label htmlFor="firstName">Prénom *</label>
                 <input
                   id="firstName"
@@ -78,15 +78,15 @@ const CandidatureSpontanee = (props) => {
                   value={formik.values.firstName}
                 />
                 {formik.touched.firstName && formik.errors.firstName ? (
-                  <div>{formik.errors.firstName}</div>
-                ) : <div>{' '}</div>}
+                  <div className="c-candidature-erreur visible">{formik.errors.firstName}</div>
+                ) : <div className="invisible">{"pas d'erreur"}</div>}
               </div>
 
             </div>
 
             <div className="d-flex flex-column flex-md-row mt-0 mt-md-3">
 
-              <div className={`mr-0 mr-md-3 mt-4 mt-md-0 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : 'is-not-validated' }`}>
+              <div className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : 'is-not-validated' }`}>
                 <label htmlFor="email">E-mail *</label>
                 <input
                   id="email"
@@ -97,11 +97,11 @@ const CandidatureSpontanee = (props) => {
                   value={formik.values.email}
                 />
                 {formik.touched.email && formik.errors.email ? (
-                  <div>{formik.errors.email}</div>
-                ) : <div>{' '}</div>}
+                  <div className="c-candidature-erreur visible">{formik.errors.email}</div>
+                ) : <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>}
               </div>
 
-              <div className={`mt-4 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : 'is-not-validated' }`}>
+              <div className={`mt-1 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : 'is-not-validated' }`}>
                 <label htmlFor="email">Téléphone *</label>
                 <input
                   id="phone"
@@ -112,8 +112,8 @@ const CandidatureSpontanee = (props) => {
                   value={formik.values.phone}
                 />
                 {formik.touched.phone && formik.errors.phone ? (
-                  <div>{formik.errors.phone}</div>
-                ) : <div>{' '}</div>}
+                  <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
+                ) : <div className="invisible">{"pas d'erreur"}</div>}
               </div>
 
             </div>
