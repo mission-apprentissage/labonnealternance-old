@@ -18,6 +18,7 @@ const CandidatureSpontanee = (props) => {
       email: '',
       phone: '',
       message: '',
+      terms: false,
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -28,6 +29,7 @@ const CandidatureSpontanee = (props) => {
         .required('⚠ Le nom est requis.'),
       email: Yup.string().email('⚠ Adresse e-mail invalide.').required("⚠ L'adresse e-mail est requise."),
       phone: Yup.string().matches(/^[0-9]{10}$/, '⚠ Le numéro de téléphone doit avoir exactement 10 chiffres').required('⚠ Le téléphone est requis'),
+      terms: Yup.boolean().required("⚠ Accepter les conditions est obligatoire.")
     }),
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
@@ -114,21 +116,20 @@ const CandidatureSpontanee = (props) => {
                 />
                 {formik.touched.phone && formik.errors.phone ? (
                   <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
-                ) : <div className="invisible">{"pas d'erreur"}</div>}
+                  ) : <div className="invisible">{"pas d'erreur"}</div>}
               </div>
 
             </div>
             
-            <div className="c-candidature-message">
-              <h2 className="c-candidature-message-title">Votre message au responsable du recrutement <span className="c-candidature-message-title-optional">(Facultatif)</span></h2>
-              <div className="c-candidature-message-subtitle">Indiquez pourquoi vous souhaitez réaliser votre alternance dans son entreprise</div>
+            <div className="c-candidature-message mt-5">
+              <h2 className="c-candidature-message-title mb-0">Votre message au responsable du recrutement <span className="c-candidature-message-title-optional">(Facultatif)</span></h2>
+              <div className="c-candidature-message-subtitle mb-2">Indiquez pourquoi vous souhaitez réaliser votre alternance dans son entreprise</div>
               <textarea
                 id="message"
                 name="message"
                 value={formik.values.message}
               />
             </div>
-
 
           </ModalBody>
           <ModalFooter>
