@@ -25,6 +25,7 @@ const CandidatureSpontanee = (props) => {
         .max(20, 'Must be 20 characters or less')
         .required('Required'),
       email: Yup.string().email('Invalid email address').required('Required'),
+      phone: Yup.string().required('Required'),
     }),
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
@@ -85,6 +86,19 @@ const CandidatureSpontanee = (props) => {
             />
             {formik.touched.email && formik.errors.email ? (
               <div>{formik.errors.email}</div>
+            ) : null}
+
+            <label htmlFor="email">Téléphone</label>
+            <input
+              id="phone"
+              name="phone"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.phone}
+            />
+            {formik.touched.phone && formik.errors.phone ? (
+              <div>{formik.errors.phone}</div>
             ) : null}
 
             </ModalBody>
