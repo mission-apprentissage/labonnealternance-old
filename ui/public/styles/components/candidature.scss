@@ -6,6 +6,15 @@
   letter-spacing: 0em;
 }
 
+.c-candidature-modal .modal-content {
+  @media only screen and (min-width: 800px){
+    width: 793px;
+  }
+}
+.c-candidature-modal.modal-dialog {
+    max-width: 793px;
+}
+
 .c-candidature-modal button.close span::before {
   content: "Fermer ";
 }
