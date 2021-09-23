@@ -21,12 +21,12 @@ const CandidatureSpontanee = (props) => {
     validationSchema: Yup.object({
       firstName: Yup.string()
         .max(15, 'Doit avoir 15 caractères ou moins')
-        .required('Required'),
+        .required('Le prénom est requis.'),
       lastName: Yup.string()
         .max(20, 'Doit avoir 20 caractères ou moins')
-        .required('Required'),
-      email: Yup.string().email('Invalid email address').required('Required'),
-      phone: Yup.string().required('Required'),
+        .required('Le nom est requis.'),
+      email: Yup.string().email('Adresse e-mail invalide.').required("L'adresse e-mail est requise."),
+      phone: Yup.string().matches(/^[0-9]{10}$/, 'Doit avoir exactement 10 chiffres').required('Le téléphone est requis'),
     }),
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
