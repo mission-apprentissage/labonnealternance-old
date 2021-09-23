@@ -19,10 +19,10 @@ const CandidatureSpontanee = (props) => {
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
-        .max(15, 'Must be 15 characters or less')
+        .max(15, 'Doit avoir 15 caractères ou moins')
         .required('Required'),
       lastName: Yup.string()
-        .max(20, 'Must be 20 characters or less')
+        .max(20, 'Doit avoir 20 caractères ou moins')
         .required('Required'),
       email: Yup.string().email('Invalid email address').required('Required'),
       phone: Yup.string().required('Required'),
