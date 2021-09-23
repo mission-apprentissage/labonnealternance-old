@@ -49,31 +49,40 @@ const CandidatureSpontanee = (props) => {
             <ModalBody>
               <h1 className="c-candidature-title">Candidature spontanée</h1>
 
-            <label htmlFor="lastName">Nom</label>
-            <input
-              id="lastName"
-              name="lastName"
-              type="text"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.lastName}
-            />
-            {formik.touched.lastName && formik.errors.lastName ? (
-              <div>{formik.errors.lastName}</div>
-            ) : null}
+            <div className="d-flex flex-column flex-md-row">
 
-            <label htmlFor="firstName">Prénom</label>
-            <input
-              id="firstName"
-              name="firstName"
-              type="text"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.firstName}
-            />
-            {formik.touched.firstName && formik.errors.firstName ? (
-              <div>{formik.errors.firstName}</div>
-            ) : null}
+                <div className="mr-0 mr-md-2">
+                  <label htmlFor="lastName">Nom</label>
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.lastName}
+                  />
+                  {formik.touched.lastName && formik.errors.lastName ? (
+                    <div>{formik.errors.lastName}</div>
+                  ) : null}
+                </div>
+
+                <div>
+                  <label htmlFor="firstName">Prénom</label>
+                  <input
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.firstName}
+                  />
+                  {formik.touched.firstName && formik.errors.firstName ? (
+                    <div>{formik.errors.firstName}</div>
+                  ) : null}
+                </div>
+                
+              </div>
+
 
             <label htmlFor="email">address e-mail</label>
             <input
