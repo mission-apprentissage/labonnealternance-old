@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ## 1.17.0 [30/09/2021]
 Envoi de messages de candidature
 [793] Envoi d'une candidature spontanée
