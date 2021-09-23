@@ -17,16 +17,17 @@ const CandidatureSpontanee = (props) => {
       lastName: '',
       email: '',
       phone: '',
+      message: '',
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
-        .max(15, 'Doit avoir 15 caractères ou moins')
-        .required('Le prénom est requis.'),
+        .max(15, '⚠ Doit avoir 15 caractères ou moins')
+        .required('⚠ Le prénom est requis.'),
       lastName: Yup.string()
-        .max(20, 'Doit avoir 20 caractères ou moins')
-        .required('Le nom est requis.'),
-      email: Yup.string().email('Adresse e-mail invalide.').required("L'adresse e-mail est requise."),
-      phone: Yup.string().matches(/^[0-9]{10}$/, 'Doit avoir exactement 10 chiffres').required('Le téléphone est requis'),
+        .max(20, '⚠ Doit avoir 20 caractères ou moins')
+        .required('⚠ Le nom est requis.'),
+      email: Yup.string().email('⚠ Adresse e-mail invalide.').required("⚠ L'adresse e-mail est requise."),
+      phone: Yup.string().matches(/^[0-9]{10}$/, '⚠ Le numéro de téléphone doit avoir exactement 10 chiffres').required('⚠ Le téléphone est requis'),
     }),
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
@@ -50,7 +51,7 @@ const CandidatureSpontanee = (props) => {
           <ModalBody>
             <h1 className="c-candidature-title">Candidature spontanée</h1>
 
-            <div className="d-flex flex-column flex-md-row mt-4">
+            <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4">
 
               <div className={`mr-0 mr-md-3 c-candidature-field ${formik.touched.lastName ? `is-valid-${!formik.errors.lastName}` : 'is-not-validated' }`}>
                 <label htmlFor="lastName">Nom *</label>
@@ -117,6 +118,18 @@ const CandidatureSpontanee = (props) => {
               </div>
 
             </div>
+            
+            <div className="c-candidature-message">
+              <h2 className="c-candidature-message-title">Votre message au responsable du recrutement <span className="c-candidature-message-title-optional">(Facultatif)</span></h2>
+              <div className="c-candidature-message-subtitle">Indiquez pourquoi vous souhaitez réaliser votre alternance dans son entreprise</div>
+              <textarea
+                id="message"
+                name="message"
+                value={formik.values.message}
+              />
+            </div>
+
+
           </ModalBody>
           <ModalFooter>
             <button className="btn btn-dark btn-dark-action c-candidature-submit" type="submit">Je postule</button>
