@@ -19,11 +19,6 @@ const applicationSchema = {
     default: null,
     description: "Téléphone du candidat",
   },
-  application_id: {
-    type: String,
-    default: null,
-    description: "L'identifiant de la candidature",
-  },
   message: {
     type: String,
     default: null,

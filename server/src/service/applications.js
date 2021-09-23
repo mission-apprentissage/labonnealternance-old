@@ -13,41 +13,41 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
     try {
       console.log("sending application mail to : ", query.email);
 
-      const mailData = {
-        applicant: {
-          email: query.email,
-          lastName: query.lastName,
-          firstName: query.firstName,
-          phone: query.phone,
-        },
-        company: {
-          siret: query.siret,
-          name: query.companyName,
-          email: query.companyEmail,
-        },
+      let application = new Application({
+        applicant_email: query.applicant_email,
+        applicant_first_name: query.applicant_first_name,
+        applicant_last_name: query.applicant_last_name,
+        applicant_phone: query.applicant_phone,
         message: query.message,
-      };
+        company_siret: query.company_siret,
+        company_email: query.company_email,
+        company_name: query.company_name,
+      });
 
       // Sends email to "candidate" and "formation"
       const [emailCandidat, emailCompany] = await Promise.all([
         mailer.sendEmail(
-          mailData.applicant.email,
-          `Votre candidature chez ${mailData.company.email}`,
+          application.applicant_email,
+          `Votre candidature chez ${application.company_email}`,
           getEmailTemplate("mail-candidat"),
-          mailData
+          application
         ),
         mailer.sendEmail(
-          mailData.company.email,
+          application.company_email,
           `Candidature spontanée via La bonne alternance`,
           getEmailTemplate("mail-spontanee"),
-          mailData
+          application
         ),
       ]);
 
-      const application = new Application({});
-      let after = await application.save();
+      application.to_applicant_message_id = emailCandidat.messageId;
+      application.to_applicant_message_status = emailCandidat.accepted.length ? "accepted" : "rejected";
+      application.to_company_message_id = emailCompany.messageId;
+      application.to_company_message_status = emailCompany.accepted.length ? "accepted" : "rejected";
 
-      return { emailCandidat, emailCompany, application, after };
+      await application.save();
+
+      return { /*emailCandidat, emailCompany,*/ application };
     } catch (err) {
       Sentry.captureException(err);
 
