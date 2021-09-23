@@ -28,5 +28,6 @@ module.exports = {
     esIndexName: "diplomesmetiers",
   }),
   ApiCalls: createModel("apicalls", schema.apiCallSchema),
+  Application: createModel("applications", schema.applicationSchema),
   SourceFormations: createModel("sourceformations", schema.sourceFormationsSchema),
 };
