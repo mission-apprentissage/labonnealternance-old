@@ -64,7 +64,7 @@ const CandidatureSpontanee = (props) => {
                 />
                 {formik.touched.lastName && formik.errors.lastName ? (
                   <div>{formik.errors.lastName}</div>
-                ) : null}
+                ) : <div>{' '}</div>}
               </div>
 
               <div className={`mt-4 mt-md-0 c-candidature-field ${formik.touched.firstName ? `is-valid-${!formik.errors.firstName}` : 'is-not-validated' }`}>
@@ -79,7 +79,7 @@ const CandidatureSpontanee = (props) => {
                 />
                 {formik.touched.firstName && formik.errors.firstName ? (
                   <div>{formik.errors.firstName}</div>
-                ) : null}
+                ) : <div>{' '}</div>}
               </div>
 
             </div>
@@ -98,7 +98,7 @@ const CandidatureSpontanee = (props) => {
                 />
                 {formik.touched.email && formik.errors.email ? (
                   <div>{formik.errors.email}</div>
-                ) : null}
+                ) : <div>{' '}</div>}
               </div>
 
               <div className={`mt-4 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : 'is-not-validated' }`}>
@@ -113,7 +113,7 @@ const CandidatureSpontanee = (props) => {
                 />
                 {formik.touched.phone && formik.errors.phone ? (
                   <div>{formik.errors.phone}</div>
-                ) : null}
+                ) : <div>{' '}</div>}
               </div>
 
             </div>
