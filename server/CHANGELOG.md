@@ -2,11 +2,11 @@
 
 ## 1.17.0 [30/09/2021]
 Envoi de messages de candidature
+[793] Envoi d'une candidature spontanée
 
 ## 1.16.5 [23/9/2021]
 [817] Design remerciement
 [815] Réduction génération SEO
-[793] Envoi d'une candidature spontanée
 
 ## 1.16.4 [20/09/2021]
 [829] Fix import formations par job
