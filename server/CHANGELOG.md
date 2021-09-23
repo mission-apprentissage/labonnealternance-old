@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## 1.17.0 [16/9/2021]
+## 1.16.5 [23/9/2021]
 [817] Design remerciement
 
-## 1.16.4 [14/09/2021]
+## 1.16.4 [20/09/2021]
+[829] Fix import formations par job
 [802] Nouveaux paramètres api métiers
 [741] Suppression lien crédit photo
 [762-777] Wording
