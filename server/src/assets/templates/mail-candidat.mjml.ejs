@@ -17,25 +17,35 @@
                 <mj-image padding="0px 0px 30px 0px" width="250px" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" />
             </mj-column>
         </mj-section>
-        <mj-wrapper padding="0px" border-radius="10px" padding-bottom="50px">
-            <mj-section background-color="#ffffff" padding="15px">
+        <mj-wrapper background-color="#ffffff" padding="0px" border-radius="10px" padding-bottom="50px">
+            <mj-section padding="15px">
                 <mj-column width="420px">
                     <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
                         Votre candidature a bien été envoyée à
                     </mj-text>
-                    <mj-text font-size="22px" line-height="24px">
+                    <mj-text font-size="22px" line-height="24px" font-weight="700" color="#F07F87">
                         <%= data.company_name %>
                     </mj-text>
                     <mj-text font-size="14px" line-height="24px">
-                        Info mission société <br /> Adresse Société
-                    </mj-text>
-
-
-                    <mj-text border-top="1px solid black" border-bottom="1px solid black" font-size="16px" line-height="20px" padding-top="40px">
-                        Continuez à envoyer des candidatures spontanées à d'autres entreprises qui n'ont pas Diffusé d'offre.
+                        <%= data.company_naf %><br /><%= data.company_address %>
                     </mj-text>
                 </mj-column>
             </mj-section>
+
+            <mj-divider border-width="0.5px" border-style="solid" border-color="#D0C9C4" padding-top="0px" width="90%" padding-bottom="16px" />
+
+            <mj-section padding="15px">
+                <mj-column width="420px">
+                    <mj-text border-top="1px solid black" border-bottom="1px solid black" font-size="16px" line-height="20px">
+                        Continuez à envoyer des <span style="color:#F07F87; font-weight:bold" >candidatures spontanées</span> à d'autres entreprises qui n'ont pas diffusé d'offre.
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-divider border-width="0.5px" border-style="solid" border-color="#D0C9C4" padding-top="0px" width="90%" padding-bottom="16px" />
+            
+
+
         </mj-wrapper>
     </mj-body>
 </mjml>
