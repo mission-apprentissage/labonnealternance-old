@@ -9,8 +9,6 @@ import extractCompanyValues from "services/extractCompanyValues";
 
 const CandidatureSpontanee = (props) => {
   
-  console.log('props.item', props.item);
-
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -22,7 +20,7 @@ const CandidatureSpontanee = (props) => {
       email: '',
       phone: '',
       message: '',
-      terms: true,
+      terms: false,
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -136,6 +134,23 @@ const CandidatureSpontanee = (props) => {
                 value={formik.values.message}
               />
             </div>
+
+            <fieldset className="c-candidature-terms mt-5">
+              <input
+                id="terms"
+                name="terms"
+                type="checkbox"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.terms}
+              />
+              <label htmlFor="terms" className="c-candidature-terms-text">
+                Indiquez pourquoi vous souhaitez réaliser votre alternance dans son entreprise
+              </label>
+              {formik.touched.terms && formik.errors.terms ? (
+                <div className="c-candidature-erreur visible">{formik.errors.terms}</div>
+              ) : <div className="invisible">{"pas d'erreur"}</div>}
+            </fieldset>
 
           </ModalBody>
           <ModalFooter>
