@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import postCandidature from "services/postCandidature";
 
 
 
@@ -18,7 +19,7 @@ const CandidatureSpontanee = (props) => {
       email: '',
       phone: '',
       message: '',
-      terms: false,
+      terms: true,
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -32,7 +33,8 @@ const CandidatureSpontanee = (props) => {
       terms: Yup.boolean().required("⚠ Accepter les conditions est obligatoire.")
     }),
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      console.log('values', values);
+      postCandidature(values)
     },
   });
 
