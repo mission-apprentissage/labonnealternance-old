@@ -19,7 +19,7 @@ module.exports = (components) => {
   router.post(
     "/",
     tryCatch(async (req, res) => {
-      const result = await sendApplication({ shouldCheckSecret: false, query: req.query, ...components });
+      const result = await sendApplication({ shouldCheckSecret: false, query: req.body, ...components });
       return res.json(result);
     })
   );

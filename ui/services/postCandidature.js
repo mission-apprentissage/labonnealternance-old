@@ -5,7 +5,8 @@ import { logError } from "../utils/tools";
 import extractCandidatureParams from "./extractCandidatureParams";
 
 export default async function postCandidature(
-  values_h,
+  applicant_h,
+  company_h,
   errorCallbackFn = _.noop,
   _baseUrl = baseUrl,
   _axios = axios,
@@ -15,7 +16,7 @@ export default async function postCandidature(
   let res = '';
 
   const candidatureApi = _baseUrl + "/api/application";
-  const response = await _axios.get(candidatureApi, { params: extractCandidatureParams(values_h) });
+  const response = await _axios.get(candidatureApi, { params: extractCandidatureParams(applicant_h, company_h) });
 
   const isAxiosError = !!_.get(response, "data.error");
   const isSimulatedError = false;

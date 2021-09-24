@@ -3,6 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import postCandidature from "services/postCandidature";
+import extractCompanyValues from "services/extractCompanyValues";
 
 
 
@@ -34,9 +35,9 @@ const CandidatureSpontanee = (props) => {
       phone: Yup.string().matches(/^[0-9]{10}$/, '⚠ Le numéro de téléphone doit avoir exactement 10 chiffres').required('⚠ Le téléphone est requis'),
       terms: Yup.boolean().required("⚠ Accepter les conditions est obligatoire.")
     }),
-    onSubmit: async (values) => {
-      console.log('values', values);
-      await postCandidature(values)
+    onSubmit: async (applicantValues) => {
+      console.log('applicantValues', applicantValues);
+      await postCandidature(applicantValues, extractCompanyValues(props.item))
     },
   });
 
