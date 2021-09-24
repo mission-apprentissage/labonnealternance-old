@@ -16,7 +16,6 @@ export default function extractCandidatureParams(applicant_h, company_h) {
   res['company_siret'] = company_h.siret
   res['company_name'] = company_h.name
 
-  console.log('sending following params...', res);
   return res;
 }
 
