@@ -18,14 +18,7 @@
 .c-candidature-form {
   // See https://stackoverflow.com/a/6046196/2595513
   input, label {
-    display:block;
-  }
-  label {
-    font-family: Marianne;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
+    display: block;
   }
 }
 
@@ -93,10 +86,6 @@ h1.c-candidature-title {
   letter-spacing: 0em;
 }
 
-.c-candidature-submit {
-  margin-top: 5rem;
-}
-
 .c-candidature-erreur {
   font-family: Marianne;
   font-size: 12px;
@@ -132,5 +121,15 @@ h1.c-candidature-title {
   @include media-breakpoint-up(md) { 
     width: 650px;
     height: 110px;
+  }
+}
+.c-candidature-form .c-candidature-terms {
+  label {
+    display: flex;
+    align-items: baseline; 
+  }
+  input {
+    flex: none;
+    margin-right: 10px;
   }
 }

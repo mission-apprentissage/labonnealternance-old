@@ -31,7 +31,7 @@ const CandidatureSpontanee = (props) => {
         .required('⚠ Le nom est requis.'),
       email: Yup.string().email('⚠ Adresse e-mail invalide.').required("⚠ L'adresse e-mail est requise."),
       phone: Yup.string().matches(/^[0-9]{10}$/, '⚠ Le numéro de téléphone doit avoir exactement 10 chiffres').required('⚠ Le téléphone est requis'),
-      terms: Yup.boolean().required("⚠ Accepter les conditions est obligatoire.")
+      terms: Yup.boolean().required().oneOf([true], "⚠ Accepter les conditions est obligatoire."),
     }),
     onSubmit: async (applicantValues) => {
       await postCandidature(applicantValues, extractCompanyValues(props.item))
@@ -123,7 +123,7 @@ const CandidatureSpontanee = (props) => {
 
             </div>
             
-            <div className="c-candidature-message mt-5">
+            <div className="c-candidature-message mt-3">
               <h2 className="c-candidature-message-title mb-0">Votre message au responsable du recrutement <span className="c-candidature-message-title-optional">(Facultatif)</span></h2>
               <div className="c-candidature-message-subtitle mb-2">Indiquez pourquoi vous souhaitez réaliser votre alternance dans son entreprise</div>
               <textarea
@@ -135,7 +135,8 @@ const CandidatureSpontanee = (props) => {
               />
             </div>
 
-            <fieldset className="c-candidature-terms mt-5">
+            <fieldset className={`c-candidature-terms mt-3 ${formik.touched.terms ? `is-valid-${!formik.errors.terms}` : 'is-not-validated'}`}>
+              <label htmlFor="terms" className="c-candidature-terms-text">
               <input
                 id="terms"
                 name="terms"
@@ -144,13 +145,12 @@ const CandidatureSpontanee = (props) => {
                 onBlur={formik.handleBlur}
                 value={formik.values.terms}
               />
-              <label htmlFor="terms" className="c-candidature-terms-text">
-                Indiquez pourquoi vous souhaitez réaliser votre alternance dans son entreprise
+                En remplissant ce formulaire, vous  acceptez les Conditions générales d'utilisation du service La Bonne Alternance et acceptez le partage de vos informations avec l'entreprise RESO PACA
               </label>
-              {formik.touched.terms && formik.errors.terms ? (
-                <div className="c-candidature-erreur visible">{formik.errors.terms}</div>
-              ) : <div className="invisible">{"pas d'erreur"}</div>}
             </fieldset>
+            {formik.touched.terms && formik.errors.terms ? (
+              <div className="c-candidature-erreur visible">{formik.errors.terms}</div>
+            ) : <div className="invisible">{"pas d'erreur"}</div>}
 
           </ModalBody>
           <ModalFooter>
