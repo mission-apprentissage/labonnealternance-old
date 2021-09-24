@@ -113,7 +113,7 @@ const CandidatureSpontanee = (props) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.phone}
-                />
+                  />
                 {formik.touched.phone && formik.errors.phone ? (
                   <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
                   ) : <div className="invisible">{"pas d'erreur"}</div>}
@@ -127,6 +127,8 @@ const CandidatureSpontanee = (props) => {
               <textarea
                 id="message"
                 name="message"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
                 value={formik.values.message}
               />
             </div>
