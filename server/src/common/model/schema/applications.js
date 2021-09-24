@@ -40,6 +40,16 @@ const applicationSchema = {
     default: null,
     description: "Le nom de la société",
   },
+  company_naf: {
+    type: String,
+    default: null,
+    description: "Le label naf de la société",
+  },
+  company_address: {
+    type: String,
+    default: null,
+    description: "L'adresse physuque de la société",
+  },
   to_applicant_message_id: {
     type: String,
     default: null,
