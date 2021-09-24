@@ -203,7 +203,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
       <div>&nbsp;</div>
       <div>&nbsp;</div>
 
-      <CandidatureSpontanee/>
+      <CandidatureSpontanee item={lbb} />
 
     </>
   );

@@ -7,6 +7,8 @@ import postCandidature from "services/postCandidature";
 
 
 const CandidatureSpontanee = (props) => {
+  
+  console.log('props.item', props.item);
 
   const [modal, setModal] = useState(false);
 
@@ -32,9 +34,9 @@ const CandidatureSpontanee = (props) => {
       phone: Yup.string().matches(/^[0-9]{10}$/, '⚠ Le numéro de téléphone doit avoir exactement 10 chiffres').required('⚠ Le téléphone est requis'),
       terms: Yup.boolean().required("⚠ Accepter les conditions est obligatoire.")
     }),
-    onSubmit: values => {
+    onSubmit: async (values) => {
       console.log('values', values);
-      postCandidature(values)
+      await postCandidature(values)
     },
   });
 
