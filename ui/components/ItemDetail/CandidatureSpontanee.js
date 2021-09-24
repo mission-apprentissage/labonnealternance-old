@@ -36,7 +36,6 @@ const CandidatureSpontanee = (props) => {
       terms: Yup.boolean().required("⚠ Accepter les conditions est obligatoire.")
     }),
     onSubmit: async (applicantValues) => {
-      console.log('applicantValues', applicantValues);
       await postCandidature(applicantValues, extractCompanyValues(props.item))
     },
   });

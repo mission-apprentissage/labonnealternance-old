@@ -1,8 +1,6 @@
 
 export default function extractCandidatureParams(applicant_h, company_h) {
   let res = {}
-  console.log('applicant_h', applicant_h);
-  console.log('company_h', company_h);
 
   // Secret is 1234 by default
   // 3 mandatory fields
