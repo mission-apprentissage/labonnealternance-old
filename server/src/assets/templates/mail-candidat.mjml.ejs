@@ -3,7 +3,7 @@
         <mj-title>Nous allons vous rappeler</mj-title>
         <mj-font name="Inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'" />
         <mj-style inline="inline">
-            a:link,a:visited, a:hover, a:active {color: #206BC4;}, a {color: #3A55D1;}, body{background: #F9F8F6;}
+            a:link,a:visited, a:hover, a:active {color: #206BC4;}, a {color: #3A55D1;}, body{background: #EDF0F2;}
             a.purple {color: #3A55D1; text-decoration: none}
         </mj-style>
         <mj-attributes>
@@ -13,29 +13,26 @@
     </mj-head>
     <mj-body background-color="#EDF0F2">
         <mj-section padding-bottom="0px">
-            <mj-column padding="0px" vertical-align="middle" width="50px">
-                Image
-            </mj-column>
             <mj-column padding="0px" vertical-align="middle" width="400px">
-                <mj-text padding="0px" font-size="22px" font-weight="700" color="#383838" line-height="26px" text-decoration="none" padding-left="1rem">
-                    Votre Candidature de <%= data.applicant_email %> chez <%= data.company_name %>
-                </mj-text>
-                <mj-text padding="0px" font-size="22px" font-weight="700" line-height="26.63px" text-decoration="none" color="#3A55D1" padding-left="1rem">à bien reçu votre demande de RDV !</mj-text>
-            </mj-column>
-            <mj-column padding="0px" vertical-align="middle" width="150px">
-                Image
+                <mj-image padding="0px 0px 30px 0px" width="250px" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" />
             </mj-column>
         </mj-section>
-        <mj-wrapper padding="0px" padding-bottom="50px">
-            <mj-section background-color="#ffffff" padding-top="65px">
+        <mj-wrapper padding="0px" border-radius="10px" padding-bottom="50px">
+            <mj-section background-color="#ffffff" padding="15px">
                 <mj-column width="420px">
-                    <mj-text padding-bottom="32px" font-size="20px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#3A55D1">
-                        Bonjour
+                    <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
+                        Votre candidature a bien été envoyée à
                     </mj-text>
-                    <mj-text font-size="16px" line-height="20px">
-                        Accusé réception Postulation</mj-text>
-                    <mj-text font-size="16px" line-height="20px" padding-top="40px">
-                        A très bientôt !
+                    <mj-text font-size="22px" line-height="24px">
+                        <%= data.company_name %>
+                    </mj-text>
+                    <mj-text font-size="14px" line-height="24px">
+                        Info mission société <br /> Adresse Société
+                    </mj-text>
+
+
+                    <mj-text border-top="1px solid black" border-bottom="1px solid black" font-size="16px" line-height="20px" padding-top="40px">
+                        Continuez à envoyer des candidatures spontanées à d'autres entreprises qui n'ont pas Diffusé d'offre.
                     </mj-text>
                 </mj-column>
             </mj-section>
