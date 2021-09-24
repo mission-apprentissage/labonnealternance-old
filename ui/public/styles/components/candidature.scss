@@ -123,7 +123,7 @@ h1.c-candidature-title {
     height: 110px;
   }
 }
-.c-candidature-form .c-candidature-terms {
+.c-candidature-terms {
   label {
     display: flex;
     align-items: baseline; 
@@ -131,5 +131,11 @@ h1.c-candidature-title {
   input {
     flex: none;
     margin-right: 10px;
+  }
+}
+
+.c-candidature-terms.is-valid-false {
+  input {
+    outline: 2px solid #E10600;
   }
 }

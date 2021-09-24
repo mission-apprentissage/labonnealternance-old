@@ -7,7 +7,6 @@ import extractCandidatureParams from "./extractCandidatureParams";
 export default async function postCandidature(
   applicant_h,
   company_h,
-  errorCallbackFn = _.noop,
   _baseUrl = baseUrl,
   _axios = axios,
   _window = window,
@@ -23,7 +22,6 @@ export default async function postCandidature(
   const isError = isAxiosError || isSimulatedError;
 
   if (isError) {
-    errorCallbackFn();
     if (isAxiosError) {
       _logError("Candidature API error", `Candidature API error ${response.data.error}`);
       console.log('response', response);
