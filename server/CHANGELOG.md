@@ -3,6 +3,7 @@
 ## 1.16.5 [23/9/2021]
 [817] Design remerciement
 [815] Réduction génération SEO
+[837] Masquage siret offre PE
 
 ## 1.16.4 [20/09/2021]
 [829] Fix import formations par job
