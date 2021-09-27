@@ -84,12 +84,12 @@ const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, s
   if (jobResult?.result === "error") {
     return jobResult;
   } else {
-    return transformPeJobsForIdea(jobResult, radius, lat, long);
+    return transformPeJobsForIdea({ jobs: jobResult, radius, lat, long, caller });
   }
 };
 
 // update du contenu avec des résultats pertinents par rapport au rayon
-const transformPeJobsForIdea = (jobs, radius, lat, long) => {
+const transformPeJobsForIdea = ({ jobs, radius, lat, long, caller }) => {
   let resultJobs = {
     results: [],
   };
@@ -97,7 +97,7 @@ const transformPeJobsForIdea = (jobs, radius, lat, long) => {
   if (jobs.resultats && jobs.resultats.length) {
     for (let i = 0; i < jobs.resultats.length; ++i) {
       //console.log("jobs.resultat : ",jobs.resultats[i]);
-      let job = transformPeJobForIdea(jobs.resultats[i], lat, long);
+      let job = transformPeJobForIdea({ job: jobs.resultats[i], lat, long, caller });
 
       if (job.place.distance < getRoundedRadius(radius)) {
         resultJobs.results.push(job);
@@ -109,7 +109,7 @@ const transformPeJobsForIdea = (jobs, radius, lat, long) => {
 };
 
 // Adaptation au modèle Idea et conservation des seules infos utilisées des offres
-const transformPeJobForIdea = (job, lat, long) => {
+const transformPeJobForIdea = ({ job, lat = null, long = null, caller = null }) => {
   let resultJob = itemModel("peJob");
 
   resultJob.title = job.intitule;
@@ -147,7 +147,8 @@ const transformPeJobForIdea = (job, lat, long) => {
     if (job.entreprise.description) {
       resultJob.company.description = job.entreprise.description;
     }
-    if (job.entreprise.siret) {
+    if (!caller && job.entreprise.siret) {
+      // on ne remonte le siret que dans le cadre du front LBA. Cette info n'est pas remontée par API
       resultJob.company.siret = job.entreprise.siret;
     }
   }
@@ -241,7 +242,7 @@ const getPeJobFromId = async ({ id, caller }) => {
 
       return { result: "not_found", message: "Offre non trouvée" };
     } else {
-      let peJob = transformPeJobForIdea(job.data, null, null);
+      let peJob = transformPeJobForIdea({ job: job.data, caller });
 
       if (caller) {
         trackApiCall({ caller, nb_emplois: 1, result_count: 1, api: "jobV1/job", result: "OK" });
