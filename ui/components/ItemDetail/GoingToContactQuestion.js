@@ -19,7 +19,9 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
       <div className="d-flex-center mt-2">
         {thanks ? (
           <>
-            <span>Merci pour votre retour !</span>
+            <div className="c-goingto-thanks mt-3">
+              <span>Merci pour votre réponse ! 👌</span>
+            </div>
           </>
         ) : (
           <>
