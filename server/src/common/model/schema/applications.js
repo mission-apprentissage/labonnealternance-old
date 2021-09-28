@@ -48,7 +48,17 @@ const applicationSchema = {
   company_address: {
     type: String,
     default: null,
-    description: "L'adresse physuque de la société",
+    description: "L'adresse physique de la société",
+  },
+  job_title: {
+    type: String,
+    default: null,
+    description: "Le titre de l'offre à laquelle répond le candidat",
+  },
+  job_id: {
+    type: String,
+    default: null,
+    description: "L'id externe de l'offre d'emploi",
   },
   to_applicant_message_id: {
     type: String,
