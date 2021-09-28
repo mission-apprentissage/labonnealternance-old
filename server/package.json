@@ -85,6 +85,7 @@
     "lint-staged": ">=10",
     "mocha": "7.1.2",
     "nodemon": "2.0.3",
+    "nyc": "15.1.0",
     "prettier": "2.0.5"
   },
   "husky": {
@@ -97,4 +98,5 @@
       "eslint --cache --fix",
       "prettier --write"
     ]
-  }}
+  }
+}
