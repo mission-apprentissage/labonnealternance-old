@@ -5,7 +5,8 @@
         <mj-style inline="inline">
             a:link,a:visited, a:hover, a:active {color: #206BC4;}, a {color: #3A55D1;}, body{background: #EDF0F2;}
             a.purple {color: #3A55D1; text-decoration: none}
-            .link-nostyle { color: inherit; text-decoration: none }
+            .link-nostyle { color: inherit; text-decoration: none; font-size: 28px }
+            .link-nostyle:hover { color: inherit; text-decoration: none }
         </mj-style>
         <mj-attributes>
             <mj-text padding="0px" color="#232E3C" font-family="Inter,sans-serif" font-size="14px" line-height="23px" />
@@ -13,9 +14,9 @@
         </mj-attributes>
     </mj-head>
     <mj-body background-color="#EDF0F2">
-        <mj-section padding-bottom="0px">
+        <mj-section padding-bottom="10px">
             <mj-column padding="0px" vertical-align="middle">
-                <mj-image padding="0px 0px 30px 0px" width="250px" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" />
+                <mj-image padding="0px" width="150px" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" />
             </mj-column>
         </mj-section>
         <mj-wrapper background-color="#ffffff" padding="0px" border-radius="10px" padding-bottom="50px">
@@ -75,16 +76,21 @@
 
             <mj-section padding="15px 0px">                        
                 <mj-column padding="0px" width="20%"></mj-column>             
-                <mj-column padding="0px" vertical-align="middle" width="20%">
-                    <mj-text align="center" font-size="28px" ><a href="https://labonnealternance.pole-emploi.fr/#pasUtile" class="link-nostyle">🙁</a></mj-text>
-                </mj-column>
-                 
-                 <mj-column padding="0px" vertical-align="middle" width="20%">
-                     <mj-text align="center" font-size="28px"><a href="https://labonnealternance.pole-emploi.fr/#neutre" class="link-nostyle">😐</a></mj-text>
-                 </mj-column>
+                <mj-column padding="0px" vertical-align="middle" width="60%" padding-bottom="30px">
 
-                 <mj-column padding="0px" vertical-align="middle" width="20%">
-                    <mj-text align="center" font-size="28px"><a href="https://labonnealternance.pole-emploi.fr/#utile" class="link-nostyle">😀</a></mj-text>
+                    <mj-table>
+                        <tr>
+                            <td align="center">
+                                <a href="https://labonnealternance.pole-emploi.fr/#pasUtile" class="link-nostyle">🙁</a>
+                            </td>
+                            <td align="center">
+                                <a href="https://labonnealternance.pole-emploi.fr/#neutre" class="link-nostyle">😐</a>
+                            </td>
+                            <td align="center">
+                                <a href="https://labonnealternance.pole-emploi.fr/#utile" class="link-nostyle">😀</a>
+                            </td>
+                        </tr>
+                    </mj-table>
                 </mj-column>
                 <mj-column padding="0px" width="20%"></mj-column>             
             </mj-section>
