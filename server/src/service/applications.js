@@ -6,6 +6,7 @@ const { Application } = require("../common/model");
 const images = {
   images: {
     logo: `${config.publicUrl}/images/emails/logo_lba.png`,
+    //logo: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/logo_lba.png`,
   },
 };
 
@@ -29,7 +30,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         company_address: query.company_address,
       });
 
-      console.log("application ", { ...application._doc, ...images });
+      //console.log("application ", { ...application._doc, ...images }, { ...application._doc, ...images }.images.logo);
 
       // Sends ack email to "candidate" and application email to "company"
       const [emailCandidat /*, emailCompany*/] = await Promise.all([
