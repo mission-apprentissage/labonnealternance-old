@@ -1,0 +1,141 @@
+.c-candidature-modal {
+  font-family: 'Marianne';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+
+.c-candidature-modal .modal-content {
+  @media only screen and (min-width: 800px){
+    width: 793px;
+  }
+}
+.c-candidature-modal.modal-dialog {
+    max-width: 793px;
+}
+
+.c-candidature-form {
+  // See https://stackoverflow.com/a/6046196/2595513
+  input, label {
+    display: block;
+  }
+}
+
+.c-candidature-field input {
+  border: none;
+  background: #F0F0F0;
+  border-radius: 4px 4px 0px 0px;
+  height: 40px;
+  padding-left: 1rem;
+  @include media-breakpoint-up(sm) { 
+    width: 317px;
+  }
+}
+
+.c-candidature-field.is-not-validated input {
+  border-bottom: 2px solid #6A6A6A;
+}
+.c-candidature-field.is-valid-true input {
+  border-bottom: 2px solid #008941;
+}
+.c-candidature-field.is-valid-false input {
+  border-bottom: 2px solid #E10600;
+}
+
+// Force default input appearance
+.c-candidature-field  input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus,  input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px #F0F0F0 inset !important;
+}
+
+
+.c-candidature-modal .modal-content {
+  padding: 1rem 1rem 1rem 4rem;
+}
+.c-candidature-modal .modal-body {
+  padding: 0;
+}
+.c-candidature-modal .modal-footer {
+  border-top: none;
+}
+
+.c-candidature-modal button.close span::before {
+  content: "Fermer ";
+}
+.c-candidature-modal-header.modal-header {
+  border-bottom: none;
+  border-radius: 0;
+  button {
+    color: #000091;
+    opacity: 1;
+    font-family: Marianne;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-transform: capitalize;
+    padding: 0;
+  }
+}
+
+h1.c-candidature-title {
+  font-family: Marianne;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0em;
+}
+
+.c-candidature-erreur {
+  font-family: Marianne;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0em;
+  color: #E10600;
+}
+
+.c-candidature-message-title {
+  font-family: Marianne;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: #161616;
+}
+.c-candidature-message-title-optional {
+  font-size: 14px;
+  color: #6a6a6a;
+}
+.c-candidature-message-subtitle {
+  font-size: 14px;
+  color: #6a6a6a;
+}
+.c-candidature-message textarea {
+  border: none;
+  background: #F0F0F0;
+  border-radius: 4px 4px 0px 0px;
+  padding-left: 1rem;
+  @include media-breakpoint-up(md) { 
+    width: 317px;
+  }
+  @include media-breakpoint-up(md) { 
+    width: 650px;
+    height: 110px;
+  }
+}
+.c-candidature-terms {
+  label {
+    display: flex;
+    align-items: baseline; 
+  }
+  input {
+    flex: none;
+    margin-right: 10px;
+  }
+}
+
+.c-candidature-terms.is-valid-false {
+  input {
+    outline: 2px solid #E10600;
+  }
+}

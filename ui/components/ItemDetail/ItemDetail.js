@@ -24,6 +24,7 @@ import TagCfaDEntreprise from "./TagCfaDEntreprise";
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   
   const kind = selectedItem?.ideaType;
+  console.log('kind', kind);
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret)
 

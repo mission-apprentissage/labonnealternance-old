@@ -250,7 +250,7 @@
 }
 
 .c-detail-pelink {
-  a {
+  a, button {
     line-height: 19px;
     letter-spacing: 0px;
     text-align: left;
@@ -399,7 +399,6 @@
 .c-detail-lbb-siretzone {
   background-color: $gray-200;
   padding: 30px;
-  padding-bottom: 70px;
   text-align: left;
 }
 
