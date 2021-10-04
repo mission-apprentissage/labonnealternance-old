@@ -13,7 +13,7 @@
             <mj-divider padding="0px" />
         </mj-attributes>
     </mj-head>
-    <mj-body background-color="##EDF0F2">
+    <mj-body background-color="#EDF0F2">
         <mj-section padding-bottom="10px">
             <mj-column padding="0px" vertical-align="middle">
                 <mj-image padding="0px" width="150px" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" />
@@ -28,26 +28,50 @@
                     </mj-text>
                     <mj-text font-size="14px" line-height="24px">
                         Bonjour, <br /><br >
-                        Un candidat s'intéresse à votre entreprise.<br /><br />
+                        Un candidat s'intéresse à votre entreprise et a postulé spontanément à partir du site <a style="font-weight:bold; color:black" href="https://labonnealternance.pole-emploi.fr">La Bonne Alternance</a>.
+                        <br /><br />
+                        Votre enterprise a été identifiée par notre algorithme comme entreprise recrutant régulièrement des alternants.
+                        <br /><br />
                         Retrouvez ci-dessous sa candidature.
                     </mj-text>
                 </mj-column>
             </mj-section>
         </mj-wrapper>
 
-        <mj-section padding-bottom="50px"></mj-section>
-
+        <mj-section padding-bottom="30px"></mj-section>
         <mj-wrapper background-color="#ffffff" padding="0px" border-radius="10px" padding-bottom="50px">
             <mj-section>
                 <mj-column width="420px">
-                    <mj-text padding-bottom="32px" font-size="20px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#3A55D1">
-                        Candidature de <%= data.applicant_email %>
+                    <mj-text padding-bottom="32px" font-size="24px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#F07F87">
+                        Candidat
                     </mj-text>
                     <mj-text font-size="16px" line-height="20px">
                         Postulation de <%= data.applicant_first_name %> <%= data.applicant_last_name %></mj-text>
                     <mj-text font-size="16px" line-height="20px" padding-top="40px">
                         A très bientôt !
                     </mj-text>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+
+        <mj-section padding-bottom="30px"></mj-section>
+        
+        <mj-wrapper background-color="#ffffff" padding="0px" border-radius="10px" padding-bottom="50px">
+            <mj-section>
+                <mj-column>
+                    <mj-table>
+                    <tr>
+                    <td valign="top"><img style="width:120px; height:48px; margin-right:20px;" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" /></td>
+                    <td valign="top">Créé en avril 2018 par des conseillers Pôle emploi, le service <strong>La Bonne Alternance</strong> est désormais porté par le ministère de l'éducation, de l'enseignement supérieur, du travail et de la transformation numérique.
+                        <br /><br />
+                        <strong>La Bonne Alternance</strong> centralise l'offre de formation et d'emploi en alternance.
+                        <br /><br />
+                        Pour identifier les emplois en alternance, le service agrège les offres recueillies par Pôle emploi et ses partenaires, par <a style="font-weight:bold; color:black">Matcha</a> ainsi que les entreprises identifiées comme recrutant régulièrement des alternants par notre algorithme prédictif, comme c'est le cas de votre entreprise.
+                        <br /><br />
+                        Cet algorithme analyse les recrutements en CDI, CDD de plus de 30 jours, Apprentissage et Professionnalisation des 6 dernières années, et prédit
+                        ainsi ceux des 6 mois à venir.</td>
+                    </tr>
+                    </mj-table>
                 </mj-column>
             </mj-section>
         </mj-wrapper>
