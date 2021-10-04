@@ -45,13 +45,13 @@
             <mj-section>
                 <mj-column width="420px">
                     <mj-text padding-bottom="32px" font-size="24px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#F07F87">
-                        Candidat
+                        <img src="<%= data.images.icoCandidat %>" alt="" /> Candidat
                     </mj-text>
                     <mj-text font-size="16px" padding-bottom="15px" >Nom : <span class="form-value"> <%= data.applicant_last_name %> </span> </mj-text>
                     <mj-text font-size="16px" padding-bottom="15px">Prénom : <span class="form-value"> <%= data.applicant_first_name %> </span> </mj-text>
                     <mj-text font-size="16px" padding-bottom="15px">Téléphone : <span class="form-value"> <%= data.applicant_phone %> </span> </mj-text>
                     <mj-text font-size="16px" padding-bottom="15px">E-mail : <span class="form-value"> <%= data.applicant_email %> </span> </mj-text>
-                    <mj-text font-size="13px" padding-bottom="15px">Vous trouverez le curriculum vitae du candidat en pièce jointe.</mj-text>
+                    <mj-text font-size="13px" padding-bottom="15px"><img src="<%= data.images.icoInfo %>" alt="" />Vous trouverez le curriculum vitae du candidat en pièce jointe.</mj-text>
                     <mj-text font-size="16px" padding-bottom="15px">Message du candidat : </mj-text>
                     <mj-text font-size="16px" padding-bottom="15px"><span class="form-value" width="100%"> <%= data.message %> </span> </mj-text>
                 </mj-column>
