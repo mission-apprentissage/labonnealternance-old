@@ -7,6 +7,8 @@
             a.purple {color: #3A55D1; text-decoration: none}
             .link-nostyle { color: inherit; text-decoration: none; font-size: 28px }
             .link-nostyle:hover { color: inherit; text-decoration: none }
+            .form-row { font-size: 16px; padding-bottom: 15px;}
+            .form-value { background: #F9F8F6; font-weight: bold; padding: 3px 15px  }
         </mj-style>
         <mj-attributes>
             <mj-text padding="0px" color="#232E3C" font-family="Inter,sans-serif" font-size="14px" line-height="23px" />
@@ -45,11 +47,13 @@
                     <mj-text padding-bottom="32px" font-size="24px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#F07F87">
                         Candidat
                     </mj-text>
-                    <mj-text font-size="16px" line-height="20px">
-                        Postulation de <%= data.applicant_first_name %> <%= data.applicant_last_name %></mj-text>
-                    <mj-text font-size="16px" line-height="20px" padding-top="40px">
-                        A très bientôt !
-                    </mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px" >Nom : <span class="form-value"> <%= data.applicant_last_name %> </span> </mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px">Prénom : <span class="form-value"> <%= data.applicant_first_name %> </span> </mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px">Téléphone : <span class="form-value"> <%= data.applicant_phone %> </span> </mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px">E-mail : <span class="form-value"> <%= data.applicant_email %> </span> </mj-text>
+                    <mj-text font-size="13px" padding-bottom="15px">Vous trouverez le curriculum vitae du candidat en pièce jointe.</mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px">Message du candidat : </mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px"><span class="form-value" width="100%"> <%= data.message %> </span> </mj-text>
                 </mj-column>
             </mj-section>
         </mj-wrapper>
