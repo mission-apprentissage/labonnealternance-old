@@ -15,7 +15,8 @@ export default async function postCandidature(
   let res = '';
 
   const candidatureApi = _baseUrl + "/api/application";
-  const response = await _axios.get(candidatureApi, { params: extractCandidatureParams(applicant_h, company_h) });
+  //const response = await _axios.get(candidatureApi, { params: extractCandidatureParams(applicant_h, company_h) });
+  const response = await _axios.post(candidatureApi, extractCandidatureParams(applicant_h, company_h));
 
   const isAxiosError = !!_.get(response, "data.error");
   const isSimulatedError = false;
