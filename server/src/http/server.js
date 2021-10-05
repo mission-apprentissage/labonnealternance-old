@@ -61,6 +61,11 @@ module.exports = async (components) => {
     max: 1, // limit each IP to 1 request per windowMs
   });
 
+  const limiter1Per20Second = rateLimit({
+    windowMs: 20000, // 20 seconds
+    max: 1, // limit each IP to 1 request per windowMs
+  });
+
   const limiter5PerSecond = rateLimit({
     windowMs: 1000, // 1 second
     max: 5, // limit each IP to 5 requests per windowMs
@@ -115,9 +120,9 @@ module.exports = async (components) => {
 
   app.use("/api/v1/metiers", limiter20PerSecond, metiers());
 
-  app.use("/api/mail", limiter1Per5Second, sendMail(components));
+  app.use("/api/mail", limiter1Per20Second, sendMail(components));
 
-  app.use("/api/application", limiter1Per5Second, sendApplication(components));
+  app.use("/api/application", sendApplication(components));
 
   app.get(
     "/api",
