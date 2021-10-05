@@ -12,10 +12,9 @@ export default async function postCandidature(
   _window = window,
   _logError = logError
 ) {
-  let res = '';
+  let res = "";
 
   const candidatureApi = _baseUrl + "/api/application";
-  //const response = await _axios.get(candidatureApi, { params: extractCandidatureParams(applicant_h, company_h) });
   const response = await _axios.post(candidatureApi, extractCandidatureParams(applicant_h, company_h));
 
   const isAxiosError = !!_.get(response, "data.error");
@@ -25,12 +24,12 @@ export default async function postCandidature(
   if (isError) {
     if (isAxiosError) {
       _logError("Candidature API error", `Candidature API error ${response.data.error}`);
-      console.log('response', response);
+      console.log("response", response);
     } else if (isSimulatedError) {
       _logError("Candidature API error simulated");
     }
   } else {
-    res = 'ok'
+    res = "ok";
   }
 
   return res;
