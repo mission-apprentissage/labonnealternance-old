@@ -5,6 +5,9 @@
 Envoi de messages de candidature
 [793] Envoi d'une candidature spontanée
 
+## 1.16.6 [06/10/2021]
+[815] Réduction du nombre de pages générées pour le SEO
+
 ## 1.16.5 [23/9/2021]
 [817] Design remerciement
 [815] Réduction génération SEO

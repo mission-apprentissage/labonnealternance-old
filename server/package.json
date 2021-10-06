@@ -11,6 +11,7 @@
     "start": "nodemon --ignore tests/ src/index.js",
     "debug": "nodemon --inspect=0.0.0.0 --signal SIGINT --ignore tests/ src/index.js",
     "test": "mocha --recursive --exit --timeout 5000 tests/",
+    "test:coverage": "nyc --reporter=lcov mocha --recursive --exit --timeout 5000 tests/",
     "lint": "eslint src/ tests/",
     "docker:start": "docker-compose up -d --build --force-recreate",
     "docker:stop": "docker-compose down",
@@ -88,6 +89,7 @@
     "lint-staged": ">=10",
     "mocha": "7.1.2",
     "nodemon": "2.0.3",
+    "nyc": "15.1.0",
     "prettier": "2.0.5"
   },
   "husky": {
