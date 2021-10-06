@@ -34,4 +34,15 @@ jobs:
       - name: Run Tests
         run: |
           cd server
-          yarn test
+          yarn test:coverage
+
+      # Upload vers codecove (Evaluation couverture du code par des tests)
+      - name: Upload server coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./server/coverage
+          name: codecov-server
+          verbose: true
+      
+      
