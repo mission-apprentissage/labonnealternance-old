@@ -78,9 +78,10 @@ const itemModel = (type) => {
             description,           // pe -> description | matcha -> description
             creationDate,          // pe -> dateCreation | matcha -> createdAt
             id,                    // pe -> id
-            contractType,          // pe -> typeContrat
+            contractType,          // pe -> typeContrat | matcha -> offres.type
             contractDescription,   // pe -> typeContratLibelle
             duration,              // pe -> dureeTravailLibelle
+            jobStartDate,          // matcha -> offres.date_debut_apprentissage 
         },*/,
 
     romes: null /*[
