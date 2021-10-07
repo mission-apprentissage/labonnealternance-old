@@ -52,7 +52,7 @@ const CandidatureSpontanee = (props) => {
       if (success) {
         setSendingState('ok_sent')
       } else {
-        setSendingState('sent_but_errors')
+        setSendingState('not_sent_because_of_errors')
       }
       
     },
@@ -86,7 +86,7 @@ const CandidatureSpontanee = (props) => {
             <></>
           )}
 
-          {with_str(sendingState).amongst(['sent_but_errors']) ? (
+          {with_str(sendingState).amongst(['not_sent_because_of_errors']) ? (
             <CandidatureSpontaneeFailed />
             ) : (
             <></>
