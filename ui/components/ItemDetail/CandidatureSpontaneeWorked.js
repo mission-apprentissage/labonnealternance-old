@@ -3,7 +3,7 @@ import { ModalBody, ModalFooter } from "reactstrap";
 import paperplaneIcon from "public/images/paperplane2.svg";
 
 
-const CandidatureSpontaneeWorked = ({ formik, loadingState}) => {
+const CandidatureSpontaneeWorked = ({ email, company}) => {
 
   return (
       <>
@@ -16,12 +16,12 @@ const CandidatureSpontaneeWorked = ({ formik, loadingState}) => {
               </div>
               <div className="ml-3">
                 <h2 className="c-candidature-worked-title">
-                  Votre candidature a bien été envoyée à l’entreprise.
+                  Votre candidature a bien été envoyée à l’entreprise <span className="c-candidature-worked-company">{company}</span>
                 </h2>
               </div>
             </div>
             <div className="c-candidature-worked-text">
-              Un e-mail de confirmation vous a été envoyé sur votre boite e-mail.
+              Un e-mail de confirmation vous a été envoyé sur votre boite e-mail <span className="c-candidature-worked-email">{email}</span>
             </div>
             <div className="c-candidature-worked-text mt-3 mb-5">
               Si vous n'avez pas reçu d'email de confirmation d'ici 24 heures, soumettez à nouveau votre candidature

@@ -28,7 +28,5 @@ describe('CandidatureSpontaneeSubmit', () => {
     const { container } = render(<CandidatureSpontaneeSubmit sendingState={'sent_but_errors'} />)
     expect(container.firstChild.classList.contains('c-candidature-submit-error')).toBe(true)
   })
-  
-  
 
 })
