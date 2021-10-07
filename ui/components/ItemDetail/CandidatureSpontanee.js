@@ -6,15 +6,15 @@ import postCandidature from "services/postCandidature";
 import CandidatureSpontaneeNominalBodyFooter from "./CandidatureSpontaneeNominalBodyFooter";
 import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import extractCompanyValues from "services/extractCompanyValues";
-import { string_wrapper as by } from "utils/wrapper_utils";
+import { string_wrapper as with_str } from "utils/wrapper_utils";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
-  const [loadingState, setLoadingState] = useState('not_sent');
+  const [loadingState, setLoadingState] = useState('ok_sent');
 
   const toggle = () => {
     if (!modal) {
-      setLoadingState('not_sent')
+      setLoadingState('ok_sent')
     }
     setModal(!modal);
   }
@@ -68,12 +68,21 @@ const CandidatureSpontanee = (props) => {
       </div>
 
       <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"}>
+
         <form onSubmit={formik.handleSubmit} className="c-candidature-form">
+
           <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
-          {by(loadingState).amongst(['not_sent', 'currently_sending']) ? (
+
+          {with_str(loadingState).amongst(['not_sent', 'currently_sending']) ? (
             <CandidatureSpontaneeNominalBodyFooter formik={formik} loadingState={loadingState} />
             ) : (
+            <></>
+            )}
+
+          {with_str(loadingState).amongst(['ok_sent']) ? (
             <CandidatureSpontaneeWorked />
+            ) : (
+            <></>
           )}
 
         </form>
