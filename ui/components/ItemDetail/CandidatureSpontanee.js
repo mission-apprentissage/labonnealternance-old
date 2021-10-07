@@ -4,11 +4,48 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import postCandidature from "services/postCandidature";
 import extractCompanyValues from "services/extractCompanyValues";
+import FileDropzone from "components/FileDropzone";
+import { setIsFormVisible } from "store/actions";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
 
+  const [fileData, setFileData] = useState(null);
+  const [fileLoading, setFileLoading] = useState(false);
+
   const toggle = () => setModal(!modal);
+
+  const onDrop = (files) => {
+    console.log("HEY ha ", files);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      console.log("HEY ho ", e.target.result);
+      setFileData(e.target.result);
+      console.log("fileData direct", fileData);
+      setTimeout(() => {
+        console.log("fileData : ", fileData);
+      }, 1000);
+    };
+
+    reader.onloadstart = (e) => {
+      console.log("DEBUT");
+      setFileLoading(true);
+    };
+
+    reader.onloadend = (e) => {
+      console.log("FINI");
+      setTimeout(() => {
+        setFileLoading(false);
+      }, 2500);
+    };
+
+    if (files.length) {
+      reader.readAsBinaryString(files[0]);      
+    } else {
+      console.log("aucun fichier accepté");
+      setFileData(null);
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -152,6 +189,11 @@ const CandidatureSpontanee = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.message}
               />
+            </div>
+
+            <div className="c-candidature-message mt-3">
+              {fileLoading ? "Ca charge" : "NOT LOADING"}
+              <FileDropzone accept=".pdf,.docx" onDrop={onDrop} maxFiles={1}></FileDropzone>
             </div>
 
             <fieldset
