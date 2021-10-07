@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import CandidatureSpontaneeNominalBodyFooter from "./CandidatureSpontaneeNominalBodyFooter";
 import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
-import submitCandidature from "./submitCandidature";
+import submitCandidature from "services/submitCandidature";
 import { string_wrapper as with_str } from "utils/wrapper_utils";
 
 const CandidatureSpontanee = (props) => {
