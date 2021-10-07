@@ -3,6 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import postCandidature from "services/postCandidature";
+import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import extractCompanyValues from "services/extractCompanyValues";
 
 const CandidatureSpontanee = (props) => {
@@ -30,7 +31,6 @@ const CandidatureSpontanee = (props) => {
       terms: Yup.boolean().required().oneOf([true], "⚠ Accepter les conditions est obligatoire."),
     }),
     onSubmit: async (applicantValues) => {
-      setLoading(true)
       setLoadingState('currently_sending')
       await postCandidature(applicantValues, extractCompanyValues(props.item));
       setLoadingState('ok_sent')
@@ -199,7 +199,7 @@ const CandidatureSpontanee = (props) => {
             )}
           </ModalBody>
           <ModalFooter>
-            <ButtonText localLoadingState={loadingState} />
+            <CandidatureSpontaneeSubmit loadingState={loadingState} />
           </ModalFooter>
         </form>
       </Modal>
