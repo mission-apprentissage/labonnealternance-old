@@ -30,6 +30,7 @@ const CandidatureSpontanee = (props) => {
     }),
     onSubmit: async (applicantValues) => {
       await postCandidature(applicantValues, extractCompanyValues(props.item));
+      toggle();
     },
   });
 
