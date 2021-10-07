@@ -4,6 +4,11 @@ import CandidatureSpontaneeSubmit from '../../components/ItemDetail/CandidatureS
 
 describe('CandidatureSpontaneeSubmit', () => {
 
+  it('By default renders nothing', () => {
+    const { container } = render(<CandidatureSpontaneeSubmit loadingState={''} />)
+    expect(container.firstChild).toBe(null)
+  })
+
   it('Renders a submit button by default', () => {
     const { container } = render(<CandidatureSpontaneeSubmit loadingState={'not_sent'} />)
     expect(container.firstChild.classList.contains('c-candidature-submit--default')).toBe(true)
