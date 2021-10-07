@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalHeader } from "reactstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import postCandidature from "services/postCandidature";
 import CandidatureSpontaneeNominalBodyFooter from "./CandidatureSpontaneeNominalBodyFooter";
 import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
-import extractCompanyValues from "services/extractCompanyValues";
+import submitCandidature from "./submitCandidature";
 import { string_wrapper as with_str } from "utils/wrapper_utils";
 
 const CandidatureSpontanee = (props) => {
@@ -39,23 +38,8 @@ const CandidatureSpontanee = (props) => {
       terms: Yup.boolean().required().oneOf([true], "⚠ Accepter les conditions est obligatoire."),
     }),
     onSubmit: async (applicantValues) => {
-      
-      setSendingState('currently_sending')
-      let success = true
-
-      try {
-        await postCandidature(applicantValues, extractCompanyValues(props.item));
-      } catch (error) {
-        success = false
-      }
-
-      if (success) {
-        setSendingState('ok_sent')
-      } else {
-        setSendingState('not_sent_because_of_errors')
-      }
-      
-    },
+      await submitCandidature(applicantValues, setSendingState, props.item)      
+    }
   });
 
   return (
