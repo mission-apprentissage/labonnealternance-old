@@ -10,7 +10,12 @@ const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
   const [loadingState, setLoadingState] = useState('not_sent');
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => {
+    if (!modal) {
+      setLoadingState('not_sent')
+    }
+    setModal(!modal);
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -32,8 +37,17 @@ const CandidatureSpontanee = (props) => {
     }),
     onSubmit: async (applicantValues) => {
       setLoadingState('currently_sending')
-      await postCandidature(applicantValues, extractCompanyValues(props.item));
-      setLoadingState('ok_sent')
+      let success = true
+      try {
+        await postCandidature(applicantValues, extractCompanyValues(props.item));
+      } catch (error) {
+        success = false
+      }
+      if (success) {
+        setLoadingState('ok_sent')
+      } else {
+        setLoadingState('sent_but_errors')
+      }
       toggle();
     },
   });

@@ -16,7 +16,7 @@ describe('CandidatureSpontaneeSubmit', () => {
 
   it('Renders an spinner message if submission is pending', () => {
     const { container } = render(<CandidatureSpontaneeSubmit loadingState={'currently_sending'} />)
-    expect(container.firstChild.classList.contains('c-candidature-submit--spinner')).toBe(true)
+    expect(container.firstChild.classList.contains('c-candidature-submit-sending')).toBe(true)
   })
   
   it('Renders an appropriate message if submission is over and OK', () => {

@@ -1,4 +1,5 @@
 import React from "react";
+import { Spinner } from "reactstrap";
 
 
 const CandidatureSpontaneeSubmit = (props) => {
@@ -9,14 +10,16 @@ const CandidatureSpontaneeSubmit = (props) => {
             Je postule
           </button>
   } else if (loadingState === 'ok_sent') {
+    console.log('ok success')
     res = <span className="c-candidature-submit-ok">
-            ✓
+            Succès
           </span>
   } else if (loadingState === 'currently_sending') {
-    res = <button className="btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--spinner" type="submit">
-            Veuillez patienter...
-          </button>
+    res = <span className="c-candidature-submit-sending">
+            <Spinner color="primary" />{' '}Veuillez patienter
+          </span>
   } else if (loadingState === 'sent_but_errors') {
+      console.log('nope, error')
     res = <span className="c-candidature-submit-error">
             Erreur lors de l'envoi, veuillez réessayer plus tard
           </span>
