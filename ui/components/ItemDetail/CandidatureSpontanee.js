@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import postCandidature from "services/postCandidature";
 import CandidatureSpontaneeNominalBodyFooter from "./CandidatureSpontaneeNominalBodyFooter";
 import extractCompanyValues from "services/extractCompanyValues";
+import { string_wrapper as w } from "utils/wrapper_utils";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
@@ -69,7 +70,12 @@ const CandidatureSpontanee = (props) => {
       <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"}>
         <form onSubmit={formik.handleSubmit} className="c-candidature-form">
           <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
-          <CandidatureSpontaneeNominalBodyFooter formik={formik} loadingState={loadingState} />
+          {w(loadingState).amongst(['not_sent', 'currently_sending']) ? (
+            <CandidatureSpontaneeNominalBodyFooter formik={formik} loadingState={loadingState} />
+          ) : (
+            <>Ok !!!</>
+          )}
+
         </form>
       </Modal>
     </div>
