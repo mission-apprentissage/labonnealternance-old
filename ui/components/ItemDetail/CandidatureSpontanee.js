@@ -7,6 +7,7 @@ import extractCompanyValues from "services/extractCompanyValues";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
+  const [loadingState, setLoadingState] = useState('not_sent');
 
   const toggle = () => setModal(!modal);
 
@@ -29,10 +30,28 @@ const CandidatureSpontanee = (props) => {
       terms: Yup.boolean().required().oneOf([true], "⚠ Accepter les conditions est obligatoire."),
     }),
     onSubmit: async (applicantValues) => {
+      setLoading(true)
+      setLoadingState('currently_sending')
       await postCandidature(applicantValues, extractCompanyValues(props.item));
+      setLoadingState('ok_sent')
       toggle();
     },
   });
+
+  function ButtonText(props) {
+    const localLoadingState = props.localLoadingState;
+    let res = <></>
+    if (localLoadingState === 'not_sent') {
+      res = <button className="btn btn-dark btn-dark-action c-candidature-submit" type="submit">Je postule</button>
+    } else if (localLoadingState === 'ok_sent') {
+      res = <button className="btn btn-dark btn-dark-action c-candidature-submit" type="submit">✓</button>
+    } else if (localLoadingState === 'currently_sending') {
+      res = <button className="btn btn-dark btn-dark-action c-candidature-submit" type="submit">Veuillez patienter...</button>
+    } else if (localLoadingState === 'sent_but_errors') {
+      res = <>Erreur lors de l'envoi, veuillez réessayer plus tard</>
+    } 
+    return res
+  }
 
   return (
     <div className="c-candidature">
@@ -180,9 +199,7 @@ const CandidatureSpontanee = (props) => {
             )}
           </ModalBody>
           <ModalFooter>
-            <button className="btn btn-dark btn-dark-action c-candidature-submit" type="submit">
-              Je postule
-            </button>
+            <ButtonText localLoadingState={loadingState} />
           </ModalFooter>
         </form>
       </Modal>
