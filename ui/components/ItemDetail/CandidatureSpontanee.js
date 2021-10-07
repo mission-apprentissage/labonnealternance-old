@@ -38,21 +38,6 @@ const CandidatureSpontanee = (props) => {
     },
   });
 
-  function ButtonText(props) {
-    const localLoadingState = props.localLoadingState;
-    let res = <></>
-    if (localLoadingState === 'not_sent') {
-      res = <button className="btn btn-dark btn-dark-action c-candidature-submit" type="submit">Je postule</button>
-    } else if (localLoadingState === 'ok_sent') {
-      res = <button className="btn btn-dark btn-dark-action c-candidature-submit" type="submit">✓</button>
-    } else if (localLoadingState === 'currently_sending') {
-      res = <button className="btn btn-dark btn-dark-action c-candidature-submit" type="submit">Veuillez patienter...</button>
-    } else if (localLoadingState === 'sent_but_errors') {
-      res = <>Erreur lors de l'envoi, veuillez réessayer plus tard</>
-    } 
-    return res
-  }
-
   return (
     <div className="c-candidature">
       <div className="c-detail-description-me col-12 col-md-5">
