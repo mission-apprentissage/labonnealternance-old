@@ -80,7 +80,7 @@ const CandidatureSpontanee = (props) => {
             )}
 
           {with_str(sendingState).amongst(['ok_sent']) ? (
-            <CandidatureSpontaneeWorked email={formik.values.email}/>
+            <CandidatureSpontaneeWorked email={formik.values.email} company={props?.item?.company?.name}/>
             ) : (
             <></>
           )}

@@ -14,7 +14,7 @@ const CandidatureSpontaneeWorked = ({ email, company}) => {
               <div>
                 <img src={paperplaneIcon} alt="avion en papier" />
               </div>
-              <div className="ml-3">
+              <div className="ml-3 pl-3">
                 <h2 className="c-candidature-worked-title">
                   Votre candidature a bien été envoyée à l’entreprise <span className="c-candidature-worked-company">{company}</span>
                 </h2>
@@ -27,9 +27,7 @@ const CandidatureSpontaneeWorked = ({ email, company}) => {
               Si vous n'avez pas reçu d'email de confirmation d'ici 24 heures, soumettez à nouveau votre candidature
             </div>
           </ModalBody>
-          <ModalFooter className="pb-5">
-            
-          </ModalFooter>
+          <ModalFooter className="pb-5"></ModalFooter>
     </>
   );
 };
