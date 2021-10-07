@@ -18,7 +18,7 @@ const CandidatureSpontaneeSubmit = (props) => {
     res = <span className="c-candidature-submit-sending">
             <Spinner color="primary" />{' '}Veuillez patienter
           </span>
-  } else if (sendingState === 'sent_but_errors') {
+  } else if (sendingState === 'not_sent_because_of_errors') {
       console.log('nope, error')
     res = <span className="c-candidature-submit-error">
             Erreur lors de l'envoi, veuillez réessayer plus tard

@@ -25,7 +25,7 @@ describe('CandidatureSpontaneeSubmit', () => {
   })
   
   it('Renders an error message if submission is over and NOT OK', () => {
-    const { container } = render(<CandidatureSpontaneeSubmit sendingState={'sent_but_errors'} />)
+    const { container } = render(<CandidatureSpontaneeSubmit sendingState={'not_sent_because_of_errors'} />)
     expect(container.firstChild.classList.contains('c-candidature-submit-error')).toBe(true)
   })
 

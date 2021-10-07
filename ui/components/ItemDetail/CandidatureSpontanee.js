@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import postCandidature from "services/postCandidature";
 import CandidatureSpontaneeNominalBodyFooter from "./CandidatureSpontaneeNominalBodyFooter";
 import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
+import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
 import extractCompanyValues from "services/extractCompanyValues";
 import { string_wrapper as with_str } from "utils/wrapper_utils";
 
@@ -81,6 +82,12 @@ const CandidatureSpontanee = (props) => {
 
           {with_str(sendingState).amongst(['ok_sent']) ? (
             <CandidatureSpontaneeWorked email={formik.values.email} company={props?.item?.company?.name}/>
+            ) : (
+            <></>
+          )}
+
+          {with_str(sendingState).amongst(['sent_but_errors']) ? (
+            <CandidatureSpontaneeFailed />
             ) : (
             <></>
           )}
