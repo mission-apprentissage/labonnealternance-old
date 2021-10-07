@@ -139,3 +139,10 @@ h1.c-candidature-title {
     outline: 2px solid #E10600;
   }
 }
+
+label.c-candidature-terms-text {
+  cursor: pointer;
+  input {
+    cursor: pointer;
+  }
+}
