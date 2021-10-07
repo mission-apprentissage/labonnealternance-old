@@ -169,7 +169,7 @@ const CandidatureSpontanee = (props) => {
                   value={formik.values.terms}
                 />
                 En remplissant ce formulaire, vous acceptez les Conditions générales d'utilisation du service La Bonne
-                Alternance et acceptez le partage de vos informations avec l'entreprise RESO PACA
+                Alternance et acceptez le partage de vos informations avec l'entreprise {props?.item.company.name}
               </label>
             </fieldset>
             {formik.touched.terms && formik.errors.terms ? (
