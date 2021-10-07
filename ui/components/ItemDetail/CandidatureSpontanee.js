@@ -10,11 +10,11 @@ import { string_wrapper as with_str } from "utils/wrapper_utils";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
-  const [loadingState, setLoadingState] = useState('ok_sent');
+  const [sendingState, setSendingState] = useState('not_sent');
 
   const toggle = () => {
     if (!modal) {
-      setLoadingState('ok_sent')
+      setSendingState('not_sent')
     }
     setModal(!modal);
   }
@@ -39,7 +39,7 @@ const CandidatureSpontanee = (props) => {
     }),
     onSubmit: async (applicantValues) => {
       
-      setLoadingState('currently_sending')
+      setSendingState('currently_sending')
       let success = true
 
       try {
@@ -49,9 +49,9 @@ const CandidatureSpontanee = (props) => {
       }
 
       if (success) {
-        setLoadingState('ok_sent')
+        setSendingState('ok_sent')
       } else {
-        setLoadingState('sent_but_errors')
+        setSendingState('sent_but_errors')
       }
       
     },
@@ -73,13 +73,13 @@ const CandidatureSpontanee = (props) => {
 
           <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
 
-          {with_str(loadingState).amongst(['not_sent', 'currently_sending']) ? (
-            <CandidatureSpontaneeNominalBodyFooter formik={formik} loadingState={loadingState} />
+          {with_str(sendingState).amongst(['not_sent', 'currently_sending']) ? (
+            <CandidatureSpontaneeNominalBodyFooter formik={formik} sendingState={sendingState} />
             ) : (
             <></>
             )}
 
-          {with_str(loadingState).amongst(['ok_sent']) ? (
+          {with_str(sendingState).amongst(['ok_sent']) ? (
             <CandidatureSpontaneeWorked />
             ) : (
             <></>

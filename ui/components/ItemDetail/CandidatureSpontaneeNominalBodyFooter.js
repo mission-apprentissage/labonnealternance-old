@@ -2,7 +2,7 @@ import React from "react";
 import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import { ModalBody, ModalFooter } from "reactstrap";
 
-const CandidatureSpontaneeNominalBodyFooter = ({ formik, loadingState}) => {
+const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState}) => {
 
   return (
       <>
@@ -139,7 +139,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, loadingState}) => {
             )}
           </ModalBody>
           <ModalFooter>
-            <CandidatureSpontaneeSubmit loadingState={loadingState} />
+            <CandidatureSpontaneeSubmit sendingState={sendingState} />
           </ModalFooter>
     </>
   );
