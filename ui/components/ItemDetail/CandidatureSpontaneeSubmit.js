@@ -9,11 +9,17 @@ const CandidatureSpontaneeSubmit = (props) => {
             Je postule
           </button>
   } else if (loadingState === 'ok_sent') {
-    res = <span className="c-candidature-submit-ok">✓</span>
+    res = <span className="c-candidature-submit-ok">
+            ✓
+          </span>
   } else if (loadingState === 'currently_sending') {
-    res = <button className="btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--spinner" type="submit">Veuillez patienter...</button>
+    res = <button className="btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--spinner" type="submit">
+            Veuillez patienter...
+          </button>
   } else if (loadingState === 'sent_but_errors') {
-    res = <span className="c-candidature-submit-error">Erreur lors de l'envoi, veuillez réessayer plus tard</span>
+    res = <span className="c-candidature-submit-error">
+            Erreur lors de l'envoi, veuillez réessayer plus tard
+          </span>
   }
   return res
 };
