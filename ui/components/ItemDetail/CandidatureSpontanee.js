@@ -12,24 +12,21 @@ const CandidatureSpontanee = (props) => {
 
   const [fileData, setFileData] = useState(null);
   const [fileLoading, setFileLoading] = useState(false);
-
+  const [showUnacceptedFileMessage, setShowUnacceptedFileMessages] = useState(false);
   const toggle = () => setModal(!modal);
 
   const onDrop = (files) => {
     console.log("HEY ha ", files);
     const reader = new FileReader();
     reader.onload = (e) => {
-      console.log("HEY ho ", e.target.result);
+      console.log("HEY ho ", e.target);
       setFileData(e.target.result);
-      console.log("fileData direct", fileData);
-      setTimeout(() => {
-        console.log("fileData : ", fileData);
-      }, 1000);
     };
 
     reader.onloadstart = (e) => {
       console.log("DEBUT");
       setFileLoading(true);
+      setShowUnacceptedFileMessages(false);
     };
 
     reader.onloadend = (e) => {
@@ -40,9 +37,10 @@ const CandidatureSpontanee = (props) => {
     };
 
     if (files.length) {
-      reader.readAsBinaryString(files[0]);      
+      console.log(files[0].name);
+      reader.readAsDataURL(files[0]);
     } else {
-      console.log("aucun fichier accepté");
+      setShowUnacceptedFileMessages(true);
       setFileData(null);
     }
   };
@@ -193,7 +191,22 @@ const CandidatureSpontanee = (props) => {
 
             <div className="c-candidature-message mt-3">
               {fileLoading ? "Ca charge" : "NOT LOADING"}
-              <FileDropzone accept=".pdf,.docx" onDrop={onDrop} maxFiles={1}></FileDropzone>
+              <FileDropzone accept=".pdf,.docx" onDrop={onDrop} maxFiles={1}>
+
+                {showUnacceptedFileMessage?"FIchier pas bon, max 1, taille <3mo, docx ou pdf":""}
+
+                Afficher le fichier actuellement uploadé (nom + icône) avec handle de suppression
+                <br />
+                Charter le composant
+                <br />
+                Faire transiter la data vers le serveur
+                <br />
+                Ajouter la PJ en copie des emails AR et vers recruteur
+                <br />
+                Animation LOADING + gel bouton pendant l'upload
+                <br />
+
+              </FileDropzone>
             </div>
 
             <fieldset
