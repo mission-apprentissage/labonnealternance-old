@@ -6,6 +6,7 @@ import CandidatureSpontaneeNominalBodyFooter from "./CandidatureSpontaneeNominal
 import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
 import submitCandidature from "services/submitCandidature";
+import toggleCandidature from "services/toggleCandidature";
 import { string_wrapper as with_str } from "utils/wrapper_utils";
 
 const CandidatureSpontanee = (props) => {
@@ -13,10 +14,7 @@ const CandidatureSpontanee = (props) => {
   const [sendingState, setSendingState] = useState('not_sent');
 
   const toggle = () => {
-    if (!modal) {
-      setSendingState('not_sent')
-    }
-    setModal(!modal);
+    toggleCandidature({modal, setSendingState, setModal})
   }
 
   const formik = useFormik({
