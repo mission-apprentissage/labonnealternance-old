@@ -4,7 +4,7 @@ import gotoIcon from "public/images/icons/goto.svg";
 import { defaultTo, random } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
-import { capitalizeFirstLetter } from "../../utils/strutils";
+import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
 import { SendTrackEvent } from "utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
@@ -202,8 +202,12 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
       </div>
       <div>&nbsp;</div>
       <div>&nbsp;</div>
-
-      <CandidatureSpontanee item={lbb} />
+      
+      {isNonEmptyString(lbb?.contact?.email) ? (
+        <CandidatureSpontanee item={lbb} />
+      ) : (
+        <></>
+      )}
 
     </>
   );
