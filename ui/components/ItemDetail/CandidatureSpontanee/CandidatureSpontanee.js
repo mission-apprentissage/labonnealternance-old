@@ -11,11 +11,11 @@ import { string_wrapper as with_str } from "utils/wrapper_utils";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
-  const [sendingState, setSendingState] = useState('not_sent');
+  const [sendingState, setSendingState] = useState("not_sent");
 
   const toggle = () => {
-    toggleCandidature({modal, setSendingState, setModal})
-  }
+    toggleCandidature({ modal, setSendingState, setModal });
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -36,8 +36,8 @@ const CandidatureSpontanee = (props) => {
       terms: Yup.boolean().required().oneOf([true], "⚠ Accepter les conditions est obligatoire."),
     }),
     onSubmit: async (applicantValues) => {
-      await submitCandidature(applicantValues, setSendingState, props.item)      
-    }
+      await submitCandidature(applicantValues, setSendingState, props.item);
+    },
   });
 
   return (
@@ -51,29 +51,22 @@ const CandidatureSpontanee = (props) => {
       </div>
 
       <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"}>
-
         <form onSubmit={formik.handleSubmit} className="c-candidature-form">
-
           <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
 
-          {with_str(sendingState).amongst(['not_sent', 'currently_sending']) ? (
+          {with_str(sendingState).amongst(["not_sent", "currently_sending"]) ? (
             <CandidatureSpontaneeNominalBodyFooter formik={formik} sendingState={sendingState} />
-            ) : (
-            <></>
-            )}
-
-          {with_str(sendingState).amongst(['ok_sent']) ? (
-            <CandidatureSpontaneeWorked email={formik.values.email} company={props?.item?.company?.name}/>
-            ) : (
+          ) : (
             <></>
           )}
 
-          {with_str(sendingState).amongst(['not_sent_because_of_errors']) ? (
-            <CandidatureSpontaneeFailed />
-            ) : (
+          {with_str(sendingState).amongst(["ok_sent"]) ? (
+            <CandidatureSpontaneeWorked email={formik.values.email} company={props?.item?.company?.name} />
+          ) : (
             <></>
           )}
 
+          {with_str(sendingState).amongst(["not_sent_because_of_errors"]) ? <CandidatureSpontaneeFailed /> : <></>}
         </form>
       </Modal>
     </div>
