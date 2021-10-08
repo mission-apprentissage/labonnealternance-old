@@ -8,7 +8,7 @@ import { capitalizeFirstLetter } from "../../utils/strutils";
 import { SendTrackEvent } from "utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
-import CandidatureSpontanee from "./CandidatureSpontanee";
+import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;

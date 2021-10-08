@@ -4,7 +4,6 @@ describe('extractCandidatureParams', () => {
 
     it('By default it fills mandatory fields', () => {
       expect(extractCandidatureParams()).toEqual({ 
-        secret: "1234",
         applicant_email: "alan.leruyet@free.fr",
         applicant_first_name: null,
         applicant_last_name: null,
@@ -13,6 +12,8 @@ describe('extractCandidatureParams', () => {
         company_name: null,
         company_siret: null,
         message: null,
+        company_address: null,
+        company_naf: null,
       });
     });
 
@@ -35,7 +36,6 @@ describe('extractCandidatureParams', () => {
       }
       const res = extractCandidatureParams(applicant_h, company_h)
       expect(res).toEqual({
-        secret: '1234',
         company_email: 'company@example.com',
         applicant_email: 'jane@doe.com',
         applicant_first_name: 'Jane',
@@ -43,7 +43,9 @@ describe('extractCandidatureParams', () => {
         applicant_phone: '0607080910',
         message: 'sth important',
         company_siret: '75223710700020',
-        company_name: 'CLEOP'
+        company_name: 'CLEOP',
+        company_address: null,
+        company_naf: null,
       });
     });
 
