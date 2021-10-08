@@ -23,6 +23,7 @@
     "@sentry/react": "^5.22.3",
     "@sentry/tracing": "^5.22.3",
     "@sentry/webpack-plugin": "^1.11.1",
+    "@testing-library/dom": "8.7.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
