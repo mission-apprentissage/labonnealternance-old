@@ -8,7 +8,7 @@
     "build": "next build",
     "postbuild": "next-sitemap --config next-sitemap.js",
     "start": "next start",
-    "test": "react-scripts test --passWithNoTests",
+    "test": "jest",
     "serve": "next start"
   },
   "dependencies": {
