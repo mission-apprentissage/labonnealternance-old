@@ -23,10 +23,13 @@ const CandidatureSpontanee = (props) => {
       lastName: "",
       email: "",
       phone: "",
+      fileName: "",
+      fileContent: null,
       message: "",
       terms: false,
     },
     validationSchema: Yup.object({
+      fileName: Yup.string().nullable().required("⚠ La pièce jointe est requise"),
       firstName: Yup.string().max(15, "⚠ Doit avoir 15 caractères ou moins").required("⚠ Le prénom est requis."),
       lastName: Yup.string().max(20, "⚠ Doit avoir 20 caractères ou moins").required("⚠ Le nom est requis."),
       email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est requise."),

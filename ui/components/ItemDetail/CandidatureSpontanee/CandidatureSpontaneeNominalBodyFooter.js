@@ -121,7 +121,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
         </div>
 
         <div className="c-candidature-message mt-3">
-          <CandidatureSpontaneeFileDropzone setFileValue={setFileValue} />
+          <CandidatureSpontaneeFileDropzone formik={formik} setFileValue={setFileValue} />
         </div>
 
         <fieldset

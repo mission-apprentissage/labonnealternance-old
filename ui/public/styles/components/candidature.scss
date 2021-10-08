@@ -124,6 +124,8 @@ h1.c-candidature-title {
   }
 }
 .c-candidature-terms {
+
+  max-width: 317px;
   label {
     display: flex;
     align-items: baseline; 
@@ -131,6 +133,9 @@ h1.c-candidature-title {
   input {
     flex: none;
     margin-right: 10px;
+  }
+  @include media-breakpoint-up(md) { 
+    max-width: 650px;
   }
 }
 
@@ -188,6 +193,8 @@ span.c-candidature-worked-company {
   @include media-breakpoint-up(md) { 
     width: 650px;
   }
+
+  cursor: pointer;
 }
 
 
@@ -201,7 +208,8 @@ span.c-candidature-worked-company {
   }
 }
 
-.c-candidature-filedropzone-instruction_title
+.c-candidature-filedropzone-instruction_title,
+.c-candidature-filedropzone-filename
 {
   font-size: 14px;
   font-weight: bold;
@@ -212,4 +220,22 @@ span.c-candidature-worked-company {
 {
   font-size: 12px;
   color: #383838;
+}
+
+.c-candidature-filedropzone.c-candidature-filedropzone_selectedfile
+{
+  cursor: auto;
+}
+
+button.c-candidature-filedropzone-removefile
+{
+  color: $gray-700 !important;
+  background: none;
+  border: none;
+  padding-left: 0;
+  margin-left: 15px;
+  padding-right: 0;
+  padding-bottom: 2px;
+  padding-top: 0px;
+  border-bottom: 1px solid $gray-700;
 }
