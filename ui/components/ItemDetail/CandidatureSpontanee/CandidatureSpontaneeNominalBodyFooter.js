@@ -3,7 +3,7 @@ import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
 
-const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState }) => {
+const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }) => {
 
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
@@ -139,7 +139,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState }) => {
               value={formik.values.terms}
             />
             En remplissant ce formulaire, vous acceptez les Conditions générales d'utilisation du service La Bonne
-            Alternance et acceptez le partage de vos informations avec l'entreprise RESO PACA
+            Alternance et acceptez le partage de vos informations avec l'entreprise {company}
           </label>
         </fieldset>
         {formik.touched.terms && formik.errors.terms ? (

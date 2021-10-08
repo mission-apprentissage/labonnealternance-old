@@ -55,7 +55,11 @@ const CandidatureSpontanee = (props) => {
           <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
 
           {with_str(sendingState).amongst(["not_sent", "currently_sending"]) ? (
-            <CandidatureSpontaneeNominalBodyFooter formik={formik} sendingState={sendingState} />
+            <CandidatureSpontaneeNominalBodyFooter
+              formik={formik}
+              sendingState={sendingState}
+              company={props?.item?.company?.name}
+            />
           ) : (
             <></>
           )}
