@@ -10,7 +10,6 @@ const CandidatureSpontaneeSubmit = (props) => {
             Je postule
           </button>
   } else if (sendingState === 'ok_sent') {
-    console.log('ok success')
     res = <span className="c-candidature-submit-ok">
             Succès
           </span>
@@ -19,7 +18,6 @@ const CandidatureSpontaneeSubmit = (props) => {
             <Spinner color="primary" />{' '}Veuillez patienter
           </span>
   } else if (sendingState === 'not_sent_because_of_errors') {
-      console.log('nope, error')
     res = <span className="c-candidature-submit-error">
             Erreur lors de l'envoi, veuillez réessayer plus tard
           </span>
