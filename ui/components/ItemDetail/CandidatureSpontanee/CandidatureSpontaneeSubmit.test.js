@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import CandidatureSpontaneeSubmit from '../../components/ItemDetail/CandidatureSpontanee/CandidatureSpontaneeSubmit';
+import CandidatureSpontaneeSubmit from './CandidatureSpontaneeSubmit';
 
 describe('CandidatureSpontaneeSubmit', () => {
 
