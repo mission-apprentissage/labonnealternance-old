@@ -115,6 +115,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState}) => {
             </div>
 
             <fieldset
+              data-testid="fieldset-terms"
               className={`c-candidature-terms mt-3 ${
                 formik.touched.terms ? `is-valid-${!formik.errors.terms}` : "is-not-validated"
               }`}
