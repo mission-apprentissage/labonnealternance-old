@@ -175,3 +175,41 @@ span.c-candidature-worked-company {
   font-size: 22px;
   line-height: 36px;
 }
+.c-candidature-filedropzone {
+
+  border: 1px dashed #6A6A6A;
+  width: 317px;
+
+  padding: 20px;
+
+  @include media-breakpoint-up(md) { 
+    width: 317px;
+  }
+  @include media-breakpoint-up(md) { 
+    width: 650px;
+  }
+}
+
+
+
+.c-candidature-filedropzone-instruction
+{
+  margin-left:0;
+
+  @include media-breakpoint-up(md) { 
+    margin-left:10%;
+  }
+}
+
+.c-candidature-filedropzone-instruction_title
+{
+  font-size: 14px;
+  font-weight: bold;
+  color: #383838;
+}
+
+.c-candidature-filedropzone-instruction_sub
+{
+  font-size: 12px;
+  color: #383838;
+}
