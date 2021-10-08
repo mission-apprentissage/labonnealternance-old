@@ -19,6 +19,11 @@ const applicationSchema = {
     default: null,
     description: "Téléphone du candidat",
   },
+  applicant_file_name: {
+    type: String,
+    default: null,
+    description: "Nom du fichier du CV du candidat",
+  },
   message: {
     type: String,
     default: null,
