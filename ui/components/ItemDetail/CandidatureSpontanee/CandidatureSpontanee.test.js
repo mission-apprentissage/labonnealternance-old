@@ -14,6 +14,7 @@ describe('CandidatureSpontanee', () => {
     expect(button).toBeVisible();
     expect(modal).toBeNull();
   })
+
   it('If button is clicked, modal with a form is displayed', () => {
     // Given
     render(<CandidatureSpontanee item={{}}/>)
@@ -23,5 +24,9 @@ describe('CandidatureSpontanee', () => {
     // Then
     const modal = screen.queryByRole('dialog')
     expect(modal).not.toBeNull();
+    const submit = screen.queryByRole('button', { name: /je-postule/i })
+    expect(submit).not.toBeNull();
+    // screen.getByText('oooozzzz')
   })
+
 })
