@@ -6,7 +6,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState}) => {
 
   return (
       <>
-          <ModalBody>
+      <ModalBody data-testid="modalbody-nominal">
             <h1 className="c-candidature-title">Candidature spontanée</h1>
 
             <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4">
