@@ -11,7 +11,6 @@ const CandidatureSpontaneeSubmit = (props) => {
       </button>
     );
   } else if (sendingState === "ok_sent") {
-    console.log("ok success");
     res = <span className="c-candidature-submit-ok">Succès</span>;
   } else if (sendingState === "currently_sending") {
     res = (
@@ -20,7 +19,6 @@ const CandidatureSpontaneeSubmit = (props) => {
       </span>
     );
   } else if (sendingState === "not_sent_because_of_errors") {
-    console.log("nope, error");
     res = <span className="c-candidature-submit-error">Erreur lors de l'envoi, veuillez réessayer plus tard</span>;
   }
   return res;

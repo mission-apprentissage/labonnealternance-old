@@ -4,6 +4,7 @@
 ## 1.17.0 [30/09/2021]
 Envoi de messages de candidature
 [793] Envoi d'une candidature spontanée
+[856] Envoi d'une candidature spontanée, détection email
 
 ## 1.16.6 [06/10/2021]
 [815] Réduction du nombre de pages générées pour le SEO
