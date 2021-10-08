@@ -1,4 +1,4 @@
-import submitCandidature from "../../services/submitCandidature.js";
+import submitCandidature from "./submitCandidature.js";
 
 describe("submitCandidature", () => {
 
