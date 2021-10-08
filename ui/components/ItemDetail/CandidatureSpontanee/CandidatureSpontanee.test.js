@@ -26,7 +26,7 @@ describe('CandidatureSpontanee', () => {
     expect(modal).not.toBeNull();
     const submit = screen.queryByRole('button', { name: /je-postule/i })
     expect(submit).not.toBeNull();
-    // screen.getByText('oooozzzz')
+    expect(screen.getByTestId('fieldset-terms')).toHaveClass('is-not-validated')
   })
 
 })
