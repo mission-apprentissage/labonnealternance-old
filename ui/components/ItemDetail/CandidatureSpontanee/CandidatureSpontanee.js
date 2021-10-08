@@ -5,9 +5,9 @@ import * as Yup from "yup";
 import CandidatureSpontaneeNominalBodyFooter from "./CandidatureSpontaneeNominalBodyFooter";
 import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
-import submitCandidature from "components/ItemDetail/CandidatureSpontanee/services/submitCandidature";
-import toggleCandidature from "components/ItemDetail/CandidatureSpontanee/services/toggleCandidature";
-import { string_wrapper as with_str } from "utils/wrapper_utils";
+import submitCandidature from "./services/submitCandidature";
+import toggleCandidature from "./services/toggleCandidature";
+import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
