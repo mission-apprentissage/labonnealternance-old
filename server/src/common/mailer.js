@@ -33,13 +33,14 @@ module.exports = (config, transporter = createTransporter(config.smtp)) => {
 
   return {
     renderEmail,
-    sendEmail: async (to, subject, template, data) => {
+    sendEmail: async (to, subject, template, data, attachments = null) => {
       return transporter.sendMail({
         from: "no-reply@apprentissage.beta.gouv.fr",
         to,
         subject,
         html: await renderEmail(template, data),
         list: {},
+        attachments,
       });
     },
     sendPlainTextEmail: async (to, subject) => {

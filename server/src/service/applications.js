@@ -21,6 +21,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   } else {
     try {
       let application = new Application({
+        applicant_file_name: query.applicant_file_name,
         applicant_email: query.applicant_email,
         applicant_first_name: query.applicant_first_name,
         applicant_last_name: query.applicant_last_name,
@@ -33,21 +34,33 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         company_address: query.company_address,
       });
 
-      console.log("application ", { ...application._doc, ...images }, { ...application._doc, ...images }.images.logo);
+      const fileContent = query.applicant_file_content;
 
-      // Sends ack email to "candidate" and application email to "company"
+      // Sends acknowledge email to "candidate" and application email to "company"
       const [emailCandidat, emailCompany] = await Promise.all([
         mailer.sendEmail(
           application.applicant_email,
-          `Votre candidature chez ${application.company_email}`,
+          `Votre candidature chez ${application.company_name}`,
           getEmailTemplate("mail-candidat"),
-          { ...application._doc, ...images }
+          { ...application._doc, ...images },
+          [
+            {
+              filename: application.applicant_file_name,
+              path: fileContent,
+            },
+          ]
         ),
         mailer.sendEmail(
           application.company_email,
           `Candidature spontanée via La bonne alternance`,
           getEmailTemplate("mail-spontanee"),
-          { ...application._doc, ...images }
+          { ...application._doc, ...images },
+          [
+            {
+              filename: application.applicant_file_name,
+              path: fileContent,
+            },
+          ]
         ),
       ]);
 
