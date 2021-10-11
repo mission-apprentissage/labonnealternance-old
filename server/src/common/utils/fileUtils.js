@@ -54,3 +54,9 @@ const removeLine = (data, regex) => {
     .join("\n");
 };
 module.exports.removeLine = removeLine;
+
+const prepareMessageForMail = (data) => {
+  let result = data ? data.replace(/(<([^>]+)>)/gi, "") : data;
+  return result ? result.replace(/\r\n|\r|\n/gi, "<br />") : result;
+};
+module.exports.prepareMessageForMail = prepareMessageForMail;
