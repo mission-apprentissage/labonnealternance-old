@@ -26,9 +26,10 @@
   border: none;
   background: #F0F0F0;
   border-radius: 4px 4px 0px 0px;
+  width: 90%;
   height: 40px;
   padding-left: 1rem;
-  @include media-breakpoint-up(sm) { 
+  @include media-breakpoint-up(md) { 
     width: 317px;
   }
 }
@@ -114,10 +115,9 @@ h1.c-candidature-title {
   border: none;
   background: #F0F0F0;
   border-radius: 4px 4px 0px 0px;
+  width: 90%;
+  height: 80px;
   padding-left: 1rem;
-  @include media-breakpoint-up(md) { 
-    width: 317px;
-  }
   @include media-breakpoint-up(md) { 
     width: 650px;
     height: 110px;
@@ -125,7 +125,7 @@ h1.c-candidature-title {
 }
 .c-candidature-terms {
 
-  max-width: 317px;
+  max-width: 90%;
   label {
     display: flex;
     align-items: baseline; 
@@ -183,13 +183,10 @@ span.c-candidature-worked-company {
 .c-candidature-filedropzone {
 
   border: 1px dashed #6A6A6A;
-  width: 317px;
+  width: 90%;
 
   padding: 20px;
 
-  @include media-breakpoint-up(md) { 
-    width: 317px;
-  }
   @include media-breakpoint-up(md) { 
     width: 650px;
   }
