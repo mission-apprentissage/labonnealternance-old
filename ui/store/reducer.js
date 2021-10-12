@@ -106,6 +106,11 @@ const mainReducer = (state = initialState, action) => {
       ...state_copy,
       itemParameters: action.itemParameters,
     };
+  } else if (action.type === actionsTypes.SET_TESTING_PARAMETERS) {
+    res = {
+      ...state_copy,
+      testingParameters: action.testingParameters,
+    };
   } else if (action.type === actionsTypes.SET_SELECTED_MAP_POPUP_ITEM) {
     res = {
       ...state_copy,

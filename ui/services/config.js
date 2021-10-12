@@ -1,6 +1,6 @@
 import { getValueFromPath } from "utils/tools";
 import { campaignParameters } from "utils/campaignParameters";
-import { setWidgetParameters, setItemParameters } from "store/actions";
+import { setWidgetParameters, setItemParameters, setTestingParameters } from "store/actions";
 import { push } from "connected-next-router";
 
 export const getWidgetParameters = () => {
@@ -83,6 +83,21 @@ export const getItemParameters = () => {
   return itemParameters;
 };
 
+export const getTestingParameters = () => {
+  let testingParameters = { secret: null, simulatedReciptien: null };
+
+  let p = getValueFromPath("secret");
+  if (p) {
+    testingParameters.secret = p;
+  }
+
+  p = getValueFromPath("simulatedRecipient");
+  if (p) {
+    testingParameters.simulatedRecipient = p;
+  }
+  return testingParameters;
+};
+
 /* à conserver
 export const buildFormValuesFromParameterString = (urlParams) => 
 {
@@ -102,7 +117,6 @@ export const buildFormValuesFromParameterString = (urlParams) =>
 }*/
 
 const buildFormValuesFromParameters = (params) => {
-
   let formValues = {
     job: {
       label: params.jobName,
@@ -140,6 +154,11 @@ export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
   if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {
     dispatch(setItemParameters(itemParameters));
     hasParameters = true;
+  }
+
+  const testingParameters = getTestingParameters();
+  if (testingParameters?.secret) {
+    dispatch(setTestingParameters(testingParameters));
   }
 
   if (hasParameters && shouldPush) {
