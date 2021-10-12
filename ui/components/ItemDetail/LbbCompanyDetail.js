@@ -203,7 +203,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
       <div>&nbsp;</div>
       <div>&nbsp;</div>
       
-      {isNonEmptyString(lbb?.contact?.email) ? (
+      {true/*isNonEmptyString(lbb?.contact?.email)*/ ? (
         <CandidatureSpontanee item={lbb} />
       ) : (
         <></>

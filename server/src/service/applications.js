@@ -74,6 +74,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
 
       return { emailCandidat, emailCompany, application };
     } catch (err) {
+      console.log("err ", err);
       Sentry.captureException(err);
       return { error: "error_sending_application" };
     }
