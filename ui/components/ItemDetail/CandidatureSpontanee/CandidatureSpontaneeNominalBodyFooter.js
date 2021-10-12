@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
@@ -9,6 +9,10 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
     formik.values.fileName = fileValue?.fileName || null;
     formik.values.fileContent = fileValue?.fileContent || null;
   }
+
+  useEffect(() => {
+    formik.values.terms = false;
+  },[company]);
 
   return (
     <>
