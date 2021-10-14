@@ -6,7 +6,7 @@ const CandidatureSpontaneeSubmit = (props) => {
   let res = <></>;
   if (sendingState === "not_sent") {
     res = (
-      <button className="btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default" type="submit">
+      <button aria-label="je-postule" className="btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default" type="submit">
         Je postule
       </button>
     );
