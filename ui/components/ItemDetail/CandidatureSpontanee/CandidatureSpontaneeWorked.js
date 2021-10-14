@@ -1,7 +1,7 @@
 import React from "react";
 import { ModalBody, ModalFooter } from "reactstrap";
 import paperplaneIcon from "public/images/paperplane2.svg";
-import { testingParameters } from "utils/testingParameters";
+import { testingParameters } from "../../../utils/testingParameters";
 
 const CandidatureSpontaneeWorked = ({ email, company }) => {
   return (

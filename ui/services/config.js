@@ -1,6 +1,6 @@
 import { getValueFromPath } from "utils/tools";
 import { campaignParameters } from "utils/campaignParameters";
-import { testingParameters } from "utils/testingParameters";
+import { testingParameters } from "../utils/testingParameters";
 import { setWidgetParameters, setItemParameters } from "store/actions";
 import { push } from "connected-next-router";
 

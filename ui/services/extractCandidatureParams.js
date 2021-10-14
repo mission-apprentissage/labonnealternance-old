@@ -1,4 +1,4 @@
-import { testingParameters } from "utils/testingParameters";
+import { testingParameters } from "../utils/testingParameters";
 
 export default function extractCandidatureParams(applicant_h, company_h) {
   let res = {};

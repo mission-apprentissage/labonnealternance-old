@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
-import { testingParameters } from "utils/testingParameters";
+import { testingParameters } from "../../../utils/testingParameters";
 
 const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }) => {
   const setFileValue = (fileValue) => {
