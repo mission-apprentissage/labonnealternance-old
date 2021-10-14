@@ -14,7 +14,6 @@ const images = {
   },
 };
 
-
 const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   if (shouldCheckSecret && !query.secret) {
     return { error: "secret_missing" };
