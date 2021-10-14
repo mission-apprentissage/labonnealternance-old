@@ -13,6 +13,7 @@ const validateSendApplication = async (validable) => {
   await schema.validate(validable).catch(function () {
     throw "error - validation of data failed";
   });
+  return "ok";
 };
 
 module.exports = {
