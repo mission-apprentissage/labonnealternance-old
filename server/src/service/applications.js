@@ -29,7 +29,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         applicant_phone: query.applicant_phone,
         message: prepareMessageForMail(query.message),
         company_siret: query.company_siret,
-        company_email: "alan.leruyet@free.fr", //query.company_email,
+        company_email: query.company_email,
         company_name: query.company_name,
         company_naf: query.company_naf,
         company_address: query.company_address,

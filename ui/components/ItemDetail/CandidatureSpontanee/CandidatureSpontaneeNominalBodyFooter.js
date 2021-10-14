@@ -2,17 +2,17 @@ import React, { useEffect } from "react";
 import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
+import { testingParameters } from "utils/testingParameters";
 
 const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }) => {
-
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
     formik.values.fileContent = fileValue?.fileContent || null;
-  }
+  };
 
   useEffect(() => {
     formik.values.terms = false;
-  },[company]);
+  }, [company]);
 
   return (
     <>
@@ -82,6 +82,11 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
               <div className="c-candidature-erreur visible">{formik.errors.email}</div>
             ) : (
               <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
+            )}
+            {testingParameters?.simulatedRecipient ? (
+              <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
+            ) : (
+              ""
             )}
           </div>
 
