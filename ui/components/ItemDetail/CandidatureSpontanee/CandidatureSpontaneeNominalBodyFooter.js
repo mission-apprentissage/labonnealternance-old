@@ -13,7 +13,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
   useEffect(() => {
     formik.values.terms = false;
   }, [company]);
-  
+
   return (
     <>
       <ModalBody data-testid="modalbody-nominal">
@@ -89,6 +89,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
             {testingParameters?.simulatedRecipient ? (
               <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
             ) : (
+              ""
             )}
           </fieldset>
 
@@ -115,9 +116,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
           </fieldset>
         </div>
 
-        <fieldset 
-          data-testid="fieldset-message"
-          className="c-candidature-message mt-3">
+        <fieldset data-testid="fieldset-message" className="c-candidature-message mt-3">
           <h2 className="c-candidature-message-title mb-0">
             Votre message au responsable du recrutement{" "}
             <span className="c-candidature-message-title-optional">(Facultatif)</span>
