@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.16.7 [14/10/2021]
+[833] Wording
+
 ## 1.16.6 [06/10/2021]
 [815] Réduction du nombre de pages générées pour le SEO
 [855] Remontée des champs Matcha type et début de formation
