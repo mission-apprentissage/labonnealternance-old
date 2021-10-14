@@ -1,4 +1,4 @@
-import toggleCandidature from "../../services/toggleCandidature.js";
+import toggleCandidature from "./toggleCandidature.js";
 
 describe("toggleCandidature", () => {
 

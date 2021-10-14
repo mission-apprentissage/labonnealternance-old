@@ -13,14 +13,15 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
   useEffect(() => {
     formik.values.terms = false;
   }, [company]);
-
+  
   return (
     <>
-      <ModalBody>
+      <ModalBody data-testid="modalbody-nominal">
         <h1 className="c-candidature-title">Candidature spontanée</h1>
 
         <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4">
-          <div
+          <fieldset
+            data-testid="fieldset-lastname"
             className={`mr-0 mr-md-3 c-candidature-field ${
               formik.touched.lastName ? `is-valid-${!formik.errors.lastName}` : "is-not-validated"
             }`}
@@ -39,9 +40,10 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
             ) : (
               <div className="invisible">{"pas d'erreur"}</div>
             )}
-          </div>
+          </fieldset>
 
-          <div
+          <fieldset
+            data-testid="fieldset-firstname"
             className={`mt-1 mt-md-0 c-candidature-field ${
               formik.touched.firstName ? `is-valid-${!formik.errors.firstName}` : "is-not-validated"
             }`}
@@ -60,11 +62,12 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
             ) : (
               <div className="invisible">{"pas d'erreur"}</div>
             )}
-          </div>
+          </fieldset>
         </div>
 
         <div className="d-flex flex-column flex-md-row mt-0 mt-md-3">
-          <div
+          <fieldset
+            data-testid="fieldset-email"
             className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${
               formik.touched.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
             }`}
@@ -86,11 +89,11 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
             {testingParameters?.simulatedRecipient ? (
               <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
             ) : (
-              ""
             )}
-          </div>
+          </fieldset>
 
-          <div
+          <fieldset
+            data-testid="fieldset-phone"
             className={`mt-1 mt-md-0 c-candidature-field ${
               formik.touched.phone ? `is-valid-${!formik.errors.phone}` : "is-not-validated"
             }`}
@@ -109,10 +112,12 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
             ) : (
               <div className="invisible">{"pas d'erreur"}</div>
             )}
-          </div>
+          </fieldset>
         </div>
 
-        <div className="c-candidature-message mt-3">
+        <fieldset 
+          data-testid="fieldset-message"
+          className="c-candidature-message mt-3">
           <h2 className="c-candidature-message-title mb-0">
             Votre message au responsable du recrutement{" "}
             <span className="c-candidature-message-title-optional">(Facultatif)</span>
@@ -127,13 +132,14 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
             onChange={formik.handleChange}
             value={formik.values.message}
           />
-        </div>
+        </fieldset>
 
         <div className="c-candidature-message mt-3">
           <CandidatureSpontaneeFileDropzone formik={formik} setFileValue={setFileValue} />
         </div>
 
         <fieldset
+          data-testid="fieldset-terms"
           className={`c-candidature-terms mt-3 ${
             formik.touched.terms ? `is-valid-${!formik.errors.terms}` : "is-not-validated"
           }`}

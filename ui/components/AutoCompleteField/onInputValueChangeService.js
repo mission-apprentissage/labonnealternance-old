@@ -1,13 +1,12 @@
-import { noop } from "lodash/noop";
 
 export default async function onInputValueChangeService({
   inputValue,
   inputItems = [],
   items = [],
-  setInputItems = noop,
-  setLoadingState = noop,
-  selectItem = noop,
-  setInputTextValue = noop,
+  setInputItems = () => {},
+  setLoadingState = () => {},
+  selectItem = () => {},
+  setInputTextValue = () => {},
   onInputValueChangeFunction = null,
   compareItemFunction = null,
   onSelectedItemChangeFunction = null,
