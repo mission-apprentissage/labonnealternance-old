@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, wait } from '@testing-library/react';
 import CandidatureSpontanee from './CandidatureSpontanee';
 
 describe('CandidatureSpontanee', () => {
@@ -15,7 +15,7 @@ describe('CandidatureSpontanee', () => {
     expect(modal).toBeNull();
   })
 
-  it('If button is clicked, modal with a form is displayed', () => {
+  it('If button is clicked, modal with a form is displayed, with not-yet-vali', async () => {
     // Given
     render(<CandidatureSpontanee item={{}}/>)
     const button = screen.queryByRole('button', { name: /jenvoie-une-candidature-spontanee/i })
@@ -27,6 +27,28 @@ describe('CandidatureSpontanee', () => {
     const submit = screen.queryByRole('button', { name: /je-postule/i })
     expect(submit).not.toBeNull();
     expect(screen.getByTestId('fieldset-terms')).toHaveClass('is-not-validated')
+    expect(screen.getByTestId('fieldset-firstname')).toHaveClass('is-not-validated')
+    expect(screen.getByTestId('fieldset-lastname')).toHaveClass('is-not-validated')
+    expect(screen.getByTestId('fieldset-email')).toHaveClass('is-not-validated')
+    expect(screen.getByTestId('fieldset-phone')).toHaveClass('is-not-validated')
+  })
+
+  it('If submit is fired, all mandatory fields are marked as invalid', async () => {
+    // Given
+    render(<CandidatureSpontanee item={{}}/>)
+    const button = screen.queryByRole('button', { name: /jenvoie-une-candidature-spontanee/i })
+    fireEvent.click(button)
+    const submit = screen.queryByRole('button', { name: /je-postule/i })
+    // When
+    fireEvent.click(submit)
+    // Then
+    await wait(() => {
+      expect(screen.getByTestId('fieldset-terms')).toHaveClass('is-valid-false')
+      expect(screen.getByTestId('fieldset-firstname')).toHaveClass('is-valid-false')
+      expect(screen.getByTestId('fieldset-lastname')).toHaveClass('is-valid-false')
+      expect(screen.getByTestId('fieldset-email')).toHaveClass('is-valid-false')
+      expect(screen.getByTestId('fieldset-phone')).toHaveClass('is-valid-false')
+    });
   })
 
 })
