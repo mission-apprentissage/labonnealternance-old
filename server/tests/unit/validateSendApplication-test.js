@@ -1,7 +1,6 @@
 /**
  * Example of unit testing a logic module
  */
-// const assert = require("assert");
 const chai = require("chai");
 const expect = chai.expect;
 chai.use(require("chai-as-promised"));
