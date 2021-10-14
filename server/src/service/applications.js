@@ -2,6 +2,7 @@ const config = require("config");
 const Sentry = require("@sentry/node");
 const path = require("path");
 const { Application } = require("../common/model");
+const Yup = require("yup");
 
 const images = {
   images: {
@@ -13,12 +14,22 @@ const images = {
   },
 };
 
+let schema = Yup.object().shape({
+  lastName: Yup.string().max(15, "⚠ Doit avoir 15 caractères ou moins").required("⚠ Le prénom est requis."),
+});
+
 const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   if (shouldCheckSecret && !query.secret) {
     return { error: "secret_missing" };
   } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
     return { error: "wrong_secret" };
   } else {
+    const validable = {
+      lastName: query.applicant_last_name,
+    };
+    await schema.validate(validable).catch(function () {
+      throw "error - validation of data failed";
+    });
     try {
       let application = new Application({
         applicant_file_name: query.applicant_file_name,

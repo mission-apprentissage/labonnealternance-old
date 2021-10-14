@@ -69,7 +69,8 @@
     "winston": "3.3.3",
     "winston-daily-rotate-file": "4.5.0",
     "winston-transport-sentry-node": "0.7.0",
-    "xlsx": "0.16.1"
+    "xlsx": "0.16.1",
+    "yup": "0.32.11"
   },
   "engines": {
     "node": ">=12.11.0"
