@@ -14,7 +14,6 @@ export const types = {
   SET_SHOULD_MAP_BE_VISIBLE: "trainings/SET_SHOULD_MAP_BE_VISIBLE",
   SET_WIDGET_PARAMETERS: "trainings/SET_WIDGET_PARAMETERS",
   SET_ITEM_PARAMETERS: "trainings/SET_ITEM_PARAMETERS",
-  SET_TESTING_PARAMETERS: "trainings/SET_TESTING_PARAMETERS",
   SET_TRAININGS_AND_SELECTED_ITEM: "trainings/SET_TRAININGS_AND_SELECTED_ITEM",
   SET_SELECTED_MAP_POPUP_ITEM: "trainings/SET_SELECTED_MAP_POPUP_ITEM",
 };
@@ -137,12 +136,5 @@ export const setItemParameters = (itemParameters = true) => {
   return {
     type: types.SET_ITEM_PARAMETERS,
     itemParameters,
-  };
-};
-
-export const setTestingParameters = (testingParameters = {}) => {
-  return {
-    type: types.SET_TESTING_PARAMETERS,
-    testingParameters: testingParameters,
   };
 };
