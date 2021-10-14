@@ -1,6 +1,7 @@
 import { getValueFromPath } from "utils/tools";
 import { campaignParameters } from "utils/campaignParameters";
-import { setWidgetParameters, setItemParameters, setTestingParameters } from "store/actions";
+import { testingParameters } from "utils/testingParameters";
+import { setWidgetParameters, setItemParameters } from "store/actions";
 import { push } from "connected-next-router";
 
 export const getWidgetParameters = () => {
@@ -83,19 +84,18 @@ export const getItemParameters = () => {
   return itemParameters;
 };
 
-export const getTestingParameters = () => {
-  let testingParameters = { secret: null, simulatedReciptien: null };
+export const initTestingParameters = () => {
+  if (!testingParameters?.secret) {
+    let p = getValueFromPath("secret");
+    if (p) {
+      testingParameters.secret = p;
 
-  let p = getValueFromPath("secret");
-  if (p) {
-    testingParameters.secret = p;
+      p = getValueFromPath("simulatedRecipient");
+      if (p) {
+        testingParameters.simulatedRecipient = p;
+      }
+    }
   }
-
-  p = getValueFromPath("simulatedRecipient");
-  if (p) {
-    testingParameters.simulatedRecipient = p;
-  }
-  return testingParameters;
 };
 
 /* à conserver
@@ -156,10 +156,7 @@ export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
     hasParameters = true;
   }
 
-  const testingParameters = getTestingParameters();
-  if (testingParameters?.secret) {
-    dispatch(setTestingParameters(testingParameters));
-  }
+  initTestingParameters();
 
   if (hasParameters && shouldPush) {
     dispatch(push({ pathname: "/recherche-apprentissage" }));
