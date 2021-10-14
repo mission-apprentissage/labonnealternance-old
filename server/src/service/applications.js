@@ -3,6 +3,7 @@ const Sentry = require("@sentry/node");
 const path = require("path");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
 const { Application } = require("../common/model");
+const { validateSendApplication } = require("./validateSendApplication");
 
 const images = {
   images: {
@@ -20,6 +21,13 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
     return { error: "wrong_secret" };
   } else {
+    await validateSendApplication({
+      fileName: query.applicant_file_name,
+      email: query.applicant_email,
+      firstName: query.applicant_first_name,
+      lastName: query.applicant_last_name,
+      phone: query.applicant_phone,
+    });
     try {
       let application = new Application({
         applicant_file_name: query.applicant_file_name,
