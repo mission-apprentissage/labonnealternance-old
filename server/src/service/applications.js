@@ -2,7 +2,7 @@ const config = require("config");
 const Sentry = require("@sentry/node");
 const path = require("path");
 const { Application } = require("../common/model");
-const Yup = require("yup");
+const { validateSendApplication } = require("./validateSendApplication");
 
 const images = {
   images: {
@@ -14,9 +14,6 @@ const images = {
   },
 };
 
-let schema = Yup.object().shape({
-  lastName: Yup.string().max(15, "⚠ Doit avoir 15 caractères ou moins").required("⚠ Le prénom est requis."),
-});
 
 const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   if (shouldCheckSecret && !query.secret) {
@@ -24,11 +21,21 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
     return { error: "wrong_secret" };
   } else {
-    const validable = {
+    // let schema = Yup.object().shape({
+    //   lastName: Yup.string().max(15, "⚠ Doit avoir 15 caractères ou moins").required("⚠ Le prénom est requis."),
+    // });
+    // const validable = {
+    //   lastName: query.applicant_last_name,
+    // };
+    // await schema.validate(validable).catch(function () {
+    //   throw "error - validation of data failed";
+    // });
+    await validateSendApplication({
+      fileName: query.applicant_file_name,
+      email: query.applicant_email,
+      firstName: query.applicant_first_name,
       lastName: query.applicant_last_name,
-    };
-    await schema.validate(validable).catch(function () {
-      throw "error - validation of data failed";
+      phone: query.applicant_phone,
     });
     try {
       let application = new Application({
