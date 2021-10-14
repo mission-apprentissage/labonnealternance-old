@@ -3,13 +3,13 @@ import extractCandidatureParams from "../../services/extractCandidatureParams";
 describe("extractCandidatureParams", () => {
   it("By default it fills mandatory fields", () => {
     expect(extractCandidatureParams()).toEqual({
-      applicant_email: "alan.leruyet@free.fr",
+      applicant_email: "dummy@beta.gouv.fr",
       applicant_file_content: null,
       applicant_file_name: "dummy.pdf",
       applicant_first_name: null,
       applicant_last_name: null,
       applicant_phone: null,
-      company_email: "alan.leruyet@free.fr",
+      company_email: "dummy@beta.gouv.fr",
       company_name: null,
       company_siret: null,
       message: null,

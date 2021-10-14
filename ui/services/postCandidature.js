@@ -28,6 +28,7 @@ export default async function postCandidature(
     } else if (isSimulatedError) {
       _logError("Candidature API error simulated");
     }
+    res = "error";
   } else {
     res = "ok";
   }

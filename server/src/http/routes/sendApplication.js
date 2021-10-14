@@ -27,7 +27,11 @@ module.exports = (components) => {
     "/",
     limiter1Per20Second,
     tryCatch(async (req, res) => {
-      const result = await sendApplication({ shouldCheckSecret: false, query: req.body, ...components });
+      const result = await sendApplication({
+        shouldCheckSecret: req.body.secret ? true : false,
+        query: req.body,
+        ...components,
+      });
       return res.json(result);
     })
   );

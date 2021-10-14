@@ -1,6 +1,7 @@
 const config = require("config");
 const Sentry = require("@sentry/node");
 const path = require("path");
+const { prepareMessageForMail } = require("../common/utils/fileUtils");
 const { Application } = require("../common/model");
 
 const images = {
@@ -26,9 +27,9 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         applicant_first_name: query.applicant_first_name,
         applicant_last_name: query.applicant_last_name,
         applicant_phone: query.applicant_phone,
-        message: query.message,
+        message: prepareMessageForMail(query.message),
         company_siret: query.company_siret,
-        company_email: "alan.leruyet@free.fr", //query.company_email,
+        company_email: query.company_email,
         company_name: query.company_name,
         company_naf: query.company_naf,
         company_address: query.company_address,
@@ -73,6 +74,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
 
       return { emailCandidat, emailCompany, application };
     } catch (err) {
+      console.log("err ", err);
       Sentry.captureException(err);
       return { error: "error_sending_application" };
     }

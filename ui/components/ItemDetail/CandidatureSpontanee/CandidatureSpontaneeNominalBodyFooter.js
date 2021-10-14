@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
+import { testingParameters } from "../../../utils/testingParameters";
 
 const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }) => {
-
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
     formik.values.fileContent = fileValue?.fileContent || null;
-  }
+  };
+
+  useEffect(() => {
+    formik.values.terms = false;
+  }, [company]);
 
   return (
     <>
@@ -82,6 +86,11 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
             ) : (
               <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
             )}
+            {testingParameters?.simulatedRecipient ? (
+              <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
+            ) : (
+              ""
+            )}
           </fieldset>
 
           <fieldset
@@ -107,9 +116,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
           </fieldset>
         </div>
 
-        <fieldset 
-          data-testid="fieldset-message"
-          className="c-candidature-message mt-3">
+        <fieldset data-testid="fieldset-message" className="c-candidature-message mt-3">
           <h2 className="c-candidature-message-title mb-0">
             Votre message au responsable du recrutement{" "}
             <span className="c-candidature-message-title-optional">(Facultatif)</span>
