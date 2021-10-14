@@ -52,7 +52,7 @@ const CandidatureSpontanee = (props) => {
       <div className="c-detail-description-me col-12 col-md-5">
         <div className="c-detail-pelink my-3">
           <Button onClick={toggle} className="btn btn-dark ml-1">
-            J'envoie une candidature spontanée {props?.item?.contact?.email}
+            J'envoie une candidature spontanée
           </Button>
         </div>
       </div>
