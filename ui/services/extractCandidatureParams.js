@@ -20,7 +20,7 @@ export default function extractCandidatureParams(applicant_h, company_h) {
   res["company_naf"] = company_h?.naf || null;
 
   // test field
-  if (testingParameters) {
+  if (testingParameters?.secret) {
     res["company_email"] = testingParameters.simulatedRecipient;
     res["applicant_email"] = testingParameters.simulatedRecipient;
     res["secret"] = testingParameters.secret;
