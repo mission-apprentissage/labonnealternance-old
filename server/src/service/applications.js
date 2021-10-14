@@ -21,15 +21,6 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
     return { error: "wrong_secret" };
   } else {
-    // let schema = Yup.object().shape({
-    //   lastName: Yup.string().max(15, "⚠ Doit avoir 15 caractères ou moins").required("⚠ Le prénom est requis."),
-    // });
-    // const validable = {
-    //   lastName: query.applicant_last_name,
-    // };
-    // await schema.validate(validable).catch(function () {
-    //   throw "error - validation of data failed";
-    // });
     await validateSendApplication({
       fileName: query.applicant_file_name,
       email: query.applicant_email,
