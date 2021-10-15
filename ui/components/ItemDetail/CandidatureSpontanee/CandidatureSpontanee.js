@@ -13,7 +13,7 @@ import { capitalizeFirstLetter } from "../../../utils/strutils";
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
   const [sendingState, setSendingState] = useState("not_sent");
-  const kind = props?.item?.ideaType;
+  const kind = props?.item?.ideaType || "";
 
   const toggle = () => {
     toggleCandidature({ modal, setSendingState, setModal });

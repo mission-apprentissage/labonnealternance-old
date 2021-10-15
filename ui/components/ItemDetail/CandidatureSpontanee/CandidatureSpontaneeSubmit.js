@@ -4,7 +4,7 @@ import { capitalizeFirstLetter } from "../../../utils/strutils";
 
 const CandidatureSpontaneeSubmit = (props) => {
   const sendingState = props.sendingState;
-  const kind = props?.item?.ideaType;
+  const kind = props?.item?.ideaType || "";
 
   let res = <></>;
   if (sendingState === "not_sent") {
