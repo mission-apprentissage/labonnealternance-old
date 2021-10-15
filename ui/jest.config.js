@@ -22,7 +22,17 @@ module.exports = {
     '^@/components/(.*)$': '<rootDir>/components/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
+  testPathIgnorePatterns: [
+      '<rootDir>/node_modules/',
+      '<rootDir>/.next/',
+      '<rootDir>/config-overrides.js',
+      '<rootDir>/jest.config.js',
+      '<rootDir>/next-sitemap.js',
+      '<rootDir>/next.config.js',
+      '<rootDir>/pages',
+      '<rootDir>/pages/metiers',
+      '<rootDir>/pages/[forJob]',
+    ],
   transform: {
     // Use babel-jest to transpile tests with the next/babel preset
     // https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object
