@@ -27,3 +27,6 @@ yarn-error.log*
 # Css
 src/**/*.css
 src/**/*.css.map
+
+# e2e tests
+/cypress/videos
