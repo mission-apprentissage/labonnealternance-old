@@ -80,7 +80,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
 
       await application.save();
 
-      return { emailCandidat, emailCompany, application };
+      return { result: "ok", message: "messages sent" };
     } catch (err) {
       console.log("err ", err);
       Sentry.captureException(err);
