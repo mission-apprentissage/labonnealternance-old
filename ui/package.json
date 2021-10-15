@@ -15,6 +15,9 @@
     "e2e": "start-server-and-test dev http://localhost:3000 cypress",
     "e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless"
   },
+  "nyc": {
+    "report-dir": "cypress-coverage"
+  },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.11.7",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
