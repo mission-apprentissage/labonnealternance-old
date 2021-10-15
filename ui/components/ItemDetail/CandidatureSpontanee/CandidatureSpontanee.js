@@ -8,10 +8,12 @@ import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
 import submitCandidature from "./services/submitCandidature";
 import toggleCandidature from "./services/toggleCandidature";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
+import { capitalizeFirstLetter } from "../../../utils/strutils";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
   const [sendingState, setSendingState] = useState("not_sent");
+  const kind = props?.item?.ideaType;
 
   const toggle = () => {
     toggleCandidature({ modal, setSendingState, setModal });
@@ -51,7 +53,11 @@ const CandidatureSpontanee = (props) => {
     <div className="c-candidature">
       <div className="c-detail-description-me col-12 col-md-5">
         <div className="c-detail-pelink my-3">
-          <Button onClick={toggle} className="btn btn-dark ml-1" aria-label="jenvoie-une-candidature-spontanee">
+          <Button
+            onClick={toggle}
+            className={`btn btn-dark ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
+            aria-label="jenvoie-une-candidature-spontanee"
+          >
             J'envoie une candidature spontanée
           </Button>
         </div>

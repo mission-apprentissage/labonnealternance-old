@@ -1,17 +1,22 @@
 import React from "react";
 import { Spinner } from "reactstrap";
+import { capitalizeFirstLetter } from "../../../utils/strutils";
 
 const CandidatureSpontaneeSubmit = (props) => {
   const sendingState = props.sendingState;
+  const kind = props?.item?.ideaType;
+
   let res = <></>;
   if (sendingState === "not_sent") {
     res = (
       <button
         aria-label="je-postule"
-        className="btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default"
+        className={`btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default gtmEnvoiCandidature gtm${capitalizeFirstLetter(
+          kind
+        )}`}
         type="submit"
       >
-        {props?.item?.ideaType === "lba" ? "J'envoie ma candidature spontanée" : "J'envoie ma candidature"}
+        {kind === "lba" ? "J'envoie ma candidature spontanée" : "J'envoie ma candidature"}
       </button>
     );
   } else if (sendingState === "ok_sent") {
