@@ -99,7 +99,12 @@ const CandidatureSpontaneeFileDropzone = ({ setFileValue, formik }) => {
     );
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: ".docx,.pdf", maxFiles: 1 });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: ".docx,.pdf",
+    maxSize: 3145728,
+    maxFiles: 1,
+  });
 
   return (
     <div
