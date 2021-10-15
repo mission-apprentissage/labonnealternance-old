@@ -27,7 +27,6 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   const kind = lbb?.ideaType;
-  let contactEmail = lbb?.contact?.email;
   let contactPhone = lbb?.contact?.phone;
 
   let companySize = lbb?.company?.size?.toLowerCase();
@@ -37,15 +36,6 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
 
   let contactInfo = (
     <>
-      {contactEmail ? (
-        <p className="c-detail-km c-detail-contactlink">
-          <a href={`mailto:${contactEmail}`} className="ml-1">
-            {contactEmail}
-          </a>
-        </p>
-      ) : (
-        ""
-      )}
       {contactPhone ? (
         <p className="c-detail-km c-detail-contactlink">
           <a href={`tel:${contactPhone}`} className="ml-1">
@@ -71,7 +61,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
             {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
           </span>
         </p>
-        {contactPhone || contactEmail ? (
+        {contactPhone ? (
           <div className="d-flex mb-3">
             {seeInfo ? (
               <>
@@ -87,7 +77,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
                 className={`c-see-info d-block btn btn-outline-primary gtmContact gtm${capitalizeFirstLetter(kind)}`}
                 onClick={() => setSeeInfo(true)}
               >
-                Voir les informations de contact
+                Voir le numéro de téléphone de contact
               </button>
             )}
           </div>
