@@ -236,3 +236,10 @@ button.c-candidature-filedropzone-removefile
   padding-top: 0px;
   border-bottom: 1px solid $gray-700;
 }
+
+.c-candidature-link,
+.c-candidature-link:hover
+{
+  color: #1E1E1E;
+  text-decoration: underline;
+}

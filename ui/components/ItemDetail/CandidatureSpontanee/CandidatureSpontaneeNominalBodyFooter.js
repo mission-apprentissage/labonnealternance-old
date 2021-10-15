@@ -152,8 +152,13 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
               onBlur={formik.handleBlur}
               value={formik.values.terms}
             />
-            En remplissant ce formulaire, vous acceptez les Conditions générales d'utilisation du service La Bonne
-            Alternance et acceptez le partage de vos informations avec l'entreprise {company}
+            <div>
+              En remplissant ce formulaire, vous acceptez les{" "}
+              <a href="/cgu" className="c-candidature-link" target="_blank">
+                Conditions générales d'utilisation
+              </a>{" "}
+              du service La Bonne Alternance et acceptez le partage de vos informations avec l'entreprise {company}
+            </div>
           </label>
         </fieldset>
         {formik.touched.terms && formik.errors.terms ? (
