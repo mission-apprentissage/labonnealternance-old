@@ -16,7 +16,9 @@
     "e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless"
   },
   "nyc": {
-    "report-dir": "cypress-coverage"
+    "report-dir": "cypress-coverage",
+    "exclude": ["pages", "pages/**"],
+    "excludeAfterRemap": true
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.11.7",
