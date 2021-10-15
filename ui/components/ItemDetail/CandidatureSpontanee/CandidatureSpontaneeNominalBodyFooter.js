@@ -4,7 +4,7 @@ import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
 import { testingParameters } from "../../../utils/testingParameters";
 
-const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }) => {
+const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item }) => {
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
     formik.values.fileContent = fileValue?.fileContent || null;
@@ -168,7 +168,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company }
         )}
       </ModalBody>
       <ModalFooter>
-        <CandidatureSpontaneeSubmit sendingState={sendingState} />
+        <CandidatureSpontaneeSubmit item={item} sendingState={sendingState} />
       </ModalFooter>
     </>
   );

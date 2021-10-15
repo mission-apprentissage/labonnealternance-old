@@ -66,6 +66,7 @@ const CandidatureSpontanee = (props) => {
               formik={formik}
               sendingState={sendingState}
               company={props?.item?.company?.name}
+              item={props?.item}
             />
           ) : (
             <></>
