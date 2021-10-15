@@ -23,7 +23,7 @@ jobs:
         run: |
           cd ui
           yarn test
-          yarn e2e:headless
+          BABEL_ENV=e2e yarn e2e:headless
 
       # Upload vers codecove (Evaluation couverture du code par des tests)
       - name: Upload UI coverage to Codecov

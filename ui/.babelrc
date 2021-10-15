@@ -1,8 +1,14 @@
 {
-  "presets": [
-    "next/babel"
-  ],
-  "plugins": [
-    "istanbul"
-  ]
+  "env": {
+    "e2e": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        "istanbul"
+      ]
+    },
+    "test": {
+    }
+  }
 }
