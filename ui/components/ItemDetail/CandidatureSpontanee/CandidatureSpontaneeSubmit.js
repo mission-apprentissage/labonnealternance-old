@@ -11,7 +11,7 @@ const CandidatureSpontaneeSubmit = (props) => {
         className="btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default"
         type="submit"
       >
-        {props?.item.ideaType === "lba" ? "J'envoie ma candidature spontanée" : "J'envoie ma candidature"}
+        {props?.item?.ideaType === "lba" ? "J'envoie ma candidature spontanée" : "J'envoie ma candidature"}
       </button>
     );
   } else if (sendingState === "ok_sent") {
