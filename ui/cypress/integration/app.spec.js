@@ -13,8 +13,8 @@ describe('Navigation', () => {
     cy.get('a[href*="a-propos"]').click()
 
     // The new url should include "/about"
-    // cy.url().should('include', '/a-propos')
-    // 
+    cy.url().should('include', '/a-propos')
+    
     // The new page should contain an h1 with "About page"
     cy.get('h1').contains('A propos')
   })
