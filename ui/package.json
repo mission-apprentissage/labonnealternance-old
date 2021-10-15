@@ -12,13 +12,25 @@
     "serve": "next start",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
-    "e2e": "start-server-and-test dev http://localhost:3000 cypress",
-    "e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless"
+    "e2e": "BABEL_ENV=e2e start-server-and-test dev http://localhost:3000 cypress",
+    "e2e:headless": "BABEL_ENV=e2e start-server-and-test dev http://localhost:3000 cypress:headless"
   },
   "nyc": {
     "report-dir": "cypress-coverage",
     "exclude": ["pages", "pages/**"],
     "excludeAfterRemap": true
+  },
+  "babel" : {
+      "env": {
+        "e2e": {
+          "presets": [
+            "next/babel"
+          ],
+          "plugins": [
+            "istanbul"
+          ]
+        }
+      }
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.11.7",
