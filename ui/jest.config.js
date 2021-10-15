@@ -11,8 +11,6 @@ module.exports = {
     '!**/coverage/**',
     '!**/cypress/**',
     '!**/pages/**',
-    '!**/pages/metiers',
-    '!**/pages/[forJob]',
   ],
   coverageDirectory: 'coverage',
   moduleNameMapper: {
