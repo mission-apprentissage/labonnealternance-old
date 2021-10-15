@@ -4,6 +4,15 @@ module.exports = {
     '**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
     '!**/node_modules/**',
+    '!**/config-overrides.js',
+    '!**/jest.config.js',
+    '!**/next-sitemap.js',
+    '!**/next.config.js',
+    '!**/coverage/**',
+    '!**/cypress/**',
+    '!**/pages/**',
+    '!**/pages/metiers',
+    '!**/pages/[forJob]',
   ],
   coverageDirectory: 'coverage',
   moduleNameMapper: {
@@ -22,16 +31,10 @@ module.exports = {
     '^@/components/(.*)$': '<rootDir>/components/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testMatch: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(test).[jt]s?(x)"],
   testPathIgnorePatterns: [
       '<rootDir>/node_modules/',
-      '<rootDir>/.next/',
-      '<rootDir>/config-overrides.js',
-      '<rootDir>/jest.config.js',
-      '<rootDir>/next-sitemap.js',
-      '<rootDir>/next.config.js',
-      '<rootDir>/pages',
-      '<rootDir>/pages/metiers',
-      '<rootDir>/pages/[forJob]',
+      '<rootDir>/.next/'
     ],
   transform: {
     // Use babel-jest to transpile tests with the next/babel preset
