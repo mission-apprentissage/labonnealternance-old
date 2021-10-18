@@ -61,7 +61,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         ),
         mailer.sendEmail(
           application.company_email,
-          `Candidature spontanée via La bonne alternance`,
+          `Candidature spontanée pour un poste en alternance`,
           getEmailTemplate("mail-spontanee"),
           { ...application._doc, ...images },
           [
