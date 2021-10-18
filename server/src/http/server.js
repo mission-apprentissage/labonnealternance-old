@@ -20,6 +20,8 @@ const formationRegionV1 = require("./routes/formationRegionV1");
 const jobV1 = require("./routes/jobV1");
 const esSearch = require("./routes/esSearch");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
+const sendMail = require("./routes/sendMail");
+const sendApplication = require("./routes/sendApplication");
 const rateLimit = require("express-rate-limit");
 var path = require("path");
 
@@ -56,6 +58,11 @@ module.exports = async (components) => {
 
   const limiter1Per5Second = rateLimit({
     windowMs: 5000, // 5 seconds
+    max: 1, // limit each IP to 1 request per windowMs
+  });
+
+  const limiter1Per20Second = rateLimit({
+    windowMs: 20000, // 20 seconds
     max: 1, // limit each IP to 1 request per windowMs
   });
 
@@ -112,6 +119,10 @@ module.exports = async (components) => {
   app.use("/api/metiers", limiter20PerSecond, metiers());
 
   app.use("/api/v1/metiers", limiter20PerSecond, metiers());
+
+  app.use("/api/mail", limiter1Per20Second, sendMail(components));
+
+  app.use("/api/application", sendApplication(components));
 
   app.get(
     "/api",

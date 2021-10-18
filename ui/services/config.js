@@ -1,5 +1,6 @@
 import { getValueFromPath } from "utils/tools";
 import { campaignParameters } from "utils/campaignParameters";
+import { testingParameters } from "../utils/testingParameters";
 import { setWidgetParameters, setItemParameters } from "store/actions";
 import { push } from "connected-next-router";
 
@@ -83,6 +84,20 @@ export const getItemParameters = () => {
   return itemParameters;
 };
 
+export const initTestingParameters = () => {
+  if (!testingParameters?.secret) {
+    let p = getValueFromPath("secret");
+    if (p) {
+      testingParameters.secret = p;
+
+      p = getValueFromPath("simulatedRecipient");
+      if (p) {
+        testingParameters.simulatedRecipient = p;
+      }
+    }
+  }
+};
+
 /* à conserver
 export const buildFormValuesFromParameterString = (urlParams) => 
 {
@@ -102,7 +117,6 @@ export const buildFormValuesFromParameterString = (urlParams) =>
 }*/
 
 const buildFormValuesFromParameters = (params) => {
-
   let formValues = {
     job: {
       label: params.jobName,
@@ -141,6 +155,8 @@ export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
     dispatch(setItemParameters(itemParameters));
     hasParameters = true;
   }
+
+  initTestingParameters();
 
   if (hasParameters && shouldPush) {
     dispatch(push({ pathname: "/recherche-apprentissage" }));
