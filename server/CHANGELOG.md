@@ -1,18 +1,20 @@
 # CHANGELOG
 
-
-## 1.17.0 [30/09/2021]
-Envoi de messages de candidature
+## 1.17.0 [18/10/2021]
 [793] Envoi d'une candidature spontanée
-[856] Envoi d'une candidature spontanée, détection email
+
+## 1.16.7 [14/10/2021]
+[833] Wording
 
 ## 1.16.6 [06/10/2021]
 [815] Réduction du nombre de pages générées pour le SEO
 [855] Remontée des champs Matcha type et début de formation
+[862] Affichage nouveaux champs Matcha
 
 ## 1.16.5 [23/9/2021]
 [817] Design remerciement
 [815] Réduction génération SEO
+[837] Masquage siret offre PE
 
 ## 1.16.4 [20/09/2021]
 [829] Fix import formations par job
