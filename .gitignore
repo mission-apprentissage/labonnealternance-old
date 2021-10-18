@@ -137,3 +137,5 @@ setEnv.sh
 **/.vagrant/
 **/node_modules/
 yarn-error.log
+
+server/yarn.lock
