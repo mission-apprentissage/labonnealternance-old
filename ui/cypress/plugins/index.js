@@ -40,7 +40,7 @@ module.exports = (on, config) => {
   //       'babelify',
   //       {
   //         ast: false,
-  //         babelrc: false,
+  //         babelrc: true,
   //         plugins: [
   //           'istanbul',
   //         ],

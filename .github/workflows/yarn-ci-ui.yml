@@ -23,3 +23,9 @@ jobs:
         run: |
           cd ui
           yarn test
+
+      # Run cypress tests
+      - name: Run Tests
+        run: |
+          cd ui
+          yarn e2e:headless
