@@ -12,7 +12,7 @@ module.exports = {
     '!**/cypress/**',
     '!**/pages/**',
   ],
-  coverageDirectory: 'coverage',
+  coverageDirectory: 'coverage/unit',
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
     // https://jestjs.io/docs/webpack#mocking-css-modules
