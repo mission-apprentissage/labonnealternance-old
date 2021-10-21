@@ -9,7 +9,20 @@
     "postbuild": "next-sitemap --config next-sitemap.js",
     "start": "next start",
     "test": "jest",
-    "serve": "next start"
+    "serve": "next start",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run",
+    "e2e": "echo '{ \"presets\": [ \"next/babel\" ], \"plugins\": [ \"istanbul\" ] }' > .babelrc && start-server-and-test dev http://localhost:3000 cypress ; rm .babelrc",
+    "e2e:headless": "echo '{ \"presets\": [ \"next/babel\" ], \"plugins\": [ \"istanbul\" ] }' > .babelrc &&  start-server-and-test dev http://localhost:3000 cypress:headless ; rm .babelrc",
+    "mergecov": "mkdir -p ./coverage/both && cp ./coverage/e2e/coverage-final.json ./coverage/both/coverage-final-e2e.json && cp ./coverage/unit/coverage-final.json ./coverage/both/coverage-final-unit.json && mkdir -p ./coverage/final && npx nyc merge ./coverage/both ./coverage/final/merged-coverage.json && npx nyc report -t ./coverage/final/ --report-dir ./coverage/final/ --reporter=html --reporter=text-summary"
+  },
+  "nyc": {
+    "report-dir": "coverage/e2e",
+    "exclude": [
+      "pages",
+      "pages/**"
+    ],
+    "excludeAfterRemap": true
   },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.11.7",
@@ -73,15 +86,20 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "7.0.1",
+    "@cypress/code-coverage": "3.9.11",
     "@testing-library/dom": "8.7.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
+    "@testing-library/react-hooks": "7.0.1",
     "@testing-library/user-event": "^7.1.2",
+    "check-code-coverage": "1.10.0",
+    "cypress": "8.6.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-prettier": "3.1.3",
+    "istanbul-merge": "1.1.1",
     "local-web-server": "4.2.0",
     "next-sitemap": "1.6.133",
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "start-server-and-test": "1.13.1"
   }
 }
