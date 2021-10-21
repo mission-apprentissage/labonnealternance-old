@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.1 [21/10/2021]
+[885] Dissociation scripts update du catalogue
+
 ## 1.17.0 [18/10/2021]
 [793] Envoi d'une candidature spontanée
 
