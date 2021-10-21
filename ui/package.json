@@ -23,18 +23,6 @@
     ],
     "excludeAfterRemap": true
   },
-  "babel": {
-    "env": {
-      "e2e": {
-        "presets": [
-          "next/babel"
-        ],
-        "plugins": [
-          "istanbul"
-        ]
-      }
-    }
-  },
   "dependencies": {
     "@appbaseio/reactivesearch": "^3.11.7",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
