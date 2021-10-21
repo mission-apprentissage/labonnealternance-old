@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.1 [21/10/2021]
+[893] Obfuscation de l'adresse email LBA/LBB
+
 ## 1.17.0 [18/10/2021]
 [793] Envoi d'une candidature spontanée
 
