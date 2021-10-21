@@ -19,13 +19,13 @@ jobs:
           yarn install
 
       # Run jest tests
-      - name: Run Tests
+      - name: Run Unit Tests
         run: |
           cd ui
           yarn test
 
       # Run cypress tests
-      - name: Run Tests
+      - name: Run E2E Tests
         run: |
           cd ui
           yarn e2e:headless
