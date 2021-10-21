@@ -1,12 +1,10 @@
-const axios = require("axios");
-const config = require("config");
 const _ = require("lodash");
 const Sentry = require("@sentry/node");
 const logger = require("../../common/logger");
 const { DiplomesMetiers } = require("../../common/model");
-const { getElasticInstance } = require("../../common/esClient");
+const { getElasticInstance, getFormationsES } = require("../../common/esClient");
 
-const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
+const esClient = getFormationsES();
 
 const logMessage = (level, msg) => {
   if (level === "info") {
@@ -132,15 +130,16 @@ const getIntitulesFormations = async ({ size = 0 }) => {
       body.search_after = [lastIdToSearchAfter];
     }
 
-    const responseIntitulesFormations = await axios.post(urlCatalogueSearch, body, {
-      params: getFormationCodesEsQueryIndexFragment({ size }),
+    const responseIntitulesFormations = await esClient.search({
+      ...getFormationCodesEsQueryIndexFragment({ size }),
+      body,
     });
 
     let intitules = [];
     //console.log(responseIntitulesFormations.data.hits);
 
-    responseIntitulesFormations.data.hits.hits.forEach((formation) => {
-      //console.log(intitule._source);
+    responseIntitulesFormations.body.hits.hits.forEach((formation) => {
+      //console.log(formation._source.intitule_long);
 
       if (!diplomesMetiers[formation._source.intitule_long]) {
         //console.log("inited : ", intitule._source.intitule_long);
@@ -160,11 +159,10 @@ const getIntitulesFormations = async ({ size = 0 }) => {
       lastIdToSearchAfter = formation._id;
     });
 
-    if (responseIntitulesFormations.data.hits.hits.length < size) {
+    if (responseIntitulesFormations.body.hits.hits.length < size) {
       shouldStop = true;
     }
 
-    //console.log(responseIntitulesFormations.data.hits.hits.length);
     //console.log("et la l'int : ",intitules);
 
     return intitules;
@@ -204,7 +202,7 @@ const updateDiplomeMetier = ({ initial, toAdd }) => {
 const getFormationCodesEsQueryIndexFragment = ({ size = 10000 }) => {
   return {
     //index: "mnaformation",
-    index: "convertedformation",
+    index: "convertedformations",
     size,
     _sourceIncludes: ["_id", "intitule_long", "rome_codes", "rncp_code"],
   };
