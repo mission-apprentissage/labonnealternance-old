@@ -1,6 +1,6 @@
 import React from "react";
 import { Spinner } from "reactstrap";
-import { amongst } from "utils/arrayutils";
+import { amongst } from "../../../utils/arrayutils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
 
 const CandidatureSpontaneeSubmit = (props) => {
