@@ -12,8 +12,8 @@
     "serve": "next start",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
-    "e2e": "BABEL_ENV=e2e start-server-and-test dev http://localhost:3000 cypress",
-    "e2e:headless": "BABEL_ENV=e2e start-server-and-test dev http://localhost:3000 cypress:headless"
+    "e2e": "echo '{ \"presets\": [ \"next/babel\" ], \"plugins\": [ \"istanbul\" ] }' > .babelrc && start-server-and-test dev http://localhost:3000 cypress && rm .babelrc",
+    "e2e:headless": "echo '{ \"presets\": [ \"next/babel\" ], \"plugins\": [ \"istanbul\" ] }' > .babelrc &&  start-server-and-test dev http://localhost:3000 cypress:headless && rm .babelrc"
   },
   "nyc": {
     "report-dir": "cypress-coverage",
@@ -85,19 +85,22 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "7.0.1",
+    "@cypress/browserify-preprocessor": "3.0.1",
+    "@cypress/code-coverage": "3.9.11",
+    "@cypress/webpack-preprocessor": "5.9.1",
     "@testing-library/dom": "8.7.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
+    "@testing-library/react-hooks": "7.0.1",
     "@testing-library/user-event": "^7.1.2",
+    "babel-loader": "8.2.3",
+    "check-code-coverage": "1.10.0",
+    "cypress": "8.6.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-prettier": "3.1.3",
     "local-web-server": "4.2.0",
     "next-sitemap": "1.6.133",
     "prettier": "2.0.5",
-    "cypress": "8.6.0",
-    "start-server-and-test": "1.13.1",
-    "@cypress/code-coverage": "3.9.11",
-    "check-code-coverage": "1.10.0"
+    "start-server-and-test": "1.13.1"
   }
 }
