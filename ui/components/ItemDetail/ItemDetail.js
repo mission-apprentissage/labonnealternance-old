@@ -22,10 +22,9 @@ import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
-  
   const kind = selectedItem?.ideaType;
 
-  const isCfa = isCfaEntreprise(selectedItem?.company?.siret)
+  const isCfa = isCfaEntreprise(selectedItem?.company?.siret);
 
   const distance = selectedItem?.place?.distance;
 
@@ -142,11 +141,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <div className="">
             <div className="d-flex justify-content-end mb-2">
               <div className="mr-auto">
-                {kind === "formation" ? (
-                  <TagCfaDEntreprise isCfa={isCfa} />
-                ) : (
-                  ""
-                )}
+                {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
                 {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
                 {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
               </div>
@@ -187,7 +182,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             {amongst(kind, ["lba", "lbb"]) ? (
               <p className={`c-detail-activity c-detail-title--${kind}`}>
-                {kind === "lba" || kind === "lbb" ? get(selectedItem, "nafs[0].label", "Candidature spontanée") : ""}
+                {get(selectedItem, "nafs[0].label", "Candidature spontanée")}
               </p>
             ) : (
               ""
