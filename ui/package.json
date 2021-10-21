@@ -85,15 +85,12 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
-    "@cypress/browserify-preprocessor": "3.0.1",
     "@cypress/code-coverage": "3.9.11",
-    "@cypress/webpack-preprocessor": "5.9.1",
     "@testing-library/dom": "8.7.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/react-hooks": "7.0.1",
     "@testing-library/user-event": "^7.1.2",
-    "babel-loader": "8.2.3",
     "check-code-coverage": "1.10.0",
     "cypress": "8.6.0",
     "eslint-config-prettier": "6.11.0",
