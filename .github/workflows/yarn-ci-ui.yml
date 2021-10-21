@@ -19,17 +19,17 @@ jobs:
           yarn install
 
       # Run jest tests
-      - name: Run Tests
-        run: |
-          cd ui
-          yarn test
-          yarn e2e:headless
+      # - name: Run Tests
+      #   run: |
+      #     cd ui
+      #     yarn test
+      #     yarn e2e:headless
 
       # Upload vers codecove (Evaluation couverture du code par des tests)
-      - name: Upload UI coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./ui/coverage
-          name: codecov-ui
-          verbose: true
+      # - name: Upload UI coverage to Codecov
+      #   uses: codecov/codecov-action@v2
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     directory: ./ui/coverage
+      #     name: codecov-ui
+      #     verbose: true
