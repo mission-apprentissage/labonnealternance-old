@@ -29,3 +29,9 @@ jobs:
         run: |
           cd ui
           yarn e2e:headless
+
+      # Calculate unit, and e2e coverage
+      - name: Calculate full coverage
+        run: |
+          cd ui
+          yarn mergecov
