@@ -3,6 +3,21 @@
 // If you're using ESLint on your project, we recommend installing the ESLint Cypress plugin instead:
 // https://github.com/cypress-io/eslint-plugin-cypress
 
+function please_intercept(local_cy, url, fixture, alias) {
+  local_cy.intercept(
+    {
+      method: 'GET', 
+      url: url
+    },
+    (req) => {
+      req.reply({
+        delay: 0, // ms, simulate a slow endpoint, increase value to debug
+        fixture: fixture
+      })
+    }
+  ).as(alias)
+}
+
 describe('Search', () => {
   before(() => {
     // Start from the index page
@@ -119,52 +134,14 @@ describe('Search', () => {
   
   it('User can launch the search', () => {
 
-    cy.intercept(
-      {
-        method: 'GET',
-        url: /api\/v1\/formations/,
-        // query: {
-        //   romes: 'E1205,E1104,E1103',
-        //   rncps: 'RNCP13595',
-        //   longitude: '1.438407',
-        //   latitude: '44.45771',
-        //   radius: '10',
-        //   diploma: '3+(CAP...)',
-        // },
-      },
-      (req) => {
-        req.reply({
-          delay: 50,
-          fixture: 'api_v1_formations.json'
-        })
-      }
-    ).as('apiV1Formations')
-
-    cy.intercept(
-      {
-        method: 'GET',
-        url: /api\/v1\/jobs/,
-        // query: {
-        //   romes: 'E1205,E1104,E1103',
-        //   longitude: '1.438407',
-        //   latitude: '44.45771',
-        //   radius: '10',
-        //   insee: '46042',
-        //   zipcode: '46000',
-        //   strictRadius: 'strict',
-        // },
-      },
-      (req) => {
-        req.reply({
-          delay: 50,
-          fixture: 'api_v1_jobs.json'
-        })
-      }
-    ).as('apiV1Jobs')
-
-
     ///api/v1/formations?romes=M1805,M1806,M1802&rncps=&longitude=1.438407&latitude=44.45771&radius=10&diploma=3+(CAP...)
+    please_intercept(cy, /api\/v1\/formations/, 'api_v1_formations.json', 'apiV1Formations')
+    
     ///api/v1/jobs?romes=M1805,M1806,M1802&longitude=1.438407&latitude=44.45771&insee=46042&zipcode=46000&radius=10&strictRadius=strict
+    please_intercept(cy, /api\/v1\/jobs/, 'api_v1_jobs.json', 'apiV1Jobs')
+
+
+
     // given
     let submitButton = cy.get('button.c-logobar-submit:visible')
     // when
