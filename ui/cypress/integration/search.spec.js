@@ -22,18 +22,8 @@ describe('Search', () => {
 
   it('User can start to type inside job field, a list of possible jobs appear', () => {
     // given
-    cy.intercept(
-      {
-        method: 'GET', url: /api\/romelabels/, query: {title: 'web'},
-      },
-      (req) => {
-        req.reply({
-          delay: 50, // ms, simulate a slow endpoint, increase value to debug
-          fixture: 'romelabels_web.json'
-        })
-      }
-    ).as('apiRomeLabelsWeb')
-
+    // api/romelabels?title=web
+    please_intercept(cy, /api\/romelabels/, 'romelabels_web')
     cy.get('.c-spinner').should('not.exist');
     cy.get('.c-autocomplete_option').should('not.exist');
     // when
@@ -46,6 +36,7 @@ describe('Search', () => {
   
   it('User can choose a job', () => {    
     // given
+    // api/jobsdiplomas?romes=E1205,E1104,E1103&rncps=RNCP13595
     please_intercept(cy, /api\/jobsdiplomas/, 'jobsdiplomas', 200)
     cy.get('.c-autocomplete_option').should('exist');
     // when
@@ -91,22 +82,19 @@ describe('Search', () => {
   })
   
   it('User can launch the search', () => {
-
+    // given
+    
     // api/v1/formations?romes=M1805,M1806,M1802&rncps=&longitude=1.438407&latitude=44.45771&radius=10&diploma=3+(CAP...)
     please_intercept(cy, /api\/v1\/formations/, 'api_v1_formations')
-    
     // api/v1/jobs?romes=M1805,M1806,M1802&longitude=1.438407&latitude=44.45771&insee=46042&zipcode=46000&radius=10&strictRadius=strict
     please_intercept(cy, /api\/v1\/jobs/, 'api_v1_jobs')
-
     // /api/romelabels?title=Developpeur+web
     please_intercept(cy, /api\/romelabels/, 'api_romelabels_devweb')
-
-
-
-    // given
     let submitButton = cy.get('button.c-logobar-submit:visible')
+
     // when
     submitButton.click()
+
     // then
     cy.get('canvas.mapboxgl-canvas', { timeout: 10000 }).should('be.visible')
     cy.location().should((loc) => { expect(loc.pathname).to.eq('/recherche-apprentissage') })
