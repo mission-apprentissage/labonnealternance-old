@@ -105,4 +105,11 @@ describe('Search', () => {
     cy.get('input[name="placeField"]:visible').should('have.value', 'Nanterre 92000')
   })
 
+  it('User can choose a radius', () => {
+    // given
+    // when
+    cy.get('select[name="locationRadius"]:visible').select('10km').should('have.value', '10')
+    // then
+  })
+
 })
