@@ -79,7 +79,7 @@ describe('Search', () => {
       },
       (req) => {
         req.reply({
-          delay: 500,
+          delay: 50,
           fixture: 'adresse_nant.json'
         })
       }
@@ -106,10 +106,15 @@ describe('Search', () => {
   })
 
   it('User can choose a radius', () => {
-    // given
-    // when
-    cy.get('select[name="locationRadius"]:visible').select('10km').should('have.value', '10')
-    // then
+    cy.get('select[name="locationRadius"]:visible') // given
+      .select('10km') // when
+      .should('have.value', '10') // then
+  })
+
+  it('User can choose a diploma', () => {
+    cy.get('select[name="diploma"]:visible') // given
+      .select('Cap, autres formations niveau 3') // when
+      .should('have.value', '3 (CAP...)') // then
   })
 
 })
