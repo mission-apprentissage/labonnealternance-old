@@ -72,7 +72,7 @@ describe('Search', () => {
         method: 'GET', 
         url: /api-adresse.data.gouv.fr\/search/, 
         query: {
-          q: 'nant',
+          q: 'caho',
           limit: '10',
           type: 'municipality',
         },
@@ -80,15 +80,15 @@ describe('Search', () => {
       (req) => {
         req.reply({
           delay: 50,
-          fixture: 'adresse_nant.json'
+          fixture: 'adresse_caho.json'
         })
       }
-    ).as('getAdresseNant')
+    ).as('getAdresseCaho')
 
     cy.get('.c-spinner').should('not.exist');
     cy.get('.c-autocomplete_option').should('not.exist');
     // when
-    cy.get('input[name="placeField"]:visible').type('nant')
+    cy.get('input[name="placeField"]:visible').type('caho')
     // then
     cy.get('.c-spinner').should('exist');
     cy.get('.c-autocomplete_option').should('exist');
@@ -99,10 +99,10 @@ describe('Search', () => {
     // given
     cy.get('.c-autocomplete_option').should('exist');
     // when
-    cy.get('input[name="placeField"]:visible').type('{downarrow}').type('{enter}')
+    cy.get('input[name="placeField"]:visible').type('{downarrow}').type('{uparrow}').type('{enter}')
     // then
     cy.get('.c-autocomplete_option').should('not.exist');
-    cy.get('input[name="placeField"]:visible').should('have.value', 'Nanterre 92000')
+    cy.get('input[name="placeField"]:visible').should('have.value', 'Cahors 46000')
   })
 
   it('User can choose a radius', () => {
@@ -123,9 +123,7 @@ describe('Search', () => {
     // when
     submitButton.click()
     // then
-    // mapContainer
     cy.get('canvas.mapboxgl-canvas', { timeout: 10000 }).should('be.visible')
-    // canvas
     // cy.location().should((loc) => { expect(loc.pathname).to.eq('foobarqix') })
   })
 
