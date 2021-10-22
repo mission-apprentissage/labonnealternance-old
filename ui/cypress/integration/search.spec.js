@@ -113,8 +113,20 @@ describe('Search', () => {
 
   it('User can choose a diploma', () => {
     cy.get('select[name="diploma"]:visible') // given
-      .select('Cap, autres formations niveau 3') // when
-      .should('have.value', '3 (CAP...)') // then
+    .select('Cap, autres formations niveau 3') // when
+    .should('have.value', '3 (CAP...)') // then
+  })
+  
+  it('User can launch the search', () => {
+    // given
+    let submitButton = cy.get('button.c-logobar-submit:visible')
+    // when
+    submitButton.click()
+    // then
+    // mapContainer
+    cy.get('canvas.mapboxgl-canvas', { timeout: 10000 }).should('be.visible')
+    // canvas
+    // cy.location().should((loc) => { expect(loc.pathname).to.eq('foobarqix') })
   })
 
 })
