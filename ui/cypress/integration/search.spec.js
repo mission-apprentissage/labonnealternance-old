@@ -48,7 +48,9 @@ describe('Search', () => {
 
   it('User can start to type inside place field, a list of possible places appear', () => {
     // given
-
+    
+    // /api/romelabels?title=Developpeur+web
+    please_intercept(cy, /api\/romelabels/, 'api_romelabels_devweb')
     // https://api-adresse.data.gouv.fr/search/?limit=10&q=caho&type=municipality
     please_intercept(cy, /api-adresse.data.gouv.fr\/search/, 'adresse_caho')
 
@@ -83,7 +85,7 @@ describe('Search', () => {
   
   it('User can launch the search', () => {
     // given
-    
+
     // api/v1/formations?romes=M1805,M1806,M1802&rncps=&longitude=1.438407&latitude=44.45771&radius=10&diploma=3+(CAP...)
     please_intercept(cy, /api\/v1\/formations/, 'api_v1_formations')
     // api/v1/jobs?romes=M1805,M1806,M1802&longitude=1.438407&latitude=44.45771&insee=46042&zipcode=46000&radius=10&strictRadius=strict
