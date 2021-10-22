@@ -95,4 +95,14 @@ describe('Search', () => {
     cy.get('.c-spinner').should('not.exist');
   })
 
+  it('User can choose a place', () => {
+    // given
+    cy.get('.c-autocomplete_option').should('exist');
+    // when
+    cy.get('input[name="placeField"]:visible').type('{downarrow}').type('{enter}')
+    // then
+    cy.get('.c-autocomplete_option').should('not.exist');
+    cy.get('input[name="placeField"]:visible').should('have.value', 'Nanterre 92000')
+  })
+
 })
