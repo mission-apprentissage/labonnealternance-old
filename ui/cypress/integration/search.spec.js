@@ -21,7 +21,19 @@ describe('Search', () => {
 
   it('User can start to type inside job field, a list of possible jobs appear', () => {
     // given
-    cy.intercept('GET', 'http://localhost:5000/api/romelabels?title=web', { fixture: 'romelabelsweb.json' })
+    // cy.intercept(
+    //   'GET', 'http://localhost:5000/api/romelabels?title=web', { fixture: 'romelabelsweb.json' })
+    cy.intercept(
+      {
+        method: 'GET', url: /api\/romelabels/, query: {title: 'web'},
+      },
+      (req) => {
+        req.reply({
+          statusCode: 200, // default
+          fixture: 'romelabelsweb.json'
+        })
+      }
+    )
     cy.get('.c-autocomplete_option').should('not.exist');
     // when
     cy.get('input[name="jobField"]:visible').type('web')
