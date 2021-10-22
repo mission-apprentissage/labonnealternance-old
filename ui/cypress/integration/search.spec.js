@@ -3,20 +3,6 @@
 // If you're using ESLint on your project, we recommend installing the ESLint Cypress plugin instead:
 // https://github.com/cypress-io/eslint-plugin-cypress
 
-function please_intercept(local_cy, url, fixture, alias) {
-  local_cy.intercept(
-    {
-      method: 'GET', 
-      url: url
-    },
-    (req) => {
-      req.reply({
-        delay: 0, // ms, simulate a slow endpoint, increase value to debug
-        fixture: fixture
-      })
-    }
-  ).as(alias)
-}
 
 describe('Search', () => {
   before(() => {
@@ -46,7 +32,7 @@ describe('Search', () => {
           fixture: 'romelabels_web.json'
         })
       }
-    ).as('apiRomeLabels')
+    ).as('apiRomeLabelsWeb')
 
     cy.get('.c-spinner').should('not.exist');
     cy.get('.c-autocomplete_option').should('not.exist');
@@ -58,20 +44,9 @@ describe('Search', () => {
     cy.get('.c-spinner').should('not.exist');
   })
   
-  it('User can choose a job', () => {
-    cy.intercept(
-      {
-        method: 'GET', url: /api\/jobsdiplomas/, query: { romes: 'M1805', rncps: 'RNCP31114' },
-      },
-      (req) => {
-        req.reply({
-          delay: 0, // ms, simulate a slow endpoint, increase value to debug
-          fixture: 'jobsdiplomas.json'
-        })
-      }
-    ).as('apiJobsDiplomas')
-
+  it('User can choose a job', () => {    
     // given
+    please_intercept(cy, /api\/jobsdiplomas/, 'jobsdiplomas', 200)
     cy.get('.c-autocomplete_option').should('exist');
     // when
     cy.contains('Developpeur web').click()
@@ -82,32 +57,15 @@ describe('Search', () => {
 
   it('User can start to type inside place field, a list of possible places appear', () => {
     // given
-    cy.intercept(
-      {
-        method: 'GET', 
-        url: /api-adresse.data.gouv.fr\/search/, 
-        query: {
-          q: 'caho',
-          limit: '10',
-          type: 'municipality',
-        },
-      },
-      (req) => {
-        req.reply({
-          delay: 50,
-          fixture: 'adresse_caho.json'
-        })
-      }
-    ).as('getAdresseCaho')
 
-    cy.get('.c-spinner').should('not.exist');
+    // https://api-adresse.data.gouv.fr/search/?limit=10&q=caho&type=municipality
+    please_intercept(cy, /api-adresse.data.gouv.fr\/search/, 'adresse_caho')
+
     cy.get('.c-autocomplete_option').should('not.exist');
     // when
     cy.get('input[name="placeField"]:visible').type('caho')
     // then
-    cy.get('.c-spinner').should('exist');
     cy.get('.c-autocomplete_option').should('exist');
-    cy.get('.c-spinner').should('not.exist');
   })
 
   it('User can choose a place', () => {
@@ -134,11 +92,14 @@ describe('Search', () => {
   
   it('User can launch the search', () => {
 
-    ///api/v1/formations?romes=M1805,M1806,M1802&rncps=&longitude=1.438407&latitude=44.45771&radius=10&diploma=3+(CAP...)
-    please_intercept(cy, /api\/v1\/formations/, 'api_v1_formations.json', 'apiV1Formations')
+    // api/v1/formations?romes=M1805,M1806,M1802&rncps=&longitude=1.438407&latitude=44.45771&radius=10&diploma=3+(CAP...)
+    please_intercept(cy, /api\/v1\/formations/, 'api_v1_formations')
     
-    ///api/v1/jobs?romes=M1805,M1806,M1802&longitude=1.438407&latitude=44.45771&insee=46042&zipcode=46000&radius=10&strictRadius=strict
-    please_intercept(cy, /api\/v1\/jobs/, 'api_v1_jobs.json', 'apiV1Jobs')
+    // api/v1/jobs?romes=M1805,M1806,M1802&longitude=1.438407&latitude=44.45771&insee=46042&zipcode=46000&radius=10&strictRadius=strict
+    please_intercept(cy, /api\/v1\/jobs/, 'api_v1_jobs')
+
+    // /api/romelabels?title=Developpeur+web
+    please_intercept(cy, /api\/romelabels/, 'api_romelabels_devweb')
 
 
 
@@ -152,3 +113,18 @@ describe('Search', () => {
   })
 
 })
+
+function please_intercept(local_cy, url, requestName, customMillisecondDelay=0) {
+  local_cy.intercept(
+    {
+      method: 'GET',
+      url: url
+    },
+    (req) => {
+      req.reply({
+        delay: customMillisecondDelay, 
+        fixture: `${requestName}.json`
+      })
+    }
+  ).as(`custom_${requestName}`)
+}
