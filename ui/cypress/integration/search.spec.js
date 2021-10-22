@@ -7,6 +7,7 @@ describe('Search', () => {
   before(() => {
     // Start from the index page
     cy.visit('http://localhost:3000/')
+    
   })
   it('User can click on job field, a message appears', () => {
     // given
@@ -16,6 +17,16 @@ describe('Search', () => {
     // then
     cy.get('.c-autocomplete__menu').should('be.visible');
     cy.get('.c-autocomplete__menu').contains('Indiquez un métier')
+  })
+
+  it('User can start to type inside job field, a list of possible jobs appear', () => {
+    // given
+    cy.intercept('GET', 'http://localhost:5000/api/romelabels?title=web', { fixture: 'romelabelsweb.json' })
+    cy.get('.c-autocomplete_option').should('not.exist');
+    // when
+    cy.get('input[name="jobField"]:visible').type('web')
+    // then
+    cy.get('.c-autocomplete_option').should('exist');
   })
 
 })
