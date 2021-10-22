@@ -1,5 +1,6 @@
 import React from "react";
 import { Spinner } from "reactstrap";
+import { amongst } from "../../../utils/arrayutils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
 
 const CandidatureSpontaneeSubmit = (props) => {
@@ -16,7 +17,7 @@ const CandidatureSpontaneeSubmit = (props) => {
         )}`}
         type="submit"
       >
-        {kind === "lba" ? "J'envoie ma candidature spontanée" : "J'envoie ma candidature"}
+        {amongst(kind, ["lbb", "lba"]) ? "J'envoie ma candidature spontanée" : "J'envoie ma candidature"}
       </button>
     );
   } else if (sendingState === "ok_sent") {
