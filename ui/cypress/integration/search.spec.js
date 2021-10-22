@@ -118,13 +118,60 @@ describe('Search', () => {
   })
   
   it('User can launch the search', () => {
+
+    cy.intercept(
+      {
+        method: 'GET',
+        url: /api\/v1\/formations/,
+        // query: {
+        //   romes: 'E1205,E1104,E1103',
+        //   rncps: 'RNCP13595',
+        //   longitude: '1.438407',
+        //   latitude: '44.45771',
+        //   radius: '10',
+        //   diploma: '3+(CAP...)',
+        // },
+      },
+      (req) => {
+        req.reply({
+          delay: 50,
+          fixture: 'api_v1_formations.json'
+        })
+      }
+    ).as('apiV1Formations')
+
+    cy.intercept(
+      {
+        method: 'GET',
+        url: /api\/v1\/jobs/,
+        // query: {
+        //   romes: 'E1205,E1104,E1103',
+        //   longitude: '1.438407',
+        //   latitude: '44.45771',
+        //   radius: '10',
+        //   insee: '46042',
+        //   zipcode: '46000',
+        //   strictRadius: 'strict',
+        // },
+      },
+      (req) => {
+        req.reply({
+          delay: 50,
+          fixture: 'api_v1_jobs.json'
+        })
+      }
+    ).as('apiV1Jobs')
+
+
+    ///api/v1/formations?romes=M1805,M1806,M1802&rncps=&longitude=1.438407&latitude=44.45771&radius=10&diploma=3+(CAP...)
+    ///api/v1/jobs?romes=M1805,M1806,M1802&longitude=1.438407&latitude=44.45771&insee=46042&zipcode=46000&radius=10&strictRadius=strict
     // given
     let submitButton = cy.get('button.c-logobar-submit:visible')
     // when
     submitButton.click()
     // then
     cy.get('canvas.mapboxgl-canvas', { timeout: 10000 }).should('be.visible')
-    // cy.location().should((loc) => { expect(loc.pathname).to.eq('foobarqix') })
+    cy.location().should((loc) => { expect(loc.pathname).to.eq('/recherche-apprentissage') })
   })
 
 })

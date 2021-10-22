@@ -221,7 +221,7 @@ const initializeMap = ({
     if (
       jobs &&
       jobs.peJobs &&
-      (jobs.peJobs.length || jobs.lbaCompanies.length || jobs.lbbCompanies.length || jobs.matchas.length)
+      (jobs.peJobs.length || jobs?.lbaCompanies?.length || jobs?.lbbCompanies?.length || jobs?.matchas?.length)
     ) {
       setJobMarkers(factorJobsForMap(jobs));
     }
