@@ -32,10 +32,13 @@ describe('Search', () => {
         })
       }
     ).as('getLabelsAndRome')
+
+    cy.get('.c-spinner').should('not.exist');
     cy.get('.c-autocomplete_option').should('not.exist');
     // when
     cy.get('input[name="jobField"]:visible').type('web')
     // then
+    cy.get('.c-spinner').should('exist');
     cy.get('.c-autocomplete_option').should('exist');
   })
 
