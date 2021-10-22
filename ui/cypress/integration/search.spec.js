@@ -27,11 +27,11 @@ describe('Search', () => {
       },
       (req) => {
         req.reply({
-          delay: 500,
-          fixture: 'romelabelsweb.json'
+          delay: 50, // ms, simulate a slow endpoint, increase value to debug
+          fixture: 'romelabels_web.json'
         })
       }
-    ).as('getLabelsAndRome')
+    ).as('apiRomeLabels')
 
     cy.get('.c-spinner').should('not.exist');
     cy.get('.c-autocomplete_option').should('not.exist');
@@ -40,6 +40,62 @@ describe('Search', () => {
     // then
     cy.get('.c-spinner').should('exist');
     cy.get('.c-autocomplete_option').should('exist');
+    cy.get('.c-spinner').should('not.exist');
   })
+  
+  it('User can choose a job', () => {
+    //api/jobsdiplomas?romes=M1805&rncps=RNCP31114
+    cy.intercept(
+      {
+        method: 'GET', url: /api\/jobsdiplomas/, query: { romes: 'M1805', rncps: 'RNCP31114' },
+      },
+      (req) => {
+        req.reply({
+          delay: 0, // ms, simulate a slow endpoint, increase value to debug
+          fixture: 'jobsdiplomas.json'
+        })
+      }
+    ).as('apiJobsDiplomas')
+
+    // given
+    cy.get('.c-autocomplete_option').should('exist');
+    // when
+
+    // Side note : it's also possible to test the keyboard
+    // cy.get('input[name="jobField"]:visible').type('{downarrow}').type('{downarrow}').type('{enter}')
+    cy.contains('Developpeur web').click()
+    // then
+    cy.get('.c-autocomplete_option').should('not.exist');
+    cy.get('input[name="jobField"]:visible').should('have.value', 'Developpeur web')
+  })
+
+  // it('User can start to type inside place field, a list of possible places appear', () => {
+  //   // given
+  //   cy.intercept(
+  //     {
+  //       method: 'GET', 
+  //       url: /api-adresse.data.gouv.fr\/search/, 
+  //       query: {
+  //         q: 'nant',
+  //         limit: '10',
+  //         type: 'municipality',
+  //       },
+  //     },
+  //     (req) => {
+  //       req.reply({
+  //         delay: 500,
+  //         fixture: 'adresse_nant.json'
+  //       })
+  //     }
+  //   ).as('getAdresseNant')
+
+  //   cy.get('.c-spinner').should('not.exist');
+  //   cy.get('.c-autocomplete_option').should('not.exist');
+  //   // when
+  //   cy.get('input[name="placeField"]:visible').type('web')
+  //   // then
+  //   cy.get('.c-spinner').should('exist');
+  //   cy.get('.c-autocomplete_option').should('exist');
+  // })
 
 })
