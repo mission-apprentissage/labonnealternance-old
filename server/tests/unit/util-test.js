@@ -1,5 +1,6 @@
 const assert = require("assert");
 const { isOriginLocal } = require("../../src/common/utils/isOriginLocal");
+const { encrypt, decrypt } = require("../../src/common/utils/encryptString");
 
 describe(__filename, () => {
   it("Détection origine autorisée - retourne false si undefined ", () => {
@@ -27,5 +28,15 @@ describe(__filename, () => {
       "https://labonnealternance.apprentissage.beta.gouv.fr/recherche-apprentissage?isTrainingOnly=1"
     );
     assert.strictEqual(result, true);
+  });
+
+  it("Encryption décryption fonctionne", () => {
+    const value = "Chaîne@crypter";
+
+    const encryptedValue = encrypt(value);
+    const decryptedValue = decrypt(encryptedValue);
+
+    assert.notStrictEqual(value, encryptedValue);
+    assert.strictEqual(value, decryptedValue);
   });
 });

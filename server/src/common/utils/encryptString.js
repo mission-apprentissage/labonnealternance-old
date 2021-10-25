@@ -23,5 +23,4 @@ const decrypt = (value) => {
 module.exports = {
   encrypt,
   decrypt,
-  test,
 };
