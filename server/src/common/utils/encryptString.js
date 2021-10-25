@@ -7,16 +7,17 @@ const inputEncoding = "utf8";
 const outputEncoding = "hex";
 const weakIv = Buffer.alloc(16, 0); // iv 0000... volontairement
 
-const cipher = crypto.createCipheriv(algo, secret, weakIv);
-const decipher = crypto.createDecipheriv(algo, secret, weakIv);
-
 const encrypt = (value) => {
+  const cipher = crypto.createCipheriv(algo, secret, weakIv);
   let crypted = cipher.update(value, inputEncoding, outputEncoding);
+  crypted += cipher.final(outputEncoding);
   return crypted.toString();
 };
 
 const decrypt = (value) => {
+  const decipher = crypto.createDecipheriv(algo, secret, weakIv);
   let decrypted = decipher.update(value, outputEncoding, inputEncoding);
+  decrypted += decipher.final(inputEncoding);
   return decrypted.toString();
 };
 
