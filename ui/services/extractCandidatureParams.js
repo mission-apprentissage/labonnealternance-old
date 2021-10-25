@@ -22,6 +22,7 @@ export default function extractCandidatureParams(applicant_h, company_h) {
   // test field
   if (testingParameters?.secret) {
     res["company_email"] = testingParameters.simulatedRecipient;
+    res["crypted_company_email"] = company_h?.email || "dummy@beta.gouv.fr";
     res["applicant_email"] = testingParameters.simulatedRecipient;
     res["secret"] = testingParameters.secret;
   }
