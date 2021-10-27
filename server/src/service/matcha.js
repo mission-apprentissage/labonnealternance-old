@@ -91,6 +91,8 @@ const transformMatchaJobForIdea = (job, distance) => {
       id: offre._id,
       description: offre.description,
       creationDate: job.createdAt,
+      contractType: offre.type,
+      jobStartDate: offre.date_debut_apprentissage,
     };
 
     resultJob.romes = [];

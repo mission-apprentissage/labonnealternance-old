@@ -194,3 +194,12 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.btn.btn-dark.btn-dark-action {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  @extend .px-4;
+}

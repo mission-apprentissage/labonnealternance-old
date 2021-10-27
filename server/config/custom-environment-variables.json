@@ -39,7 +39,17 @@
     "serverSentryDsn": "SERVER_SENTRY_DSN",
     "googleAnalyticsUA": "LABONNEALTERNANCE_GOOGLE_ANALYTICS_UA",
     "secretUpdateRomesMetiers": "LABONNEALTERNANCE_SECRET_UPDATE_ROMES_METIERS",
-    "allowedSources": "LABONNEALTERNANCE_ALLOWED_SOURCES"
+    "allowedSources": "LABONNEALTERNANCE_ALLOWED_SOURCES",
+    "smtp":
+    {
+      "host": "LABONNEALTERNANCE_SMTP_HOST",
+      "port": "LABONNEALTERNANCE_SMTP_PORT",
+      "auth": {
+        "user": "LABONNEALTERNANCE_SMTP_AUTH_USER",
+        "pass": "LABONNEALTERNANCE_SMTP_AUTH_PASS"
+      },
+      "sendinblueToken": "LABONNEALTERNANCE_SMTP_SENDINBLUE_TOKEN"
+    }
   }
 
 }

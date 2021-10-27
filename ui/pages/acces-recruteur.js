@@ -79,10 +79,6 @@ const AccesRecruteur = () => (
                 offre depuis votre SIRH, et que l'option "multidiffusion" de l'offre est activée
               </li>
               <li>vous utilisez un multiposteur qui a opté pour la multidiffusion de votre offre à Pôle emploi</li>
-              <li>
-                vous avez conclu un partenariat d’agrégation de vos offres par Pôle emploi, que vous avez opté pour la
-                multidiffusion.
-              </li>
             </ul>
           </section>
           <section className="mt-4">

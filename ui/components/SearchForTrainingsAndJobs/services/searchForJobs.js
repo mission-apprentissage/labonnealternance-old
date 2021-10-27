@@ -152,6 +152,7 @@ const sendJobSearchTrackEvent = (values, results) => {
         nb_peJobs: results.peJobs.length,
         nb_matchas: results.matchas.length,
         nb_lbas: results.lbaCompanies.length,
+        nb_lbbs: results.lbbCompanies.length,
       });
     } catch (err) {}
   }

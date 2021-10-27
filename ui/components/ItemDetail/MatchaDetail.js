@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import questionmarkIcon from "public/images/icons/questionmark.svg";
-import { get, random } from "lodash";
+import { get, defaultTo, random } from "lodash";
+import { formatDate } from "utils/strutils";
 import contactIcon from "public/images/icons/contact_icon.svg";
 import ReactHtmlParser from "react-html-parser";
 import { SendTrackEvent } from "utils/gtm";
@@ -33,6 +34,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   let contactPhone = job?.contact?.phone;
 
   const jobTitle = get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"));
+  const jobStartDate = job?.job?.creationDate ? formatDate(job.job.jobStartDate) : undefined;
+  const contractType = get(job, "job.contractType", undefined);
 
   let contactInfo = (
     <>
@@ -112,6 +115,15 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           <span className="c-detail-proposal"> propose actuellement cette offre</span>
         </div>
         <h2 className="c-detail-jobtitle">{jobTitle}</h2>
+
+        <div className="c-detail-meta">
+          <div className="c-detail-metadate">
+            Début de contrat : {defaultTo(jobStartDate, ReactHtmlParser("<em>Donnée manquante</em>"))}
+          </div>
+          <div className="c-detail-metanature">
+            Nature du contrat : {defaultTo(contractType, ReactHtmlParser("<em>Donnée manquante</em>"))}
+          </div>
+        </div>
 
         <div className="c-detail-description">
           <h3 className="c-detail-description-title c-detail-description-title--matcha1">Niveau requis</h3>

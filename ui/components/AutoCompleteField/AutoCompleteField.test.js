@@ -1,7 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { prettyDOM } from '@testing-library/dom';
 import AutoCompleteField from './AutoCompleteField';
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import {noop} from "lodash/noop";
 
 describe('AutoCompleteField', () => {
@@ -16,6 +17,8 @@ describe('AutoCompleteField', () => {
                       name="jobField"
                       placeholder="ex: plomberie" />
       </Formik>)
-    expect(container.firstChild.classList.contains('autoCompleteContainer')).toBe(true)
+
+    expect(container.querySelector('.c-input-work-container') != null).toBe(true)
+
   })
 })
