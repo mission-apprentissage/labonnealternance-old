@@ -10,7 +10,6 @@ import DidAsk2 from "./DidAsk2";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 
-
 let md = require("markdown-it")().disable(["link", "image"]);
 
 const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
@@ -33,7 +32,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   let contactEmail = job?.contact?.email;
   let contactPhone = job?.contact?.phone;
 
-  const jobTitle =  get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))
+  const jobTitle = get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"));
 
   let contactInfo = (
     <>
@@ -77,7 +76,9 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             </>
           ) : (
             <button
-                className={`c-see-info c-see-info--matcha d-block btn btn-outline-primary gtmContact gtm${capitalizeFirstLetter(kind)}`}
+              className={`c-see-info c-see-info--matcha d-block btn btn-outline-primary gtmContact gtm${capitalizeFirstLetter(
+                kind
+              )}`}
               onClick={() => setSeeInfo(true)}
             >
               Voir les informations de contact
@@ -104,9 +105,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
       <hr className={"mb-4 c-detail-header-separator c-detail-header-separator--" + kind} />
       <div>
         <div className="c-detail-company position-relative">
-          <span className="c-detail-square">
-            &nbsp;
-          </span>
+          <span className="c-detail-square">&nbsp;</span>
           <span className="d-inline-block ml-2">
             {get(job, "company.name", ReactHtmlParser("<em>Entreprise non précisée</em>"))}
           </span>
@@ -116,14 +115,11 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
         <div className="c-detail-description">
           <h3 className="c-detail-description-title c-detail-description-title--matcha1">Niveau requis</h3>
-          {
-            isNonEmptyString(job?.diplomaLevel) ? 
-              job.diplomaLevel.split(", ").map(diploma => {
-                return <div className="c-detail-diploma d-inline-block">{diploma}</div>
-              })
-            :
+          {isNonEmptyString(job?.diplomaLevel) ? (
+            <div className="c-detail-diploma d-inline-block">{job.diplomaLevel}</div>
+          ) : (
             "Non défini"
-          }
+          )}
         </div>
 
         {description ? (
@@ -135,7 +131,6 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           ""
         )}
 
-
         <hr className="c-detail-header-separator" />
 
         <div className="c-detail-advice c-detail-advice--matcha">
@@ -144,9 +139,9 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
           <div className="c-detail-advice__body">
             <div className="c-detail-advice-text mt-0">
-              L'entreprise <span className="c-detail-advice-highlight"> {job.company.name} </span> nous a récemment fait parvenir un besoin de recrutement :  
-              <span className="c-detail-advice-highlight"> {jobTitle}</span>.
-              Cela signifie qu’elle est activement à la recherche d’un.e candidat.e pour rejoindre son équipe.
+              L'entreprise <span className="c-detail-advice-highlight"> {job.company.name} </span> nous a récemment fait
+              parvenir un besoin de recrutement :<span className="c-detail-advice-highlight"> {jobTitle}</span>. Cela
+              signifie qu’elle est activement à la recherche d’un.e candidat.e pour rejoindre son équipe.
             </div>
             <div className="c-detail-advice-text c-detail-advice-text--tag">
               Vous avez donc tout intérêt à la contacter rapidement, avant que l’offre ne soit pourvue !
