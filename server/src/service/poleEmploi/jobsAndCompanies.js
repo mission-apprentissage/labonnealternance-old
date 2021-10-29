@@ -83,7 +83,7 @@ const getCompanyQuery = async (query) => {
 
 const getJobsFromApi = async ({ query, api }) => {
   try {
-    const sources = !query.sources ? ["lba", /*"lbb",*/ "offres", "matcha"] : query.sources.split(",");
+    const sources = !query.sources ? ["lba", "lbb", "offres", "matcha"] : query.sources.split(",");
 
     let [peJobs, lbaCompanies, lbbCompanies, matchas] = await Promise.all([
       sources.indexOf("offres") >= 0
@@ -137,11 +137,13 @@ const getJobsFromApi = async ({ query, api }) => {
     ]);
 
     //remove duplicates between lbas and lbbs. lbas stay untouched, only duplicate lbbs are removed
-    if (lbaCompanies && lbbCompanies) deduplicateCompanies(lbaCompanies, lbbCompanies);
-
-    if (!query.sources) {
-      lbbCompanies = { results: [] };
+    if (lbaCompanies && lbbCompanies) {
+      deduplicateCompanies(lbaCompanies, lbbCompanies);
     }
+
+    /*if (!query.sources) {
+      lbbCompanies = { results: [] };
+    }*/
     //throw new Error("kaboom");
 
     return { peJobs, matchas, lbaCompanies, lbbCompanies };
