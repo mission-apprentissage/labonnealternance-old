@@ -16,6 +16,20 @@ const validateSendApplication = async (validable) => {
   return "ok";
 };
 
+const validateCompanyEmail = async (validable) => {
+  let schema = Yup.object().shape({
+    companyEmail: Yup.string()
+      .email("⚠ Adresse e-mail société invalide.")
+      .required("⚠ L'adresse e-mail société est requise."),
+    cryptedEmail: Yup.string().email("⚠ Adresse e-mail chiffrée invalide."),
+  });
+  await schema.validate(validable).catch(function () {
+    throw "error - validation of data failed";
+  });
+  return "ok";
+};
+
 module.exports = {
   validateSendApplication,
+  validateCompanyEmail,
 };
