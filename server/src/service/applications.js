@@ -4,7 +4,7 @@ const path = require("path");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
 const { decrypt } = require("../common/utils/encryptString");
 const { Application } = require("../common/model");
-const { validateSendApplication } = require("./validateSendApplication");
+const { validateSendApplication, validateCompanyEmail } = require("./validateSendApplication");
 
 const images = {
   images: {
@@ -29,9 +29,16 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       lastName: query.applicant_last_name,
       phone: query.applicant_phone,
     });
-    try {
-      let companyEmail = shouldCheckSecret ? query.company_email : decrypt(query.company_email); // utilisation email de test ou decrypt vrai mail crypté
 
+    let companyEmail = shouldCheckSecret ? query.company_email : decrypt(query.company_email); // utilisation email de test ou decrypt vrai mail crypté
+    let cryptedEmail = shouldCheckSecret ? decrypt(query.crypted_company_email) : ""; // présent uniquement pour les tests utilisateurs
+
+    await validateCompanyEmail({
+      companyEmail,
+      cryptedEmail,
+    });
+
+    try {
       let application = new Application({
         applicant_file_name: query.applicant_file_name,
         applicant_email: query.applicant_email,
