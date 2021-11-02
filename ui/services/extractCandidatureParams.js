@@ -5,6 +5,7 @@ export default function extractCandidatureParams(applicant_h, company_h) {
 
   // 8 mandatory fields
   res["company_email"] = company_h?.email || "dummy@beta.gouv.fr";
+  res["iv"] = company_h?.iv || "1f77e84c5735d50f8e326ed8af85452e";
   res["applicant_first_name"] = applicant_h?.firstName || null;
   res["applicant_last_name"] = applicant_h?.lastName || null;
   res["applicant_phone"] = applicant_h?.phone || null;

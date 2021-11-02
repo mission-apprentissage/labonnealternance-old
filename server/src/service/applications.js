@@ -2,7 +2,7 @@ const config = require("config");
 const Sentry = require("@sentry/node");
 const path = require("path");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
-const { decrypt } = require("../common/utils/encryptString");
+const { decryptWithIV } = require("../common/utils/encryptString");
 const { Application } = require("../common/model");
 const { validateSendApplication, validateCompanyEmail } = require("./validateSendApplication");
 
@@ -30,8 +30,8 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       phone: query.applicant_phone,
     });
 
-    let companyEmail = shouldCheckSecret ? query.company_email : decrypt(query.company_email); // utilisation email de test ou decrypt vrai mail crypté
-    let cryptedEmail = shouldCheckSecret ? decrypt(query.crypted_company_email) : ""; // présent uniquement pour les tests utilisateurs
+    let companyEmail = shouldCheckSecret ? query.company_email : decryptWithIV(query.company_email, query.iv); // utilisation email de test ou decrypt vrai mail crypté
+    let cryptedEmail = shouldCheckSecret ? decryptWithIV(query.crypted_company_email, query.iv) : ""; // présent uniquement pour les tests utilisateurs
 
     await validateCompanyEmail({
       companyEmail,
