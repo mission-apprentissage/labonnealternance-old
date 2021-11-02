@@ -2,8 +2,9 @@ const config = require("config");
 const Sentry = require("@sentry/node");
 const path = require("path");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
+const { decrypt } = require("../common/utils/encryptString");
 const { Application } = require("../common/model");
-const { validateSendApplication } = require("./validateSendApplication");
+const { validateSendApplication, validateCompanyEmail } = require("./validateSendApplication");
 
 const images = {
   images: {
@@ -28,6 +29,15 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       lastName: query.applicant_last_name,
       phone: query.applicant_phone,
     });
+
+    let companyEmail = shouldCheckSecret ? query.company_email : decrypt(query.company_email); // utilisation email de test ou decrypt vrai mail crypté
+    let cryptedEmail = shouldCheckSecret ? decrypt(query.crypted_company_email) : ""; // présent uniquement pour les tests utilisateurs
+
+    await validateCompanyEmail({
+      companyEmail,
+      cryptedEmail,
+    });
+
     try {
       let application = new Application({
         applicant_file_name: query.applicant_file_name,
@@ -37,7 +47,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         applicant_phone: query.applicant_phone,
         message: prepareMessageForMail(query.message),
         company_siret: query.company_siret,
-        company_email: query.company_email,
+        company_email: companyEmail,
         company_name: query.company_name,
         company_naf: query.company_naf,
         company_address: query.company_address,

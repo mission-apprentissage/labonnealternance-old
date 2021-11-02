@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.17.1 [21/10/2021]
+[893] Obfuscation de l'adresse email LBA/LBB
 [885] Dissociation scripts update du catalogue
 [884] Exploitation des Bonnes boîtes LBB
 
