@@ -13,6 +13,7 @@ export default function extractCandidatureParams(applicant_h, company_h) {
   res["applicant_email"] = applicant_h?.email || "dummy@beta.gouv.fr";
   res["applicant_file_name"] = applicant_h?.fileName || "dummy.pdf";
   res["applicant_file_content"] = applicant_h?.fileContent || null;
+  res["company_type"] = company_h.type;
 
   // Optional fields
   res["company_siret"] = company_h?.siret || null;

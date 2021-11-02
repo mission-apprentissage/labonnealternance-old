@@ -6,6 +6,7 @@ export default function extractCompanyValues(item_h) {
   company_h.address = item_h?.place?.fullAddress || "";
   company_h.job_title = item_h?.title;
   company_h.job_id = item_h?.job?.id;
+  company_h.type = item_h?.ideaType;
 
   res = { ...contact_h, ...company_h };
 

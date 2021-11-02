@@ -16,6 +16,39 @@ const images = {
   },
 };
 
+const initApplication = (query, companyEmail) => {
+  return new Application({
+    applicant_file_name: query.applicant_file_name,
+    applicant_email: query.applicant_email,
+    applicant_first_name: query.applicant_first_name,
+    applicant_last_name: query.applicant_last_name,
+    applicant_phone: query.applicant_phone,
+    message: prepareMessageForMail(query.message),
+    company_siret: query.company_siret,
+    company_email: companyEmail,
+    company_name: query.company_name,
+    company_naf: query.company_naf,
+    company_address: query.company_address,
+    company_type: query.company_type,
+    job_title: query.job_title,
+    job_id: query.job_id,
+  });
+};
+
+const getEmailTemplates = (applicationType) => {
+  if (applicationType === "matcha") {
+    return {
+      candidat: "mail-candidat-matcha",
+      entreprise: "mail-candidature-matcha",
+    };
+  } else {
+    return {
+      candidat: "mail-candidat",
+      entreprise: "mail-spontanee",
+    };
+  }
+};
+
 const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   if (shouldCheckSecret && !query.secret) {
     return { error: "secret_missing" };
@@ -39,21 +72,9 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
     });
 
     try {
-      let application = new Application({
-        applicant_file_name: query.applicant_file_name,
-        applicant_email: query.applicant_email,
-        applicant_first_name: query.applicant_first_name,
-        applicant_last_name: query.applicant_last_name,
-        applicant_phone: query.applicant_phone,
-        message: prepareMessageForMail(query.message),
-        company_siret: query.company_siret,
-        company_email: companyEmail,
-        company_name: query.company_name,
-        company_naf: query.company_naf,
-        company_address: query.company_address,
-        job_title: query.job_title,
-        job_id: query.job_id,
-      });
+      let application = initApplication(query, companyEmail);
+
+      const emailTemplates = getEmailTemplates(query.company_type);
 
       const fileContent = query.applicant_file_content;
 
@@ -62,7 +83,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         mailer.sendEmail(
           application.applicant_email,
           `Votre candidature chez ${application.company_name}`,
-          getEmailTemplate("mail-candidat"),
+          getEmailTemplate(emailTemplates.candidat),
           { ...application._doc, ...images },
           [
             {
@@ -74,7 +95,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         mailer.sendEmail(
           application.company_email,
           `Candidature spontanée pour un poste en alternance`,
-          getEmailTemplate("mail-spontanee"),
+          getEmailTemplate(emailTemplates.entreprise),
           { ...application._doc, ...images },
           [
             {
