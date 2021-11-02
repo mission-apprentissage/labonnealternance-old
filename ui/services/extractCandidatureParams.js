@@ -19,6 +19,8 @@ export default function extractCandidatureParams(applicant_h, company_h) {
   res["company_name"] = company_h?.name || null;
   res["company_address"] = company_h?.address || null;
   res["company_naf"] = company_h?.naf || null;
+  res["job_title"] = company_h?.job_title || null;
+  res["job_id"] = company_h?.job_id || null;
 
   // test field
   if (testingParameters?.secret) {

@@ -51,6 +51,8 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         company_name: query.company_name,
         company_naf: query.company_naf,
         company_address: query.company_address,
+        job_title: query.job_title,
+        job_id: query.job_id,
       });
 
       const fileContent = query.applicant_file_content;
