@@ -4,6 +4,7 @@
 [893] Obfuscation de l'adresse email LBA/LBB
 [885] Dissociation scripts update du catalogue
 [884] Exploitation des Bonnes boîtes LBB
+[825] Affichage nom société dans le modèle de candidature spontanée
 
 ## 1.17.0 [18/10/2021]
 [793] Envoi d'une candidature spontanée
