@@ -1,0 +1,101 @@
+<mjml>
+    <mj-head>
+        <mj-title>Candidature de <%= data.applicant_email %></mj-title>
+        <mj-font name="Inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'" />
+        <mj-style inline="inline">
+            a:link,a:visited, a:hover, a:active {color: #206BC4;}, a {color: #3A55D1;}, body{background: #F9F8F6;}
+            a.purple {color: #3A55D1; text-decoration: none}
+            .link-nostyle { color: inherit; text-decoration: none; font-size: 28px }
+            .link-nostyle:hover { color: inherit; text-decoration: none }
+            .form-row { font-size: 16px; padding-bottom: 15px;}
+            .form-value { background: #F9F8F6; font-weight: bold; padding: 3px 15px  }
+        </mj-style>
+        <mj-attributes>
+            <mj-text padding="0px" color="#232E3C" font-family="Inter,sans-serif" font-size="14px" line-height="23px" />
+            <mj-divider padding="0px" />
+        </mj-attributes>
+    </mj-head>
+    <mj-body background-color="#EDF0F2">
+        <mj-section padding-bottom="10px">
+            <mj-column padding="0px" vertical-align="middle">
+                <mj-image padding="0px" width="150px" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" />
+            </mj-column>
+        </mj-section>
+
+        <mj-wrapper background-color="#ffffff" padding="10px 0 20px" border-radius="10px">
+            <mj-section padding="15px">
+                <mj-column>
+                    <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
+                        Vous avez reçu une nouvelle candidature ! 
+                    </mj-text>
+                    <mj-text font-size="14px" line-height="24px">
+                        Bonjour, <br /><br >
+                        Voici les informations d’un candidat qui aimerait réaliser son alternance dans votre entreprise :
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+
+        <mj-section padding-bottom="30px"></mj-section>
+        <mj-wrapper background-color="#ffffff" padding="10px 0 20px" border-radius="10px">
+            <mj-section>
+                <mj-column width="420px">
+                    <mj-text padding-bottom="32px" font-size="24px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#F07F87">
+                        <img style="margin-bottom: 2px" src="<%= data.images.icoCandidat %>" alt="" /> Candidat
+                    </mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px" >Nom : <span class="form-value"> <%= data.applicant_last_name %> </span> </mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px">Prénom : <span class="form-value"> <%= data.applicant_first_name %> </span> </mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px">Téléphone : <span class="form-value"> <%= data.applicant_phone %> </span> </mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px">E-mail : <span class="form-value"> <%= data.applicant_email %> </span> </mj-text>
+                    <mj-text font-size="13px" padding-bottom="15px"><img style="margin-bottom: -3px; margin-right:5px" src="<%= data.images.icoInfo %>" alt="" />Vous trouverez le curriculum vitae du candidat en pièce jointe.</mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px">Message du candidat : </mj-text>
+                    <mj-text font-size="16px" padding-bottom="15px"><div class="form-value" width="100%"> <%- data.message %> </div> </mj-text>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+
+        <mj-section padding-bottom="30px"></mj-section>
+        
+        <mj-wrapper background-color="#ffffff" padding="10px 0 20px" border-radius="10px">
+            <mj-section>
+                <mj-column>
+                    <mj-table>
+                    <tr>
+                    <td valign="top"><img style="width:120px; height:48px; margin-right:20px;" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" /></td>
+                    <td valign="top">
+                        Vous recevez cette candidature car votre entreprise est visible sur <a style="font-weight:bold; color:black" href="https://labonnealternance.pole-emploi.fr/?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur ">La Bonne Alternance</a>,
+                        un site web conçu par Pôle emploi et porté par le Ministère de l’éducation nationale, de l’enseignement supérieur, du travail et de la transformation publique.
+
+                        <br /><br />
+                        Rendez-vous sur <a style="font-weight:bold; color:black" href="https://labonnealternance.pole-emploi.fr/acces-recruteur?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur">La Bonne Alternance</a> pour : 
+                        <ul>
+                            <li>savoir comment votre entreprise a été détectée comme étant susceptible de recruter en alternance</li>
+                            <li>demander la modification de vos coordonnées de contact pour que les candidatures vous parviennent à un endroit plus adapté</li>
+                            <li>demander la suppression de votre entreprise du site (et ne plus recevoir de candidature)</li>
+                            <li>enregistrer une offre d’emploi en alternance en moins de 5 minutes</li>
+                            <li>nous contacter</li>
+                        </ul>
+                    </tr>
+                    </mj-table>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+
+        <mj-wrapper padding="0px" border-radius="10px" padding-bottom="50px">
+            <mj-section>
+                <mj-column>
+                    <mj-table>
+                    <tr>
+                    <td valign="top"><img width="89" height="auto" style="margin-right:20px;" src="<%= data.images.logoRF %>" alt="Logo République française" /></td>
+                    <td valign="top">Cet e-mail a été envoyé à <%= data.company_email %>
+                        <br />
+                        Vous avez reçu ce mail car votre entreprise a été identifiée comme étant susceptible de recruter en alternance
+                        <br />
+                        Pour vous désinscrire, <a style="font-weight:bold; text-decoration: underline; color:black" href="https://labonnealternance.pole-emploi.fr/acces-recruteur">cliquez ici</a></td>
+                    </tr>
+                    </mj-table>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+    </mj-body>
+</mjml>
