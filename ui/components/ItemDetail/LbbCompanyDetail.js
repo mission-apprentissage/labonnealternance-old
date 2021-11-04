@@ -5,7 +5,7 @@ import { defaultTo, random } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
-import { SendTrackEvent } from "utils/gtm";
+import { SendTrackEvent } from "../../utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
@@ -24,7 +24,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
-    document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
+    document.getElementsByClassName("choiceCol")[0]?.scrollTo(0, 0);
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   const kind = lbb?.ideaType;
@@ -94,6 +94,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
               target="_blank"
               className="c-detail-google-search gtmGoogleLink"
               rel="noopener noreferrer"
+              data-testid="link-knowmore-lbb"
             >
               {lbb.title}
             </a>
