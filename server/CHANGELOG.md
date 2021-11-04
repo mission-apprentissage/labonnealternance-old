@@ -1,6 +1,5 @@
 # CHANGELOG
 
-
 ## 1.17.2 [04/11/2021]
 [869] Candidature Matcha
 
