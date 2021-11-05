@@ -81,21 +81,21 @@ describe('CandidatureSpontanee', () => {
       expect(screen.queryByTestId('selectedFile')).not.toBeNull()
     })
 
-
     // When 2.
     nock('http://localhost:5000')
       .post('/api/application')
       .reply(200)
 
+    expect(screen.queryByTestId('CandidatureSpontaneeWorked')).toBeNull()
     const submit = screen.getByRole('button', { name: /je-postule/i })
     fireEvent.click(submit)
-    expect(screen.queryByTestId('CandidatureSpontaneeWorked')).toBeNull()
     // Then 2.
     await waitFor(() => {
       expect(screen.queryByTestId('CandidatureSpontaneeWorked')).not.toBeNull()
     })
 
   })
+
 
   const openLbbModal = (render, screen, fireEvent) => {
     render(<CandidatureSpontanee item={realisticLbb} />)
