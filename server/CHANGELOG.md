@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.2 [04/10/2021]
+[869] Candidature matcha 
+
 ## 1.17.1 [21/10/2021]
 [893] Obfuscation de l'adresse email LBA/LBB
 [885] Dissociation scripts update du catalogue

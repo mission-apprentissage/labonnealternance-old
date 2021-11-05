@@ -13,13 +13,13 @@ const limiter1Per20Second = rateLimit({
  */
 module.exports = (components) => {
   const router = express.Router();
-
+  console.log(components);
   router.get(
     "/",
     limiter1Per20Second,
     tryCatch(async (req, res) => {
-      const result = await sendApplication({ shouldCheckSecret: true, query: req.query, ...components });
-      return res.json(result);
+      // const result = await sendApplication({ shouldCheckSecret: true, query: req.query, ...components });
+      return res.json({ fakeOk: "ok" });
     })
   );
 
@@ -27,12 +27,12 @@ module.exports = (components) => {
     "/",
     limiter1Per20Second,
     tryCatch(async (req, res) => {
-      const result = await sendApplication({
-        shouldCheckSecret: req.body.secret ? true : false,
-        query: req.body,
-        ...components,
-      });
-      return res.json(result);
+      // const result = await sendApplication({
+      //   shouldCheckSecret: req.body.secret ? true : false,
+      //   query: req.body,
+      //   ...components,
+      // });
+      return res.json({ fakeOk: "ok" });
     })
   );
 
