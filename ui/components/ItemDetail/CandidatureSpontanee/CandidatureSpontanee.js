@@ -6,7 +6,7 @@ import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
 import submitCandidature from "./services/submitCandidature";
 import toggleCandidature from "./services/toggleCandidature";
-import getValidationSchema from "./services/getValidationSchema";
+import { getValidationSchema, getInitialSchemaValues} from "./services/getSchema";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
 
@@ -24,15 +24,7 @@ const CandidatureSpontanee = (props) => {
   }, [props?.item]);
 
   const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      fileName: "",
-      fileContent: null,
-      message: "",
-    },
+    initialValues: getInitialSchemaValues(),
     validationSchema: getValidationSchema(kind),
     onSubmit: async (applicantValues) => {
       await submitCandidature(applicantValues, setSendingState, props.item);

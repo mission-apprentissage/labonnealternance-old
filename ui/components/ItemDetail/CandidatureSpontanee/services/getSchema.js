@@ -1,6 +1,17 @@
 import * as Yup from "yup";
 
-export default function getValidationSchema(actualKind) {
+export function getInitialSchemaValues() {
+  return {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    fileName: "",
+    fileContent: null,
+    message: "",
+  }
+}
+export function getValidationSchema(actualKind) {
 
   if (actualKind === 'matcha') {
     return Yup.object({
