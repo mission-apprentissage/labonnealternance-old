@@ -5,7 +5,7 @@ import { testingParameters } from "../../../utils/testingParameters";
 
 const CandidatureSpontaneeWorked = ({ email, company }) => {
   return (
-    <>
+    <div data-testid="CandidatureSpontaneeWorked">
       <ModalBody>
         <h1 className="c-candidature-title">Candidature spontanée</h1>
 
@@ -34,7 +34,7 @@ const CandidatureSpontaneeWorked = ({ email, company }) => {
         </div>
       </ModalBody>
       <ModalFooter className="pb-5"></ModalFooter>
-    </>
+    </div>
   );
 };
 

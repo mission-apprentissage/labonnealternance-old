@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent, wait } from '@testing-library/react';
+import { render, screen, fireEvent, wait, waitFor } from '@testing-library/react';
 import CandidatureSpontanee from './CandidatureSpontanee';
 import nock from 'nock';
-import { selectInput } from '@aws-amplify/ui';
+import userEvent from '@testing-library/user-event'
 
 describe('CandidatureSpontanee', () => {
 
@@ -22,11 +22,8 @@ describe('CandidatureSpontanee', () => {
   })
 
   it('If button is clicked, modal with a form is displayed, with not-yet-valid messages', async () => {
-    // Given
-    render(<CandidatureSpontanee item={{}}/>)
-    const button = screen.queryByRole('button', { name: /jenvoie-une-candidature-spontanee/i })
-    // When
-    fireEvent.click(button)
+    // Given / When
+    openLbbModal(render, screen, fireEvent)
     // Then
     const modal = screen.queryByRole('dialog')
     expect(modal).not.toBeNull();
@@ -37,75 +34,79 @@ describe('CandidatureSpontanee', () => {
     expect(screen.getByTestId('fieldset-email')).toHaveClass('is-not-validated')
     expect(screen.getByTestId('fieldset-phone')).toHaveClass('is-not-validated')
   })
-
+  
   it('If submit is fired, all mandatory fields are marked as invalid', async () => {
     // Given
-    render(<CandidatureSpontanee item={{}}/>)
-    const button = screen.queryByRole('button', { name: /jenvoie-une-candidature-spontanee/i })
-    fireEvent.click(button)
+    openLbbModal(render, screen, fireEvent)
     const submit = screen.queryByRole('button', { name: /je-postule/i })
     // When
     fireEvent.click(submit)
     // Then
-    await wait(() => {
+    await waitFor(() => {
       expect(screen.getByTestId('fieldset-firstname')).toHaveClass('is-valid-false')
       expect(screen.getByTestId('fieldset-lastname')).toHaveClass('is-valid-false')
       expect(screen.getByTestId('fieldset-email')).toHaveClass('is-valid-false')
       expect(screen.getByTestId('fieldset-phone')).toHaveClass('is-valid-false')
     });
   })
-
+  
   it('If submit is fired with all valid fields, only File is missing', async () => {
     // Given
-
-    render(<CandidatureSpontanee item={realisticLbb}/>)
-    const button = screen.queryByRole('button', { name: /jenvoie-une-candidature-spontanee/i })
-    fireEvent.click(button)
-
-    setInput({ testId: 'firstName', value: 'Jane', fireEvent, screen})
-    setInput({ testId: 'lastName', value: 'Doe', fireEvent, screen})
-    setInput({ testId: 'phone', value: '0202020202', fireEvent, screen})
-    setInput({ testId: 'email', value: 'from@applicant.com', fireEvent, screen})
-
+    openLbbModal(render, screen, fireEvent)
+    fillLbbModalTextInputs(screen)
+    
     const submit = screen.queryByRole('button', { name: /je-postule/i })
     
     expect(screen.queryByText(/⚠ la pièce jointe est obligatoire/i)).toBeNull()
     // When
     fireEvent.click(submit)
     // Then
-    await wait(() => {
-      expect(screen.queryByText(/⚠ la pièce jointe est obligatoire/i)).not.toBeNull()
-    });
-    // How to display the rendered HTML in the console below : use
-    // getByTestId with a non-existing TestId
-    // let foobarqix = screen.getByTestId('foobarqix')
+    await screen.findByText(/⚠ la pièce jointe est obligatoire/i)
+
   })
   
   it('If submit is fired with all valid fields => HTTP request is triggered', async () => {
     // Given
-    render(<CandidatureSpontanee item={realisticLbb}/>)
+    openLbbModal(render, screen, fireEvent)
+    fillLbbModalTextInputs(screen)
+
+    // When 1.
+    const pdfFile = new File(['hello'], 'hello.pdf', { type: 'text/pdf' })
+    const pdfInput = screen.getByTestId('fileDropzone')
+    expect(screen.queryByTestId('selectedFile')).toBeNull()
+    
+    // Then 1.
+    await waitFor(() => {
+      userEvent.upload(pdfInput, pdfFile)
+      expect(screen.queryByTestId('selectedFile')).not.toBeNull()
+    })
+    
+    // // When 2.
+    // let nockeds = nock('http://localhost:5000')
+    //   .post('/api/application')
+    //   .reply(200)
+
+    // const submit = screen.queryByRole('button', { name: /je-postule/i })
+    // fireEvent.click(submit)
+    // expect(screen.queryByTestId('CandidatureSpontaneeWorked')).toBeNull()
+    // // Then 2.
+    // await waitFor(() => {
+    //   expect(screen.queryByTestId('CandidatureSpontaneeWorked')).not.toBeNull()
+    // })
+
+  })
+
+  const openLbbModal = (render, screen, fireEvent) => {
+    render(<CandidatureSpontanee item={realisticLbb} />)
     const button = screen.queryByRole('button', { name: /jenvoie-une-candidature-spontanee/i })
     fireEvent.click(button)
+  }
 
-    setInput({ testId: 'firstName', value: 'Jane', fireEvent, screen})
-    setInput({ testId: 'lastName', value: 'Doe', fireEvent, screen})
-    setInput({ testId: 'phone', value: '0202020202', fireEvent, screen})
-    setInput({ testId: 'email', value: 'from@applicant.com', fireEvent, screen})
-
-    const submit = screen.queryByRole('button', { name: /je-postule/i })
-    
-    expect(screen.queryByText(/⚠ la pièce jointe est obligatoire/i)).toBeNull()
-    // When
-    fireEvent.click(submit)
-    // Then
-    await wait(() => {
-      expect(screen.queryByText(/⚠ la pièce jointe est obligatoire/i)).not.toBeNull()
-    });
-  })
-  
-  const setInput = ({ fireEvent, screen, testId, value }) => {
-    const actualInput = screen.getByTestId(testId)
-    fireEvent.change(actualInput, { target: { value: value } })
+  const fillLbbModalTextInputs = (screen) => {
+    userEvent.type(screen.getByTestId('firstName'), 'Jane')
+    userEvent.type(screen.getByTestId('lastName'), 'Doe')
+    userEvent.type(screen.getByTestId('phone'), '0202020202')
+    userEvent.type(screen.getByTestId('email'), 'from@applicant.com')
   }
 
   let realisticLbb = {
