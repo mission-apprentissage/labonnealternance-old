@@ -20,7 +20,7 @@ describe('CandidatureSpontanee', () => {
     expect(button).toBeVisible();
     expect(modal).toBeNull();
   })
-
+  
   it('If button is clicked, modal with a form is displayed, with not-yet-valid messages', async () => {
     // Given / When
     openLbbModal(render, screen, fireEvent)
@@ -33,6 +33,25 @@ describe('CandidatureSpontanee', () => {
     expect(screen.getByTestId('fieldset-lastname')).toHaveClass('is-not-validated')
     expect(screen.getByTestId('fieldset-email')).toHaveClass('is-not-validated')
     expect(screen.getByTestId('fieldset-phone')).toHaveClass('is-not-validated')
+  })
+  
+  it('for LBB, displays appropriate title and button text', () => {
+    // Given / When
+    openLbbModal(render, screen, fireEvent)
+    // When
+    const submit = screen.queryByRole('button', { name: /je-postule/i })
+    expect(submit).toHaveTextContent("J'envoie ma candidature spontanée")
+    const title = screen.getByTestId('CandidatureSpontaneeTitle')
+    expect(title).toHaveTextContent("Candidature spontanée")
+  })
+  it('for MATCHA, displays appropriate title and button text', () => {
+    // Given / When
+    openMatchaModal(render, screen, fireEvent)
+    // When
+    const submit = screen.queryByRole('button', { name: /je-postule/i })
+    expect(submit).toHaveTextContent("J'envoie ma candidature")
+    const title = screen.getByTestId('CandidatureSpontaneeTitle')
+    expect(title).toHaveTextContent("Postuler à l'offre de Lamacompta")
   })
 
   it('If submit is fired, all mandatory fields are marked as invalid', async () => {
@@ -102,12 +121,87 @@ describe('CandidatureSpontanee', () => {
     const button = screen.queryByRole('button', { name: /jenvoie-une-candidature-spontanee/i })
     fireEvent.click(button)
   }
+  const openMatchaModal = (render, screen, fireEvent) => {
+    render(<CandidatureSpontanee item={realisticMatcha} />)
+    const button = screen.queryByRole('button', { name: /jenvoie-une-candidature-spontanee/i })
+    fireEvent.click(button)
+  }
 
   const fillLbbModalTextInputs = (screen) => {
     userEvent.type(screen.getByTestId('firstName'), 'Jane')
     userEvent.type(screen.getByTestId('lastName'), 'Doe')
     userEvent.type(screen.getByTestId('phone'), '0202020202')
     userEvent.type(screen.getByTestId('email'), 'from@applicant.com')
+  }
+
+  let realisticMatcha = {
+    "ideaType": "matcha",
+    "title": "Développement web, intégration",
+    "longTitle": null,
+    "id": "4S4nSyJLZrDoO8YYwxIeg-0",
+    "contact": {
+      "email": "janedoe@example.com",
+      "name": "Jane Doe",
+      "phone": "0202020202"
+    },
+    "place": {
+      "distance": 2.7,
+      "fullAddress": "11 Rue Bertrand Geslin 44000 Nantes",
+      "latitude": "47.215778",
+      "longitude": "-1.56622",
+      "city": null,
+      "address": "11 Rue Bertrand Geslin 44000 Nantes",
+      "cedex": null,
+      "zipCode": null,
+      "insee": null,
+      "departementNumber": null,
+      "region": null
+    },
+    "company": {
+      "name": "Lamacompta",
+      "siret": "88177316200022",
+      "size": null,
+      "logo": null,
+      "description": null,
+      "socialNetwork": null,
+      "url": null,
+      "id": null,
+      "uai": null,
+      "place": null,
+      "headquarter": null
+    },
+    "diplomaLevel": "DEUG, BTS, DUT, DEUST",
+    "diploma": null,
+    "cfd": null,
+    "rncpCode": null,
+    "rncpLabel": null,
+    "rncpEligibleApprentissage": null,
+    "period": null,
+    "capacity": null,
+    "createdAt": "2021-08-18T09:14:16.936Z",
+    "lastUpdateAt": "2021-08-18T09:15:16.230Z",
+    "onisepUrl": null,
+    "url": null,
+    "job": {
+      "id": "611ccfa4bb8f010028f0bd75",
+      "description": "",
+      "creationDate": "2021-08-18T09:14:16.936Z",
+      "contractType": "Apprentissage",
+      "jobStartDate": "2021-08-23T00:00:00.000Z"
+    },
+    "romes": [
+      {
+        "code": "M1805"
+      },
+      {
+        "code": "M1806"
+      },
+      {
+        "code": "M1802"
+      }
+    ],
+    "nafs": null,
+    "training": null
   }
 
   let realisticLbb = {

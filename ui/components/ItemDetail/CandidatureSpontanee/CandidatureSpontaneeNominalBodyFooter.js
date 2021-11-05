@@ -4,7 +4,7 @@ import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
 import { testingParameters } from "../../../utils/testingParameters";
 
-const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item }) => {
+const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind }) => {
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
     formik.values.fileContent = fileValue?.fileContent || null;
@@ -13,7 +13,14 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
   return (
     <>
       <ModalBody data-testid="modalbody-nominal">
-        <h1 className="c-candidature-title">Candidature spontanée</h1>
+        <h1 className="c-candidature-title" data-testid="CandidatureSpontaneeTitle">
+          {
+            kind === 'matcha' ?
+              <>Postuler à l'offre de {company}</>
+              :
+              <>Candidature spontanée</>
+          }
+        </h1>
 
         <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4">
           <fieldset
