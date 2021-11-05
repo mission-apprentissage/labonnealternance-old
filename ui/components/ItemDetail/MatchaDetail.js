@@ -129,8 +129,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         <div className="c-detail-description">
           <h3 className="c-detail-description-title c-detail-description-title--matcha1">Niveau requis</h3>
           {isNonEmptyString(job?.diplomaLevel)
-            ? job.diplomaLevel.split(", ").map((diploma) => {
-                return <div className="c-detail-diploma d-inline-block">{diploma}</div>;
+            ? job.diplomaLevel.split(", ").map((diploma, indx) => {
+                return <div className="c-detail-diploma d-inline-block" key={indx}>{diploma}</div>;
               })
             : "Non défini"}
         </div>

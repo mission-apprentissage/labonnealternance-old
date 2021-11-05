@@ -10,10 +10,6 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
     formik.values.fileContent = fileValue?.fileContent || null;
   };
 
-  useEffect(() => {
-    formik.values.terms = false;
-  }, [company]);
-
   return (
     <>
       <ModalBody data-testid="modalbody-nominal">
@@ -139,19 +135,9 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
 
         <fieldset
           data-testid="fieldset-terms"
-          className={`c-candidature-terms mt-3 ${
-            formik.touched.terms ? `is-valid-${!formik.errors.terms}` : "is-not-validated"
-          }`}
+          className={"c-candidature-terms mt-3"}
         >
           <label htmlFor="terms" className="c-candidature-terms-text">
-            <input
-              id="terms"
-              name="terms"
-              type="checkbox"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.terms}
-            />
             <div>
               En remplissant ce formulaire, vous acceptez les{" "}
               <a href="/cgu" className="c-candidature-link" target="_blank">
@@ -161,11 +147,6 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             </div>
           </label>
         </fieldset>
-        {formik.touched.terms && formik.errors.terms ? (
-          <div className="c-candidature-erreur visible">{formik.errors.terms}</div>
-        ) : (
-          <div className="invisible">{"pas d'erreur"}</div>
-        )}
       </ModalBody>
       <ModalFooter>
         <CandidatureSpontaneeSubmit item={item} sendingState={sendingState} />
