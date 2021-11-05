@@ -38,7 +38,7 @@ describe('CandidatureSpontanee', () => {
   it('for LBB, displays appropriate title and button text', () => {
     // Given / When
     openLbbModal(render, screen, fireEvent)
-    // When
+    // Then
     const submit = screen.queryByRole('button', { name: /je-postule/i })
     expect(submit).toHaveTextContent("J'envoie ma candidature spontanée")
     const title = screen.getByTestId('CandidatureSpontaneeTitle')
@@ -47,7 +47,7 @@ describe('CandidatureSpontanee', () => {
   it('for MATCHA, displays appropriate title and button text', () => {
     // Given / When
     openMatchaModal(render, screen, fireEvent)
-    // When
+    // Then
     const submit = screen.queryByRole('button', { name: /je-postule/i })
     expect(submit).toHaveTextContent("J'envoie ma candidature")
     const title = screen.getByTestId('CandidatureSpontaneeTitle')
