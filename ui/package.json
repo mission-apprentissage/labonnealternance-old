@@ -99,6 +99,7 @@
     "istanbul-merge": "1.1.1",
     "local-web-server": "4.2.0",
     "next-sitemap": "1.6.133",
+    "nock": "13.1.4",
     "prettier": "2.0.5",
     "start-server-and-test": "1.13.1"
   }

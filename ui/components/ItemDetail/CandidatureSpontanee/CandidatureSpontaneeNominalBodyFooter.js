@@ -30,6 +30,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             <label htmlFor="lastName">Nom *</label>
             <input
               id="lastName"
+              data-testid="lastName"
               name="lastName"
               type="text"
               onChange={formik.handleChange}
@@ -48,21 +49,22 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             className={`mt-1 mt-md-0 c-candidature-field ${
               formik.touched.firstName ? `is-valid-${!formik.errors.firstName}` : "is-not-validated"
             }`}
-          >
+            >
             <label htmlFor="firstName">Prénom *</label>
             <input
               id="firstName"
+              data-testid="firstName"
               name="firstName"
               type="text"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.firstName}
-            />
+              />
             {formik.touched.firstName && formik.errors.firstName ? (
               <div className="c-candidature-erreur visible">{formik.errors.firstName}</div>
-            ) : (
-              <div className="invisible">{"pas d'erreur"}</div>
-            )}
+              ) : (
+                <div className="invisible">{"pas d'erreur"}</div>
+                )}
           </fieldset>
         </div>
 
@@ -72,26 +74,27 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${
               formik.touched.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
             }`}
-          >
+            >
             <label htmlFor="email">E-mail *</label>
             <input
               id="email"
+              data-testid="email"
               name="email"
               type="email"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
-            />
+              />
             {formik.touched.email && formik.errors.email ? (
               <div className="c-candidature-erreur visible">{formik.errors.email}</div>
-            ) : (
-              <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
-            )}
+              ) : (
+                <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
+                )}
             {testingParameters?.simulatedRecipient ? (
               <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
-            ) : (
-              ""
-            )}
+              ) : (
+                ""
+                )}
           </fieldset>
 
           <fieldset
@@ -99,10 +102,11 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             className={`mt-1 mt-md-0 c-candidature-field ${
               formik.touched.phone ? `is-valid-${!formik.errors.phone}` : "is-not-validated"
             }`}
-          >
+            >
             <label htmlFor="email">Téléphone *</label>
             <input
               id="phone"
+              data-testid="phone"
               name="phone"
               type="text"
               onChange={formik.handleChange}
