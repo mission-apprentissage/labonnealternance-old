@@ -23,6 +23,31 @@ const CandidatureSpontanee = (props) => {
     setModal(false);
   }, [props?.item]);
 
+  const actualValidationSchema = function(actualKind) {
+    if (actualKind === 'matcha') {
+      return Yup.object({
+        message: Yup.string().nullable().required("⚠ La lettre de motivation est obligatoire"),
+        fileName: Yup.string().nullable().required("⚠ La pièce jointe est obligatoire"),
+        firstName: Yup.string().max(15, "⚠ Doit avoir 15 caractères ou moins").required("⚠ Le prénom est obligatoire."),
+        lastName: Yup.string().max(20, "⚠ Doit avoir 20 caractères ou moins").required("⚠ Le nom est obligatoire."),
+        email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
+        phone: Yup.string()
+          .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
+          .required("⚠ Le téléphone est obligatoire"),
+      })
+    } else {
+      return Yup.object({
+        fileName: Yup.string().nullable().required("⚠ La pièce jointe est obligatoire"),
+        firstName: Yup.string().max(15, "⚠ Doit avoir 15 caractères ou moins").required("⚠ Le prénom est obligatoire."),
+        lastName: Yup.string().max(20, "⚠ Doit avoir 20 caractères ou moins").required("⚠ Le nom est obligatoire."),
+        email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
+        phone: Yup.string()
+          .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
+          .required("⚠ Le téléphone est obligatoire"),
+      })
+    }
+  }
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -33,15 +58,7 @@ const CandidatureSpontanee = (props) => {
       fileContent: null,
       message: "",
     },
-    validationSchema: Yup.object({
-      fileName: Yup.string().nullable().required("⚠ La pièce jointe est obligatoire"),
-      firstName: Yup.string().max(15, "⚠ Doit avoir 15 caractères ou moins").required("⚠ Le prénom est obligatoire."),
-      lastName: Yup.string().max(20, "⚠ Doit avoir 20 caractères ou moins").required("⚠ Le nom est obligatoire."),
-      email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
-      phone: Yup.string()
-        .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
-        .required("⚠ Le téléphone est obligatoire"),
-    }),
+    validationSchema: actualValidationSchema(kind),
     onSubmit: async (applicantValues) => {
       await submitCandidature(applicantValues, setSendingState, props.item);
     },
