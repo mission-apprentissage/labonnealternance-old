@@ -101,7 +101,7 @@ describe('CandidatureSpontanee', () => {
 
   })
 
-  it('LBB - If submit is fired with all valid fields => HTTP request is triggered, LBB successful message is displayed', async () => {
+  it('LBB - full and successful test', async () => {
     // Given
     openLbbModal(render, screen, fireEvent)
     fillModalTextInputs(screen)
@@ -133,7 +133,7 @@ describe('CandidatureSpontanee', () => {
     })
 
   })
-  it('MATCHA - If submit is fired with all valid fields => HTTP request is triggered, LBB successful message is displayed', async () => {
+  it('MATCHA - full and successful test', async () => {
     // Given
     openMatchaModal(render, screen, fireEvent)
     fillModalTextInputs(screen)
