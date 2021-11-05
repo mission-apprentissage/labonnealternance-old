@@ -2,8 +2,13 @@ import React from 'react';
 import { render, screen, fireEvent, wait } from '@testing-library/react';
 import CandidatureSpontanee from './CandidatureSpontanee';
 import nock from 'nock';
+import { selectInput } from '@aws-amplify/ui';
 
 describe('CandidatureSpontanee', () => {
+
+  beforeEach(() => {
+    nock.disableNetConnect()
+  });
 
   it('By default displays a button, not a modal', () => {
     // Given
@@ -50,22 +55,18 @@ describe('CandidatureSpontanee', () => {
     });
   })
 
-  it('If submit is fired with all valid fields', async () => {
+  it('If submit is fired with all valid fields, only File is missing', async () => {
     // Given
-    nock.disableNetConnect()
 
     render(<CandidatureSpontanee item={realisticLbb}/>)
     const button = screen.queryByRole('button', { name: /jenvoie-une-candidature-spontanee/i })
     fireEvent.click(button)
 
-    let firstNameInput = screen.getByTestId('firstName')
-    fireEvent.change(firstNameInput, { target: { value: 'Jane' } })
-    let lastNameInput = screen.getByTestId('lastName')
-    fireEvent.change(lastNameInput, { target: { value: 'Doe' } })
-    let phoneInput = screen.getByTestId('phone')
-    fireEvent.change(phoneInput, { target: { value: '0202020202' } })
-    let emailInput = screen.getByTestId('email')
-    fireEvent.change(emailInput, { target: { value: 'from@applicant.com' } })
+    setInput({ testId: 'firstName', value: 'Jane', fireEvent, screen})
+    setInput({ testId: 'lastName', value: 'Doe', fireEvent, screen})
+    setInput({ testId: 'phone', value: '0202020202', fireEvent, screen})
+    setInput({ testId: 'email', value: 'from@applicant.com', fireEvent, screen})
+
     const submit = screen.queryByRole('button', { name: /je-postule/i })
     
     expect(screen.queryByText(/⚠ la pièce jointe est obligatoire/i)).toBeNull()
@@ -74,11 +75,38 @@ describe('CandidatureSpontanee', () => {
     // Then
     await wait(() => {
       expect(screen.queryByText(/⚠ la pièce jointe est obligatoire/i)).not.toBeNull()
-      // expect(screen.getByText(/⚠ la pièce jointe est obligatoire/i)).toBeVisible()
     });
-    // let emailInputz = screen.getByTestId('emailz')
-    // console.log('emailInputz', emailInputz);
+    // How to display the rendered HTML in the console below : use
+    // getByTestId with a non-existing TestId
+    // let foobarqix = screen.getByTestId('foobarqix')
   })
+  
+  it('If submit is fired with all valid fields => HTTP request is triggered', async () => {
+    // Given
+    render(<CandidatureSpontanee item={realisticLbb}/>)
+    const button = screen.queryByRole('button', { name: /jenvoie-une-candidature-spontanee/i })
+    fireEvent.click(button)
+
+    setInput({ testId: 'firstName', value: 'Jane', fireEvent, screen})
+    setInput({ testId: 'lastName', value: 'Doe', fireEvent, screen})
+    setInput({ testId: 'phone', value: '0202020202', fireEvent, screen})
+    setInput({ testId: 'email', value: 'from@applicant.com', fireEvent, screen})
+
+    const submit = screen.queryByRole('button', { name: /je-postule/i })
+    
+    expect(screen.queryByText(/⚠ la pièce jointe est obligatoire/i)).toBeNull()
+    // When
+    fireEvent.click(submit)
+    // Then
+    await wait(() => {
+      expect(screen.queryByText(/⚠ la pièce jointe est obligatoire/i)).not.toBeNull()
+    });
+  })
+  
+  const setInput = ({ fireEvent, screen, testId, value }) => {
+    const actualInput = screen.getByTestId(testId)
+    fireEvent.change(actualInput, { target: { value: value } })
+  }
 
   let realisticLbb = {
     "ideaType": "lbb",
