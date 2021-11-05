@@ -7,9 +7,10 @@ export default async function submitCandidature(
   item = {},
   _postCandidature = postCandidature,
   _extractCompanyValues = extractCompanyValues
-) {
-  setSendingState("currently_sending");
-  let success = true;
+  ) {
+    setSendingState("currently_sending");
+    let success = true;
+    console.log('applicantValues', applicantValues);
 
   try {
     await _postCandidature(applicantValues, _extractCompanyValues(item));
@@ -18,6 +19,8 @@ export default async function submitCandidature(
     success = false;
   }
 
+  console.log('success ?????? ', success);
+  
   if (success) {
     setSendingState("ok_sent");
   } else {
