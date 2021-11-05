@@ -54,7 +54,7 @@ describe('CandidatureSpontanee', () => {
     expect(title).toHaveTextContent("Postuler à l'offre de Lamacompta")
   })
 
-  it('If submit is fired, all mandatory fields are marked as invalid', async () => {
+  it('If submit is fired for LBB, all mandatory fields are marked as invalid', async () => {
     // Given
     openLbbModal(render, screen, fireEvent)
     const submit = screen.queryByRole('button', { name: /je-postule/i })
@@ -62,6 +62,23 @@ describe('CandidatureSpontanee', () => {
     fireEvent.click(submit)
     // Then
     await waitFor(() => {
+      expect(screen.getByTestId('fieldset-message')).not.toHaveClass('is-valid-false')
+      expect(screen.getByTestId('fieldset-firstname')).toHaveClass('is-valid-false')
+      expect(screen.getByTestId('fieldset-lastname')).toHaveClass('is-valid-false')
+      expect(screen.getByTestId('fieldset-email')).toHaveClass('is-valid-false')
+      expect(screen.getByTestId('fieldset-phone')).toHaveClass('is-valid-false')
+    });
+  })
+  
+  it('If submit is fired for MATCHA, all mandatory fields are marked as invalid', async () => {
+    // Given
+    openMatchaModal(render, screen, fireEvent)
+    const submit = screen.queryByRole('button', { name: /je-postule/i })
+    // When
+    fireEvent.click(submit)
+    // Then
+    await waitFor(() => {
+      expect(screen.getByTestId('fieldset-message')).toHaveClass('is-valid-false')
       expect(screen.getByTestId('fieldset-firstname')).toHaveClass('is-valid-false')
       expect(screen.getByTestId('fieldset-lastname')).toHaveClass('is-valid-false')
       expect(screen.getByTestId('fieldset-email')).toHaveClass('is-valid-false')
@@ -72,7 +89,7 @@ describe('CandidatureSpontanee', () => {
   it('If submit is fired with all valid fields, only File is missing', async () => {
     // Given
     openLbbModal(render, screen, fireEvent)
-    fillLbbModalTextInputs(screen)
+    fillModalTextInputs(screen)
 
     const submit = screen.queryByRole('button', { name: /je-postule/i })
 
@@ -84,10 +101,10 @@ describe('CandidatureSpontanee', () => {
 
   })
 
-  it('If submit is fired with all valid fields => HTTP request is triggered', async () => {
+  it('LBB - If submit is fired with all valid fields => HTTP request is triggered, LBB successful message is displayed', async () => {
     // Given
     openLbbModal(render, screen, fireEvent)
-    fillLbbModalTextInputs(screen)
+    fillModalTextInputs(screen)
 
     // When 1.
     const pdfFile = new File(['hello'], 'hello.pdf', { type: 'text/pdf' })
@@ -111,6 +128,40 @@ describe('CandidatureSpontanee', () => {
     // Then 2.
     await waitFor(() => {
       expect(screen.queryByTestId('CandidatureSpontaneeWorked')).not.toBeNull()
+      const title = screen.getByTestId('CandidatureSpontaneeWorkedTitle')
+      expect(title).toHaveTextContent("Candidature spontanée")
+    })
+
+  })
+  it('MATCHA - If submit is fired with all valid fields => HTTP request is triggered, LBB successful message is displayed', async () => {
+    // Given
+    openMatchaModal(render, screen, fireEvent)
+    fillModalTextInputs(screen)
+
+    // When 1.
+    const pdfFile = new File(['hello'], 'hello.pdf', { type: 'text/pdf' })
+    const pdfInput = screen.getByTestId('fileDropzone')
+    expect(screen.queryByTestId('selectedFile')).toBeNull()
+
+    // Then 1.
+    await waitFor(() => {
+      userEvent.upload(pdfInput, pdfFile)
+      expect(screen.queryByTestId('selectedFile')).not.toBeNull()
+    })
+
+    // When 2.
+    nock('http://localhost:5000')
+      .post('/api/application')
+      .reply(200)
+
+    expect(screen.queryByTestId('CandidatureSpontaneeWorked')).toBeNull()
+    const submit = screen.getByRole('button', { name: /je-postule/i })
+    fireEvent.click(submit)
+    // Then 2.
+    await waitFor(() => {
+      expect(screen.queryByTestId('CandidatureSpontaneeWorked')).not.toBeNull()
+      const title = screen.getByTestId('CandidatureSpontaneeWorkedTitle')
+      expect(title).toHaveTextContent("Postuler à l'offre de Lamacompta")
     })
 
   })
@@ -127,11 +178,12 @@ describe('CandidatureSpontanee', () => {
     fireEvent.click(button)
   }
 
-  const fillLbbModalTextInputs = (screen) => {
+  const fillModalTextInputs = (screen) => {
     userEvent.type(screen.getByTestId('firstName'), 'Jane')
     userEvent.type(screen.getByTestId('lastName'), 'Doe')
     userEvent.type(screen.getByTestId('phone'), '0202020202')
     userEvent.type(screen.getByTestId('email'), 'from@applicant.com')
+    userEvent.type(screen.getByTestId('message'), 'lorem ipsum')
   }
 
   let realisticMatcha = {

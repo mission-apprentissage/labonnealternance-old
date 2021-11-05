@@ -3,11 +3,18 @@ import { ModalBody, ModalFooter } from "reactstrap";
 import paperplaneIcon from "public/images/paperplane2.svg";
 import { testingParameters } from "../../../utils/testingParameters";
 
-const CandidatureSpontaneeWorked = ({ email, company }) => {
+const CandidatureSpontaneeWorked = ({ email, company, kind }) => {
   return (
     <div data-testid="CandidatureSpontaneeWorked">
       <ModalBody>
-        <h1 className="c-candidature-title">Candidature spontanée</h1>
+        <h1 className="c-candidature-title" data-testid="CandidatureSpontaneeWorkedTitle">
+          {
+            kind === 'matcha' ?
+              <>Postuler à l'offre de {company}</>
+              :
+              <>Candidature spontanée</>
+          }
+        </h1>
 
         <div className="c-candidature-worked-header d-flex my-5">
           <div>

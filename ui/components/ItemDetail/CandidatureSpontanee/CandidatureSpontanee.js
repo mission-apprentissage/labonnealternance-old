@@ -95,7 +95,7 @@ const CandidatureSpontanee = (props) => {
           )}
 
           {with_str(sendingState).amongst(["ok_sent"]) ? (
-            <CandidatureSpontaneeWorked email={formik.values.email} company={props?.item?.company?.name} />
+            <CandidatureSpontaneeWorked kind={kind} email={formik.values.email} company={props?.item?.company?.name} />
           ) : (
             <></>
           )}
