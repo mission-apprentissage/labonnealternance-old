@@ -81,6 +81,7 @@ describe('CandidatureSpontanee', () => {
       expect(screen.queryByTestId('selectedFile')).not.toBeNull()
     })
 
+    
     // // When 2.
     // nock('http://localhost:5000')
     //   .post('/api/application')

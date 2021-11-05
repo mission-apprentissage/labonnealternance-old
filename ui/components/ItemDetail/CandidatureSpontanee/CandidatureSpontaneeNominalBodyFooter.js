@@ -25,6 +25,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             <label htmlFor="lastName">Nom *</label>
             <input
               id="lastName"
+              data-testid="lastName"
               name="lastName"
               type="text"
               onChange={formik.handleChange}
@@ -47,6 +48,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             <label htmlFor="firstName">Prénom *</label>
             <input
               id="firstName"
+              data-testid="firstName"
               name="firstName"
               type="text"
               onChange={formik.handleChange}
@@ -71,6 +73,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             <label htmlFor="email">E-mail *</label>
             <input
               id="email"
+              data-testid="email"
               name="email"
               type="email"
               onChange={formik.handleChange}
@@ -98,6 +101,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             <label htmlFor="email">Téléphone *</label>
             <input
               id="phone"
+              data-testid="phone"
               name="phone"
               type="text"
               onChange={formik.handleChange}
