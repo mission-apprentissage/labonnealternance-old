@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { getItemType } from "utils/getItemId";
+import { getItemType } from "../../../../utils/getItemId";
 import submitCandidature from "./submitCandidature";
 
 export default function getFormik(item, setSendingState) {

@@ -7,7 +7,7 @@ import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
 import toggleCandidature from "./services/toggleCandidature";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
-import { getItemType } from "utils/getItemId";
+import { getItemType } from "../../../utils/getItemId";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
