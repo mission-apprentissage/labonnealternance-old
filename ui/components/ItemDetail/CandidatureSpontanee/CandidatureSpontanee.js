@@ -48,6 +48,7 @@ const CandidatureSpontanee = (props) => {
               sendingState={sendingState}
               company={props?.item?.company?.name}
               item={props?.item}
+              kind={kind}
             />
           ) : (
             <></>

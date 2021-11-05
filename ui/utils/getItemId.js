@@ -15,12 +15,12 @@ export const getItemIdAndType = (item) => {
   }
 
   if (!item.directId) {
-    if (item.ideaType === "peJob") {
-      itemId = item.job.id;
-    } else if (item.ideaType === "matcha") {
-      itemId = item.job.id;
-    } else if (item.ideaType !== "formation") {
-      itemId = item.company.siret;
+    if (item?.ideaType === "peJob") {
+      itemId = item?.job.id;
+    } else if (item?.ideaType === "matcha") {
+      itemId = item?.job?.id;
+    } else if (item?.ideaType !== "formation") {
+      itemId = item?.company?.siret;
     }
   }
 

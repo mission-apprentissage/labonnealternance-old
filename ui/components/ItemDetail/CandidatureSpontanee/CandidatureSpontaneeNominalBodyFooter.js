@@ -5,7 +5,7 @@ import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone
 import CandidatureSpontaneeMessage from "./CandidatureSpontaneeMessage";
 import { testingParameters } from "../../../utils/testingParameters";
 
-const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item }) => {
+const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind }) => {
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
     formik.values.fileContent = fileValue?.fileContent || null;
@@ -117,7 +117,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
           </fieldset>
         </div>
 
-        <CandidatureSpontaneeMessage formik={formik}/>
+        <CandidatureSpontaneeMessage formik={formik} kind={kind}/>
 
         <div className="c-candidature-message mt-3">
           <CandidatureSpontaneeFileDropzone formik={formik} setFileValue={setFileValue} />
