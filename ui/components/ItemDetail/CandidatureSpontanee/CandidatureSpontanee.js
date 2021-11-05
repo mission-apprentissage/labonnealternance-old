@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, ModalHeader } from "reactstrap";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import getFormik from "./services/getFormik";
 import CandidatureSpontaneeNominalBodyFooter from "./CandidatureSpontaneeNominalBodyFooter";
 import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
-import submitCandidature from "./services/submitCandidature";
 import toggleCandidature from "./services/toggleCandidature";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
+import { getItemType } from "utils/getItemId";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
   const [sendingState, setSendingState] = useState("not_sent");
-  const kind = props?.item?.ideaType || "";
+  const kind = getItemType(props?.item) || "";
 
   const toggle = () => {
     toggleCandidature({ modal, setSendingState, setModal });
@@ -23,31 +22,7 @@ const CandidatureSpontanee = (props) => {
     setModal(false);
   }, [props?.item]);
 
-  const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      fileName: "",
-      fileContent: null,
-      message: "",
-      terms: false,
-    },
-    validationSchema: Yup.object({
-      fileName: Yup.string().nullable().required("⚠ La pièce jointe est obligatoire"),
-      firstName: Yup.string().max(15, "⚠ Doit avoir 15 caractères ou moins").required("⚠ Le prénom est obligatoire."),
-      lastName: Yup.string().max(20, "⚠ Doit avoir 20 caractères ou moins").required("⚠ Le nom est obligatoire."),
-      email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
-      phone: Yup.string()
-        .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
-        .required("⚠ Le téléphone est obligatoire"),
-      terms: Yup.boolean().required().oneOf([true], "⚠ Accepter les conditions est obligatoire."),
-    }),
-    onSubmit: async (applicantValues) => {
-      await submitCandidature(applicantValues, setSendingState, props.item);
-    },
-  });
+  const formik = getFormik(props?.item)
 
   return (
     <div className="c-candidature">

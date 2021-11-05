@@ -2,6 +2,10 @@ export const getItemId = (item) => {
   return getItemIdAndType(item).itemId;
 };
 
+export const getItemType = (item) => {
+  return getItemIdAndType(item).type;
+};
+
 export const getItemIdAndType = (item) => {
   let itemId = item.id;
   let type = "training";
