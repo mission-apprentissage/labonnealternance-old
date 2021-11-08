@@ -26,7 +26,6 @@ describe('CandidatureSpontanee', () => {
     expect(modal).not.toBeNull();
     const submit = screen.queryByRole('button', { name: /je-postule/i })
     expect(submit).not.toBeNull();
-    expect(screen.getByTestId('fieldset-terms')).toHaveClass('is-not-validated')
     expect(screen.getByTestId('fieldset-firstname')).toHaveClass('is-not-validated')
     expect(screen.getByTestId('fieldset-lastname')).toHaveClass('is-not-validated')
     expect(screen.getByTestId('fieldset-email')).toHaveClass('is-not-validated')
@@ -43,7 +42,6 @@ describe('CandidatureSpontanee', () => {
     fireEvent.click(submit)
     // Then
     await wait(() => {
-      expect(screen.getByTestId('fieldset-terms')).toHaveClass('is-valid-false')
       expect(screen.getByTestId('fieldset-firstname')).toHaveClass('is-valid-false')
       expect(screen.getByTestId('fieldset-lastname')).toHaveClass('is-valid-false')
       expect(screen.getByTestId('fieldset-email')).toHaveClass('is-valid-false')

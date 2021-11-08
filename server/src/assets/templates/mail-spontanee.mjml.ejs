@@ -9,6 +9,7 @@
             .link-nostyle:hover { color: inherit; text-decoration: none }
             .form-row { font-size: 16px; padding-bottom: 15px;}
             .form-value { background: #F9F8F6; font-weight: bold; padding: 3px 15px  }
+            .nom-societe { font-size: 14px; color: #F07F87; font-weight: bold; }
         </mj-style>
         <mj-attributes>
             <mj-text padding="0px" color="#232E3C" font-family="Inter,sans-serif" font-size="14px" line-height="23px" />
@@ -30,7 +31,7 @@
                     </mj-text>
                     <mj-text font-size="14px" line-height="24px">
                         Bonjour, <br /><br >
-                        Voici les informations d’un candidat qui aimerait réaliser son alternance dans votre entreprise :
+                        Voici les informations d’un candidat qui aimerait réaliser son alternance dans votre entreprise <span class="nom-societe"><%= data.company_name %></span> :
                     </mj-text>
                 </mj-column>
             </mj-section>
@@ -63,7 +64,7 @@
                     <tr>
                     <td valign="top"><img style="width:120px; height:48px; margin-right:20px;" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" /></td>
                     <td valign="top">
-                        Vous recevez cette candidature car votre entreprise est visible sur <a style="font-weight:bold; color:black" href="https://labonnealternance.pole-emploi.fr/?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur ">La Bonne Alternance</a>,
+                        Vous recevez cette candidature car votre entreprise <span class="nom-societe"><%= data.company_name %></span> est visible sur <a style="font-weight:bold; color:black" href="https://labonnealternance.pole-emploi.fr/?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur ">La Bonne Alternance</a>,
                         un site web conçu par Pôle emploi et porté par le Ministère de l’éducation nationale, de l’enseignement supérieur, du travail et de la transformation publique.
 
                         <br /><br />

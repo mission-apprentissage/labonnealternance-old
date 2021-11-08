@@ -32,7 +32,6 @@ const CandidatureSpontanee = (props) => {
       fileName: "",
       fileContent: null,
       message: "",
-      terms: false,
     },
     validationSchema: Yup.object({
       fileName: Yup.string().nullable().required("⚠ La pièce jointe est obligatoire"),
@@ -42,7 +41,6 @@ const CandidatureSpontanee = (props) => {
       phone: Yup.string()
         .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
         .required("⚠ Le téléphone est obligatoire"),
-      terms: Yup.boolean().required().oneOf([true], "⚠ Accepter les conditions est obligatoire."),
     }),
     onSubmit: async (applicantValues) => {
       await submitCandidature(applicantValues, setSendingState, props.item);
