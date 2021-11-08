@@ -220,7 +220,7 @@ export const AutoCompleteField = ({
             } else if (loadingState === "loading") {
               return (
                 <li key={`spinner`} className="c-autocomplete-neutral">
-                  <Spinner color="primary" />
+                  <Spinner color="primary" className="c-spinner" />
                   &nbsp;Veuillez patienter
                 </li>
               );
