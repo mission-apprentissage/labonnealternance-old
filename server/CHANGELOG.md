@@ -4,6 +4,8 @@
 [893] Obfuscation de l'adresse email LBA/LBB
 [885] Dissociation scripts update du catalogue
 [884] Exploitation des Bonnes boîtes LBB
+[912] Formulaire candidature Matcha : mail candidat
+[913] Cryptage adresse email et random IV
 
 ## 1.17.0 [18/10/2021]
 [793] Envoi d'une candidature spontanée
