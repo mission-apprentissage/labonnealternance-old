@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, ModalHeader } from "reactstrap";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import CandidatureSpontaneeNominalBodyFooter from "./CandidatureSpontaneeNominalBodyFooter";
 import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
 import submitCandidature from "./services/submitCandidature";
 import toggleCandidature from "./services/toggleCandidature";
+import { getValidationSchema, getInitialSchemaValues } from "./services/getSchema";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
 
@@ -24,24 +24,8 @@ const CandidatureSpontanee = (props) => {
   }, [props?.item]);
 
   const formik = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      fileName: "",
-      fileContent: null,
-      message: "",
-    },
-    validationSchema: Yup.object({
-      fileName: Yup.string().nullable().required("⚠ La pièce jointe est obligatoire"),
-      firstName: Yup.string().max(15, "⚠ Doit avoir 15 caractères ou moins").required("⚠ Le prénom est obligatoire."),
-      lastName: Yup.string().max(20, "⚠ Doit avoir 20 caractères ou moins").required("⚠ Le nom est obligatoire."),
-      email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
-      phone: Yup.string()
-        .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
-        .required("⚠ Le téléphone est obligatoire"),
-    }),
+    initialValues: getInitialSchemaValues(),
+    validationSchema: getValidationSchema(kind),
     onSubmit: async (applicantValues) => {
       await submitCandidature(applicantValues, setSendingState, props.item);
     },
@@ -56,7 +40,7 @@ const CandidatureSpontanee = (props) => {
             className={`btn btn-dark ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
             aria-label="jenvoie-une-candidature-spontanee"
           >
-            J'envoie une candidature spontanée
+            J'envoie une candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}
           </Button>
         </div>
       </div>
@@ -71,13 +55,14 @@ const CandidatureSpontanee = (props) => {
               sendingState={sendingState}
               company={props?.item?.company?.name}
               item={props?.item}
+              kind={kind}
             />
           ) : (
             <></>
           )}
 
           {with_str(sendingState).amongst(["ok_sent"]) ? (
-            <CandidatureSpontaneeWorked email={formik.values.email} company={props?.item?.company?.name} />
+            <CandidatureSpontaneeWorked kind={kind} email={formik.values.email} company={props?.item?.company?.name} />
           ) : (
             <></>
           )}

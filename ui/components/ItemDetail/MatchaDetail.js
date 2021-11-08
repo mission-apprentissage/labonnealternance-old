@@ -10,6 +10,7 @@ import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -119,8 +120,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         <div className="c-detail-description">
           <h3 className="c-detail-description-title c-detail-description-title--matcha1">Niveau requis</h3>
           {isNonEmptyString(job?.diplomaLevel)
-            ? job.diplomaLevel.split(", ").map((diploma) => {
-                return <div className="c-detail-diploma d-inline-block">{diploma}</div>;
+            ? job.diplomaLevel.split(", ").map((diploma, indx) => {
+                return <div className="c-detail-diploma d-inline-block" key={indx}>{diploma}</div>;
               })
             : "Non défini"}
         </div>
@@ -153,11 +154,11 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
-        {!contactEmail ? (
+        {contactEmail ? 
+          <CandidatureSpontanee item={job} />
+          :
           <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, job)} key={getGoingtoId(kind, job)} />
-        ) : (
-          ""
-        )}
+        }
 
         <div className="mt-3">&nbsp;</div>
       </div>
