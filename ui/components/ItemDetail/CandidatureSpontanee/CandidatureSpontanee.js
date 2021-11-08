@@ -6,7 +6,7 @@ import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
 import submitCandidature from "./services/submitCandidature";
 import toggleCandidature from "./services/toggleCandidature";
-import { getValidationSchema, getInitialSchemaValues} from "./services/getSchema";
+import { getValidationSchema, getInitialSchemaValues } from "./services/getSchema";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
 
@@ -40,7 +40,7 @@ const CandidatureSpontanee = (props) => {
             className={`btn btn-dark ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
             aria-label="jenvoie-une-candidature-spontanee"
           >
-            J'envoie une candidature spontanée
+            J'envoie une candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}
           </Button>
         </div>
       </div>
