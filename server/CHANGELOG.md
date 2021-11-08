@@ -2,6 +2,7 @@
 
 ## 1.17.1 [10/11/2021]
 [902] CGU sans case à cocher
+[910] Restauration boutons
 [893] Obfuscation de l'adresse email LBA/LBB
 [885] Dissociation scripts update du catalogue
 [884] Exploitation des Bonnes boîtes LBB
