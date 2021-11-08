@@ -55,6 +55,11 @@ const applicationSchema = {
     default: null,
     description: "L'adresse physique de la société",
   },
+  company_type: {
+    type: String,
+    default: null,
+    description: "Le type de société / offre au sens source d'info La Bonne Alternance. Ex : lba, lbb, matcha, pejob",
+  },
   job_title: {
     type: String,
     default: null,

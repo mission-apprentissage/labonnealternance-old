@@ -10,6 +10,7 @@ import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -37,18 +38,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   const jobStartDate = job?.job?.creationDate ? formatDate(job.job.jobStartDate) : undefined;
   const contractType = get(job, "job.contractType", undefined);
 
-
   let contactInfo = (
     <>
-      {contactEmail ? (
-        <p className="c-detail-km c-detail-contactlink">
-          <a href={`mailto:${contactEmail}`} className="ml-1">
-            {contactEmail}
-          </a>
-        </p>
-      ) : (
-        ""
-      )}
       {contactPhone ? (
         <p className="c-detail-km c-detail-contactlink">
           <a href={`tel:${contactPhone}`} className="ml-1">
@@ -67,7 +58,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
   return (
     <>
-      {contactPhone || contactEmail ? (
+      {contactPhone ? (
         <div className="d-flex">
           {seeInfo ? (
             <>
@@ -129,8 +120,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         <div className="c-detail-description">
           <h3 className="c-detail-description-title c-detail-description-title--matcha1">Niveau requis</h3>
           {isNonEmptyString(job?.diplomaLevel)
-            ? job.diplomaLevel.split(", ").map((diploma) => {
-                return <div className="c-detail-diploma d-inline-block">{diploma}</div>;
+            ? job.diplomaLevel.split(", ").map((diploma, indx) => {
+                return <div className="c-detail-diploma d-inline-block" key={indx}>{diploma}</div>;
               })
             : "Non défini"}
         </div>
@@ -163,7 +154,11 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
-        <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, job)} key={getGoingtoId(kind, job)} />
+        {contactEmail ? 
+          <CandidatureSpontanee item={job} />
+          :
+          <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, job)} key={getGoingtoId(kind, job)} />
+        }
 
         <div className="mt-3">&nbsp;</div>
       </div>

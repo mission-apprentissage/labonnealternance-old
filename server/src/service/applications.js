@@ -2,7 +2,7 @@ const config = require("config");
 const Sentry = require("@sentry/node");
 const path = require("path");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
-const { decrypt } = require("../common/utils/encryptString");
+const { decryptWithIV } = require("../common/utils/encryptString");
 const { Application } = require("../common/model");
 const { validateSendApplication, validateCompanyEmail } = require("./validateSendApplication");
 
@@ -14,6 +14,39 @@ const images = {
     icoInfo: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/icone_info.png`,
     icoCandidat: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/icone_candidat.png`,
   },
+};
+
+const initApplication = (query, companyEmail) => {
+  return new Application({
+    applicant_file_name: query.applicant_file_name,
+    applicant_email: query.applicant_email,
+    applicant_first_name: query.applicant_first_name,
+    applicant_last_name: query.applicant_last_name,
+    applicant_phone: query.applicant_phone,
+    message: prepareMessageForMail(query.message),
+    company_siret: query.company_siret,
+    company_email: companyEmail,
+    company_name: query.company_name,
+    company_naf: query.company_naf,
+    company_address: query.company_address,
+    company_type: query.company_type,
+    job_title: query.job_title,
+    job_id: query.job_id,
+  });
+};
+
+const getEmailTemplates = (applicationType) => {
+  if (applicationType === "matcha") {
+    return {
+      candidat: "mail-candidat-matcha",
+      entreprise: "mail-candidature-matcha",
+    };
+  } else {
+    return {
+      candidat: "mail-candidat",
+      entreprise: "mail-spontanee",
+    };
+  }
 };
 
 const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
@@ -30,8 +63,8 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       phone: query.applicant_phone,
     });
 
-    let companyEmail = shouldCheckSecret ? query.company_email : decrypt(query.company_email); // utilisation email de test ou decrypt vrai mail crypté
-    let cryptedEmail = shouldCheckSecret ? decrypt(query.crypted_company_email) : ""; // présent uniquement pour les tests utilisateurs
+    let companyEmail = shouldCheckSecret ? query.company_email : decryptWithIV(query.company_email, query.iv); // utilisation email de test ou decrypt vrai mail crypté
+    let cryptedEmail = shouldCheckSecret ? decryptWithIV(query.crypted_company_email, query.iv) : ""; // présent uniquement pour les tests utilisateurs
 
     await validateCompanyEmail({
       companyEmail,
@@ -39,19 +72,9 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
     });
 
     try {
-      let application = new Application({
-        applicant_file_name: query.applicant_file_name,
-        applicant_email: query.applicant_email,
-        applicant_first_name: query.applicant_first_name,
-        applicant_last_name: query.applicant_last_name,
-        applicant_phone: query.applicant_phone,
-        message: prepareMessageForMail(query.message),
-        company_siret: query.company_siret,
-        company_email: companyEmail,
-        company_name: query.company_name,
-        company_naf: query.company_naf,
-        company_address: query.company_address,
-      });
+      let application = initApplication(query, companyEmail);
+
+      const emailTemplates = getEmailTemplates(query.company_type);
 
       const fileContent = query.applicant_file_content;
 
@@ -60,7 +83,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         mailer.sendEmail(
           application.applicant_email,
           `Votre candidature chez ${application.company_name}`,
-          getEmailTemplate("mail-candidat"),
+          getEmailTemplate(emailTemplates.candidat),
           { ...application._doc, ...images },
           [
             {
@@ -72,7 +95,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         mailer.sendEmail(
           application.company_email,
           `Candidature spontanée pour un poste en alternance`,
-          getEmailTemplate("mail-spontanee"),
+          getEmailTemplate(emailTemplates.entreprise),
           { ...application._doc, ...images },
           [
             {

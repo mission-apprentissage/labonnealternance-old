@@ -56,7 +56,7 @@ const CandidatureSpontaneeFileDropzone = ({ setFileValue, formik }) => {
   const getFileDropzone = () => {
     return (
       <>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} data-testid='fileDropzone'/>
         {isDragActive ? (
           <p>Déposez le fichier ici</p>
         ) : (
@@ -88,7 +88,7 @@ const CandidatureSpontaneeFileDropzone = ({ setFileValue, formik }) => {
 
   const getSelectedFile = () => {
     return (
-      <div className="c-candidature-filedropzone-filename">
+      <div className="c-candidature-filedropzone-filename" data-testid="selectedFile">
         Pièce jointe : {fileData.fileName}
         {
           <button className="c-candidature-filedropzone-removefile" onClick={onRemoveFile}>
