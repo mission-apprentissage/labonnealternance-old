@@ -38,18 +38,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   const jobStartDate = job?.job?.creationDate ? formatDate(job.job.jobStartDate) : undefined;
   const contractType = get(job, "job.contractType", undefined);
 
-
   let contactInfo = (
     <>
-      {contactEmail ? (
-        <p className="c-detail-km c-detail-contactlink">
-          <a href={`mailto:${contactEmail}`} className="ml-1">
-            {contactEmail}
-          </a>
-        </p>
-      ) : (
-        ""
-      )}
       {contactPhone ? (
         <p className="c-detail-km c-detail-contactlink">
           <a href={`tel:${contactPhone}`} className="ml-1">
@@ -68,7 +58,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
   return (
     <>
-      {contactPhone || contactEmail ? (
+      {contactPhone ? (
         <div className="d-flex">
           {seeInfo ? (
             <>
@@ -164,8 +154,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
-        {isNonEmptyString(job?.contact?.email)
-          ?
+        {contactEmail ? 
           <CandidatureSpontanee item={job} />
           :
           <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, job)} key={getGoingtoId(kind, job)} />

@@ -1,12 +1,13 @@
 # CHANGELOG
 
-## 1.17.2 [04/10/2021]
-[869] Candidature matcha 
-
-## 1.17.1 [21/10/2021]
+## 1.17.1 [10/11/2021]
+[902] CGU sans case à cocher
 [893] Obfuscation de l'adresse email LBA/LBB
 [885] Dissociation scripts update du catalogue
 [884] Exploitation des Bonnes boîtes LBB
+[912] Formulaire candidature Matcha : mail candidat
+[913] Cryptage adresse email et random IV
+[825] Affichage nom société dans le modèle de candidature spontanée
 
 ## 1.17.0 [18/10/2021]
 [793] Envoi d'une candidature spontanée

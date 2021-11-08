@@ -1,0 +1,113 @@
+{
+  "type": "FeatureCollection",
+  "version": "draft",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.735361,
+          50.126294
+        ]
+      },
+      "properties": {
+        "label": "Cahon",
+        "score": 0.8373163636363635,
+        "id": "80161",
+        "type": "municipality",
+        "name": "Cahon",
+        "postcode": "80132",
+        "citycode": "80161",
+        "x": 609475.22,
+        "y": 7003841.74,
+        "population": 199,
+        "city": "Cahon",
+        "context": "80, Somme, Hauts-de-France",
+        "importance": 0.21048
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.438407,
+          44.45771
+        ]
+      },
+      "properties": {
+        "label": "Cahors",
+        "score": 0.8580672727272727,
+        "id": "46042",
+        "type": "municipality",
+        "name": "Cahors",
+        "postcode": "46000",
+        "citycode": "46042",
+        "x": 575764.32,
+        "y": 6374412.68,
+        "population": 19405,
+        "city": "Cahors",
+        "context": "46, Lot, Occitanie",
+        "importance": 0.43874
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.459547,
+          47.46365
+        ]
+      },
+      "properties": {
+        "label": "Marigny-le-Cahou\u00ebt",
+        "score": 0.6575754545454545,
+        "id": "21386",
+        "type": "municipality",
+        "name": "Marigny-le-Cahou\u00ebt",
+        "postcode": "21150",
+        "citycode": "21386",
+        "x": 809947.64,
+        "y": 6708048.7,
+        "population": 316,
+        "city": "Marigny-le-Cahou\u00ebt",
+        "context": "21, C\u00f4te-d'Or, Bourgogne-Franche-Comt\u00e9",
+        "importance": 0.23333
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.874646,
+          50.128032
+        ]
+      },
+      "properties": {
+        "label": "Caours",
+        "score": 0.1410112987012987,
+        "id": "80171",
+        "type": "municipality",
+        "name": "Caours",
+        "postcode": "80132",
+        "citycode": "80171",
+        "x": 619447.49,
+        "y": 7003884.36,
+        "population": 603,
+        "city": "Caours",
+        "context": "80, Somme, Hauts-de-France",
+        "importance": 0.26541
+      }
+    }
+  ],
+  "attribution": "BAN",
+  "licence": "ETALAB-2.0",
+  "query": "caho",
+  "filters": {
+    "type": "municipality"
+  },
+  "limit": 10
+}

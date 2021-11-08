@@ -132,7 +132,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
 
         <fieldset
           data-testid="fieldset-terms"
-          className={"c-candidature-terms mt-3"}
+          className="c-candidature-terms mt-3"
         >
           <label htmlFor="terms" className="c-candidature-terms-text">
             <div>

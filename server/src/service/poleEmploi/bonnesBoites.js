@@ -4,7 +4,7 @@ const { itemModel } = require("../../model/itemModel");
 const { getAccessToken, peApiHeaders } = require("./common.js");
 const { isOriginLocal } = require("../../common/utils/isOriginLocal");
 const { manageApiError } = require("../../common/utils/errorManager");
-const { encrypt } = require("../../common/utils/encryptString");
+const { encryptMailWithIV } = require("../../common/utils/encryptString");
 
 const allowedSources = config.private.allowedSources;
 
@@ -84,7 +84,7 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
 
   if (contactAllowedOrigin) {
     resultCompany.contact = {
-      email: company.email ? encrypt(company.email) : "",
+      ...encryptMailWithIV(company.email),
       phone: company.phone,
     };
   }
