@@ -9,6 +9,10 @@
 
 # testing
 /coverage
+/cypress/videos
+
+# Ignore babelrc, only used in test mode
+.babelrc
 
 # production
 /build

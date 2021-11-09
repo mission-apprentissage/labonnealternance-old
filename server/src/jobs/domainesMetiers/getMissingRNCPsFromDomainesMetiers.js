@@ -1,14 +1,15 @@
 const path = require("path");
-const axios = require("axios");
 const config = require("config");
 const fs = require("fs");
 const _ = require("lodash");
 const XLSX = require("xlsx");
 const logger = require("../../common/logger");
 const { DomainesMetiers } = require("../../common/model");
-const urlCatalogueSearch = `${config.private.catalogueUrl}/api/v1/es/search/convertedformation/_search/`;
+const { getFormationsES } = require("../../common/esClient");
 const { getFileFromS3 } = require("../../common/utils/awsUtils");
 const { oleoduc } = require("oleoduc");
+
+const esClient = getFormationsES();
 
 const FILE_LOCAL_PATH = path.join(__dirname, "./assets/domainesMetiers_S3.xlsx");
 
@@ -23,8 +24,7 @@ const logMessage = (level, msg) => {
 
 const getFormationEsQueryIndexFragment = (limit) => {
   return {
-    //index: "mnaformation",
-    index: "convertedformation",
+    index: "convertedformations",
     size: limit,
     _sourceIncludes: ["rncp_code", "rncp_intitule"],
   };
@@ -81,27 +81,28 @@ let domainsOfRNCPs = {};
 
 const getMissingRNCPsOfDomain = async (domain) => {
   try {
-    const response = await axios.post(
-      urlCatalogueSearch,
-      {
-        query: {
-          bool: {
-            must: {
-              match: {
-                rome_codes: domain.codes_romes.join(" "),
-              },
+    const body = {
+      query: {
+        bool: {
+          must: {
+            match: {
+              rome_codes: domain.codes_romes.join(" "),
             },
           },
         },
       },
-      { params: getFormationEsQueryIndexFragment(10000) }
-    );
+    };
+
+    const response = await esClient.search({
+      ...getFormationEsQueryIndexFragment(10000),
+      body,
+    });
 
     let missingRNCPs = [];
     let missingRNCPsWithLabel = [];
     let missingTrainingCount = 0;
 
-    response.data.hits.hits.forEach((training) => {
+    response.body.hits.hits.forEach((training) => {
       if (domain.codes_rncps.indexOf(training._source.rncp_code) < 0) {
         missingTrainingCount++;
         if (missingRNCPs.indexOf(training._source.rncp_code) < 0) {
@@ -114,10 +115,11 @@ const getMissingRNCPsOfDomain = async (domain) => {
         }
       }
     });
+
     //console.log("total ", response.data.hits.hits.length, " miss : ", missingRNCPs.length,[...new Set(missingRNCPs)].length);
 
     return {
-      totalFormations: response.data.hits.hits.length,
+      totalFormations: response.body.hits.hits.length,
       totalFormationsPerdues: missingTrainingCount,
       RNCPsManquants: missingRNCPsWithLabel,
     };

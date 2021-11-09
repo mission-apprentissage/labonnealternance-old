@@ -7,6 +7,12 @@ const string_wrapper =  (str) => {
   return {
     amongst: (collection) => {
       return collection.includes(str)
+    },
+    contains: (another) => {
+      return str.indexOf(another) >= 0
+    },
+    in: (another) => {
+      return another.indexOf(str) >= 0
     }
   }
 }

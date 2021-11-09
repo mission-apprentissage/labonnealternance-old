@@ -5,10 +5,11 @@ import { defaultTo, random } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
-import { SendTrackEvent } from "utils/gtm";
+import { SendTrackEvent } from "../../utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
+import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
@@ -23,7 +24,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
-    document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
+    document.getElementsByClassName("choiceCol")[0]?.scrollTo(0, 0);
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   const kind = lbb?.ideaType;
@@ -93,6 +94,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
               target="_blank"
               className="c-detail-google-search gtmGoogleLink"
               rel="noopener noreferrer"
+              data-testid="link-knowmore-lbb"
             >
               {lbb.title}
             </a>
@@ -111,6 +113,12 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
             {!!random(0, 1) ? <DidAsk1 /> : <DidAsk2 />}
           </div>
         </div>
+
+        {isNonEmptyString(lbb?.contact?.email) ? (
+          <CandidatureSpontanee item={lbb} />
+        ) : (
+          <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, lbb)} key={getGoingtoId(kind, lbb)} />
+        )}
 
         <h2 className="c-detail-lbb-title">Qu'est ce qu'une candidature spontanée ?</h2>
         <p className="c-detail-lbb-paragraph">
@@ -190,10 +198,6 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           ""
         )}
       </div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-
-      {isNonEmptyString(lbb?.contact?.email) ? <CandidatureSpontanee item={lbb} /> : <></>}
     </>
   );
 };
