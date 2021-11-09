@@ -39,12 +39,12 @@ const getEmailTemplates = (applicationType) => {
   if (applicationType === "matcha") {
     return {
       candidat: "mail-candidat-matcha",
-      entreprise: "mail-candidature-matcha",
+      entreprise: "mail-candidature",
     };
   } else {
     return {
       candidat: "mail-candidat",
-      entreprise: "mail-spontanee",
+      entreprise: "mail-candidature",
     };
   }
 };
