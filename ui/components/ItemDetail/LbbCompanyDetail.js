@@ -114,6 +114,12 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
+        {isNonEmptyString(lbb?.contact?.email) ? (
+          <CandidatureSpontanee item={lbb} />
+        ) : (
+          <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, lbb)} key={getGoingtoId(kind, lbb)} />
+        )}
+
         <h2 className="c-detail-lbb-title">Qu'est ce qu'une candidature spontanée ?</h2>
         <p className="c-detail-lbb-paragraph">
           L'entreprise n'a pas déposé d'offre d'emploi, vous pouvez tout de même lui envoyer votre CV pour lui indiquer
@@ -192,13 +198,6 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           ""
         )}
       </div>
-
-      {isNonEmptyString(lbb?.contact?.email) 
-        ? 
-          <CandidatureSpontanee item={lbb} /> 
-        : 
-          <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, lbb)} key={getGoingtoId(kind, lbb)} />
-      }
     </>
   );
 };
