@@ -4,11 +4,12 @@ import gotoIcon from "public/images/icons/goto.svg";
 import { defaultTo, random } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
-import { capitalizeFirstLetter } from "../../utils/strutils";
-import { SendTrackEvent } from "utils/gtm";
+import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
+import { SendTrackEvent } from "../../utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
-import GoingToContactQuestion, {getGoingtoId} from "./GoingToContactQuestion";
+import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
+import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
@@ -23,11 +24,10 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
-    document.getElementsByClassName("choiceCol")[0].scrollTo(0, 0);
+    document.getElementsByClassName("choiceCol")[0]?.scrollTo(0, 0);
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   const kind = lbb?.ideaType;
-  let contactEmail = lbb?.contact?.email;
   let contactPhone = lbb?.contact?.phone;
 
   let companySize = lbb?.company?.size?.toLowerCase();
@@ -37,15 +37,6 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
 
   let contactInfo = (
     <>
-      {contactEmail ? (
-        <p className="c-detail-km c-detail-contactlink">
-          <a href={`mailto:${contactEmail}`} className="ml-1">
-            {contactEmail}
-          </a>
-        </p>
-      ) : (
-        ""
-      )}
       {contactPhone ? (
         <p className="c-detail-km c-detail-contactlink">
           <a href={`tel:${contactPhone}`} className="ml-1">
@@ -71,7 +62,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
             {defaultTo(companySize, ReactHtmlParser("<em>Non renseigné</em>"))}
           </span>
         </p>
-        {contactPhone || contactEmail ? (
+        {contactPhone ? (
           <div className="d-flex mb-3">
             {seeInfo ? (
               <>
@@ -87,7 +78,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
                 className={`c-see-info d-block btn btn-outline-primary gtmContact gtm${capitalizeFirstLetter(kind)}`}
                 onClick={() => setSeeInfo(true)}
               >
-                Voir les informations de contact
+                Voir le numéro de téléphone de contact
               </button>
             )}
           </div>
@@ -103,6 +94,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
               target="_blank"
               className="c-detail-google-search gtmGoogleLink"
               rel="noopener noreferrer"
+              data-testid="link-knowmore-lbb"
             >
               {lbb.title}
             </a>
@@ -121,6 +113,12 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
             {!!random(0, 1) ? <DidAsk1 /> : <DidAsk2 />}
           </div>
         </div>
+
+        {isNonEmptyString(lbb?.contact?.email) ? (
+          <CandidatureSpontanee item={lbb} />
+        ) : (
+          <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, lbb)} key={getGoingtoId(kind, lbb)} />
+        )}
 
         <h2 className="c-detail-lbb-title">Qu'est ce qu'une candidature spontanée ?</h2>
         <p className="c-detail-lbb-paragraph">
@@ -200,8 +198,6 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           ""
         )}
       </div>
-      <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, lbb)} key={getGoingtoId(kind, lbb)} />
-
     </>
   );
 };

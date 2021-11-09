@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import questionmarkIcon from "public/images/icons/questionmark.svg";
-import { get, random } from "lodash";
+import { get, defaultTo, random } from "lodash";
+import { formatDate } from "utils/strutils";
 import contactIcon from "public/images/icons/contact_icon.svg";
 import ReactHtmlParser from "react-html-parser";
 import { SendTrackEvent } from "utils/gtm";
@@ -9,7 +10,7 @@ import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
-
+import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -33,19 +34,12 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   let contactEmail = job?.contact?.email;
   let contactPhone = job?.contact?.phone;
 
-  const jobTitle =  get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))
+  const jobTitle = get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"));
+  const jobStartDate = job?.job?.creationDate ? formatDate(job.job.jobStartDate) : undefined;
+  const contractType = get(job, "job.contractType", undefined);
 
   let contactInfo = (
     <>
-      {contactEmail ? (
-        <p className="c-detail-km c-detail-contactlink">
-          <a href={`mailto:${contactEmail}`} className="ml-1">
-            {contactEmail}
-          </a>
-        </p>
-      ) : (
-        ""
-      )}
       {contactPhone ? (
         <p className="c-detail-km c-detail-contactlink">
           <a href={`tel:${contactPhone}`} className="ml-1">
@@ -64,7 +58,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
   return (
     <>
-      {contactPhone || contactEmail ? (
+      {contactPhone ? (
         <div className="d-flex">
           {seeInfo ? (
             <>
@@ -77,7 +71,9 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             </>
           ) : (
             <button
-                className={`c-see-info c-see-info--matcha d-block btn btn-outline-primary gtmContact gtm${capitalizeFirstLetter(kind)}`}
+              className={`c-see-info c-see-info--matcha d-block btn btn-outline-primary gtmContact gtm${capitalizeFirstLetter(
+                kind
+              )}`}
               onClick={() => setSeeInfo(true)}
             >
               Voir les informations de contact
@@ -104,9 +100,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
       <hr className={"mb-4 c-detail-header-separator c-detail-header-separator--" + kind} />
       <div>
         <div className="c-detail-company position-relative">
-          <span className="c-detail-square">
-            &nbsp;
-          </span>
+          <span className="c-detail-square">&nbsp;</span>
           <span className="d-inline-block ml-2">
             {get(job, "company.name", ReactHtmlParser("<em>Entreprise non précisée</em>"))}
           </span>
@@ -114,16 +108,22 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         </div>
         <h2 className="c-detail-jobtitle">{jobTitle}</h2>
 
+        <div className="c-detail-meta">
+          <div className="c-detail-metadate">
+            Début de contrat : {defaultTo(jobStartDate, ReactHtmlParser("<em>Donnée manquante</em>"))}
+          </div>
+          <div className="c-detail-metanature">
+            Nature du contrat : {defaultTo(contractType, ReactHtmlParser("<em>Donnée manquante</em>"))}
+          </div>
+        </div>
+
         <div className="c-detail-description">
           <h3 className="c-detail-description-title c-detail-description-title--matcha1">Niveau requis</h3>
-          {
-            isNonEmptyString(job?.diplomaLevel) ? 
-              job.diplomaLevel.split(", ").map(diploma => {
-                return <div className="c-detail-diploma d-inline-block">{diploma}</div>
+          {isNonEmptyString(job?.diplomaLevel)
+            ? job.diplomaLevel.split(", ").map((diploma, indx) => {
+                return <div className="c-detail-diploma d-inline-block" key={indx}>{diploma}</div>;
               })
-            :
-            "Non défini"
-          }
+            : "Non défini"}
         </div>
 
         {description ? (
@@ -135,7 +135,6 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           ""
         )}
 
-
         <hr className="c-detail-header-separator" />
 
         <div className="c-detail-advice c-detail-advice--matcha">
@@ -144,9 +143,9 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
           <div className="c-detail-advice__body">
             <div className="c-detail-advice-text mt-0">
-              L'entreprise <span className="c-detail-advice-highlight"> {job.company.name} </span> nous a récemment fait parvenir un besoin de recrutement :  
-              <span className="c-detail-advice-highlight"> {jobTitle}</span>.
-              Cela signifie qu’elle est activement à la recherche d’un.e candidat.e pour rejoindre son équipe.
+              L'entreprise <span className="c-detail-advice-highlight"> {job.company.name} </span> nous a récemment fait
+              parvenir un besoin de recrutement :<span className="c-detail-advice-highlight"> {jobTitle}</span>. Cela
+              signifie qu’elle est activement à la recherche d’un.e candidat.e pour rejoindre son équipe.
             </div>
             <div className="c-detail-advice-text c-detail-advice-text--tag">
               Vous avez donc tout intérêt à la contacter rapidement, avant que l’offre ne soit pourvue !
@@ -155,7 +154,11 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
-        <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, job)} key={getGoingtoId(kind, job)} />
+        {contactEmail ? 
+          <CandidatureSpontanee item={job} />
+          :
+          <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, job)} key={getGoingtoId(kind, job)} />
+        }
 
         <div className="mt-3">&nbsp;</div>
       </div>

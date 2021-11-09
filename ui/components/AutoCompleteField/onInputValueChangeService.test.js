@@ -1,6 +1,7 @@
 import onInputValueChangeService from "./onInputValueChangeService";
 
 describe("onInputValueChangeService", () => {
+
   it("Sans appel API extérieur, la liste affichée à l'utilisateur est la liste des items, filtrée selon l'entrée initiale", async () => {
     let inputValue = "plo";
     let inputItems = [];
@@ -22,4 +23,5 @@ describe("onInputValueChangeService", () => {
 
     expect(setInputItems).toHaveBeenCalledWith([{ label: "PLomberie" }, { label: "Ploermel" }]);
   });
+
 });

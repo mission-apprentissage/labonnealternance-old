@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 1.17.1 [10/11/2021]
+[902] CGU sans case à cocher
+[910] Restauration boutons
+[893] Obfuscation de l'adresse email LBA/LBB
+[885] Dissociation scripts update du catalogue
+[884] Exploitation des Bonnes boîtes LBB
+[912] Formulaire candidature Matcha : mail candidat
+[913] Cryptage adresse email et random IV
+[825] Affichage nom société dans le modèle de candidature spontanée
+
+## 1.17.0 [18/10/2021]
+[793] Envoi d'une candidature spontanée
+
+## 1.16.7 [14/10/2021]
+[833] Wording
+
+## 1.16.6 [06/10/2021]
+[815] Réduction du nombre de pages générées pour le SEO
+[855] Remontée des champs Matcha type et début de formation
+[862] Affichage nouveaux champs Matcha
+
 ## 1.16.5 [23/9/2021]
 [817] Design remerciement
 [815] Réduction génération SEO

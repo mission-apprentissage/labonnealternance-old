@@ -1156,12 +1156,17 @@
                     "example": "106CBHM",
                     "description": "L'identifiant de l'offre"
                 },
-
                 "creationDate":
                 {
                     "type": "string",
                     "example": "2020-10-01T16:43:24+02:00",
                     "description": "La date de création de l'offre"
+                },
+                "jobStartDate":
+                {
+                    "type": "string",
+                    "example": "2020-10-01T16:43:24+02:00",
+                    "description": "La date de début de l'offre"
                 },
                 "description":
                 {

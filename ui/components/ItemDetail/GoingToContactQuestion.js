@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 
 import thumbup from "public/images/thumbup.svg";
 import thumbdown from "public/images/thumbdown.svg";
-import { capitalizeFirstLetter } from "utils/strutils";
+import { capitalizeFirstLetter } from "../../utils/strutils";
 
-import { useSessionStorage } from "utils/useSessionStorage";
-import { getItemId } from "utils/getItemId";
+import { useSessionStorage } from "../../utils/useSessionStorage";
+import { getItemId } from "../../utils/getItemId";
 
 
 
@@ -14,7 +14,7 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
   const [thanks, setThanks] = useSessionStorage(uniqId, false);
 
   return (
-    <div className="c-goingto mt-4">
+    <div className="c-goingto mt-4" data-testid="GoingToContactQuestion">
       <span className="c-goingto-title">Allez-vous contacter cet établissement ?</span>
       <div className="d-flex-center mt-2">
         {thanks ? (

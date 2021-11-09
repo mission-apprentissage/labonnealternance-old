@@ -3,6 +3,7 @@ const { itemModel } = require("../model/itemModel");
 const config = require("config");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const { manageApiError } = require("../common/utils/errorManager");
+const { encryptMailWithIV } = require("../common/utils/encryptString");
 
 const matchaApiEndpoint = `https://matcha${
   config.env === "production" ? "" : "-recette"
@@ -69,7 +70,7 @@ const transformMatchaJobForIdea = (job, distance) => {
     resultJob.id = `${job.id_form}-${idx}`;
     resultJob.title = offre.libelle;
     resultJob.contact = {
-      email: job.email,
+      ...encryptMailWithIV(job.email),
       name: job.prenom + " " + job.nom,
       phone: job.telephone,
     };
@@ -91,6 +92,8 @@ const transformMatchaJobForIdea = (job, distance) => {
       id: offre._id,
       description: offre.description,
       creationDate: job.createdAt,
+      contractType: offre.type,
+      jobStartDate: offre.date_debut_apprentissage,
     };
 
     resultJob.romes = [];
