@@ -30,6 +30,24 @@ const applicationSchema = {
     required: false,
     description: "Le message envoyé par le candidat",
   },
+  applicant_opinion: {
+    type: String,
+    default: null,
+    required: false,
+    description: "L'avis donné par le candidat",
+  },
+  applicant_feedback: {
+    type: String,
+    default: null,
+    required: false,
+    description: "Un commentaire concernant le produit",
+  },
+  applicant_feedback_date: {
+    type: Date,
+    default: null,
+    required: false,
+    description: "Date d'opinion donnée",
+  },
   company_siret: {
     type: String,
     default: null,
