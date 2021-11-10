@@ -17,7 +17,7 @@ const CandidatureSpontaneeSubmit = (props) => {
         )}`}
         type="submit"
       >
-        {amongst(kind, ["lbb", "lba"]) ? "J'envoie une candidature spontanée" : "J'envoie une candidature"}
+        {amongst(kind, ["lbb", "lba"]) ? "J'envoie ma candidature spontanée" : "J'envoie ma candidature"}
       </button>
     );
   } else if (sendingState === "ok_sent") {

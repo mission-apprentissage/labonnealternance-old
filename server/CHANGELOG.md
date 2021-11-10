@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.2 [12/11/2021]
+[921] Finitions mep
+
 ## 1.17.1 [10/11/2021]
 [902] CGU sans case à cocher
 [910] Restauration boutons
