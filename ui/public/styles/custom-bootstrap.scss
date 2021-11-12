@@ -203,3 +203,7 @@ body {
   text-align: center;
   @extend .px-4;
 }
+
+.halflead {
+  font-size: $font-size-base * 1.125;
+}
