@@ -39,7 +39,7 @@ const FormulaireSatisfaction = () => {
   };
 
   return (
-    <div>
+    <div className="c-formulaire-satisfaction">
       <NextSeo
         title="Formulaire de satisfaction | La Bonne Alternance | Trouvez votre alternance"
         description="Formulaire de satisfaction."
@@ -73,6 +73,7 @@ const FormulaireSatisfaction = () => {
                 id="message"
                 data-testid="message"
                 name="message"
+                placeholder="J’ai une suggestion à propos de ..."
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.message}
