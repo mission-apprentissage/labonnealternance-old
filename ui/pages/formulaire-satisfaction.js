@@ -68,7 +68,9 @@ const FormulaireSatisfaction = () => {
           <div className="col col-lg-7 mx-auto">
             <p className="pt-5">Merci beaucoup pour ce retour positif sur le service <strong>La Bonne Alternance</strong> et d'avoir pris le temps de le faire.</p>
             <p className="pt-3">Avez-vous tout de même des suggestions d'améliorations ?</p>
-            <fieldset data-testid="fieldset-message pt-3 c-candidature-message">
+            <fieldset data-testid="fieldset-message" className={`pt-3 c-candidature-field is-not-validated ${
+              formik.touched.message ? `is-valid-${!formik.errors.message}` : "is-not-validated"
+            }`}>
               <textarea
                 id="message"
                 data-testid="message"
@@ -80,6 +82,15 @@ const FormulaireSatisfaction = () => {
               />
             </fieldset>
             {getFieldError()}
+            <div className="d-flex flex-row-reverse">
+              <button
+                aria-label="je-postule"
+                className={`btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default`}
+                type="submit"
+              >
+                {"J'envoie mon commentaire !"}
+              </button>
+            </div>
           </div>
         </div>
       </div>
