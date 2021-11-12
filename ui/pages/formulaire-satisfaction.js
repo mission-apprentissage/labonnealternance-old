@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { getValueFromPath } from "utils/tools";
 import { amongst } from "utils/arrayutils";
-import React from "react";
 
 import SatisfactionForm from "components/SatisfactionForm/SatisfactionForm";
 import { NextSeo } from "next-seo";
