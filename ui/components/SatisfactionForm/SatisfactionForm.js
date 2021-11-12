@@ -39,7 +39,6 @@ const SatisfactionForm = () => {
 
   return (
     <div className="c-formulaire-satisfaction">
-
       <SatisfactionFormNavigation/>
       {
         sendingState == 'not_sent' ?
