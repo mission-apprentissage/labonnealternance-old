@@ -63,7 +63,7 @@ const SatisfactionForm = () => {
                   {getFieldError()}
                   <div className="d-flex flex-row-reverse">
                     <button
-                      aria-label="je-postule"
+                      aria-label="jenvoie-mon-commentaire"
                       className={`btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default`}
                       type="submit"
                     >
