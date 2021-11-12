@@ -4,7 +4,7 @@ import React from "react";
 const SatisfactionFormSuccess = () => {
 
   return (
-    <div className="container flex-center pt-5">
+    <div className="container flex-center pt-5" data-testid="SatisfactionFormSuccess">
       <div className="row flex-center py-5">
         <div className="col col-lg-7 mx-auto">
           <div className="d-flex-center pb-5">
