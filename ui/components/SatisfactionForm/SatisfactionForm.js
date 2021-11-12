@@ -48,7 +48,7 @@ const SatisfactionForm = () => {
                 <p className="pt-5">Merci beaucoup pour ce retour positif sur le service <strong>La Bonne Alternance</strong> et d'avoir pris le temps de le faire.</p>
                 <p className="pt-2">Avez-vous tout de même des suggestions d'améliorations ?</p>
                 <form onSubmit={formik.handleSubmit} className="">
-                  <fieldset data-testid="fieldset-message" className={`pt-2 c-candidature-field is-not-validated ${formik.touched.message ? `is-valid-${!formik.errors.message}` : "is-not-validated"
+                  <fieldset data-testid="fieldset-message" className={`pt-2 c-candidature-field ${formik.touched.message ? `is-valid-${!formik.errors.message}` : "is-not-validated"
                     }`}>
                     <textarea
                       id="message"

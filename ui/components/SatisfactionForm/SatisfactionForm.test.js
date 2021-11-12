@@ -12,12 +12,26 @@ describe("SatisfactionForm", () => {
 
   it("By default displays a form", () => {
     // Given
-    render(<SatisfactionForm item={{}} />);
+    render(<SatisfactionForm />);
     // When
     const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
     // Then
-    expect(screen.getByTestId("fieldset-message")).toBeVisible();
+    const textArea = screen.getByTestId("fieldset-message")
+    expect(textArea).toBeVisible();
+    expect(textArea).not.toHaveClass("is-valid-false");
     expect(submitButton).toBeVisible();
+  });
+  
+  it("Shows error if message is not filled", () => {
+    // Given
+    render(<SatisfactionForm />);
+    const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
+    // When
+    userEvent.click(submitButton)
+    // Then
+    const textArea = screen.getByTestId("fieldset-message")
+    expect(textArea).toBeVisible();
+    expect(textArea).toHaveClass("is-valid-false");
   });
 
 });
