@@ -14,10 +14,11 @@ const FormulaireSatisfaction = () => {
     // requête post avis pour enregistrement en base si et seulement si params corrects
   }, []);
 
+
+  const [sendingState, setSendingState] = useState("not_sent");
+
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-
-
 
   const formik = useFormik({
     initialValues: {message: ""},
@@ -25,7 +26,7 @@ const FormulaireSatisfaction = () => {
       message: Yup.string().nullable().required("Veuillez remplir le commentaire"),
     }),
     onSubmit: async (formikValues) => {
-      await submitCommentaire(formikValues.message);
+      await submitCommentaire(formikValues.message, setSendingState);
     },
   });
 
@@ -64,39 +65,47 @@ const FormulaireSatisfaction = () => {
           </div>
         </nav>
       </div>
-      <div className="container flex-center">
-        <div className="row flex-center py-5">
-          <div className="col col-lg-7 mx-auto">
-            <p className="pt-5">Merci beaucoup pour ce retour positif sur le service <strong>La Bonne Alternance</strong> et d'avoir pris le temps de le faire.</p>
-            <p className="pt-2">Avez-vous tout de même des suggestions d'améliorations ?</p>
-            <form onSubmit={formik.handleSubmit} className="">
-              <fieldset data-testid="fieldset-message" className={`pt-2 c-candidature-field is-not-validated ${
-                formik.touched.message ? `is-valid-${!formik.errors.message}` : "is-not-validated"
-              }`}>
-                <textarea
-                  id="message"
-                  data-testid="message"
-                  name="message"
-                  placeholder="J’ai une suggestion à propos de ..."
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                  value={formik.values.message}
-                />
-              </fieldset>
-              {getFieldError()}
-              <div className="d-flex flex-row-reverse">
-                <button
-                  aria-label="je-postule"
-                  className={`btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default`}
-                  type="submit"
-                >
-                  {"J'envoie mon commentaire !"}
-                </button>
+      {
+        sendingState == 'not_sent' ?
+          <div className="container flex-center">
+            <div className="row flex-center py-5">
+              <div className="col col-lg-7 mx-auto">
+                <p className="pt-5">Merci beaucoup pour ce retour positif sur le service <strong>La Bonne Alternance</strong> et d'avoir pris le temps de le faire.</p>
+                <p className="pt-2">Avez-vous tout de même des suggestions d'améliorations ?</p>
+                <form onSubmit={formik.handleSubmit} className="">
+                  <fieldset data-testid="fieldset-message" className={`pt-2 c-candidature-field is-not-validated ${formik.touched.message ? `is-valid-${!formik.errors.message}` : "is-not-validated"
+                    }`}>
+                    <textarea
+                      id="message"
+                      data-testid="message"
+                      name="message"
+                      placeholder="J’ai une suggestion à propos de ..."
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      value={formik.values.message}
+                    />
+                  </fieldset>
+                  {getFieldError()}
+                  <div className="d-flex flex-row-reverse">
+                    <button
+                      aria-label="je-postule"
+                      className={`btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default`}
+                      type="submit"
+                    >
+                      {"J'envoie mon commentaire !"}
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
-      </div>
+          :
+          <div className="container flex-center">
+            Done !
+          </div>
+      }
+
+
     </div>
   );
 };
