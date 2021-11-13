@@ -1,6 +1,10 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
-const { sendApplication } = require("../../service/applications");
+const {
+  sendApplication,
+  saveApplicationFeedback,
+  saveApplicationFeedbackComment,
+} = require("../../service/applications");
 const rateLimit = require("express-rate-limit");
 
 const limiter1Per20Second = rateLimit({
@@ -29,6 +33,30 @@ module.exports = (components) => {
     tryCatch(async (req, res) => {
       const result = await sendApplication({
         shouldCheckSecret: req.body.secret ? true : false,
+        query: req.body,
+        ...components,
+      });
+      return res.json(result);
+    })
+  );
+
+  router.post(
+    "/feedback",
+    limiter1Per20Second,
+    tryCatch(async (req, res) => {
+      const result = await saveApplicationFeedback({
+        query: req.body,
+        ...components,
+      });
+      return res.json(result);
+    })
+  );
+
+  router.post(
+    "/feedbackComment",
+    limiter1Per20Second,
+    tryCatch(async (req, res) => {
+      const result = await saveApplicationFeedbackComment({
         query: req.body,
         ...components,
       });
