@@ -4,7 +4,12 @@ const path = require("path");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
 const { encryptIdWithIV, decryptWithIV } = require("../common/utils/encryptString");
 const { Application } = require("../common/model");
-const { validateSendApplication, validateCompanyEmail } = require("./validateSendApplication");
+const {
+  validateSendApplication,
+  validateCompanyEmail,
+  validateFeedbackApplication,
+  validateFeedbackApplicationComment,
+} = require("./validateSendApplication");
 
 const images = {
   images: {
@@ -124,6 +129,52 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   }
 };
 
+const saveApplicationFeedback = async ({ query }) => {
+  await validateFeedbackApplication({
+    id: query.id,
+    iv: query.iv,
+    avis: query.avis,
+  });
+
+  let decryptedId = decryptWithIV(query.id, query.iv);
+
+  try {
+    await Application.findOneAndUpdate(
+      { id: decryptedId },
+      { applicant_opinion: query.avis, applicant_feedback_date: new Date() }
+    );
+
+    return { result: "ok", message: "opinion registered" };
+  } catch (err) {
+    console.log("err ", err);
+    Sentry.captureException(err);
+    return { error: "error_saving_opinion" };
+  }
+};
+
+const saveApplicationFeedbackComment = async ({ query }) => {
+  await validateFeedbackApplicationComment({
+    id: query.id,
+    iv: query.iv,
+    comment: query.comment,
+  });
+
+  let decryptedId = decryptWithIV(query.id, query.iv);
+
+  try {
+    await Application.findOneAndUpdate(
+      { id: decryptedId },
+      { applicant_feedback: query.comment, applicant_feedback_date: new Date() }
+    );
+
+    return { result: "ok", message: "comment registered" };
+  } catch (err) {
+    console.log("err ", err);
+    Sentry.captureException(err);
+    return { error: "error_saving_comment" };
+  }
+};
+
 const sendTestMail = async ({ mailer, query }) => {
   if (!query.secret) {
     return { error: "secret_missing" };
@@ -161,4 +212,6 @@ const getEmailTemplate = (type = "mail-candidat") => {
 module.exports = {
   sendTestMail,
   sendApplication,
+  saveApplicationFeedback,
+  saveApplicationFeedbackComment,
 };
