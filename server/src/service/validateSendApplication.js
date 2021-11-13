@@ -29,7 +29,33 @@ const validateCompanyEmail = async (validable) => {
   return "ok";
 };
 
+const validateFeedbackApplication = async (validable) => {
+  let schema = Yup.object().shape({
+    id: Yup.string().required("⚠ ID manquant."),
+    iv: Yup.string().required("⚠ IV manquant."),
+    avis: Yup.string().required("⚠ Avis manquant."),
+  });
+  await schema.validate(validable).catch(function () {
+    throw "error - validation of data failed";
+  });
+  return "ok";
+};
+
+const validateFeedbackApplicationComment = async (validable) => {
+  let schema = Yup.object().shape({
+    id: Yup.string().required("⚠ ID manquant."),
+    iv: Yup.string().required("⚠ IV manquant."),
+    comment: Yup.string().required("⚠ Commentaire manquant."),
+  });
+  await schema.validate(validable).catch(function () {
+    throw "error - validation of data failed";
+  });
+  return "ok";
+};
+
 module.exports = {
   validateSendApplication,
   validateCompanyEmail,
+  validateFeedbackApplication,
+  validateFeedbackApplicationComment,
 };
