@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SatisfactionForm from "components/SatisfactionForm/SatisfactionForm";
 import { NextSeo } from "next-seo";
 
 const FormulaireSatisfaction = () => {
-
   return (
     <>
       <NextSeo

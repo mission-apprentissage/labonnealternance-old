@@ -22,7 +22,7 @@ describe("SatisfactionForm", () => {
     expect(submitButton).toBeVisible();
   });
   
-  it("Shows error if message is not filled", async () => {
+  it("Shows error if comment is not filled", async () => {
     // Given
     render(<SatisfactionForm />);
     const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
@@ -39,7 +39,7 @@ describe("SatisfactionForm", () => {
   it("Show successful page if comment is submitted properly", async () => {
     // Given
     render(<SatisfactionForm />);
-    const textArea = screen.getByTestId("message")
+    const textArea = screen.getByTestId("comment")
     const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
     // When
     userEvent.type(textArea, 'My comment')

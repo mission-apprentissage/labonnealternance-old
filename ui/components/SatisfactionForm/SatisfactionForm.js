@@ -9,11 +9,11 @@ import SatisfactionFormNavigation from "./SatisfactionFormNavigation.js";
 import { getValueFromPath } from "utils/tools";
 import { amongst } from "utils/arrayutils";
 
-const SatisfactionForm = () => {
-  let iv = null;
-  let id = null;
-  let avis = null;
+let iv = null;
+let id = null;
+let avis = null;
 
+const SatisfactionForm = () => {
   const initParametersFromPath = () => {
     //console.log("dddd",getValueFromPath("iv"));
 
@@ -84,14 +84,14 @@ const SatisfactionForm = () => {
   const [avisState, setAvisState] = useState("");
 
   const formik = useFormik({
-    initialValues: { message: "" },
+    initialValues: { comment: "" },
     validationSchema: Yup.object({
-      message: Yup.string().nullable().required("Veuillez remplir le commentaire"),
+      comment: Yup.string().nullable().required("Veuillez remplir le commentaire"),
     }),
     onSubmit: async (formikValues) => {
       await submitCommentaire(
         {
-          message: formikValues.message,
+          comment: formikValues.comment,
           id,
           iv,
         },
@@ -102,8 +102,8 @@ const SatisfactionForm = () => {
 
   const getFieldError = () => {
     let errorMsg = "";
-    if (formik.touched.message && formik.errors.message) {
-      errorMsg = <div className="c-candidature-erreur mb-2 visible">{formik.errors.message}</div>;
+    if (formik.touched.comment && formik.errors.comment) {
+      errorMsg = <div className="c-candidature-erreur mb-2 visible">{formik.errors.comment}</div>;
     } else if (sendingState === "not_sent_because_of_errors") {
       errorMsg = (
         <div className="c-candidature-erreur mb-2 visible">
@@ -128,17 +128,17 @@ const SatisfactionForm = () => {
                 <fieldset
                   data-testid="fieldset-message"
                   className={`pt-2 c-candidature-field ${
-                    formik.touched.message ? `is-valid-${!formik.errors.message}` : "is-not-validated"
+                    formik.touched.comment ? `is-valid-${!formik.errors.comment}` : "is-not-validated"
                   }`}
                 >
                   <textarea
-                    id="message"
-                    data-testid="message"
-                    name="message"
+                    id="comment"
+                    data-testid="comment"
+                    name="comment"
                     placeholder="J’ai une suggestion à propos de ..."
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
-                    value={formik.values.message}
+                    value={formik.values.comment}
                   />
                 </fieldset>
                 {getFieldError()}
