@@ -1,6 +1,7 @@
 const config = require("config");
 const Sentry = require("@sentry/node");
 const path = require("path");
+const { ObjectId } = require("mongodb");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
 const { encryptIdWithIV, decryptWithIV } = require("../common/utils/encryptString");
 const { Application } = require("../common/model");
@@ -140,7 +141,7 @@ const saveApplicationFeedback = async ({ query }) => {
 
   try {
     await Application.findOneAndUpdate(
-      { id: decryptedId },
+      { _id: ObjectId(decryptedId) },
       { applicant_opinion: query.avis, applicant_feedback_date: new Date() }
     );
 
@@ -163,7 +164,7 @@ const saveApplicationFeedbackComment = async ({ query }) => {
 
   try {
     await Application.findOneAndUpdate(
-      { id: decryptedId },
+      { _id: ObjectId(decryptedId) },
       { applicant_feedback: query.comment, applicant_feedback_date: new Date() }
     );
 
