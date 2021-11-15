@@ -12,6 +12,8 @@ const {
   validateFeedbackApplicationComment,
 } = require("./validateSendApplication");
 
+const publicUrl = config.publicUrl;
+
 const images = {
   images: {
     //logo: `${config.publicUrl}/images/emails/logo_lba.png`,
@@ -92,7 +94,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
           application.applicant_email,
           `Votre candidature chez ${application.company_name}`,
           getEmailTemplate(emailTemplates.candidat),
-          { ...application._doc, ...images, ...encryptedId },
+          { ...application._doc, ...images, ...encryptedId, publicUrl },
           [
             {
               filename: application.applicant_file_name,
@@ -104,7 +106,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
           application.company_email,
           `Candidature spontanée pour un poste en alternance`,
           getEmailTemplate(emailTemplates.entreprise),
-          { ...application._doc, ...images },
+          { ...application._doc, ...images, publicUrl },
           [
             {
               filename: application.applicant_file_name,
