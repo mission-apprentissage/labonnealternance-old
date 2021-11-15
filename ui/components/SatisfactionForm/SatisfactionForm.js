@@ -103,7 +103,13 @@ const SatisfactionForm = () => {
   const getFieldError = () => {
     let errorMsg = "";
     if (formik.touched.message && formik.errors.message) {
-      errorMsg = <div className="c-candidature-erreur visible">{formik.errors.message}</div>;
+      errorMsg = <div className="c-candidature-erreur mb-2 visible">{formik.errors.message}</div>;
+    } else if (sendingState === "not_sent_because_of_errors") {
+      errorMsg = (
+        <div className="c-candidature-erreur mb-2 visible">
+          Une erreur technique empêche l'enregistrement de votre avis. Merci de réessayer ultérieurement;
+        </div>
+      );
     } else {
       errorMsg = <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>;
     }
