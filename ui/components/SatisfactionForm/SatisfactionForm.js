@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import postFeedback from "./services/postFeedback";
 import submitCommentaire from "./services/submitCommentaire.js";
 import SatisfactionFormSuccess from "./SatisfactionFormSuccess.js";
 import SatisfactionFormNavigation from "./SatisfactionFormNavigation.js";
 
 import { getValueFromPath } from "utils/tools";
 import { amongst } from "utils/arrayutils";
-import postFeedback from "services/postFeedback";
+
 
 const SatisfactionForm = () => {
   let iv = null;

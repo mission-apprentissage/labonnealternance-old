@@ -1,8 +1,9 @@
-
 export default async function submitCommentaire(
-  comment = '',
-  setSendingState = () => { },
-  _postCommentaire = () => { console.log('commentaire sent : ' + comment) },
+  comment = "",
+  setSendingState = () => {},
+  _postCommentaire = () => {
+    console.log("commentaire sent : " + comment);
+  }
 ) {
   setSendingState("currently_sending");
   let success = true;
