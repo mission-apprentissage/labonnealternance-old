@@ -9,7 +9,6 @@ import SatisfactionFormNavigation from "./SatisfactionFormNavigation.js";
 import { getValueFromPath } from "utils/tools";
 import { amongst } from "utils/arrayutils";
 
-
 const SatisfactionForm = () => {
   let iv = null;
   let id = null;
@@ -21,6 +20,47 @@ const SatisfactionForm = () => {
     iv = getValueFromPath("iv");
     id = getValueFromPath("id");
     avis = getValueFromPath("avis");
+    setAvisState(avis);
+  };
+
+  const getFeedbackText = () => {
+    let text = (
+      <>
+        <p className="pt-5">Merci beaucoup d'avoir pris le temps de nous faire un retour.</p>
+        <p className="pt-2">Selon vous, comment pourrions-nous améliorer le service La Bonne Alternance ?</p>
+      </>
+    );
+
+    if (avisState === "utile") {
+      text = (
+        <>
+          <p className="pt-5">
+            Merci beaucoup d'avoir pris le temps de nous faire un retour et d'avoir trouvé le service satisfaisant.
+          </p>
+          <p className="pt-2">
+            Aidez-nous à le rendre encore meilleur en nous faisant part de vos suggestions d'amélioration !
+          </p>
+        </>
+      );
+    } else if (avisState === "neutre") {
+      text = (
+        <>
+          <p className="pt-5">Nous sommes désolés que le service ne vous apporte pas entière satisfaction.</p>
+          <p className="pt-2">Selon vous, comment pourrions-nous améliorer le service La Bonne Alternance ?</p>
+        </>
+      );
+    } else if (avisState === "pasUtile") {
+      text = (
+        <>
+          <p className="pt-5">
+            Nous sommes désolés que le service La Bonne Alternance ne vous apporte pas satisfaction.
+          </p>
+          <p className="pt-2">Aidez-nous à l'améliorer en nous partageant vos attentes.</p>
+        </>
+      );
+    }
+
+    return text;
   };
 
   const saveFeedback = () => {
@@ -41,6 +81,7 @@ const SatisfactionForm = () => {
   }, []);
 
   const [sendingState, setSendingState] = useState("not_sent");
+  const [avisState, setAvisState] = useState("");
 
   const formik = useFormik({
     initialValues: { message: "" },
@@ -72,15 +113,11 @@ const SatisfactionForm = () => {
   return (
     <div className="c-formulaire-satisfaction">
       <SatisfactionFormNavigation />
-      {sendingState == "not_sent" ? (
+      {sendingState !== "ok_sent" ? (
         <div className="container flex-center">
           <div className="row flex-center py-5">
             <div className="col col-lg-7 mx-auto">
-              <p className="pt-5">
-                Merci beaucoup pour ce retour positif sur le service <strong>La Bonne Alternance</strong> et d'avoir
-                pris le temps de le faire.
-              </p>
-              <p className="pt-2">Avez-vous tout de même des suggestions d'améliorations ?</p>
+              {getFeedbackText()}
               <form onSubmit={formik.handleSubmit} className="">
                 <fieldset
                   data-testid="fieldset-message"
