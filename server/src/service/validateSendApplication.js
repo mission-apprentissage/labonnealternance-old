@@ -33,7 +33,9 @@ const validateFeedbackApplication = async (validable) => {
   let schema = Yup.object().shape({
     id: Yup.string().required("⚠ ID manquant."),
     iv: Yup.string().required("⚠ IV manquant."),
-    avis: Yup.string().required("⚠ Avis manquant."),
+    avis: Yup.string()
+      .required("⚠ Avis manquant.")
+      .matches(/(neutre|utile|pasUtile)/, "⚠ Valeur non conforme"),
   });
   await schema.validate(validable).catch(function () {
     throw "error - validation of data failed";
