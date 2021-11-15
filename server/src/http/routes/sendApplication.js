@@ -12,6 +12,11 @@ const limiter1Per20Second = rateLimit({
   max: 1, // limit each IP to 1 request per windowMs
 });
 
+const limiter1Per5Second = rateLimit({
+  windowMs: 5000, // 5 seconds
+  max: 1, // limit each IP to 1 request per windowMs
+});
+
 /**
  * API romes
  */
@@ -42,7 +47,7 @@ module.exports = (components) => {
 
   router.post(
     "/feedback",
-    limiter1Per20Second,
+    limiter1Per5Second,
     tryCatch(async (req, res) => {
       const result = await saveApplicationFeedback({
         query: req.body,
