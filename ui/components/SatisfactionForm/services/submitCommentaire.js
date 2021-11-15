@@ -1,9 +1,9 @@
+import postCommentaire from "./postCommentaire.js";
+
 export default async function submitCommentaire(
   params,
   setSendingState = () => {},
-  _postCommentaire = () => {
-    console.log("commentaire sent : " + params);
-  }
+  _postCommentaire = postCommentaire
 ) {
   setSendingState("currently_sending");
   let success = true;
