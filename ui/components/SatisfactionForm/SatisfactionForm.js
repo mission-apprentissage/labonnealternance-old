@@ -12,60 +12,76 @@ import { amongst } from "utils/arrayutils";
 let iv = null;
 let id = null;
 let avis = null;
+let intention = null;
 
-const SatisfactionForm = () => {
+const SatisfactionForm = ({ formType }) => {
   const initParametersFromPath = () => {
     //console.log("dddd",getValueFromPath("iv"));
 
     iv = getValueFromPath("iv");
     id = getValueFromPath("id");
     avis = getValueFromPath("avis");
-    setAvisState(avis);
+    intention = getValueFromPath("intention");
+    if (formType === "intention") {
+      setIntentionState(avis);
+    } else {
+      setAvisState(avis);
+    }
   };
 
   const getFeedbackText = () => {
     let text = (
       <>
-        <p className="pt-5">Merci beaucoup d'avoir pris le temps de nous faire un retour.</p>
-        <p className="pt-2">Selon vous, comment pourrions-nous améliorer le service La Bonne Alternance ?</p>
+        <p className="pt-5">Merci beaucoup pour votre réponse</p>
       </>
     );
 
-    if (avisState === "utile") {
-      text = (
-        <>
-          <p className="pt-5">
-            Merci beaucoup d'avoir pris le temps de nous faire un retour et d'avoir trouvé le service satisfaisant.
-          </p>
-          <p className="pt-2">
-            Aidez-nous à le rendre encore meilleur en nous faisant part de vos suggestions d'amélioration !
-          </p>
-        </>
-      );
-    } else if (avisState === "neutre") {
-      text = (
-        <>
-          <p className="pt-5">Nous sommes désolés que le service ne vous apporte pas entière satisfaction.</p>
-          <p className="pt-2">Selon vous, comment pourrions-nous améliorer le service La Bonne Alternance ?</p>
-        </>
-      );
-    } else if (avisState === "pasUtile") {
-      text = (
-        <>
-          <p className="pt-5">
-            Nous sommes désolés que le service La Bonne Alternance ne vous apporte pas satisfaction.
-          </p>
-          <p className="pt-2">Aidez-nous à l'améliorer en nous partageant vos attentes.</p>
-        </>
-      );
+    if (formType === "avis") {
+      if (avisState === "utile") {
+        text = (
+          <>
+            <p className="pt-5">
+              Merci beaucoup d'avoir pris le temps de nous faire un retour et d'avoir trouvé le service satisfaisant.
+            </p>
+            <p className="pt-2">
+              Aidez-nous à le rendre encore meilleur en nous faisant part de vos suggestions d'amélioration !
+            </p>
+          </>
+        );
+      } else if (avisState === "neutre") {
+        text = (
+          <>
+            <p className="pt-5">Nous sommes désolés que le service ne vous apporte pas entière satisfaction.</p>
+            <p className="pt-2">Selon vous, comment pourrions-nous améliorer le service La Bonne Alternance ?</p>
+          </>
+        );
+      } else if (avisState === "pasUtile") {
+        text = (
+          <>
+            <p className="pt-5">
+              Nous sommes désolés que le service La Bonne Alternance ne vous apporte pas satisfaction.
+            </p>
+            <p className="pt-2">Aidez-nous à l'améliorer en nous partageant vos attentes.</p>
+          </>
+        );
+      }
     }
 
     return text;
   };
 
-  const saveFeedback = () => {
+  const saveAnswer = () => {
+    /*
+    distinguer postFeedback et postIntention
+
+    Si postIntention provoque l'envoi d'un message au candidat
+*/
+    
     if (iv && id && amongst(avis, ["utile", "pasUtile", "neutre"])) {
       console.log("good : ", iv, id, avis);
+
+
+
       postFeedback({ iv, id, avis });
     } else {
       //else invalid params
@@ -77,11 +93,12 @@ const SatisfactionForm = () => {
     // enregistrement en state des params provenant du path
     initParametersFromPath();
     // requête post avis pour enregistrement en base si et seulement si params corrects
-    saveFeedback();
+    saveAnswer();
   }, []);
 
   const [sendingState, setSendingState] = useState("not_sent");
   const [avisState, setAvisState] = useState("");
+  const [intentionState, setIntentionState] = useState("");
 
   const formik = useFormik({
     initialValues: { comment: "" },

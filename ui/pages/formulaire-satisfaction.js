@@ -9,7 +9,7 @@ const FormulaireSatisfaction = () => {
         title="Formulaire de satisfaction | La Bonne Alternance | Trouvez votre alternance"
         description="Formulaire de satisfaction."
       />
-      <SatisfactionForm />
+      <SatisfactionForm formType="avis" />
     </>
   );
  };
