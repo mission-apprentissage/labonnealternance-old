@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.2 [18/11/2021]
+[879] Màj email de contact
+
 ## 1.17.1 [10/11/2021]
 [902] CGU sans case à cocher
 [910] Restauration boutons
