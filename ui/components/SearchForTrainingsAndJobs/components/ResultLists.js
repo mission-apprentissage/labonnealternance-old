@@ -162,19 +162,21 @@ const ResultLists = (props) => {
 
   const getLbbCompanyList = () => {
     const mergedLbaLbbCompanies = mergeOpportunities(props.jobs, "onlyLbbLba");
+    console.log('mergedLbaLbbCompanies', mergedLbaLbbCompanies.length);
+    let buffer = []
+
     if (mergedLbaLbbCompanies.length) {
+      mergedLbaLbbCompanies.map((company, idx) => {
+        buffer.push(<LbbCompany
+          key={idx}
+          company={company}
+          handleSelectItem={props.handleSelectItem}
+          searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
+        />)
+      })
       return (
         <>
-          {mergedLbaLbbCompanies.map((company, idx) => {
-            return (
-              <LbbCompany
-                key={idx}
-                company={company}
-                handleSelectItem={props.handleSelectItem}
-                searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-              />
-            );
-          })}
+          {buffer}
         </>
       );
     } else return "";
