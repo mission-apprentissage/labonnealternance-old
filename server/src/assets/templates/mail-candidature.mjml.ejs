@@ -10,6 +10,13 @@
             .form-row { font-size: 16px; padding-bottom: 15px;}
             .form-value { background: #F9F8F6; font-weight: bold; padding: 3px 15px  }
             .nom-societe { font-size: 14px; color: #F07F87; font-weight: bold; }
+            
+            .intention-link:hover td, 
+            .intention-link:hover a { 
+                background-color: #000091 !important; 
+                color: #fff !important; 
+            }
+
         </mj-style>
         <mj-attributes>
             <mj-text padding="0px" color="#232E3C" font-family="Inter,sans-serif" font-size="14px" line-height="23px" />
@@ -67,7 +74,37 @@
         </mj-wrapper>
 
         <mj-section padding-bottom="30px"></mj-section>
-        
+        <mj-wrapper background-color="#FDF2F3" padding="10px 0 5px" border-radius="10px">
+            <mj-section padding="15px">
+                <mj-column text-align="left">
+                <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
+                    Que comptez vous faire ?
+                </mj-text>
+                
+                <mj-button href="https://labonnealternance.pole-emploi.fr" 
+                    css-class="intention-link" 
+                    width="250px" 
+                    border-radius="12px"
+                    border-color="#000091" 
+                    color="#000091" 
+                    font-size="14px"
+                    background-color="#FDF2F3" 
+                    border="1px solid #000091">👌 Rencontrer le candidat</mj-button>
+                
+                <mj-text font-size="16px" padding-bottom="15px" >
+                    <a href="https://labonnealternance.pole-emploi.fr" ><div class="intention-link">👌 Rencontrer le candidat</div></a>
+                </mj-text>
+                <mj-text font-size="16px" padding-bottom="15px" >
+                    <a href="https://labonnealternance.pole-emploi.fr" ><div class="intention-link">🤔 En attente de décision</div></a>
+                </mj-text>
+                <mj-text font-size="16px" padding-bottom="15px" >
+                    <a href="https://labonnealternance.pole-emploi.fr" ><div class="intention-link">😞 Candidature refusée</div></a>
+                </mj-text>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+
+        <mj-section padding-bottom="30px"></mj-section>
         <mj-wrapper background-color="#ffffff" padding="10px 0 20px" border-radius="10px">
             <mj-section>
                 <mj-column>
