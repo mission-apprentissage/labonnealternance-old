@@ -14,13 +14,21 @@ const {
 
 const publicUrl = config.publicUrl;
 
+const imagePath = "https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/";
+
 const images = {
   images: {
     //logo: `${config.publicUrl}/images/emails/logo_lba.png`,
-    logo: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/logo_lba.png`,
-    logoRF: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/logo_rf.png`,
-    icoInfo: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/icone_info.png`,
-    icoCandidat: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/icone_candidat.png`,
+    logo: `${imagePath}logo_lba.png`,
+    logoRF: `${imagePath}logo_rf.png`,
+    icoInfo: `${imagePath}icone_info.png`,
+    icoCandidat: `${imagePath}icone_candidat.png`,
+    nspp: `${imagePath}nspp.png`,
+    utile: `${imagePath}utile.png`,
+    pasUtile: `${imagePath}pasUtile.png`,
+    neutre: `${imagePath}neutre.png`,
+    recrute: `${imagePath}recrute.png`,
+    recrutePas: `${imagePath}recrutePas.png`,
   },
 };
 
