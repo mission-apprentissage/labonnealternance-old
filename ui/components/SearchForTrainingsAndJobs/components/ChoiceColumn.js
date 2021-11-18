@@ -188,6 +188,12 @@ const ChoiceColumn = ({
     );
   };
 
+  const getTippedResultList = () => {
+    let initialResultList = getResultLists()
+    console.log('initialResultList', initialResultList);
+    return initialResultList;
+  }
+  
   const getSearchForm = () => {
     return (
       <div className="d-block d-md-none">
@@ -238,7 +244,7 @@ const ChoiceColumn = ({
         <>
           {getInitialDesktopText()}
           {getSearchForm()}
-          {trainings.length === 0 && isJobSearchLoading ? <div></div> : getResultLists()}
+          {trainings.length === 0 && isJobSearchLoading ? <div></div> : getTippedResultList()}
           {getSelectedItemDetail()}
         </>
       )}
