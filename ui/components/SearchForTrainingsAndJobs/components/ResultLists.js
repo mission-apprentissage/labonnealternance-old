@@ -174,6 +174,9 @@ const ResultLists = (props) => {
           searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
         />)
       })
+      if (mergedLbaLbbCompanies.length > 6) {
+        buffer.splice(5, 0, <div className="my-5">⚠⚠ A randomly inserted div ⚠⚠</div>)
+      }
       return (
         <>
           {buffer}
