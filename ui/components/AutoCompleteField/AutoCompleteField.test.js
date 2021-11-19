@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { prettyDOM } from '@testing-library/dom';
+// import { prettyDOM } from '@testing-library/dom';
 import AutoCompleteField from './AutoCompleteField';
 import { Formik } from "formik";
 import {noop} from "lodash/noop";

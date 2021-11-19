@@ -15,6 +15,7 @@ export default function insertWhisper(document) {
         let textnode = document.createTextNode("Water");
         node.appendChild(textnode);
         node.classList.add('whisper');
+        node.setAttribute('data-testid', 'whisper');
         insertAfter(node, card)
         card.classList.add("red");
       } else {
