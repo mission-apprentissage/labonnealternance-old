@@ -63,8 +63,8 @@ function getHTML(text, link) {
                   </div>
                   <div class="d-flex-center mt-4 whisper-feedback p-3">
                     <span class="whisper-useful d-block">Avez-vous trouvé cette information utile ?</span>
-                    <button class="d-block whisper-useful-btn mx-2" onclick="">👍 Oui</button>
-                    <button class="d-block whisper-useful-btn" onclick="">👎 Non</button>
+                    <button class="d-block whisper-useful-btn mx-2" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour !</div>'">👍 Oui</button>
+                    <button class="d-block whisper-useful-btn" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour.</div>'">👎 Non</button>
                   </div>
                 </div>
               </div>
