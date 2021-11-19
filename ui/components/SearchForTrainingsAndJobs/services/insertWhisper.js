@@ -1,10 +1,11 @@
 import { random } from "lodash";
+import axios from "axios";
 
 function insertAfter(referenceNode, newNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-export default function insertWhisper(document) {
+export default async function insertWhisper(document) {
 
   const whisperSize = document.getElementsByClassName('whisper').length
   const resultCards = document.getElementsByClassName('resultCard')
@@ -13,6 +14,10 @@ export default function insertWhisper(document) {
   if (whisperSize > 0) return 'whisper already exists : no change'
   if (resultCardSize === 0) return 'no resultCard found : no change'
   if (resultCardSize < 10) return 'not enough resultCard to show a whisper'
+
+  const response = await axios.get('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/main/ui/config/villes.txt');
+  console.log('response', response);
+
 
   const randomlyChosenResultCard = resultCards[random(3, 6)];
   let whisperNode = document.createElement("div");
@@ -32,7 +37,7 @@ export default function insertWhisper(document) {
       '        </div>',
       '      </div>',
       '      <div>',
-      '        <div class="cardText pt-2">La bonne idée avant de se lancer dans une filière : regarder si elle recrute ou si le secteur est bouché ! Vous pouvez visualiser ces infos sur cette carte</div>',
+      '        <div class="cardText pt-2 whisper-text">La bonne idée avant de se lancer dans une filière : regarder si elle recrute ou si le secteur est bouché ! Vous pouvez visualiser ces infos sur cette carte</div>',
       '      </div>',
       '    </div>',
       '  </div>',
