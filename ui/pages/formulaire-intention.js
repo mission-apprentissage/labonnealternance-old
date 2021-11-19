@@ -12,6 +12,6 @@ const FormulaireIntention = () => {
       <SatisfactionForm formType="intention" />
     </>
   );
- };
+};
 
 export default FormulaireIntention;

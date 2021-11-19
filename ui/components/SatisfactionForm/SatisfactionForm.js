@@ -7,8 +7,8 @@ import submitCommentaire from "./services/submitCommentaire.js";
 import SatisfactionFormSuccess from "./SatisfactionFormSuccess.js";
 import SatisfactionFormNavigation from "./SatisfactionFormNavigation.js";
 
-import { getValueFromPath } from "utils/tools";
-import { amongst } from "utils/arrayutils";
+import { getValueFromPath } from "../../utils/tools";
+import { amongst } from "../../utils/arrayutils";
 
 let iv = null;
 let id = null;
@@ -17,15 +17,11 @@ let intention = null;
 
 const SatisfactionForm = ({ formType }) => {
   const initParametersFromPath = () => {
-    //console.log("dddd",getValueFromPath("iv"));
-
     iv = getValueFromPath("iv");
     id = getValueFromPath("id");
     avis = getValueFromPath("avis");
     intention = getValueFromPath("intention");
-    if (formType === "intention") {
-      setIntentionState(avis);
-    } else {
+    if (formType === "avis") {
       setAvisState(avis);
     }
   };
@@ -75,25 +71,13 @@ const SatisfactionForm = ({ formType }) => {
   };
 
   const saveAnswer = () => {
-    /*
-    distinguer postFeedback et postIntention
-
-    Si postIntention provoque l'envoi d'un message au candidat
-*/
     if (iv && id) {
-      console.log("almost good : ", iv, id, avis, intention);
       if (formType === "avis" && amongst(avis, ["utile", "pasUtile", "neutre"])) {
         postFeedback({ iv, id, avis });
       } else if (formType === "intention" && amongst(intention, ["refus", "ne_sais_pas", "entretien"])) {
         postIntention({ iv, id, intention });
-      } else {
-        //else invalid params 2
-        console.log("ca va pas 2 !");
-      }
-    } else {
-      //else invalid params
-      console.log("ca va pas !");
-    }
+      } //else invalid params 2
+    } //else invalid params
   };
 
   useEffect(() => {
@@ -105,7 +89,6 @@ const SatisfactionForm = ({ formType }) => {
 
   const [sendingState, setSendingState] = useState("not_sent");
   const [avisState, setAvisState] = useState("");
-  const [intentionState, setIntentionState] = useState("");
 
   const formik = useFormik({
     initialValues: { comment: "" },
