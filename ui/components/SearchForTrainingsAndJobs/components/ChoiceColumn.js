@@ -63,7 +63,7 @@ const ChoiceColumn = ({
   function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
   }
-  
+
   useEffect(() => {
     if (document.getElementsByClassName('newnode').length === 0) {
       let cards = document.getElementsByClassName('resultCard')
@@ -208,12 +208,6 @@ const ChoiceColumn = ({
       />
     );
   };
-
-  const getTippedResultList = () => {
-    let initialResultList = getResultLists()
-    console.log('initialResultList', initialResultList);
-    return initialResultList;
-  }
   
   const getSearchForm = () => {
     return (
@@ -265,7 +259,7 @@ const ChoiceColumn = ({
         <>
           {getInitialDesktopText()}
           {getSearchForm()}
-          {trainings.length === 0 && isJobSearchLoading ? <div></div> : getTippedResultList()}
+          {trainings.length === 0 && isJobSearchLoading ? <div></div> : getResultLists()}
           {getSelectedItemDetail()}
         </>
       )}
