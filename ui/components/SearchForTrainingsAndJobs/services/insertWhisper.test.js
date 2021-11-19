@@ -1,4 +1,4 @@
-import { insertWhisper } from "./insertWhisper";
+import whispers from "./insertWhisper";
 import { queryByTestId } from '@testing-library/dom'
 import nock from "nock";
 
@@ -13,7 +13,7 @@ describe('insertWhisper', () => {
       '<div>' +
       '  <span class="whisper">Im a whisper</span>' +
       '</div>';
-    let res = insertWhisper(document)
+    let res = whispers.insertWhisper(document)
     expect(res).toEqual('whisper already exists : no change')
   });
 
@@ -22,7 +22,7 @@ describe('insertWhisper', () => {
       '<div>' +
       '  Empty div, empty document' +
       '</div>';
-    let res = insertWhisper(document)
+    let res = whispers.insertWhisper(document)
     expect(res).toEqual('no resultCard found : no change')
   });
 
@@ -31,7 +31,7 @@ describe('insertWhisper', () => {
       '<div>' +
       '  <span class="resultCard">Im a resultCard</span>' +
       '</div>';
-    let res = insertWhisper(document)
+    let res = whispers.insertWhisper(document)
     expect(res).toEqual('not enough resultCard to show a whisper')
   });
   
@@ -49,7 +49,7 @@ describe('insertWhisper', () => {
     '  <span class="resultCard">9</span>' +
     '  <span class="resultCard">10</span>' +
     '</div>';
-    let res = insertWhisper(document)
+    let res = whispers.insertWhisper(document)
     const container = document.querySelector('#app')
     const whisper = queryByTestId(container, 'whisper')
     expect(whisper).not.toBeNull();
