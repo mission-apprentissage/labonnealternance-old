@@ -5,7 +5,7 @@ function insertAfter(referenceNode, newNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-export default function insertWhisper(document) {
+export default function insertWhisper(document, _getWhisperImage = getWhisperImage) {
 
   const whisperSize = document.getElementsByClassName('whisper').length
   const resultCards = document.getElementsByClassName('resultCard')
@@ -23,7 +23,7 @@ export default function insertWhisper(document) {
     ['<div class="resultCard gtmWhisper">',
       '  <div class="c-media">',
       '    <div class="c-media-figure">',
-            getWhisperImage(),
+            _getWhisperImage(),
       '    </div>',
       '    <div class="c-media-body">',
       '      <div class="row no-gutters">',
