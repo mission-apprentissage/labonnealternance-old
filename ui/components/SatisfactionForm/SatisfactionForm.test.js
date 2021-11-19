@@ -11,7 +11,7 @@ describe("SatisfactionForm", () => {
 
   it("By default displays a form", () => {
     // Given
-    render(<SatisfactionForm />);
+    render(<SatisfactionForm formType="avis" />);
     // When
     const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
     // Then
@@ -23,7 +23,7 @@ describe("SatisfactionForm", () => {
 
   it("Shows error if comment is not filled", async () => {
     // Given
-    render(<SatisfactionForm />);
+    render(<SatisfactionForm formType="avis" />);
     const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
     // When
     userEvent.click(submitButton);
@@ -37,7 +37,7 @@ describe("SatisfactionForm", () => {
 
   it("Show successful page if comment is submitted properly", async () => {
     // Given
-    render(<SatisfactionForm />);
+    render(<SatisfactionForm formType="avis" />);
     const textArea = screen.getByTestId("comment");
     const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
     // When
