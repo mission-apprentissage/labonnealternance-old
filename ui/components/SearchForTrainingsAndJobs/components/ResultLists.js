@@ -277,8 +277,9 @@ const ResultLists = (props) => {
       }
     }
 
-    let correspondText = `${count === 0 ? " ne" : ""}${count <= 1 ? " correspond" : " correspondent"
-      } à votre recherche`;
+    let correspondText = `${count === 0 ? " ne" : ""}${
+      count <= 1 ? " correspond" : " correspondent"
+    } à votre recherche`;
 
     return (
       <div className="pt-0">
@@ -361,8 +362,9 @@ const ResultLists = (props) => {
 
   return (
     <div
-      className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${props.selectedItem ? "c-result-list--item" : ""
-        }`}
+      className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${
+        props.selectedItem ? "c-result-list--item" : ""
+      }`}
     >
       <div className={`c-result-list__header ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
         {getResultCountAndLoading(displayCount)}
