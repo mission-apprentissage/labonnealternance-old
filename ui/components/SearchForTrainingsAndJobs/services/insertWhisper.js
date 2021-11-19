@@ -1,11 +1,10 @@
 import { random } from "lodash";
-import getWhisperImage from "./getWhisperImage.js";
 
 function insertAfter(referenceNode, newNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-export default function insertWhisper(document, _getWhisperImage = getWhisperImage) {
+export default function insertWhisper(document) {
 
   const whisperSize = document.getElementsByClassName('whisper').length
   const resultCards = document.getElementsByClassName('resultCard')
@@ -23,7 +22,7 @@ export default function insertWhisper(document, _getWhisperImage = getWhisperIma
     ['<div class="resultCard gtmWhisper">',
       '  <div class="c-media">',
       '    <div class="c-media-figure">',
-            _getWhisperImage(),
+            '<img className="c-whisper-img" src="/images/whisper.svg" alt="Someone" />',
       '    </div>',
       '    <div class="c-media-body">',
       '      <div class="row no-gutters">',
@@ -33,7 +32,7 @@ export default function insertWhisper(document, _getWhisperImage = getWhisperIma
       '        </div>',
       '      </div>',
       '      <div>',
-      '        <div class="cardText pt-2">Texte ligne 1</div>',
+      '        <div class="cardText pt-2">La bonne idée avant de se lancer dans une filière : regarder si elle recrute ou si le secteur est bouché ! Vous pouvez visualiser ces infos sur cette carte</div>',
       '      </div>',
       '    </div>',
       '  </div>',
