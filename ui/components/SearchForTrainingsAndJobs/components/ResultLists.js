@@ -162,24 +162,19 @@ const ResultLists = (props) => {
 
   const getLbbCompanyList = () => {
     const mergedLbaLbbCompanies = mergeOpportunities(props.jobs, "onlyLbbLba");
-    console.log('mergedLbaLbbCompanies', mergedLbaLbbCompanies.length);
-    let buffer = []
-
     if (mergedLbaLbbCompanies.length) {
-      mergedLbaLbbCompanies.map((company, idx) => {
-        buffer.push(<LbbCompany
-          key={idx}
-          company={company}
-          handleSelectItem={props.handleSelectItem}
-          searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-        />)
-      })
-      if (mergedLbaLbbCompanies.length > 6) {
-        buffer.splice(5, 0, <div className="my-5">⚠⚠ A randomly inserted div ⚠⚠</div>)
-      }
       return (
         <>
-          {buffer}
+          {mergedLbaLbbCompanies.map((company, idx) => {
+            return (
+              <LbbCompany
+                key={idx}
+                company={company}
+                handleSelectItem={props.handleSelectItem}
+                searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
+              />
+            );
+          })}
         </>
       );
     } else return "";
@@ -282,9 +277,8 @@ const ResultLists = (props) => {
       }
     }
 
-    let correspondText = `${count === 0 ? " ne" : ""}${
-      count <= 1 ? " correspond" : " correspondent"
-    } à votre recherche`;
+    let correspondText = `${count === 0 ? " ne" : ""}${count <= 1 ? " correspond" : " correspondent"
+      } à votre recherche`;
 
     return (
       <div className="pt-0">
@@ -367,9 +361,8 @@ const ResultLists = (props) => {
 
   return (
     <div
-      className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${
-        props.selectedItem ? "c-result-list--item" : ""
-      }`}
+      className={`c-result-list d-md-flex ${isFormVisible ? "hiddenResultList" : ""} ${props.selectedItem ? "c-result-list--item" : ""
+        }`}
     >
       <div className={`c-result-list__header ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
         {getResultCountAndLoading(displayCount)}
