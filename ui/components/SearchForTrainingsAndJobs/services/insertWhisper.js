@@ -6,13 +6,13 @@ function insertAfter(newNode, referenceNode) {
 
 export default function insertWhisper(document) {
 
-  if (document?.getElementsByClassName('newnode')?.length === 0) {
+  if (document.getElementsByClassName('whisper').length === 0) {
     let cards = document.getElementsByClassName('resultCard')
     const card = cards[random(0, 4)];
     let node = document.createElement("div");
     let textnode = document.createTextNode("Water");
     node.appendChild(textnode);
-    node.classList.add('newnode');
+    node.classList.add('whisper');
     if (card) {
       insertAfter(node, card)
       card.classList.add("red");
