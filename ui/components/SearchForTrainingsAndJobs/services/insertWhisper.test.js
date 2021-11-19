@@ -1,5 +1,4 @@
 import insertWhisper from "./insertWhisper";
-// import { prettyDOM } from '@testing-library/dom';
 import { queryByTestId } from '@testing-library/dom'
 
 describe('insertWhisper', () => {
@@ -9,7 +8,7 @@ describe('insertWhisper', () => {
       '<div>' +
       '  <span class="whisper">Im a whisper</span>' +
       '</div>';
-    let res = insertWhisper(document)
+    let res = insertWhisper(document, emptyImg)
     expect(res).toEqual('whisper already exists : no change')
   });
 
@@ -18,7 +17,7 @@ describe('insertWhisper', () => {
       '<div>' +
       '  Empty div, empty document' +
       '</div>';
-    let res = insertWhisper(document)
+    let res = insertWhisper(document, emptyImg)
     expect(res).toEqual('no resultCard found : no change')
   });
 
@@ -27,7 +26,7 @@ describe('insertWhisper', () => {
       '<div>' +
       '  <span class="resultCard">Im a resultCard</span>' +
       '</div>';
-    let res = insertWhisper(document)
+    let res = insertWhisper(document, emptyImg)
     expect(res).toEqual('not enough resultCard to show a whisper')
   });
   
@@ -45,12 +44,15 @@ describe('insertWhisper', () => {
     '  <span class="resultCard">9</span>' +
     '  <span class="resultCard">10</span>' +
     '</div>';
-    let res = insertWhisper(document)
-    // console.log(prettyDOM(document))
+    let res = insertWhisper(document, emptyImg)
     const container = document.querySelector('#app')
     const whisper = queryByTestId(container, 'whisper')
     expect(whisper).not.toBeNull();
     expect(res).toEqual('whisper randomly inserted')
   });
+
+  function emptyImg() {
+    return '<img src="" alt="empty image for test"></img>'
+  }
 
 });
