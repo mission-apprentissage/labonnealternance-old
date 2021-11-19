@@ -14,6 +14,7 @@ describe("SatisfactionForm", () => {
     render(<SatisfactionForm formType="avis" />);
     // When
     const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
+
     // Then
     const field = screen.getByTestId("fieldset-message");
     expect(field).toBeVisible();
@@ -27,6 +28,7 @@ describe("SatisfactionForm", () => {
     const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
     // When
     userEvent.click(submitButton);
+
     // Then
     await waitFor(() => {
       const field = screen.getByTestId("fieldset-message");
@@ -44,6 +46,10 @@ describe("SatisfactionForm", () => {
     userEvent.type(textArea, "My comment");
     expect(textArea).toHaveValue("My comment");
     userEvent.click(submitButton);
+
+    // When 2.
+    nock("http://localhost:5000").post("/api/application/feedbackComment").reply(200);
+
     // // Then
     await waitFor(() => {
       expect(textArea).not.toBeVisible();
