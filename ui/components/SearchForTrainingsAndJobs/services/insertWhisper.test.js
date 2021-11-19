@@ -30,26 +30,27 @@ describe('insertWhisper', () => {
     let res = insertWhisper(document)
     expect(res).toEqual('not enough resultCard to show a whisper')
   });
-
+  
   it('insertWhisper() : insert a whisper if more than 9 resultCard', () => {
     document.body.innerHTML =
-      '<div id="app">' +
-      '  <span class="resultCard">1</span>' +
-      '  <span class="resultCard">2</span>' +
-      '  <span class="resultCard">3</span>' +
-      '  <span class="resultCard">4</span>' +
-      '  <span class="resultCard">5</span>' +
-      '  <span class="resultCard">6</span>' +
-      '  <span class="resultCard">7</span>' +
-      '  <span class="resultCard">8</span>' +
-      '  <span class="resultCard">9</span>' +
-      '  <span class="resultCard">10</span>' +
-      '</div>';
-    insertWhisper(document)
+    '<div id="app">' +
+    '  <span class="resultCard">1</span>' +
+    '  <span class="resultCard">2</span>' +
+    '  <span class="resultCard">3</span>' +
+    '  <span class="resultCard">4</span>' +
+    '  <span class="resultCard">5</span>' +
+    '  <span class="resultCard">6</span>' +
+    '  <span class="resultCard">7</span>' +
+    '  <span class="resultCard">8</span>' +
+    '  <span class="resultCard">9</span>' +
+    '  <span class="resultCard">10</span>' +
+    '</div>';
+    let res = insertWhisper(document)
     // console.log(prettyDOM(document))
     const container = document.querySelector('#app')
     const whisper = queryByTestId(container, 'whisper')
     expect(whisper).not.toBeNull();
+    expect(res).toEqual('whisper randomly inserted')
   });
 
 });
