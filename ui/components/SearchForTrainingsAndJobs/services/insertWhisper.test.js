@@ -1,7 +1,12 @@
-import insertWhisper from "./insertWhisper";
+import { insertWhisper } from "./insertWhisper";
 import { queryByTestId } from '@testing-library/dom'
+import nock from "nock";
 
 describe('insertWhisper', () => {
+
+  beforeEach(() => {
+    nock.disableNetConnect();
+  });
 
   it('insertWhisper() : do not insert anything if whisper already here', () => {
     document.body.innerHTML =
