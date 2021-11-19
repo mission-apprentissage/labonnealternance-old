@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import postFeedback from "./services/postFeedback";
+import postIntention from "./services/postIntention";
 import submitCommentaire from "./services/submitCommentaire.js";
 import SatisfactionFormSuccess from "./SatisfactionFormSuccess.js";
 import SatisfactionFormNavigation from "./SatisfactionFormNavigation.js";
@@ -76,13 +77,16 @@ const SatisfactionForm = ({ formType }) => {
 
     Si postIntention provoque l'envoi d'un message au candidat
 */
-    
-    if (iv && id && amongst(avis, ["utile", "pasUtile", "neutre"])) {
-      console.log("good : ", iv, id, avis);
-
-
-
-      postFeedback({ iv, id, avis });
+    if (iv && id) {
+      console.log("almost good : ", iv, id, avis, intention);
+      if (formType === "avis" && amongst(avis, ["utile", "pasUtile", "neutre"])) {
+        postFeedback({ iv, id, avis });
+      } else if (formType === "intention" && amongst(intention, ["refus", "ne_sais_pas", "entretien"])) {
+        postIntention({ iv, id, intention });
+      } else {
+        //else invalid params 2
+        console.log("ca va pas 2 !");
+      }
     } else {
       //else invalid params
       console.log("ca va pas !");

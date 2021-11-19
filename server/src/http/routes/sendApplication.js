@@ -4,6 +4,8 @@ const {
   sendApplication,
   saveApplicationFeedback,
   saveApplicationFeedbackComment,
+  saveApplicationIntention,
+  saveApplicationIntentionComment,
 } = require("../../service/applications");
 const rateLimit = require("express-rate-limit");
 
@@ -62,6 +64,30 @@ module.exports = (components) => {
     limiter1Per20Second,
     tryCatch(async (req, res) => {
       const result = await saveApplicationFeedbackComment({
+        query: req.body,
+        ...components,
+      });
+      return res.json(result);
+    })
+  );
+
+  router.post(
+    "/intention",
+    limiter1Per5Second,
+    tryCatch(async (req, res) => {
+      const result = await saveApplicationIntention({
+        query: req.body,
+        ...components,
+      });
+      return res.json(result);
+    })
+  );
+
+  router.post(
+    "/intentionComment",
+    limiter1Per20Second,
+    tryCatch(async (req, res) => {
+      const result = await saveApplicationIntentionComment({
         query: req.body,
         ...components,
       });
