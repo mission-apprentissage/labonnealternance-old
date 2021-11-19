@@ -11,7 +11,7 @@ import ResultLists from "./ResultLists";
 import { setCurrentPage, setCurrentSearch, currentSearch } from "utils/currentPage.js";
 import pushHistory from "utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
-import { random } from "lodash";
+import insertWhisper from "../services/insertWhisper.js";
 
 import {
   setTrainings,
@@ -60,25 +60,10 @@ const ChoiceColumn = ({
       }
     }
   });
-  function insertAfter(newNode, referenceNode) {
-    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-  }
+
 
   useEffect(() => {
-    if (document.getElementsByClassName('newnode').length === 0) {
-      let cards = document.getElementsByClassName('resultCard')
-      console.log('resultCard/// length is ' + cards + ' ' + activeFilter)
-      const card = cards[random(0,4)];
-      let node = document.createElement("div");
-      let textnode = document.createTextNode("Water");
-      node.appendChild(textnode);
-      node.classList.add('newnode');
-      if (card) {
-        insertAfter(node, card)
-        card.classList.add("red");
-        // card.appendChild(node);
-      }
-    }
+    insertWhisper(document);
   });
 
   const handleSearchSubmitFunction = (values) => {
