@@ -1,5 +1,7 @@
 import whispers from "./whispers";
-import { queryByTestId } from '@testing-library/dom'
+import { queryByTestId, queryByRole } from '@testing-library/dom'
+import { fireEvent, waitFor } from "@testing-library/react";
+
 import nock from "nock";
 
 describe('insertWhisper', () => {
@@ -61,6 +63,52 @@ describe('insertWhisper', () => {
     const whisper = queryByTestId(container, 'whisper')
     expect(whisper).not.toBeNull();
     expect(res).toEqual('whisper randomly inserted')
+  });
+
+  it('When whisper is inserted, feedback is provided', async () => {
+
+    // Given
+    nock('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets')
+      .get('/ui/config/astuces.csv')
+      .reply(200, 
+            `;Thème;Message;Lien externe ;Astuces vague 1;Astuces vague 2 (contextualisables ou décalage politique)
+             ;Formation;Combien de personnes qui préparaient le diplôme que vous visez ont interrompu leurs études avant la fin ? La réponse ici ! ;https://www.inserjeunes.education.gouv.fr/diffusion/accueil;oui;oui `)
+
+    document.body.innerHTML =
+    '<div id="app">' +
+    '  <span class="resultCard">1</span>' +
+    '  <span class="resultCard">2</span>' +
+    '  <span class="resultCard">3</span>' +
+    '  <span class="resultCard">4</span>' +
+    '  <span class="resultCard">5</span>' +
+    '  <span class="resultCard">6</span>' +
+    '  <span class="resultCard">7</span>' +
+    '  <span class="resultCard">8</span>' +
+    '  <span class="resultCard">9</span>' +
+    '  <span class="resultCard">10</span>' +
+    '</div>';
+
+    await whispers.insertWhisper(document)
+    const container = document.querySelector('#app')
+    const whisper = queryByTestId(container, 'whisper')
+    expect(whisper).not.toBeNull();
+
+    const feedbackPositive = queryByRole(container, "button", { name: /feedback-positive/i });
+    expect(feedbackPositive).not.toBeNull();
+    expect(feedbackPositive).toHaveClass("gtmWhisperYes");
+    expect(feedbackPositive).toHaveClass("gtmWhisperFormation");
+    const feedbackNegative = queryByRole(container, "button", { name: /feedback-negative/i });
+    expect(feedbackNegative).not.toBeNull();
+    expect(feedbackNegative).toHaveClass("gtmWhisperNo");
+    expect(feedbackNegative).toHaveClass("gtmWhisperFormation");
+
+    // When
+    fireEvent.click(feedbackPositive);
+
+    // Then
+    await waitFor(() => {
+      expect(queryByTestId(container, "whisper-feedback")).toHaveTextContent("Merci pour votre retour !");
+    });
   });
 
 
