@@ -126,6 +126,16 @@ const applicationSchema = {
     default: null,
     description: "Statut du mail envoyé à l'entreprise",
   },
+  to_applicant_update_message_id: {
+    type: String,
+    default: null,
+    description: "Identifiant chez le transporteur du mail envoyé au candidat suite à réponse de l'entreprise",
+  },
+  to_company_update_message_status: {
+    type: String,
+    default: null,
+    description: "Statut du mail envoyé au candidat suite à réponse de l'entreprise",
+  },
   created_at: {
     type: Date,
     default: Date.now,
