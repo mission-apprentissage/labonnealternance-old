@@ -35,7 +35,7 @@ async function insertWhisper(document) {
   let whisperNode = document.createElement("div");
   whisperNode.classList.add('whisper');
   whisperNode.setAttribute('data-testid', 'whisper');
-  whisperNode.innerHTML = getHTML(msg.Message, msg.link);
+  whisperNode.innerHTML = getHTML(msg.Message, msg.link, msg['Thème']);
   insertAfter(randomlyChosenResultCard, whisperNode)
 
   return 'whisper randomly inserted'
@@ -43,7 +43,7 @@ async function insertWhisper(document) {
 }
 
 
-function getHTML(text, link) {
+function getHTML(text, link, theme) {
   return `<div class="resultCard gtmWhisper">
             <div class="c-media">
               <div class="c-media-figure">
@@ -63,8 +63,8 @@ function getHTML(text, link) {
                   </div>
                   <div class="d-flex-center mt-4 whisper-feedback p-3">
                     <span class="whisper-useful d-block">Avez-vous trouvé cette information utile ?</span>
-                    <button class="d-block whisper-useful-btn mx-2" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour !</div>'">👍 Oui</button>
-                    <button class="d-block whisper-useful-btn" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour.</div>'">👎 Non</button>
+                    <button class="gtmWhisperYes gtmWhisper${theme} d-block whisper-useful-btn mx-2" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour !</div>'">👍 Oui</button>
+                    <button class="gtmWhisperNo gtmWhisper${theme} d-block whisper-useful-btn" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour.</div>'">👎 Non</button>
                   </div>
                 </div>
               </div>
