@@ -45,7 +45,7 @@ const CandidatureSpontanee = (props) => {
         </div>
       </div>
 
-      <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"}>
+      <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"} backdrop="static">
         <form onSubmit={formik.handleSubmit} className="c-candidature-form">
           <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
 
