@@ -61,12 +61,19 @@ function getHTML(text, link) {
                 <div>
                   <div class="cardText pt-2 whisper-text">
                     ${text}
-                    <span>${!!link ? 'image here <img src="/images/square_link.svg" alt="Lien externe" />' : 'no image'}</span>
+                    <span class="d-block mt-2">${!!link ? getHTMLLink(link) : ''}</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>`
+}
+
+function getHTMLLink(link) {
+  return `<a href="${link}" target="_blank" className="" rel="noopener noreferrer">
+                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien externe" />
+                  <span className="ml-1">${link.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0]}</span>
+                </a>`
 }
 
 function insertAfter(referenceNode, newNode) {
