@@ -11,7 +11,7 @@ import ResultLists from "./ResultLists";
 import { setCurrentPage, setCurrentSearch, currentSearch } from "utils/currentPage.js";
 import pushHistory from "utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
-import insertWhisper from "../services/insertWhisper.js";
+import { insertWhisper } from "../services/insertWhisper.js";
 
 import {
   setTrainings,
