@@ -14,7 +14,6 @@ async function randomMessage() {
                         delete e["Lien externe "]
                         return e
                       })
-  console.log('cleanedCsv', cleanedCsv);
   let randomIndex = random(0, cleanedCsv.length - 1)
   return cleanedCsv[randomIndex]
 }
@@ -45,7 +44,6 @@ async function insertWhisper(document) {
 
 
 function getHTML(text, link) {
-  console.log('link', link);
   return `<div class="resultCard gtmWhisper">
             <div class="c-media">
               <div class="c-media-figure">
@@ -62,6 +60,11 @@ function getHTML(text, link) {
                   <div class="cardText pt-2 whisper-text">
                     ${text}
                     <span class="d-block mt-2">${!!link ? getHTMLLink(link) : ''}</span>
+                  </div>
+                  <div class="d-flex-center mt-4">
+                    <span class="whisper-useful d-block">Avez-vous trouvé cette information utile ?</span>
+                    <button class="d-block whisper-useful-btn">👍 Oui</button>
+                    <button class="d-block whisper-useful-btn">👎 Non</button>
                   </div>
                 </div>
               </div>
