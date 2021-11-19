@@ -48,6 +48,24 @@ const applicationSchema = {
     required: false,
     description: "Date d'opinion donnée",
   },
+  company_opinion: {
+    type: String,
+    default: null,
+    required: false,
+    description: "L'avis donné par la société",
+  },
+  company_intention: {
+    type: String,
+    default: null,
+    required: false,
+    description: "L'intention de la société vis à vis du candidat",
+  },
+  company_intention_date: {
+    type: Date,
+    default: null,
+    required: false,
+    description: "Date d'intention donnée",
+  },
   company_siret: {
     type: String,
     default: null,
