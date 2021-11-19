@@ -34,6 +34,9 @@ const SatisfactionForm = ({ formType }) => {
     let text = (
       <>
         <p className="pt-5">Merci beaucoup pour votre réponse</p>
+        <p className="pt-2">
+          Aidez-nous à rendre le service meilleur en nous faisant part de vos suggestions d'amélioration !
+        </p>
       </>
     );
 
@@ -115,6 +118,7 @@ const SatisfactionForm = ({ formType }) => {
           comment: formikValues.comment,
           id,
           iv,
+          formType,
         },
         setSendingState
       );

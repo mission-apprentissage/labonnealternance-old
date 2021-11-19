@@ -12,7 +12,9 @@ export default async function postFeedback(
 ) {
   let res = "";
 
-  const candidatureApi = _baseUrl + "/api/application/feedbackComment";
+  const candidatureApi = `${_baseUrl}/api/application/${
+    params?.formType === "avis" ? "feedbackComment" : "intentionComment"
+  }`;
   const response = await _axios.post(candidatureApi, params);
 
   const isAxiosError = !!_.get(response, "data.error");
