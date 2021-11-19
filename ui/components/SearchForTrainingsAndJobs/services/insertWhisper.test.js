@@ -8,7 +8,16 @@ describe('insertWhisper', () => {
       '  <span class="whisper">Im a whisper</span>' +
       '</div>';
     let res = insertWhisper(document)
-    expect(res).toEqual('no change made to the document')
+    expect(res).toEqual('whisper already exists : no change')
+  });
+
+  it('insertWhisper() : do not insert anything if there is no resultCard', () => {
+    document.body.innerHTML =
+      '<div>' +
+      '  Empty div, empty document' +
+      '</div>';
+    let res = insertWhisper(document)
+    expect(res).toEqual('no resultCard found : no change')
   });
 
 });

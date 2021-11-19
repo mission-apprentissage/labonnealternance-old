@@ -8,17 +8,23 @@ export default function insertWhisper(document) {
 
   if (document.getElementsByClassName('whisper').length === 0) {
     let cards = document.getElementsByClassName('resultCard')
-    const card = cards[random(0, 4)];
-    let node = document.createElement("div");
-    let textnode = document.createTextNode("Water");
-    node.appendChild(textnode);
-    node.classList.add('whisper');
-    if (card) {
-      insertAfter(node, card)
-      card.classList.add("red");
+    if (cards.length) {
+      if (cards.length > 9) {
+        const card = cards[random(0, 4)];
+        let node = document.createElement("div");
+        let textnode = document.createTextNode("Water");
+        node.appendChild(textnode);
+        node.classList.add('whisper');
+        insertAfter(node, card)
+        card.classList.add("red");
+      } else {
+        return 'not enough resultCard to show a whisper'
+      }
+    } else {
+      return 'no resultCard found : no change'
     }
   } else {
-    return 'no change made to the document'
+    return 'whisper already exists : no change'
   }
 
 }
