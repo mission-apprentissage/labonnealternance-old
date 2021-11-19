@@ -61,10 +61,10 @@ function getHTML(text, link) {
                     ${text}
                     <span class="d-block mt-2">${!!link ? getHTMLLink(link) : ''}</span>
                   </div>
-                  <div class="d-flex-center mt-4">
+                  <div class="d-flex-center mt-4 whisper-feedback p-3">
                     <span class="whisper-useful d-block">Avez-vous trouvé cette information utile ?</span>
-                    <button class="d-block whisper-useful-btn">👍 Oui</button>
-                    <button class="d-block whisper-useful-btn">👎 Non</button>
+                    <button class="d-block whisper-useful-btn mx-2" onclick="">👍 Oui</button>
+                    <button class="d-block whisper-useful-btn" onclick="">👎 Non</button>
                   </div>
                 </div>
               </div>
