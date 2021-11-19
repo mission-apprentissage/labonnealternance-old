@@ -61,10 +61,10 @@ function getHTML(text, link, theme) {
                     ${text}
                     <span class="d-block mt-2">${!!link ? getHTMLLink(link) : ''}</span>
                   </div>
-                  <div class="d-flex-center mt-4 whisper-feedback p-3">
+                  <div class="d-flex-center mt-4 whisper-feedback p-3" data-testid="whisper-feedback">
                     <span class="whisper-useful d-block">Avez-vous trouvé cette information utile ?</span>
-                    <button class="gtmWhisperYes gtmWhisper${theme} d-block whisper-useful-btn mx-2" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour !</div>'">👍 Oui</button>
-                    <button class="gtmWhisperNo gtmWhisper${theme} d-block whisper-useful-btn" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour.</div>'">👎 Non</button>
+                    <button class="gtmWhisperYes gtmWhisper${theme} d-block whisper-useful-btn mx-2" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour !</div>'" aria-label="feedback-positive">👍 Oui</button>
+                    <button class="gtmWhisperNo gtmWhisper${theme} d-block whisper-useful-btn" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour.</div>'" aria-label="feedback-negative">👎 Non</button>
                   </div>
                 </div>
               </div>
