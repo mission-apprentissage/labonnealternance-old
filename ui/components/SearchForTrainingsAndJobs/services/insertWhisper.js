@@ -27,7 +27,7 @@ export default function insertWhisper(document) {
       '    </div>',
       '    <div class="c-media-body">',
       '      <div class="row no-gutters">',
-      '        <div class="col-12 col-lg-6 text-left">',
+      '        <div class="col-12 text-left">',
       '          <div class="whisper-title d-inline-block">Psst, nous avons une <span class="whisper-title-special">info pour vous !</span>',
       '          </div>',
       '        </div>',
