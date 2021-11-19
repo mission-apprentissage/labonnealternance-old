@@ -36,6 +36,17 @@ describe('insertWhisper', () => {
   });
   
   it('insertWhisper() : insert a whisper if more than 9 resultCard', async () => {
+    
+    whispers.randomMessage = jest.fn().mockReturnValue({
+      "Thème": "Formation",
+      "Message": "Combien de personnes ont poursuivi leurs études après avoir obtenu le diplôme que vous souhaitez préparer ? La réponse ici ! ",
+      "Astuces vague 1": "oui",
+      "Astuces vague 2 (contextualisables ou décalage politique)": "oui",
+      "link": "https://www.inserjeunes.education.gouv.fr/diffusion/accueil"
+    });
+    
+
+
     document.body.innerHTML =
     '<div id="app">' +
     '  <span class="resultCard">1</span>' +

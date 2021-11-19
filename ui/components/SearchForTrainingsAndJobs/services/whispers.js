@@ -29,7 +29,7 @@ async function insertWhisper(document) {
   if (resultCardSize === 0) return 'no resultCard found : no change'
   if (resultCardSize < 10) return 'not enough resultCard to show a whisper'
 
-  const msg = await randomMessage()
+  const msg = await exportFunctions.randomMessage()
 
   const randomlyChosenResultCard = resultCards[random(3, 6)];
 
