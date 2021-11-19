@@ -10,6 +10,7 @@ const {
   validateCompanyEmail,
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
+  validateIntentionApplication,
 } = require("./validateSendApplication");
 
 const publicUrl = config.publicUrl;
@@ -186,6 +187,52 @@ const saveApplicationFeedbackComment = async ({ query }) => {
   }
 };
 
+const saveApplicationIntention = async ({ query }) => {
+  await validateIntentionApplication({
+    id: query.id,
+    iv: query.iv,
+    intention: query.intention,
+  });
+
+  let decryptedId = decryptWithIV(query.id, query.iv);
+
+  try {
+    await Application.findOneAndUpdate(
+      { _id: ObjectId(decryptedId) },
+      { company_intention: query.intention, company_feedback_date: new Date() }
+    );
+
+    return { result: "ok", message: "intention registered" };
+  } catch (err) {
+    console.log("err ", err);
+    Sentry.captureException(err);
+    return { error: "error_saving_intention" };
+  }
+};
+
+const saveApplicationIntentionComment = async ({ query }) => {
+  await validateFeedbackApplicationComment({
+    id: query.id,
+    iv: query.iv,
+    comment: query.comment,
+  });
+
+  let decryptedId = decryptWithIV(query.id, query.iv);
+
+  try {
+    await Application.findOneAndUpdate(
+      { _id: ObjectId(decryptedId) },
+      { company_feedback: query.comment, company_feedback_date: new Date() }
+    );
+
+    return { result: "ok", message: "comment registered" };
+  } catch (err) {
+    console.log("err ", err);
+    Sentry.captureException(err);
+    return { error: "error_saving_comment" };
+  }
+};
+
 const sendTestMail = async ({ mailer, query }) => {
   if (!query.secret) {
     return { error: "secret_missing" };
@@ -225,4 +272,6 @@ module.exports = {
   sendApplication,
   saveApplicationFeedback,
   saveApplicationFeedbackComment,
+  saveApplicationIntention,
+  saveApplicationIntentionComment,
 };

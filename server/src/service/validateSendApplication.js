@@ -55,9 +55,24 @@ const validateFeedbackApplicationComment = async (validable) => {
   return "ok";
 };
 
+const validateIntentionApplication = async (validable) => {
+  let schema = Yup.object().shape({
+    id: Yup.string().required("⚠ ID manquant."),
+    iv: Yup.string().required("⚠ IV manquant."),
+    intention: Yup.string()
+      .required("⚠ Avis manquant.")
+      .matches(/(refus|ne_sais_pas|entretien)/, "⚠ Valeur non conforme"),
+  });
+  await schema.validate(validable).catch(function () {
+    throw "error - validation of data failed";
+  });
+  return "ok";
+};
+
 module.exports = {
   validateSendApplication,
   validateCompanyEmail,
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
+  validateIntentionApplication,
 };
