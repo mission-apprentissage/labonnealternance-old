@@ -20,4 +20,13 @@ describe('insertWhisper', () => {
     expect(res).toEqual('no resultCard found : no change')
   });
 
+  it('insertWhisper() : do not insert anything if there is not enough resultCard', () => {
+    document.body.innerHTML =
+      '<div>' +
+      '  <span class="resultCard">Im a resultCard</span>' +
+      '</div>';
+    let res = insertWhisper(document)
+    expect(res).toEqual('not enough resultCard to show a whisper')
+  });
+
 });
