@@ -1,1 +1,33 @@
-astuces.csv
+;Thème;Message;Lien externe ;Astuces vague 1;Astuces vague 2 (contextualisables ou décalage politique)
+;Aide;ll existe une aide de l'Etat et parfois aussi des aides régionales pour financer votre permis de conduire (sous conditions). ;;oui;
+;Emploi;entre 4 et 7 employeurs sur 10 recrutent sans déposer d'offre d'emploi : optimisez vos chances en adressant aussi des candidatures spontanées ! ;;oui;
+;Emploi;Besoin d'aide pour concevoir un beau CV ? Vous pouvez le faire gratuitement sur l'un de ces sites : ClicnJob, Canva, CVdesignr.;https://www.clicnjob.fr/tableau-de-bord https://cvdesignr.com/fr https://www.canva.com/fr_fr/creer/cv/ ;oui;
+;Emploi;Les employeurs qui embauchent des alternants reçoivent des aides : c'est un bon argument pour convaincre une entreprise qui ne connaît pas l'alternance de vous embaucher !;;oui;
+;Emploi;la loi « Avenir professionnel » a étendu les possibilités de faire un contrat en alternance à l’étranger, dans ou hors de l’Union européenne.;https://ec.europa.eu/eures/portal/jv-se/search?page=1&resultsPerPage=10&orderBy=BEST_MATCH&positionOfferingCodes=apprenticeship;oui;
+;Aide;Certaines communes mettent à disposition des logements pour l'hébergement des alternants.;;oui;
+;Orientation;Des doutes sur votre orientation ? Pensez à la Prépa-apprentissage : un dispositif qui vous permet de découvrir un ou plusieurs métiers !;https://travail-emploi.gouv.fr/le-ministere-en-action/pic/prepa-apprentissage-pic;oui;
+;Formation;Certains établissements de formation obtiennent des labels d'excellence, c'est par exemple le cas des CMQ (Campus des Métiers et Qualifications d'excellence).;https://www.education.gouv.fr/les-campus-des-metiers-et-des-qualifications-5075;oui;
+;Emploi;La bonne idée avant de se lancer dans une filière : regarder si elle recrute ou si le secteur est bouché ! Vous pouvez visualiser ces infos sur une carte  (site de la DARES).;https://dares.travail-emploi.gouv.fr/publications/les-tensions-sur-le-marche-du-travail-en-2019;non;oui
+;Aide;Besoin d'aide pour entrer en contact avec un organisme de formation ? Ce module va vous aider à vous préparer ! ;https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987;oui;
+;Aide;Après la candidature, l'entretien ! Préparez-vous à l'aide de ce module !;https://dinum-beta.didask.com/courses/demonstration/60d1adbb877dae00003f0eac;oui;
+;Aide;Vous allez avoir besoin de matériel pour votre apprentissage (couteaux de cuisine, ciseaux de coiffure, ...) ? Il existe des aides financières au premier équipement !;;oui;
+;Aide;Vous devez quitter le domicile familial pour vos études ? Action Logement,vous aide à vous installer.;https://www.actionlogement.fr/aide-logement-apprentis;oui;
+;Emploi;Difficile d'organiser votre recherche, de trouver un employeur? Ce module peut vous aider ! ;https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e;oui;
+;Emploi;Vous allez bientôt trouver votre futur employeur alors il n'est pas trop tôt pour vous préparer à réussir votre intégration dans l'entreprise : consultez ce module ! ;didask (module en cours de conception);non;oui
+;Aide;La plupart des régions aident au financement des abonnements en transport en commun pour les alternants : renseignez-vous !;;oui;oui
+;Aide ;L'ANAF (Association Nationale des Apprentis de France) peut vous aider à tout moment de votre parcours et pour toute question que vous vous posez ! ;http://www.anaf.fr/;;oui
+;Formation;Reste à charge (contenu  à rédiger);;non;oui
+;Emploi;Certaines offres d'emploi sont déposées par des organismes de formation qui ne sont pas l'employeur final. Elles ont normalement obtenu mandat de l'entreprise pour recruter à sa place. Soyez vigilant avant de vous inscrire car ce n'est pas toujours le cas !;;non;oui
+;Emploi ;Envie de connaître le salaire moyen sur un métier et sur une zone géographiques spécifiques ? Rendez-vous sur IMT de Pôle emploi (information marché du travail) !;https://candidat.pole-emploi.fr/marche-du-travail/accueil;non;oui
+;Emploi;Tout au long de l'année, il existe des salons de recrutement (physiques ou virtuels) spécialisés pour l'alternance : renseignez-vous !;https://pole-emploi.io/data/api/evenements-pole-emploi?tabgroup-api=documentation&doc-section=api-doc-section-rechercher-les-salons-en-ligne-en-cours-et-%C3%A0-venir;non;contextualiser l'info selon localité et éventuellement métier si salon spécifique
+;Formation;La plupart des organismes de formations font des journées portes ouvertes : vous avez l'occasion d'échanger avec des alternants !;;oui;
+;Emploi;Le secteur public (mairies, ministères, départements, régions, ...) recrute aussi des alternants ; pensez-y ! ;https://www.pass.fonction-publique.gouv.fr/;oui;oui
+;LBA;Recommanderiez-vous LBA ?;;non;oui + icones et tracking
+;LBA;Seriez-vous intéressé pour nous aider à améliorer LBA ?;recueil de coordonnées testeurs;non;oui + champ de récupération des emails (à inscrire dans registre de traitement des données RGPD)
+;Emploi;Attention aux fraudes : certains se font passer pour des employeurs pour vous demander la transmission de documents personnels (pièces d'identité, ...) ou de payer des frais ou du matériel, soyez vigilant ! ;;non;oui
+;Formation;Combien de personnes ont trouvé un emploi dans les 6 mois après avoir obtenu le diplôme que vous souhaitez préparer ? La réponse ici ! ;https://www.inserjeunes.education.gouv.fr/diffusion/accueil;oui;oui
+;Formation;Combien de personnes ont poursuivi leurs études après avoir obtenu le diplôme que vous souhaitez préparer ? La réponse ici ! ;https://www.inserjeunes.education.gouv.fr/diffusion/accueil;oui;oui
+;Formation;Combien de personnes qui préparaient le diplôme que vous visez ont interrompu leurs études avant la fin ? La réponse ici ! ;https://www.inserjeunes.education.gouv.fr/diffusion/accueil;oui;oui
+;Emploi;Pour vous organiser dans vos candidatures, essayez Memo ! ;https://memo.pole-emploi.fr/#;oui;oui
+;Orientation;Vous hésitez dans le choix d'un métier ? Faites le point avec Diagoriente, un service qui vous accompagne dans la construction de votre orientation professionnelle.;https://diagoriente.beta.gouv.fr/;oui;oui, voir si  possible de faire apparaître l'info lorsque l'utilisateur a utilisé + d'une fois le filtre "métier" du moteur de recherche.
+;Aide;Besoin d'accompagnement dans vos démarches d'accès à l'emploi ? Rendez-vous dans la mission locale la plus proche pour rencontrer un conseiller !  ;lien à récupérer;;oui, contextualisation possible par zone géographique
