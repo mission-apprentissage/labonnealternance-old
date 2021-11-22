@@ -3,7 +3,7 @@ import baseUrl from "../../../utils/baseUrl";
 import _ from "lodash";
 import { logError } from "../../../utils/tools";
 
-export default async function postFeedback(
+export default async function postCommentaire(
   params,
   _baseUrl = baseUrl,
   _axios = axios,
