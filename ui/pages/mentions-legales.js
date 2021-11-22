@@ -109,7 +109,7 @@ const MentionsLegales = () => (
 
           <p>
             Vous pouvez nous aider à améliorer l'accessibilité du site en nous signalant les problèmes éventuels que
-            vous rencontrez : <a href="mailto:labonnealternance@pole-emploi.fr">Contactez-nous</a>.
+            vous rencontrez : <a href="mailto:labonnealternance@apprentissage.beta.gouv.fr">Contactez-nous</a>.
           </p>
 
           <p>

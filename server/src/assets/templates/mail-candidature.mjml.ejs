@@ -10,6 +10,13 @@
             .form-row { font-size: 16px; padding-bottom: 15px;}
             .form-value { background: #F9F8F6; font-weight: bold; padding: 3px 15px  }
             .nom-societe { font-size: 14px; color: #F07F87; font-weight: bold; }
+            
+            .intention-link:hover td, 
+            .intention-link:hover a { 
+                background-color: #000091 !important; 
+                color: #fff !important; 
+            }
+
         </mj-style>
         <mj-attributes>
             <mj-text padding="0px" color="#232E3C" font-family="Inter,sans-serif" font-size="14px" line-height="23px" />
@@ -67,14 +74,57 @@
         </mj-wrapper>
 
         <mj-section padding-bottom="30px"></mj-section>
-        
+        <mj-wrapper background-color="#FDF2F3" padding="10px 0 5px" border-radius="10px">
+            <mj-section padding="15px">
+                <mj-column align="left">
+                    <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
+                        Que comptez vous faire ?
+                    </mj-text>
+                    
+                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=entretien&id=<%= data.id %>&iv=<%= data.iv %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
+                        css-class="intention-link" 
+                        width="250px" 
+                        border-radius="12px"
+                        border-color="#000091"                     
+                        color="#000091" 
+                        font-size="14px"
+                        align="left"
+                        background-color="#FDF2F3" 
+                        border="1px solid #000091"><img src="<%= data.images.recrute %>" alt="" style="margin-right:5px;" />&nbsp;Rencontrer le candidat</mj-button>
+
+                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=ne_sais_pas&id=<%= data.id %>&iv=<%= data.iv %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
+                        css-class="intention-link" 
+                        width="250px" 
+                        border-radius="12px"
+                        border-color="#000091"                     
+                        color="#000091" 
+                        font-size="14px"
+                        align="left"
+                        background-color="#FDF2F3" 
+                        border="1px solid #000091"><img src="<%= data.images.nspp %>" alt="" style="margin-right:5px;" />&nbsp;En attente de décision</mj-button>
+                    
+                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=refus&id=<%= data.id %>&iv=<%= data.iv %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
+                        css-class="intention-link" 
+                        width="250px" 
+                        border-radius="12px"
+                        border-color="#000091"                     
+                        color="#000091" 
+                        font-size="14px"
+                        align="left"
+                        background-color="#FDF2F3" 
+                        border="1px solid #000091"><img src="<%= data.images.recrutePas %>" alt="" style="margin-right:5px;" />&nbsp;Candidature refusée</mj-button>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+
+        <mj-section padding-bottom="30px"></mj-section>
         <mj-wrapper background-color="#ffffff" padding="10px 0 20px" border-radius="10px">
             <mj-section>
                 <mj-column>
-                    <mj-table>
+                    <mj-table line-height="100%">
                     <tr>
-                    <td valign="top"><img style="width:120px; height:48px; margin-right:20px;" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" /></td>
-                    <td valign="top">
+                    <td valign="top" style="padding-top:5px;"><img style="width:120px; height:48px;" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" /></td>
+                    <td valign="top" style="line-height: 22px; padding-left: 40px; padding-top:0;">
                         Vous recevez cette candidature car votre entreprise est visible sur <a style="font-weight:bold; color:black" href="https://labonnealternance.pole-emploi.fr/?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur ">La Bonne Alternance</a>,
                         un site web conçu par Pôle emploi et porté par le Ministère de l’éducation nationale, de l’enseignement supérieur, du travail et de la transformation publique.
 
@@ -96,14 +146,14 @@
         <mj-wrapper padding="0px" border-radius="10px" padding-bottom="50px">
             <mj-section>
                 <mj-column>
-                    <mj-table>
+                    <mj-table line-height="100%">
                     <tr>
-                    <td valign="top"><img width="89" height="auto" style="margin-right:20px;" src="<%= data.images.logoRF %>" alt="Logo République française" /></td>
-                    <td valign="top">Cet e-mail a été envoyé à <%= data.company_email %>
+                    <td valign="top" style="padding-top:5px;"><img width="89" height="auto" src="<%= data.images.logoRF %>" alt="Logo République française" /></td>
+                    <td valign="top" style="line-height: 22px; padding-left: 40px; padding-top:0;">Cet e-mail a été envoyé à <%= data.company_email %>
                         <br />
                         Vous avez reçu ce mail car votre entreprise a été identifiée comme étant susceptible de recruter en alternance
                         <br />
-                        Pour vous désinscrire, <a style="font-weight:bold; text-decoration: underline; color:black" href="https://labonnealternance.pole-emploi.fr/acces-recruteur">cliquez ici</a></td>
+                        Pour vous désinscrire, <a style="font-weight:bold; text-decoration: underline; color:black" href="https://labonnealternance.pole-emploi.fr/acces-recruteur?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur">cliquez ici</a></td>
                     </tr>
                     </mj-table>
                 </mj-column>

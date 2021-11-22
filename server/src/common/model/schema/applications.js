@@ -30,6 +30,42 @@ const applicationSchema = {
     required: false,
     description: "Le message envoyé par le candidat",
   },
+  applicant_opinion: {
+    type: String,
+    default: null,
+    required: false,
+    description: "L'avis donné par le candidat",
+  },
+  applicant_feedback: {
+    type: String,
+    default: null,
+    required: false,
+    description: "Un commentaire concernant le produit",
+  },
+  applicant_feedback_date: {
+    type: Date,
+    default: null,
+    required: false,
+    description: "Date d'opinion donnée",
+  },
+  company_intention: {
+    type: String,
+    default: null,
+    required: false,
+    description: "L'intention de la société vis à vis du candidat",
+  },
+  company_feedback: {
+    type: String,
+    default: null,
+    required: false,
+    description: "L'avis donné par la société",
+  },
+  company_feedback_date: {
+    type: Date,
+    default: null,
+    required: false,
+    description: "Date d'intention/avis donnée",
+  },
   company_siret: {
     type: String,
     default: null,
@@ -89,6 +125,16 @@ const applicationSchema = {
     type: String,
     default: null,
     description: "Statut du mail envoyé à l'entreprise",
+  },
+  to_applicant_update_message_id: {
+    type: String,
+    default: null,
+    description: "Identifiant chez le transporteur du mail envoyé au candidat suite à réponse de l'entreprise",
+  },
+  to_company_update_message_status: {
+    type: String,
+    default: null,
+    description: "Statut du mail envoyé au candidat suite à réponse de l'entreprise",
   },
   created_at: {
     type: Date,
