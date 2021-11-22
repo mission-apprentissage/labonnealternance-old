@@ -1,8 +1,6 @@
 # CHANGELOG
 
-## 1.17.2 [18/11/2021]
-[888] Bloquer la fermeture de popin
-[879] Màj email de contact
+## 1.17.3 [26/11/2021]
 [832] Astuces
 
 ## 1.17.1 [10/11/2021]
