@@ -3,6 +3,13 @@
 ## 1.17.3 [26/11/2021]
 [832] Astuces
 
+## 1.17.2 [22/11/2021]
+[921] Finitions mep
+[888] Bloquer la fermeture de popin
+[879] Màj email de contact
+[906] Avis candidat
+[906] Intention recruteur
+
 ## 1.17.1 [10/11/2021]
 [902] CGU sans case à cocher
 [910] Restauration boutons
