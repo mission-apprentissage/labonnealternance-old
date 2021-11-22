@@ -39,7 +39,7 @@ describe("CandidatureSpontanee", () => {
     openLbbModal(render, screen, fireEvent);
     // Then
     const submit = screen.queryByRole("button", { name: /je-postule/i });
-    expect(submit).toHaveTextContent("J'envoie une candidature spontanée");
+    expect(submit).toHaveTextContent("J'envoie ma candidature spontanée");
     const title = screen.getByTestId("CandidatureSpontaneeTitle");
     expect(title).toHaveTextContent("Candidature spontanée");
   });
@@ -48,7 +48,7 @@ describe("CandidatureSpontanee", () => {
     openMatchaModal(render, screen, fireEvent);
     // Then
     const submit = screen.queryByRole("button", { name: /je-postule/i });
-    expect(submit).toHaveTextContent("J'envoie une candidature");
+    expect(submit).toHaveTextContent("J'envoie ma candidature");
     const title = screen.getByTestId("CandidatureSpontaneeTitle");
     expect(title).toHaveTextContent("Postuler à l'offre de Lamacompta");
   });
