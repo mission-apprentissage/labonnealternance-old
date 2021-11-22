@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
 
-import Link from "next/link";
-import Router from "next/router";
-import { push, replace, goBack, goForward, prefetch } from "connected-next-router";
+import { push } from "connected-next-router";
 import { useDispatch } from "react-redux";
 
 /*

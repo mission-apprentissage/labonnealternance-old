@@ -25,6 +25,17 @@ const encryptMailWithIV = (value) => {
   } else return { email: "" };
 };
 
+const encryptIdWithIV = (id) => {
+  const iv = crypto.randomBytes(16);
+
+  if (id) {
+    return {
+      id: encrypt(id, iv),
+      iv: iv.toString(outputEncoding),
+    };
+  } else return { id: "" };
+};
+
 const decrypt = (value, iv) => {
   const decipher = crypto.createDecipheriv(algo, secret, iv || weakIv);
   let decrypted = decipher.update(value, outputEncoding, inputEncoding);
@@ -40,6 +51,7 @@ const decryptWithIV = (value, ivHex) => {
 module.exports = {
   encrypt,
   encryptMailWithIV,
+  encryptIdWithIV,
   decrypt,
   decryptWithIV,
 };

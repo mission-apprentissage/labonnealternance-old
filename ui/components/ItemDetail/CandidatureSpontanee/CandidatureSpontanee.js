@@ -40,12 +40,12 @@ const CandidatureSpontanee = (props) => {
             className={`btn btn-dark ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
             aria-label="jenvoie-une-candidature-spontanee"
           >
-            J'envoie une candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}
+            J'envoie ma candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}
           </Button>
         </div>
       </div>
 
-      <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"}>
+      <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"} backdrop="static">
         <form onSubmit={formik.handleSubmit} className="c-candidature-form">
           <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
 
