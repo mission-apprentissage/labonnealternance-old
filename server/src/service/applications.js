@@ -1,18 +1,35 @@
 const config = require("config");
 const Sentry = require("@sentry/node");
 const path = require("path");
+const { ObjectId } = require("mongodb");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
-const { decryptWithIV } = require("../common/utils/encryptString");
+const { encryptIdWithIV, decryptWithIV } = require("../common/utils/encryptString");
 const { Application } = require("../common/model");
-const { validateSendApplication, validateCompanyEmail } = require("./validateSendApplication");
+const {
+  validateSendApplication,
+  validateCompanyEmail,
+  validateFeedbackApplication,
+  validateFeedbackApplicationComment,
+  validateIntentionApplication,
+} = require("./validateSendApplication");
+
+const publicUrl = config.publicUrl;
+
+const imagePath = "https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/";
 
 const images = {
   images: {
     //logo: `${config.publicUrl}/images/emails/logo_lba.png`,
-    logo: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/logo_lba.png`,
-    logoRF: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/logo_rf.png`,
-    icoInfo: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/icone_info.png`,
-    icoCandidat: `https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/icone_candidat.png`,
+    logo: `${imagePath}logo_lba.png`,
+    logoRF: `${imagePath}logo_rf.png`,
+    icoInfo: `${imagePath}icone_info.png`,
+    icoCandidat: `${imagePath}icone_candidat.png`,
+    nspp: `${imagePath}nspp.png`,
+    utile: `${imagePath}utile.png`,
+    pasUtile: `${imagePath}pasUtile.png`,
+    neutre: `${imagePath}neutre.png`,
+    recrute: `${imagePath}recrute.png`,
+    recrutePas: `${imagePath}recrutePas.png`,
   },
 };
 
@@ -74,6 +91,8 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
     try {
       let application = initApplication(query, companyEmail);
 
+      let encryptedId = encryptIdWithIV(application.id);
+
       const emailTemplates = getEmailTemplates(query.company_type);
 
       const fileContent = query.applicant_file_content;
@@ -84,7 +103,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
           application.applicant_email,
           `Votre candidature chez ${application.company_name}`,
           getEmailTemplate(emailTemplates.candidat),
-          { ...application._doc, ...images },
+          { ...application._doc, ...images, ...encryptedId, publicUrl },
           [
             {
               filename: application.applicant_file_name,
@@ -96,7 +115,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
           application.company_email,
           `Candidature spontanée pour un poste en alternance`,
           getEmailTemplate(emailTemplates.entreprise),
-          { ...application._doc, ...images },
+          { ...application._doc, ...images, ...encryptedId, publicUrl },
           [
             {
               filename: application.applicant_file_name,
@@ -119,6 +138,98 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       Sentry.captureException(err);
       return { error: "error_sending_application" };
     }
+  }
+};
+
+const saveApplicationFeedback = async ({ query }) => {
+  await validateFeedbackApplication({
+    id: query.id,
+    iv: query.iv,
+    avis: query.avis,
+  });
+
+  let decryptedId = decryptWithIV(query.id, query.iv);
+
+  try {
+    await Application.findOneAndUpdate(
+      { _id: ObjectId(decryptedId) },
+      { applicant_opinion: query.avis, applicant_feedback_date: new Date() }
+    );
+
+    return { result: "ok", message: "opinion registered" };
+  } catch (err) {
+    console.log("err ", err);
+    Sentry.captureException(err);
+    return { error: "error_saving_opinion" };
+  }
+};
+
+const saveApplicationFeedbackComment = async ({ query }) => {
+  await validateFeedbackApplicationComment({
+    id: query.id,
+    iv: query.iv,
+    comment: query.comment,
+  });
+
+  let decryptedId = decryptWithIV(query.id, query.iv);
+
+  try {
+    await Application.findOneAndUpdate(
+      { _id: ObjectId(decryptedId) },
+      { applicant_feedback: query.comment, applicant_feedback_date: new Date() }
+    );
+
+    return { result: "ok", message: "comment registered" };
+  } catch (err) {
+    console.log("err ", err);
+    Sentry.captureException(err);
+    return { error: "error_saving_comment" };
+  }
+};
+
+const saveApplicationIntention = async ({ query }) => {
+  await validateIntentionApplication({
+    id: query.id,
+    iv: query.iv,
+    intention: query.intention,
+  });
+
+  let decryptedId = decryptWithIV(query.id, query.iv);
+
+  try {
+    await Application.findOneAndUpdate(
+      { _id: ObjectId(decryptedId) },
+      { company_intention: query.intention, company_feedback_date: new Date() }
+    );
+
+    return { result: "ok", message: "intention registered" };
+  } catch (err) {
+    console.log("err ", err);
+    Sentry.captureException(err);
+    return { error: "error_saving_intention" };
+  }
+};
+
+const saveApplicationIntentionComment = async ({ query }) => {
+  await validateFeedbackApplicationComment({
+    id: query.id,
+    iv: query.iv,
+    comment: query.comment,
+  });
+
+  let decryptedId = decryptWithIV(query.id, query.iv);
+
+  try {
+    await Application.findOneAndUpdate(
+      { _id: ObjectId(decryptedId) },
+      { company_feedback: query.comment, company_feedback_date: new Date() }
+    );
+
+    return { result: "ok", message: "comment registered" };
+  } catch (err) {
+    console.log("err ", err);
+    Sentry.captureException(err);
+    return { error: "error_saving_comment" };
   }
 };
 
@@ -159,4 +270,8 @@ const getEmailTemplate = (type = "mail-candidat") => {
 module.exports = {
   sendTestMail,
   sendApplication,
+  saveApplicationFeedback,
+  saveApplicationFeedbackComment,
+  saveApplicationIntention,
+  saveApplicationIntentionComment,
 };

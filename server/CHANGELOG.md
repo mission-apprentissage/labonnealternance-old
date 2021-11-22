@@ -4,6 +4,8 @@
 [921] Finitions mep
 [888] Bloquer la fermeture de popin
 [879] Màj email de contact
+[906] Avis candidat
+[906] Intention recruteur
 
 ## 1.17.1 [10/11/2021]
 [902] CGU sans case à cocher
