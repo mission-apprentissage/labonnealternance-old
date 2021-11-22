@@ -1,7 +1,9 @@
 # CHANGELOG
 
-## 1.17.2 [12/11/2021]
+## 1.17.2 [22/11/2021]
 [921] Finitions mep
+[888] Bloquer la fermeture de popin
+[879] Màj email de contact
 
 ## 1.17.1 [10/11/2021]
 [902] CGU sans case à cocher
