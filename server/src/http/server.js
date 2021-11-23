@@ -11,6 +11,7 @@ const rome = require("./routes/rome");
 const updateRomesMetiers = require("./routes/updateRomesMetiers");
 const updateFormations = require("./routes/updateFormations");
 const updateDiplomesMetiers = require("./routes/updateDiplomesMetiers");
+const updateLBB = require("./routes/updateLBB");
 const metiers = require("./routes/metiers");
 const jobDiploma = require("./routes/jobDiploma");
 const formationV1 = require("./routes/formationV1");
@@ -56,10 +57,10 @@ module.exports = async (components) => {
     max: 3, // limit each IP to 3 requests per windowMs
   });
 
-  const limiter1Per5Second = rateLimit({
+  /*const limiter1Per5Second = rateLimit({
     windowMs: 5000, // 5 seconds
     max: 1, // limit each IP to 1 request per windowMs
-  });
+  });*/
 
   const limiter1Per20Second = rateLimit({
     windowMs: 20000, // 20 seconds
@@ -110,11 +111,17 @@ module.exports = async (components) => {
 
   app.use("/api/romelabels", limiter10PerSecond, rome());
 
-  app.use("/api/updateRomesMetiers", limiter1Per5Second, updateRomesMetiers());
+  app.use("/api/updateRomesMetiers", limiter1Per20Second, updateRomesMetiers());
 
-  app.use("/api/updateFormations", limiter1Per5Second, updateFormations());
+  app.use("/api/updateFormations", limiter1Per20Second, updateFormations());
 
-  app.use("/api/updateDiplomesMetiers", limiter1Per5Second, updateDiplomesMetiers());
+  app.use("/api/updateDiplomesMetiers", limiter1Per20Second, updateDiplomesMetiers());
+
+  app.use("/api/updateLBB", limiter1Per20Second, updateLBB());
+
+  app.use("/api/updateFormations", limiter1Per20Second, updateFormations());
+
+  app.use("/api/updateDiplomesMetiers", limiter1Per20Second, updateDiplomesMetiers());
 
   app.use("/api/metiers", limiter20PerSecond, metiers());
 
