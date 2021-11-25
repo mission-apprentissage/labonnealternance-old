@@ -14,7 +14,6 @@ describe('insertWhisper', () => {
         storage[key] = value || '';
       },
       getItem: function (key) {
-        console.log('getItem', storage);
         return key in storage ? storage[key] : null;
       }
     };
