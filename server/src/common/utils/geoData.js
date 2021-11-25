@@ -37,6 +37,7 @@ class GeoData {
       // cas particulier concernant un unique college à saint barth'
       return {
         geo_coordonnees: "17.896279,-62.849772", // format "lat,long"
+        localite: "Saint Barthélémy",
       };
     }
 
@@ -54,7 +55,7 @@ class GeoData {
 
     // si pas de réponse deuxième recherche sur ville et code postal
     if (!responseApiAdresse || responseApiAdresse.features.length === 0) {
-      console.log(`Second geoloc call with postcode and city\t${localite} ${code_postal}`);
+      //console.log(`Second geoloc call with postcode \t ${code_postal}`);
       responseApiAdresse = await apiGeoAdresse.searchPostcodeOnly(
         `${localite ? localite : "a"}`, // hack si localite absente
         this.refinePostcode(code_postal)
@@ -77,7 +78,7 @@ class GeoData {
     }
 
     // signalement des cas avec ambiguité
-    if (responseApiAdresse.features.length > 1) {
+    /*if (responseApiAdresse.features.length > 1) {
       console.log(
         `Multiple geoloc results for establishment.\t${this.getAddress(
           numero_voie,
@@ -87,12 +88,13 @@ class GeoData {
           localite
         )}\t${responseApiAdresse.features[0].properties.label} ${responseApiAdresse.features[0].properties.postcode}`
       );
-    }
+    }*/
 
     const geojson = { ...responseApiAdresse };
 
     return {
       geo_coordonnees: `${geojson.features[0].geometry.coordinates[1]},${geojson.features[0].geometry.coordinates[0]}`, // format "lat,long"
+      localite: geojson.features[0].properties.city,
     };
   }
 }
