@@ -30,7 +30,7 @@ async function insertWhisper(document) {
 
   const msg = await exportFunctions.randomMessage()
 
-  const randomlyChosenResultCard = resultCards[random(3, 6)];
+  const randomlyChosenResultCard = resultCards[random(1, 4)];
 
   let whisperNode = document.createElement("div");
   whisperNode.classList.add('whisper');
