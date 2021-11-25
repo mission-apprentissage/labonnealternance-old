@@ -1,6 +1,6 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
-//const { updateLaBonneBoite } = require("../../service/lbb/updateLaBonneBoiteData");
+const { updateLaBonneBoite } = require("../../service/lbb/updateLaBonneBoite");
 const { updateRomeNaf } = require("../../service/lbb/updateRomeNaf");
 
 /**
@@ -9,13 +9,13 @@ const { updateRomeNaf } = require("../../service/lbb/updateRomeNaf");
 module.exports = () => {
   const router = express.Router();
 
-  /*router.get(
+  router.get(
     "/",
     tryCatch(async (req, res) => {
       const result = await updateLaBonneBoite(req.query);
       return res.json(result);
     })
-  );*/
+  );
 
   router.get(
     "/updateRomeNaf",

@@ -8,12 +8,33 @@ class ApiGeoAdresse {
 
   async search(q, postcode = null) {
     try {
-      const response = await axios.get(`${apiEndpoint}/search/?q=${q}${postcode ? `&postcode=${postcode}` : ""}`);
-      return response.data;
+      const query = `${apiEndpoint}/search/?q=${q}${postcode ? `&postcode=${postcode}` : ""}`;
+      let response = await this.searchQuery(query);
+
+      return response;
     } catch (error) {
       console.log(`geo search error : ${q} ${postcode} ${error}`);
       return null;
     }
+  }
+
+  async searchQuery(query) {
+    let response;
+    let trys = 0;
+
+    while (trys < 3) {
+      response = await axios.get(query);
+
+      if (response.data.status === 429) {
+        console.log(response.data);
+        trys++;
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      } else {
+        break;
+      }
+    }
+
+    return response.data;
   }
 
   async searchPostcodeOnly(q, postcode = null) {
