@@ -18,20 +18,15 @@ async function randomMessage() {
   return cleanedCsv[randomIndex]
 }
 
-async function insertWhisper(document, activeFilter, stubbedSessionStorage = null) {
+async function insertWhisper(document) {
 
-  let localSessionStorage = stubbedSessionStorage || sessionStorage
-  let uniqId = `${activeFilter}${document.URL}`
-
+  const whisperSize = document.getElementsByClassName('whisper').length
   const resultCards = document.getElementsByClassName('resultCard')
   const resultCardSize = resultCards.length
-  const alreadyExists = localSessionStorage.getItem(uniqId)
 
+  if (whisperSize > 0) return 'whisper already exists : no change'
   if (resultCardSize === 0) return 'no resultCard found : no change'
   if (resultCardSize < 10) return 'not enough resultCard to show a whisper'
-  if (alreadyExists) return 'whisper already exist for this tab and URL'
-
-  localSessionStorage.setItem(uniqId, 'exists')
 
   const msg = await exportFunctions.randomMessage()
 
