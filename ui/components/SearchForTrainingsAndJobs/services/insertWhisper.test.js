@@ -6,17 +6,25 @@ import nock from "nock";
 
 describe('insertWhisper', () => {
 
+  function buildFakeStorage() {
+    let storage = {};
+
+    return {
+      setItem: function (key, value) {
+        storage[key] = value || '';
+      },
+      getItem: function (key) {
+        console.log('getItem', storage);
+        return key in storage ? storage[key] : null;
+      }
+    };
+  }
+
+  let fakeSessionStorage = null
+
   beforeEach(() => {
     nock.disableNetConnect();
-  });
-
-  it('insertWhisper() : do not insert anything if whisper already here', async () => {
-    document.body.innerHTML =
-      '<div>' +
-      '  <span class="whisper">Im a whisper</span>' +
-      '</div>';
-    let res = await whispers.insertWhisper(document)
-    expect(res).toEqual('whisper already exists : no change')
+    fakeSessionStorage = buildFakeStorage()
   });
 
   it('insertWhisper() : do not insert anything if there is no resultCard', async () => {
@@ -88,7 +96,7 @@ describe('insertWhisper', () => {
     '  <span class="resultCard">10</span>' +
     '</div>';
 
-    await whispers.insertWhisper(document)
+    await whispers.insertWhisper(document, 'anyFilter', fakeSessionStorage)
     const container = document.querySelector('#app')
     const whisper = queryByTestId(container, 'whisper')
     expect(whisper).not.toBeNull();
@@ -108,6 +116,7 @@ describe('insertWhisper', () => {
     // Then
     await waitFor(() => {
       expect(queryByTestId(container, "whisper-feedback")).toHaveTextContent("Merci pour votre retour !");
+      expect(fakeSessionStorage.getItem('anyFilterhttp://localhost/')).toEqual('exists');
     });
   });
 

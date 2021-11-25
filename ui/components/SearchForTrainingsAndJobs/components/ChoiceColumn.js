@@ -63,7 +63,7 @@ const ChoiceColumn = ({
 
 
   useEffect( () => {
-     whispers.insertWhisper(document);
+     whispers.insertWhisper(document, activeFilter);
   });
 
   const handleSearchSubmitFunction = (values) => {
