@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ## 1.17.2 [22/11/2021]
 [921] Finitions mep
 [888] Bloquer la fermeture de popin
