@@ -45,7 +45,7 @@ module.exports = async () => {
     logMessage("info", " -- Start updating lbb db -- ");
 
     await oleoduc(
-      fs.readAsStream(filePath),
+      fs.createReadStream(filePath),
       readLineByLine(),
       transformData((line) => parseLine(line)),
       writeData(async (line) => {
