@@ -10,8 +10,8 @@ async function randomMessage() {
                       .filter((e) => e.Message)
                       .map((e) => {
                         delete e['']
-                        e.link = e["Lien externe "].split(' ')[0]
-                        delete e["Lien externe "]
+                        e.link = e["Lien externe"].split(' ')[0]
+                        delete e["Lien externe"]
                         return e
                       })
   let randomIndex = random(0, cleanedCsv.length - 1)
