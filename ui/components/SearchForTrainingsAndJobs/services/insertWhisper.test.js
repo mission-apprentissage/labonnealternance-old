@@ -6,6 +6,14 @@ import nock from "nock";
 
 describe('insertWhisper', () => {
 
+  function setupNock() {
+    nock('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets')
+      .get('/ui/config/astuces.csv')
+      .reply(200,
+        `;Thème;Message;Lien externe;Astuces vague 1;Astuces vague 2 (contextualisables ou décalage politique)
+             ;Formation;Combien de personnes qui préparaient le diplôme que vous visez ont interrompu leurs études avant la fin ? La réponse ici ! ;https://www.inserjeunes.education.gouv.fr/diffusion/accueil;oui;oui `)
+  }
+
   beforeEach(() => {
     nock.disableNetConnect();
   });
@@ -39,12 +47,7 @@ describe('insertWhisper', () => {
   
   it('insertWhisper() : insert a whisper if more than 9 resultCard', async () => {
 
-    nock('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets')
-      .get('/ui/config/astuces.csv')
-      .reply(200, 
-            `;Thème;Message;Lien externe ;Astuces vague 1;Astuces vague 2 (contextualisables ou décalage politique)
-             ;Formation;Combien de personnes qui préparaient le diplôme que vous visez ont interrompu leurs études avant la fin ? La réponse ici ! ;https://www.inserjeunes.education.gouv.fr/diffusion/accueil;oui;oui `)
-
+    setupNock()
     document.body.innerHTML =
     '<div id="app">' +
     '  <span class="resultCard">1</span>' +
@@ -68,12 +71,7 @@ describe('insertWhisper', () => {
   it('When whisper is inserted, feedback is provided', async () => {
 
     // Given
-    nock('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets')
-      .get('/ui/config/astuces.csv')
-      .reply(200, 
-            `;Thème;Message;Lien externe ;Astuces vague 1;Astuces vague 2 (contextualisables ou décalage politique)
-             ;Formation;Combien de personnes qui préparaient le diplôme que vous visez ont interrompu leurs études avant la fin ? La réponse ici ! ;https://www.inserjeunes.education.gouv.fr/diffusion/accueil;oui;oui `)
-
+    setupNock()
     document.body.innerHTML =
     '<div id="app">' +
     '  <span class="resultCard">1</span>' +
