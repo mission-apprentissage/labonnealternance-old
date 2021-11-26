@@ -18,7 +18,9 @@ async function randomMessage() {
   return cleanedCsv[randomIndex]
 }
 
-async function insertWhisper(document) {
+async function insertWhisper(document, isLoadingData) {
+  
+  if (isLoadingData) return 'loading data : no change'
 
   const whisperSize = document.getElementsByClassName('whisper').length
   const resultCards = document.getElementsByClassName('resultCard')

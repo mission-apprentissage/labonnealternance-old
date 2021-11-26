@@ -62,9 +62,7 @@ const ChoiceColumn = ({
   });
 
   useEffect( () => {
-    if (!isTrainingSearchLoading && !isJobSearchLoading) {
-      whispers.insertWhisper(document, activeFilter);
-    }
+    whispers.insertWhisper(document, isTrainingSearchLoading || isJobSearchLoading);
   });
 
   const handleSearchSubmitFunction = (values) => {

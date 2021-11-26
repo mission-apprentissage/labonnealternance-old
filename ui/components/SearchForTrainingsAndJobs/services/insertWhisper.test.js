@@ -18,6 +18,15 @@ describe('insertWhisper', () => {
     nock.disableNetConnect();
   });
 
+  it('insertWhisper() : do not insert anything if data are loading', async () => {
+    document.body.innerHTML =
+      '<div>' +
+      '  <span class="whisper">Im a whisper</span>' +
+      '</div>';
+    let res = await whispers.insertWhisper(document, true)
+    expect(res).toEqual('loading data : no change')
+  });
+
   it('insertWhisper() : do not insert anything if whisper already here', async () => {
     document.body.innerHTML =
       '<div>' +
