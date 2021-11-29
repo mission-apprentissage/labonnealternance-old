@@ -4,7 +4,8 @@ const fs = require("fs");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const _ = require("lodash");
 const geoData = require("../../common/utils/geoData");
-const { RomeNaf /*, CompanyScore*/ } = require("../../common/model");
+const { RomeNaf, CompanyScore } = require("../../common/model");
+const config = require("config");
 
 const logMessage = (level, msg) => {
   //console.log(msg);
@@ -22,6 +23,28 @@ const findRomesForNaf = async (nafCode) => {
   return romes.map((rome) => rome.code_rome);
 };
 
+const getScoreForCompany = async (siret) => {
+  let company = await CompanyScore.findOne({ siret, active: true });
+
+  if (company?.score) {
+    if (company.score >= config.lbb.score100Level) {
+      return 100;
+    }
+
+    if (company.score >= config.lbb.score80Level) {
+      return 80;
+    }
+
+    if (company.score >= config.lbb.score60Level) {
+      return 60;
+    }
+
+    return 50;
+  } else {
+    return null;
+  }
+};
+
 const parseLine = async (line) => {
   const terms = line.split(";");
 
@@ -35,6 +58,12 @@ const parseLine = async (line) => {
     insee: terms[6],
     code_postal: terms[7],
   };
+
+  let score = await getScoreForCompany(company.siret);
+
+  if (!score) {
+    return null;
+  }
 
   let [geo, romes] = await Promise.all([geoData.getFirstMatchUpdates(company), findRomesForNaf(company.code_naf)]);
 

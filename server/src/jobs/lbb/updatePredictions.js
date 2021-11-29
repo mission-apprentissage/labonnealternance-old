@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const _ = require("lodash");
+const config = require("config");
 
 const filePath = path.join(__dirname, "./assets/predictions.csv");
 
@@ -35,7 +36,7 @@ const updatePrediction = async (prediction) => {
   //console.log(line);
 
   try {
-    if (prediction.score >= 1) {
+    if (prediction.score >= config.lbb.score50Level) {
       //console.log("GOOOD : ", prediction.score);
 
       let cScore = await CompanyScore.findOneAndUpdate({ siret: prediction.siret }, prediction, {
