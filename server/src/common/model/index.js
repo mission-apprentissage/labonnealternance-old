@@ -31,4 +31,5 @@ module.exports = {
   Application: createModel("applications", schema.applicationSchema),
   SourceFormations: createModel("sourceformations", schema.sourceFormationsSchema),
   RomeNaf: createModel("romenaf", schema.romeNafSchema),
+  CompanyScore: createModel("companyscore", schema.companyScoreSchema),
 };
