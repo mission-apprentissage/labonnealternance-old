@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useScopeContext } from "context/ScopeContext";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import ResultLists from "./ResultLists";
 import { setCurrentPage, setCurrentSearch, currentSearch } from "utils/currentPage.js";
 import pushHistory from "utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
+import whispers from "../services/whispers.js";
 
 import {
   setTrainings,
@@ -58,6 +59,10 @@ const ChoiceColumn = ({
         dispatch(setItemToScrollTo(null));
       }
     }
+  });
+
+  useEffect( () => {
+    whispers.insertWhisper(document, isTrainingSearchLoading || isJobSearchLoading);
   });
 
   const handleSearchSubmitFunction = (values) => {
@@ -187,7 +192,7 @@ const ChoiceColumn = ({
       />
     );
   };
-
+  
   const getSearchForm = () => {
     return (
       <div className="d-block d-md-none">
