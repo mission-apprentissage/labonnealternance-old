@@ -4,7 +4,7 @@ const fs = require("fs");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const _ = require("lodash");
 const geoData = require("../../common/utils/geoData");
-const { RomeNaf } = require("../../common/model");
+const { RomeNaf /*, CompanyScore*/ } = require("../../common/model");
 
 const logMessage = (level, msg) => {
   //console.log(msg);
@@ -25,15 +25,6 @@ const findRomesForNaf = async (nafCode) => {
 const parseLine = async (line) => {
   const terms = line.split(";");
 
-  /*let intitule_naf = terms[3];
-  if (terms.length > 5) {
-    // cas où l'intitulé contient des virgules
-    for (let i = 4; i < terms.length - 1; ++i) {
-      intitule_naf += "," + terms[i];
-    }
-    intitule_naf = intitule_naf.slice(1, -1);
-  }*/
-
   let company = {
     siret: terms[0],
     enseigne: terms[1],
@@ -45,13 +36,20 @@ const parseLine = async (line) => {
     code_postal: terms[7],
   };
 
-  company.romes = await findRomesForNaf(company.code_naf);
+  let [geo, romes] = await Promise.all([geoData.getFirstMatchUpdates(company), findRomesForNaf(company.code_naf)]);
 
-  let geo = await geoData.getFirstMatchUpdates(company);
-  //console.log(a);
+  // filtrage des éléments inexploitables
+  if (romes.length === 0) {
+    return null;
+  }
 
-  company = { ...geo, ...company };
+  if (!geo) {
+    return null;
+  }
 
+  company = { ...geo, romes, ...company };
+
+  //console.log("cmp ",company);
   return company;
 };
 
@@ -64,7 +62,7 @@ module.exports = async () => {
     await oleoduc(
       fs.createReadStream(filePath),
       readLineByLine(),
-      transformData((line) => parseLine(line)),
+      transformData((line) => parseLine(line), { parallel: 8 }),
       writeData(async (line) => {
         console.log(line);
       })
