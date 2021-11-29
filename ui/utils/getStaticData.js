@@ -1,6 +1,14 @@
 import { includes } from "lodash";
 
 
+export const extractFromFile = (path, fs, txtDirectory, fileName) => {
+  const filePath = path.join(txtDirectory, fileName)
+  const lineString = fs.readFileSync(filePath, 'utf8')
+  const arrayOfLines = lineString.match(/[^\r\n]+/g);
+  return arrayOfLines;
+}
+
+
 export const getStaticMetiers = (path, fs, txtDirectory, stubbedExtractionFunction = null) => {
 
   const extractionFunction = stubbedExtractionFunction || extractFromFile
@@ -24,12 +32,6 @@ export const getStaticMetiers = (path, fs, txtDirectory, stubbedExtractionFuncti
   return dataJobs;
 };
 
-export const extractFromFile = (path, fs, txtDirectory, fileName) => {
-  const filePath = path.join(txtDirectory, fileName)
-  const lineString = fs.readFileSync(filePath, 'utf8')
-  const arrayOfLines = lineString.match(/[^\r\n]+/g);
-  return arrayOfLines;
-}
 
 export const getStaticVilles = (path, fs, txtDirectory, stubbedExtractionFunction = null) => {
   
