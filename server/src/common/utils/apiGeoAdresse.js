@@ -25,8 +25,8 @@ class ApiGeoAdresse {
     while (trys < 3) {
       response = await axios.get(query);
 
-      if (response.data.status === 429) {
-        console.log(response.data);
+      if (response?.data?.status === 429) {
+        console.log("429 ", new Date(), query);
         trys++;
         await new Promise((resolve) => setTimeout(resolve, 1000));
       } else {
