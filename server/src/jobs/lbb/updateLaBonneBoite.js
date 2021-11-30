@@ -27,15 +27,15 @@ const getScoreForCompany = async (siret) => {
   let company = await CompanyScore.findOne({ siret, active: true });
 
   if (company?.score) {
-    if (company.score >= config.lbb.score100Level) {
+    if (company.score >= config.private.lbb.score100Level) {
       return 100;
     }
 
-    if (company.score >= config.lbb.score80Level) {
+    if (company.score >= config.private.lbb.score80Level) {
       return 80;
     }
 
-    if (company.score >= config.lbb.score60Level) {
+    if (company.score >= config.private.lbb.score60Level) {
       return 60;
     }
 
@@ -87,6 +87,11 @@ module.exports = async () => {
 
   try {
     logMessage("info", " -- Start updating lbb db -- ");
+    logMessage("info", `score 100 :  ${config.private.lbb.score100Level}`);
+    logMessage("info", `score 080 :  ${config.private.lbb.score80Level}`);
+    logMessage("info", `score 060 :  ${config.private.lbb.score60Level}`);
+    logMessage("info", `score 050 :  ${config.private.lbb.score50Level}`);
+    //console.log("ENNNNNVVVV ",process.env);
 
     await oleoduc(
       fs.createReadStream(filePath),
