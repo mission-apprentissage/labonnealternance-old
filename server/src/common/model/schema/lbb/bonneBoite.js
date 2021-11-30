@@ -1,15 +1,15 @@
-const companySchema = {
+const bonneBoiteSchema = {
   siret: {
     type: String,
     default: null,
     description: "Le Siret de la société",
+    index: true,
   },
   score: {
     type: Number,
     default: 0,
     description: "Le score de recrutement de la société",
   },
-
   raisonsociale: {
     type: String,
     default: null,
@@ -55,6 +55,16 @@ const companySchema = {
     default: null,
     description: "Code postal",
   },
+  ville: {
+    type: String,
+    default: null,
+    description: "Ville",
+  },
+  geo_coordonnees: {
+    type: String,
+    implicit_type: "geo_point",
+    description: "Latitude et longitude de l'établissement",
+  },
   email: {
     type: String,
     default: null,
@@ -71,7 +81,6 @@ const companySchema = {
     default: null,
     description: "URL du site Internet",
   },
-
   created_at: {
     type: Date,
     default: Date.now,
@@ -84,4 +93,4 @@ const companySchema = {
   },
 };
 
-module.exports = companySchema;
+module.exports = bonneBoiteSchema;

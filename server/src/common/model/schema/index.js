@@ -6,6 +6,7 @@ const sourceFormationsSchema = require("./sourceFormationsSchema");
 const mnaFormationSchema = require("./mnaFormation/mnaFormation");
 const romeNafSchema = require("./lbb/romeNaf");
 const companyScoreSchema = require("./lbb/companyScore");
+const bonneBoiteSchema = require("./lbb/bonneBoite");
 
 module.exports = {
   domainesMetiersSchema,
@@ -16,4 +17,5 @@ module.exports = {
   sourceFormationsSchema,
   romeNafSchema,
   companyScoreSchema,
+  bonneBoiteSchema,
 };

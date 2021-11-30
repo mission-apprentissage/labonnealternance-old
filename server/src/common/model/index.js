@@ -32,4 +32,7 @@ module.exports = {
   SourceFormations: createModel("sourceformations", schema.sourceFormationsSchema),
   RomeNaf: createModel("romenaf", schema.romeNafSchema),
   CompanyScore: createModel("companyscore", schema.companyScoreSchema),
+  BonnesBoites: createModel("bonnesboites", schema.bonneBoiteSchema, {
+    esIndexName: "bonnesboites",
+  }),
 };
