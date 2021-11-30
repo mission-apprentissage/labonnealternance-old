@@ -8,6 +8,8 @@ const config = require("config");
 
 const filePath = path.join(__dirname, "./assets/predictions.csv");
 
+const seuilElimination = config.private.lbb.score50Level;
+
 const logMessage = (level, msg) => {
   //console.log(msg);
   if (level === "info") {
@@ -33,19 +35,13 @@ const parseLine = (line) => {
 };
 
 const updatePrediction = async (prediction) => {
-  //console.log(line);
-
   try {
-    if (prediction.score >= config.lbb.score50Level) {
-      //console.log("GOOOD : ", prediction.score);
-
+    if (prediction.score >= seuilElimination) {
       let cScore = await CompanyScore.findOneAndUpdate({ siret: prediction.siret }, prediction, {
         new: true,
         upsert: true,
       });
       await cScore.save();
-    } else {
-      //console.log("predictionscore : ", prediction.score);
     }
   } catch (err) {
     console.log("error saving line : ", prediction, err.message);
@@ -57,7 +53,7 @@ module.exports = async () => {
 
   try {
     logMessage("info", " -- Start updating predictions -- ");
-
+    logMessage("info", ` -- Seuil d'élimination : ${seuilElimination}`);
     await resetPredictionStatus();
 
     let count = 0;
