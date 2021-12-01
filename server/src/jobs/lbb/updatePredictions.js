@@ -28,11 +28,13 @@ const parseLine = (line) => {
   const terms = line.split(";");
 
   return {
-    siret: terms[0],
+    siret: terms[0].padStart(14, "0"),
     score: terms[1],
     active: true,
   };
 };
+
+//let scoreHash = {};
 
 const updatePrediction = async (prediction) => {
   try {
