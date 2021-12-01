@@ -15,10 +15,10 @@ class GeoData {
     };
   }
 
-  getAddress(numero_voie, type_voie, nom_voie, code_postal, localite) {
+  getAddress(numero_voie, type_voie, nom_voie, code_postal, ville) {
     return `https://api-adresse.data.gouv.fr/search/?q=${numero_voie ? numero_voie + "+" : ""}${
       type_voie ? type_voie + "+" : ""
-    }+${nom_voie ? nom_voie : ""}&postcode=${code_postal} - ${localite}`;
+    }+${nom_voie ? nom_voie : ""}&postcode=${code_postal} - ${ville}`;
   }
 
   // le code postal 75116 ne remonte rien, il doit être remplacé par 75016
@@ -29,7 +29,7 @@ class GeoData {
     else return postcode;
   }
 
-  async getFirstMatchUpdates({ numero_voie, type_voie, nom_voie, code_postal, localite }) {
+  async getFirstMatchUpdates({ numero_voie, type_voie, nom_voie, code_postal, ville }) {
     // première tentative de recherche sur rue et code postal
 
     if (code_postal === "97133") {
@@ -37,13 +37,13 @@ class GeoData {
       // cas particulier concernant un unique college à saint barth'
       return {
         geo_coordonnees: "17.896279,-62.849772", // format "lat,long"
-        localite: "Saint Barthélémy",
+        ville: "Saint Barthélémy",
       };
     }
 
     if (!code_postal) {
       console.log(
-        `No postcode for establishment.\t${this.getAddress(numero_voie, type_voie, nom_voie, code_postal, localite)}`
+        `No postcode for establishment.\t${this.getAddress(numero_voie, type_voie, nom_voie, code_postal, ville)}`
       );
       return false;
     }
@@ -57,7 +57,7 @@ class GeoData {
     if (!responseApiAdresse || responseApiAdresse.features.length === 0) {
       //console.log(`Second geoloc call with postcode \t ${code_postal}`);
       responseApiAdresse = await apiGeoAdresse.searchPostcodeOnly(
-        `${localite ? localite : "a"}`, // hack si localite absente
+        `${ville ? ville : "a"}`, // hack si ville absente
         this.refinePostcode(code_postal)
       );
     }
@@ -66,13 +66,7 @@ class GeoData {
 
     if (responseApiAdresse.features.length === 0) {
       console.log(
-        `No geoloc result for establishment.\t${this.getAddress(
-          numero_voie,
-          type_voie,
-          nom_voie,
-          code_postal,
-          localite
-        )}`
+        `No geoloc result for establishment.\t${this.getAddress(numero_voie, type_voie, nom_voie, code_postal, ville)}`
       );
       return false;
     }
@@ -94,7 +88,7 @@ class GeoData {
 
     return {
       geo_coordonnees: `${geojson.features[0].geometry.coordinates[1]},${geojson.features[0].geometry.coordinates[0]}`, // format "lat,long"
-      localite: geojson.features[0].properties.city,
+      ville: geojson.features[0].properties.city,
     };
   }
 }
