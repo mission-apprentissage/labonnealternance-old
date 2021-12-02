@@ -44,15 +44,6 @@ describe('insertWhisper', () => {
     let res = await whispers.insertWhisper(document)
     expect(res).toEqual('no resultCard found : no change')
   });
-
-  it('insertWhisper() : do not insert anything if there is not enough resultCard', async () => {
-    document.body.innerHTML =
-      '<div>' +
-      '  <span class="resultCard">Im a resultCard</span>' +
-      '</div>';
-    let res = await whispers.insertWhisper(document)
-    expect(res).toEqual('not enough resultCard to show a whisper')
-  });
   
   it('insertWhisper() : insert a whisper if more than 9 resultCard', async () => {
 
