@@ -10,4 +10,4 @@ const randomWithin = (collection) => {
   return collection[randomIndex]
 }
 
-export { amongst }
+export { amongst, randomWithin }

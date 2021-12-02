@@ -1,4 +1,4 @@
-import { random, chunk, forEach, filter, includes } from "lodash";
+import { random, chunk, forEach, filter, reject } from "lodash";
 import axios from "axios";
 import csvToArray from "../../../utils/csvToArray.js"
 import { randomWithin } from "../../../utils/arrayutils";
@@ -24,11 +24,9 @@ function anyMessageAmongst(messages, alreadyShownMessages = []) {
     const filteredMessages = filter(messages, (m) => {
       return reject(alreadyShownMessages, m.Message)
     })
-    let randomIndex = random(0, filteredMessages.length - 1)
-    return filteredMessages[randomIndex]
+    return randomWithin(filteredMessages)
   } else {
-    let randomIndex = random(0, messages.length - 1)
-    return messages[randomIndex]
+    return randomWithin(messages)
   }
 }
 
@@ -61,7 +59,7 @@ async function insertWhisper(document, isLoadingData) {
 
   if (resultCardSize <= 10) {
     const msg = anyMessageAmongst(allMessages)
-    const randomlyChosenResultCard = resultCards[random(0, resultCardSize)];
+    const randomlyChosenResultCard = randomWithin(resultCards)
     domInsertion(document, randomlyChosenResultCard, msg)
   } else if (resultCardSize > 10 && resultCardSize <= 20 ) {
     const msg = anyMessageAmongst(allMessages)
@@ -73,7 +71,7 @@ async function insertWhisper(document, isLoadingData) {
     forEach(resultCardsBlocks, async (resultCardsBlock) => {
       const msg = anyMessageAmongst(allMessages, alreadyShownMessages)
       alreadyShownMessages.push(msg)
-      const randomlyChosenResultCard = resultCardsBlock[random(0, resultCardsBlock.length - 1)];
+      const randomlyChosenResultCard = randomWithin(resultCardsBlock);
       domInsertion(document, randomlyChosenResultCard, msg)
     })
   }
