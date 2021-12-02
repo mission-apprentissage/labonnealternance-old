@@ -50,21 +50,21 @@ async function insertWhisper(document, isLoadingData) {
   } else if (resultCardSize > 20) {
     const resultCardsBlocks = chunk(resultCards, 20);
     let alreadyShownMessages = []
-    forEach(resultCardsBlocks, async (resultCardsBlock) => {
+    forEach(resultCardsBlocks, async (resultCardsBlock, indx) => {
       const msg = anyMessageAmongst(allMessages, alreadyShownMessages)
       alreadyShownMessages.push(msg)
       const randomlyChosenResultCard = randomWithin(resultCardsBlock, 10);
-      domInsertion(document, randomlyChosenResultCard, msg)
+      domInsertion(document, randomlyChosenResultCard, msg, indx)
     })
   }
   
   return 'whisper randomly inserted'
 }
 
-function domInsertion(document, randomlyChosenResultCard, msg) {
+function domInsertion(document, randomlyChosenResultCard, msg, indx=0) {
   let whisperNode = document.createElement("div");
   whisperNode.classList.add('whisper');
-  whisperNode.setAttribute('data-testid', 'whisper');
+  whisperNode.setAttribute('data-testid', `whisper${indx}`);
   whisperNode.innerHTML = getHTML(msg.Message, msg.link, msg['Thème'], msg['ID']);
   insertAfter(randomlyChosenResultCard, whisperNode)
 }
