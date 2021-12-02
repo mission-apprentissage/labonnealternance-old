@@ -1,7 +1,8 @@
-import { random, chunk, forEach, includes, reject } from "lodash";
+import { chunk, forEach, includes, reject } from "lodash";
 import axios from "axios";
 import csvToArray from "../../../utils/csvToArray.js"
 import { randomWithin } from "../../../utils/arrayutils";
+import { SendTrackEvent } from "../../../utils/gtm";
 
 
 function anyMessageAmongst(messages, alreadyShownMessages = []) {
@@ -64,11 +65,15 @@ function domInsertion(document, randomlyChosenResultCard, msg) {
   let whisperNode = document.createElement("div");
   whisperNode.classList.add('whisper');
   whisperNode.setAttribute('data-testid', 'whisper');
-  whisperNode.innerHTML = getHTML(msg.Message, msg.link, msg['Thème']);
+  whisperNode.innerHTML = getHTML(msg.Message, msg.link, msg['Thème'], msg['ID']);
   insertAfter(randomlyChosenResultCard, whisperNode)
 }
 
-function getHTML(text, link, theme) {
+function getHTML(text, link, theme, msgId) {
+
+  window['SendTrackEvent'] = SendTrackEvent;
+
+
   return `<div class="resultCard gtmWhisper">
             <div class="c-media">
               <div class="c-media-figure">
@@ -88,7 +93,7 @@ function getHTML(text, link, theme) {
                   </div>
                   <div class="d-flex-center mt-4 whisper-feedback p-3" data-testid="whisper-feedback">
                     <span class="whisper-useful d-block">Avez-vous trouvé cette information utile ?</span>
-                    <button class="gtmWhisperYes gtmWhisper${theme} d-block whisper-useful-btn mx-2" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour !</div>'" aria-label="feedback-positive">👍 Oui</button>
+                    <button class="gtmWhisperYes gtmWhisper${theme} d-block whisper-useful-btn mx-2" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour !</div>'; SendTrackEvent({event: 'whisper-feedback', positive: true, id: '${msgId}' });" aria-label="feedback-positive">👍 Oui</button>
                     <button class="gtmWhisperNo gtmWhisper${theme} d-block whisper-useful-btn" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour.</div>'" aria-label="feedback-negative">👎 Non</button>
                   </div>
                 </div>
