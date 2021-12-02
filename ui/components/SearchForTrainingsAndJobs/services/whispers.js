@@ -43,20 +43,14 @@ async function insertWhisper(document, isLoadingData) {
 
   const allMessages = await getAllMessages();
 
-  if (resultCardSize <= 20) {
-    const msg = anyMessageAmongst(allMessages)
-    const randomlyChosenResultCard = randomWithin(resultCards, 10)
-    domInsertion(document, randomlyChosenResultCard, msg)
-  } else if (resultCardSize > 20) {
-    const resultCardsBlocks = chunk(resultCards, 20);
-    let alreadyShownMessages = []
-    forEach(resultCardsBlocks, async (resultCardsBlock, indx) => {
-      const msg = anyMessageAmongst(allMessages, alreadyShownMessages)
-      alreadyShownMessages.push(msg)
-      const randomlyChosenResultCard = randomWithin(resultCardsBlock, 10);
-      domInsertion(document, randomlyChosenResultCard, msg, indx)
-    })
-  }
+  const resultCardsBlocks = chunk(resultCards, 20);
+  let alreadyShownMessages = []
+  forEach(resultCardsBlocks, async (resultCardsBlock, indx) => {
+    const msg = anyMessageAmongst(allMessages, alreadyShownMessages)
+    alreadyShownMessages.push(msg)
+    const randomlyChosenResultCard = randomWithin(resultCardsBlock, 10);
+    domInsertion(document, randomlyChosenResultCard, msg, indx)
+  })
   
   return 'whisper randomly inserted'
 }
@@ -72,7 +66,6 @@ function domInsertion(document, randomlyChosenResultCard, msg, indx=0) {
 function getHTML(text, link, theme, msgId) {
 
   window['SendTrackEvent'] = SendTrackEvent;
-
 
   return `<div class="resultCard gtmWhisper">
             <div class="c-media">
