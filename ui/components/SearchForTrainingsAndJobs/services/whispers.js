@@ -1,9 +1,38 @@
-import { random } from "lodash";
+import { random, chunk, forEach, filter, includes } from "lodash";
 import axios from "axios";
 import csvToArray from "../../../utils/csvToArray.js"
+import { randomWithin } from "../../../utils/arrayutils";
 
 
-async function randomMessage() {
+// async function randomMessage() {
+//   const response = await axios.get('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets/ui/config/astuces.csv');
+//   const csv = csvToArray(response.data)
+//   const cleanedCsv = csv
+//                       .filter((e) => e.Message)
+//                       .map((e) => {
+//                         delete e['']
+//                         e.link = e["Lien externe"].split(' ')[0]
+//                         delete e["Lien externe"]
+//                         return e
+//                       })
+//   let randomIndex = random(0, cleanedCsv.length - 1)
+//   return cleanedCsv[randomIndex]
+// }
+
+function anyMessageAmongst(messages, alreadyShownMessages = []) {
+  if (alreadyShownMessages.length > 0 && alreadyShownMessages.length <= messages.length) {
+    const filteredMessages = filter(messages, (m) => {
+      return reject(alreadyShownMessages, m.Message)
+    })
+    let randomIndex = random(0, filteredMessages.length - 1)
+    return filteredMessages[randomIndex]
+  } else {
+    let randomIndex = random(0, messages.length - 1)
+    return messages[randomIndex]
+  }
+}
+
+async function getAllMessages() {
   const response = await axios.get('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets/ui/config/astuces.csv');
   const csv = csvToArray(response.data)
   const cleanedCsv = csv
@@ -14,8 +43,7 @@ async function randomMessage() {
                         delete e["Lien externe"]
                         return e
                       })
-  let randomIndex = random(0, cleanedCsv.length - 1)
-  return cleanedCsv[randomIndex]
+  return cleanedCsv;
 }
 
 async function insertWhisper(document, isLoadingData) {
@@ -28,23 +56,38 @@ async function insertWhisper(document, isLoadingData) {
 
   if (whisperSize > 0) return 'whisper already exists : no change'
   if (resultCardSize === 0) return 'no resultCard found : no change'
-  if (resultCardSize < 10) return 'not enough resultCard to show a whisper'
 
-  const msg = await exportFunctions.randomMessage()
+  const allMessages = await getAllMessages();
 
-  // Required between 3 and 10
-  const randomlyChosenResultCard = resultCards[random(2, 9)];
+  if (resultCardSize <= 10) {
+    const msg = anyMessageAmongst(allMessages)
+    const randomlyChosenResultCard = resultCards[random(0, resultCardSize)];
+    domInsertion(document, randomlyChosenResultCard, msg)
+  } else if (resultCardSize > 10 && resultCardSize <= 20 ) {
+    const msg = anyMessageAmongst(allMessages)
+    const randomlyChosenResultCard = resultCards[random(2, 9)];
+    domInsertion(document, randomlyChosenResultCard, msg)
+  } else if (resultCardSize > 20) {
+    const resultCardsBlocks = chunk(resultCards, 20);
+    let alreadyShownMessages = []
+    forEach(resultCardsBlocks, async (resultCardsBlock) => {
+      const msg = anyMessageAmongst(allMessages, alreadyShownMessages)
+      alreadyShownMessages.push(msg)
+      const randomlyChosenResultCard = resultCardsBlock[random(0, resultCardsBlock.length - 1)];
+      domInsertion(document, randomlyChosenResultCard, msg)
+    })
+  }
+  
+  return 'whisper randomly inserted'
+}
 
+function domInsertion(document, randomlyChosenResultCard, msg) {
   let whisperNode = document.createElement("div");
   whisperNode.classList.add('whisper');
   whisperNode.setAttribute('data-testid', 'whisper');
   whisperNode.innerHTML = getHTML(msg.Message, msg.link, msg['Thème']);
   insertAfter(randomlyChosenResultCard, whisperNode)
-
-  return 'whisper randomly inserted'
-
 }
-
 
 function getHTML(text, link, theme) {
   return `<div class="resultCard gtmWhisper">
@@ -88,7 +131,7 @@ function insertAfter(referenceNode, newNode) {
 
 const exportFunctions = {
   insertWhisper,
-  randomMessage
+  getAllMessages
 };
 
 
