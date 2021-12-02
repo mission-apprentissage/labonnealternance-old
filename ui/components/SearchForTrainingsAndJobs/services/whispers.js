@@ -113,9 +113,9 @@ function getHTML(text, link, theme) {
 }
 
 function getHTMLLink(link) {
-  return `<a href="${link}" target="_blank" className="" rel="noopener noreferrer">
+  return `<a href="${link}" target="_blank" class="gtmWhisperLink" rel="noopener noreferrer">
                   <img className="mt-n1" src="/images/square_link.svg" alt="Lien externe" />
-                  <span className="ml-1">${link.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0]}</span>
+                  <span className="ml-1">En savoir plus</span>
                 </a>`
 }
 
