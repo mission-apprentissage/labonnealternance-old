@@ -94,7 +94,7 @@ function getHTML(text, link, theme, msgId) {
                   <div class="d-flex-center mt-4 whisper-feedback p-3" data-testid="whisper-feedback">
                     <span class="whisper-useful d-block">Avez-vous trouvé cette information utile ?</span>
                     <button class="gtmWhisperYes gtmWhisper${theme} d-block whisper-useful-btn mx-2" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour !</div>'; SendTrackEvent({event: 'whisper-feedback', positive: true, id: '${msgId}' });" aria-label="feedback-positive">👍 Oui</button>
-                    <button class="gtmWhisperNo gtmWhisper${theme} d-block whisper-useful-btn" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour.</div>'" aria-label="feedback-negative">👎 Non</button>
+                    <button class="gtmWhisperNo gtmWhisper${theme} d-block whisper-useful-btn" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour.</div>'; SendTrackEvent({event: 'whisper-feedback', positive: false, id: '${msgId}' });" aria-label="feedback-negative">👎 Non</button>
                   </div>
                 </div>
               </div>
