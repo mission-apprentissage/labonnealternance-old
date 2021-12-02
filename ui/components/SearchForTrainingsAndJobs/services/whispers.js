@@ -4,21 +4,6 @@ import csvToArray from "../../../utils/csvToArray.js"
 import { randomWithin } from "../../../utils/arrayutils";
 
 
-// async function randomMessage() {
-//   const response = await axios.get('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets/ui/config/astuces.csv');
-//   const csv = csvToArray(response.data)
-//   const cleanedCsv = csv
-//                       .filter((e) => e.Message)
-//                       .map((e) => {
-//                         delete e['']
-//                         e.link = e["Lien externe"].split(' ')[0]
-//                         delete e["Lien externe"]
-//                         return e
-//                       })
-//   let randomIndex = random(0, cleanedCsv.length - 1)
-//   return cleanedCsv[randomIndex]
-// }
-
 function anyMessageAmongst(messages, alreadyShownMessages = []) {
   if (alreadyShownMessages.length > 0 && alreadyShownMessages.length <= messages.length) {
     const filteredMessages = reject(messages, (m) => {
