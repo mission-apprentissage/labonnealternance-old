@@ -3,8 +3,8 @@ const apiGeoAdresse = require("./apiGeoAdresse");
 class GeoData {
   constructor() {}
 
-  async getUpdates({ numero_voie, type_voie, nom_voie, code_postal }) {
-    const responseApiAdresse = await apiGeoAdresse.search(`${numero_voie}+${type_voie}+${nom_voie}`, code_postal);
+  async getUpdates({ numero_rue, type_voie, libelle_rue, code_postal }) {
+    const responseApiAdresse = await apiGeoAdresse.search(`${numero_rue}+${type_voie}+${libelle_rue}`, code_postal);
     if (responseApiAdresse.features.length !== 1) {
       return false;
     }
@@ -15,10 +15,10 @@ class GeoData {
     };
   }
 
-  getAddress(numero_voie, type_voie, nom_voie, code_postal, ville) {
-    return `https://api-adresse.data.gouv.fr/search/?q=${numero_voie ? numero_voie + "+" : ""}${
+  getAddress(numero_rue, type_voie, libelle_rue, code_postal, ville) {
+    return `https://api-adresse.data.gouv.fr/search/?q=${numero_rue ? numero_rue + "+" : ""}${
       type_voie ? type_voie + "+" : ""
-    }+${nom_voie ? nom_voie : ""}&postcode=${code_postal} - ${ville}`;
+    }+${libelle_rue ? libelle_rue : ""}&postcode=${code_postal} - ${ville}`;
   }
 
   // le code postal 75116 ne remonte rien, il doit être remplacé par 75016
@@ -29,7 +29,7 @@ class GeoData {
     else return postcode;
   }
 
-  async getFirstMatchUpdates({ numero_voie, type_voie, nom_voie, code_postal, ville }) {
+  async getFirstMatchUpdates({ numero_rue, type_voie, libelle_rue, code_postal, ville }) {
     // première tentative de recherche sur rue et code postal
 
     if (code_postal === "97133") {
@@ -43,13 +43,13 @@ class GeoData {
 
     if (!code_postal) {
       console.log(
-        `No postcode for establishment.\t${this.getAddress(numero_voie, type_voie, nom_voie, code_postal, ville)}`
+        `No postcode for establishment.\t${this.getAddress(numero_rue, type_voie, libelle_rue, code_postal, ville)}`
       );
       return false;
     }
 
     let responseApiAdresse = await apiGeoAdresse.search(
-      `${numero_voie ? numero_voie + "+" : ""}${type_voie ? type_voie + "+" : ""}${nom_voie ? nom_voie : ""}`,
+      `${numero_rue ? numero_rue + "+" : ""}${type_voie ? type_voie + "+" : ""}${libelle_rue ? libelle_rue : ""}`,
       this.refinePostcode(code_postal)
     );
 
@@ -66,7 +66,13 @@ class GeoData {
 
     if (responseApiAdresse.features.length === 0) {
       console.log(
-        `No geoloc result for establishment.\t${this.getAddress(numero_voie, type_voie, nom_voie, code_postal, ville)}`
+        `No geoloc result for establishment.\t${this.getAddress(
+          numero_rue,
+          type_voie,
+          libelle_rue,
+          code_postal,
+          ville
+        )}`
       );
       return false;
     }
@@ -75,9 +81,9 @@ class GeoData {
     /*if (responseApiAdresse.features.length > 1) {
       console.log(
         `Multiple geoloc results for establishment.\t${this.getAddress(
-          numero_voie,
+          numero_rue,
           type_voie,
-          nom_voie,
+          libelle_rue,
           code_postal,
           localite
         )}\t${responseApiAdresse.features[0].properties.label} ${responseApiAdresse.features[0].properties.postcode}`
