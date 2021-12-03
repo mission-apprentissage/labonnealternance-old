@@ -4,10 +4,13 @@ const fs = require("fs");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const _ = require("lodash");
 const geoData = require("../../common/utils/geoData");
-const { RomeNaf, CompanyScore, BonnesBoites } = require("../../common/model");
+const { /*RomeNaf, CompanyScore,*/ BonnesBoites } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
 const config = require("config");
 const initNafScoreMap = require("./initNafScoreMap.js");
+const initNafMap = require("./initNafMap.js");
+const initPredictionMap = require("./initPredictionMap.js");
+
 const logMessage = (level, msg) => {
   //console.log(msg);
   if (level === "info") {
@@ -18,13 +21,15 @@ const logMessage = (level, msg) => {
 };
 
 let nafScoreMap = {};
+let predictionMap = {};
+let nafMap = {};
 
 const filePath = path.join(__dirname, "./assets/etablissements.csv");
 
 let findRomesForNafCount = 0;
 let findRomesForNafTime = 0;
-let filterRomesFromNafHiringsCount = 0;
-let filterRomesFromNafHiringsTime = 0;
+/*let filterRomesFromNafHiringsCount = 0;
+let filterRomesFromNafHiringsTime = 0;*/
 let getScoreForCompanyCount = 0;
 let getScoreForCompanyTime = 0;
 let getGeoCount = 0;
@@ -34,11 +39,11 @@ let findBBTime = 0;
 
 const findRomesForNaf = async (bonneBoite) => {
   let sTime = new Date().getTime();
-  let dbRomes = await RomeNaf.find({ code_naf: bonneBoite.code_naf }, { code_rome: 1 });
+  /*let dbRomes = await RomeNaf.find({ code_naf: bonneBoite.code_naf }, { code_rome: 1 });
 
-  let romes = dbRomes.map((rome) => rome.code_rome);
+  let romes = dbRomes.map((rome) => rome.code_rome);*/
 
-  romes = filterRomesFromNafHirings(bonneBoite, romes);
+  let romes = filterRomesFromNafHirings(bonneBoite /*, romes*/);
   let eTime = new Date().getTime();
 
   findRomesForNafTime += eTime - sTime;
@@ -70,16 +75,21 @@ const createIndex = async () => {
 
 const getScoreForCompany = async (siret) => {
   let sTime = new Date().getTime();
-  let companyScore = await CompanyScore.findOne({ siret, active: true });
+  //let companyScore = await CompanyScore.findOne({ siret, active: true });
+
+  let companyScore = predictionMap[siret];
 
   let eTime = new Date().getTime();
 
   getScoreForCompanyCount++;
   getScoreForCompanyTime += eTime - sTime;
 
+  return companyScore;
+
+  /*
   if (companyScore?.score) {
     return companyScore.score;
-    /*if (company.score >= config.private.lbb.score100Level) {
+    if (company.score >= config.private.lbb.score100Level) {
       return 100;
     }
 
@@ -91,18 +101,20 @@ const getScoreForCompany = async (siret) => {
       return 60;
     }
 
-    return 50;*/
+    return 50;
   } else {
     return null;
-  }
+  }*/
 };
 
-const filterRomesFromNafHirings = (bonneBoite, romes) => {
-  let sTime = new Date().getTime();
+const filterRomesFromNafHirings = (bonneBoite /*, romes*/) => {
+  //let sTime = new Date().getTime();
   const nafRomeHirings = nafScoreMap[bonneBoite.code_naf];
 
-  const filteredRomes = romes.filter((rome) => {
-    /*console.log(
+  let filteredRomes = [];
+  if (nafRomeHirings) {
+    filteredRomes = nafRomeHirings.romes.filter((rome) => {
+      /*console.log(
       rome,
       bonneBoite.enseigne,
       (bonneBoite.score * nafRomeHirings[rome]) / nafRomeHirings.hirings,
@@ -110,14 +122,15 @@ const filterRomesFromNafHirings = (bonneBoite, romes) => {
       nafRomeHirings[rome] / nafRomeHirings.hirings
     );*/
 
-    // 0.2 arbitraire
-    return (bonneBoite.score * nafRomeHirings[rome]) / nafRomeHirings.hirings > 0.2;
-  });
+      // 0.2 arbitraire
+      return (bonneBoite.score * nafRomeHirings[rome]) / nafRomeHirings.hirings > 0.2;
+    });
+  }
 
-  let eTime = new Date().getTime();
+  //let eTime = new Date().getTime();
 
-  filterRomesFromNafHiringsCount++;
-  filterRomesFromNafHiringsTime += eTime - sTime;
+  //filterRomesFromNafHiringsCount++;
+  //filterRomesFromNafHiringsTime += eTime - sTime;
 
   //console.log(romes, filteredRomes, bonneBoite.score, bonneBoite.code_naf, nafRomeHirings.hirings);
 
@@ -150,9 +163,7 @@ const parseLine = async (line) => {
         getScoreForCompanyTime / getScoreForCompanyCount
       }ms -- getGeoCount ${getGeoCount} avg ${getGeoTime / getGeoCount}ms -- findBBCount ${findBBCount} avg ${
         findBBTime / findBBCount
-      }ms -- filterRomesFromNafHiringsCount ${filterRomesFromNafHiringsCount} avg ${
-        filterRomesFromNafHiringsTime / filterRomesFromNafHiringsCount
-      }ms -- findBBCount ${findBBCount} avg ${findBBTime / findBBCount}ms `
+      }ms `
     );
   }
   count++;
@@ -162,11 +173,19 @@ const parseLine = async (line) => {
     enseigne: terms[1],
     nom: terms[2],
     code_naf: terms[3],
-    numero_voie: terms[4],
-    nom_voie: terms[5],
-    insee: terms[6],
+    numero_rue: terms[4],
+    libelle_rue: terms[5],
+    code_commune: terms[6],
     code_postal: terms[7],
   };
+
+  let score = await getScoreForCompany(company.siret);
+
+  if (!score) {
+    //TODO: checker si réhaussage artificiel vie support PE
+    //console.log("pas de score");
+    return null;
+  }
 
   let sTime = new Date().getTime();
   let bonneBoite = await BonnesBoites.findOne({ siret: company.siret });
@@ -176,17 +195,10 @@ const parseLine = async (line) => {
 
   if (!bonneBoite) {
     //console.log("bonne boite existe pas ", company.siret);
+    company.intitule_naf = nafMap[company.code_naf];
     bonneBoite = new BonnesBoites(company);
   } else {
     console.log("bonne boîte existe déjà : ", bonneBoite);
-  }
-
-  let score = await getScoreForCompany(bonneBoite.siret);
-
-  if (!score) {
-    //TODO: checker si réhaussage artificiel vie support PE
-    //console.log("pas de score");
-    return null;
   }
 
   bonneBoite.score = score;
@@ -197,7 +209,7 @@ const parseLine = async (line) => {
 
   // filtrage des éléments inexploitables
   if (romes.length === 0) {
-    console.log("pas de romes");
+    //console.log("pas de romes");
     return null;
   } else {
     bonneBoite.romes = romes;
@@ -229,6 +241,8 @@ module.exports = async () => {
     //console.log("ENNNNNVVVV ",process.env);
 
     nafScoreMap = await initNafScoreMap();
+    nafMap = await initNafMap();
+    predictionMap = await initPredictionMap();
 
     // voir comment supprimer tout ça
     await emptyMongo();

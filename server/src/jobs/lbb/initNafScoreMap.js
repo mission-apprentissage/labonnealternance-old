@@ -21,7 +21,7 @@ let count = 0;
 const parseLine = async (line) => {
   const terms = line.split('"');
 
-  if (count % 1000 === 0) {
+  if (count % 5000 === 0) {
     logMessage("info", ` -- update init rome naf hirings ${count}`);
   }
   count++;
@@ -32,6 +32,8 @@ const parseLine = async (line) => {
       naf: terms[2].slice(1, -1),
       hirings: parseInt(terms[4].slice(1)),
     };
+  } else {
+    return null;
   }
 };
 
