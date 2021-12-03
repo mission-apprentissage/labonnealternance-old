@@ -2,6 +2,7 @@
 
 ## 1.17.4 [3/12/2021]
 [943] Reliquats Astuces
+[369] Recherche plus robuste
 
 ## 1.17.3 [26/11/2021]
 [832] Astuces
