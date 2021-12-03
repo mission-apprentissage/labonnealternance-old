@@ -8,13 +8,15 @@
     "build": "next build",
     "postbuild": "next-sitemap --config next-sitemap.js",
     "start": "next start",
-    "test": "jest --env=jest-environment-jsdom-sixteen",
+    "test": "nyc --silent jest --env=jest-environment-jsdom-sixteen",
     "serve": "next start",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
     "e2e": "echo '{ \"presets\": [ \"next/babel\" ], \"plugins\": [ \"istanbul\" ] }' > .babelrc && start-server-and-test dev http://localhost:3000 cypress ; rm .babelrc",
-    "e2e:headless": "echo '{ \"presets\": [ \"next/babel\" ], \"plugins\": [ \"istanbul\" ] }' > .babelrc &&  start-server-and-test dev http://localhost:3000 cypress:headless ; rm .babelrc",
-    "mergecov": "mkdir -p ./coverage/both && cp ./coverage/e2e/coverage-final.json ./coverage/both/coverage-final-e2e.json && cp ./coverage/unit/coverage-final.json ./coverage/both/coverage-final-unit.json && mkdir -p ./coverage/final && npx nyc merge ./coverage/both ./coverage/final/merged-coverage.json && npx nyc report -t ./coverage/final/ --report-dir ./coverage/final/ --reporter=html --reporter=text-summary"
+    "e2e:headless": "echo '{ \"presets\": [ \"next/babel\" ], \"plugins\": [ \"istanbul\" ] }' > .babelrc && nyc --silent --no-clean  start-server-and-test dev http://localhost:3000 cypress:headless ; rm .babelrc",
+    "mergecov": "mkdir -p ./coverage/both && cp ./coverage/e2e/coverage-final.json ./coverage/both/coverage-final-e2e.json && cp ./coverage/unit/coverage-final.json ./coverage/both/coverage-final-unit.json && mkdir -p ./coverage/final && npx nyc merge ./coverage/both ./coverage/final/merged-coverage.json && npx nyc report -t ./coverage/final/ --report-dir ./coverage/final/ --reporter=html --reporter=text-summary",
+    "mergecov:text": "mkdir -p ./coverage/full && npx istanbul-merge --out ./coverage/full/fullcoverage.json ./coverage/unit/coverage-final.json ./coverage/e2e/coverage-final.json && npx istanbul report --include ./coverage/full/fullcoverage.json --dir ./coverage/full text",
+    "mergecov:html": "mkdir -p ./coverage/full && npx istanbul-merge --out ./coverage/full/fullcoverage.json ./coverage/unit/coverage-final.json ./coverage/e2e/coverage-final.json && npx istanbul report --include ./coverage/full/fullcoverage.json --dir ./coverage/full html"
   },
   "nyc": {
     "report-dir": "coverage/e2e",
