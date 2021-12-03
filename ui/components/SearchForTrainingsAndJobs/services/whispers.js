@@ -1,9 +1,22 @@
-import { random } from "lodash";
+import { chunk, forEach, includes, reject } from "lodash";
 import axios from "axios";
 import csvToArray from "../../../utils/csvToArray.js"
+import { randomWithin } from "../../../utils/arrayutils";
+import { SendTrackEvent } from "../../../utils/gtm";
 
 
-async function randomMessage() {
+function anyMessageAmongst(messages, alreadyShownMessages = []) {
+  if (alreadyShownMessages.length > 0 && alreadyShownMessages.length <= messages.length) {
+    const filteredMessages = reject(messages, (m) => {
+      return includes(alreadyShownMessages, m.Message)
+    })
+    return randomWithin(filteredMessages)
+  } else {
+    return randomWithin(messages)
+  }
+}
+
+async function getAllMessages() {
   const response = await axios.get('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets/ui/config/astuces.csv');
   const csv = csvToArray(response.data)
   const cleanedCsv = csv
@@ -14,8 +27,7 @@ async function randomMessage() {
                         delete e["Lien externe"]
                         return e
                       })
-  let randomIndex = random(0, cleanedCsv.length - 1)
-  return cleanedCsv[randomIndex]
+  return cleanedCsv;
 }
 
 async function insertWhisper(document, isLoadingData) {
@@ -28,25 +40,34 @@ async function insertWhisper(document, isLoadingData) {
 
   if (whisperSize > 0) return 'whisper already exists : no change'
   if (resultCardSize === 0) return 'no resultCard found : no change'
-  if (resultCardSize < 10) return 'not enough resultCard to show a whisper'
 
-  const msg = await exportFunctions.randomMessage()
+  const allMessages = await getAllMessages();
 
-  // Required between 3 and 10
-  const randomlyChosenResultCard = resultCards[random(2, 9)];
-
-  let whisperNode = document.createElement("div");
-  whisperNode.classList.add('whisper');
-  whisperNode.setAttribute('data-testid', 'whisper');
-  whisperNode.innerHTML = getHTML(msg.Message, msg.link, msg['Thème']);
-  insertAfter(randomlyChosenResultCard, whisperNode)
-
+  const resultCardsBlocks = chunk(resultCards, 20);
+  let alreadyShownMessages = []
+  forEach(resultCardsBlocks, async (resultCardsBlock, indx) => {
+    const msg = anyMessageAmongst(allMessages, alreadyShownMessages)
+    alreadyShownMessages.push(msg)
+    const randomlyChosenResultCard = randomWithin(resultCardsBlock, 10);
+    domInsertion(document, randomlyChosenResultCard, msg, indx)
+  })
+  
+  
   return 'whisper randomly inserted'
-
 }
 
+function domInsertion(document, randomlyChosenResultCard, msg, indx=0) {
+  let whisperNode = document.createElement("div");
+  whisperNode.classList.add('whisper');
+  whisperNode.setAttribute('data-testid', `whisper${indx}`);
+  whisperNode.innerHTML = getHTML(msg.Message, msg.link, msg['Thème'], msg['ID']);
+  insertAfter(randomlyChosenResultCard, whisperNode)
+}
 
-function getHTML(text, link, theme) {
+function getHTML(text, link, theme, msgId) {
+
+  window['SendTrackEvent'] = SendTrackEvent;
+
   return `<div class="resultCard gtmWhisper">
             <div class="c-media">
               <div class="c-media-figure">
@@ -66,8 +87,8 @@ function getHTML(text, link, theme) {
                   </div>
                   <div class="d-flex-center mt-4 whisper-feedback p-3" data-testid="whisper-feedback">
                     <span class="whisper-useful d-block">Avez-vous trouvé cette information utile ?</span>
-                    <button class="gtmWhisperYes gtmWhisper${theme} d-block whisper-useful-btn mx-2" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour !</div>'" aria-label="feedback-positive">👍 Oui</button>
-                    <button class="gtmWhisperNo gtmWhisper${theme} d-block whisper-useful-btn" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour.</div>'" aria-label="feedback-negative">👎 Non</button>
+                    <button class="gtmWhisperYes gtmWhisper${theme} d-block whisper-useful-btn mx-2" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour !</div>'; SendTrackEvent({event: 'whisper-feedback', positive: true, id: '${msgId}' });" aria-label="feedback-positive">👍 Oui</button>
+                    <button class="gtmWhisperNo gtmWhisper${theme} d-block whisper-useful-btn" onclick="document.getElementsByClassName('whisper-feedback')[0].innerHTML = '<div>Merci pour votre retour.</div>'; SendTrackEvent({event: 'whisper-feedback', positive: false, id: '${msgId}' });" aria-label="feedback-negative">👎 Non</button>
                   </div>
                 </div>
               </div>
@@ -76,9 +97,9 @@ function getHTML(text, link, theme) {
 }
 
 function getHTMLLink(link) {
-  return `<a href="${link}" target="_blank" className="" rel="noopener noreferrer">
+  return `<a href="${link}" target="_blank" class="gtmWhisperLink" rel="noopener noreferrer">
                   <img className="mt-n1" src="/images/square_link.svg" alt="Lien externe" />
-                  <span className="ml-1">${link.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0]}</span>
+                  <span className="ml-1">En savoir plus</span>
                 </a>`
 }
 
@@ -88,7 +109,7 @@ function insertAfter(referenceNode, newNode) {
 
 const exportFunctions = {
   insertWhisper,
-  randomMessage
+  getAllMessages
 };
 
 
