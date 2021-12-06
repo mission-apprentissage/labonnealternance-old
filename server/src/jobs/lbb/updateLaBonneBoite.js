@@ -1,5 +1,4 @@
 const path = require("path");
-const logger = require("../../common/logger");
 const fs = require("fs");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const _ = require("lodash");
@@ -10,15 +9,7 @@ const config = require("config");
 const initNafScoreMap = require("./initNafScoreMap.js");
 const initNafMap = require("./initNafMap.js");
 const initPredictionMap = require("./initPredictionMap.js");
-
-const logMessage = (level, msg) => {
-  //console.log(msg);
-  if (level === "info") {
-    logger.info(msg);
-  } else {
-    logger.error(msg);
-  }
-};
+const logMessage = require("../../common/utils/logMessage");
 
 let nafScoreMap = {};
 let predictionMap = {};
@@ -205,7 +196,7 @@ const parseLine = async (line) => {
 
   // TODO checker si suppression via support PE
 
-  let [geo, romes] = await Promise.all([getGeoLocationForCompany(bonneBoite), findRomesForNaf(bonneBoite)]);
+  let romes = findRomesForNaf(bonneBoite);
 
   // filtrage des éléments inexploitables
   if (romes.length === 0) {
@@ -214,6 +205,8 @@ const parseLine = async (line) => {
   } else {
     bonneBoite.romes = romes;
   }
+
+  let geo = await getGeoLocationForCompany(bonneBoite);
 
   if (!bonneBoite.geo_coordonnees) {
     if (!geo) {
