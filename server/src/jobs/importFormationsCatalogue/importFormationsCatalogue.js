@@ -1,5 +1,4 @@
 const _ = require("lodash");
-const logger = require("../../common/logger");
 const { ConvertedFormation_0, ConvertedFormation_1 } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
 const { getConvertedFormations, countFormations } = require("../../common/components/catalogue");
@@ -10,14 +9,8 @@ const {
 } = require("../../common/components/indexSourceFormations");
 const { oleoduc, writeData } = require("oleoduc");
 const { Readable } = require("stream");
-
-const logMessage = (level, msg) => {
-  if (level === "info") {
-    logger.info(msg);
-  } else {
-    logger.error(msg);
-  }
-};
+const logger = require("../../common/logger");
+const logMessage = require("../../common/utils/logMessage");
 
 const emptyMongo = async (model) => {
   logMessage("info", `Clearing formations db...`);

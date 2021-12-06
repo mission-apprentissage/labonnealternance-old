@@ -1,4 +1,4 @@
-const logger = require("../../common/logger");
+const logMessage = require("../../common/utils/logMessage");
 const { CompanyScore } = require("../../common/model");
 const fs = require("fs");
 const path = require("path");
@@ -9,15 +9,6 @@ const config = require("config");
 const filePath = path.join(__dirname, "./assets/predictions.csv");
 
 const seuilElimination = config.private.lbb.score50Level;
-
-const logMessage = (level, msg) => {
-  //console.log(msg);
-  if (level === "info") {
-    logger.info(msg);
-  } else {
-    logger.error(msg);
-  }
-};
 
 const resetPredictionStatus = async () => {
   logMessage("info", `Reseting prediction status...`);

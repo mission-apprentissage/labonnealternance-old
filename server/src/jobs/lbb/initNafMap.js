@@ -1,15 +1,6 @@
-const logger = require("../../common/logger");
+const logMessage = require("../../common/utils/logMessage");
 const miniget = require("miniget");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
-
-const logMessage = (level, msg) => {
-  //console.log(msg);
-  if (level === "info") {
-    logger.info(msg);
-  } else {
-    logger.error(msg);
-  }
-};
 
 let nafMap = {};
 let count = 0;

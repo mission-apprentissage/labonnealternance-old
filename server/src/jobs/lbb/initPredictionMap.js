@@ -1,4 +1,4 @@
-const logger = require("../../common/logger");
+const logMessage = require("../../common/utils/logMessage");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const fs = require("fs");
 const path = require("path");
@@ -7,22 +7,13 @@ const config = require("config");
 
 const seuilElimination = config.private.lbb.score50Level;
 
-const logMessage = (level, msg) => {
-  //console.log(msg);
-  if (level === "info") {
-    logger.info(msg);
-  } else {
-    logger.error(msg);
-  }
-};
-
 let predictionMap = {};
 let count = 0;
 
 const parseLine = (line) => {
   const terms = line.split(";");
 
-  if (count % 10000 === 0) {
+  if (count % 50000 === 0) {
     logMessage("info", ` -- update init predictions ${count}`);
   }
   count++;

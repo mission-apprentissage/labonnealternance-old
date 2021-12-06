@@ -2,25 +2,17 @@ const path = require("path");
 const config = require("config");
 const fs = require("fs");
 const _ = require("lodash");
-const XLSX = require("xlsx");
 const logger = require("../../common/logger");
+const XLSX = require("xlsx");
 const { DomainesMetiers } = require("../../common/model");
 const { getFormationsES } = require("../../common/esClient");
 const { getFileFromS3 } = require("../../common/utils/awsUtils");
 const { oleoduc } = require("oleoduc");
+const logMessage = require("../../common/utils/logMessage");
 
 const esClient = getFormationsES();
 
 const FILE_LOCAL_PATH = path.join(__dirname, "./assets/domainesMetiers_S3.xlsx");
-
-const logMessage = (level, msg) => {
-  console.log(msg);
-  if (level === "info") {
-    logger.info(msg);
-  } else {
-    logger.error(msg);
-  }
-};
 
 const getFormationEsQueryIndexFragment = (limit) => {
   return {

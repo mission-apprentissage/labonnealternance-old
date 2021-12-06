@@ -1,16 +1,7 @@
 const path = require("path");
-const logger = require("../../common/logger");
 const fs = require("fs");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
-
-const logMessage = (level, msg) => {
-  //console.log(msg);
-  if (level === "info") {
-    logger.info(msg);
-  } else {
-    logger.error(msg);
-  }
-};
+const logMessage = require("../../common/utils/logMessage");
 
 let nafRomeHiringMap = {};
 
@@ -21,7 +12,7 @@ let count = 0;
 const parseLine = async (line) => {
   const terms = line.split('"');
 
-  if (count % 5000 === 0) {
+  if (count % 15000 === 0) {
     logMessage("info", ` -- update init rome naf hirings ${count}`);
   }
   count++;

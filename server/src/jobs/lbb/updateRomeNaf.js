@@ -1,17 +1,8 @@
-const logger = require("../../common/logger");
+const logMessage = require("../../common/utils/logMessage");
 const { RomeNaf } = require("../../common/model");
 const miniget = require("miniget");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const _ = require("lodash");
-
-const logMessage = (level, msg) => {
-  //console.log(msg);
-  if (level === "info") {
-    logger.info(msg);
-  } else {
-    logger.error(msg);
-  }
-};
 
 const emptyMongo = async () => {
   logMessage("info", `Clearing romenaf db...`);
