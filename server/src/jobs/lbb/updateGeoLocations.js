@@ -148,6 +148,11 @@ module.exports = async () => {
 
     logMessage("info", `End bulk geolocation`);
 
+    fsExtra.emptyDirSync(path.join(__dirname, tempDir));
+    predictionMap = null;
+
+    logMessage("info", `Temporary files removed`);
+
     return {
       result: "Table mise à jour",
     };
