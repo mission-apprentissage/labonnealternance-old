@@ -9,8 +9,7 @@ const _ = require("lodash");
 const fsExtra = require("fs-extra");
 const { logMessage } = require("../../common/utils/logMessage");
 const tempDir = "./assets/geoLocations/";
-const etablissementFilePath = path.join(__dirname, "./assets/etablissements_small.csv");
-//const etablissementFilePath = path.join(__dirname, "./assets/etablissements.csv");
+const etablissementFilePath = path.join(__dirname, "./assets/etablissements.csv");
 
 let predictionMap = {};
 
@@ -29,10 +28,10 @@ const parseAdressesEtablissements = (line) => {
   }
 };
 
-const emptyMongo = async () => {
+/*const emptyMongo = async () => {
   logMessage("info", `Clearing geolocations db...`);
   await GeoLocation.deleteMany({});
-};
+};*/
 
 // traite un fichier de retour geoloc de la ban
 const parseGeoLoc = (line) => {
@@ -57,14 +56,9 @@ const createToGeolocateFile = (addressesToGeolocate, sourceFileCount) => {
 const saveGeoData = async (geoData) => {
   let geoLocation = new GeoLocation(geoData);
   if ((await GeoLocation.countDocuments({ address: geoLocation.address })) === 0) {
-    //console.log("save ", geoLocation.address);
     await geoLocation.save();
-  } else {
-    //console.log("no save");
   }
 };
-
-//let scoreHash = {};
 
 const geolocateCsvHeader = "rue;citycode";
 
@@ -76,13 +70,11 @@ module.exports = async () => {
 
     predictionMap = await initPredictionMap();
 
-    //let count = 0;
-
     fsExtra.emptyDirSync(path.join(__dirname, tempDir));
 
     let sourceFileCount = 0;
 
-    logMessage("info", `Building source files`);
+    logMessage("info", `Construction fichiers d'adresses à géolocaliser`);
 
     let adressesToGeolocate = `${geolocateCsvHeader}\r\n`;
     let adressesToGeolocateCount = 0;
@@ -99,31 +91,33 @@ module.exports = async () => {
       readLineByLine(),
       transformData((line) => parseAdressesEtablissements(line), { parallel: 10 }),
       writeData((line) => {
-        //console.log(line);
-
         if (predictionMap[line.siret]) {
           adressesToGeolocate += `${line.numerorue} ${line.libellerue};${line.citycode}\r\n`;
           adressesToGeolocateCount++;
 
           if (adressesToGeolocateCount % 1000 === 0) {
-            // création de fichier
+            // création de fichier d'adresses qui doivent être géolocalisées
             saveSourceGeolocateFile();
+          }
+
+          if (adressesToGeolocateCount % 50000 === 0) {
+            logMessage("info", `${adressesToGeolocateCount} adresses à géolocaliser`);
           }
         }
       })
     );
 
     if (adressesToGeolocateCount % 1000 > 0) {
-      // création de fichier avec reliquat
+      // création de fichier avec reliquat des adresses qui doivent être géolocalisées
       saveSourceGeolocateFile();
+      logMessage("info", `${adressesToGeolocateCount} adresses à géolocaliser`);
     }
 
-    await emptyMongo();
+    //await emptyMongo();
 
-    logMessage("info", `Processing source files`);
-
+    logMessage("info", `Traitement géolocalisation`);
     for (let i = 0; i < sourceFileCount; ++i) {
-      let sTime = new Date().getTime();
+      logMessage("info", `Géolocalisation fichier d'adressses (${i + 1}/${sourceFileCount})`);
 
       const sourceFilePath = path.join(__dirname, `${tempDir}geolocatesource-${i}.csv`);
       const form = new FormData();
@@ -139,12 +133,6 @@ module.exports = async () => {
       const destFilePath = path.join(__dirname, `${tempDir}geolocated-${i}.csv`);
       fs.writeFileSync(destFilePath, res.data);
 
-      let eTime = new Date().getTime();
-
-      console.log("duration fetch : ", eTime - sTime, "ms");
-      //console.log(res.data);
-
-      sTime = new Date().getTime();
       await oleoduc(
         fs.createReadStream(destFilePath),
         readLineByLine(),
@@ -156,9 +144,6 @@ module.exports = async () => {
           { parallel: 10 }
         )
       );
-      eTime = new Date().getTime();
-
-      console.log("duration update : ", eTime - sTime, "ms");
     }
 
     logMessage("info", `End bulk geolocation`);
