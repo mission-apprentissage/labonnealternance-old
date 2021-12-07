@@ -8,7 +8,7 @@ const { DomainesMetiers } = require("../../common/model");
 const { getFormationsES } = require("../../common/esClient");
 const { getFileFromS3 } = require("../../common/utils/awsUtils");
 const { oleoduc } = require("oleoduc");
-const logMessage = require("../../common/utils/logMessage");
+const { logMessage } = require("../../common/utils/logMessage");
 
 const esClient = getFormationsES();
 

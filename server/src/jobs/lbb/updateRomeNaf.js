@@ -1,4 +1,4 @@
-const logMessage = require("../../common/utils/logMessage");
+const { logMessage } = require("../../common/utils/logMessage");
 const { RomeNaf } = require("../../common/model");
 const miniget = require("miniget");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");

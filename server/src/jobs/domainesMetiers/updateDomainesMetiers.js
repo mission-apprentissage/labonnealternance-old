@@ -6,7 +6,7 @@ const { DomainesMetiers } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
 const { getFileFromS3 } = require("../../common/utils/awsUtils");
 const { oleoduc } = require("oleoduc");
-const logMessage = require("../../common/utils/logMessage");
+const { logMessage } = require("../../common/utils/logMessage");
 
 const FILE_LOCAL_PATH = path.join(__dirname, "./assets/domainesMetiers_S3.xlsx");
 

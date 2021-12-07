@@ -1,6 +1,6 @@
 const _ = require("lodash");
 const Sentry = require("@sentry/node");
-const logMessage = require("../../common/utils/logMessage");
+const { logMessage } = require("../../common/utils/logMessage");
 const { DiplomesMetiers } = require("../../common/model");
 const { getElasticInstance, getFormationsES } = require("../../common/esClient");
 

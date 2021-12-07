@@ -10,7 +10,7 @@ const {
 const { oleoduc, writeData } = require("oleoduc");
 const { Readable } = require("stream");
 const logger = require("../../common/logger");
-const logMessage = require("../../common/utils/logMessage");
+const { logMessage } = require("../../common/utils/logMessage");
 
 const emptyMongo = async (model) => {
   logMessage("info", `Clearing formations db...`);

@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
 const XLSX = require("xlsx");
-const logMessage = require("../../common/utils/logMessage");
+const { logMessage } = require("../../common/utils/logMessage");
 
 /**
  * Mode d'emploi :

@@ -1,4 +1,4 @@
-const logMessage = require("../../common/utils/logMessage");
+const { logMessage } = require("../../common/utils/logMessage");
 const { CompanyScore } = require("../../common/model");
 const fs = require("fs");
 const path = require("path");

@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
-const logMessage = require("../../common/utils/logMessage");
+const { logMessage } = require("../../common/utils/logMessage");
 
 let nafRomeHiringMap = {};
 
