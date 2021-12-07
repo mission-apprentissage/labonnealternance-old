@@ -4,6 +4,17 @@ const geoLocationSchema = {
     default: null,
     description: "L'adresse d'un établissement",
     index: true,
+    unique: true,
+  },
+  city: {
+    type: String,
+    default: null,
+    description: "Ville",
+  },
+  postcode: {
+    type: String,
+    default: null,
+    description: "Code postal",
   },
   geoLocation: {
     type: String,
