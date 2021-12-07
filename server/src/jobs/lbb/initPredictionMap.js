@@ -1,4 +1,4 @@
-const logMessage = require("../../common/utils/logMessage");
+const { logMessage } = require("../../common/utils/logMessage");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const fs = require("fs");
 const path = require("path");
