@@ -190,7 +190,7 @@ function Mongoosastic(schema, options) {
       writeData(
         async (doc) => {
           await doc.index();
-          if (++count % 100 === 0) {
+          if (++count % 10000 === 0) {
             console.error(`${count} indexed`);
           }
         },
