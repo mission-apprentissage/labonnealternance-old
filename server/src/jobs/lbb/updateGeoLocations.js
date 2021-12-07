@@ -39,7 +39,7 @@ const parseGeoLoc = (line) => {
   const terms = line.split(";");
 
   const result = {
-    address: `${terms[0].trim()} ${terms[1]}`,
+    address: `${terms[0].trim()} ${terms[1]}`.toUpperCase(),
     city: terms[12],
     postcode: terms[11],
     geoLocation: `${terms[2]},${terms[3]}`,
