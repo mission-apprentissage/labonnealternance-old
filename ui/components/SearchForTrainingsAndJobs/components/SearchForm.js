@@ -47,26 +47,19 @@ const SearchForm = (props) => {
     return res;
   };
 
-  // const interceptSubmit = (ccc, ddd) => {
-  //   console.log('ccc', ccc);
-  //   console.log('ddd', ddd);
-  //   // props.handleSearchSubmit()
-  // }
-
   const renderFormik = () => {
     return (
       <Formik
         validate={(values) => validateFormik(values, widgetParameters)}
         initialValues={{ job: {}, location: {}, radius: 30, diploma: "" }}
-        // onSubmit={props.handleSearchSubmit}
-        // onSubmit={interceptSubmit}
+        onSubmit={props.handleSearchSubmit}
       >
         {({ isSubmitting, setFieldValue, errors }) => (
           <Form className={`c-searchform c-searchform--column is-home-${props.isHome}`}>
             <Row>
               {widgetParameters?.parameters?.jobName &&
-              widgetParameters?.parameters?.romes &&
-              widgetParameters?.parameters?.frozenJob ? (
+                widgetParameters?.parameters?.romes &&
+                widgetParameters?.parameters?.frozenJob ? (
                 <Col xs="12">
                   <div className="formGroup">
                     <label>{`Vous souhaitez travailler dans le domaine de ${widgetParameters.parameters.jobName}`}</label>
