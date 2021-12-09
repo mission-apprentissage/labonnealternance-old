@@ -47,12 +47,19 @@ const SearchForm = (props) => {
     return res;
   };
 
+  // const interceptSubmit = (ccc, ddd) => {
+  //   console.log('ccc', ccc);
+  //   console.log('ddd', ddd);
+  //   // props.handleSearchSubmit()
+  // }
+
   const renderFormik = () => {
     return (
       <Formik
         validate={(values) => validateFormik(values, widgetParameters)}
         initialValues={{ job: {}, location: {}, radius: 30, diploma: "" }}
-        onSubmit={props.handleSearchSubmit}
+        // onSubmit={props.handleSearchSubmit}
+        // onSubmit={interceptSubmit}
       >
         {({ isSubmitting, setFieldValue, errors }) => (
           <Form className={`c-searchform c-searchform--column is-home-${props.isHome}`}>
