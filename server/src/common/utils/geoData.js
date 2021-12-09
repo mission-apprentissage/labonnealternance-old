@@ -36,8 +36,9 @@ class GeoData {
       //TODO: hardcoded à supprimer quand la BAN remontera correctement les adresse du cp 97133 pour "Saint Barthélémy"
       // cas particulier concernant un unique college à saint barth'
       return {
-        geo_coordonnees: "17.896279,-62.849772", // format "lat,long"
-        ville: "Saint Barthélémy",
+        geoLocation: "17.896279,-62.849772", // format "lat,long"
+        city: "Saint Barthélémy",
+        postCode: "97133",
       };
     }
 
@@ -93,8 +94,9 @@ class GeoData {
     const geojson = { ...responseApiAdresse };
 
     return {
-      geo_coordonnees: `${geojson.features[0].geometry.coordinates[1]},${geojson.features[0].geometry.coordinates[0]}`, // format "lat,long"
-      ville: geojson.features[0].properties.city,
+      geoLocation: `${geojson.features[0].geometry.coordinates[1]},${geojson.features[0].geometry.coordinates[0]}`, // format "lat,long"
+      city: geojson.features[0].properties.city,
+      postcode: geojson.features[0].properties.postcode,
     };
   }
 }
