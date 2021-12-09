@@ -28,6 +28,8 @@ services:
 
   server:
     image: labonnealternance_server
+    volumes:
+      - /opt/labonnealternance/data/server/lbb/assets:/app/src/jobs/lbb/assets
     container_name: labonnealternance_server
     build:
       context: server
