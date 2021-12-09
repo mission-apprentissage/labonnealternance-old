@@ -93,11 +93,15 @@ class GeoData {
 
     const geojson = { ...responseApiAdresse };
 
-    return {
-      geoLocation: `${geojson.features[0].geometry.coordinates[1]},${geojson.features[0].geometry.coordinates[0]}`, // format "lat,long"
-      city: geojson.features[0].properties.city,
-      postcode: geojson.features[0].properties.postcode,
-    };
+    if (geojson.features[0].geometry.coordinates[1]) {
+      return {
+        geoLocation: `${geojson.features[0].geometry.coordinates[1]},${geojson.features[0].geometry.coordinates[0]}`, // format "lat,long"
+        city: geojson.features[0].properties.city,
+        postcode: geojson.features[0].properties.postcode,
+      };
+    } else {
+      return false;
+    }
   }
 }
 
