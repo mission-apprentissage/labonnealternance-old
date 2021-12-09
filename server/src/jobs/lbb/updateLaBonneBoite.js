@@ -3,13 +3,14 @@ const fs = require("fs");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const _ = require("lodash");
 const geoData = require("../../common/utils/geoData");
-const { /*RomeNaf, CompanyScore,*/ BonnesBoites } = require("../../common/model");
+const { /*RomeNaf, CompanyScore,*/ GeoLocation, BonnesBoites } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
 const config = require("config");
 const initNafScoreMap = require("./initNafScoreMap.js");
 const initNafMap = require("./initNafMap.js");
 const initPredictionMap = require("./initPredictionMap.js");
-const logMessage = require("../../common/utils/logMessage");
+const { logMessage } = require("../../common/utils/logMessage");
+const { mongooseInstance } = require("../../common/mongodb");
 
 let nafScoreMap = {};
 let predictionMap = {};
@@ -34,7 +35,10 @@ const findRomesForNaf = async (bonneBoite) => {
 
   let romes = dbRomes.map((rome) => rome.code_rome);*/
 
-  let romes = filterRomesFromNafHirings(bonneBoite /*, romes*/);
+  let romes = await filterRomesFromNafHirings(bonneBoite /*, romes*/);
+
+  //console.log("romes D : ",romes);
+
   let eTime = new Date().getTime();
 
   findRomesForNafTime += eTime - sTime;
@@ -62,6 +66,11 @@ const createIndex = async () => {
   let requireAsciiFolding = true;
   logMessage("info", `Creating bonnesboites index...`);
   await BonnesBoites.createMapping(requireAsciiFolding);
+};
+
+const synchIndex = async () => {
+  logMessage("info", `Reindexing bonnesboites ...`);
+  await BonnesBoites.synchronize();
 };
 
 const getScoreForCompany = async (siret) => {
@@ -102,6 +111,8 @@ const filterRomesFromNafHirings = (bonneBoite /*, romes*/) => {
   //let sTime = new Date().getTime();
   const nafRomeHirings = nafScoreMap[bonneBoite.code_naf];
 
+  //console.log("romes A : ",nafRomeHirings,bonneBoite.siret);
+
   let filteredRomes = [];
   if (nafRomeHirings) {
     filteredRomes = nafRomeHirings.romes.filter((rome) => {
@@ -118,6 +129,8 @@ const filterRomesFromNafHirings = (bonneBoite /*, romes*/) => {
     });
   }
 
+  //console.log("romes B : ",filteredRomes);
+
   //let eTime = new Date().getTime();
 
   //filterRomesFromNafHiringsCount++;
@@ -131,7 +144,28 @@ const filterRomesFromNafHirings = (bonneBoite /*, romes*/) => {
 const getGeoLocationForCompany = async (bonneBoite) => {
   if (!bonneBoite.geo_coordonnees) {
     let sTime = new Date().getTime();
-    let result = await geoData.getFirstMatchUpdates(bonneBoite);
+
+    let geoKey = `${bonneBoite.numero_rue} ${bonneBoite.libelle_rue} ${bonneBoite.code_commune}`.trim().toUpperCase();
+
+    let result = await GeoLocation.findOne({ address: geoKey });
+
+    if (!result) {
+      result = await geoData.getFirstMatchUpdates(bonneBoite);
+      //console.log("result from ban : ", result);
+
+      if (result) {
+        let geoLocation = new GeoLocation({
+          address: geoKey,
+          ...result,
+        });
+        await geoLocation.save();
+      } else {
+        return null;
+      }
+    } else {
+      //console.log("result from db : ", result);
+    }
+
     let eTime = new Date().getTime();
     getGeoCount++;
     getGeoTime += eTime - sTime;
@@ -145,7 +179,7 @@ let count = 0;
 const parseLine = async (line) => {
   const terms = line.split(";");
 
-  if (count % 1000 === 0) {
+  if (count % 50000 === 0) {
     logMessage(
       "info",
       ` -- update ${count} - findRomesForNaf : ${findRomesForNafCount} avg ${
@@ -189,14 +223,16 @@ const parseLine = async (line) => {
     company.intitule_naf = nafMap[company.code_naf];
     bonneBoite = new BonnesBoites(company);
   } else {
-    console.log("bonne boîte existe déjà : ", bonneBoite);
+    //console.log("bonne boîte existe déjà : ", bonneBoite);
   }
 
   bonneBoite.score = score;
 
   // TODO checker si suppression via support PE
 
-  let romes = findRomesForNaf(bonneBoite);
+  let romes = await findRomesForNaf(bonneBoite);
+
+  //console.log("romes E : ",romes);
 
   // filtrage des éléments inexploitables
   if (romes.length === 0) {
@@ -210,11 +246,12 @@ const parseLine = async (line) => {
 
   if (!bonneBoite.geo_coordonnees) {
     if (!geo) {
-      console.log("pas de geoloc");
+      //console.log("pas de geoloc");
       return null;
     } else {
-      bonneBoite.ville = geo.ville;
-      bonneBoite.geo_coordonnees = geo.geo_coordonnees;
+      bonneBoite.ville = geo.city;
+      bonneBoite.code_postal = geo.postcode;
+      bonneBoite.geo_coordonnees = geo.geoLocation;
     }
   }
 
@@ -231,7 +268,8 @@ module.exports = async () => {
     logMessage("info", `score 080 :  ${config.private.lbb.score80Level}`);
     logMessage("info", `score 060 :  ${config.private.lbb.score60Level}`);
     logMessage("info", `score 050 :  ${config.private.lbb.score50Level}`);
-    //console.log("ENNNNNVVVV ",process.env);
+
+    const db = mongooseInstance.connection;
 
     nafScoreMap = await initNafScoreMap();
     nafMap = await initNafMap();
@@ -239,36 +277,29 @@ module.exports = async () => {
 
     // voir comment supprimer tout ça
     await emptyMongo();
-    await clearIndex();
-    await createIndex();
 
-    //console.log("nafScoreMap : ", nafScoreMap);
-
-    //let i = 0;
     try {
       await oleoduc(
         fs.createReadStream(filePath),
         readLineByLine(),
         transformData((line) => parseLine(line), { parallel: 8 }),
         writeData(async (bonneBoite) => {
-          /*++i;
-          if (i > 2) {
-            throw new Error("STOOOOPPPPPP");
-          }*/
-          //console.log(bonneBoite.enseigne,bonneBoite.romes);
-          bonneBoite.save();
+          db.collections["bonnesboites"].save(bonneBoite);
         })
       );
     } catch (err2) {
       console.log("stopped ", err2);
     }
-    logMessage("info", `End updating lbb db`);
 
+    await clearIndex();
+    await createIndex();
+    await synchIndex();
+    logMessage("info", `End updating lbb db`);
     return {
       result: "Table mise à jour",
     };
   } catch (err) {
-    console.log("error step ", step);
+    console.log("error step ", step, err);
     logMessage("error", err);
     let error_msg = _.get(err, "meta.body") ?? err.message;
     return { error: error_msg };
