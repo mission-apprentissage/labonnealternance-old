@@ -113,10 +113,6 @@ module.exports = async (components) => {
 
   app.use("/api/updateRomesMetiers", limiter1Per20Second, updateRomesMetiers());
 
-  app.use("/api/updateFormations", limiter1Per20Second, updateFormations());
-
-  app.use("/api/updateDiplomesMetiers", limiter1Per20Second, updateDiplomesMetiers());
-
   app.use("/api/updateLBB", limiter1Per20Second, updateLBB());
 
   app.use("/api/updateFormations", limiter1Per20Second, updateFormations());
