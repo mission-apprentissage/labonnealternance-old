@@ -23,6 +23,7 @@ const Navigation = (props) => {
       <Navbar expand="lg" className="navbar-light">
         <div className="container">
           <NavbarBrand href="/">
+            <img src="/images/marianne.svg" alt="Logo république française" className="c-navbar-brand-img" width="110" height="76" />
             <img src="/images/logo_lba.svg" alt="Logo LBA" className="c-navbar-brand-img" width="110" height="76" />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
