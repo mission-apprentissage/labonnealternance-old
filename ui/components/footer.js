@@ -20,82 +20,24 @@ const Footer = (props) => {
       <Navbar expand="lg" className="footer-light">
         <div className="container">
           <Row>
-            <Col className="d-none d-md-block col-md-4 col-lg-3">
-              <a href="/">
-                <img src="/images/logo_lba.svg" alt="Logo LBA" className="c-footer__brand-img" />
-              </a>
-              <br />
-              <small>Trouvez la formation et l'entreprise pour réaliser votre projet</small>
+            <Col className="col-12 col-md-6">
+              <img src="/images/marianne.svg" alt="Logo république française" width="290" height="130" />
             </Col>
-            <Col className="col-md-4 col-lg-3">
-              <ul className="c-footer-links">
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/faq" }));
-                    }}
-                    href="/faq"
-                  >
-                    FAQ
-                  </a>
-                </li>
-
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/contact" }));
-                    }}
-                    href="/contact"
-                  >
-                    Contact
-                  </a>
-                </li>
-
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/metiers" }));
-                    }}
-                    href="/metiers"
-                  >
-                    Métiers
-                  </a>
-                </li>
-
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/a-propos" }));
-                    }}
-                    href="/a-propos"
-                  >
-                    A propos
-                  </a>
-                </li>
-
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/developpeurs" }));
-                    }}
-                    href="/developpeurs"
-                  >
-                    Développeurs
-                  </a>
-                </li>
-              </ul>
+            <Col className="col-12 col-md-6">
+              <div>
+                Texte optionnel 3 lignes maximum.
+              </div>
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur et vel quam auctor semper. Cras si amet mollis dolor.
+              </div>
+              <div>
+                <a>legifrance.gouv.fr</a>
+                <a>gouvernement.fr</a>
+                <a>service-public.fr</a>
+                <a>data.gouv.fr</a>
+              </div>
             </Col>
-            <Col className="col-md-4 col-lg-3">
+            <Col className="col-12">
               <ul className="c-footer-links">
                 <li className="c-footer-links__line">
                   <a
@@ -151,36 +93,8 @@ const Footer = (props) => {
                 </li>
               </ul>
             </Col>
-            <Col className="text-center col-12 col-lg-3">
-              <a
-                href="http://www.fse.gouv.fr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="c-footer-logocontainer"
-              >
-                <img className="c-footer--partner-logo" src={logoFSE} alt="Logo du FSE" />
-              </a>
-              <a
-                href="https://www.gouvernement.fr/france-relance"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="c-footer-logocontainer"
-              >
-                <img
-                  className="c-footer--partner-logo"
-                  src={logoFranceRelance}
-                  width="60px"
-                  alt="Logo France Relance"
-                />
-              </a>
-              <a
-                href="http://www.pole-emploi.fr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="c-footer-logocontainer"
-              >
-                <img className="c-footer--partner-logo" src={logoPoleEmploi} alt="Logo de Pôle emploi" />
-              </a>
+            <Col className="col-12">
+              Sauf mention contraire, tous les contenus de ce site sont sous licence etalab-2.0
             </Col>
           </Row>
         </div>
