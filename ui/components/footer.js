@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Navbar } from "reactstrap";
+import { Row, Col, Navbar, Container } from "reactstrap";
 
 import { push } from "connected-next-router";
 import { useDispatch } from "react-redux";
@@ -13,9 +13,9 @@ const Footer = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="c-footer py-5">
-      <Navbar expand="lg" className="footer-light">
-        <div className="container">
+    <>
+    <nav className="c-footer py-5 border-bottom">
+        <Container>
           <Row>
             <Col className="col-12 col-md-6">
               <img src="/images/marianne.svg" alt="Logo république française" width="290" height="130" />
@@ -34,6 +34,13 @@ const Footer = (props) => {
                 <a className="c-footer-official-link">data.gouv.fr</a>
               </div>
             </Col>
+            
+          </Row>
+        </Container>
+    </nav>
+    <nav className="c-footer py-5">
+        <Container>
+          <Row>
             <Col className="col-12">
               <ul className="c-footer-links">
                 <li className="c-footer-links__line">
@@ -90,15 +97,10 @@ const Footer = (props) => {
                 </li>
               </ul>
             </Col>
-            <Col className="col-12">
-              <div className="c-footer-smallword c-footer-lastword">
-                Sauf mention contraire, tous les contenus de ce site sont sous licence <a href="https://www.etalab.gouv.fr/licence-version-2-0-de-la-licence-ouverte-suite-a-la-consultation-et-presentation-du-decret" target="_blank" rel="noopener noreferrer">etalab-2.0 <img className="ml-1" src="/images/square_link.svg" alt="Lien" /></a>
-              </div>
-            </Col>
           </Row>
-        </div>
-      </Navbar>
-    </div>
+        </Container>
+    </nav>
+    </>
   );
 };
 
