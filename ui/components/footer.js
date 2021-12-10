@@ -4,9 +4,6 @@ import { Row, Col, Navbar } from "reactstrap";
 import { push } from "connected-next-router";
 import { useDispatch } from "react-redux";
 
-import logoFSE from "public/images/logo_fse.svg";
-import logoFranceRelance from "public/images/logo_relance.svg";
-import logoPoleEmploi from "public/images/logo_pole_emploi.svg";
 
 /*
  Different kind of navigation are available here :
@@ -25,16 +22,16 @@ const Footer = (props) => {
             </Col>
             <Col className="col-12 col-md-6">
               <div>
-                Texte optionnel 3 lignes maximum.
+                La bonne alternance. Trouvez votre alternance.
               </div>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur et vel quam auctor semper. Cras si amet mollis dolor.
+              <div className="mt-4">
+                La bonne alternance est proposée par les services suivants :
               </div>
-              <div>
-                <a>legifrance.gouv.fr</a>
-                <a>gouvernement.fr</a>
-                <a>service-public.fr</a>
-                <a>data.gouv.fr</a>
+              <div className="mt-4 c-footer-official-links">
+                <a className="c-footer-official-link">legifrance.gouv.fr</a>
+                <a className="c-footer-official-link">gouvernement.fr</a>
+                <a className="c-footer-official-link">service-public.fr</a>
+                <a className="c-footer-official-link">data.gouv.fr</a>
               </div>
             </Col>
             <Col className="col-12">

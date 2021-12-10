@@ -8,6 +8,30 @@
   }
 }
 
+.c-footer-lastword {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.c-footer-official-links {
+  display: flex;
+  flex-direction: column;
+  @include media-breakpoint-up(xl) { 
+    flex-direction: row;
+  }
+  a {
+    cursor: pointer;
+    color: #3A3A3A;
+    font-weight: 700;
+    @include media-breakpoint-up(xl) { 
+      margin-right: .5rem;
+    }
+  }
+}
+
 .c-footer-links {
   list-style-type: none;
   display: flex;
