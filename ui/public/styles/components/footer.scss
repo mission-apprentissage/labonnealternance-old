@@ -26,6 +26,12 @@
 
 .c-footer-links__line {
   @extend .mb-1;
+  border-right: 1px solid #E5E5E5;
+}
+
+.c-footer-links__line + .c-footer-links__line {
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .c-footer-official-links {
@@ -33,6 +39,7 @@
   flex-direction: column;
   @include media-breakpoint-up(xl) { 
     flex-direction: row;
+    align-items: center;
   }
   a {
     cursor: pointer;

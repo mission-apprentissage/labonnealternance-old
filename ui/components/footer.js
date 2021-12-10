@@ -38,7 +38,7 @@ const Footer = (props) => {
               <ul className="c-footer-links">
                 <li className="c-footer-links__line">
                   <a
-                    className="c-footer-links__link c-footer-smallword"
+                    className="c-footer-links__link c-footer-smallword pr-3"
                     onClick={(e) => {
                       e.preventDefault();
                       dispatch(push({ pathname: "/mentions-legales" }));
