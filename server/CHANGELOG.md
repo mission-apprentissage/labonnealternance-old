@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.5 [10/12/2021]
+[956] Marianne header/footer
+
 ## 1.17.4 [3/12/2021]
 [943] Reliquats Astuces
 
