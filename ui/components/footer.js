@@ -15,28 +15,27 @@ const Footer = (props) => {
   return (
     <>
     <nav className="c-footer c-footer--one py-4 border-bottom">
-        <Container>
-          <Row>
-            <Col className="col-12 col-md-6">
-              <img src="/images/marianne.svg#svgView(viewBox(19 0 162 78))" alt="Logo république française" width="290" height="130" />
-            </Col>
-            <Col className="col-12 col-md-6">
-              <div>
-                La bonne alternance. Trouvez votre alternance.
-              </div>
-              <div className="mt-4">
-                La bonne alternance est proposée par les services suivants :
-              </div>
-              <div className="mt-4 c-footer-official-links">
-                <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
-                <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://gouvernement.fr">gouvernement.fr</a>
-                <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://service-public.fr">service-public.fr</a>
-                <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://data.gouv.fr">data.gouv.fr</a>
-              </div>
-            </Col>
-            
-          </Row>
-        </Container>
+      <Container>
+        <Row>
+          <Col className="col-12 col-md-6">
+            <img src="/images/marianne.svg#svgView(viewBox(19 0 162 78))" alt="Logo république française" width="290" height="130" />
+          </Col>
+          <Col className="col-12 col-md-6 c-footer-text">
+            <div>
+              La bonne alternance. Trouvez votre alternance.
+            </div>
+            <div className="mt-4">
+              La bonne alternance est proposée par les services suivants :
+            </div>
+            <div className="mt-4 c-footer-official-links">
+              <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
+              <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://gouvernement.fr">gouvernement.fr</a>
+              <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://service-public.fr">service-public.fr</a>
+              <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://data.gouv.fr">data.gouv.fr</a>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </nav>
     <nav className="c-footer pt-2 pb-5">
         <Container>
