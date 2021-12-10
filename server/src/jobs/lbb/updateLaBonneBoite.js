@@ -275,6 +275,12 @@ module.exports = async () => {
     logMessage("info", `score 060 :  ${config.private.lbb.score60Level}`);
     logMessage("info", `score 050 :  ${config.private.lbb.score50Level}`);
 
+    var exec = require("child_process").exec;
+
+    exec(`wc -l ${filePath}`, function (error, results) {
+      logMessage("info", results);
+    });
+
     const db = mongooseInstance.connection;
 
     nafScoreMap = await initNafScoreMap();
@@ -304,6 +310,7 @@ module.exports = async () => {
     await createIndex();
     await synchIndex();
     logMessage("info", `End updating lbb db`);
+
     return {
       result: "Table mise à jour",
     };

@@ -60,6 +60,10 @@ const saveGeoData = async (geoData) => {
   }
 };
 
+const clearingFiles = () => {
+  fsExtra.emptyDirSync(path.join(__dirname, tempDir));
+};
+
 const geolocateCsvHeader = "rue;citycode";
 
 module.exports = async () => {
@@ -70,7 +74,7 @@ module.exports = async () => {
 
     predictionMap = await initPredictionMap();
 
-    fsExtra.emptyDirSync(path.join(__dirname, tempDir));
+    clearingFiles();
 
     let sourceFileCount = 0;
 
@@ -148,7 +152,7 @@ module.exports = async () => {
 
     logMessage("info", `End bulk geolocation`);
 
-    fsExtra.emptyDirSync(path.join(__dirname, tempDir));
+    clearingFiles();
     predictionMap = null;
 
     logMessage("info", `Temporary files removed`);
