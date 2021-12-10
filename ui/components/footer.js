@@ -28,10 +28,10 @@ const Footer = (props) => {
                 La bonne alternance est proposée par les services suivants :
               </div>
               <div className="mt-4 c-footer-official-links">
-                <a className="c-footer-official-link">legifrance.gouv.fr</a>
-                <a className="c-footer-official-link">gouvernement.fr</a>
-                <a className="c-footer-official-link">service-public.fr</a>
-                <a className="c-footer-official-link">data.gouv.fr</a>
+                <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
+                <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://gouvernement.fr">gouvernement.fr</a>
+                <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://service-public.fr">service-public.fr</a>
+                <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://data.gouv.fr">data.gouv.fr</a>
               </div>
             </Col>
             
