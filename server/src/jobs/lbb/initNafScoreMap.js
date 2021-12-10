@@ -61,5 +61,7 @@ module.exports = async () => {
     logMessage("error", err);
   }
 
+  count = 0;
+
   return nafRomeHiringMap;
 };

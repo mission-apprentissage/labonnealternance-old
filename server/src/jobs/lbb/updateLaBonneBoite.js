@@ -47,6 +47,12 @@ const findRomesForNaf = async (bonneBoite) => {
   return romes;
 };
 
+const resetHashmaps = () => {
+  nafScoreMap = {};
+  predictionMap = {};
+  nafMap = {};
+};
+
 const emptyMongo = async () => {
   logMessage("info", `Clearing bonnesboites db...`);
   await BonnesBoites.deleteMany({});
@@ -290,6 +296,9 @@ module.exports = async () => {
     } catch (err2) {
       console.log("stopped ", err2);
     }
+
+    // clearing memory
+    resetHashmaps();
 
     await clearIndex();
     await createIndex();

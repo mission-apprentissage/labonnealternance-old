@@ -44,8 +44,6 @@ const computeLine = async ({ code_naf, intitule_naf }) => {
 };
 
 module.exports = async () => {
-  let step = 0;
-
   try {
     logMessage("info", " -- Start updating rome naf -- ");
 
@@ -60,9 +58,10 @@ module.exports = async () => {
 
     logMessage("info", `End updating rome naf`);
   } catch (err) {
-    console.log("error step ", step);
     logMessage("error", err);
   }
+
+  count = 0;
 
   return nafMap;
 };

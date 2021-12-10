@@ -37,8 +37,6 @@ const computeLine = async ({ siret, score }) => {
 };
 
 module.exports = async () => {
-  let step = 0;
-
   try {
     logMessage("info", " -- Start init predictionMap -- ");
     logMessage("info", ` -- Seuil d'élimination : ${seuilElimination}`);
@@ -52,9 +50,10 @@ module.exports = async () => {
 
     logMessage("info", `End init predictionMap`);
   } catch (err) {
-    console.log("error step ", step);
     logMessage("error", err);
   }
+
+  count = 0;
 
   return predictionMap;
 };
