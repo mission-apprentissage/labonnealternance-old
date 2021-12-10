@@ -42,8 +42,12 @@
 }
 
 .c-footer-links__line + .c-footer-links__line {
-  padding-right: 1rem;
-  padding-left: 1rem;
+  padding-right: 0;
+  padding-left: 0;
+  @include media-breakpoint-up(lg) { 
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
 }
 
 .c-footer-official-links {
@@ -66,7 +70,11 @@
 .c-footer-links {
   list-style-type: none;
   display: flex;
+  flex-direction: column;
   padding-left: 0;
+  @include media-breakpoint-up(lg) { 
+    flex-direction: row;
+  }
 }
 
 .c-footer-links__link {
