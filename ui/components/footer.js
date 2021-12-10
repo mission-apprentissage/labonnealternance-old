@@ -14,11 +14,11 @@ const Footer = (props) => {
 
   return (
     <>
-    <nav className="c-footer py-5 border-bottom">
+    <nav className="c-footer c-footer--one py-4 border-bottom">
         <Container>
           <Row>
             <Col className="col-12 col-md-6">
-              <img src="/images/marianne.svg" alt="Logo république française" width="290" height="130" />
+              <img src="/images/marianne.svg#svgView(viewBox(19 0 162 78))" alt="Logo république française" width="290" height="130" />
             </Col>
             <Col className="col-12 col-md-6">
               <div>
@@ -38,7 +38,7 @@ const Footer = (props) => {
           </Row>
         </Container>
     </nav>
-    <nav className="c-footer py-5">
+    <nav className="c-footer pt-2 pb-5">
         <Container>
           <Row>
             <Col className="col-12">
@@ -96,6 +96,11 @@ const Footer = (props) => {
                   </a>
                 </li>
               </ul>
+            </Col>
+            <Col className="col-12">
+              <div className="c-footer-smallword c-footer-lastword">
+                Sauf mention contraire, tous les contenus de ce site sont sous licence <a href="https://www.etalab.gouv.fr/licence-version-2-0-de-la-licence-ouverte-suite-a-la-consultation-et-presentation-du-decret" target="_blank" rel="noopener noreferrer">etalab-2.0 <img className="ml-1" src="/images/square_link.svg" alt="Lien" /></a>
+              </div>
             </Col>
           </Row>
         </Container>
