@@ -9,16 +9,23 @@
 }
 
 .c-footer-lastword {
+  a {
+    color: #666666;
+    text-decoration: underline;
+  }
+}
+
+.c-footer-smallword {
+  color: #666666;
   font-size: 12px;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0em;
   text-align: left;
-  color: #666666;
-  a {
-    color: #666666;
-    text-decoration: underline;
-  }
+}
+
+.c-footer-links__line {
+  @extend .mb-1;
 }
 
 .c-footer-official-links {
@@ -29,7 +36,7 @@
   }
   a {
     cursor: pointer;
-    color: #3A3A3A;
+    color: #666666;
     font-weight: 700;
     @include media-breakpoint-up(xl) { 
       margin-right: .5rem;
@@ -40,14 +47,11 @@
 .c-footer-links {
   list-style-type: none;
   display: flex;
-}
-
-.c-footer-links__line {
-  @extend .mb-1;
+  padding-left: 0;
 }
 
 .c-footer-links__link {
-  color: $gray-700;
+  color: #666666;
 }
 
 .c-footer-links__link-img {
