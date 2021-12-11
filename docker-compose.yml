@@ -69,7 +69,7 @@ services:
       - SERVER_BASEPATH=/kibana
 
   metabase:
-    image: metabase/metabase
+    image: metabase/metabase:v0.41.4
     volumes:
       - /opt/labonnealternance/data/metabase:/metabase-data
     depends_on:
