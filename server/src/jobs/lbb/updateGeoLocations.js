@@ -28,11 +28,6 @@ const parseAdressesEtablissements = (line) => {
   }
 };
 
-/*const emptyMongo = async () => {
-  logMessage("info", `Clearing geolocations db...`);
-  await GeoLocation.deleteMany({});
-};*/
-
 // traite un fichier de retour geoloc de la ban
 const parseGeoLoc = (line) => {
   //rue;postcode;latitude;longitude;result_label;result_score;result_type;result_id;result_housenumber;result_name;result_street;result_postcode;result_city;result_context;result_citycode;result_oldcitycode;result_oldcity;result_district
@@ -117,8 +112,6 @@ module.exports = async () => {
       logMessage("info", `${adressesToGeolocateCount} adresses à géolocaliser`);
     }
 
-    //await emptyMongo();
-
     logMessage("info", `Traitement géolocalisation`);
     for (let i = 0; i < sourceFileCount; ++i) {
       logMessage("info", `Géolocalisation fichier d'adressses (${i + 1}/${sourceFileCount})`);
@@ -140,12 +133,12 @@ module.exports = async () => {
       await oleoduc(
         fs.createReadStream(destFilePath),
         readLineByLine(),
-        transformData((line) => parseGeoLoc(line), { parallel: 10 }),
+        transformData((line) => parseGeoLoc(line), { parallel: 8 }),
         writeData(
           (geoData) => {
             saveGeoData(geoData);
           },
-          { parallel: 10 }
+          { parallel: 8 }
         )
       );
     }
