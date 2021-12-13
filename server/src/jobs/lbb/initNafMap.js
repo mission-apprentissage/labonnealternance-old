@@ -36,8 +36,6 @@ const parseLine = (line) => {
 };
 
 const computeLine = async ({ code_naf, intitule_naf }) => {
-  //console.log(rome, naf, hirings);
-
   if (!nafMap[code_naf]) {
     nafMap[code_naf] = intitule_naf;
   }

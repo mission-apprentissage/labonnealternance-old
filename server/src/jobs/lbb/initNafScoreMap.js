@@ -29,8 +29,6 @@ const parseLine = async (line) => {
 };
 
 const computeLine = async ({ rome, naf, hirings }) => {
-  //console.log(rome, naf, hirings);
-
   let nafHirings = nafRomeHiringMap[naf];
 
   if (nafHirings) {

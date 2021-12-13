@@ -29,10 +29,8 @@ const parseLine = (line) => {
 };
 
 const computeLine = async ({ siret, score }) => {
-  //console.log(rome, naf, hirings);
   if (score >= seuilElimination) {
     predictionMap[siret] = score;
-    //console.log("predictioMap : ",siret, score);
   }
 };
 
