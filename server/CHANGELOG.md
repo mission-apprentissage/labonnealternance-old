@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.3 [14/12/2021]
+[914] Scripts import LBB
+
 ## 1.17.2 [22/11/2021]
 [921] Finitions mep
 [888] Bloquer la fermeture de popin
