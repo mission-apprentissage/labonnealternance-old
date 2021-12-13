@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## 1.17.4 [3/12/2021]
+## 1.17.4 [14/12/2021]
+[914] Scripts import LBB
 [943] Reliquats Astuces
 
 ## 1.17.3 [26/11/2021]

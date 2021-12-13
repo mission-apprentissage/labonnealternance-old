@@ -44,6 +44,13 @@
     "serverSentryDsn": "https://61156c2d46b54369b777900d475ee0f9@o154210.ingest.sentry.io/5562203",
     "secretUpdateRomesMetiers": "1234",
     "allowedSources": "allowed",
+    "lbb": 
+    {
+      "score100Level": 1,
+      "score80Level": 1,
+      "score60Level": 1,       
+      "score50Level": 1
+    },
     "smtp":
     {
       "host": "localhost",

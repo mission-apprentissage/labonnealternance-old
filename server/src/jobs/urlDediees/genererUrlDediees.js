@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
 const XLSX = require("xlsx");
-const logger = require("../../common/logger");
+const { logMessage } = require("../../common/utils/logMessage");
 
 /**
  * Mode d'emploi :
@@ -10,15 +10,6 @@ const logger = require("../../common/logger");
  */
 
 const FICHIER_SOURCE = path.join(__dirname, "./assets/fichier_isere.xlsx");
-
-const logMessage = (level, msg) => {
-  //console.log(msg);
-  if (level === "info") {
-    logger.info(msg);
-  } else {
-    logger.error(msg);
-  }
-};
 
 const resultFilePath = path.join(__dirname, "./assets/urlDediees.xlsx");
 

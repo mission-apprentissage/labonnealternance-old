@@ -1,18 +1,10 @@
 const _ = require("lodash");
 const Sentry = require("@sentry/node");
-const logger = require("../../common/logger");
+const { logMessage } = require("../../common/utils/logMessage");
 const { DiplomesMetiers } = require("../../common/model");
 const { getElasticInstance, getFormationsES } = require("../../common/esClient");
 
 const esClient = getFormationsES();
-
-const logMessage = (level, msg) => {
-  if (level === "info") {
-    logger.info(msg);
-  } else {
-    logger.error(msg);
-  }
-};
 
 const motsIgnores = ["a", "au", "aux", "l", "le", "la", "les", "d", "de", "du", "des", "et", "en"];
 
