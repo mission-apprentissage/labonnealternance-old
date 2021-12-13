@@ -24,7 +24,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   useEffect(() => {
     SendTrackEvent({
       event: `Résultats Affichage formation - Consulter fiche formation`,
-      itemId: training.idRcoFormation,
+      itemId: training.cleMinistereEducatif,
     });
 
     setLoading(true);
@@ -59,11 +59,11 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   useEffect(() => {
     if (training && !training.lbfLoaded) {
       loadDataFromLbf();
-      sendTrainingOpenedEventToCatalogue(training.idRcoFormation);
+      sendTrainingOpenedEventToCatalogue(training.cleMinistereEducatif);
     } else {
       setLoading(false);
     }
-  }, [training.idRco]);
+  }, [training.cleMinistereEducatif]);
 
   const loadDataFromLbf = () => {
     let updatedTrainings = trainings;
