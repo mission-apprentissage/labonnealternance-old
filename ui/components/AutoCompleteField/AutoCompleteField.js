@@ -21,6 +21,7 @@ export const autoCompleteToStringFunction = (item) => {
 
 export const AutoCompleteField = ({
   kind,
+  name,
   itemToStringFunction,
   onInputValueChangeFunction,
   onSelectedItemChangeFunction,
@@ -225,9 +226,16 @@ export const AutoCompleteField = ({
                 </li>
               );
             } else if (inputValue.length > 0 && inputItems?.length === 0) {
+              let message = 'Pas de résultat, veuillez modifier votre recherche'
+              if (name === 'jobField') {
+                message = 'Nous ne parvenons pas à identifier le métier que vous cherchez, veuillez reformuler votre recherche'
+              }
+              if (name === 'placeField') {
+                message = 'Nous ne parvenons pas à identifier le lieu que vous cherchez, veuillez reformuler votre recherche'
+              }
               return (
                 <li key={`noresult`} className="c-autocomplete-neutral">
-                  Pas de résultat, veuillez modifier votre recherche
+                  {message}
                 </li>
               );
             } else {

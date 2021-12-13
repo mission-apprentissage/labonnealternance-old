@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## 1.17.5 [10/12/2021]
+## 1.17.4 [14/12/2021]
+[914] Scripts import LBB
 [956] Marianne header/footer
-
-## 1.17.4 [3/12/2021]
 [943] Reliquats Astuces
+[369] Recherche plus robuste
 
 ## 1.17.3 [26/11/2021]
 [832] Astuces

@@ -49,6 +49,13 @@
         "pass": "LABONNEALTERNANCE_SMTP_AUTH_PASS"
       },
       "sendinblueToken": "LABONNEALTERNANCE_SMTP_SENDINBLUE_TOKEN"
+    },
+    "lbb": 
+    {
+      "score100Level": "LABONNEALTERNANCE_LBB_SCORE_100",
+      "score80Level": "LABONNEALTERNANCE_LBB_SCORE_80",
+      "score60Level": "LABONNEALTERNANCE_LBB_SCORE_60",       
+      "score50Level": "LABONNEALTERNANCE_LBB_SCORE_50"
     }
   }
 

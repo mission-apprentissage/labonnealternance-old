@@ -28,6 +28,8 @@ services:
 
   server:
     image: labonnealternance_server
+    volumes:
+      - /opt/labonnealternance/data/server/lbb/assets:/app/src/jobs/lbb/assets
     container_name: labonnealternance_server
     build:
       context: server
@@ -52,9 +54,9 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.1.1
     container_name: labonnealternance_elasticsearch
     environment:
-      - ES_JAVA_OPTS=-Xmx512m -Xms512m
+      - ES_JAVA_OPTS=-Xmx512m -Xms512m -Dlog4j2.formatMsgNoLookups=true
       - discovery.type=single-node
-    mem_limit: 2g
+    mem_limit: 3g
     networks:
       - labonnealternance_network
 
@@ -69,7 +71,7 @@ services:
       - SERVER_BASEPATH=/kibana
 
   metabase:
-    image: metabase/metabase
+    image: metabase/metabase:v0.41.4
     volumes:
       - /opt/labonnealternance/data/metabase:/metabase-data
     depends_on:
