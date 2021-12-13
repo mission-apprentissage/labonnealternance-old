@@ -300,7 +300,8 @@ module.exports = async () => {
         })
       );
     } catch (err2) {
-      console.log("stopped ", err2);
+      logMessage("error", err2);
+      throw new Error("Error while parsing establishment file");
     }
 
     // clearing memory
