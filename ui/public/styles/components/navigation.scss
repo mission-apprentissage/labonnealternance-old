@@ -5,6 +5,13 @@
   }
 }
 
+.c-marianne-header {
+  margin-right: 0.3rem;
+  @include media-breakpoint-up(md) { 
+    margin-right: 2rem;
+  }
+}
+
 .c-navigation.is-filled .navbar {
   background-color: $home-background-color;
 }
