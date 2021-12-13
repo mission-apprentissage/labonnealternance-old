@@ -54,7 +54,7 @@ module.exports = async () => {
         writeData(async (line) => computeLine(line))
       );
     } catch (err2) {
-      console.log("stopped");
+      logMessage("error", err2);
     }
     logMessage("info", `End init rome naf hirings`);
   } catch (err) {
