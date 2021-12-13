@@ -3,7 +3,7 @@ const fs = require("fs");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const _ = require("lodash");
 const geoData = require("../../common/utils/geoData");
-const { /*RomeNaf, CompanyScore,*/ GeoLocation, BonnesBoites } = require("../../common/model");
+const { GeoLocation, BonnesBoites } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
 const config = require("config");
 const initNafScoreMap = require("./initNafScoreMap.js");
@@ -20,8 +20,7 @@ const filePath = path.join(__dirname, "./assets/etablissements.csv");
 
 let findRomesForNafCount = 0;
 let findRomesForNafTime = 0;
-/*let filterRomesFromNafHiringsCount = 0;
-let filterRomesFromNafHiringsTime = 0;*/
+
 let getScoreForCompanyCount = 0;
 let getScoreForCompanyTime = 0;
 let getGeoCount = 0;

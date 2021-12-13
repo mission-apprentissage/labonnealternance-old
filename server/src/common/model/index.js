@@ -30,8 +30,6 @@ module.exports = {
   ApiCalls: createModel("apicalls", schema.apiCallSchema),
   Application: createModel("applications", schema.applicationSchema),
   SourceFormations: createModel("sourceformations", schema.sourceFormationsSchema),
-  RomeNaf: createModel("romenaf", schema.romeNafSchema),
-  CompanyScore: createModel("companyscore", schema.companyScoreSchema),
   GeoLocation: createModel("geolocation", schema.geoLocationSchema),
   BonnesBoites: createModel("bonnesboites", schema.bonneBoiteSchema, {
     esIndexName: "bonnesboites",

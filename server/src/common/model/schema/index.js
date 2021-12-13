@@ -4,8 +4,6 @@ const apiCallSchema = require("./ApiCall");
 const applicationSchema = require("./applications");
 const sourceFormationsSchema = require("./sourceFormationsSchema");
 const mnaFormationSchema = require("./mnaFormation/mnaFormation");
-const romeNafSchema = require("./lbb/romeNaf");
-const companyScoreSchema = require("./lbb/companyScore");
 const geoLocationSchema = require("./lbb/geoLocations");
 const bonneBoiteSchema = require("./lbb/bonneBoite");
 
@@ -16,8 +14,6 @@ module.exports = {
   apiCallSchema,
   mnaFormationSchema,
   sourceFormationsSchema,
-  romeNafSchema,
-  companyScoreSchema,
   bonneBoiteSchema,
   geoLocationSchema,
 };
