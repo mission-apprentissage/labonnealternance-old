@@ -30,4 +30,8 @@ module.exports = {
   ApiCalls: createModel("apicalls", schema.apiCallSchema),
   Application: createModel("applications", schema.applicationSchema),
   SourceFormations: createModel("sourceformations", schema.sourceFormationsSchema),
+  GeoLocation: createModel("geolocation", schema.geoLocationSchema),
+  BonnesBoites: createModel("bonnesboites", schema.bonneBoiteSchema, {
+    esIndexName: "bonnesboites",
+  }),
 };

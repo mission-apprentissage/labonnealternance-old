@@ -24,7 +24,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   useEffect(() => {
     SendTrackEvent({
       event: `Résultats Affichage formation - Consulter fiche formation`,
-      itemId: training.idRcoFormation,
+      itemId: training.cleMinistereEducatif,
     });
 
     setLoading(true);
@@ -59,11 +59,11 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   useEffect(() => {
     if (training && !training.lbfLoaded) {
       loadDataFromLbf();
-      sendTrainingOpenedEventToCatalogue(training.idRcoFormation);
+      sendTrainingOpenedEventToCatalogue(training.cleMinistereEducatif);
     } else {
       setLoading(false);
     }
-  }, [training.idRco]);
+  }, [training.cleMinistereEducatif]);
 
   const loadDataFromLbf = () => {
     let updatedTrainings = trainings;
@@ -85,7 +85,14 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   };
 
   const buildPrdvButton = () => {
-    return <div className="widget-prdv gtmPrdv" data-referrer="lba" data-id-rco-formation={training.idRcoFormation} />;
+    return (
+      <div
+        className="widget-prdv gtmPrdv"
+        data-referrer="lba"
+        data-id-cle-ministere-educatif={training.cleMinistereEducatif}
+        data-id-rco-formation={training.idRcoFormation}
+      />
+    );
   };
 
   const kind = training?.ideaType;

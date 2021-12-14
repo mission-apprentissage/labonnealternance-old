@@ -417,8 +417,9 @@ const transformFormationForIdea = (formation) => {
   resultFormation.capacity = formation.source.capacite;
   resultFormation.createdAt = formation.source.created_at;
   resultFormation.lastUpdateAt = formation.source.last_update_at;
-  resultFormation.idRco = formation.source.id_rco_formation ? formation.source.id_rco_formation.split("|")[0] : "";
+  resultFormation.idRco = formation.source.id_formation;
   resultFormation.idRcoFormation = formation.source.id_rco_formation;
+  resultFormation.cleMinistereEducatif = formation.source.cle_ministere_educatif;
 
   if (formation.source.email) {
     resultFormation.contact = {
@@ -720,6 +721,8 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "periode",
       "capacite",
       "id_rco_formation",
+      "id_formation",
+      "cle_ministere_educatif",
     ],
   };
 };
