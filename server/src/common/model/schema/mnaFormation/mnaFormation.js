@@ -447,6 +447,22 @@ const mnaFormationSchema = {
     default: null,
     description: "distance entre le Lieu de formation et l'établissement formateur",
   },
+  niveau_entree_obligatoire: {
+    type: Number,
+    default: null,
+    description: "Niveau d'entrée de l'apprenti minimum obligatoire pour cette formation",
+  },
+  entierement_a_distance: {
+    type: Boolean,
+    default: false,
+    description: "Renseigné si la formation peut être suivie entièrement à distance",
+  },
+  cle_ministere_educatif: {
+    index: true,
+    type: String,
+    default: null,
+    description: "Clé unique de la formation (pour envoi aux ministères éducatifs)",
+  },
 };
 
 module.exports = mnaFormationSchema;
