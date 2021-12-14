@@ -5,6 +5,7 @@
 [956] Marianne header/footer
 [943] Reliquats Astuces
 [369] Recherche plus robuste
+[966] Nouveau champ catalogue
 
 ## 1.17.3 [26/11/2021]
 [832] Astuces
