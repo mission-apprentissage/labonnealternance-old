@@ -1,13 +1,14 @@
-import React from "react";
-import Head from "next/head";
-import Fonts from "./fonts";
+import env from "utils/env";
 
 const HeadLaBonneAlternance = (props) => {
   const getEnvFromProps = () => {
-    let result = "production";
-    if (props.publicUrl?.indexOf("-recette") >= 0) result = "recette";
-    if (props.publicUrl?.indexOf("localhost") >= 0) result = "local";
+    let host = props.publicUrl || env;
 
+    let result = "production";
+    if (host?.indexOf("recette") >= 0) result = "recette";
+    if (host?.indexOf("local") >= 0) result = "local";
+
+    console.log("host / res ",host,result);
     return result;
   };
 
