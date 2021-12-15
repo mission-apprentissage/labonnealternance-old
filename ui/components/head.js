@@ -11,7 +11,6 @@ const HeadLaBonneAlternance = (props) => {
     if (host?.indexOf("recette") >= 0) result = "recette";
     if (host?.indexOf("local") >= 0) result = "local";
 
-    console.log("host / res ",host,result);
     return result;
   };
 
