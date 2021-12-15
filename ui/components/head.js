@@ -1,9 +1,16 @@
 import React from "react";
 import Head from "next/head";
 import Fonts from "./fonts";
-import env from "utils/env";
 
 const HeadLaBonneAlternance = (props) => {
+  const getEnvFromProps = () => {
+    let result = "production";
+    if (props.publicUrl?.indexOf("-recette") >= 0) result = "recette";
+    if (props.publicUrl?.indexOf("localhost") >= 0) result = "local";
+
+    return result;
+  };
+
   return (
     <Head>
       <title>La Bonne Alternance | Trouvez votre alternance</title>
@@ -37,12 +44,14 @@ const HeadLaBonneAlternance = (props) => {
 
       <script
         async
-        src={`https://rdv-cfa${env !== "production" ? "-recette" : ""}.apprentissage.beta.gouv.fr/assets/widget.min.js`}
+        src={`https://rdv-cfa${
+          getEnvFromProps() !== "production" ? "-recette" : ""
+        }.apprentissage.beta.gouv.fr/assets/widget.min.js`}
       ></script>
-      {env !== "local" ? (
+      {getEnvFromProps() !== "local" ? (
         <script
           async
-          src={`https://cdn.tagcommander.com/5234/${env !== "production" ? "uat/" : ""}tc_lba_31.js`}
+          src={`https://cdn.tagcommander.com/5234/${getEnvFromProps() !== "production" ? "uat/" : ""}tc_lba_31.js`}
         ></script>
       ) : (
         ""
