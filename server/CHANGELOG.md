@@ -3,6 +3,7 @@
 ## 1.17.5 [16/12/2021]
 [956b] reliquats footer
 [976] fix détection contexte header
+[969] Cas d'erreur candidature
 
 ## 1.17.4 [14/12/2021]
 [914] Scripts import LBB
