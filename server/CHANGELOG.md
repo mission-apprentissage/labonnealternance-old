@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.6 [20/12/2021]
+[983] Fix enum champ parcoursup_statut
+
 ## 1.17.5 [16/12/2021]
 [956b] reliquats footer
 [976] fix détection contexte header

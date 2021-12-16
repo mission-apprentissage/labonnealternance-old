@@ -213,6 +213,7 @@ const mnaFormationSchema = {
       "à publier (soumis à validation Recteur)",
       "à publier",
       "en attente de publication",
+      "à publier (sous condition habilitation)",
     ],
     default: "hors périmètre",
     description: "Statut parcoursup",
