@@ -12,6 +12,7 @@
 
 const serialize = require("./serialize");
 const { oleoduc, writeData } = require("oleoduc");
+const { logMessage } = require("../../utils/logMessage");
 
 // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/bulk_examples.html
 
@@ -150,8 +151,7 @@ function Mongoosastic(schema, options) {
         _opts.id = this._id.toString();
         await esClient.index(_opts);
       } catch (e) {
-        console.error(e);
-        console.error(`Error index ${this._id.toString()}`, e.message || e);
+        console.error(`Error index ${this._id.toString()}`, e.message || e, this);
         return reject();
       }
       resolve();
@@ -190,11 +190,11 @@ function Mongoosastic(schema, options) {
       writeData(
         async (doc) => {
           await doc.index();
-          if (++count % 100 === 0) {
-            console.error(`${count} indexed`);
+          if (++count % 1000 === 0) {
+            logMessage("info", `${count} indexed`);
           }
         },
-        { parallel: 100 }
+        { parallel: 8 }
       )
     );
   };

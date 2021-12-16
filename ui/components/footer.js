@@ -1,12 +1,9 @@
 import React from "react";
-import { Row, Col, Navbar } from "reactstrap";
+import { Row, Col, Navbar, Container } from "reactstrap";
 
 import { push } from "connected-next-router";
 import { useDispatch } from "react-redux";
 
-import logoFSE from "public/images/logo_fse.svg";
-import logoFranceRelance from "public/images/logo_relance.svg";
-import logoPoleEmploi from "public/images/logo_pole_emploi.svg";
 
 /*
  Different kind of navigation are available here :
@@ -16,90 +13,38 @@ const Footer = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="c-footer py-5">
-      <Navbar expand="lg" className="footer-light">
-        <div className="container">
+    <>
+    <nav className="c-footer c-footer--one py-4 border-bottom">
+      <Container>
+        <Row>
+          <Col className="col-12 col-md-6">
+            <img src="/images/marianne.svg#svgView(viewBox(19 0 162 78))" alt="Logo république française" width="290" height="130" />
+          </Col>
+          <Col className="col-12 col-md-6 c-footer-text">
+            <div>
+              La bonne alternance. Trouvez votre alternance.
+            </div>
+            <div className="mt-4">
+              La bonne alternance est proposée par les services suivants :
+            </div>
+            <div className="mt-4 c-footer-official-links">
+              <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
+              <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://gouvernement.fr">gouvernement.fr</a>
+              <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://service-public.fr">service-public.fr</a>
+              <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://data.gouv.fr">data.gouv.fr</a>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </nav>
+    <nav className="c-footer pt-2 pb-5">
+        <Container>
           <Row>
-            <Col className="d-none d-md-block col-md-4 col-lg-3">
-              <a href="/">
-                <img src="/images/logo_lba.svg" alt="Logo LBA" className="c-footer__brand-img" />
-              </a>
-              <br />
-              <small>Trouvez la formation et l'entreprise pour réaliser votre projet</small>
-            </Col>
-            <Col className="col-md-4 col-lg-3">
+            <Col className="col-12">
               <ul className="c-footer-links">
                 <li className="c-footer-links__line">
                   <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/faq" }));
-                    }}
-                    href="/faq"
-                  >
-                    FAQ
-                  </a>
-                </li>
-
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/contact" }));
-                    }}
-                    href="/contact"
-                  >
-                    Contact
-                  </a>
-                </li>
-
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/metiers" }));
-                    }}
-                    href="/metiers"
-                  >
-                    Métiers
-                  </a>
-                </li>
-
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/a-propos" }));
-                    }}
-                    href="/a-propos"
-                  >
-                    A propos
-                  </a>
-                </li>
-
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(push({ pathname: "/developpeurs" }));
-                    }}
-                    href="/developpeurs"
-                  >
-                    Développeurs
-                  </a>
-                </li>
-              </ul>
-            </Col>
-            <Col className="col-md-4 col-lg-3">
-              <ul className="c-footer-links">
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link"
+                    className="c-footer-links__link c-footer-smallword pr-3"
                     onClick={(e) => {
                       e.preventDefault();
                       dispatch(push({ pathname: "/mentions-legales" }));
@@ -112,7 +57,7 @@ const Footer = (props) => {
 
                 <li className="c-footer-links__line">
                   <a
-                    className="c-footer-links__link"
+                    className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
                       dispatch(push({ pathname: "/cgu" }));
@@ -126,7 +71,7 @@ const Footer = (props) => {
 
                 <li className="c-footer-links__line">
                   <a
-                    className="c-footer-links__link"
+                    className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
                       dispatch(push({ pathname: "/cookies" }));
@@ -139,7 +84,7 @@ const Footer = (props) => {
 
                 <li className="c-footer-links__line">
                   <a
-                    className="c-footer-links__link"
+                    className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
                       dispatch(push({ pathname: "/stats" }));
@@ -149,43 +94,83 @@ const Footer = (props) => {
                     Statistiques
                   </a>
                 </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/faq" }));
+                    }}
+                    href="/faq"
+                  >
+                    FAQ
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/contact" }));
+                    }}
+                    href="/contact"
+                  >
+                    Contact
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/metiers" }));
+                    }}
+                    href="/metiers"
+                  >
+                    Métiers
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/a-propos" }));
+                    }}
+                    href="/a-propos"
+                  >
+                    A propos
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/developpeurs" }));
+                    }}
+                    href="/developpeurs"
+                  >
+                    Développeurs
+                  </a>
+                </li>
               </ul>
             </Col>
-            <Col className="text-center col-12 col-lg-3">
-              <a
-                href="http://www.fse.gouv.fr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="c-footer-logocontainer"
-              >
-                <img className="c-footer--partner-logo" src={logoFSE} alt="Logo du FSE" />
-              </a>
-              <a
-                href="https://www.gouvernement.fr/france-relance"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="c-footer-logocontainer"
-              >
-                <img
-                  className="c-footer--partner-logo"
-                  src={logoFranceRelance}
-                  width="60px"
-                  alt="Logo France Relance"
-                />
-              </a>
-              <a
-                href="http://www.pole-emploi.fr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="c-footer-logocontainer"
-              >
-                <img className="c-footer--partner-logo" src={logoPoleEmploi} alt="Logo de Pôle emploi" />
-              </a>
+            <Col className="col-12">
+              <div className="c-footer-smallword c-footer-lastword">
+                Sauf mention contraire, tous les contenus de ce site sont sous licence <a href="https://www.etalab.gouv.fr/licence-version-2-0-de-la-licence-ouverte-suite-a-la-consultation-et-presentation-du-decret" target="_blank" rel="noopener noreferrer">etalab-2.0 <img className="ml-1" src="/images/square_link.svg" alt="Lien" /></a>
+              </div>
             </Col>
           </Row>
-        </div>
-      </Navbar>
-    </div>
+        </Container>
+    </nav>
+    </>
   );
 };
 

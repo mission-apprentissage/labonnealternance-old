@@ -79,8 +79,8 @@ describe('Search', () => {
 
   it('User can choose a diploma', () => {
     cy.get('select[name="diploma"]:visible') // given
-    .select('Cap, autres formations niveau 3') // when
-    .should('have.value', '3 (CAP...)') // then
+    .select(1) // when
+    .should('have.value', '4 (BAC...)') // then
   })
   
   it('User can launch the search', () => {
