@@ -3,10 +3,12 @@ const etablissementGestionnaireInfo = require("./etablissement.gestionnaire.sub"
 const etablissementReferenceInfo = require("./etablissement.reference.sub");
 
 const mnaFormationSchema = {
-  ...etablissementGestionnaireInfo,
-  ...etablissementFormateurInfo,
-  ...etablissementReferenceInfo,
-
+  cle_ministere_educatif: {
+    index: true,
+    type: String,
+    default: null,
+    description: "Clé unique de la formation (pour envoi aux ministères éducatifs)",
+  },
   cfd: {
     index: true,
     type: String,
@@ -27,6 +29,12 @@ const mnaFormationSchema = {
     type: Date,
     default: null,
     description: "Date de fermeture du cfd",
+  },
+  cfd_entree: {
+    index: true,
+    type: String,
+    default: null,
+    description: "Code formation diplome d'entrée (année 1 de l'apprentissage)",
   },
   mef_10_code: {
     type: String,
@@ -79,6 +87,7 @@ const mnaFormationSchema = {
     description: "Localité",
   },
   uai_formation: {
+    index: true,
     type: String,
     default: null,
     description: "UAI du lieu de la formation",
@@ -142,6 +151,7 @@ const mnaFormationSchema = {
   },
 
   rncp_code: {
+    index: true,
     type: String,
     default: null,
     description: "Code RNCP",
@@ -157,7 +167,88 @@ const mnaFormationSchema = {
     description: "Le titre RNCP est éligible en apprentissage",
   },
   rncp_details: {
-    type: Object,
+    type: {
+      date_fin_validite_enregistrement: {
+        type: String,
+        default: null,
+        description: "Date de validité de la fiche",
+      },
+      active_inactive: {
+        type: String,
+        default: null,
+        description: "fiche active ou non",
+      },
+      etat_fiche_rncp: {
+        type: String,
+        default: null,
+        description: "état fiche ex: Publiée",
+      },
+      niveau_europe: {
+        type: String,
+        default: null,
+        description: "Niveau europeen ex: niveauu5",
+      },
+      code_type_certif: {
+        type: String,
+        default: null,
+        description: "Code type de certification (ex: DE)",
+      },
+      type_certif: {
+        type: String,
+        default: null,
+        description: "Type de certification (ex: diplome d'etat)",
+      },
+      ancienne_fiche: {
+        type: [String],
+        default: null,
+        description: "Code rncp de l'ancienne fiche",
+      },
+      nouvelle_fiche: {
+        type: [String],
+        default: null,
+        description: "Code rncp de la nouvelle fiche",
+      },
+      demande: {
+        type: Number,
+        default: 0,
+        description: "demande en cours de d'habilitation",
+      },
+      certificateurs: {
+        type: [Object],
+        default: [],
+        description: "Certificateurs",
+      },
+      nsf_code: {
+        type: String,
+        default: null,
+        description: "code NSF",
+      },
+      nsf_libelle: {
+        type: String,
+        default: null,
+        description: "libéllé NSF",
+      },
+      romes: {
+        type: [Object],
+        default: [],
+        description: "Romes",
+      },
+      blocs_competences: {
+        type: [Object],
+        default: [],
+        description: "Blocs de compétences",
+      },
+      voix_acces: {
+        type: [Object],
+        default: [],
+        description: "voix d'accès",
+      },
+      partenaires: {
+        type: [Object],
+        default: [],
+        description: "partenaires",
+      },
+    },
     default: null,
     description: "Détails RNCP (bloc de compétences etc..)",
   },
@@ -209,11 +300,11 @@ const mnaFormationSchema = {
       "hors périmètre",
       "publié",
       "non publié",
+      "à publier (sous condition habilitation)",
       "à publier (vérifier accès direct postbac)",
       "à publier (soumis à validation Recteur)",
       "à publier",
       "en attente de publication",
-      "à publier (sous condition habilitation)",
     ],
     default: "hors périmètre",
     description: "Statut parcoursup",
@@ -227,11 +318,12 @@ const mnaFormationSchema = {
   parcoursup_error: {
     type: String,
     default: null,
-    description: "Erreur lors du contrôle de référencement sur ParcourSup de la formation",
+    description: "Erreur lors de la création de la formation sur ParcourSup (via le WS)",
   },
-  parcoursup_ids: {
-    type: [String],
-    default: [],
+  parcoursup_id: {
+    index: true,
+    type: String,
+    default: null,
     description: "ids ParcourSup",
   },
   affelnet_reference: {
@@ -262,11 +354,6 @@ const mnaFormationSchema = {
     default: [],
     description: "Affelnet : historique des statuts",
     noIndex: true,
-  },
-  affelnet_error: {
-    type: String,
-    default: null,
-    description: "Erreur lors du contrôle de référencement sur affelnet de la formation",
   },
   source: {
     type: String,
@@ -333,6 +420,7 @@ const mnaFormationSchema = {
 
   // Flags
   to_update: {
+    index: true,
     type: Boolean,
     default: false,
     description: "Formation à mette à jour lors du script d'enrichissement",
@@ -361,6 +449,11 @@ const mnaFormationSchema = {
     default: null,
     description: "Adresse du lieu de formation",
   },
+  lieu_formation_adresse_computed: {
+    type: String,
+    default: null,
+    description: "Adresse du lieu de formation déduit de la géolocalisation le flux RCO",
+  },
   lieu_formation_siret: {
     type: String,
     default: null,
@@ -373,21 +466,25 @@ const mnaFormationSchema = {
     description: "Id de formation RCO (id_formation + id_action + id_certifinfo)",
   },
   id_formation: {
+    index: true,
     type: String,
     default: null,
     description: "Identifiant de la formation",
   },
   id_action: {
+    index: true,
     type: String,
     default: null,
     description: "Identifant des actions concaténés",
   },
   ids_action: {
+    index: true,
     type: [String],
     default: null,
     description: "Identifant des actions concaténés",
   },
   id_certifinfo: {
+    index: true,
     type: String,
     default: null,
     description: "Identifant certifInfo (unicité de la certification)",
@@ -458,12 +555,9 @@ const mnaFormationSchema = {
     default: false,
     description: "Renseigné si la formation peut être suivie entièrement à distance",
   },
-  cle_ministere_educatif: {
-    index: true,
-    type: String,
-    default: null,
-    description: "Clé unique de la formation (pour envoi aux ministères éducatifs)",
-  },
+  ...etablissementGestionnaireInfo,
+  ...etablissementFormateurInfo,
+  ...etablissementReferenceInfo,
 };
 
 module.exports = mnaFormationSchema;
