@@ -100,19 +100,6 @@ const Footer = (props) => {
                     className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
-                      dispatch(push({ pathname: "/stats" }));
-                    }}
-                    href="/stats"
-                  >
-                    Statistiques
-                  </a>
-                </li>
-
-                <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link c-footer-smallword"
-                    onClick={(e) => {
-                      e.preventDefault();
                       dispatch(push({ pathname: "/faq" }));
                     }}
                     href="/faq"
