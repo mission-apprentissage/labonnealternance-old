@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.5 [16/12/2021]
+[956b] reliquats footer
+
 ## 1.17.4 [14/12/2021]
 [914] Scripts import LBB
 [956] Marianne header/footer
