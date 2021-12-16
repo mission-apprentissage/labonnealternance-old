@@ -111,6 +111,7 @@ const Footer = (props) => {
                 <li className="c-footer-links__line">
                   <a
                     className="c-footer-links__link c-footer-smallword"
+
                     onClick={(e) => {
                       e.preventDefault();
                       dispatch(push({ pathname: "/contact" }));
