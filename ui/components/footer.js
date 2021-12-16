@@ -94,6 +94,84 @@ const Footer = (props) => {
                     Statistiques
                   </a>
                 </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/stats" }));
+                    }}
+                    href="/stats"
+                  >
+                    Statistiques
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/faq" }));
+                    }}
+                    href="/faq"
+                  >
+                    FAQ
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/contact" }));
+                    }}
+                    href="/contact"
+                  >
+                    Contact
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/metiers" }));
+                    }}
+                    href="/metiers"
+                  >
+                    Métiers
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/a-propos" }));
+                    }}
+                    href="/a-propos"
+                  >
+                    A propos
+                  </a>
+                </li>
+
+                <li className="c-footer-links__line">
+                  <a
+                    className="c-footer-links__link c-footer-smallword"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(push({ pathname: "/developpeurs" }));
+                    }}
+                    href="/developpeurs"
+                  >
+                    Développeurs
+                  </a>
+                </li>
               </ul>
             </Col>
             <Col className="col-12">

@@ -38,7 +38,10 @@
 
 .c-footer-links__line {
   @extend .mb-1;
-  border-right: 1px solid #E5E5E5;
+  border-right: none;
+  @include media-breakpoint-up(lg) { 
+    border-right: 1px solid #E5E5E5;
+  }
 }
 
 .c-footer-links__line + .c-footer-links__line {
