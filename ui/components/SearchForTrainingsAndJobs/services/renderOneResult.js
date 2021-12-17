@@ -5,7 +5,7 @@ import LbbCompany from "../../../components/ItemDetail/LbbCompany";
 export const renderJob = (isTestMode, idx, job, handleSelectItem, searchForJobsOnNewCenter) => {
   if (isTestMode) {
     return (
-      <div key={idx} data-testid={`job-${job?.id}`}></div>
+      <div key={idx} data-testid={`Job-${job?.id}`}></div>
     )
   } else {
     return (
@@ -21,7 +21,7 @@ export const renderJob = (isTestMode, idx, job, handleSelectItem, searchForJobsO
 export const renderTraining = (isTestMode, idx, training, handleSelectItem, searchForJobsOnNewCenter) => {
   if (isTestMode) {
     return (
-      <div key={idx} data-testid={`training-${training?.id}`}></div>
+      <div key={idx} data-testid={`Training-${training?.id}`}></div>
     )
   } else {
     return (
@@ -37,7 +37,7 @@ export const renderTraining = (isTestMode, idx, training, handleSelectItem, sear
 export const renderLbb = (isTestMode, idx, company, handleSelectItem, searchForTrainingsOnNewCenter) => {
   if (isTestMode) {
     return (
-      <div key={idx} data-testid={`lbb-${company?.id}`}></div>
+      <div key={idx} data-testid={`LbbCompany-${company?.id}`}></div>
     )
   } else {
     return (

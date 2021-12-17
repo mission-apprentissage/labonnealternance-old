@@ -11,7 +11,7 @@ describe("ResultList", () => {
   });
 
   it("By default displays a result list", () => {
-    // Given
+    // Given / When
     render(<ResultLists setActiveFilter={() => { }} selectedItem={null} handleSelectItem={() => { }} showSearchForm={() => { }} isTrainingSearchLoading={false} isJobSearchLoading={false} handleExtendedSearch={() => { }} searchForJobsOnNewCenter={() => { }} searchForTrainingsOnNewCenter={() => { }} jobSearchError={''} allJobSearchError={false} trainingSearchError={''} shouldShowWelcomeMessage={false}
               isTestMode={true}
               stubbedExtendedSearch={false}
@@ -28,8 +28,9 @@ describe("ResultList", () => {
                 }
               }
     />);
-    // When
-    expect(screen.getByTestId("foobarqix")).not.toBeNull();
+    // Then
+    expect(screen.getByTestId("LbbCompany-uco")).not.toBeNull();
+    expect(screen.getByTestId("Training-ingediplo")).not.toBeNull();
   });
 
   let realisticFormations = [{ "ideaType": "formation", "title": "INGENIEUR DIPLOME", "longTitle": "INGENIEUR DIPLOME", "id": "ingediplo", "place": { "distance": 29.445828444412832, "fullAddress": "6 rue de Kérampont BP 80518 22300 Lannion", "latitude": "48.7294471", "longitude": "-3.4623017", "city": "Lannion", "address": "6 rue de Kérampont BP 80518", "cedex": "22305", "zipCode": "22300", "departementNumber": "22", "region": "Bretagne", "insee": "22113" }, "company": { "name": "UNIVERSITE DE RENNES I", "siret": "19350936100278", "id": "5e8df90d20ff3b2161268530", "uai": null, "headquarter": { "id": "5e8df8b820ff3b2161267e34", "uai": null, "type": "CFA", "hasConvention": "NON", "place": { "address": "6 RUE KLEBER", "cedex": "35065", "zipCode": "35000", "city": "RENNES" }, "name": "UNIVERSITE DE RENNES I" }, "place": { "city": "LANNION" } }, "diplomaLevel": "7 (Master, titre ingénieur...)", "diploma": "INGENIEURS RECONNUS (RCT..), NFI , ALTERNANCE", "cfd": "1703260V", "rncpCode": "RNCP35781", "rncpLabel": "Ingénieur de l'école nationale supérieure des sciences appliquées et de technologie, spécialité informatique et technologies de l'information", "rncpEligibleApprentissage": true, "period": "[\"2021-09\"]", "createdAt": "2021-08-08T00:10:47.074Z", "lastUpdateAt": "2021-11-09T03:29:47.594Z", "romes": [{ "code": "M1804" }, { "code": "M1802" }, { "code": "M1805" }, { "code": "M1806" }], "idRco": "06_2000241F", "idRcoFormation": "06_2000241F|06_1254822|66191" }]

@@ -12,7 +12,6 @@ import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
 import { renderJob, renderTraining, renderLbb } from "../services/renderOneResult";
 
 const ResultLists = (props) => {
-  console.log('props', props);
   const scopeContext = useScopeContext();
 
   let [extendedSearch, hasSearch, isFormVisible] = [false, false, false];
@@ -156,7 +155,6 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedLbaLbbCompanies.map((company, idx) => {
-            console.log('renderLbbComp-----------------------', company);
             return renderLbb(props.isTestMode, idx, company, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
           })}
         </>
@@ -175,7 +173,6 @@ const ResultLists = (props) => {
             if (opportunity.ideaType === "peJob" || opportunity.ideaType === "matcha") {
               return renderJob(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
             } else {
-              console.log('renderLbbOpp-------------------', opportunity);
               return renderLbb(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
             }
           })}
