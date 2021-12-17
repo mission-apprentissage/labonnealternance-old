@@ -14,6 +14,7 @@ import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
 import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
 
 const ResultLists = (props) => {
+  console.log('props', props);
   const scopeContext = useScopeContext();
 
   const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);

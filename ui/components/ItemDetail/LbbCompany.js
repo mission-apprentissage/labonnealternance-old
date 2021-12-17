@@ -91,6 +91,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
       onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
+      data-testid={`${company.ideaType}${company.company.siret}`}
     >
       <div className="c-media" id={`${company.ideaType}${company.company.siret}`}>
         <div className="c-media-figure">

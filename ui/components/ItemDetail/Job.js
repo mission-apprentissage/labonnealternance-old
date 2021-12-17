@@ -104,8 +104,9 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
       onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
+      data-testid={`${kind}${job.job.id}`}
     >
-      <div className="c-media" id={`${kind}${job.job.id}`}>
+      <div className="c-media" id={`job-${kind}${job.job.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
         </div>
