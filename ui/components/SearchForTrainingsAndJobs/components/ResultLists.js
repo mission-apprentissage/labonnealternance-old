@@ -13,12 +13,62 @@ import { useScopeContext } from "../../../context/ScopeContext";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
 import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
 
+const renderJob = (isTestMode, idx, job, handleSelectItem, searchForJobsOnNewCenter) => {
+  if (isTestMode) {
+    return (
+      <div key={idx} data-testid={`job-${job}`}></div>
+    )
+  } else {
+    return (
+      <Job
+        key={idx}
+        job={job}
+        handleSelectItem={handleSelectItem}
+        searchForTrainingsOnNewCenter={searchForJobsOnNewCenter}
+      />
+    );
+  }
+}
+const renderTraining = (isTestMode, idx, training, handleSelectItem, searchForJobsOnNewCenter) => {
+  if (isTestMode) {
+    return (
+      <div key={idx} data-testid={`training-${training}`}></div>
+    )
+  } else {
+    return (
+      <Training
+        key={idx}
+        training={training}
+        handleSelectItem={handleSelectItem}
+        searchForJobsOnNewCenter={searchForJobsOnNewCenter}
+      />
+    );
+  }
+}
+const renderLbb = (isTestMode, idx, company, handleSelectItem, searchForTrainingsOnNewCenter) => {
+  if (isTestMode) {
+    return (
+      <div key={idx} data-testid={`lbb-${company}`}></div>
+    )
+  } else {
+    return (
+      <LbbCompany
+        key={idx}
+        company={company}
+        handleSelectItem={handleSelectItem}
+        searchForTrainingsOnNewCenter={searchForTrainingsOnNewCenter}
+      />
+    );
+  }
+}
+
 const ResultLists = (props) => {
   console.log('props', props);
   const scopeContext = useScopeContext();
+  console.log('scopeContext', scopeContext);
 
   let [extendedSearch, hasSearch, isFormVisible] = [false, false, false];
-  if (props.skipRedux) {
+  if (props.isTestMode) {
     [extendedSearch, hasSearch, isFormVisible] = [props.stubbedExtendedSearch, props.stubbedHasSearch, props.stubbedIsFormVisible];
   } else {
      ({ extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings));
@@ -55,14 +105,7 @@ const ResultLists = (props) => {
             ""
           )}
           {props.trainings.map((training, idx) => {
-            return (
-              <Training
-                key={idx}
-                training={training}
-                handleSelectItem={props.handleSelectItem}
-                searchForJobsOnNewCenter={props.searchForJobsOnNewCenter}
-              />
-            );
+            return renderTraining(props.isTestMode, idx, training, props.handleSelectItem, props.searchForJobsOnNewCenter)
           })}
         </>
       );
@@ -152,14 +195,7 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedJobs.map((job, idx) => {
-            return (
-              <Job
-                key={idx}
-                job={job}
-                handleSelectItem={props.handleSelectItem}
-                searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-              />
-            );
+            return renderJob(props.isTestMode, idx, job, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
           })}
         </>
       );
@@ -172,14 +208,7 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedLbaLbbCompanies.map((company, idx) => {
-            return (
-              <LbbCompany
-                key={idx}
-                company={company}
-                handleSelectItem={props.handleSelectItem}
-                searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-              />
-            );
+            return renderLbb(props.isTestMode, idx, company, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
           })}
         </>
       );
@@ -204,14 +233,7 @@ const ResultLists = (props) => {
                 />
               );
             else
-              return (
-                <LbbCompany
-                  key={idx}
-                  company={opportunity}
-                  handleSelectItem={props.handleSelectItem}
-                  searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-                />
-              );
+              return renderLbb(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
           })}
         </>
       );
