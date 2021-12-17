@@ -5,6 +5,7 @@ import nock from "nock";
 
 describe("ResultList", () => {
 
+
   beforeEach(() => {
     nock.disableNetConnect();
   });

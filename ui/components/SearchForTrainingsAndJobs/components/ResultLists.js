@@ -9,9 +9,9 @@ import { useSelector } from "react-redux";
 import ExtendedSearchButton from "./ExtendedSearchButton";
 import NoJobResult from "./NoJobResult";
 import FilterButton from "./FilterButton";
-import { useScopeContext } from "context/ScopeContext";
+import { useScopeContext } from "../../../context/ScopeContext";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
-import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
+import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
 
 const ResultLists = (props) => {
   console.log('props', props);
