@@ -1,5 +1,5 @@
-import fetchRomes from "services/fetchRomes";
-import { SendTrackEvent } from "utils/gtm";
+import fetchRomes from "../services/fetchRomes";
+import { SendTrackEvent } from "../utils/gtm";
 
 export default async function domainChanged(val, setDomainErrorFunc) {
   const res = await fetchRomes(val, () => {

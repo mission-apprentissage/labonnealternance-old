@@ -1,17 +1,17 @@
 import React from "react";
 import { render, screen, fireEvent, wait, waitFor } from "@testing-library/react";
-import ResultList from "./ResultList";
+import ResultLists from "./ResultLists";
 import nock from "nock";
 
 describe("ResultList", () => {
-  
+
   beforeEach(() => {
     nock.disableNetConnect();
   });
 
   it("By default displays a result list", () => {
     // Given
-    render(<ResultList setActiveFilter={() => { }} selectedItem={null} handleSelectItem={() => { }} showSearchForm={() => { }} isTrainingSearchLoading={false} isJobSearchLoading={false} handleExtendedSearch={() => { }} searchForJobsOnNewCenter={() => { }} searchForTrainingsOnNewCenter={() => { }} jobSearchError={''} allJobSearchError={false} trainingSearchError={''} shouldShowWelcomeMessage={false}
+    render(<ResultLists setActiveFilter={() => { }} selectedItem={null} handleSelectItem={() => { }} showSearchForm={() => { }} isTrainingSearchLoading={false} isJobSearchLoading={false} handleExtendedSearch={() => { }} searchForJobsOnNewCenter={() => { }} searchForTrainingsOnNewCenter={() => { }} jobSearchError={''} allJobSearchError={false} trainingSearchError={''} shouldShowWelcomeMessage={false}
             activeFilter={'all'}
             searchRadius={10}
             trainings={realisticFormations}

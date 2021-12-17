@@ -1,6 +1,6 @@
 import React from "react";
-import HeaderForm from "components/HeaderForm/HeaderForm";
-import LogoIdea from "components/LogoIdea/LogoIdea";
+import HeaderForm from "../../components/HeaderForm/HeaderForm";
+import LogoIdea from "../../components/LogoIdea/LogoIdea";
 import { useRouter } from "next/router";
 import { includes } from "lodash";
 import { useSelector } from "react-redux";

@@ -2,11 +2,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { push } from "connected-next-router";
-import { setFormValues, setShouldExecuteSearch } from "store/actions";
+import { setFormValues, setShouldExecuteSearch } from "../../store/actions";
 
 import { pick } from "lodash";
-import SearchForm from "components/SearchForTrainingsAndJobs/components/SearchForm";
-import WidgetHeader from "components/WidgetHeader/WidgetHeader";
+import SearchForm from "../../components/SearchForTrainingsAndJobs/components/SearchForm";
+import WidgetHeader from "../../components/WidgetHeader/WidgetHeader";
 
 const StartForm = (props) => {
   const dispatch = useDispatch();
