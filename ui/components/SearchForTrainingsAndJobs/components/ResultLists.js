@@ -16,7 +16,7 @@ import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
 const renderJob = (isTestMode, idx, job, handleSelectItem, searchForJobsOnNewCenter) => {
   if (isTestMode) {
     return (
-      <div key={idx} data-testid={`job-${job}`}></div>
+      <div key={idx} data-testid={`job-${job?.id}`}></div>
     )
   } else {
     return (
@@ -32,7 +32,7 @@ const renderJob = (isTestMode, idx, job, handleSelectItem, searchForJobsOnNewCen
 const renderTraining = (isTestMode, idx, training, handleSelectItem, searchForJobsOnNewCenter) => {
   if (isTestMode) {
     return (
-      <div key={idx} data-testid={`training-${training}`}></div>
+      <div key={idx} data-testid={`training-${training?.id}`}></div>
     )
   } else {
     return (
@@ -48,7 +48,7 @@ const renderTraining = (isTestMode, idx, training, handleSelectItem, searchForJo
 const renderLbb = (isTestMode, idx, company, handleSelectItem, searchForTrainingsOnNewCenter) => {
   if (isTestMode) {
     return (
-      <div key={idx} data-testid={`lbb-${company}`}></div>
+      <div key={idx} data-testid={`lbb-${company?.id}`}></div>
     )
   } else {
     return (
@@ -223,21 +223,17 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedOpportunities.map((opportunity, idx) => {
-            if (opportunity.ideaType === "peJob" || opportunity.ideaType === "matcha")
-              return (
-                <Job
-                  key={idx}
-                  job={opportunity}
-                  handleSelectItem={props.handleSelectItem}
-                  searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-                />
-              );
-            else
+            if (opportunity.ideaType === "peJob" || opportunity.ideaType === "matcha") {
+              return renderJob(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
+            } else {
               return renderLbb(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
+            }
           })}
         </>
       );
-    } else return "";
+    } else {
+      return "";
+    }
   };
 
   // construit le bloc formaté avec les décomptes de formations et d'opportunités d'emploi
