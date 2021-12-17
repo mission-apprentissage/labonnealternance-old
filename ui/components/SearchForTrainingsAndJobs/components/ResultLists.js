@@ -17,7 +17,12 @@ const ResultLists = (props) => {
   console.log('props', props);
   const scopeContext = useScopeContext();
 
-  const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
+  let [extendedSearch, hasSearch, isFormVisible] = [false, false, false];
+  if (props.skipRedux) {
+    [extendedSearch, hasSearch, isFormVisible] = [props.stubbedExtendedSearch, props.stubbedHasSearch, props.stubbedIsFormVisible];
+  } else {
+     ({ extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings));
+  }
 
   const filterButtonClicked = (filterButton) => {
     props.setActiveFilter(filterButton);

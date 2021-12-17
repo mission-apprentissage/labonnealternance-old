@@ -5,7 +5,6 @@ import nock from "nock";
 
 describe("ResultList", () => {
 
-
   beforeEach(() => {
     nock.disableNetConnect();
   });
@@ -13,6 +12,7 @@ describe("ResultList", () => {
   it("By default displays a result list", () => {
     // Given
     render(<ResultLists setActiveFilter={() => { }} selectedItem={null} handleSelectItem={() => { }} showSearchForm={() => { }} isTrainingSearchLoading={false} isJobSearchLoading={false} handleExtendedSearch={() => { }} searchForJobsOnNewCenter={() => { }} searchForTrainingsOnNewCenter={() => { }} jobSearchError={''} allJobSearchError={false} trainingSearchError={''} shouldShowWelcomeMessage={false}
+            skipRedux={true}
             activeFilter={'all'}
             searchRadius={10}
             trainings={realisticFormations}
