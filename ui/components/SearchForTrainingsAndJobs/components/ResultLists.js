@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Spinner } from "reactstrap";
-import Training from "../../../components/ItemDetail/Training";
-import Job from "../../../components/ItemDetail/Job";
-import LbbCompany from "../../../components/ItemDetail/LbbCompany";
 import { ErrorMessage } from "../../../components";
 import { filterLayers } from "../../../utils/mapTools";
 import { useSelector } from "react-redux";
@@ -159,6 +156,7 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedLbaLbbCompanies.map((company, idx) => {
+            console.log('renderLbbComp-----------------------', company);
             return renderLbb(props.isTestMode, idx, company, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
           })}
         </>
@@ -177,6 +175,7 @@ const ResultLists = (props) => {
             if (opportunity.ideaType === "peJob" || opportunity.ideaType === "matcha") {
               return renderJob(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
             } else {
+              console.log('renderLbbOpp-------------------', opportunity);
               return renderLbb(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
             }
           })}

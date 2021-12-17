@@ -24,7 +24,7 @@ describe("ResultList", () => {
                 {
                   "peJobs": [],
                   "matchas": [],
-                  "lbbCompanies": [realisticLbbCompanies]
+                  "lbbCompanies": realisticLbbCompanies
                 }
               }
     />);
