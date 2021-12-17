@@ -5,17 +5,17 @@ import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { findIndex, concat, pick, get, defaultTo, round } from "lodash";
-import { amongst } from "utils/arrayutils";
+import { amongst } from "../../utils/arrayutils";
 import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
-import { capitalizeFirstLetter } from "utils/strutils";
-import { rawPostalAddress } from "utils/addressUtils";
-import { isCfaEntreprise } from "services/cfaEntreprise";
+import { capitalizeFirstLetter } from "../../utils/strutils";
+import { rawPostalAddress } from "../../utils/addressUtils";
+import { isCfaEntreprise } from "../../services/cfaEntreprise";
 
 import { useSwipeable } from "react-swipeable";
-import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
+import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
 
 import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";

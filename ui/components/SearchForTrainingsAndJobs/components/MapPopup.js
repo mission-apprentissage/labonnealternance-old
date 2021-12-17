@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { setSelectedMapPopupItem, setSelectedItem } from "store/actions";
+import { setSelectedMapPopupItem, setSelectedItem } from "../../../store/actions";
 import { useDispatch } from "react-redux";
-import { getJobAddress } from "utils/jobs";
-import { logError } from "utils/tools";
+import { getJobAddress } from "../../../utils/jobs";
+import { logError } from "../../../utils/tools";
 import { ErrorMessage } from "../..";
-import { capitalizeFirstLetter } from "utils/strutils";
-import { setSelectedMarker } from "utils/mapTools";
+import { capitalizeFirstLetter } from "../../../utils/strutils";
+import { setSelectedMarker } from "../../../utils/mapTools";
 import bookIcon from "public/images/icons/book.svg";
 import jobIcon from "public/images/icons/job.svg";
 
