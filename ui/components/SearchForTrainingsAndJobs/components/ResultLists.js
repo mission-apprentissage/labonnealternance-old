@@ -12,60 +12,11 @@ import FilterButton from "./FilterButton";
 import { useScopeContext } from "../../../context/ScopeContext";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
 import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
-
-const renderJob = (isTestMode, idx, job, handleSelectItem, searchForJobsOnNewCenter) => {
-  if (isTestMode) {
-    return (
-      <div key={idx} data-testid={`job-${job?.id}`}></div>
-    )
-  } else {
-    return (
-      <Job
-        key={idx}
-        job={job}
-        handleSelectItem={handleSelectItem}
-        searchForTrainingsOnNewCenter={searchForJobsOnNewCenter}
-      />
-    );
-  }
-}
-const renderTraining = (isTestMode, idx, training, handleSelectItem, searchForJobsOnNewCenter) => {
-  if (isTestMode) {
-    return (
-      <div key={idx} data-testid={`training-${training?.id}`}></div>
-    )
-  } else {
-    return (
-      <Training
-        key={idx}
-        training={training}
-        handleSelectItem={handleSelectItem}
-        searchForJobsOnNewCenter={searchForJobsOnNewCenter}
-      />
-    );
-  }
-}
-const renderLbb = (isTestMode, idx, company, handleSelectItem, searchForTrainingsOnNewCenter) => {
-  if (isTestMode) {
-    return (
-      <div key={idx} data-testid={`lbb-${company?.id}`}></div>
-    )
-  } else {
-    return (
-      <LbbCompany
-        key={idx}
-        company={company}
-        handleSelectItem={handleSelectItem}
-        searchForTrainingsOnNewCenter={searchForTrainingsOnNewCenter}
-      />
-    );
-  }
-}
+import { renderJob, renderTraining, renderLbb } from "../services/renderOneResult";
 
 const ResultLists = (props) => {
   console.log('props', props);
   const scopeContext = useScopeContext();
-  console.log('scopeContext', scopeContext);
 
   let [extendedSearch, hasSearch, isFormVisible] = [false, false, false];
   if (props.isTestMode) {
