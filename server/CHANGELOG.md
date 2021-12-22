@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.6 [25/12/2021]
+[985] Optimisation réindexation de masse
+
 ## 1.17.5 [16/12/2021]
 [956b] reliquats footer
 [976] fix détection contexte header
