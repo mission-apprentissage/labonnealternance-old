@@ -16,6 +16,10 @@ const rebuildIndex = async (model, { skipNotFound } = { skipNotFound: false }) =
 
   logger.info(`Syncing '${index}' index ...`);
   await model.synchronize();
+
+  await client.indices.refresh({
+    index,
+  });
 };
 
 module.exports.rebuildIndex = rebuildIndex;
