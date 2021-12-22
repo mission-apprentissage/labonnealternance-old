@@ -10,7 +10,15 @@ const updateLaBonneBoite = async (query) => {
     return { error: "wrong_secret" };
   } else {
     try {
-      let result = await updateLaBonneBoiteJob();
+      let params = {
+        shouldClearMongo: query?.shouldClearMongo === "false" ? false : true,
+        shouldBuildIndex: query?.shouldBuildIndex === "false" ? false : true,
+        shouldParseFiles: query?.shouldParseFiles === "false" ? false : true,
+      };
+
+      console.log(params);
+
+      let result = await updateLaBonneBoiteJob(params);
       return result;
     } catch (err) {
       Sentry.captureException(err);

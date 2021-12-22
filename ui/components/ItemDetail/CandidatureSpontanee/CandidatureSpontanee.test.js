@@ -5,7 +5,9 @@ import nock from "nock";
 import userEvent from "@testing-library/user-event";
 
 describe("CandidatureSpontanee", () => {
+  const consoleLog = console.log
   beforeEach(() => {
+    console.log = consoleLog
     nock.disableNetConnect();
   });
 
@@ -128,6 +130,40 @@ describe("CandidatureSpontanee", () => {
       expect(title).toHaveTextContent("Candidature spontanée");
     });
   });
+  it("LBB - full but failing test", async () => {
+    // Given
+
+    // HACK : prevent manually-triggered error 500 to litter the console
+    // See https://stackoverflow.com/a/67448856/2595513
+    console.log = jest.fn()
+    
+    openLbbModal(render, screen, fireEvent);
+    fillModalTextInputs(screen);
+
+    // When 1.
+    const pdfFile = new File(["hello"], "hello.pdf", { type: "text/pdf" });
+    const pdfInput = screen.getByTestId("fileDropzone");
+    expect(screen.queryByTestId("selectedFile")).toBeNull();
+
+    // Then 1.
+    await waitFor(() => {
+      userEvent.upload(pdfInput, pdfFile);
+      expect(screen.queryByTestId("selectedFile")).not.toBeNull();
+    });
+
+    // When 2.
+    nock("http://localhost:5000").post("/api/application").reply(500);
+
+    expect(screen.queryByTestId("CandidatureSpontaneeFailed")).toBeNull();
+    const submit = screen.getByRole("button", { name: /je-postule/i });
+    fireEvent.click(submit);
+    // Then 2.
+    await waitFor(() => {
+      expect(screen.queryByTestId("CandidatureSpontaneeFailed")).not.toBeNull();
+      const title = screen.getByTestId("CandidatureSpontaneeFailedTitle");
+      expect(title).toHaveTextContent("Une erreur est survenue.");
+    });
+  });
   it("MATCHA - full and successful test", async () => {
     // Given
     openMatchaModal(render, screen, fireEvent);
@@ -155,6 +191,40 @@ describe("CandidatureSpontanee", () => {
       expect(screen.queryByTestId("CandidatureSpontaneeWorked")).not.toBeNull();
       const title = screen.getByTestId("CandidatureSpontaneeWorkedTitle");
       expect(title).toHaveTextContent("Postuler à l'offre de Lamacompta");
+    });
+  });
+  it("MATCHA - full but FAILING test", async () => {
+    // Given
+
+    // HACK : prevent manually-triggered error 500 to litter the console
+    // See https://stackoverflow.com/a/67448856/2595513
+    console.log = jest.fn()
+    
+    openMatchaModal(render, screen, fireEvent);
+    fillModalTextInputs(screen);
+
+    // When 1.
+    const pdfFile = new File(["hello"], "hello.pdf", { type: "text/pdf" });
+    const pdfInput = screen.getByTestId("fileDropzone");
+    expect(screen.queryByTestId("selectedFile")).toBeNull();
+
+    // Then 1.
+    await waitFor(() => {
+      userEvent.upload(pdfInput, pdfFile);
+      expect(screen.queryByTestId("selectedFile")).not.toBeNull();
+    });
+
+    // When 2.
+    nock("http://localhost:5000").post("/api/application").reply(500);
+
+    expect(screen.queryByTestId("CandidatureSpontaneeFailed")).toBeNull();
+    const submit = screen.getByRole("button", { name: /je-postule/i });
+    fireEvent.click(submit);
+    // Then 2.
+    await waitFor(() => {
+      expect(screen.queryByTestId("CandidatureSpontaneeFailed")).not.toBeNull();
+      const title = screen.getByTestId("CandidatureSpontaneeFailedTitle");
+      expect(title).toHaveTextContent("Une erreur est survenue.");
     });
   });
 

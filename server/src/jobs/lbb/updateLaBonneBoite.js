@@ -4,7 +4,7 @@ const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc")
 const _ = require("lodash");
 const geoData = require("../../common/utils/geoData");
 const { GeoLocation, BonnesBoites } = require("../../common/model");
-const { getElasticInstance } = require("../../common/esClient");
+const { rebuildIndex } = require("../../common/utils/esUtils");
 const config = require("config");
 const initNafScoreMap = require("./initNafScoreMap.js");
 const initNafMap = require("./initNafMap.js");
@@ -49,27 +49,6 @@ const resetHashmaps = () => {
 const emptyMongo = async () => {
   logMessage("info", `Clearing bonnesboites db...`);
   await BonnesBoites.deleteMany({});
-};
-
-const clearIndex = async () => {
-  try {
-    let client = getElasticInstance();
-    logMessage("info", `Removing bonnesboites index...`);
-    await client.indices.delete({ index: "bonnesboites" });
-  } catch (err) {
-    logMessage("error", `Error emptying es index : ${err.message}`);
-  }
-};
-
-const createIndex = async () => {
-  let requireAsciiFolding = true;
-  logMessage("info", `Creating bonnesboites index...`);
-  await BonnesBoites.createMapping(requireAsciiFolding);
-};
-
-const synchIndex = async () => {
-  logMessage("info", `Reindexing bonnesboites ...`);
-  await BonnesBoites.synchronize();
 };
 
 const getScoreForCompany = async (siret) => {
@@ -204,7 +183,7 @@ const parseLine = async (line) => {
   return bonneBoite;
 };
 
-module.exports = async () => {
+module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles }) => {
   if (!running) {
     running = true;
     try {
@@ -214,41 +193,46 @@ module.exports = async () => {
       logMessage("info", `score 060 :  ${config.private.lbb.score60Level}`);
       logMessage("info", `score 050 :  ${config.private.lbb.score50Level}`);
 
-      var exec = require("child_process").exec;
+      if (shouldParseFiles) {
+        var exec = require("child_process").exec;
 
-      exec(`wc -l ${filePath}`, function (error, results) {
-        logMessage("info", results);
-      });
+        exec(`wc -l ${filePath}`, function (error, results) {
+          logMessage("info", results);
+        });
 
-      const db = mongooseInstance.connection;
+        const db = mongooseInstance.connection;
 
-      nafScoreMap = await initNafScoreMap();
-      nafMap = await initNafMap();
-      predictionMap = await initPredictionMap();
+        nafScoreMap = await initNafScoreMap();
+        nafMap = await initNafMap();
+        predictionMap = await initPredictionMap();
 
-      // TODO: supprimer ce reset
-      await emptyMongo();
+        // TODO: supprimer ce reset
+        if (shouldClearMongo) {
+          await emptyMongo();
+        }
 
-      try {
-        await oleoduc(
-          fs.createReadStream(filePath),
-          readLineByLine(),
-          transformData((line) => parseLine(line), { parallel: 8 }),
-          writeData(async (bonneBoite) => {
-            db.collections["bonnesboites"].save(bonneBoite);
-          })
-        );
-      } catch (err2) {
-        logMessage("error", err2);
-        throw new Error("Error while parsing establishment file");
+        try {
+          await oleoduc(
+            fs.createReadStream(filePath),
+            readLineByLine(),
+            transformData((line) => parseLine(line), { parallel: 8 }),
+            writeData(async (bonneBoite) => {
+              db.collections["bonnesboites"].save(bonneBoite);
+            })
+          );
+        } catch (err2) {
+          logMessage("error", err2);
+          throw new Error("Error while parsing establishment file");
+        }
+
+        // clearing memory
+        resetHashmaps();
       }
 
-      // clearing memory
-      resetHashmaps();
+      if (shouldBuildIndex) {
+        await rebuildIndex(BonnesBoites);
+      }
 
-      await clearIndex();
-      await createIndex();
-      await synchIndex();
       logMessage("info", `End updating lbb db`);
 
       running = false;
