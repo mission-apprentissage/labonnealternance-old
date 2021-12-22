@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.17.6 [25/12/2021]
+[969] Cas d'erreur candidature
 [985] Optimisation réindexation de masse
 [983] Fix enum champ parcoursup_statut
 
