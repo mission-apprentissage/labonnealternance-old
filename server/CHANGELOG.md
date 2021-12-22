@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## 1.17.6 [20/12/2021]
+## 1.17.6 [25/12/2021]
+[985] Optimisation réindexation de masse
 [983] Fix enum champ parcoursup_statut
 
 ## 1.17.5 [16/12/2021]
