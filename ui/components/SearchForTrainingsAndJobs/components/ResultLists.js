@@ -1,22 +1,25 @@
 import React, { useState } from "react";
 import { Spinner } from "reactstrap";
-import Training from "../../../components/ItemDetail/Training";
-import Job from "../../../components/ItemDetail/Job";
-import LbbCompany from "../../../components/ItemDetail/LbbCompany";
 import { ErrorMessage } from "../../../components";
 import { filterLayers } from "../../../utils/mapTools";
 import { useSelector } from "react-redux";
 import ExtendedSearchButton from "./ExtendedSearchButton";
 import NoJobResult from "./NoJobResult";
 import FilterButton from "./FilterButton";
-import { useScopeContext } from "context/ScopeContext";
+import { useScopeContext } from "../../../context/ScopeContext";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
-import { mergeJobs, mergeOpportunities } from "utils/itemListUtils";
+import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
+import { renderJob, renderTraining, renderLbb } from "../services/renderOneResult";
 
 const ResultLists = (props) => {
   const scopeContext = useScopeContext();
 
-  const { extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings);
+  let [extendedSearch, hasSearch, isFormVisible] = [false, false, false];
+  if (props.isTestMode) {
+    [extendedSearch, hasSearch, isFormVisible] = [props.stubbedExtendedSearch, props.stubbedHasSearch, props.stubbedIsFormVisible];
+  } else {
+     ({ extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings));
+  }
 
   const filterButtonClicked = (filterButton) => {
     props.setActiveFilter(filterButton);
@@ -49,14 +52,7 @@ const ResultLists = (props) => {
             ""
           )}
           {props.trainings.map((training, idx) => {
-            return (
-              <Training
-                key={idx}
-                training={training}
-                handleSelectItem={props.handleSelectItem}
-                searchForJobsOnNewCenter={props.searchForJobsOnNewCenter}
-              />
-            );
+            return renderTraining(props.isTestMode, idx, training, props.handleSelectItem, props.searchForJobsOnNewCenter)
           })}
         </>
       );
@@ -146,14 +142,7 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedJobs.map((job, idx) => {
-            return (
-              <Job
-                key={idx}
-                job={job}
-                handleSelectItem={props.handleSelectItem}
-                searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-              />
-            );
+            return renderJob(props.isTestMode, idx, job, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
           })}
         </>
       );
@@ -166,14 +155,7 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedLbaLbbCompanies.map((company, idx) => {
-            return (
-              <LbbCompany
-                key={idx}
-                company={company}
-                handleSelectItem={props.handleSelectItem}
-                searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-              />
-            );
+            return renderLbb(props.isTestMode, idx, company, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
           })}
         </>
       );
@@ -188,28 +170,17 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedOpportunities.map((opportunity, idx) => {
-            if (opportunity.ideaType === "peJob" || opportunity.ideaType === "matcha")
-              return (
-                <Job
-                  key={idx}
-                  job={opportunity}
-                  handleSelectItem={props.handleSelectItem}
-                  searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-                />
-              );
-            else
-              return (
-                <LbbCompany
-                  key={idx}
-                  company={opportunity}
-                  handleSelectItem={props.handleSelectItem}
-                  searchForTrainingsOnNewCenter={props.searchForTrainingsOnNewCenter}
-                />
-              );
+            if (opportunity.ideaType === "peJob" || opportunity.ideaType === "matcha") {
+              return renderJob(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
+            } else {
+              return renderLbb(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
+            }
           })}
         </>
       );
-    } else return "";
+    } else {
+      return "";
+    }
   };
 
   // construit le bloc formaté avec les décomptes de formations et d'opportunités d'emploi

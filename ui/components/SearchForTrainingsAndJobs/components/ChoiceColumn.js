@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useScopeContext } from "context/ScopeContext";
+import { useScopeContext } from "../../../context/ScopeContext";
 import { useDispatch, useSelector } from "react-redux";
 import distance from "@turf/distance";
-import { scrollToTop, scrollToElementInContainer, getItemElement } from "utils/tools";
-import ItemDetail from "components/ItemDetail/ItemDetail";
-import LoadingScreen from "components/LoadingScreen";
+import { scrollToTop, scrollToElementInContainer, getItemElement } from "../../../utils/tools";
+import ItemDetail from "../../../components/ItemDetail/ItemDetail";
+import LoadingScreen from "../../../components/LoadingScreen";
 import SearchForm from "./SearchForm";
 import ResultLists from "./ResultLists";
-import { setCurrentPage, setCurrentSearch, currentSearch } from "utils/currentPage.js";
-import pushHistory from "utils/pushHistory";
+import { setCurrentPage, setCurrentSearch, currentSearch } from "../../../utils/currentPage.js";
+import pushHistory from "../../../utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
 import whispers from "../services/whispers.js";
 
@@ -20,8 +20,8 @@ import {
   setFormValues,
   setExtendedSearch,
   setJobs,
-} from "store/actions";
-import { flyToMarker, flyToLocation, closeMapPopups, setSelectedMarker } from "utils/mapTools";
+} from "../../../store/actions";
+import { flyToMarker, flyToLocation, closeMapPopups, setSelectedMarker } from "../../../utils/mapTools";
 
 const ChoiceColumn = ({
   showResultList,

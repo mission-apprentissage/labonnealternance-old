@@ -1,7 +1,7 @@
 import axios from "axios";
-import baseUrl from "utils/baseUrl";
+import baseUrl from "../utils/baseUrl";
 import _ from "lodash";
-import { logError } from "utils/tools";
+import { logError } from "../utils/tools";
 
 export default async function fetchTrainingDetails(
   training,

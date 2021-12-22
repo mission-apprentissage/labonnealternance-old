@@ -6,7 +6,7 @@ import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { get } from "lodash";
-import { setSelectedMarker } from "utils/mapTools";
+import { setSelectedMarker } from "../../utils/mapTools";
 
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues, selectedMapPopupItem } = useSelector((state) => state.trainings);
@@ -91,6 +91,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
       onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
+      data-testid={`${company.ideaType}${company.company.siret}`}
     >
       <div className="c-media" id={`${company.ideaType}${company.company.siret}`}>
         <div className="c-media-figure">

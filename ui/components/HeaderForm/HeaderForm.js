@@ -3,19 +3,19 @@ import { useSelector } from "react-redux";
 import glassImage from "public/images/glass_white.svg";
 import { Formik, Form, Field } from "formik";
 import { AutoCompleteField } from "..";
-import buildAvailableDiplomas from "services/buildAvailableDiplomas";
-import buildRayons from "services/buildRayons";
+import buildAvailableDiplomas from "../../services/buildAvailableDiplomas";
+import buildRayons from "../../services/buildRayons";
 import { Input } from "reactstrap";
 import { partialRight } from "lodash";
-import { DomainError } from "components";
+import { DomainError } from "../../components";
 
-import domainChanged from "services/domainChanged";
-import updateValuesFromJobAutoComplete from "services/updateValuesFromJobAutoComplete";
-import formikUpdateValue from "services/formikUpdateValue";
-import handleSelectChange from "services/handleSelectChange";
-import { fetchAddresses } from "services/baseAdresse";
-import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
-import validateFormik from "services/validateFormik";
+import domainChanged from "../../services/domainChanged";
+import updateValuesFromJobAutoComplete from "../../services/updateValuesFromJobAutoComplete";
+import formikUpdateValue from "../../services/formikUpdateValue";
+import handleSelectChange from "../../services/handleSelectChange";
+import { fetchAddresses } from "../../services/baseAdresse";
+import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../services/autoCompleteUtilities";
+import validateFormik from "../../services/validateFormik";
 
 const HeaderForm = ({ handleSearchSubmit, isHome }) => {
   const { formValues, widgetParameters } = useSelector((state) => {
