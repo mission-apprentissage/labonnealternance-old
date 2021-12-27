@@ -8,6 +8,7 @@ const {
   saveApplicationIntentionComment,
 } = require("../../service/applications");
 const rateLimit = require("express-rate-limit");
+const logger = require("../../common/logger");
 
 const limiter1Per20Second = rateLimit({
   windowMs: 20000, // 20 seconds
@@ -110,6 +111,24 @@ module.exports = (components) => {
         ...components,
       });
       return res.json(result);
+    })
+  );
+
+  router.post(
+    "/webhook",
+    tryCatch(async (req /*, res*/) => {
+      logger.info(`Webhook post`);
+      logger.info(JSON.stringify(req.body));
+      return "ok";
+    })
+  );
+
+  router.get(
+    "/webhook",
+    tryCatch(async (req /*, res*/) => {
+      logger.info(`Webhook get`);
+      logger.info(JSON.stringify(req.body));
+      return "ok";
     })
   );
 
