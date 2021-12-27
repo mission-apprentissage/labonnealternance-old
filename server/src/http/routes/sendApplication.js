@@ -119,15 +119,20 @@ module.exports = (components) => {
     tryCatch(async (req /*, res*/) => {
       logger.info(`Webhook post`);
       logger.info(JSON.stringify(req.body));
-      return "ok";
-    })
-  );
+      /* Format req.body
+        { 
+          event : "unique_opened",
+          id: 497470,
+          date: "2021-12-27 14:12:54",
+          ts: 1640610774,
+          message-id: "<48ea8e31-715e-d929-58af-ca0c457d2654@apprentissage.beta.gouv.fr>",
+          email:"alan.leruyet@free.fr",
+          ts_event: 1640610774,
+          subject: "Votre candidature chez PARIS BAGUETTE FRANCE CHATELET EN ABREGE",
+          sending_ip: "93.23.252.236",
+          ts_epoch: 1640610774707
+        }*/
 
-  router.get(
-    "/webhook",
-    tryCatch(async (req /*, res*/) => {
-      logger.info(`Webhook get`);
-      logger.info(JSON.stringify(req.body));
       return "ok";
     })
   );
