@@ -48,7 +48,8 @@
         "user": "LABONNEALTERNANCE_SMTP_AUTH_USER",
         "pass": "LABONNEALTERNANCE_SMTP_AUTH_PASS"
       },
-      "sendinblueToken": "LABONNEALTERNANCE_SMTP_SENDINBLUE_TOKEN"
+      "sendinblueToken": "LABONNEALTERNANCE_SMTP_SENDINBLUE_TOKEN",
+      "sendinblueApiKey": "LABONNEALTERNANCE_SENDINBLUE_API_KEY"
     },
     "lbb": 
     {

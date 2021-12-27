@@ -61,7 +61,8 @@
         "pass": "1234"
       },
 
-      "sendinblueToken": "1234"
+      "sendinblueToken": "1234",
+      "sendinblueApiKey": "1234"
     }
   }
 }
