@@ -66,6 +66,7 @@
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
     "sha512crypt-node": "0.1.0",
+    "sib-api-v3-sdk": "8.2.1",
     "swagger-ui-express": "4.1.4",
     "universal-analytics": "0.4.23",
     "winston": "3.3.3",
