@@ -24,6 +24,7 @@ const jobEtFormationV1 = require("./routes/jobEtFormationV1");
 const sendMail = require("./routes/sendMail");
 const sendApplication = require("./routes/sendApplication");
 const rateLimit = require("express-rate-limit");
+const { initWebhook } = require("../service/sendinblue/webhookSendinBlue");
 var path = require("path");
 
 module.exports = async (components) => {
@@ -164,6 +165,8 @@ module.exports = async (components) => {
       });
     })
   );
+
+  initWebhook();
 
   return app;
 };
