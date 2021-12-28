@@ -11,8 +11,12 @@ let createWebhook = new SibApiV3Sdk.CreateWebhook();
 
 createWebhook = {
   description: "Changement d'état de candidature LBA",
-  url: "https://labonnealternance-recette.apprentissage.beta.gouv.fr/api/application/webhook", // config.publicUrl
-  events: ["sent", "delivered", "hardBounce", "blocked", "invalid", "click", "uniqueOpened"],
+  url: `${
+    config.publicUrl.indexOf("local") >= 0
+      ? "https://labonnealternance-recette.apprentissage.beta.gouv.fr"
+      : config.publicUrl
+  }/api/application/webhook`,
+  events: ["delivered", "hardBounce", "blocked", "invalid", "click", "uniqueOpened"],
   type: "transactional",
 };
 
