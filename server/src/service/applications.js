@@ -4,7 +4,7 @@ const path = require("path");
 const { ObjectId } = require("mongodb");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
 const { encryptIdWithIV, decryptWithIV } = require("../common/utils/encryptString");
-const { Application } = require("../common/model");
+const { Application, EmailBlacklist } = require("../common/model");
 const {
   validateSendApplication,
   validateCompanyEmail,
@@ -251,8 +251,11 @@ const debugUpdateApplicationStatus = async ({ mailer, query, shouldCheckSecret }
   }
 };
 
-const updateApplicationStatus = async ({ payload /*, mailer*/ }) => {
-  //logger.info(JSON.stringify(payload));
+const notifyHardbounceToApplicant = async ({ mailer, application }) => {
+  console.log(mailer, application);
+};
+
+const updateApplicationStatus = async ({ payload, mailer }) => {
   /* Format payload
     { 
       event : "unique_opened",
@@ -287,18 +290,14 @@ const updateApplicationStatus = async ({ payload /*, mailer*/ }) => {
     return;
   }
 
-  //console.log(application);
-
-  //delivered
-
   if (event === "hard_bounce" && messageType === "application") {
-    addEmailToBlacklist(payload.email);
+    addEmailToBlacklist(payload.email, application.company_type);
 
     /*if(application.company_type==="lbb" || application.company_type==="lba"){removeEmailFromBonnesBoites(payload.email);}
     else if (application.company_type==="matcha"){
       warnMatchaTeamAboutBouncedEmail(payload.email);
     }*/
-    //notifyHardbounceToApplicant(application);
+    notifyHardbounceToApplicant({ application, mailer });
   }
 
   // mise à jour du statut de l'email
@@ -309,17 +308,18 @@ const updateApplicationStatus = async ({ payload /*, mailer*/ }) => {
   }
 
   application.save();
-
-  /*
-  Charger le message correspondant selon le emailType
-  Modifier le statut de l'événement pour l'email correspondant
-  
-
-  */
 };
 
-const addEmailToBlacklist = async (email) => {
-  console.log("email added to blacklist ", email);
+const addEmailToBlacklist = async (email, source) => {
+  try {
+    await new EmailBlacklist({
+      email,
+      source,
+    }).save();
+  } catch (err) {
+    // catching unique address error
+    // do nothing
+  }
 };
 
 const sendTestMail = async ({ mailer, query }) => {
