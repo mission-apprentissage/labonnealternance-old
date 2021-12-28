@@ -7,6 +7,7 @@ const {
   saveApplicationIntention,
   saveApplicationIntentionComment,
   updateApplicationStatus,
+  debugUpdateApplicationStatus,
 } = require("../../service/applications");
 const rateLimit = require("express-rate-limit");
 
@@ -116,9 +117,17 @@ module.exports = (components) => {
 
   router.post(
     "/webhook",
-    tryCatch(async (req) => {
-      updateApplicationStatus(req.body);
-      return "ok";
+    tryCatch(async (req, res) => {
+      updateApplicationStatus({ payload: req.body, ...components });
+      return res.json({ result: "ok" });
+    })
+  );
+
+  router.get(
+    "/webhook",
+    tryCatch(async (req, res) => {
+      debugUpdateApplicationStatus({ shouldCheckSecret: true, query: req.query, ...components });
+      return res.json({ result: "ok" });
     })
   );
 

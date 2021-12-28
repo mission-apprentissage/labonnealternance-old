@@ -12,7 +12,7 @@ const {
   validateFeedbackApplicationComment,
   validateIntentionApplication,
 } = require("./validateSendApplication");
-
+const logger = require("../common/logger");
 const publicUrl = config.publicUrl;
 
 const imagePath = "https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/";
@@ -233,6 +233,95 @@ const saveApplicationIntentionComment = async ({ query }) => {
   }
 };
 
+const findApplicationByTypeAndMessageId = async ({ messageId, type, email }) => {
+  return await Application.findOne(
+    type === "application"
+      ? { company_email: email, to_company_message_id: messageId }
+      : { applicant_email: email, to_applicant_message_id: messageId }
+  );
+};
+
+const debugUpdateApplicationStatus = async ({ mailer, query, shouldCheckSecret }) => {
+  if (shouldCheckSecret && !query.secret) {
+    logger.error("Debugging sendinblue webhook : secret missing");
+  } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
+    logger.error("Debugging sendinblue webhook : wrong secret");
+  } else {
+    updateApplicationStatus({ payload: { ...query, secret: "" }, mailer });
+  }
+};
+
+const updateApplicationStatus = async ({ payload /*, mailer*/ }) => {
+  //logger.info(JSON.stringify(payload));
+  /* Format payload
+    { 
+      event : "unique_opened",
+      id: 497470,
+      date: "2021-12-27 14:12:54",
+      ts: 1640610774,
+      message-id: "<48ea8e31-715e-d929-58af-ca0c457d2654@apprentissage.beta.gouv.fr>",
+      email:"alan.leruyet@free.fr",
+      ts_event: 1640610774,
+      subject: "Votre candidature chez PARIS BAGUETTE FRANCE CHATELET EN ABREGE",
+      sending_ip: "93.23.252.236",
+      ts_epoch: 1640610774707
+    }*/
+
+  const event = payload.event;
+
+  let messageType = "application";
+  if (payload.subject.startsWith("Votre candidature chez")) {
+    messageType = "applicationAck";
+  }
+
+  let application = await findApplicationByTypeAndMessageId({
+    type: messageType,
+    messageId: payload["message-id"],
+    email: payload.email,
+  });
+
+  if (!application) {
+    logger.error(
+      `Application webhook : application not found. message_id=${payload["message-id"]} email=${payload.email} subject=${payload.subject}`
+    );
+    return;
+  }
+
+  //console.log(application);
+
+  //delivered
+
+  if (event === "hard_bounce" && messageType === "application") {
+    addEmailToBlacklist(payload.email);
+
+    /*if(application.company_type==="lbb" || application.company_type==="lba"){removeEmailFromBonnesBoites(payload.email);}
+    else if (application.company_type==="matcha"){
+      warnMatchaTeamAboutBouncedEmail(payload.email);
+    }*/
+    //notifyHardbounceToApplicant(application);
+  }
+
+  // mise à jour du statut de l'email
+  if (messageType === "application") {
+    application.to_company_message_status = event;
+  } else if (messageType === "applicationAck") {
+    application.to_applicant_message_status = event;
+  }
+
+  application.save();
+
+  /*
+  Charger le message correspondant selon le emailType
+  Modifier le statut de l'événement pour l'email correspondant
+  
+
+  */
+};
+
+const addEmailToBlacklist = async (email) => {
+  console.log("email added to blacklist ", email);
+};
+
 const sendTestMail = async ({ mailer, query }) => {
   if (!query.secret) {
     return { error: "secret_missing" };
@@ -274,4 +363,6 @@ module.exports = {
   saveApplicationFeedbackComment,
   saveApplicationIntention,
   saveApplicationIntentionComment,
+  updateApplicationStatus,
+  debugUpdateApplicationStatus,
 };
