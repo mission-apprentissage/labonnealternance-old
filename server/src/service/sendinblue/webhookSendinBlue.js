@@ -1,7 +1,7 @@
 const config = require("config");
 const SibApiV3Sdk = require("sib-api-v3-sdk");
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
-
+const logger = require("../../common/logger");
 let apiKey = defaultClient.authentications["api-key"];
 apiKey.apiKey = config.private.smtp.sendinblueApiKey;
 
@@ -19,10 +19,10 @@ createWebhook = {
 const initWebhook = () => {
   apiInstance.createWebhook(createWebhook).then(
     function (data) {
-      console.log("API called successfully. Returned data: " + JSON.stringify(data));
+      logger.info("Sendinblue webhook API called successfully. Returned data: " + JSON.stringify(data));
     },
     function (error) {
-      console.error(error.response.res.text);
+      logger.error("Sendinblue webhook API Error. Returned data: " + error.response.res.text);
     }
   );
 };
