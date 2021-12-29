@@ -260,6 +260,15 @@ const notifyHardbounceToApplicant = async ({ mailer, application }) => {
   );
 };
 
+const warnMatchaTeamAboutBouncedEmail = async ({ application, mailer }) => {
+  mailer.sendEmail(
+    config.private.matchaEmail,
+    `Hardbounce détecté pour ${application.company_name}`,
+    getEmailTemplate("mail-matcha-hardbounce"),
+    { ...application._doc, ...images }
+  );
+};
+
 const updateApplicationStatus = async ({ payload, mailer }) => {
   /* Format payload
     { 
@@ -299,9 +308,11 @@ const updateApplicationStatus = async ({ payload, mailer }) => {
     addEmailToBlacklist(payload.email, application.company_type);
 
     /*if(application.company_type==="lbb" || application.company_type==="lba"){removeEmailFromBonnesBoites(payload.email);}
-    else if (application.company_type==="matcha"){
-      warnMatchaTeamAboutBouncedEmail(payload.email);
-    }*/
+    else */
+    if (application.company_type === "matcha") {
+      warnMatchaTeamAboutBouncedEmail({ email: payload.email, application, mailer });
+    }
+
     notifyHardbounceToApplicant({ application, mailer });
   }
 

@@ -63,6 +63,7 @@
 
       "sendinblueToken": "1234",
       "sendinblueApiKey": "1234"
-    }
+    },
+    "matchaEmail": "matcha@apprentissage.beta.gouv.fr"
   }
 }
