@@ -252,7 +252,12 @@ const debugUpdateApplicationStatus = async ({ mailer, query, shouldCheckSecret }
 };
 
 const notifyHardbounceToApplicant = async ({ mailer, application }) => {
-  console.log(mailer, application);
+  mailer.sendEmail(
+    application.applicant_email,
+    `Erreur de transmission de votre candidature chez ${application.company_name}`,
+    getEmailTemplate("mail-candidat-hardbounce"),
+    { ...application._doc, ...images }
+  );
 };
 
 const updateApplicationStatus = async ({ payload, mailer }) => {
