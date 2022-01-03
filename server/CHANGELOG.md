@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.7 [03/01/2022]
+[920] hooks sendinblue
+
 ## 1.17.6 [25/12/2021]
 [967] ordre affichage offres d'emploi
 [969] Cas d'erreur candidature
