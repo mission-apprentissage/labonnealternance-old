@@ -255,7 +255,7 @@ const debugUpdateApplicationStatus = async ({ mailer, query, shouldCheckSecret }
 const notifyHardbounceToApplicant = async ({ mailer, application }) => {
   mailer.sendEmail(
     application.applicant_email,
-    `Erreur de transmission de votre candidature chez ${application.company_name}`,
+    `${application.company_name} n'a pas reçu votre candidature sur La Bonne Alternance`,
     getEmailTemplate("mail-candidat-hardbounce"),
     { ...application._doc, ...images }
   );
