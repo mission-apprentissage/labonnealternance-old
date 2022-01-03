@@ -188,7 +188,7 @@ const saveApplicationFeedbackComment = async ({ query }) => {
   }
 };
 
-const saveApplicationIntention = async ({ query }) => {
+const saveApplicationIntention = async ({ query, mailer }) => {
   await validateIntentionApplication({
     id: query.id,
     iv: query.iv,
@@ -198,10 +198,13 @@ const saveApplicationIntention = async ({ query }) => {
   let decryptedId = decryptWithIV(query.id, query.iv);
 
   try {
-    await Application.findOneAndUpdate(
+    const application = await Application.findOneAndUpdate(
       { _id: ObjectId(decryptedId) },
-      { company_intention: query.intention, company_feedback_date: new Date() }
+      { company_intention: query.intention, company_feedback_date: new Date() },
+      { returnNewDocument: true }
     );
+
+    sendNotificationToApplicant({ mailer, application, intention: query.intention });
 
     return { result: "ok", message: "intention registered" };
   } catch (err) {
@@ -249,6 +252,40 @@ const debugUpdateApplicationStatus = async ({ mailer, query, shouldCheckSecret }
     logger.error("Debugging sendinblue webhook : wrong secret");
   } else {
     updateApplicationStatus({ payload: { ...query, secret: "" }, mailer });
+  }
+};
+
+const sendNotificationToApplicant = async ({ mailer, application, intention }) => {
+  switch (intention) {
+    case "entretien": {
+      mailer.sendEmail(
+        application.applicant_email,
+        `${application.company_name} veut vous rencontrer`,
+        getEmailTemplate("mail-candidat-entretien"),
+        { ...application._doc, ...images }
+      );
+      break;
+    }
+    case "ne_sais_pas": {
+      mailer.sendEmail(
+        application.applicant_email,
+        `${application.company_name} ne sais pas encore`,
+        getEmailTemplate("mail-candidat-nsp"),
+        { ...application._doc, ...images }
+      );
+      break;
+    }
+    case "refus": {
+      mailer.sendEmail(
+        application.applicant_email,
+        `${application.company_name} ne veut pas de vous`,
+        getEmailTemplate("mail-candidat-refus"),
+        { ...application._doc, ...images }
+      );
+      break;
+    }
+    default:
+      break;
   }
 };
 
