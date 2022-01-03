@@ -4,7 +4,7 @@ const path = require("path");
 const { ObjectId } = require("mongodb");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
 const { encryptIdWithIV, decryptWithIV } = require("../common/utils/encryptString");
-const { Application, EmailBlacklist } = require("../common/model");
+const { Application, EmailBlacklist, BonnesBoites } = require("../common/model");
 const {
   validateSendApplication,
   validateCompanyEmail,
@@ -14,6 +14,7 @@ const {
 } = require("./validateSendApplication");
 const logger = require("../common/logger");
 const publicUrl = config.publicUrl;
+const { oleoduc, writeData } = require("oleoduc");
 
 const imagePath = "https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/";
 
@@ -269,6 +270,21 @@ const warnMatchaTeamAboutBouncedEmail = async ({ application, mailer }) => {
   );
 };
 
+const removeEmailFromBonnesBoites = async (email) => {
+  try {
+    oleoduc(
+      BonnesBoites.find({ email }).cursor(),
+      writeData((company) => {
+        company.email = "";
+        company.save();
+      })
+    );
+  } catch (err) {
+    logger.error(`Failed to clean bonnes boîtes emails from hardbounce (${email})`);
+    // do nothing
+  }
+};
+
 const updateApplicationStatus = async ({ payload, mailer }) => {
   /* Format payload
     { 
@@ -307,9 +323,9 @@ const updateApplicationStatus = async ({ payload, mailer }) => {
   if (event === "hard_bounce" && messageType === "application") {
     addEmailToBlacklist(payload.email, application.company_type);
 
-    /*if(application.company_type==="lbb" || application.company_type==="lba"){removeEmailFromBonnesBoites(payload.email);}
-    else */
-    if (application.company_type === "matcha") {
+    if (application.company_type === "lbb" || application.company_type === "lba") {
+      removeEmailFromBonnesBoites(payload.email);
+    } else if (application.company_type === "matcha") {
       warnMatchaTeamAboutBouncedEmail({ email: payload.email, application, mailer });
     }
 
