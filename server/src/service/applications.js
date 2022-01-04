@@ -31,6 +31,10 @@ const images = {
     neutre: `${imagePath}neutre.png`,
     recrute: `${imagePath}recrute.png`,
     recrutePas: `${imagePath}recrutePas.png`,
+    edit: `${imagePath}icone_edit.png`,
+    check: `${imagePath}icone_check.png`,
+    enveloppe: `${imagePath}icone_enveloppe.png`,
+    bin: `${imagePath}icone_bin.png`,
   },
 };
 
@@ -256,11 +260,12 @@ const debugUpdateApplicationStatus = async ({ mailer, query, shouldCheckSecret }
 };
 
 const sendNotificationToApplicant = async ({ mailer, application, intention }) => {
+  console.log("aaaa ", intention);
   switch (intention) {
     case "entretien": {
       mailer.sendEmail(
         application.applicant_email,
-        `${application.company_name} veut vous rencontrer`,
+        `Réponse à votre candidature chez ${application.company_name}`,
         getEmailTemplate("mail-candidat-entretien"),
         { ...application._doc, ...images }
       );
@@ -269,7 +274,7 @@ const sendNotificationToApplicant = async ({ mailer, application, intention }) =
     case "ne_sais_pas": {
       mailer.sendEmail(
         application.applicant_email,
-        `${application.company_name} ne sais pas encore`,
+        `Réponse à votre candidature chez ${application.company_name}`,
         getEmailTemplate("mail-candidat-nsp"),
         { ...application._doc, ...images }
       );
@@ -278,7 +283,7 @@ const sendNotificationToApplicant = async ({ mailer, application, intention }) =
     case "refus": {
       mailer.sendEmail(
         application.applicant_email,
-        `${application.company_name} ne veut pas de vous`,
+        `Réponse à votre candidature chez ${application.company_name}`,
         getEmailTemplate("mail-candidat-refus"),
         { ...application._doc, ...images }
       );
