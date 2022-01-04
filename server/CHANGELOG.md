@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.8 [06/01/2022]
+[905] Notifier retour société aux candidats
+
 ## 1.17.7 [03/01/2022]
 [920] hooks sendinblue
 
