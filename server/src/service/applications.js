@@ -260,7 +260,6 @@ const debugUpdateApplicationStatus = async ({ mailer, query, shouldCheckSecret }
 };
 
 const sendNotificationToApplicant = async ({ mailer, application, intention }) => {
-  console.log("aaaa ", intention);
   switch (intention) {
     case "entretien": {
       mailer.sendEmail(
