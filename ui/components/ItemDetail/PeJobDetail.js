@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import questionmarkIcon from "public/images/icons/questionmark.svg";
 import { get, defaultTo, random } from "lodash";
 import ReactHtmlParser from "react-html-parser";
-import TagCandidatureSpontanee from "components/ItemDetail/TagCandidatureSpontanee.js";
-import { formatDate } from "utils/strutils";
-import { SendTrackEvent } from "utils/gtm";
+import TagCandidatureSpontanee from "../../components/ItemDetail/TagCandidatureSpontanee.js";
+import { formatDate } from "../../utils/strutils";
+import { SendTrackEvent } from "../../utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
 

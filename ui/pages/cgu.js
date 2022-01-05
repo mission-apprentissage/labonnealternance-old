@@ -87,8 +87,8 @@ const CGU = (props) => {
               </p>
 
               <p>
-                Lorsque celles-ci sont renseignées, l’utilisateur peut entrer en contact avec l’entreprise ou
-                l’organisme au moyen des coordonnées indiquées sur la fiche de l’entreprise ou de l’organisme.
+                L’utilisateur peut entrer en contact avec l’entreprise ou l’organisme au moyen des coordonnées indiquées sur la fiche de l’entreprise 
+                ou de l’organisme, ou directement via les services de candidature et de prise de rendez-vous.
               </p>
               <p>
                 À tout moment, chaque entreprise peut d’une part s’opposer à ce que son nom apparaisse dans les
@@ -96,8 +96,24 @@ const CGU = (props) => {
               </p>
               <p>
                 Elle peut également demander la modification/suppression des informations communiquées (ex. coordonnées)
-                sur le site La Bonne Alternance en remplissant le formulaire recruteur directement depuis la page
+                sur le site La Bonne Alternance en remplissant le <a href="https://labonneboite.pole-emploi.fr/informations-entreprise/action" target="_blank"  rel="noopener noreferrer">formulaire recruteur</a> directement depuis la page
                 d’accueil du site.
+              </p>
+              <p>
+                <strong>Envoi de candidature</strong>
+              </p>
+              <p>
+                Le service La Bonne Alternance permet à des personnes à la recherche d’une alternance d’envoyer des candidatures
+                directement à partir du site internet <a href="https://labonnealternance.pole-emploi.fr" target="_blank"  rel="noopener noreferrer">labonnealternance.pole-emploi.fr</a>.
+                Et ce, à l’ensemble des entreprises pour lesquelles un email de contact est connu.
+              </p>
+              <p>
+                Tous les usagers peuvent accéder à ce service.
+              </p>
+              <p>
+                Pour envoyer sa candidature, l’utilisateur complète un formulaire (nom, prénom, coordonnées, CV, lettre de motivation). 
+                La candidature est envoyée à l’entreprise. Hormis les pièces jointes, le détail de chaque candidature est stocké par La Bonne Alternance pendant 12 mois.
+                En outre, les recruteurs peuvent télécharger les pièces jointes à la candidature, comme le CV, et les conserver au sein de leur système d’information.
               </p>
             </section>
             <section>

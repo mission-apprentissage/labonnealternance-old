@@ -4,7 +4,7 @@ const path = require("path");
 const { ObjectId } = require("mongodb");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
 const { encryptIdWithIV, decryptWithIV } = require("../common/utils/encryptString");
-const { Application } = require("../common/model");
+const { Application, EmailBlacklist, BonnesBoites } = require("../common/model");
 const {
   validateSendApplication,
   validateCompanyEmail,
@@ -12,8 +12,9 @@ const {
   validateFeedbackApplicationComment,
   validateIntentionApplication,
 } = require("./validateSendApplication");
-
+const logger = require("../common/logger");
 const publicUrl = config.publicUrl;
+const { oleoduc, writeData } = require("oleoduc");
 
 const imagePath = "https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/";
 
@@ -30,6 +31,10 @@ const images = {
     neutre: `${imagePath}neutre.png`,
     recrute: `${imagePath}recrute.png`,
     recrutePas: `${imagePath}recrutePas.png`,
+    edit: `${imagePath}icone_edit.png`,
+    check: `${imagePath}icone_check.png`,
+    enveloppe: `${imagePath}icone_enveloppe.png`,
+    bin: `${imagePath}icone_bin.png`,
   },
 };
 
@@ -187,7 +192,7 @@ const saveApplicationFeedbackComment = async ({ query }) => {
   }
 };
 
-const saveApplicationIntention = async ({ query }) => {
+const saveApplicationIntention = async ({ query, mailer }) => {
   await validateIntentionApplication({
     id: query.id,
     iv: query.iv,
@@ -197,10 +202,13 @@ const saveApplicationIntention = async ({ query }) => {
   let decryptedId = decryptWithIV(query.id, query.iv);
 
   try {
-    await Application.findOneAndUpdate(
+    const application = await Application.findOneAndUpdate(
       { _id: ObjectId(decryptedId) },
-      { company_intention: query.intention, company_feedback_date: new Date() }
+      { company_intention: query.intention, company_feedback_date: new Date() },
+      { returnNewDocument: true }
     );
+
+    sendNotificationToApplicant({ mailer, application, intention: query.intention });
 
     return { result: "ok", message: "intention registered" };
   } catch (err) {
@@ -230,6 +238,160 @@ const saveApplicationIntentionComment = async ({ query }) => {
     console.log("err ", err);
     Sentry.captureException(err);
     return { error: "error_saving_comment" };
+  }
+};
+
+const findApplicationByTypeAndMessageId = async ({ messageId, type, email }) => {
+  return await Application.findOne(
+    type === "application"
+      ? { company_email: email, to_company_message_id: messageId }
+      : { applicant_email: email, to_applicant_message_id: messageId }
+  );
+};
+
+const debugUpdateApplicationStatus = async ({ mailer, query, shouldCheckSecret }) => {
+  if (shouldCheckSecret && !query.secret) {
+    logger.error("Debugging sendinblue webhook : secret missing");
+  } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
+    logger.error("Debugging sendinblue webhook : wrong secret");
+  } else {
+    updateApplicationStatus({ payload: { ...query, secret: "" }, mailer });
+  }
+};
+
+const sendNotificationToApplicant = async ({ mailer, application, intention }) => {
+  switch (intention) {
+    case "entretien": {
+      mailer.sendEmail(
+        application.applicant_email,
+        `Réponse à votre candidature chez ${application.company_name}`,
+        getEmailTemplate("mail-candidat-entretien"),
+        { ...application._doc, ...images }
+      );
+      break;
+    }
+    case "ne_sais_pas": {
+      mailer.sendEmail(
+        application.applicant_email,
+        `Réponse à votre candidature chez ${application.company_name}`,
+        getEmailTemplate("mail-candidat-nsp"),
+        { ...application._doc, ...images }
+      );
+      break;
+    }
+    case "refus": {
+      mailer.sendEmail(
+        application.applicant_email,
+        `Réponse à votre candidature chez ${application.company_name}`,
+        getEmailTemplate("mail-candidat-refus"),
+        { ...application._doc, ...images }
+      );
+      break;
+    }
+    default:
+      break;
+  }
+};
+
+const notifyHardbounceToApplicant = async ({ mailer, application }) => {
+  mailer.sendEmail(
+    application.applicant_email,
+    `${application.company_name} n'a pas reçu votre candidature sur La Bonne Alternance`,
+    getEmailTemplate("mail-candidat-hardbounce"),
+    { ...application._doc, ...images }
+  );
+};
+
+const warnMatchaTeamAboutBouncedEmail = async ({ application, mailer }) => {
+  mailer.sendEmail(
+    config.private.matchaEmail,
+    `Hardbounce détecté pour ${application.company_name}`,
+    getEmailTemplate("mail-matcha-hardbounce"),
+    { ...application._doc, ...images }
+  );
+};
+
+const removeEmailFromBonnesBoites = async (email) => {
+  try {
+    oleoduc(
+      BonnesBoites.find({ email }).cursor(),
+      writeData((company) => {
+        company.email = "";
+        company.save();
+      })
+    );
+  } catch (err) {
+    logger.error(`Failed to clean bonnes boîtes emails from hardbounce (${email})`);
+    // do nothing
+  }
+};
+
+const updateApplicationStatus = async ({ payload, mailer }) => {
+  /* Format payload
+    { 
+      event : "unique_opened",
+      id: 497470,
+      date: "2021-12-27 14:12:54",
+      ts: 1640610774,
+      message-id: "<48ea8e31-715e-d929-58af-ca0c457d2654@apprentissage.beta.gouv.fr>",
+      email:"alan.leruyet@free.fr",
+      ts_event: 1640610774,
+      subject: "Votre candidature chez PARIS BAGUETTE FRANCE CHATELET EN ABREGE",
+      sending_ip: "93.23.252.236",
+      ts_epoch: 1640610774707
+    }*/
+
+  const event = payload.event;
+
+  let messageType = "application";
+  if (payload.subject.startsWith("Votre candidature chez")) {
+    messageType = "applicationAck";
+  }
+
+  let application = await findApplicationByTypeAndMessageId({
+    type: messageType,
+    messageId: payload["message-id"],
+    email: payload.email,
+  });
+
+  if (!application) {
+    logger.error(
+      `Application webhook : application not found. message_id=${payload["message-id"]} email=${payload.email} subject=${payload.subject}`
+    );
+    return;
+  }
+
+  if (event === "hard_bounce" && messageType === "application") {
+    addEmailToBlacklist(payload.email, application.company_type);
+
+    if (application.company_type === "lbb" || application.company_type === "lba") {
+      removeEmailFromBonnesBoites(payload.email);
+    } else if (application.company_type === "matcha") {
+      warnMatchaTeamAboutBouncedEmail({ email: payload.email, application, mailer });
+    }
+
+    notifyHardbounceToApplicant({ application, mailer });
+  }
+
+  // mise à jour du statut de l'email
+  if (messageType === "application") {
+    application.to_company_message_status = event;
+  } else if (messageType === "applicationAck") {
+    application.to_applicant_message_status = event;
+  }
+
+  application.save();
+};
+
+const addEmailToBlacklist = async (email, source) => {
+  try {
+    await new EmailBlacklist({
+      email,
+      source,
+    }).save();
+  } catch (err) {
+    // catching unique address error
+    // do nothing
   }
 };
 
@@ -274,4 +436,6 @@ module.exports = {
   saveApplicationFeedbackComment,
   saveApplicationIntention,
   saveApplicationIntentionComment,
+  updateApplicationStatus,
+  debugUpdateApplicationStatus,
 };

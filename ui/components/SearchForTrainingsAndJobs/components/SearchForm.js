@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Row, Col, Input } from "reactstrap";
 import { Formik, Form, ErrorMessage } from "formik";
-import { AutoCompleteField } from "components/AutoCompleteField/AutoCompleteField";
+import { AutoCompleteField } from "../../../components/AutoCompleteField/AutoCompleteField";
 
 import { fetchAddresses } from "../../../services/baseAdresse";
 import { DomainError } from "../../";
-import buildRayons from "services/buildRayons";
-import handleSelectChange from "services/handleSelectChange";
+import buildRayons from "../../../services/buildRayons";
+import handleSelectChange from "../../../services/handleSelectChange";
 import { partialRight } from "lodash";
-import domainChanged from "services/domainChanged";
-import { autoCompleteToStringFunction, compareAutoCompleteValues } from "services/autoCompleteUtilities";
-import updateValuesFromJobAutoComplete from "services/updateValuesFromJobAutoComplete";
-import formikUpdateValue from "services/formikUpdateValue";
-import buildAvailableDiplomas from "services/buildAvailableDiplomas";
-import validateFormik from "services/validateFormik";
+import domainChanged from "../../../services/domainChanged";
+import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../../services/autoCompleteUtilities";
+import updateValuesFromJobAutoComplete from "../../../services/updateValuesFromJobAutoComplete";
+import formikUpdateValue from "../../../services/formikUpdateValue";
+import buildAvailableDiplomas from "../../../services/buildAvailableDiplomas";
+import validateFormik from "../../../services/validateFormik";
 
 const SearchForm = (props) => {
   const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);

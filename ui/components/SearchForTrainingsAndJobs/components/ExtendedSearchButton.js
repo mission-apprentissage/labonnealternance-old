@@ -1,5 +1,5 @@
 import React from "react";
-import { useScopeContext } from "context/ScopeContext";
+import { useScopeContext } from "../../../context/ScopeContext";
 
 const ExtendedSearchButton = ({ title, hasJob, handleExtendedSearch }) => {
   const handleClick = async () => {

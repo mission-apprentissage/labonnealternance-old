@@ -143,10 +143,10 @@ function Mongoosastic(schema, options) {
     }
   };
 
-  schema.methods.index = function schemaIndex() {
+  schema.methods.index = function schemaIndex(refresh = true) {
     return new Promise(async (resolve, reject) => {
       try {
-        const _opts = { index: indexName, type: typeName, refresh: true };
+        const _opts = { index: indexName, type: typeName, refresh };
         _opts.body = serialize(this, mapping);
         _opts.id = this._id.toString();
         await esClient.index(_opts);
@@ -183,13 +183,13 @@ function Mongoosastic(schema, options) {
     });
   };
 
-  schema.statics.synchronize = async function synchronize() {
+  schema.statics.synchronize = async function synchronize(filter = {}, refresh = false) {
     let count = 0;
     await oleoduc(
       this.find({}).cursor(),
       writeData(
         async (doc) => {
-          await doc.index();
+          await doc.index(refresh);
           if (++count % 1000 === 0) {
             logMessage("info", `${count} indexed`);
           }

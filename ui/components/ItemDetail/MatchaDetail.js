@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import questionmarkIcon from "public/images/icons/questionmark.svg";
 import { get, defaultTo, random } from "lodash";
-import { formatDate } from "utils/strutils";
+import { formatDate } from "../../utils/strutils";
 import contactIcon from "public/images/icons/contact_icon.svg";
 import ReactHtmlParser from "react-html-parser";
-import { SendTrackEvent } from "utils/gtm";
-import { isNonEmptyString, capitalizeFirstLetter } from "utils/strutils";
+import { SendTrackEvent } from "../../utils/gtm";
+import { isNonEmptyString, capitalizeFirstLetter } from "../../utils/strutils";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
 

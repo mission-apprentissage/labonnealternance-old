@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 1.17.8 [06/01/2022]
+[905] Notifier retour société aux candidats
+
+## 1.17.7 [03/01/2022]
+[920] hooks sendinblue
+
+## 1.17.6 [25/12/2021]
+[967] ordre affichage offres d'emploi
+[969] Cas d'erreur candidature
+[985] Optimisation réindexation de masse
+[983] Fix enum champ parcoursup_statut
+[944] Suppression avis candidat
+
 ## 1.17.5 [16/12/2021]
 [956b] reliquats footer
 [976] fix détection contexte header

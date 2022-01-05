@@ -10,6 +10,8 @@
             .form-row { font-size: 16px; padding-bottom: 15px;}
             .form-value { background: #F9F8F6; font-weight: bold; padding: 3px 15px  }
             .nom-societe { font-size: 14px; color: #F07F87; font-weight: bold; }
+            .link-black { color: #000; text-decoration: underline; }
+            .link-black:hover { color: #000; text-decoration: underline; }
             
             .intention-link:hover td, 
             .intention-link:hover a { 
@@ -60,13 +62,13 @@
             <mj-section>
                 <mj-column width="420px">
                     <mj-text padding-bottom="32px" font-size="24px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#F07F87">
-                        <img style="margin-bottom: 2px" src="<%= data.images.icoCandidat %>" alt="" /> Candidat
+                        <img style="margin-bottom: 2px" src="<%= data.images.icoCandidat %>" alt="" />&nbsp;&nbsp;Candidat
                     </mj-text>
                     <mj-text font-size="16px" padding-bottom="15px" >Nom : <span class="form-value"> <%= data.applicant_last_name %> </span> </mj-text>
                     <mj-text font-size="16px" padding-bottom="15px">Prénom : <span class="form-value"> <%= data.applicant_first_name %> </span> </mj-text>
                     <mj-text font-size="16px" padding-bottom="15px">Téléphone : <span class="form-value"> <%= data.applicant_phone %> </span> </mj-text>
                     <mj-text font-size="16px" padding-bottom="15px">E-mail : <span class="form-value"> <%= data.applicant_email %> </span> </mj-text>
-                    <mj-text font-size="13px" padding-bottom="15px"><img style="margin-bottom: -3px; margin-right:5px" src="<%= data.images.icoInfo %>" alt="" />Vous trouverez le curriculum vitae du candidat en pièce jointe.</mj-text>
+                    <mj-text font-size="13px" padding-bottom="15px"><img style="margin-bottom: -3px; margin-right:3px" src="<%= data.images.icoInfo %>" alt="" />&nbsp;&nbsp;Vous trouverez le curriculum vitae du candidat en pièce jointe.</mj-text>
                     <mj-text font-size="16px" padding-bottom="15px">Message du candidat : </mj-text>
                     <mj-text font-size="16px" padding-bottom="15px"><div class="form-value" width="100%"> <%- data.message %> </div> </mj-text>
                 </mj-column>
@@ -139,6 +141,26 @@
                         </ul>
                     </tr>
                     </mj-table>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+
+        <mj-section padding-bottom="30px"></mj-section>
+        <mj-wrapper background-color="#ffffff" padding="10px 0 20px" border-radius="10px">
+            <mj-section padding="15px">
+                <mj-column>
+                    <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
+                        <span style="font-weight: bold">Une question ?</span>
+                    </mj-text>
+                    <mj-text font-size="16px" line-height="28px" padding-bottom="15px">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="margin-bottom: -5px; margin-right:3px" src="<%= data.images.enveloppe %>" alt="" />&nbsp;&nbsp;<a class="link-black" href="https://labonnealternance.pole-emploi.fr/contact?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat">Je souhaite contacter l’équipe support de La Bonne Alternance</a>                                        
+                    </mj-text>
+                    <mj-text font-size="16px" line-height="28px" padding-bottom="15px">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="margin-bottom: -5px; margin-right:3px;" src="<%= data.images.edit %>" alt="" />&nbsp;&nbsp;<a class="link-black" href="https://labonnealternance.pole-emploi.fr/acces-recruteur?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat">Je souhaite modifier les informations de mon entreprise</a>                                        
+                    </mj-text>
+                    <mj-text font-size="16px" line-height="28px" padding-bottom="15px">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="margin-bottom: -5px; margin-right:3px" src="<%= data.images.bin %>" alt="" />&nbsp;&nbsp;<a class="link-black" href="https://labonnealternance.pole-emploi.fr/acces-recruteur?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat">Je ne souhaite plus être visible sur La Bonne Alternance</a>                                        
+                    </mj-text>
                 </mj-column>
             </mj-section>
         </mj-wrapper>
