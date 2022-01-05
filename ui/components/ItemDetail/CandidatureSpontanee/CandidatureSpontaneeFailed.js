@@ -5,7 +5,7 @@ import error2 from "public/images/icons/input_value_error.svg"
 const CandidatureSpontaneeFailed = ({ }) => {
 
   return (
-      <>
+    <div data-testid="CandidatureSpontaneeFailed">
           <ModalBody>
             <h1 className="c-candidature-title">Candidature spontanée</h1>
 
@@ -14,7 +14,7 @@ const CandidatureSpontaneeFailed = ({ }) => {
             <img src={error2} alt="erreur" />
               </div>
               <div className="ml-3 pl-3">
-                <h2 className="c-candidature-worked-title">
+                <h2 className="c-candidature-worked-title" data-testid="CandidatureSpontaneeFailedTitle">
                   Une erreur est survenue. 
                 </h2>
               </div>
@@ -24,7 +24,7 @@ const CandidatureSpontaneeFailed = ({ }) => {
             </div>
           </ModalBody>
           <ModalFooter className="pb-5"></ModalFooter>
-    </>
+    </div>
   );
 };
 

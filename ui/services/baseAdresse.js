@@ -1,5 +1,5 @@
 import axios from "axios";
-import memoize from "utils/memoize";
+import memoize from "../utils/memoize";
 
 export const fetchAddresses = memoize((value, type) => {
   if (value) {

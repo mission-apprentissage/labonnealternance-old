@@ -23,13 +23,21 @@
             <mj-section padding="15px">
                 <mj-column>
                     <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
-                        Votre candidature a bien été envoyée à
+                        Malheureusement votre candidature n'a pas pu être transmise à 
                     </mj-text>
                     <mj-text font-size="22px" line-height="24px" font-weight="700" color="#F07F87">
                         <%= data.company_name %>
                     </mj-text>
                     <mj-text font-size="14px" line-height="24px">
-                        <%= data.company_naf %><br /><%= data.company_address %>
+                        <%= data.company_address %>
+                    </mj-text>
+                    <mj-text padding-top="32px" font-size="16px" line-height="20px">
+                        L'adresse email dont nous disposons semble erronée et il ne nous est pas possible de leur envoyer une candidature en ligne.
+                        <br />
+                        Veuillez acceptez nos excuses pour ce désagrément.
+                    </mj-text>
+                    <mj-text padding-top="32px" font-size="16px" line-height="20px">
+                        Nous vous invitons à trouver un autre moyen de contacter cet employeur (téléphone ou autre adresse email disponible sur internet).
                     </mj-text>
                 </mj-column>
             </mj-section>
@@ -51,43 +59,6 @@
                     </mj-button>
                 </mj-column>
             </mj-section>
-            <!--<mj-divider border-width="0.5px" border-style="solid" border-color="#D0C9C4" padding-top="0px" width="95%" max-width="630px" padding-top="40px" padding-bottom="16px" />
-            
-            <mj-section padding="15px 15px 0px">
-                <mj-column width="100%">
-                    <mj-text font-size="14px" line-height="20px">
-                        Notre service est récent. Pour qu’il puisse être amélioré en continu, vos retours nous sont précieux.
-                    </mj-text>                       
-                </mj-column>
-            </mj-section>
-            <mj-section padding="0px 15px">
-                <mj-column width="100%">
-                    <mj-text font-size="14px" align="center" padding-top="40px" font-weight="bold" line-height="20px">
-                        Avez-vous trouvé La Bonne Alternance utile ?
-                    </mj-text>
-                </mj-column>
-            </mj-section>
-
-            <mj-section padding="15px 0px">                        
-                <mj-column padding="0px" width="20%"></mj-column>             
-                <mj-column padding="0px" vertical-align="middle" width="60%" padding-bottom="30px">
-
-                    <mj-table line-height="100%">
-                        <tr>
-                            <td align="center">
-                                <a href="<%= data.publicUrl %>/formulaire-satisfaction?avis=utile&id=<%= data.id %>&iv=<%= data.iv %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" class="link-nostyle"><img src="<%= data.images.utile %>" alt="😀" style="margin-right:5px;" /></a>
-                            </td>
-                            <td align="center">
-                                <a href="<%= data.publicUrl %>/formulaire-satisfaction?avis=neutre&id=<%= data.id %>&iv=<%= data.iv %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" class="link-nostyle"><img src="<%= data.images.neutre %>" alt="😐" style="margin-right:5px;" /></a>
-                            </td>
-                            <td align="center">
-                                <a href="<%= data.publicUrl %>/formulaire-satisfaction?avis=pasUtile&id=<%= data.id %>&iv=<%= data.iv %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" class="link-nostyle"><img src="<%= data.images.pasUtile %>" alt="🙁" style="margin-right:5px;" /></a>
-                            </td>
-                        </tr>
-                    </mj-table>
-                </mj-column>
-                <mj-column padding="0px" width="20%"></mj-column>             
-            </mj-section>-->
         </mj-wrapper>
 
         <mj-section padding-top="50px">

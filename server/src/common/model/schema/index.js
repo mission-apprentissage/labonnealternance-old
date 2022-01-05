@@ -6,6 +6,7 @@ const sourceFormationsSchema = require("./sourceFormationsSchema");
 const mnaFormationSchema = require("./mnaFormation/mnaFormation");
 const geoLocationSchema = require("./lbb/geoLocations");
 const bonneBoiteSchema = require("./lbb/bonneBoite");
+const emailBlacklist = require("./lbb/emailBlacklist");
 
 module.exports = {
   domainesMetiersSchema,
@@ -16,4 +17,5 @@ module.exports = {
   sourceFormationsSchema,
   bonneBoiteSchema,
   geoLocationSchema,
+  emailBlacklist,
 };

@@ -1,5 +1,5 @@
 import axios from "axios";
-import env from "utils/env";
+import env from "../utils/env";
 
 export default async function sendTrainingOpenedEventToCatalogue(cleMinistereEducatif) {
   if (!cleMinistereEducatif) return;

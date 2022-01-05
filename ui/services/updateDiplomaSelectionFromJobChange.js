@@ -1,4 +1,4 @@
-import fetchDiplomas from "services/fetchDiplomas";
+import fetchDiplomas from "../services/fetchDiplomas";
 
 export default async function updateDiplomaSelectionFromJobChange(job, setDiplomasFunc) {
   let diplomas = [];

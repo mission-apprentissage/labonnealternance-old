@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import jobIcon from "../../public/images/icons/job.svg";
 import TagOffreEmploi from "./TagOffreEmploi";
-import { isDepartmentJob } from "utils/itemListUtils";
+import { isDepartmentJob } from "../../utils/itemListUtils";
 import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import ReactHtmlParser from "react-html-parser";
 import { fetchAddresses } from "../../services/baseAdresse";
-import { setSelectedMarker } from "utils/mapTools";
+import { setSelectedMarker } from "../../utils/mapTools";
 
 const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues, selectedMapPopupItem } = useSelector((state) => state.trainings);
@@ -104,8 +104,9 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
       onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
+      data-testid={`${kind}${job.job.id}`}
     >
-      <div className="c-media" id={`${kind}${job.job.id}`}>
+      <div className="c-media" id={`job-${kind}${job.job.id}`}>
         <div className="c-media-figure">
           <img className="cardIcon" src={jobIcon} alt="" />
         </div>
