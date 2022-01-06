@@ -132,8 +132,15 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
 
       application.to_applicant_message_id = emailCandidat.messageId;
       application.to_applicant_message_status = emailCandidat.accepted.length ? "accepted" : "rejected";
-      application.to_company_message_id = emailCompany.messageId;
-      application.to_company_message_status = emailCompany.accepted.length ? "accepted" : "rejected";
+      if (emailCompany.accepted.length) {
+        application.to_company_message_id = emailCompany.messageId;
+        application.to_company_message_status = "accepted";
+      } else {
+        logger.info(
+          `Application email rejected. applicant_email=${application.applicant_email} company_email=${application.company_email}`
+        );
+        throw new Error("Application email rejected");
+      }
 
       await application.save();
 
