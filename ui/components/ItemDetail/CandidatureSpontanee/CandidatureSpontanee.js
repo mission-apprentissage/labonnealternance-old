@@ -36,7 +36,7 @@ const CandidatureSpontanee = (props) => {
     validationSchema: getValidationSchema(kind),
     onSubmit: async (applicantValues) => {
       await submitCandidature(applicantValues, setSendingState, props.item);
-      if (sendingState == 'ok_sent') {
+      if (sendingState === 'ok_sent') {
         setApplied(Date.now().toString())
       }
     },
