@@ -31,9 +31,8 @@ module.exports = (components) => {
     "/",
     limiter1Per20Second,
     tryCatch(async (req, res) => {
-      // const result = await sendApplication({ shouldCheckSecret: true, query: req.query, ...components });
-      console.log("reached------------------------");
-      const result = {};
+      const result = await sendApplication({ shouldCheckSecret: true, query: req.query, ...components });
+
       if (result.error) {
         if (result.error === "error_sending_application") {
           res.status(500);
@@ -41,6 +40,7 @@ module.exports = (components) => {
           res.status(400);
         }
       }
+
       return res.json(result);
     })
   );
@@ -49,13 +49,12 @@ module.exports = (components) => {
     "/",
     limiter1Per20Second,
     tryCatch(async (req, res) => {
-      // const result = await sendApplication({
-      //   shouldCheckSecret: req.body.secret ? true : false,
-      //   query: req.body,
-      //   ...components,
-      // });
-      console.log("reached2------------------------");
-      const result = {};
+      const result = await sendApplication({
+        shouldCheckSecret: req.body.secret ? true : false,
+        query: req.body,
+        ...components,
+      });
+
       if (result.error) {
         if (result.error === "error_sending_application") {
           res.status(500);
