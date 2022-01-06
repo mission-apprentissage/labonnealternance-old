@@ -36,22 +36,23 @@ const CandidatureSpontanee = (props) => {
     validationSchema: getValidationSchema(kind),
     onSubmit: async (applicantValues) => {
       await submitCandidature(applicantValues, setSendingState, props.item);
-      setApplied(new Date());
+      setApplied(Date.now().toString())
     },
   });
 
   return (
     <div className="c-candidature" data-testid="CandidatureSpontanee">
-      {
-        !!applied ?
-          <>
-            Vous avez déjà postulé le {applied}
-          </>
-        :
-          <>
-
-            <div className="c-detail-description-me col-12 col-md-5">
-              <div className="c-detail-pelink my-3">
+      <div className="c-detail-description-me col-12 col-md-5">
+        <div className="c-detail-pelink my-3">
+          {
+            !!applied ?
+              <>
+                <div>
+                  Vous avez déjà postulé le {new Date(parseInt(applied, 10)).toLocaleDateString("fr")}
+                </div>
+              </>
+              :
+              <>
                 <Button
                   onClick={toggle}
                   className={`btn btn-dark ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
@@ -59,37 +60,35 @@ const CandidatureSpontanee = (props) => {
                 >
                   J'envoie ma candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}
                 </Button>
-              </div>
-            </div>
+                <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"} backdrop="static">
+                  <form onSubmit={formik.handleSubmit} className="c-candidature-form">
+                    <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
 
-            <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"} backdrop="static">
-              <form onSubmit={formik.handleSubmit} className="c-candidature-form">
-                <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
+                    {with_str(sendingState).amongst(["not_sent", "currently_sending"]) ? (
+                      <CandidatureSpontaneeNominalBodyFooter
+                        formik={formik}
+                        sendingState={sendingState}
+                        company={props?.item?.company?.name}
+                        item={props?.item}
+                        kind={kind}
+                      />
+                    ) : (
+                      <></>
+                    )}
 
-                {with_str(sendingState).amongst(["not_sent", "currently_sending"]) ? (
-                  <CandidatureSpontaneeNominalBodyFooter
-                    formik={formik}
-                    sendingState={sendingState}
-                    company={props?.item?.company?.name}
-                    item={props?.item}
-                    kind={kind}
-                  />
-                ) : (
-                  <></>
-                )}
+                    {with_str(sendingState).amongst(["ok_sent"]) ? (
+                      <CandidatureSpontaneeWorked kind={kind} email={formik.values.email} company={props?.item?.company?.name} />
+                    ) : (
+                      <></>
+                    )}
 
-                {with_str(sendingState).amongst(["ok_sent"]) ? (
-                  <CandidatureSpontaneeWorked kind={kind} email={formik.values.email} company={props?.item?.company?.name} />
-                ) : (
-                  <></>
-                )}
-
-                {with_str(sendingState).amongst(["not_sent_because_of_errors"]) ? <CandidatureSpontaneeFailed /> : <></>}
-              </form>
-            </Modal>
-          
-          </>
-      }
+                    {with_str(sendingState).amongst(["not_sent_because_of_errors"]) ? <CandidatureSpontaneeFailed /> : <></>}
+                  </form>
+                </Modal>
+              </>
+          }
+        </div>
+      </div>
     </div>
   );
 };
