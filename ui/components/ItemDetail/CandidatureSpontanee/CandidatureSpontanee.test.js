@@ -5,6 +5,7 @@ import nock from "nock";
 import userEvent from "@testing-library/user-event";
 
 describe("CandidatureSpontanee", () => {
+
   const consoleLog = console.log
   beforeEach(() => {
     console.log = consoleLog
@@ -132,14 +133,14 @@ describe("CandidatureSpontanee", () => {
   });
   it("LBB - full but failing test", async () => {
     // Given
-
+    
     // HACK : prevent manually-triggered error 500 to litter the console
     // See https://stackoverflow.com/a/67448856/2595513
     console.log = jest.fn()
     
     openLbbModal(render, screen, fireEvent);
     fillModalTextInputs(screen);
-
+    
     // When 1.
     const pdfFile = new File(["hello"], "hello.pdf", { type: "text/pdf" });
     const pdfInput = screen.getByTestId("fileDropzone");
