@@ -351,7 +351,10 @@ const updateApplicationStatus = async ({ payload, mailer }) => {
   const event = payload.event;
 
   let messageType = "application";
-  if (payload.subject.startsWith("Votre candidature chez")) {
+  if (payload.subect.startsWith("Réponse")) {
+    // les messages de notifications intention recruteur -> candidat sont ignorés
+    return;
+  } else if (payload.subject.startsWith("Votre candidature chez")) {
     messageType = "applicationAck";
   }
 
