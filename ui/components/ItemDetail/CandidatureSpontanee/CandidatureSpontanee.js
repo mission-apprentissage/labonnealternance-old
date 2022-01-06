@@ -9,7 +9,7 @@ import toggleCandidature from "./services/toggleCandidature";
 import { getValidationSchema, getInitialSchemaValues } from "./services/getSchema";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
-import { useSessionStorage } from "../../../utils/useSessionStorage";
+import { useLocalStorage } from "../../../utils/useLocalStorage";
 import { getItemId } from "../../../utils/getItemId";
 
 const CandidatureSpontanee = (props) => {
@@ -21,7 +21,7 @@ const CandidatureSpontanee = (props) => {
     return `candidaturespontanee-${kind}-${getItemId(item)}`
   }
 
-  const [applied, setApplied] = useSessionStorage(uniqId(kind, props.item), null);
+  const [applied, setApplied] = useLocalStorage(uniqId(kind, props.item), null);
 
   const toggle = () => {
     toggleCandidature({ modal, setSendingState, setModal });
