@@ -6,15 +6,34 @@ import userEvent from "@testing-library/user-event";
 
 describe("CandidatureSpontanee", () => {
 
+  function buildFakeStorage() {
+    let storage = {};
+
+    return {
+      setItem: function (key, value) {
+        console.log('setItem', key);
+        storage[key] = value || '';
+      },
+      getItem: function (key) {
+        return key in storage ? storage[key] : null;
+      },
+    };
+  }
+
   const consoleLog = console.log
+  let fakeLocalStorage = null
+
   beforeEach(() => {
     console.log = consoleLog
     nock.disableNetConnect();
+    fakeLocalStorage = buildFakeStorage()
+  });
+  afterEach(() => {
   });
 
   it("By default displays a button, not a modal", () => {
     // Given
-    render(<CandidatureSpontanee item={{}} />);
+    render(<CandidatureSpontanee item={{}} fakeLocalStorage={fakeLocalStorage} />);
     // When
     const button = screen.queryByRole("button", { name: /jenvoie-une-candidature-spontanee/i });
     const modal = screen.queryByRole("dialog");
@@ -130,6 +149,8 @@ describe("CandidatureSpontanee", () => {
       const title = screen.getByTestId("CandidatureSpontaneeWorkedTitle");
       expect(title).toHaveTextContent("Candidature spontanée");
     });
+    // Then 3.
+    expect(fakeLocalStorage.getItem('candidaturespontanee-lbb-40400744500079')).not.toBeNull();
   });
   it("LBB - full but failing test", async () => {
     // Given
@@ -230,12 +251,12 @@ describe("CandidatureSpontanee", () => {
   });
 
   const openLbbModal = (render, screen, fireEvent) => {
-    render(<CandidatureSpontanee item={realisticLbb} />);
+    render(<CandidatureSpontanee item={realisticLbb} fakeLocalStorage={fakeLocalStorage}/>);
     const button = screen.queryByRole("button", { name: /jenvoie-une-candidature-spontanee/i });
     fireEvent.click(button);
   };
   const openMatchaModal = (render, screen, fireEvent) => {
-    render(<CandidatureSpontanee item={realisticMatcha} />);
+    render(<CandidatureSpontanee item={realisticMatcha} fakeLocalStorage={fakeLocalStorage}/>);
     const button = screen.queryByRole("button", { name: /jenvoie-une-candidature-spontanee/i });
     fireEvent.click(button);
   };

@@ -21,7 +21,7 @@ const CandidatureSpontanee = (props) => {
     return `candidaturespontanee-${kind}-${getItemId(item)}`
   }
 
-  const [applied, setApplied] = useLocalStorage(uniqId(kind, props.item), null);
+  const [applied, setApplied] = useLocalStorage(uniqId(kind, props.item), null, props.fakeLocalStorage);
 
   const toggle = () => {
     toggleCandidature({ modal, setSendingState, setModal });
