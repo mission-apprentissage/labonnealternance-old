@@ -47,7 +47,7 @@ const CandidatureSpontanee = (props) => {
           {
             (!!applied && !modal) ?
               <>
-                <div>
+                <div data-testid="already-applied">
                   Vous avez déjà postulé le {new Date(parseInt(applied, 10)).toLocaleDateString("fr-FR", {year: 'numeric', month: 'long', day: 'numeric'})}
                 </div>
               </>

@@ -11,7 +11,6 @@ describe("CandidatureSpontanee", () => {
 
     return {
       setItem: function (key, value) {
-        console.log('setItem', key);
         storage[key] = value || '';
       },
       getItem: function (key) {
@@ -27,8 +26,6 @@ describe("CandidatureSpontanee", () => {
     console.log = consoleLog
     nock.disableNetConnect();
     fakeLocalStorage = buildFakeStorage()
-  });
-  afterEach(() => {
   });
 
   it("By default displays a button, not a modal", () => {
@@ -152,6 +149,16 @@ describe("CandidatureSpontanee", () => {
     // Then 3.
     expect(fakeLocalStorage.getItem('candidaturespontanee-lbb-40400744500079')).not.toBeNull();
   });
+
+  it("LBB - user has already submit application", async () => {
+    // Given
+    fakeLocalStorage.setItem('candidaturespontanee-lbb-40400744500079', '1641477787024')
+    // When
+    render(<CandidatureSpontanee item={realisticLbb} fakeLocalStorage={fakeLocalStorage} />);
+    // Then
+    expect(screen.getByTestId('already-applied')).toHaveTextContent('Vous avez déjà postulé le 6 janvier 2022');
+  })
+
   it("LBB - full but failing test", async () => {
     // Given
     
@@ -214,7 +221,17 @@ describe("CandidatureSpontanee", () => {
       const title = screen.getByTestId("CandidatureSpontaneeWorkedTitle");
       expect(title).toHaveTextContent("Postuler à l'offre de Lamacompta");
     });
+    // Then 3.
+    expect(fakeLocalStorage.getItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75')).not.toBeNull();
   });
+  it("MATCHA - user has already submit application", async () => {
+    // Given
+    fakeLocalStorage.setItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75', '1641477787024')
+    // When
+    render(<CandidatureSpontanee item={realisticMatcha} fakeLocalStorage={fakeLocalStorage} />);
+    // Then
+    expect(screen.getByTestId('already-applied')).toHaveTextContent('Vous avez déjà postulé le 6 janvier 2022');
+  })
   it("MATCHA - full but FAILING test", async () => {
     // Given
 
