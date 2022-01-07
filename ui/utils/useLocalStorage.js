@@ -17,9 +17,10 @@ export function useLocalStorage(key, defaultValue, stubbedLocalStorage = null) {
     getLocalStorageOrDefault(key, defaultValue, stubbedLocalStorage)
   );
 
-  useEffect(() => {
-    localLocalStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
+  // useEffect(() => {
+  //   console.log('useEffect', value);
+  //   localLocalStorage.setItem(key, JSON.stringify(value));
+  // }, [key, value]);
 
   return [value, setValue];
 }

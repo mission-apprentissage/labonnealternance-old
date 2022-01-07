@@ -226,6 +226,7 @@ describe("CandidatureSpontanee", () => {
     // Then 3.
     expect(fakeLocalStorage.getItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75')).not.toBeNull();
   });
+
   it("MATCHA - user has already submit application", async () => {
     // Given
     fakeLocalStorage.setItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75', '1641477787024')
@@ -234,6 +235,7 @@ describe("CandidatureSpontanee", () => {
     // Then
     expect(screen.getByTestId('already-applied')).toHaveTextContent('Vous avez déjà postulé le 6 janvier 2022');
   })
+  
   it("MATCHA - full but FAILING test", async () => {
     // Given
 

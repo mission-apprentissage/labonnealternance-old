@@ -9,7 +9,8 @@ import toggleCandidature from "./services/toggleCandidature";
 import { getValidationSchema, getInitialSchemaValues } from "./services/getSchema";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
-import { useLocalStorage } from "../../../utils/useLocalStorage";
+// import { useLocalStorage } from "../../../utils/useLocalStorage";
+import useLocalStorage from "./services/useLocalStorage";
 import { getItemId } from "../../../utils/getItemId";
 
 const CandidatureSpontanee = (props) => {
@@ -35,8 +36,8 @@ const CandidatureSpontanee = (props) => {
     initialValues: getInitialSchemaValues(),
     validationSchema: getValidationSchema(kind),
     onSubmit: async (applicantValues) => {
-      await submitCandidature(applicantValues, setSendingState, props.item);
-      if (sendingState === 'ok_sent') {
+      let success = await submitCandidature(applicantValues, setSendingState, props.item);
+      if (success) {
         setApplied(Date.now().toString())
       }
     },

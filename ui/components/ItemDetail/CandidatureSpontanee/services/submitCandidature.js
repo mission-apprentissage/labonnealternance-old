@@ -23,4 +23,5 @@ export default async function submitCandidature(
   } else {
     setSendingState("not_sent_because_of_errors");
   }
+  return success;
 }
