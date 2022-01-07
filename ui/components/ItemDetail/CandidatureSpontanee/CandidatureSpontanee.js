@@ -6,6 +6,7 @@ import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
 import submitCandidature from "./services/submitCandidature";
 import toggleCandidature from "./services/toggleCandidature";
+import hasAlreadySubmittedCandidature from "./services/hasAlreadySubmittedCandidature";
 import { getValidationSchema, getInitialSchemaValues } from "./services/getSchema";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
@@ -35,8 +36,8 @@ const CandidatureSpontanee = (props) => {
     initialValues: getInitialSchemaValues(),
     validationSchema: getValidationSchema(kind),
     onSubmit: async (applicantValues) => {
-      await submitCandidature(applicantValues, setSendingState, props.item);
-      if (sendingState === 'ok_sent') {
+      let isSubmitOk = await submitCandidature(applicantValues, setSendingState, props.item);
+      if (isSubmitOk) {
         setApplied(Date.now().toString())
       }
     },
@@ -47,7 +48,7 @@ const CandidatureSpontanee = (props) => {
       <div className="c-detail-description-me col-12 col-md-5">
         <div className="c-detail-pelink my-3">
           {
-            (!!JSON.parse(applied) && !modal) ?
+            hasAlreadySubmittedCandidature({applied, modal}) ?
               <>
                 <div data-testid="already-applied">
                   Vous avez déjà postulé le {new Date(parseInt(applied, 10)).toLocaleDateString("fr-FR", {year: 'numeric', month: 'long', day: 'numeric'})}
