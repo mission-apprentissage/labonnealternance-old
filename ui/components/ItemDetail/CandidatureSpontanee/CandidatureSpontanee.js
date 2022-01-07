@@ -47,7 +47,7 @@ const CandidatureSpontanee = (props) => {
       <div className="c-detail-description-me col-12 col-md-5">
         <div className="c-detail-pelink my-3">
           {
-            (!!applied && !modal) ?
+            (!!JSON.parse(applied) && !modal) ?
               <>
                 <div data-testid="already-applied">
                   Vous avez déjà postulé le {new Date(parseInt(applied, 10)).toLocaleDateString("fr-FR", {year: 'numeric', month: 'long', day: 'numeric'})}
