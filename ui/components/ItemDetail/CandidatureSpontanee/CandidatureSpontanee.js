@@ -35,16 +35,15 @@ const CandidatureSpontanee = (props) => {
 
   useEffect(() => {
     setModal(false);
+
+    // HACK HERE : reapply setApplied to currentUniqId to re-detect 
+    // if user already applied each time the user swap to another item.
     let currentUniqId = actualLocalStorage.getItem(uniqId(kind, props.item));
-    console.log('currentUniqId', currentUniqId);
-    // console.log('uniqId', uniqId(kind, props.item));
-    console.log('applied', applied);
     if ('null'.includes(currentUniqId)) {
       setApplied('null')
     } else {
       setApplied(currentUniqId)
     }
-    // setApplied(actualLocalStorage.getItem(uniqId(kind, props.item)));
   }, [props?.item]);
 
   const formik = useFormik({
