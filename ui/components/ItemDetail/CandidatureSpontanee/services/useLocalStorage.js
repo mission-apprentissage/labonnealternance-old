@@ -1,15 +1,16 @@
 import { useState } from "react";
 
-export default function useLocalStorage(key, initialValue) {
-  
+export default function useLocalStorage(key, initialValue, stubbedLocalStorage) {
+
+  let actualLocalStorage = stubbedLocalStorage || window.localStorage || {}
+
   const [storedValue, setStoredValue] = useState(() => {
-    const item = window.localStorage.getItem(key);
-    return item
+    const item = actualLocalStorage.getItem(key);
+    return item ? item : initialValue;
   });
-  
   const setValue = (value) => {
     setStoredValue(value);
-    window.localStorage.setItem(key, value);
+    actualLocalStorage.setItem(key, value);
   };
   
   return [storedValue, setValue];
