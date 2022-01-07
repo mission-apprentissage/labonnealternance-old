@@ -30,6 +30,7 @@ const CandidatureSpontanee = (props) => {
 
   useEffect(() => {
     setModal(false);
+    setApplied('null');
   }, [props?.item]);
 
   const formik = useFormik({
@@ -48,7 +49,7 @@ const CandidatureSpontanee = (props) => {
       <div className="c-detail-description-me col-12 col-md-5">
         <div className="c-detail-pelink my-3">
           {
-            hasAlreadySubmittedCandidature({applied, modal}) ?
+            (hasAlreadySubmittedCandidature({applied, modal})) ?
               <>
                 <div data-testid="already-applied">
                   Vous avez déjà postulé le {new Date(parseInt(applied, 10)).toLocaleDateString("fr-FR", {year: 'numeric', month: 'long', day: 'numeric'})}

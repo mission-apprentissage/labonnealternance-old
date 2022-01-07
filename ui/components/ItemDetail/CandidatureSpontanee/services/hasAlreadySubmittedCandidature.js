@@ -1,8 +1,12 @@
+import { isString } from "lodash";
+
 export default function hasAlreadySubmittedCandidature({
   applied = null,
   modal = false,
 } = {}) {
 
-  return !!JSON.parse(applied) && !modal
-  
+  let actuallyApplied = isString(applied) && applied !== 'null'
+
+  return actuallyApplied && !modal
+
 }
