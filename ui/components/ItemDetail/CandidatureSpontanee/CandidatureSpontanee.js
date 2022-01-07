@@ -11,6 +11,7 @@ import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
 // import { useLocalStorage } from "../../../utils/useLocalStorage";
 import useLocalStorage from "./services/useLocalStorage";
+import hasAlreadySubmittedCandidature from "./services/hasAlreadySubmittedCandidature";
 import { getItemId } from "../../../utils/getItemId";
 
 const CandidatureSpontanee = (props) => {
@@ -22,14 +23,28 @@ const CandidatureSpontanee = (props) => {
     return `candidaturespontanee-${kind}-${getItemId(item)}`
   }
 
-  const [applied, setApplied] = useLocalStorage(uniqId(kind, props.item), null, props.fakeLocalStorage);
+  const actualLocalStorage = props.fakeLocalStorage || window.localStorage || {}
 
+  
   const toggle = () => {
     toggleCandidature({ modal, setSendingState, setModal });
   };
+  
+  const [applied, setApplied] = useLocalStorage(uniqId(kind, props.item), null, actualLocalStorage);
+
 
   useEffect(() => {
     setModal(false);
+    let currentUniqId = actualLocalStorage.getItem(uniqId(kind, props.item));
+    console.log('currentUniqId', currentUniqId);
+    // console.log('uniqId', uniqId(kind, props.item));
+    console.log('applied', applied);
+    if ('null'.includes(currentUniqId)) {
+      setApplied('null')
+    } else {
+      setApplied(currentUniqId)
+    }
+    // setApplied(actualLocalStorage.getItem(uniqId(kind, props.item)));
   }, [props?.item]);
 
   const formik = useFormik({
@@ -48,7 +63,7 @@ const CandidatureSpontanee = (props) => {
       <div className="c-detail-description-me col-12 col-md-5">
         <div className="c-detail-pelink my-3">
           {
-            (!!applied && !modal) ?
+            (hasAlreadySubmittedCandidature({applied, modal})) ?
               <>
                 <div data-testid="already-applied">
                   Vous avez déjà postulé le {new Date(parseInt(applied, 10)).toLocaleDateString("fr-FR", {year: 'numeric', month: 'long', day: 'numeric'})}
