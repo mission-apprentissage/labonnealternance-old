@@ -5,15 +5,32 @@ import nock from "nock";
 import userEvent from "@testing-library/user-event";
 
 describe("CandidatureSpontanee", () => {
+
+  function buildFakeStorage() {
+    let storage = {};
+
+    return {
+      setItem: function (key, value) {
+        storage[key] = value || '';
+      },
+      getItem: function (key) {
+        return key in storage ? storage[key] : null;
+      },
+    };
+  }
+
   const consoleLog = console.log
+  let fakeLocalStorage = null
+
   beforeEach(() => {
     console.log = consoleLog
     nock.disableNetConnect();
+    fakeLocalStorage = buildFakeStorage()
   });
 
   it("By default displays a button, not a modal", () => {
     // Given
-    render(<CandidatureSpontanee item={{}} />);
+    render(<CandidatureSpontanee item={{}} fakeLocalStorage={fakeLocalStorage} />);
     // When
     const button = screen.queryByRole("button", { name: /jenvoie-une-candidature-spontanee/i });
     const modal = screen.queryByRole("dialog");
@@ -129,17 +146,29 @@ describe("CandidatureSpontanee", () => {
       const title = screen.getByTestId("CandidatureSpontaneeWorkedTitle");
       expect(title).toHaveTextContent("Candidature spontanée");
     });
+    // Then 3.
+    expect(fakeLocalStorage.getItem('candidaturespontanee-lbb-40400744500079')).not.toBeNull();
   });
+
+  it("LBB - user has already submit application", async () => {
+    // Given
+    fakeLocalStorage.setItem('candidaturespontanee-lbb-40400744500079', '1641477787024')
+    // When
+    render(<CandidatureSpontanee item={realisticLbb} fakeLocalStorage={fakeLocalStorage} />);
+    // Then
+    expect(screen.getByTestId('already-applied')).toHaveTextContent('Vous avez déjà postulé le 6 janvier 2022');
+  })
+
   it("LBB - full but failing test", async () => {
     // Given
-
+    
     // HACK : prevent manually-triggered error 500 to litter the console
     // See https://stackoverflow.com/a/67448856/2595513
     console.log = jest.fn()
     
     openLbbModal(render, screen, fireEvent);
     fillModalTextInputs(screen);
-
+    
     // When 1.
     const pdfFile = new File(["hello"], "hello.pdf", { type: "text/pdf" });
     const pdfInput = screen.getByTestId("fileDropzone");
@@ -163,6 +192,8 @@ describe("CandidatureSpontanee", () => {
       const title = screen.getByTestId("CandidatureSpontaneeFailedTitle");
       expect(title).toHaveTextContent("Une erreur est survenue.");
     });
+    // Then 3.
+    expect(fakeLocalStorage.getItem('candidaturespontanee-lbb-40400744500079')).toEqual('null');
   });
   it("MATCHA - full and successful test", async () => {
     // Given
@@ -192,7 +223,17 @@ describe("CandidatureSpontanee", () => {
       const title = screen.getByTestId("CandidatureSpontaneeWorkedTitle");
       expect(title).toHaveTextContent("Postuler à l'offre de Lamacompta");
     });
+    // Then 3.
+    expect(fakeLocalStorage.getItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75')).not.toBeNull();
   });
+  it("MATCHA - user has already submit application", async () => {
+    // Given
+    fakeLocalStorage.setItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75', '1641477787024')
+    // When
+    render(<CandidatureSpontanee item={realisticMatcha} fakeLocalStorage={fakeLocalStorage} />);
+    // Then
+    expect(screen.getByTestId('already-applied')).toHaveTextContent('Vous avez déjà postulé le 6 janvier 2022');
+  })
   it("MATCHA - full but FAILING test", async () => {
     // Given
 
@@ -226,15 +267,17 @@ describe("CandidatureSpontanee", () => {
       const title = screen.getByTestId("CandidatureSpontaneeFailedTitle");
       expect(title).toHaveTextContent("Une erreur est survenue.");
     });
+    // Then 3.
+    expect(fakeLocalStorage.getItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75')).toEqual('null');
   });
 
   const openLbbModal = (render, screen, fireEvent) => {
-    render(<CandidatureSpontanee item={realisticLbb} />);
+    render(<CandidatureSpontanee item={realisticLbb} fakeLocalStorage={fakeLocalStorage}/>);
     const button = screen.queryByRole("button", { name: /jenvoie-une-candidature-spontanee/i });
     fireEvent.click(button);
   };
   const openMatchaModal = (render, screen, fireEvent) => {
-    render(<CandidatureSpontanee item={realisticMatcha} />);
+    render(<CandidatureSpontanee item={realisticMatcha} fakeLocalStorage={fakeLocalStorage}/>);
     const button = screen.queryByRole("button", { name: /jenvoie-une-candidature-spontanee/i });
     fireEvent.click(button);
   };

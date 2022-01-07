@@ -16,7 +16,7 @@ export const getItemIdAndType = (item) => {
     } else if (item.ideaType === "matcha") {
       itemId = item.job.id;
     } else if (item.ideaType !== "formation") {
-      itemId = item.company.siret;
+      itemId = item?.company?.siret || 'siret';
     }
   }
 
