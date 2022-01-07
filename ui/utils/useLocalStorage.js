@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 function getLocalStorageOrDefault(key, defaultValue, stubbedLocalStorage = null) {
   let localLocalStorage = stubbedLocalStorage || localStorage
   const stored = localLocalStorage.getItem(key);
-  console.log('stored', stored);
   if (!stored) {
     return defaultValue;
   } else {

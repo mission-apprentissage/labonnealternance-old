@@ -30,7 +30,9 @@ const CandidatureSpontanee = (props) => {
 
   useEffect(() => {
     setModal(false);
-    setApplied('null');
+    if (!(props.fakeLocalStorage || localStorage).getItem(uniqId(kind, props.item))) {
+      setApplied(null);
+    }
   }, [props?.item]);
 
   const formik = useFormik({
