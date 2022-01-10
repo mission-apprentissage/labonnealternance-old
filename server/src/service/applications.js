@@ -131,9 +131,16 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       ]);
 
       application.to_applicant_message_id = emailCandidat.messageId;
-      application.to_applicant_message_status = emailCandidat.accepted.length ? "accepted" : "rejected";
-      application.to_company_message_id = emailCompany.messageId;
-      application.to_company_message_status = emailCompany.accepted.length ? "accepted" : "rejected";
+      application.to_applicant_message_status = emailCandidat?.accepted?.length ? "accepted" : "rejected";
+      if (emailCompany?.accepted?.length) {
+        application.to_company_message_id = emailCompany.messageId;
+        application.to_company_message_status = "accepted";
+      } else {
+        logger.info(
+          `Application email rejected. applicant_email=${application.applicant_email} company_email=${application.company_email}`
+        );
+        throw new Error("Application email rejected");
+      }
 
       await application.save();
 
@@ -344,7 +351,10 @@ const updateApplicationStatus = async ({ payload, mailer }) => {
   const event = payload.event;
 
   let messageType = "application";
-  if (payload.subject.startsWith("Votre candidature chez")) {
+  if (payload.subject.startsWith("Réponse")) {
+    // les messages de notifications intention recruteur -> candidat sont ignorés
+    return;
+  } else if (payload.subject.startsWith("Votre candidature chez")) {
     messageType = "applicationAck";
   }
 
