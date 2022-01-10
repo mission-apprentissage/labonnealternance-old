@@ -1,12 +1,9 @@
 # CHANGELOG
 
-## 1.17.10 [10/01/2022]
-
-[matcha] Ajout d'un endpoint sécurisé sur les applications
-
 ## 1.17.9 [10/01/2022]
 
 [999] Ignorer les webhooks sur emails notifications aux candidats
+[matcha] Ajout d'un endpoint sécurisé sur les applications
 
 ## 1.17.8 [06/01/2022]
 
