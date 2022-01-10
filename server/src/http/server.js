@@ -21,7 +21,7 @@ const jobV1 = require("./routes/jobV1");
 const esSearch = require("./routes/esSearch");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
 const sendMail = require("./routes/sendMail");
-const sendApplication = require("./routes/sendApplication");
+const applications = require("./routes/applications");
 const rateLimit = require("express-rate-limit");
 var path = require("path");
 
@@ -122,7 +122,7 @@ module.exports = async (components) => {
 
   app.use("/api/mail", limiter1Per20Second, sendMail(components));
 
-  app.use("/api/application", sendApplication(components));
+  app.use("/api/application", applications(components));
 
   app.get(
     "/api",

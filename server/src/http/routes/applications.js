@@ -1,6 +1,7 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
 const {
+  getApplications,
   sendApplication,
   saveApplicationFeedback,
   saveApplicationFeedbackComment,
@@ -92,6 +93,18 @@ module.exports = (components) => {
         ...components,
       });
       return res.json(result);
+    })
+  );
+
+  router.get(
+    "/search",
+    tryCatch(async (req, res) => {
+      if (!req.query) {
+        return res.status(400).json({ error: true, message: "No query provided." });
+      }
+
+      let results = await getApplications(req.query);
+      return res.json(results);
     })
   );
 
