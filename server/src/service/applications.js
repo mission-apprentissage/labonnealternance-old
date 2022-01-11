@@ -57,6 +57,13 @@ const initApplication = (query, companyEmail) => {
   });
 };
 
+const getApplications = async (query) => {
+  const request = JSON.parse(query);
+  const response = await Application.find(request);
+
+  return response;
+};
+
 const getEmailTemplates = (applicationType) => {
   if (applicationType === "matcha") {
     return {
@@ -440,6 +447,7 @@ const getEmailTemplate = (type = "mail-candidat") => {
 };
 
 module.exports = {
+  getApplications,
   sendTestMail,
   sendApplication,
   saveApplicationFeedback,
