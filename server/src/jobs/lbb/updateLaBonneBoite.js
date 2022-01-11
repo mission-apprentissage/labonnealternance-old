@@ -11,10 +11,15 @@ const initNafMap = require("./initNafMap.js");
 const initPredictionMap = require("./initPredictionMap.js");
 const { logMessage } = require("../../common/utils/logMessage");
 const { mongooseInstance } = require("../../common/mongodb");
+const { initSAVERemoveMap, /*initSAVEUpdateMap,*/ initSAVEAddMap } = require("./initSAVEMaps");
 
 let nafScoreMap = {};
 let predictionMap = {};
 let nafMap = {};
+
+let removeMap = {};
+//let updateMap = {};
+let addMap = {};
 
 const filePath = path.join(__dirname, "./assets/etablissements.csv");
 
@@ -40,10 +45,18 @@ const findRomesForNaf = async (bonneBoite) => {
   return romes;
 };
 
+const isCompanyRemoved = (siret) => {
+  return removeMap[siret];
+};
+
 const resetHashmaps = () => {
   nafScoreMap = {};
   predictionMap = {};
   nafMap = {};
+
+  removeMap = {};
+  //updateMap = {};
+  addMap = {};
 };
 
 const emptyMongo = async () => {
@@ -137,6 +150,31 @@ const parseLine = async (line) => {
     code_postal: terms[7],
   };
 
+  if (isCompanyRemoved(company.siret)) {
+    BonnesBoites.delete({ siret: company.siret });
+    return null;
+  }
+
+  let bonneBoite = await buildAndFilterBonneBoiteFromData(company);
+
+  return bonneBoite;
+};
+
+const insertSAVECompanies = async () => {
+  for (const key in addMap) {
+    let company = addMap[key];
+    let bonneBoite = await buildAndFilterBonneBoiteFromData(company);
+
+    if (bonneBoite) {
+      await bonneBoite.save();
+    }
+  }
+};
+
+/*
+  Initialize bonneBoite from data, add missing data from maps, 
+*/
+const buildAndFilterBonneBoiteFromData = async (company) => {
   let score = await getScoreForCompany(company.siret);
 
   if (!score) {
@@ -183,7 +221,7 @@ const parseLine = async (line) => {
   return bonneBoite;
 };
 
-module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles }) => {
+module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles, shouldInitSAVEMaps }) => {
   if (!running) {
     running = true;
     try {
@@ -192,6 +230,14 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles }
       logMessage("info", `score 080 :  ${config.private.lbb.score80Level}`);
       logMessage("info", `score 060 :  ${config.private.lbb.score60Level}`);
       logMessage("info", `score 050 :  ${config.private.lbb.score50Level}`);
+
+      if (shouldInitSAVEMaps) {
+        removeMap = await initSAVERemoveMap();
+        addMap = await initSAVEAddMap();
+      }
+
+      nafScoreMap = await initNafScoreMap();
+      nafMap = await initNafMap();
 
       if (shouldParseFiles) {
         var exec = require("child_process").exec;
@@ -202,8 +248,6 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles }
 
         const db = mongooseInstance.connection;
 
-        nafScoreMap = await initNafScoreMap();
-        nafMap = await initNafMap();
         predictionMap = await initPredictionMap();
 
         // TODO: supprimer ce reset
@@ -224,10 +268,12 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles }
           logMessage("error", err2);
           throw new Error("Error while parsing establishment file");
         }
-
-        // clearing memory
-        resetHashmaps();
       }
+
+      await insertSAVECompanies();
+
+      // clearing memory
+      resetHashmaps();
 
       if (shouldBuildIndex) {
         await rebuildIndex(BonnesBoites);
