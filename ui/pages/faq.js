@@ -123,11 +123,11 @@ const FAQ = (props) => {
                 Pourquoi le bouton pour prendre rendez-vous avec l'organisme de formation n'est pas toujours présent ?
               </h2>
               <p className="c-faq-answer">
-                Le bouton "prendre rendez-vous" est présent uniquement sur les organismes de formation pour lesquels nous disposons d'une adresse email. 
+                Le bouton "Prendre rendez-vous" est présent uniquement sur les organismes de formation pour lesquels nous disposons d'une adresse email. 
                 <br />
                 Lorsque ce bouton n'est pas présent, vous pouvez entrer en contact avec l'établissement par un autre moyen (téléphone, visite sur place, ou prise de contact sur le site web de l'établissement).
                 <br />
-                Si vous êtes un organisme de formation et que vous souhaitez la mise en place du bouton de prise de rendez-vous sur tout ou partie de vos formations et sur tout ou partie des plateformes qui le proposent, <a href="mailto:rdv_apprentissage@apprentissage.beta.gouv.fr"> contactez-nous</a>.
+                Si vous êtes un organisme de formation et que vous souhaitez la mise en place du bouton de prise de rendez-vous sur tout ou partie de vos formations et sur tout ou partie des plateformes qui le proposent, <a href="mailto:rdv_apprentissage@apprentissage.beta.gouv.fr">contactez-nous</a>.
               </p>
             </div>
             <div className="c-faq-question-block">
