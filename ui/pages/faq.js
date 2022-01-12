@@ -92,11 +92,11 @@ const FAQ = (props) => {
               </p>
             </div>
             <div className="c-faq-question-block">
-              <h2 className="c-faq-question">Pourquoi manque-t-il parfois des coordonnées : courriel, téléphone…?</h2>
+              <h2 className="c-faq-question">Pourquoi manque-t-il parfois le bouton d'envoi d'une candidature ?</h2>
               <p className="c-faq-answer">
-                La Bonne Alternance vous indique uniquement les coordonnées dont dispose Pôle emploi.
+                La Bonne Alternance vous propose la fonctionnalité d'envoi de candidature uniquement lorsque nous disposons de l'email de contact de l'entreprise.
                 <br />
-                La mise à jour des coordonnées est réalisée par les entreprises.
+                Si ce bouton n'est pas présent, nous vous invitons à prendre contact avec l'entreprise par un autre moyen (téléphone, visite sur place ou prise de contact sur le site web de l'entreprise).
               </p>
             </div>
             <div className="c-faq-question-block">
@@ -116,6 +116,18 @@ const FAQ = (props) => {
                 <br />
                 Si vous êtes un organisme de formation et que vous souhaitez référencer une formation en apprentissage
                 sur La Bonne Alternance, rendez-vous sur votre espace "Organisme de Formation" en haut de page.
+              </p>
+            </div>
+            <div className="c-faq-question-block">
+              <h2 className="c-faq-question">
+                Pourquoi le bouton pour prendre rendez-vous avec l'organisme de formation n'est pas toujours présent ?
+              </h2>
+              <p className="c-faq-answer">
+                Le bouton "prendre rendez-vous" est présent uniquement sur les organismes de formation pour lesquels nous disposons d'une adresse email. 
+                <br />
+                Lorsque ce bouton n'est pas présent, vous pouvez entrer en contact avec l'établissement par un autre moyen (téléphone, visite sur place, ou prise de contact sur le site web de l'établissement).
+                <br />
+                Si vous êtes un organisme de formation et que vous souhaitez la mise en place du bouton de prise de rendez-vous sur tout ou partie de vos formations et sur tout ou partie des plateformes qui le proposent, <a href="mailto:rdv_apprentissage@apprentissage.beta.gouv.fr"> contactez-nous</a>.
               </p>
             </div>
             <div className="c-faq-question-block">
