@@ -187,35 +187,6 @@ const ResultLists = (props) => {
   const getResultCountAndLoading = (localDisplayCount) => {
     if (props.allJobSearchError && props.trainingSearchError) return "";
 
-    let count = 0;
-    let trainingCount = 0;
-    let trainingPart = "";
-    let trainingLoading = "";
-
-    if (scopeContext.isTraining) {
-      if (props.isTrainingSearchLoading) {
-        trainingLoading = (
-          <span className="trainingColor">
-            <div className="searchLoading">
-              Recherche des formations en cours
-              <Spinner />
-            </div>
-          </span>
-        );
-      } else if (!props.trainingSearchError) {
-        trainingCount = props.trainings ? props.trainings.length : 0;
-
-        count += trainingCount;
-
-        trainingPart = `${trainingCount === 0 ? "Aucune formation" : trainingCount}`;
-
-        if (trainingCount === 1) {
-          trainingPart += " formation";
-        } else if (trainingCount > 1) {
-          trainingPart += " formations";
-        }
-      }
-    }
 
     let jobPart = "";
     let jobLoading = "";
@@ -244,6 +215,36 @@ const ResultLists = (props) => {
           jobPart += " entreprise";
         } else if (jobCount > 1) {
           jobPart += " entreprises";
+        }
+      }
+    }
+
+    let count = 0;
+    let trainingCount = 0;
+    let trainingPart = "";
+    let trainingLoading = "";
+
+    if (scopeContext.isTraining) {
+      if (props.isTrainingSearchLoading) {
+        trainingLoading = (
+          <span className="trainingColor">
+            <div className="searchLoading">
+              Recherche des formations en cours
+              <Spinner />
+            </div>
+          </span>
+        );
+      } else if (!props.trainingSearchError) {
+        trainingCount = props.trainings ? props.trainings.length : 0;
+
+        count += trainingCount;
+
+        trainingPart = `${trainingCount === 0 ? "Aucune formation" : trainingCount}`;
+
+        if (trainingCount === 1) {
+          trainingPart += " formation";
+        } else if (trainingCount > 1) {
+          trainingPart += " formations";
         }
       }
     }
