@@ -187,7 +187,7 @@ const ResultLists = (props) => {
   const getResultCountAndLoading = (localDisplayCount) => {
     if (props.allJobSearchError && props.trainingSearchError) return "";
 
-
+    let count = 0;
     let jobPart = "";
     let jobLoading = "";
     let jobCount = 0;
@@ -219,7 +219,7 @@ const ResultLists = (props) => {
       }
     }
 
-    let count = 0;
+    
     let trainingCount = 0;
     let trainingPart = "";
     let trainingLoading = "";
