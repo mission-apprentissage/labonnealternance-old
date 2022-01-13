@@ -259,7 +259,7 @@ const ResultLists = (props) => {
           {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
             <div className={`c-resultlist-correspond-display-${localDisplayCount}`}>
               <span className="c-resultlist-correspond c-resultlist-correspond--bold">
-                {trainingPart} {trainingPart && jobPart ? " et " : ""} {jobPart}{" "}
+                {jobPart} {trainingPart && jobPart ? " et " : ""} {trainingPart}{" "}
               </span>
               <span className="c-resultlist-correspond c-resultlist-correspond--light">{correspondText}</span>
             </div>
