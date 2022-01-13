@@ -204,11 +204,7 @@ const ResultLists = (props) => {
         );
       } else if (!props.allJobSearchError) {
         jobCount = getJobCount(props.jobs);
-
-        //jobCount = 0;
-
         count += jobCount;
-
         jobPart = `${jobCount === 0 ? "aucune entreprise" : jobCount}`;
 
         if (jobCount === 1) {
