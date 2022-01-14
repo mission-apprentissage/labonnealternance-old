@@ -215,7 +215,8 @@ const ResultLists = (props) => {
           getJobCount={getJobCount}
           jobs={props.jobs}
           trainings={props.trainings}
-          />
+          showSearchForm={props.showSearchForm}
+        />
         {getErrorMessages()}
       </div>
       <div

@@ -9,8 +9,16 @@ const ResultListsCounter = (props) => {
   const filterButtonClicked = props.filterButtonClicked
   const localDisplayCount = props.localDisplayCount
   const getJobCount = props.getJobCount
+  const allJobSearchError = props.allJobSearchError
+  const trainingSearchError = props.trainingSearchError
+  const isTrainingSearchLoading = props.isTrainingSearchLoading
+  const isJobSearchLoading = props.isJobSearchLoading
+  const jobs = props.jobs
+  const trainings = props.trainings
+  const activeFilter = props.activeFilter
+  const showSearchForm = props.showSearchForm
 
-  if (props.allJobSearchError && props.trainingSearchError) return "";
+  if (allJobSearchError && trainingSearchError) return "";
 
   let count = 0;
   let jobPart = "";
@@ -18,7 +26,7 @@ const ResultListsCounter = (props) => {
   let jobCount = 0;
 
   if (scopeContext.isJob) {
-    if (props.isJobSearchLoading) {
+    if (isJobSearchLoading) {
       jobLoading = (
         <span className="jobColor">
           <div className="searchLoading">
@@ -27,8 +35,8 @@ const ResultListsCounter = (props) => {
           </div>
         </span>
       );
-    } else if (!props.allJobSearchError) {
-      jobCount = getJobCount(props.jobs);
+    } else if (!allJobSearchError) {
+      jobCount = getJobCount(jobs);
       console.log('jobCount', jobCount);
       count += jobCount;
       jobPart = `${jobCount === 0 ? "aucune entreprise" : jobCount}`;
@@ -47,7 +55,7 @@ const ResultListsCounter = (props) => {
   let trainingLoading = "";
 
   if (scopeContext.isTraining) {
-    if (props.isTrainingSearchLoading) {
+    if (isTrainingSearchLoading) {
       trainingLoading = (
         <span className="trainingColor">
           <div className="searchLoading">
@@ -56,8 +64,8 @@ const ResultListsCounter = (props) => {
           </div>
         </span>
       );
-    } else if (!props.trainingSearchError) {
-      trainingCount = props.trainings ? props.trainings.length : 0;
+    } else if (!trainingSearchError) {
+      trainingCount = trainings ? trainings.length : 0;
 
       count += trainingCount;
 
@@ -110,22 +118,22 @@ const ResultListsCounter = (props) => {
         <div className="c-filterbuttons">
           <FilterButton
             type="all"
-            isActive={props.activeFilter === "all"}
+            isActive={activeFilter === "all"}
             handleFilterButtonClicked={filterButtonClicked}
           />
           <FilterButton
             type="trainings"
             count={trainingCount}
-            isActive={props.activeFilter === "trainings"}
+            isActive={activeFilter === "trainings"}
             handleFilterButtonClicked={filterButtonClicked}
           />
           <FilterButton
             type="jobs"
             count={jobCount}
-            isActive={props.activeFilter === "jobs"}
+            isActive={activeFilter === "jobs"}
             handleFilterButtonClicked={filterButtonClicked}
           />
-          <div className="c-resultlist-purplefilter" onClick={props.showSearchForm}>
+          <div className="c-resultlist-purplefilter" onClick={showSearchForm}>
             <img src={purpleFilterIcon} alt="Image de filtres" />
           </div>
         </div>
