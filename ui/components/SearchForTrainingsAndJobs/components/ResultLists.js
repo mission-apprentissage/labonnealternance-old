@@ -211,7 +211,7 @@ const ResultLists = (props) => {
           allJobSearchError={props.allJobSearchError}
           trainingSearchError={props.trainingSearchError}
           isJobSearchLoading={props.isJobSearchLoading}
-          localDisplayCount={displayCount}
+          displayCount={displayCount}
           getJobCount={getJobCount}
           jobs={props.jobs}
           trainings={props.trainings}

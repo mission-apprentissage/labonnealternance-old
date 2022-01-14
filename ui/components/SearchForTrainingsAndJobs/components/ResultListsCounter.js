@@ -7,7 +7,7 @@ const ResultListsCounter = (props) => {
 
   const scopeContext = props.scopeContext
   const filterButtonClicked = props.filterButtonClicked
-  const localDisplayCount = props.localDisplayCount
+  const displayCount = props.displayCount
   const getJobCount = props.getJobCount
   const allJobSearchError = props.allJobSearchError
   const trainingSearchError = props.trainingSearchError
@@ -86,7 +86,7 @@ const ResultListsCounter = (props) => {
     <div className="pt-0">
       <div className="resultTitle mt-0 mt-md-2">
         {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
-          <div className={`c-resultlist-correspond-display-${localDisplayCount}`}>
+          <div className={`c-resultlist-correspond-display-${displayCount}`}>
             <span className="c-resultlist-correspond c-resultlist-correspond--bold">
               {jobPart} {trainingPart && jobPart ? " et " : ""} {trainingPart}{" "}
             </span>
