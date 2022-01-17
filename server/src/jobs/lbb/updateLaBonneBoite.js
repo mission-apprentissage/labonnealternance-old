@@ -148,6 +148,7 @@ const parseLine = async (line) => {
     libelle_rue: terms[5],
     code_commune: terms[6],
     code_postal: terms[7],
+    type: "lbb",
   };
 
   if (isCompanyRemoved(company.siret)) {
@@ -163,6 +164,7 @@ const parseLine = async (line) => {
 const insertSAVECompanies = async () => {
   for (const key in addMap) {
     let company = addMap[key];
+
     let bonneBoite = await buildAndFilterBonneBoiteFromData(company);
 
     if (bonneBoite) {
@@ -175,7 +177,7 @@ const insertSAVECompanies = async () => {
   Initialize bonneBoite from data, add missing data from maps, 
 */
 const buildAndFilterBonneBoiteFromData = async (company) => {
-  let score = await getScoreForCompany(company.siret);
+  let score = company.score || (await getScoreForCompany(company.siret));
 
   if (!score) {
     //TODO: checker si réhaussage artificiel vie support PE
