@@ -38,7 +38,7 @@ const CandidatureSpontaneeMessage = ({ formik, kind }) => {
       <fieldset data-testid="fieldset-message" className={getClass()}>
         <h2 className="c-candidature-message-title mb-0">{getFieldTitle()}</h2>
         <div className="c-candidature-message-subtitle mb-2">
-          Indiquez pourquoi vous souhaitez réaliser votre alternance dans son entreprise
+          Indiquez pourquoi vous souhaitez réaliser votre alternance dans son établissement
         </div>
         <textarea
           id="message"
