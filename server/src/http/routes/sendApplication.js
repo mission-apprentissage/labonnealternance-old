@@ -1,6 +1,7 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
 const {
+  getApplications,
   sendApplication,
   saveApplicationFeedback,
   saveApplicationFeedbackComment,
@@ -10,6 +11,7 @@ const {
   debugUpdateApplicationStatus,
 } = require("../../service/applications");
 const rateLimit = require("express-rate-limit");
+const apiKeyAuthMiddleware = require("../middlewares/apiKeyAuthMiddleware");
 
 const limiter1Per20Second = rateLimit({
   windowMs: 20000, // 20 seconds
@@ -128,6 +130,19 @@ module.exports = (components) => {
     tryCatch(async (req, res) => {
       debugUpdateApplicationStatus({ shouldCheckSecret: true, query: req.query, ...components });
       return res.json({ result: "ok" });
+    })
+  );
+
+  router.get(
+    "/search",
+    apiKeyAuthMiddleware,
+    tryCatch(async (req, res) => {
+      if (!req.query) {
+        return res.status(400).json({ error: true, message: "No query provided." });
+      }
+
+      let results = await getApplications(req.query);
+      return res.json(results);
     })
   );
 
