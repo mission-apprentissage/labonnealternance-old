@@ -22,7 +22,7 @@ const CandidatureSpontaneeWorked = ({ email, company, kind }) => {
           </div>
           <div className="ml-3 pl-3">
             <h2 className="c-candidature-worked-title">
-              Votre candidature a bien été envoyée à l’entreprise{" "}
+              Votre candidature a bien été envoyée à {" "}
               <span className="c-candidature-worked-company">{company}</span>
             </h2>
             {testingParameters?.simulatedRecipient ? (

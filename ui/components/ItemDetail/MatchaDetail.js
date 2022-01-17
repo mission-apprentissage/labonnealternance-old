@@ -143,12 +143,12 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
           <div className="c-detail-advice__body">
             <div className="c-detail-advice-text mt-0">
-              L'entreprise <span className="c-detail-advice-highlight"> {job.company.name} </span> nous a récemment fait
+              <span className="c-detail-advice-highlight"> {job.company.name} </span> nous a récemment fait
               parvenir un besoin de recrutement :<span className="c-detail-advice-highlight"> {jobTitle}</span>. Cela
-              signifie qu’elle est activement à la recherche d’un.e candidat.e pour rejoindre son équipe.
+              signifie que l'établissement est activement à la recherche d’un.e candidat.e.
             </div>
             <div className="c-detail-advice-text c-detail-advice-text--tag">
-              Vous avez donc tout intérêt à la contacter rapidement, avant que l’offre ne soit pourvue !
+              Vous avez donc tout intérêt à le contacter rapidement, avant que l’offre ne soit pourvue !
             </div>
             {!!random(0, 1) ? <DidAsk1 /> : <DidAsk2 />}
           </div>
