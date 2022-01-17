@@ -58,10 +58,7 @@ const initApplication = (query, companyEmail) => {
 };
 
 const getApplications = async (query) => {
-  const request = JSON.parse(query);
-  const response = await Application.find(request);
-
-  return response;
+  return await Application.find(query);
 };
 
 const getEmailTemplates = (applicationType) => {
