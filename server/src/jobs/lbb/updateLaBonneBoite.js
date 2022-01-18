@@ -11,14 +11,14 @@ const initNafMap = require("./initNafMap.js");
 const initPredictionMap = require("./initPredictionMap.js");
 const { logMessage } = require("../../common/utils/logMessage");
 const { mongooseInstance } = require("../../common/mongodb");
-const { initSAVERemoveMap, /*initSAVEUpdateMap,*/ initSAVEAddMap } = require("./initSAVEMaps");
+const { initSAVERemoveMap, initSAVEUpdateMap, initSAVEAddMap } = require("./initSAVEMaps");
 
 let nafScoreMap = {};
 let predictionMap = {};
 let nafMap = {};
 
 let removeMap = {};
-//let updateMap = {};
+let updateMap = {};
 let addMap = {};
 
 const filePath = path.join(__dirname, "./assets/etablissements.csv");
@@ -173,6 +173,18 @@ const insertSAVECompanies = async () => {
   }
 };
 
+const updateSAVECompanies = async () => {
+  for (const key in updateMap) {
+    let company = updateMap[key];
+
+    let bonneBoite = await buildAndFilterBonneBoiteFromData(company);
+
+    if (bonneBoite) {
+      await bonneBoite.save();
+    }
+  }
+};
+
 /*
   Initialize bonneBoite from data, add missing data from maps, 
 */
@@ -236,6 +248,7 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles, 
       if (shouldInitSAVEMaps) {
         removeMap = await initSAVERemoveMap();
         addMap = await initSAVEAddMap();
+        updateMap = await initSAVEUpdateMap();
       }
 
       nafScoreMap = await initNafScoreMap();
@@ -273,6 +286,7 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles, 
       }
 
       await insertSAVECompanies();
+      await updateSAVECompanies();
 
       // clearing memory
       resetHashmaps();
