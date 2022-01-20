@@ -14,9 +14,6 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
   const { formValues, itemParameters, selectedMapPopupItem } = useSelector((state) => state.trainings);
   const scopeContext = useScopeContext();
 
-  console.log('Training----------------', getItemQueryParameters(training));
-  console.log('Training2----------------', getSearchQueryParameters(formValues));
-
   const currentSearchRadius = formValues?.radius || 30;
 
   const [allowDim, setAllowDim] = useState(true); // cet état évite un appel qui masque la mise en avant de l'icône lors de l'ouverture du détail
@@ -97,7 +94,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
     }
   };
 
-  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(training)}&s=${new Date().getTime()}&${getSearchQueryParameters(formValues)}`
+  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(training)}&${getSearchQueryParameters(formValues)}`
 
   return (
     <a
