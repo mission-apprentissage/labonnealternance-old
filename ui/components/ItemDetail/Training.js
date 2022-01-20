@@ -93,11 +93,12 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
   };
 
   return (
-    <div
+    <a
       className={`resultCard trainingCard gtmSavoirPlus gtmFormation gtmListe ${getHightlightClass()} ${getDebugClass()}`}
       onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
+      href="#"
     >
       <div className="c-media" id={`id${training.id}`}>
         <div className="c-media-figure">
@@ -146,7 +147,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
           )}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
