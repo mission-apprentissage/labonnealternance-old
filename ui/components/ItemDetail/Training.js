@@ -7,10 +7,15 @@ import { useScopeContext } from "../../context/ScopeContext";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import { setSelectedMarker } from "../../utils/mapTools";
+import { getItemQueryParameters } from "../../utils/getItemId";
+import { getSearchQueryParameters } from "../../utils/getSearchParameters";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
   const { formValues, itemParameters, selectedMapPopupItem } = useSelector((state) => state.trainings);
   const scopeContext = useScopeContext();
+
+  console.log('Training----------------', getItemQueryParameters(training));
+  console.log('Training2----------------', getSearchQueryParameters(formValues));
 
   const currentSearchRadius = formValues?.radius || 30;
 
@@ -92,13 +97,15 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
     }
   };
 
+  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(training)}&s=${new Date().getTime()}&${getSearchQueryParameters(formValues)}`
+
   return (
     <a
       className={`resultCard trainingCard gtmSavoirPlus gtmFormation gtmListe ${getHightlightClass()} ${getDebugClass()}`}
-      onClick={onSelectItem}
+      // onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
-      href="#"
+      href={actualLink}
     >
       <div className="c-media" id={`id${training.id}`}>
         <div className="c-media-figure">
