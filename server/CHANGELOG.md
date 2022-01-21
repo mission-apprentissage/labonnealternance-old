@@ -5,6 +5,7 @@
 [1021] Ajout d'un endpoint sécurisé sur les applications
 [981] Afficher les entreprises en premier
 [982] Utilisation champ cle_ministere_educatif pour identifier les formations en accès direct
+[1023] Mise en commentaire du champ periode
 
 ## 1.17.8 [06/01/2022]
 [905] Notifier retour société aux candidats

@@ -257,11 +257,11 @@ const mnaFormationSchema = {
     default: [],
     description: "Codes ROME",
   },
-  periode: {
-    type: String,
+  /* commenté tant que pas utilisé periode: {
+    type: [Date],
     default: null,
     description: "Période d'inscription à la formation",
-  },
+  },*/
   capacite: {
     type: String,
     default: null,
