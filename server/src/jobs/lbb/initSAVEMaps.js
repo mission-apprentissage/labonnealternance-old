@@ -60,12 +60,14 @@ const parseUpdateLine = (line) => {
 
     let companies = [];
 
-    let sirets = terms[1].replace(/"/g, "").split(",");
+    let sirets = terms[1].replace(/"/g, "").trim().split(/,|\s/g);
+    sirets = sirets.map((siret) => siret.padStart(14, "0"));
+
     let email = terms[3].replace(/"/g, "").trim();
     let telephone = terms[4].replace(/"/g, "").trim();
     let website = terms[5].replace(/"/g, "").trim();
 
-    let removeEmail = terms[6]; // 0 | 1
+    let removeEmail = terms[6]; // "0" | "1"
     let removePhone = terms[7];
     let removeWebsite = terms[8];
 
@@ -84,9 +86,9 @@ const parseUpdateLine = (line) => {
     telephone = phoneAlternance ? phoneAlternance : telephone;
     email = emailAlternance ? emailAlternance : email;
 
-    website = removeWebsite ? "" : website;
-    telephone = removePhone ? "" : telephone;
-    email = removeEmail ? "" : email;
+    website = removeWebsite === "1" ? "remove" : website;
+    telephone = removePhone === "1" ? "remove" : telephone;
+    email = removeEmail === "1" ? "remove" : email;
 
     let type = "lbb";
     // si la moindre info concerne l'alternance on force le type à lba
@@ -107,7 +109,7 @@ const parseUpdateLine = (line) => {
     let name = newCompanyName || newOfficeName;
 
     sirets.forEach((siret) => {
-      companies.push({
+      let company = {
         siret,
         raisonsociale: name,
         enseigne: name,
@@ -116,7 +118,9 @@ const parseUpdateLine = (line) => {
         website,
         type,
         romes,
-      });
+      };
+
+      companies.push(company);
     });
 
     return companies;
@@ -131,7 +135,7 @@ const parseRemoveLine = (line) => {
 
   if (removeCount > 1) {
     return {
-      siret: terms[1].replace(/"/g, ""),
+      siret: terms[1].replace(/"/g, "").padStart(14, "0"),
     };
   } else {
     return null;
@@ -211,8 +215,6 @@ const initSAVEAddMap = async () => {
       writeData(async (etablissement) => computeLine({ saveMap: addMap, etablissement }))
     );
 
-    //console.log(" addMap : ", addMap);
-
     logMessage("info", `End init SAVE Add map (${addCount} companies)`);
   } catch (err) {
     logMessage("error", err);
@@ -260,20 +262,20 @@ const initSAVEUpdateMap = async () => {
       accumulateData((acc, data, flush) => reconstitutionLigne(acc, data, flush), { accumulator: "" }),
       transformData((line) => parseUpdateLine(line)),
       writeData(async (etablissements) => {
-        etablissements.forEach((etablissement) => computeLine({ saveMap: updateMap, etablissement }));
+        etablissements.forEach((etablissement) => {
+          computeLine({ saveMap: updateMap, etablissement });
+        });
       })
     );
 
-    //console.log(" addMap : ", addMap);
-
-    logMessage("info", `End init SAVE Update map (${updateCount} companies)`);
+    logMessage("info", `End init SAVE Update map (${Object.keys(updateMap).length} companies)`);
   } catch (err) {
     logMessage("error", err);
   }
 
-  addCount = 0;
+  updateCount = 0;
 
-  return addMap;
+  return updateMap;
 };
 
 module.exports = {
