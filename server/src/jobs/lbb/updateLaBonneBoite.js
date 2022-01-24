@@ -11,10 +11,15 @@ const initNafMap = require("./initNafMap.js");
 const initPredictionMap = require("./initPredictionMap.js");
 const { logMessage } = require("../../common/utils/logMessage");
 const { mongooseInstance } = require("../../common/mongodb");
+const { initSAVERemoveMap, initSAVEUpdateMap, initSAVEAddMap } = require("./initSAVEMaps");
 
 let nafScoreMap = {};
 let predictionMap = {};
 let nafMap = {};
+
+let removeMap = {};
+let updateMap = {};
+let addMap = {};
 
 const filePath = path.join(__dirname, "./assets/etablissements.csv");
 
@@ -40,10 +45,18 @@ const findRomesForNaf = async (bonneBoite) => {
   return romes;
 };
 
+const isCompanyRemoved = (siret) => {
+  return removeMap[siret];
+};
+
 const resetHashmaps = () => {
   nafScoreMap = {};
   predictionMap = {};
   nafMap = {};
+
+  removeMap = {};
+  updateMap = {};
+  addMap = {};
 };
 
 const emptyMongo = async () => {
@@ -135,9 +148,82 @@ const parseLine = async (line) => {
     libelle_rue: terms[5],
     code_commune: terms[6],
     code_postal: terms[7],
+    type: "lbb",
   };
 
-  let score = await getScoreForCompany(company.siret);
+  if (isCompanyRemoved(company.siret)) {
+    BonnesBoites.delete({ siret: company.siret });
+    return null;
+  }
+
+  let bonneBoite = await buildAndFilterBonneBoiteFromData(company);
+
+  return bonneBoite;
+};
+
+const insertSAVECompanies = async () => {
+  logMessage("info", "Starting insertSAVECompanies");
+  for (const key in addMap) {
+    let company = addMap[key];
+
+    let bonneBoite = await buildAndFilterBonneBoiteFromData(company);
+
+    if (bonneBoite) {
+      await bonneBoite.save();
+    }
+  }
+  logMessage("info", "Ended insertSAVECompanies");
+};
+
+const updateSAVECompanies = async () => {
+  logMessage("info", "Starting updateSAVECompanies");
+  for (const key in updateMap) {
+    let company = updateMap[key];
+
+    let bonneBoite = await BonnesBoites.findOne({ siret: company.siret });
+
+    if (bonneBoite) {
+      // remplacement pour une bonneBoite trouvée par les données modifiées dans la table update SAVE
+      if (company.raisonsociale) {
+        bonneBoite.raisonsociale = company.raisonsociale;
+        bonneBoite.enseigne = company.enseigne;
+      }
+
+      if (company?.email === "remove") {
+        bonneBoite.email = "";
+      } else if (company.email) {
+        bonneBoite.email = company.email;
+      }
+
+      if (company?.telephone === "remove") {
+        bonneBoite.telephone = "";
+      } else if (company.telephone) {
+        bonneBoite.telephone = company.telephone;
+      }
+
+      if (company?.website === "remove") {
+        bonneBoite.website = "";
+      } else if (company.website) {
+        bonneBoite.website = company.website;
+      }
+
+      bonneBoite.type = company.type;
+
+      if (company.romes) {
+        bonneBoite.romes = [...new Set(company.romes.concat(bonneBoite.romes))];
+      }
+
+      await bonneBoite.save();
+    }
+  }
+  logMessage("info", "Ended updateSAVECompanies");
+};
+
+/*
+  Initialize bonneBoite from data, add missing data from maps, 
+*/
+const buildAndFilterBonneBoiteFromData = async (company) => {
+  let score = company.score || (await getScoreForCompany(company.siret));
 
   if (!score) {
     //TODO: checker si réhaussage artificiel vie support PE
@@ -183,7 +269,7 @@ const parseLine = async (line) => {
   return bonneBoite;
 };
 
-module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles }) => {
+module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles, shouldInitSAVEMaps }) => {
   if (!running) {
     running = true;
     try {
@@ -192,6 +278,15 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles }
       logMessage("info", `score 080 :  ${config.private.lbb.score80Level}`);
       logMessage("info", `score 060 :  ${config.private.lbb.score60Level}`);
       logMessage("info", `score 050 :  ${config.private.lbb.score50Level}`);
+
+      if (shouldInitSAVEMaps) {
+        removeMap = await initSAVERemoveMap();
+        addMap = await initSAVEAddMap();
+        updateMap = await initSAVEUpdateMap();
+      }
+
+      nafScoreMap = await initNafScoreMap();
+      nafMap = await initNafMap();
 
       if (shouldParseFiles) {
         var exec = require("child_process").exec;
@@ -202,8 +297,6 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles }
 
         const db = mongooseInstance.connection;
 
-        nafScoreMap = await initNafScoreMap();
-        nafMap = await initNafMap();
         predictionMap = await initPredictionMap();
 
         // TODO: supprimer ce reset
@@ -224,10 +317,13 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles }
           logMessage("error", err2);
           throw new Error("Error while parsing establishment file");
         }
-
-        // clearing memory
-        resetHashmaps();
       }
+
+      await insertSAVECompanies();
+      await updateSAVECompanies();
+
+      // clearing memory
+      resetHashmaps();
 
       if (shouldBuildIndex) {
         await rebuildIndex(BonnesBoites);

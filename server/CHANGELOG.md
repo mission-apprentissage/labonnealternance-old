@@ -2,6 +2,7 @@
 
 ## 1.17.9 [18/01/2022]
 [999] Ignorer les webhooks sur emails notifications aux candidats
+[985] Prise en compte data SAVE pour import LBB
 [1021] Ajout d'un endpoint sécurisé sur les applications
 [981] Afficher les entreprises en premier
 [982] Utilisation champ cle_ministere_educatif pour identifier les formations en accès direct

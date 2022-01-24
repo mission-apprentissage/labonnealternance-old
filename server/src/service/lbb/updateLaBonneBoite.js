@@ -14,6 +14,7 @@ const updateLaBonneBoite = async (query) => {
         shouldClearMongo: query?.shouldClearMongo === "false" ? false : true,
         shouldBuildIndex: query?.shouldBuildIndex === "false" ? false : true,
         shouldParseFiles: query?.shouldParseFiles === "false" ? false : true,
+        shouldInitSAVEMaps: query?.shouldInitSAVEMaps === "false" ? false : true,
       };
 
       console.log(params);

@@ -81,6 +81,11 @@ const bonneBoiteSchema = {
     default: null,
     description: "URL du site Internet",
   },
+  type: {
+    type: String,
+    default: "lba",
+    description: "Type de bonne boîte : lba | lbb",
+  },
   created_at: {
     type: Date,
     default: Date.now,
