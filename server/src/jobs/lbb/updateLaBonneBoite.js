@@ -152,7 +152,7 @@ const parseLine = async (line) => {
   };
 
   if (isCompanyRemoved(company.siret)) {
-    BonnesBoites.delete({ siret: company.siret });
+    BonnesBoites.remove({ siret: company.siret });
     return null;
   }
 
