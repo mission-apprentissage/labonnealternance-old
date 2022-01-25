@@ -147,7 +147,7 @@ const getFormation = async ({ id, caller }) => {
     let mustTerm = [
       {
         match: {
-          _id: id,
+          cle_ministere_educatif: id,
         },
       },
     ];
@@ -407,13 +407,13 @@ const transformFormationForIdea = (formation) => {
   resultFormation.longTitle = formation.source.intitule_long;
   resultFormation.diplomaLevel = formation.source.niveau;
   resultFormation.onisepUrl = formation.source.onisep_url;
-  resultFormation.id = formation.id;
+  resultFormation.id = formation.source.cle_ministere_educatif;
   resultFormation.diploma = formation.source.diplome;
   resultFormation.cfd = formation.source.cfd;
   resultFormation.rncpCode = formation.source.rncp_code;
   resultFormation.rncpLabel = formation.source.rncp_intitule;
   resultFormation.rncpEligibleApprentissage = formation.source.rncp_eligible_apprentissage;
-  resultFormation.period = formation.source.periode;
+  //resultFormation.period = formation.source.periode;
   resultFormation.capacity = formation.source.capacite;
   resultFormation.createdAt = formation.source.created_at;
   resultFormation.lastUpdateAt = formation.source.last_update_at;

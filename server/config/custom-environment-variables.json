@@ -27,6 +27,9 @@
     "awsAccessKeyId": "AWS_ACCESS_KEY_ID",
     "awsSecretAccessKey": "AWS_SECRET_ACCESS_KEY",
     "catalogueUrl": "CATALOGUE_URL",
+    "matcha": {
+      "apiKey": "MATCHA_ACCESS_KEY"
+    },
     "mongodbUrl": "MONGODB_URL",
     "mongodb": {
       "uri": "LABONNEALTERNANCE_MONGODB_URI"
