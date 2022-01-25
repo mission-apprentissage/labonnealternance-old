@@ -17,11 +17,87 @@ const { logMessage } = require("../../utils/logMessage");
 // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/bulk_examples.html
 
 let isMappingNeedingGeoPoint = false;
+const exclude = ["id", "__v", "_id"];
 
 function timeout(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function getProperties(type, instance = null, requireAsciiFolding = false) {
+  // paramètre optionnel indiquant que la recherche sur le champ est insensible à la casse et aux accents
+  const asciiFoldingParameters = requireAsciiFolding
+    ? {
+        analyzer: "folding",
+        search_analyzer: "folding",
+      }
+    : {};
+
+  if (type === "ObjectID" || type === "String")
+    return {
+      type: "text",
+      fields: { keyword: { type: "keyword", ignore_above: 256 } },
+      ...asciiFoldingParameters,
+    };
+
+  if (type === "Date") return { type: "date" };
+  if (type === "Number") return { type: "long" };
+  if (type === "Boolean") return { type: "boolean" };
+  if (type === "Mixed") return { type: "nested" };
+
+  if (type === "Array") {
+    if (instance === "String") {
+      return {
+        type: "text",
+        fields: { keyword: { type: "keyword", ignore_above: 256 } },
+        ...asciiFoldingParameters,
+      };
+    }
+
+    if (instance === "Mixed") {
+      return { type: "nested" };
+    }
+  }
+}
+
+function getMapping(schema, requireAsciiFolding = false) {
+  const properties = {};
+
+  for (let i = 0; i < Object.keys(schema.paths).length; i++) {
+    const key = Object.keys(schema.paths)[i];
+
+    if (exclude.includes(key)) {
+      continue;
+    }
+    const mongooseType = schema.paths[key].instance;
+    const isSubDocument = typeof schema.paths[key].caster === "function";
+
+    if (schema.paths[key].options.es_mapping) {
+      properties[key] = schema.paths[key].options.es_mapping;
+      continue;
+    }
+
+    if (/geo_/.test(key)) {
+      properties[key] = { type: "geo_point" };
+      isMappingNeedingGeoPoint = true;
+    } else {
+      if (isSubDocument) {
+        properties[key] = { type: "nested", properties: {} };
+        for (let i = 0; i < Object.keys(schema.paths[key].caster.schema.paths).length; i++) {
+          const subDocumentKey = Object.keys(schema.paths[key].caster.schema.paths)[i];
+          let { instance, caster } = schema.paths[key].caster.schema.paths[subDocumentKey];
+
+          properties[key].properties[subDocumentKey] = getProperties(instance, caster?.instance, requireAsciiFolding);
+        }
+      } else {
+        properties[key] = getProperties(mongooseType, schema.paths[key].caster?.instance, requireAsciiFolding);
+      }
+    }
+  }
+
+  return { properties };
+}
+
+/*
 function getMapping(schema, requireAsciiFolding = false) {
   const properties = {};
 
@@ -88,7 +164,7 @@ function getMapping(schema, requireAsciiFolding = false) {
   }
 
   return { properties };
-}
+}*/
 
 function Mongoosastic(schema, options) {
   const { esClient } = options;
