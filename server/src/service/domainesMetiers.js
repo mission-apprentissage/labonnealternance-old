@@ -11,7 +11,7 @@ const getRomesAndLabelsFromTitleQuery = async (query) => {
   if (!query.title) return { error: "title_missing" };
   else {
     let [romesMetiers, romesDiplomes] = await Promise.all([
-      getLabelsAndRomes(query.title),
+      getLabelsAndRomes(query.title, query.withRomeLabels),
       getLabelsAndRomesForDiplomas(query.title),
     ]);
     return { ...romesMetiers, ...romesDiplomes };
@@ -146,7 +146,7 @@ const getMetiers = async ({ title = null, romes = null, rncps = null }) => {
   }
 };
 
-const getLabelsAndRomes = async (searchKeyword) => {
+const getLabelsAndRomes = async (searchKeyword, withRomeLabels) => {
   try {
     let terms = [];
 
@@ -158,10 +158,15 @@ const getLabelsAndRomes = async (searchKeyword) => {
 
     const esClient = getDomainesMetiersES();
 
+    let sources = ["sous_domaine", "codes_romes", "codes_rncps"];
+    if (withRomeLabels) {
+      sources.push("couples_romes_metiers");
+    }
+
     const response = await esClient.search({
       index: "domainesmetiers",
       size: 20,
-      _sourceIncludes: ["sous_domaine", "codes_romes", "codes_rncps"],
+      _sourceIncludes: sources,
       body: {
         query: {
           bool: {
@@ -174,12 +179,18 @@ const getLabelsAndRomes = async (searchKeyword) => {
     let labelsAndRomes = [];
 
     response.body.hits.hits.forEach((labelAndRome) => {
-      labelsAndRomes.push({
+      let metier = {
         label: labelAndRome._source.sous_domaine,
         romes: labelAndRome._source.codes_romes,
         rncps: labelAndRome._source.codes_rncps,
         type: "job",
-      });
+      };
+
+      if (withRomeLabels) {
+        metier.romeTitles = labelAndRome._source.couples_romes_metiers;
+      }
+
+      labelsAndRomes.push(metier);
     });
 
     return { labelsAndRomes };
