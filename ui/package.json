@@ -9,6 +9,7 @@
     "postbuild": "next-sitemap --config next-sitemap.js",
     "start": "next start",
     "test": "nyc --silent jest --env=jest-environment-jsdom-sixteen",
+    "testlocal": "nyc --silent jest --env=jest-environment-jsdom-sixteen --watch",
     "serve": "next start",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",

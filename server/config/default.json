@@ -34,6 +34,9 @@
     "awsAccessKeyId": "1234",
     "awsSecretAccessKey": "1234",
     "catalogueUrl": "https://catalogue-recette.apprentissage.beta.gouv.fr",
+    "matcha": {
+      "apiKey": "1234"
+    },
     "mongodbUrl": "1234",
     "mongodbDbname": "1234",
     "apiEntrepriseKey": "1234",
