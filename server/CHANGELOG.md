@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.0 [28/01/2022]
+[992] Utilisation elasticsarch lbb
+
 ## 1.17.9 [18/01/2022]
 [999] Ignorer les webhooks sur emails notifications aux candidats
 [985] Prise en compte data SAVE pour import LBB
