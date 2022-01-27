@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.17.11 [27/01/2022]
+[1041] Formations affichées en premier
+
 ## 1.17.10 [26/01/2022]
 [1031] Limitations endpoint application
 
