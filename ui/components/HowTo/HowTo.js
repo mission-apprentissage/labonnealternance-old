@@ -55,7 +55,7 @@ const HowTo = () => {
             <div className="card-body">
               <h5 className="card-title">Un contact facile</h5>
               <p className="card-text">
-                Contactez facilement les centres de formation ou les entreprises pour postuler{" "}
+                Contactez facilement les entreprises ou les centres de formation pour postuler{" "}
               </p>
             </div>
           </div>

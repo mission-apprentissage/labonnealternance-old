@@ -21,7 +21,7 @@ const ResultListsCounter = (props) => {
   if (allJobSearchError && trainingSearchError) return "";
 
   let count = 0;
-  
+
   let jobPart = "";
   let jobLoading = "";
   let jobCount = 0;
