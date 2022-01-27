@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.17.10 [27/01/2022]
+[1020] Paramètre sur domaineMetiers pour liste les couples romes/labels
 [1031] Limitations endpoint application
 [1041] Formations affichées en premier
 
