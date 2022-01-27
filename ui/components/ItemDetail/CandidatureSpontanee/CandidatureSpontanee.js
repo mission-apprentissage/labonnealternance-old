@@ -38,6 +38,8 @@ const CandidatureSpontanee = (props) => {
     let currentUniqId = actualLocalStorage.getItem(uniqId(kind, props.item));
     if (currentUniqId) {
       setApplied(currentUniqId)
+    } else {
+      setApplied(null)
     }
   }, [props?.item]);
 
