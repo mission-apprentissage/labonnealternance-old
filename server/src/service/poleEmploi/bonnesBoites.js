@@ -26,11 +26,11 @@ const getSomeLbbCompanies = async ({
   caller,
   api = "jobV1",
 }) => {
-  let companySet = null;
+  let companies = null;
   let currentRadius = strictRadius ? radius : 20000;
   let companyLimit = 100; //TODO: query params options or default value from properties -> size || 100
 
-  companySet = await getLbbCompanies({
+  companies = await getLbbCompanies({
     romes,
     latitude,
     longitude,
@@ -42,25 +42,25 @@ const getSomeLbbCompanies = async ({
   });
 
   //console.log("companies :", companySet);
-  if (companySet && companySet.length) {
-    companySet = transformLbbCompaniesForIdea({ companySet, radius, type, strictRadius, referer, caller });
+  if (companies && companies.length) {
+    companies = transformLbbCompaniesForIdea({ companies, radius, type, strictRadius, referer, caller });
     //console.log("apres refine : ", jobs.resultats[0].lieuTravail.distance);
   }
 
-  return companySet;
+  return companies;
 };
 
-const transformLbbCompaniesForIdea = ({ companySet, type, referer, caller }) => {
+const transformLbbCompaniesForIdea = ({ companies, type, referer, caller }) => {
   let resultCompanies = {
     results: [],
   };
 
-  if (companySet && companySet.length) {
+  if (companies && companies.length) {
     const contactAllowedOrigin = isAllowedSource({ referer, caller });
 
-    for (let i = 0; i < companySet.length; ++i) {
-      console.log("company : ", companySet[i]);
-      let company = transformLbbCompanyForIdea({ company: companySet[i], type, contactAllowedOrigin });
+    for (let i = 0; i < companies.length; ++i) {
+      //console.log("company : ", companies[i]);
+      let company = transformLbbCompanyForIdea({ company: companies[i], type, contactAllowedOrigin });
 
       resultCompanies.results.push(company);
     }
@@ -73,33 +73,33 @@ const transformLbbCompaniesForIdea = ({ companySet, type, referer, caller }) => 
 const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => {
   let resultCompany = itemModel(type);
 
-  resultCompany.title = company.source.enseigne;
+  resultCompany.title = company.enseigne;
 
   if (contactAllowedOrigin) {
     resultCompany.contact = {
-      ...encryptMailWithIV(company.source.email),
-      phone: company.source.telephone,
+      ...encryptMailWithIV(company.email),
+      phone: company.telephone,
     };
   }
 
   // format différent selon accès aux bonnes boîtes par recherche ou par siret
-  const address = `${company.source.numero_rue} ${company.source.libelle_rue}, ${company.source.code_postal} ${company.source.ville}`.trim();
+  const address = `${company.numero_rue} ${company.libelle_rue}, ${company.code_postal} ${company.ville}`.trim();
 
   resultCompany.place = {
-    distance: company.sort[0] ?? 0,
+    distance: Math.round(10 * company.distance[0]) / 10 ?? 0,
     fullAddress: address,
-    latitude: company.source.geo_coordonnees.split(",")[0],
-    longitude: company.source.geo_coordonnees.split(",")[1],
-    city: company.source.ville,
+    latitude: company.geo_coordonnees.split(",")[0],
+    longitude: company.geo_coordonnees.split(",")[1],
+    city: company.ville,
     address,
   };
 
   resultCompany.company = {
-    name: company.source.enseigne,
-    siret: company.source.siret,
-    size: company.source.tranche_effectif,
-    //socialNetwork: company.source.social_network,
-    //url: company.website,
+    name: company.enseigne,
+    siret: company.siret,
+    size: company.tranche_effectif,
+    //socialNetwork: company.social_network,
+    url: company.website,
   };
 
   //resultCompany.url = company.url;
@@ -113,8 +113,8 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
 
   resultCompany.nafs = [
     {
-      code: company.source.code_naf,
-      label: company.source.intitule_naf,
+      code: company.code_naf,
+      label: company.intitule_naf,
     },
   ];
 
@@ -156,8 +156,6 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
 
     const esQueryIndexFragment = getBonnesBoitesEsQueryIndexFragment(companyLimit);
 
-    console.log("GO search bbs es ", mustTerm);
-
     const responseBonnesBoites = await esClient.search({
       ...esQueryIndexFragment,
       body: {
@@ -196,7 +194,7 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
     //console.log("response : ",responseBonnesBoites.body.hits.total), responseBonnesBoites.body.hits,);
     responseBonnesBoites.body.hits.hits.forEach((bonneBoite) => {
       //console.log("bonneBoite : ",bonneBoite);
-      bonnesBoites.push({ source: bonneBoite._source, sort: bonneBoite.sort, id: bonneBoite._id });
+      bonnesBoites.push({ ...bonneBoite._source, distance: bonneBoite.sort });
     });
 
     /*const companies = await axios.get(`${type === "lbb" ? lbbApiEndpoint : lbaApiEndpoint}`, {
