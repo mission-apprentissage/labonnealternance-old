@@ -39,6 +39,7 @@ const CandidatureSpontanee = (props) => {
     if (currentUniqId) {
       setApplied(currentUniqId)
     } else {
+      // setApplied(null) is MANDATORY to avoid "already-applied message" when user swaps.
       setApplied(null)
     }
   }, [props?.item]);

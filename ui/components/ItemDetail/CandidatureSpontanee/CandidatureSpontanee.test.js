@@ -193,7 +193,7 @@ describe("CandidatureSpontanee", () => {
       expect(title).toHaveTextContent("Une erreur est survenue.");
     });
     // Then 3.
-    expect(fakeLocalStorage.getItem('candidaturespontanee-lbb-40400744500079')).toBeNull();
+    expect(fakeLocalStorage.getItem('candidaturespontanee-lbb-40400744500079')).toBeFalsy();
     expect(screen.queryByTestId('already-applied')).toBeNull();
   });
   it("LBB - full but failing test", async () => {
@@ -303,7 +303,7 @@ describe("CandidatureSpontanee", () => {
       expect(title).toHaveTextContent("Une erreur est survenue.");
     });
     // Then 3.
-    expect(fakeLocalStorage.getItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75')).toBeNull();
+    expect(fakeLocalStorage.getItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75')).toBeFalsy();
   });
   it("MATCHA - full but FAILING test", async () => {
     // Given
