@@ -121,8 +121,6 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
   return resultCompany;
 };
 
-//const lbbApiEndpoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/company/";
-//const lbaApiEndpoint = "https://api.emploi-store.fr/partenaire/labonnealternance/v1/company/";
 const lbbCompanyApiEndPoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/office/";
 
 const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type, caller, api = "jobV1" }) => {
@@ -138,8 +136,6 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
       page_size: companyLimit,
       distance,
     };*/
-
-    console.log("romes : ", romes.split(",").join(" "));
 
     let mustTerm = [
       {
