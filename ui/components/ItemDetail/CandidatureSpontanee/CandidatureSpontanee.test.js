@@ -193,7 +193,8 @@ describe("CandidatureSpontanee", () => {
       expect(title).toHaveTextContent("Une erreur est survenue.");
     });
     // Then 3.
-    expect(fakeLocalStorage.getItem('candidaturespontanee-lbb-40400744500079')).toEqual('null');
+    expect(fakeLocalStorage.getItem('candidaturespontanee-lbb-40400744500079')).toBeNull();
+    expect(screen.queryByTestId('already-applied')).toBeNull();
   });
   it("LBB - full but failing test", async () => {
     // Given
