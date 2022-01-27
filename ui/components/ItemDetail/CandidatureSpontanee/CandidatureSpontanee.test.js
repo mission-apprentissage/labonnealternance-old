@@ -302,7 +302,7 @@ describe("CandidatureSpontanee", () => {
       expect(title).toHaveTextContent("Une erreur est survenue.");
     });
     // Then 3.
-    expect(fakeLocalStorage.getItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75')).toEqual('null');
+    expect(fakeLocalStorage.getItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75')).toBeNull();
   });
   it("MATCHA - full but FAILING test", async () => {
     // Given
