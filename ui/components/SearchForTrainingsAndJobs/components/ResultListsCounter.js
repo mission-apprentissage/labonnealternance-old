@@ -21,6 +21,7 @@ const ResultListsCounter = (props) => {
   if (allJobSearchError && trainingSearchError) return "";
 
   let count = 0;
+
   let jobPart = "";
   let jobLoading = "";
   let jobCount = 0;
@@ -37,7 +38,6 @@ const ResultListsCounter = (props) => {
       );
     } else if (!allJobSearchError) {
       jobCount = getJobCount(jobs);
-      console.log('jobCount', jobCount);
       count += jobCount;
       jobPart = `${jobCount === 0 ? "aucune entreprise" : jobCount}`;
 
@@ -88,7 +88,7 @@ const ResultListsCounter = (props) => {
         {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
           <div className={`c-resultlist-correspond-display-${displayCount}`}>
             <span className="c-resultlist-correspond c-resultlist-correspond--bold">
-              {jobPart} {trainingPart && jobPart ? " et " : ""} {trainingPart}{" "}
+              {trainingPart} {trainingPart && jobPart ? " et " : ""} {jobPart} {" "}
             </span>
             <span className="c-resultlist-correspond c-resultlist-correspond--light">{correspondText}</span>
           </div>
@@ -122,15 +122,15 @@ const ResultListsCounter = (props) => {
             handleFilterButtonClicked={filterButtonClicked}
           />
           <FilterButton
-            type="trainings"
-            count={trainingCount}
-            isActive={activeFilter === "trainings"}
-            handleFilterButtonClicked={filterButtonClicked}
-          />
-          <FilterButton
             type="jobs"
             count={jobCount}
             isActive={activeFilter === "jobs"}
+            handleFilterButtonClicked={filterButtonClicked}
+          />
+          <FilterButton
+            type="trainings"
+            count={trainingCount}
+            isActive={activeFilter === "trainings"}
             handleFilterButtonClicked={filterButtonClicked}
           />
           <div className="c-resultlist-purplefilter" onClick={showSearchForm}>

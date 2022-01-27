@@ -36,7 +36,7 @@ const HowTo = () => {
             <div className="card-body">
               <h5 className="card-title">En un clin d’&oelig;il</h5>
               <p className="card-text">
-                Obtenez en un clin d’&oelig;il la liste des entreprises et formations proches de chez vous dans le domaine recherché.
+                Obtenez en un clin d’&oelig;il la liste des formations et entreprises proches de chez vous dans le domaine recherché.
               </p>
             </div>
           </div>

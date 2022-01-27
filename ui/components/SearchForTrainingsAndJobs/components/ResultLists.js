@@ -14,9 +14,13 @@ const ResultLists = (props) => {
 
   let [extendedSearch, hasSearch, isFormVisible] = [false, false, false];
   if (props.isTestMode) {
-    [extendedSearch, hasSearch, isFormVisible] = [props.stubbedExtendedSearch, props.stubbedHasSearch, props.stubbedIsFormVisible];
+    [extendedSearch, hasSearch, isFormVisible] = [
+      props.stubbedExtendedSearch,
+      props.stubbedHasSearch,
+      props.stubbedIsFormVisible,
+    ];
   } else {
-     ({ extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings));
+    ({ extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings));
   }
 
   const filterButtonClicked = (filterButton) => {
@@ -50,7 +54,13 @@ const ResultLists = (props) => {
             ""
           )}
           {props.trainings.map((training, idx) => {
-            return renderTraining(props.isTestMode, idx, training, props.handleSelectItem, props.searchForJobsOnNewCenter)
+            return renderTraining(
+              props.isTestMode,
+              idx,
+              training,
+              props.handleSelectItem,
+              props.searchForJobsOnNewCenter
+            );
           })}
         </>
       );
@@ -140,7 +150,7 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedJobs.map((job, idx) => {
-            return renderJob(props.isTestMode, idx, job, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
+            return renderJob(props.isTestMode, idx, job, props.handleSelectItem, props.searchForTrainingsOnNewCenter);
           })}
         </>
       );
@@ -153,7 +163,13 @@ const ResultLists = (props) => {
       return (
         <>
           {mergedLbaLbbCompanies.map((company, idx) => {
-            return renderLbb(props.isTestMode, idx, company, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
+            return renderLbb(
+              props.isTestMode,
+              idx,
+              company,
+              props.handleSelectItem,
+              props.searchForTrainingsOnNewCenter
+            );
           })}
         </>
       );
@@ -169,9 +185,21 @@ const ResultLists = (props) => {
         <>
           {mergedOpportunities.map((opportunity, idx) => {
             if (opportunity.ideaType === "peJob" || opportunity.ideaType === "matcha") {
-              return renderJob(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
+              return renderJob(
+                props.isTestMode,
+                idx,
+                opportunity,
+                props.handleSelectItem,
+                props.searchForTrainingsOnNewCenter
+              );
             } else {
-              return renderLbb(props.isTestMode, idx, opportunity, props.handleSelectItem, props.searchForTrainingsOnNewCenter)
+              return renderLbb(
+                props.isTestMode,
+                idx,
+                opportunity,
+                props.handleSelectItem,
+                props.searchForTrainingsOnNewCenter
+              );
             }
           })}
         </>
@@ -205,7 +233,7 @@ const ResultLists = (props) => {
       }`}
     >
       <div className={`c-result-list__header ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
-        <ResultListsCounter 
+        <ResultListsCounter
           scopeContext={scopeContext}
           filterButtonClicked={filterButtonClicked}
           allJobSearchError={props.allJobSearchError}
@@ -224,8 +252,8 @@ const ResultLists = (props) => {
         id="resultList"
         className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}
       >
-        {getJobResult()}
         {getTrainingResult()}
+        {getJobResult()}
       </div>
     </div>
   );
