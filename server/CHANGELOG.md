@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.17.10 [27/01/2022]
+[1020] Paramètre sur domaineMetiers pour liste les couples romes/labels
+[1031] Limitations endpoint application
+[1041] Formations affichées en premier
+
 ## 1.17.9 [18/01/2022]
 [999] Ignorer les webhooks sur emails notifications aux candidats
 [985] Prise en compte data SAVE pour import LBB

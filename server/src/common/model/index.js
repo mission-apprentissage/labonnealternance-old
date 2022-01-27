@@ -4,13 +4,19 @@ const schema = require("../model/schema");
 
 const createModel = (modelName, descriptor, options = {}) => {
   const schema = new mongooseInstance.Schema(descriptor);
+
   if (options.esIndexName) {
     schema.plugin(mongoosastic, { esClient: getElasticInstance(), index: options.esIndexName });
+  }
+
+  if (options.esIndexName || options.paginate) {
     schema.plugin(require("mongoose-paginate"));
   }
+
   if (options.createMongoDBIndexes) {
     options.createMongoDBIndexes(schema);
   }
+
   return mongooseInstance.model(modelName, schema);
 };
 
@@ -28,7 +34,9 @@ module.exports = {
     esIndexName: "diplomesmetiers",
   }),
   ApiCalls: createModel("apicalls", schema.apiCallSchema),
-  Application: createModel("applications", schema.applicationSchema),
+  Application: createModel("applications", schema.applicationSchema, {
+    paginate: true,
+  }),
   SourceFormations: createModel("sourceformations", schema.sourceFormationsSchema),
   GeoLocation: createModel("geolocation", schema.geoLocationSchema),
   EmailBlacklist: createModel("emailblacklist", schema.emailBlacklist),
