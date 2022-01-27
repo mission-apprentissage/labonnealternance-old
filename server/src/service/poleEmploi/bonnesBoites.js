@@ -1,10 +1,13 @@
 const config = require("config");
 const axios = require("axios");
+const { getBonnesBoitesES } = require("../../common/esClient");
 const { itemModel } = require("../../model/itemModel");
 const { getAccessToken, peApiHeaders } = require("./common.js");
 const { isOriginLocal } = require("../../common/utils/isOriginLocal");
 const { manageApiError } = require("../../common/utils/errorManager");
 const { encryptMailWithIV } = require("../../common/utils/encryptString");
+
+const esClient = getBonnesBoitesES();
 
 const allowedSources = config.private.allowedSources;
 
@@ -27,30 +30,19 @@ const getSomeLbbCompanies = async ({
   let currentRadius = strictRadius ? radius : 20000;
   let companyLimit = 100; //TODO: query params options or default value from properties -> size || 100
 
-  let trys = 0;
-
-  while (trys < 3) {
-    companySet = await getLbbCompanies({
-      romes,
-      latitude,
-      longitude,
-      radius: currentRadius,
-      companyLimit,
-      type,
-      caller,
-      api,
-    });
-
-    if (companySet.status === 429) {
-      console.log("Lbb api quota exceeded. Retrying : ", trys + 1);
-      // trois essais pour gérer les 429 quotas exceeded des apis PE.
-      trys++;
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-    } else break;
-  }
+  companySet = await getLbbCompanies({
+    romes,
+    latitude,
+    longitude,
+    radius: currentRadius,
+    companyLimit,
+    type,
+    caller,
+    api,
+  });
 
   //console.log("companies :", companySet);
-  if (companySet.companies && companySet.companies.length) {
+  if (companySet && companySet.length) {
     companySet = transformLbbCompaniesForIdea({ companySet, radius, type, strictRadius, referer, caller });
     //console.log("apres refine : ", jobs.resultats[0].lieuTravail.distance);
   }
@@ -63,11 +55,12 @@ const transformLbbCompaniesForIdea = ({ companySet, type, referer, caller }) => 
     results: [],
   };
 
-  if (companySet.companies && companySet.companies.length) {
+  if (companySet && companySet.length) {
     const contactAllowedOrigin = isAllowedSource({ referer, caller });
 
-    for (let i = 0; i < companySet.companies.length; ++i) {
-      let company = transformLbbCompanyForIdea({ company: companySet.companies[i], type, contactAllowedOrigin });
+    for (let i = 0; i < companySet.length; ++i) {
+      console.log("company : ", companySet[i]);
+      let company = transformLbbCompanyForIdea({ company: companySet[i], type, contactAllowedOrigin });
 
       resultCompanies.results.push(company);
     }
@@ -80,70 +73,63 @@ const transformLbbCompaniesForIdea = ({ companySet, type, referer, caller }) => 
 const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => {
   let resultCompany = itemModel(type);
 
-  resultCompany.title = company.name;
+  resultCompany.title = company.source.enseigne;
 
   if (contactAllowedOrigin) {
     resultCompany.contact = {
-      ...encryptMailWithIV(company.email),
-      phone: company.phone,
+      ...encryptMailWithIV(company.source.email),
+      phone: company.source.telephone,
     };
   }
 
   // format différent selon accès aux bonnes boîtes par recherche ou par siret
-  const address = company?.address?.city
-    ? `${company.address.street_number} ${company.address.street_name}, ${company.address.zipcode} ${company.address.city}`.trim()
-    : company.address;
+  const address = `${company.source.numero_rue} ${company.source.libelle_rue}, ${company.source.code_postal} ${company.source.ville}`.trim();
 
   resultCompany.place = {
-    distance: company.distance ?? 0,
+    distance: company.sort[0] ?? 0,
     fullAddress: address,
-    latitude: company.lat,
-    longitude: company.lon,
-    city: company.city,
+    latitude: company.source.geo_coordonnees.split(",")[0],
+    longitude: company.source.geo_coordonnees.split(",")[1],
+    city: company.source.ville,
     address,
   };
 
   resultCompany.company = {
-    name: company.name,
-    siret: company.siret,
-    size: company.headcount_text,
-    socialNetwork: company.social_network,
-    url: company.website,
+    name: company.source.enseigne,
+    siret: company.source.siret,
+    size: company.source.tranche_effectif,
+    //socialNetwork: company.source.social_network,
+    //url: company.website,
   };
 
-  resultCompany.url = company.url;
+  //resultCompany.url = company.url;
 
-  resultCompany.romes = [
+  /*resultCompany.romes = [
     {
       code: company.matched_rome_code,
       label: company.matched_rome_label,
     },
-  ];
+  ];*/
 
   resultCompany.nafs = [
     {
-      code: company.naf,
-      label: company.naf_text,
+      code: company.source.code_naf,
+      label: company.source.intitule_naf,
     },
   ];
 
   return resultCompany;
 };
 
-const lbbApiEndpoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/company/";
-const lbaApiEndpoint = "https://api.emploi-store.fr/partenaire/labonnealternance/v1/company/";
+//const lbbApiEndpoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/company/";
+//const lbaApiEndpoint = "https://api.emploi-store.fr/partenaire/labonnealternance/v1/company/";
 const lbbCompanyApiEndPoint = "https://api.emploi-store.fr/partenaire/labonneboite/v1/office/";
 
 const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type, caller, api = "jobV1" }) => {
   try {
-    const token = await getAccessToken(type);
-    //console.log(token);
-    let headers = peApiHeaders;
-    headers.Authorization = `Bearer ${token}`;
-
     const distance = radius || 10;
 
-    let params = {
+    /*let params = {
       rome_codes: romes,
       latitude: latitude,
       sort: "distance", //sort: "score", TODO: remettre sort score après expérimentation CBS
@@ -151,18 +137,78 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
       contract: type === "lbb" ? "dpae" : "alternance",
       page_size: companyLimit,
       distance,
-    };
+    };*/
 
-    const companies = await axios.get(`${type === "lbb" ? lbbApiEndpoint : lbaApiEndpoint}`, {
+    console.log("romes : ", romes.split(",").join(" "));
+
+    let mustTerm = [
+      {
+        match: {
+          romes: romes.split(",").join(" "),
+        },
+      },
+      {
+        match: {
+          type,
+        },
+      },
+    ];
+
+    const esQueryIndexFragment = getBonnesBoitesEsQueryIndexFragment(companyLimit);
+
+    console.log("GO search bbs es ", mustTerm);
+
+    const responseBonnesBoites = await esClient.search({
+      ...esQueryIndexFragment,
+      body: {
+        query: {
+          bool: {
+            must: mustTerm,
+            filter: {
+              geo_distance: {
+                distance: `${distance}km`,
+                geo_coordonnees: {
+                  lat: latitude,
+                  lon: longitude,
+                },
+              },
+            },
+          },
+        },
+        sort: [
+          {
+            _geo_distance: {
+              geo_coordonnees: [parseFloat(longitude), parseFloat(latitude)],
+              order: "asc",
+              unit: "km",
+              mode: "min",
+              distance_type: "arc",
+              ignore_unmapped: true,
+            },
+          },
+        ],
+      },
+    });
+
+    //throw new Error("BOOM");
+    let bonnesBoites = [];
+
+    //console.log("response : ",responseBonnesBoites.body.hits.total), responseBonnesBoites.body.hits,);
+    responseBonnesBoites.body.hits.hits.forEach((bonneBoite) => {
+      //console.log("bonneBoite : ",bonneBoite);
+      bonnesBoites.push({ source: bonneBoite._source, sort: bonneBoite.sort, id: bonneBoite._id });
+    });
+
+    /*const companies = await axios.get(`${type === "lbb" ? lbbApiEndpoint : lbaApiEndpoint}`, {
       params,
       headers,
-    });
+    });*/
 
     //throw new Error(`boom ${type}`);
 
-    return companies.data;
+    return bonnesBoites;
   } catch (error) {
-    return manageApiError({ error, api, caller, errorTitle: `getting companies from PE (${api})` });
+    return manageApiError({ error, api, caller, errorTitle: `getting bonnesBoites frome local ES (${api})` });
   }
 };
 
@@ -202,6 +248,33 @@ const getCompanyFromSiret = async ({ siret, referer, caller, type }) => {
       return manageApiError({ error, api: "jobV1/company", caller, errorTitle: "getting company by Siret from PE" });
     }
   }
+};
+
+const getBonnesBoitesEsQueryIndexFragment = (limit) => {
+  return {
+    //index: "mnaformation",
+    index: "bonnesboites",
+    size: limit,
+    _sourceIncludes: [
+      "siret",
+      "score",
+      "raisonsociale",
+      "enseigne",
+      "code_naf",
+      "intitule_naf",
+      "romes",
+      "numero_rue",
+      "libelle_rue",
+      "code_commune",
+      "code_postal",
+      "ville",
+      "geo_coordonnees",
+      "email",
+      "telephone",
+      "tranche_effectif",
+      "type",
+    ],
+  };
 };
 
 module.exports = { getSomeLbbCompanies, getCompanyFromSiret };
