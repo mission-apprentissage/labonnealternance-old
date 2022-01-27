@@ -36,7 +36,6 @@ const CandidatureSpontanee = (props) => {
     // HACK HERE : reapply setApplied to currentUniqId to re-detect 
     // if user already applied each time the user swap to another item.
     let currentUniqId = actualLocalStorage.getItem(uniqId(kind, props.item));
-    console.log('currentUniqId', currentUniqId);
     if (currentUniqId) {
       setApplied(currentUniqId)
     }
