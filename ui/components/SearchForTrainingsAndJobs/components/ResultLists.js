@@ -224,8 +224,8 @@ const ResultLists = (props) => {
         id="resultList"
         className={`c-result-list__text ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}
       >
-        {getJobResult()}
         {getTrainingResult()}
+        {getJobResult()}
       </div>
     </div>
   );
