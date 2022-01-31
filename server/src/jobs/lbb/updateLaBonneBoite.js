@@ -23,7 +23,7 @@ let addMap = {};
 
 const filePath = path.join(__dirname, "./assets/etablissements.csv");
 
-const testFilePath = path.join(__dirname, "./extractmailing_lba_CCI.bz2");
+const testFilePath = path.join(__dirname, "./datalakepe/extractmailing_lba_CCI.bz2");
 
 let findRomesForNafCount = 0;
 let findRomesForNafTime = 0;
