@@ -42,7 +42,7 @@ module.exports = async () => {
       writeData(async (line) => computeLine(line))
     );
 
-    logMessage("info", `End init CBS predictionMap`);
+    logMessage("info", `End init CBS predictionMap (${Object.keys(predictionMap).length})`);
   } catch (err) {
     logMessage("error", err);
   }
