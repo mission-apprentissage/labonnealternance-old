@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.18.0 [31/01/2022]
+[1028] Volume vers point de montage datalake
 [903b] Reliquat "j'envoie ma candidature"
 [954] Ouvrir dans un nouvel onglet les formations
 

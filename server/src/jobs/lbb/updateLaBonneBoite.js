@@ -23,6 +23,13 @@ let addMap = {};
 
 const filePath = path.join(__dirname, "./assets/etablissements.csv");
 
+/*
+path point de montage
+const testFilePath = path.join(__dirname, "./datalakepe/extractmailing_lba_CCI.bz2");
+let stats = fs.statSync(testFilePath);
+var fileSizeInBytes = stats.size;
+logMessage("info test montage", fileSizeInBytes);*/
+
 let findRomesForNafCount = 0;
 let findRomesForNafTime = 0;
 

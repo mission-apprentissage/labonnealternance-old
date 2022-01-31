@@ -30,6 +30,7 @@ services:
     image: labonnealternance_server
     volumes:
       - /opt/labonnealternance/data/server/lbb/assets:/app/src/jobs/lbb/assets
+      - /mnt/datalakepe:/app/src/jobs/lbb/datalakepe
     container_name: labonnealternance_server
     build:
       context: server
