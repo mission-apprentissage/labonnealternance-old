@@ -53,6 +53,12 @@
   @include media-breakpoint-up(md) { 
     display: none;
   }
+  padding-top: 15px;
+
+  img {
+    width:24px;
+    height:24px;
+  }
  }
 
  .c-result-list__text

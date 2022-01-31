@@ -57,8 +57,25 @@ const initApplication = (query, companyEmail) => {
   });
 };
 
-const getApplications = async (query) => {
-  return await Application.find(JSON.parse(query.query));
+const getApplications = async (qs) => {
+  const query = qs && qs.query ? JSON.parse(qs.query) : {};
+  const page = qs && qs.page ? qs.page : 1;
+  let limit = qs && qs.limit ? parseInt(qs.limit, 10) : 100;
+
+  if (limit > 200) {
+    limit = 200;
+  }
+
+  const response = await Application.paginate(query, { page, limit, lean: true });
+  return {
+    data: response.docs,
+    pagination: {
+      page: response.page,
+      result_per_page: limit,
+      number_of_page: response.pages,
+      total: response.total,
+    },
+  };
 };
 
 const getEmailTemplates = (applicationType) => {

@@ -271,6 +271,9 @@
                     },
                     {
                         "$ref": "#/parameters/rncps"
+                    },
+                    {
+                        "$ref": "#/parameters/withRomeLabels"
                     }
                 ],
 
@@ -456,6 +459,16 @@
             "type": "string",
             "description": "Une liste de codes ROME séparés par des virgules correspondant au(x) métier(s) recherché(s).",
             "example": "F1603,I1308"
+        },
+
+        "withRomeLabels":
+        {
+            "name": "withRomeLabels",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "La présence d'une valeur pour ce paramètre fait remonter les couples romes / libellés",
+            "example": "1, true"
         },
 
         "title":
@@ -1396,8 +1409,39 @@
                     "type": "string",
                     "example" : "job",
                     "description": "Indique que l'objet est de type job"
+                },
+                "romeTitles":
+                {
+                    "type": "array",
+                    "items":
+                    {
+                        "$ref": "#/definitions/RomeTitle"
+                    },
+                    "description": "Optionnel : tableau de couples romes / libellés"
                 }
             }      
+        },
+        "RomeTitle":
+        {
+            "type": "object",
+            "description": "Couple code ROME / Libellé ",
+            "required": ["label","romes","rncps","type"],
+            "properties":
+            {
+                "codeRome":
+                {
+                    "type": "string",
+                    "example": "L1503",
+                    "description": "Le code rome"
+                },
+
+                "intitule":
+                {
+                    "type": "string",
+                    "example": "Décor et accessoires spectacle",
+                    "description": "Un intitulé du code ROME"
+                }
+            }
         }
     }
 

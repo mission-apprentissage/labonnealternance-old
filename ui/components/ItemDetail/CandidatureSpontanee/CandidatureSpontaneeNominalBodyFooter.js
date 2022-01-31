@@ -140,7 +140,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
               <a href="/cgu" className="c-candidature-link" target="_blank">
                 Conditions générales d'utilisation
               </a>{" "}
-              du service La Bonne Alternance et acceptez le partage de vos informations avec l'entreprise {company}
+              du service La Bonne Alternance et acceptez le partage de vos informations avec {company}
             </div>
           </label>
         </fieldset>
