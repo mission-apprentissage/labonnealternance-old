@@ -118,7 +118,11 @@ const getGeoLocationForCompany = async (bonneBoite) => {
           address: geoKey,
           ...result,
         });
-        await geoLocation.save();
+        try {
+          await geoLocation.save();
+        } catch (err) {
+          //ignore duplicate error
+        }
       } else {
         return null;
       }
