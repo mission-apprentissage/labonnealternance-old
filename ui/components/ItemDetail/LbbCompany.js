@@ -7,6 +7,8 @@ import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { get } from "lodash";
 import { setSelectedMarker } from "../../utils/mapTools";
+import { getItemQueryParameters } from "../../utils/getItemId";
+import { getSearchQueryParameters } from "../../utils/getSearchParameters";
 
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues, selectedMapPopupItem } = useSelector((state) => state.trainings);
@@ -83,15 +85,18 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
     }
   };
 
+  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(company)}&${getSearchQueryParameters(formValues)}`
+
   return (
-    <div
+    <a
       className={`resultCard gtmSavoirPlus gtm${capitalizeFirstLetter(
         company.ideaType
       )} gtmListe ${getHightlightClass()}`}
-      onClick={onSelectItem}
+      // onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
       data-testid={`${company.ideaType}${company.company.siret}`}
+      href={actualLink}
     >
       <div className="c-media" id={`${company.ideaType}${company.company.siret}`}>
         <div className="c-media-figure">
@@ -132,7 +137,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
           )}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

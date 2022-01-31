@@ -77,6 +77,15 @@
   background-color: #F9F8F6;
 }
 
+
+a.resultCard {
+  display: block;
+}
+a.resultCard:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .resultCard {
   background-color: white;
   text-align: left;

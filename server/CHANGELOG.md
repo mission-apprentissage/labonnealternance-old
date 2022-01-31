@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.0 [28/01/2022]
+[954] Ouvrir dans un nouvel onglet les formations
+
 ## 1.17.10 [27/01/2022]
 [1020] Paramètre sur domaineMetiers pour liste les couples romes/labels
 [1031] Limitations endpoint application
