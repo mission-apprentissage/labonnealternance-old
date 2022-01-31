@@ -1,9 +1,11 @@
 # CHANGELOG
 
+## 1.18.0 [31/01/2022]
+[903b] Reliquat "j'envoie ma candidature"
+
 ## 1.17.10 [27/01/2022]
 [1031] Limitations endpoint application
 [1041] Formations affichées en premier
-[903b] Reliquat "j'envoie ma candidature"
 
 ## 1.17.9 [18/01/2022]
 [999] Ignorer les webhooks sur emails notifications aux candidats
