@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## 1.18.0 [28/01/2022]
+## 1.18.0 [31/01/2022]
+[903b] Reliquat "j'envoie ma candidature"
 [954] Ouvrir dans un nouvel onglet les formations
 
 ## 1.17.10 [27/01/2022]
