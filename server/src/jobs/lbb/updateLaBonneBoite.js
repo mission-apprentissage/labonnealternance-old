@@ -23,6 +23,8 @@ let addMap = {};
 
 const filePath = path.join(__dirname, "./assets/etablissements.csv");
 
+const testFilePath = path.join(__dirname, "./extractmailing_lba_CCI.bz2");
+
 let findRomesForNafCount = 0;
 let findRomesForNafTime = 0;
 
@@ -278,6 +280,14 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles, 
       logMessage("info", `score 080 :  ${config.private.lbb.score80Level}`);
       logMessage("info", `score 060 :  ${config.private.lbb.score60Level}`);
       logMessage("info", `score 050 :  ${config.private.lbb.score50Level}`);
+
+      let stats = fs.statSync(testFilePath);
+      var fileSizeInBytes = stats.size;
+      logMessage("info test montage", fileSizeInBytes);
+
+      exec(`wc -l ${filePath}`, function (error, results) {
+        logMessage("info", results);
+      });
 
       if (shouldInitSAVEMaps) {
         removeMap = await initSAVERemoveMap();
