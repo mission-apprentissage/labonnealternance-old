@@ -9,9 +9,14 @@ const config = require("config");
 const initNafScoreMap = require("./initNafScoreMap.js");
 const initNafMap = require("./initNafMap.js");
 const initPredictionMap = require("./initPredictionMap.js");
+const initCBSPredictionMap = require("./initCBSPredictionMap.js");
 const { logMessage } = require("../../common/utils/logMessage");
 const { mongooseInstance } = require("../../common/mongodb");
 const { initSAVERemoveMap, initSAVEUpdateMap, initSAVEAddMap } = require("./initSAVEMaps");
+
+const defaultPredictionByROMEThreshold = 0.2;
+const CBSPredictionByROMEThreshold = 4;
+let predictionByROMEThreshold = defaultPredictionByROMEThreshold;
 
 let nafScoreMap = {};
 let predictionMap = {};
@@ -59,6 +64,13 @@ const resetHashmaps = () => {
   addMap = {};
 };
 
+const resetContext = () => {
+  // clearing memory and reseting params
+  resetHashmaps();
+  count = 0;
+  predictionByROMEThreshold = defaultPredictionByROMEThreshold;
+};
+
 const emptyMongo = async () => {
   logMessage("info", `Clearing bonnesboites db...`);
   await BonnesBoites.deleteMany({});
@@ -83,7 +95,7 @@ const filterRomesFromNafHirings = (bonneBoite /*, romes*/) => {
   if (nafRomeHirings) {
     filteredRomes = nafRomeHirings.romes.filter((rome) => {
       // 0.2 arbitraire
-      return (bonneBoite.score * nafRomeHirings[rome]) / nafRomeHirings.hirings > 0.2;
+      return (bonneBoite.score * nafRomeHirings[rome]) / nafRomeHirings.hirings >= predictionByROMEThreshold;
     });
   }
 
@@ -273,7 +285,13 @@ const buildAndFilterBonneBoiteFromData = async (company) => {
   return bonneBoite;
 };
 
-module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles, shouldInitSAVEMaps }) => {
+module.exports = async ({
+  shouldClearMongo,
+  shouldBuildIndex,
+  shouldParseFiles,
+  shouldInitSAVEMaps,
+  useCBSPrediction,
+}) => {
   if (!running) {
     running = true;
     try {
@@ -301,7 +319,12 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles, 
 
         const db = mongooseInstance.connection;
 
-        predictionMap = await initPredictionMap();
+        if (useCBSPrediction) {
+          predictionByROMEThreshold = CBSPredictionByROMEThreshold;
+          predictionMap = await initCBSPredictionMap();
+        } else {
+          predictionMap = await initPredictionMap();
+        }
 
         // TODO: supprimer ce reset
         if (shouldClearMongo) {
@@ -326,10 +349,6 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles, 
       await insertSAVECompanies();
       await updateSAVECompanies();
 
-      // clearing memory
-      resetHashmaps();
-      count = 0;
-
       if (shouldBuildIndex) {
         await rebuildIndex(BonnesBoites);
       }
@@ -338,6 +357,8 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles, 
 
       running = false;
 
+      resetContext();
+
       return {
         result: "Table mise à jour",
       };
@@ -345,6 +366,9 @@ module.exports = async ({ shouldClearMongo, shouldBuildIndex, shouldParseFiles, 
       running = false;
       logMessage("error", err);
       let error_msg = _.get(err, "meta.body") ?? err.message;
+
+      resetContext();
+
       return { error: error_msg };
     }
   } else {
