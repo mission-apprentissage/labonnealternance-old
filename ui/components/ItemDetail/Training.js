@@ -94,7 +94,9 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
     }
   };
 
-  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(training)}&${getSearchQueryParameters(formValues)}`
+  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(
+    training
+  )}&${getSearchQueryParameters(formValues)}`;
 
   return (
     <a

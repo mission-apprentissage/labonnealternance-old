@@ -1,4 +1,8 @@
 export const getSearchQueryParameters = (searchParameters) => {
+  if (!searchParameters) {
+    return "";
+  }
+
   let result = `job_name=${
     searchParameters?.job.label ? encodeURIComponent(searchParameters?.job.label) : ""
   }&romes=${searchParameters?.job.romes.toString()}${
