@@ -17,7 +17,8 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
 
   const [allowDim, setAllowDim] = useState(true); // cet état évite un appel qui masque la mise en avant de l'icône lors de l'ouverture du détail
 
-  const onSelectItem = () => {
+  const onSelectItem = (e) => {
+    e.preventDefault();
     setAllowDim(false); // fixation du flag
     handleSelectItem(company, company.ideaType);
   };
@@ -92,7 +93,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
       className={`resultCard gtmSavoirPlus gtm${capitalizeFirstLetter(
         company.ideaType
       )} gtmListe ${getHightlightClass()}`}
-      // onClick={onSelectItem}
+      onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
       data-testid={`${company.ideaType}${company.company.siret}`}
