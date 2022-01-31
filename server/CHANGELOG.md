@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.0 [31/01/2022]
+[1028] Volume vers point de montage datalake
+
 ## 1.17.9 [18/01/2022]
 [999] Ignorer les webhooks sur emails notifications aux candidats
 [985] Prise en compte data SAVE pour import LBB
