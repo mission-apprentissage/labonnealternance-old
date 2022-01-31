@@ -7,6 +7,8 @@ import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import ReactHtmlParser from "react-html-parser";
 import { fetchAddresses } from "../../services/baseAdresse";
 import { setSelectedMarker } from "../../utils/mapTools";
+import { getItemQueryParameters } from "../../utils/getItemId";
+import { getSearchQueryParameters } from "../../utils/getSearchParameters";
 
 const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues, selectedMapPopupItem } = useSelector((state) => state.trainings);
@@ -98,13 +100,16 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
     }
   };
 
+  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(job)}&${getSearchQueryParameters(formValues)}`
+
   return (
-    <div
+    <a
       className={rootClassList(kind)}
-      onClick={onSelectItem}
+      // onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
       data-testid={`${kind}${job.job.id}`}
+      href={actualLink}
     >
       <div className="c-media" id={`job-${kind}${job.job.id}`}>
         <div className="c-media-figure">
@@ -147,7 +152,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
           {Math.round(job.place.distance) > currentSearchRadius ? getCenterSearchOnJobButton() : ""}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
