@@ -26,7 +26,7 @@ const getSomeLbbCompanies = async ({
 }) => {
   let companies = null;
   let currentRadius = strictRadius ? radius : 20000;
-  let companyLimit = 100; //TODO: query params options or default value from properties -> size || 100
+  let companyLimit = 150; //TODO: query params options or default value from properties -> size || 100
 
   companies = await getLbbCompanies({
     romes,
