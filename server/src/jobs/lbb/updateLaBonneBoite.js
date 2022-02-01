@@ -5,7 +5,7 @@ const _ = require("lodash");
 const geoData = require("../../common/utils/geoData");
 const { GeoLocation, BonnesBoites } = require("../../common/model");
 const { rebuildIndex } = require("../../common/utils/esUtils");
-const config = require("config");
+//const config = require("config");
 const initNafScoreMap = require("./initNafScoreMap.js");
 const initNafMap = require("./initNafMap.js");
 const initPredictionMap = require("./initPredictionMap.js");
@@ -14,8 +14,8 @@ const { logMessage } = require("../../common/utils/logMessage");
 const { mongooseInstance } = require("../../common/mongodb");
 const { initSAVERemoveMap, initSAVEUpdateMap, initSAVEAddMap } = require("./initSAVEMaps");
 
-const defaultPredictionByROMEThreshold = 0.2;
-const CBSPredictionByROMEThreshold = 4;
+const defaultPredictionByROMEThreshold = 0.2; // 0.2 arbitraire
+const CBSPredictionByROMEThreshold = 4; // 4 arbitraire
 let predictionByROMEThreshold = defaultPredictionByROMEThreshold;
 
 let nafScoreMap = {};
@@ -26,14 +26,7 @@ let removeMap = {};
 let updateMap = {};
 let addMap = {};
 
-const filePath = path.join(__dirname, "./assets/etablissements.csv");
-
-/*
-path point de montage
-const testFilePath = path.join(__dirname, "./datalakepe/extractmailing_lba_CCI.bz2");
-let stats = fs.statSync(testFilePath);
-var fileSizeInBytes = stats.size;
-logMessage("info test montage", fileSizeInBytes);*/
+let count = 0;
 
 let findRomesForNafCount = 0;
 let findRomesForNafTime = 0;
@@ -45,6 +38,15 @@ let getGeoTime = 0;
 let findBBCount = 0;
 let findBBTime = 0;
 let running = false;
+
+const filePath = path.join(__dirname, "./assets/etablissements.csv");
+
+/*
+path point de montage
+const testFilePath = path.join(__dirname, "./datalakepe/extractmailing_lba_CCI.bz2");
+let stats = fs.statSync(testFilePath);
+var fileSizeInBytes = stats.size;
+logMessage("info test montage", fileSizeInBytes);*/
 
 const findRomesForNaf = async (bonneBoite) => {
   let sTime = new Date().getTime();
@@ -72,6 +74,7 @@ const resetHashmaps = () => {
 };
 
 const resetContext = () => {
+  running = false;
   // clearing memory and reseting params
   resetHashmaps();
   count = 0;
@@ -101,7 +104,6 @@ const filterRomesFromNafHirings = (bonneBoite /*, romes*/) => {
   let filteredRomes = [];
   if (nafRomeHirings) {
     filteredRomes = nafRomeHirings.romes.filter((rome) => {
-      // 0.2 arbitraire
       return (bonneBoite.score * nafRomeHirings[rome]) / nafRomeHirings.hirings >= predictionByROMEThreshold;
     });
   }
@@ -143,11 +145,7 @@ const getGeoLocationForCompany = async (bonneBoite) => {
   } else return null;
 };
 
-let count = 0;
-
-const parseLine = async (line) => {
-  const terms = line.split(";");
-
+const printProgress = () => {
   if (count % 50000 === 0) {
     logMessage(
       "info",
@@ -160,9 +158,11 @@ const parseLine = async (line) => {
       }ms `
     );
   }
-  count++;
+};
 
-  let company = {
+const initCompanyFromLine = (line) => {
+  const terms = line.split(";");
+  return {
     siret: terms[0],
     enseigne: terms[1],
     nom: terms[2],
@@ -177,6 +177,14 @@ const parseLine = async (line) => {
     website: terms[11] !== "NULL" ? terms[11] : "",
     type: "lbb",
   };
+};
+
+const parseLine = async (line) => {
+  count++;
+
+  printProgress();
+
+  let company = initCompanyFromLine(line);
 
   if (isCompanyRemoved(company.siret)) {
     BonnesBoites.remove({ siret: company.siret });
@@ -296,6 +304,44 @@ const buildAndFilterBonneBoiteFromData = async (company) => {
   return bonneBoite;
 };
 
+const processBonnesBoitesFile = async () => {
+  try {
+    const db = mongooseInstance.connection;
+
+    await oleoduc(
+      fs.createReadStream(filePath),
+      readLineByLine(),
+      transformData((line) => parseLine(line), { parallel: 8 }),
+      writeData(async (bonneBoite) => {
+        db.collections["bonnesboites"].save(bonneBoite);
+      })
+    );
+  } catch (err2) {
+    logMessage("error", err2);
+    throw new Error("Error while parsing establishment file");
+  }
+};
+
+const initPredictions = async ({ useCBSPrediction }) => {
+  if (useCBSPrediction) {
+    predictionByROMEThreshold = CBSPredictionByROMEThreshold;
+    predictionMap = await initCBSPredictionMap();
+  } else {
+    predictionMap = await initPredictionMap();
+  }
+};
+
+const initMaps = async ({ shouldInitSAVEMaps }) => {
+  if (shouldInitSAVEMaps) {
+    removeMap = await initSAVERemoveMap();
+    addMap = await initSAVEAddMap();
+    updateMap = await initSAVEUpdateMap();
+  }
+
+  nafScoreMap = await initNafScoreMap();
+  nafMap = await initNafMap();
+};
+
 module.exports = async ({
   shouldClearMongo,
   shouldBuildIndex,
@@ -307,54 +353,18 @@ module.exports = async ({
     running = true;
     try {
       logMessage("info", " -- Start updating lbb db -- ");
-      logMessage("info", `score 100 :  ${config.private.lbb.score100Level}`);
-      logMessage("info", `score 080 :  ${config.private.lbb.score80Level}`);
-      logMessage("info", `score 060 :  ${config.private.lbb.score60Level}`);
-      logMessage("info", `score 050 :  ${config.private.lbb.score50Level}`);
 
-      if (shouldInitSAVEMaps) {
-        removeMap = await initSAVERemoveMap();
-        addMap = await initSAVEAddMap();
-        updateMap = await initSAVEUpdateMap();
-      }
-
-      nafScoreMap = await initNafScoreMap();
-      nafMap = await initNafMap();
+      await initMaps({ shouldInitSAVEMaps });
 
       if (shouldParseFiles) {
-        var exec = require("child_process").exec;
-
-        exec(`wc -l ${filePath}`, function (error, results) {
-          logMessage("info", results);
-        });
-
-        const db = mongooseInstance.connection;
-
-        if (useCBSPrediction) {
-          predictionByROMEThreshold = CBSPredictionByROMEThreshold;
-          predictionMap = await initCBSPredictionMap();
-        } else {
-          predictionMap = await initPredictionMap();
-        }
+        await initPredictions({ useCBSPrediction });
 
         // TODO: supprimer ce reset
         if (shouldClearMongo) {
           await emptyMongo();
         }
 
-        try {
-          await oleoduc(
-            fs.createReadStream(filePath),
-            readLineByLine(),
-            transformData((line) => parseLine(line), { parallel: 8 }),
-            writeData(async (bonneBoite) => {
-              db.collections["bonnesboites"].save(bonneBoite);
-            })
-          );
-        } catch (err2) {
-          logMessage("error", err2);
-          throw new Error("Error while parsing establishment file");
-        }
+        await processBonnesBoitesFile();
       }
 
       await insertSAVECompanies();
@@ -366,15 +376,12 @@ module.exports = async ({
 
       logMessage("info", `End updating lbb db`);
 
-      running = false;
-
       resetContext();
 
       return {
         result: "Table mise à jour",
       };
     } catch (err) {
-      running = false;
       logMessage("error", err);
       let error_msg = _.get(err, "meta.body") ?? err.message;
 
