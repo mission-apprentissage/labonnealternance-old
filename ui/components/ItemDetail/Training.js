@@ -18,7 +18,8 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
   const [allowDim, setAllowDim] = useState(true); // cet état évite un appel qui masque la mise en avant de l'icône lors de l'ouverture du détail
 
-  const onSelectItem = () => {
+  const onSelectItem = (e) => {
+    e.preventDefault();
     setAllowDim(false); // fixation du flag
     handleSelectItem(training, "training");
   };
@@ -101,7 +102,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
   return (
     <a
       className={`resultCard trainingCard gtmSavoirPlus gtmFormation gtmListe ${getHightlightClass()} ${getDebugClass()}`}
-      // onClick={onSelectItem}
+      onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
       href={actualLink}

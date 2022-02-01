@@ -19,7 +19,8 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
 
   const kind = job?.ideaType;
 
-  const onSelectItem = () => {
+  const onSelectItem = (e) => {
+    e.preventDefault();
     setAllowDim(false); // fixation du flag
     handleSelectItem(job);
   };
@@ -105,7 +106,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
   return (
     <a
       className={rootClassList(kind)}
-      // onClick={onSelectItem}
+      onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
       data-testid={`${kind}${job.job.id}`}
