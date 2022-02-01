@@ -218,7 +218,6 @@ const buildAndFilterBonneBoiteFromData = async (company) => {
   let score = company.score || (await getScoreForCompany(company.siret));
 
   if (!score) {
-    //TODO: checker si réhaussage artificiel vie support PE
     return null;
   }
 
