@@ -13,7 +13,7 @@ const initCBSPredictionMap = require("./initCBSPredictionMap.js");
 const { logMessage } = require("../../common/utils/logMessage");
 const { mongooseInstance } = require("../../common/mongodb");
 const { initSAVERemoveMap, initSAVEUpdateMap, initSAVEAddMap } = require("./initSAVEMaps");
-const { updateSAVECompanies } = require("./updateLaBonneBoite");
+const { updateSAVECompanies } = require("./updateSAVECompanies");
 
 const defaultPredictionByROMEThreshold = 0.2; // 0.2 arbitraire
 const CBSPredictionByROMEThreshold = 4; // 4 arbitraire
@@ -164,7 +164,7 @@ const printProgress = () => {
 const initCompanyFromLine = (line) => {
   const terms = line.split(";");
   return {
-    siret: terms[0],
+    siret: terms[0].padStart(14, "0"),
     enseigne: terms[1],
     nom: terms[2],
     code_naf: terms[3],
