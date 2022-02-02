@@ -45,6 +45,7 @@ const getElasticInstance = () => clientDefault;
 let clientDomainesMetiers = createEsInstance("domainesmetiers");
 let clientDiplomesMetiers = createEsInstance("diplomesmetiers");
 let clientCatalogueFormations = createEsInstance("convertedformations");
+let clientBonnesBoites = createEsInstance("bonnesboites");
 
 const getDomainesMetiersES = () => {
   return clientDomainesMetiers;
@@ -58,10 +59,15 @@ const getFormationsES = () => {
   return clientCatalogueFormations;
 };
 
+const getBonnesBoitesES = () => {
+  return clientBonnesBoites;
+};
+
 module.exports = {
   getDomainesMetiersES,
   getDiplomesMetiersES,
   getElasticInstance,
   getFormationsES,
+  getBonnesBoitesES,
   mongoosastic,
 };

@@ -7,6 +7,8 @@ import { useScopeContext } from "../../context/ScopeContext";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import { setSelectedMarker } from "../../utils/mapTools";
+import { getItemQueryParameters } from "../../utils/getItemId";
+import { getSearchQueryParameters } from "../../utils/getSearchParameters";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
   const { formValues, itemParameters, selectedMapPopupItem } = useSelector((state) => state.trainings);
@@ -16,7 +18,8 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
   const [allowDim, setAllowDim] = useState(true); // cet état évite un appel qui masque la mise en avant de l'icône lors de l'ouverture du détail
 
-  const onSelectItem = () => {
+  const onSelectItem = (e) => {
+    e.preventDefault();
     setAllowDim(false); // fixation du flag
     handleSelectItem(training, "training");
   };
@@ -92,12 +95,17 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
     }
   };
 
+  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(
+    training
+  )}&${getSearchQueryParameters(formValues)}`;
+
   return (
-    <div
+    <a
       className={`resultCard trainingCard gtmSavoirPlus gtmFormation gtmListe ${getHightlightClass()} ${getDebugClass()}`}
       onClick={onSelectItem}
       onMouseOver={highlightItemOnMap}
       onMouseOut={dimItemOnMap}
+      href={actualLink}
     >
       <div className="c-media" id={`id${training.id}`}>
         <div className="c-media-figure">
@@ -146,7 +154,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
           )}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
