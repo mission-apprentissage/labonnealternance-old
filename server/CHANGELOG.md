@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.18.0 [31/01/2022]
+[992] Utilisation elasticsarch lbb
+[1028] Volume vers point de montage datalake
+[903b] Reliquat "j'envoie ma candidature"
+[954] Ouvrir dans un nouvel onglet les formations
+
 ## 1.17.10 [27/01/2022]
 [1020] Paramètre sur domaineMetiers pour liste les couples romes/labels
 [1031] Limitations endpoint application

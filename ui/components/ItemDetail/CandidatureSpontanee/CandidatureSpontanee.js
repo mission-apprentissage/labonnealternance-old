@@ -23,7 +23,6 @@ const CandidatureSpontanee = (props) => {
   }
 
   const actualLocalStorage = props.fakeLocalStorage || window.localStorage || {}
-
   
   const toggle = () => {
     toggleCandidature({ modal, setSendingState, setModal });
@@ -31,17 +30,17 @@ const CandidatureSpontanee = (props) => {
   
   const [applied, setApplied] = useLocalStorage(uniqId(kind, props.item), null, actualLocalStorage);
 
-
   useEffect(() => {
     setModal(false);
 
     // HACK HERE : reapply setApplied to currentUniqId to re-detect 
     // if user already applied each time the user swap to another item.
     let currentUniqId = actualLocalStorage.getItem(uniqId(kind, props.item));
-    if ('null'.includes(currentUniqId)) {
-      setApplied('null')
-    } else {
+    if (currentUniqId) {
       setApplied(currentUniqId)
+    } else {
+      // setApplied(null) is MANDATORY to avoid "already-applied message" when user swaps.
+      setApplied(null)
     }
   }, [props?.item]);
 

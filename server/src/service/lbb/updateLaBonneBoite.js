@@ -15,6 +15,7 @@ const updateLaBonneBoite = async (query) => {
         shouldBuildIndex: query?.shouldBuildIndex === "false" ? false : true,
         shouldParseFiles: query?.shouldParseFiles === "false" ? false : true,
         shouldInitSAVEMaps: query?.shouldInitSAVEMaps === "false" ? false : true,
+        useCBSPrediction: query?.useCBSPrediction === "true" ? true : false,
       };
 
       console.log(params);
