@@ -73,9 +73,10 @@ const importFormations = async ({ workIndex, workMongo }) => {
           { parallel: 5 }
         )
       );
-
-      await rebuildIndex(workMongo);
     });
+
+    await rebuildIndex(workMongo);
+
     return stats;
   } catch (e) {
     // stop here if not able to get etablissements (keep existing ones)
