@@ -5,13 +5,13 @@ const localOrigin = [
   "http://localhost:3000", //TODO: temporaire jusqu'à suppression de :3000
 ];
 
-const localOriginRegexp = /^https:\/\/labonnealternance(.*).apprentissage.beta.gouv.fr(.*)/;
+const localOriginRegexp = /^https:\/\/labonnealternance(.*).apprentissage.beta.gouv.fr(.*)/i;
 
 const isOriginLocal = (origin) => {
   if (origin) {
     if (
       (localOrigin.findIndex((element) => origin.toLowerCase().includes(element)) >= 0 ||
-        localOriginRegexp.testorigin) &&
+        localOriginRegexp.test(origin)) &&
       origin.indexOf("api-docs") < 0
     ) {
       return true;
