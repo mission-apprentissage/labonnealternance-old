@@ -2,6 +2,8 @@ const _ = require("lodash");
 const { ConvertedFormation_0, ConvertedFormation_1 } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
 const { getConvertedFormations, countFormations } = require("../../common/components/catalogue");
+const { mongooseInstance } = require("../../common/mongodb");
+const { rebuildIndex } = require("../../common/utils/esUtils");
 const {
   getCurrentFormationsSourceIndex,
   updateFormationsSourceIndex,
@@ -51,13 +53,17 @@ const importFormations = async ({ workIndex, workMongo }) => {
   try {
     await getConvertedFormations({ limit: 1000, query: { published: true } }, async (chunck) => {
       logger.info(`Inserting ${chunck.length} formations ...`);
+
+      const db = mongooseInstance.connection;
+
       await oleoduc(
         Readable.from(chunck),
         writeData(
           async (e) => {
             stats.total++;
             try {
-              await workMongo.create(e);
+              //await workMongo.create(e);
+              db.collections[workIndex].save(e);
               stats.created++;
             } catch (e) {
               stats.failed++;
@@ -67,6 +73,8 @@ const importFormations = async ({ workIndex, workMongo }) => {
           { parallel: 5 }
         )
       );
+
+      await rebuildIndex(workMongo);
     });
     return stats;
   } catch (e) {
