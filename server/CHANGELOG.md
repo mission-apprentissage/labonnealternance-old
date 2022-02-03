@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.1 [03/02/2022]
+Affinage score d'affichage CBS
+
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
 [1028] Volume vers point de montage datalake

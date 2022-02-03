@@ -16,7 +16,7 @@ const { initSAVERemoveMap, initSAVEUpdateMap, initSAVEAddMap } = require("./init
 const { updateSAVECompanies } = require("./updateSAVECompanies");
 
 const defaultPredictionByROMEThreshold = 0.2; // 0.2 arbitraire
-const CBSPredictionByROMEThreshold = 4; // 4 arbitraire
+const CBSPredictionByROMEThreshold = 3.84; // 3.84 arbitraire
 let predictionByROMEThreshold = defaultPredictionByROMEThreshold;
 
 let nafScoreMap = {};
