@@ -44,6 +44,8 @@ export const getConfig = (envName) => {
   switch (envName) {
     case "prod":
       return config.prod;
+    case "prodnew":
+      return config.prodnew;
     case "dev":
       return config.dev;
     default:
