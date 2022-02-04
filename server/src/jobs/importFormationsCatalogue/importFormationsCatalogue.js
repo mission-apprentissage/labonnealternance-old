@@ -165,5 +165,7 @@ module.exports = async (onlyChangeMasterIndex = false) => {
       running = false;
       return { error: error_msg };
     }
+  } else {
+    logMessage("info", "Import formations catalogue already running");
   }
 };
