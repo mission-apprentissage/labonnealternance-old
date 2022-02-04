@@ -63,7 +63,7 @@ const importFormations = async ({ workIndex, workMongo }) => {
             stats.total++;
             try {
               //await workMongo.create(e);
-              await db.collections[workIndex].save(e);
+              await db.collections[workIndex].insertOne(e);
               stats.created++;
             } catch (e) {
               stats.failed++;
@@ -80,7 +80,7 @@ const importFormations = async ({ workIndex, workMongo }) => {
     return stats;
   } catch (e) {
     // stop here if not able to get etablissements (keep existing ones)
-    logger.error("Error fetching formations from Catalogue", workIndex, e);
+    logger.error(`Error fetching formations from Catalogue ${workIndex}`, e);
     throw new Error("Error fetching formations from Catalogue");
   }
 };
