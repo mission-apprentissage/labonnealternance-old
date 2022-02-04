@@ -51,10 +51,10 @@ const importFormations = async ({ workIndex, workMongo }) => {
   };
 
   try {
+    const db = mongooseInstance.connection;
+
     await getConvertedFormations({ limit: 1000, query: { published: true } }, async (chunck) => {
       logger.info(`Inserting ${chunck.length} formations ...`);
-
-      const db = mongooseInstance.connection;
 
       await oleoduc(
         Readable.from(chunck),
@@ -63,7 +63,7 @@ const importFormations = async ({ workIndex, workMongo }) => {
             stats.total++;
             try {
               //await workMongo.create(e);
-              await db.collections[workIndex].insertOne(e);
+              await db.collections[workIndex].save(e);
               stats.created++;
             } catch (e) {
               stats.failed++;
