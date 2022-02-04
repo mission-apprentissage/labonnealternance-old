@@ -6,7 +6,7 @@ const DidAsk2 = () => {
   return (
     <div className="c-detail-advice-text">
       <p>
-        Un employeur vous a proposé un entretien ?
+        Un employeur vous a proposé un entretien ? Préparez-le en vous aidant de
         <span className="c-detail-traininglink ml-1">
           <a
             href="https://dinum-beta.didask.com/courses/demonstration/60d1adbb877dae00003f0eac"
@@ -15,7 +15,7 @@ const DidAsk2 = () => {
             className="gtmDidask2"
           >
             <img src={gotoIcon} alt="Lien" />
-            &nbsp;Préparez&nbsp;le&nbsp;en&nbsp;vous&nbsp;aidant&nbsp;de&nbsp;ces&nbsp;cas&nbsp;pratiques&nbsp;!
+            &nbsp;ces cas pratiques !
           </a>
         </span>
         <span className="ml-1"> !</span>
