@@ -63,14 +63,14 @@ const importFormations = async ({ workIndex, workMongo }) => {
             stats.total++;
             try {
               //await workMongo.create(e);
-              db.collections[workIndex].save(e);
+              await db.collections[workIndex].save(e);
               stats.created++;
             } catch (e) {
               stats.failed++;
               logger.error(e);
             }
           },
-          { parallel: 5 }
+          { parallel: 8 }
         )
       );
     });
