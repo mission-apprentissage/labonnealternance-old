@@ -15,7 +15,7 @@ const DidAsk1 = () => {
             className="gtmDidask1"
           >
             <img src={gotoIcon} alt="Lien" />
-            &nbsp;On&nbsp;vous&nbsp;donne&nbsp;des&nbsp;conseils&nbsp;pour&nbsp;vous&nbsp;aider&nbsp;!
+            &nbsp;On vous donne des conseils pour vous aider !
           </a>
         </span>
       </p>
