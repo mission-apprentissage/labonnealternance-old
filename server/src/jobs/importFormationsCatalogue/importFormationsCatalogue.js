@@ -85,76 +85,85 @@ const importFormations = async ({ workIndex, workMongo }) => {
   }
 };
 
+let running = false;
+
 module.exports = async (onlyChangeMasterIndex = false) => {
   let step = 0;
 
-  try {
-    logMessage("info", " -- Import formations catalogue -- ");
+  if (!running) {
+    running = true;
 
-    logMessage("info", `Début traitement`);
+    try {
+      logMessage("info", " -- Import formations catalogue -- ");
 
-    // step 1 : compte formations distantes.
+      logMessage("info", `Début traitement`);
 
-    const formationCount = await countFormations();
+      // step 1 : compte formations distantes.
 
-    logMessage("info", `${formationCount} à importer`);
+      const formationCount = await countFormations();
 
-    let stats = {
-      total: 0,
-      created: 0,
-      failed: 0,
-    };
-    let workIndex = "convertedformation_0";
+      logMessage("info", `${formationCount} à importer`);
 
-    if (formationCount > 0) {
-      const currentIndex = await getCurrentFormationsSourceIndex();
+      let stats = {
+        total: 0,
+        created: 0,
+        failed: 0,
+      };
+      let workIndex = "convertedformation_0";
 
-      logMessage("info", `Index courant : ${currentIndex}`);
+      if (formationCount > 0) {
+        const currentIndex = await getCurrentFormationsSourceIndex();
 
-      let workMongo = ConvertedFormation_0;
+        logMessage("info", `Index courant : ${currentIndex}`);
 
-      if (currentIndex === "convertedformation_0") {
-        workIndex = "convertedformation_1";
-        workMongo = ConvertedFormation_1;
+        let workMongo = ConvertedFormation_0;
+
+        if (currentIndex === "convertedformation_0") {
+          workIndex = "convertedformation_1";
+          workMongo = ConvertedFormation_1;
+        }
+
+        logMessage("info", `Début process sur : ${workIndex}`);
+
+        if (!onlyChangeMasterIndex) {
+          await cleanIndexAndDb({ workIndex, workMongo });
+
+          stats = await importFormations({ workIndex, workMongo });
+        } else {
+          logMessage("info", `Permutation d'index seule`);
+        }
+
+        const savedSource = await updateFormationsSourceIndex(workIndex);
+
+        logMessage("info", "Source mise à jour en base ", savedSource.currentIndex);
+
+        const savedIndexAliasResult = await updateFormationsIndexAlias({
+          masterIndex: workIndex,
+          indexToUnAlias: currentIndex,
+        });
+
+        if (savedIndexAliasResult === "ok") {
+          logMessage("info", "Alias mis à jour dans l'ES ", workIndex);
+        } else {
+          logMessage("error", "Alias pas mis à jour dans l'ES ", workIndex);
+        }
       }
+      logMessage("info", `Fin traitement`);
 
-      logMessage("info", `Début process sur : ${workIndex}`);
+      running = false;
 
-      if (!onlyChangeMasterIndex) {
-        await cleanIndexAndDb({ workIndex, workMongo });
-
-        stats = await importFormations({ workIndex, workMongo });
-      } else {
-        logMessage("info", `Permutation d'index seule`);
-      }
-
-      const savedSource = await updateFormationsSourceIndex(workIndex);
-
-      logMessage("info", "Source mise à jour en base ", savedSource.currentIndex);
-
-      const savedIndexAliasResult = await updateFormationsIndexAlias({
-        masterIndex: workIndex,
-        indexToUnAlias: currentIndex,
-      });
-
-      if (savedIndexAliasResult === "ok") {
-        logMessage("info", "Alias mis à jour dans l'ES ", workIndex);
-      } else {
-        logMessage("error", "Alias pas mis à jour dans l'ES ", workIndex);
-      }
+      return {
+        result: "Import formations catalogue terminé",
+        index_maitre: workIndex,
+        nb_formations: stats.created,
+        erreurs: stats.failed,
+      };
+    } catch (err) {
+      console.log("error step ", step);
+      logMessage("error", err);
+      let error_msg = _.get(err, "meta.body") ?? err.message;
+      running = false;
+      return { error: error_msg };
     }
-    logMessage("info", `Fin traitement`);
-
-    return {
-      result: "Import formations catalogue terminé",
-      index_maitre: workIndex,
-      nb_formations: stats.created,
-      erreurs: stats.failed,
-    };
-  } catch (err) {
-    console.log("error step ", step);
-    logMessage("error", err);
-    let error_msg = _.get(err, "meta.body") ?? err.message;
-    return { error: error_msg };
   }
 };
