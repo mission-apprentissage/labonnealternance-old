@@ -327,7 +327,7 @@ module.exports = async ({
       await updateSAVECompanies({ updateMap });
 
       if (shouldBuildIndex) {
-        await rebuildIndex(BonnesBoites);
+        await rebuildIndex(BonnesBoites, { skipNotFound: true });
       }
 
       logMessage("info", `End updating lbb db`);
