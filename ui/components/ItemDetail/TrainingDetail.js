@@ -102,8 +102,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
 
   let didask = (
     <p>
-      Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ? Préparez votre premier contact
-      avec un CFA
+      Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ? 
       <span className="c-detail-traininglink ml-1">
         <a
           href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
@@ -112,7 +111,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
           className="gtmDidaskFormation"
         >
           <img src={gotoIcon} alt="Lien" />
-          &nbsp;en cliquant ici
+          &nbsp;Préparez votre premier contact avec un CFA !
         </a>
       </span>
     </p>
