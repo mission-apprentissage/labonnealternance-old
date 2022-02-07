@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.1 [07/02/2020]
+[1069] Type lba par défaut sur l'import lbb
+
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
 [1028] Volume vers point de montage datalake
