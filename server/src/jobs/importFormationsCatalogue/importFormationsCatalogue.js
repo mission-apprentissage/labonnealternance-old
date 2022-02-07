@@ -11,6 +11,7 @@ const { oleoduc, writeData } = require("oleoduc");
 const { Readable } = require("stream");
 const logger = require("../../common/logger");
 const { logMessage } = require("../../common/utils/logMessage");
+const { notifyToSlack } = require("../../common/utils/slackUtils");
 
 const emptyMongo = async (model) => {
   logMessage("info", `Clearing formations db...`);
@@ -77,14 +78,10 @@ const importFormations = async ({ workIndex, workMongo }) => {
 };
 
 module.exports = async (onlyChangeMasterIndex = false) => {
-  let step = 0;
-
   try {
     logMessage("info", " -- Import formations catalogue -- ");
 
     logMessage("info", `Début traitement`);
-
-    // step 1 : compte formations distantes.
 
     const formationCount = await countFormations();
 
@@ -136,6 +133,10 @@ module.exports = async (onlyChangeMasterIndex = false) => {
     }
     logMessage("info", `Fin traitement`);
 
+    notifyToSlack(
+      `Import formations catalogue terminé sur ${workIndex}. ${stats.created} OK. ${stats.failed} erreur(s)`
+    );
+
     return {
       result: "Import formations catalogue terminé",
       index_maitre: workIndex,
@@ -143,9 +144,9 @@ module.exports = async (onlyChangeMasterIndex = false) => {
       erreurs: stats.failed,
     };
   } catch (err) {
-    console.log("error step ", step);
     logMessage("error", err);
     let error_msg = _.get(err, "meta.body") ?? err.message;
+    notifyToSlack(`ECHEC Import formations catalogue. ${error_msg}`);
     return { error: error_msg };
   }
 };

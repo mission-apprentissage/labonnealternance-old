@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.1 [07/02/2022]
+[1053] Notification sur slack
+
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
 [1028] Volume vers point de montage datalake
