@@ -22,7 +22,7 @@ const HowTo = () => {
             <div className="card-body">
               <h5 className="card-title">Le job de vos rêves</h5>
               <p className="card-text">
-                Renseignez le métier que vous souhaitez faire et la localisation (Ville ou Code postal)
+                Renseignez le métier que vous souhaitez faire et la localisation (Ville ou Code postal) <br /><br />
               </p>
             </div>
           </div>
@@ -55,7 +55,7 @@ const HowTo = () => {
             <div className="card-body">
               <h5 className="card-title">Un contact facile</h5>
               <p className="card-text">
-                Contactez facilement les centres de formation ou les entreprises pour postuler{" "}
+                Contactez facilement les centres de formation ou les entreprises pour postuler{" "}<br /><br />
               </p>
             </div>
           </div>
