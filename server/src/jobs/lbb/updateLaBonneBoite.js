@@ -176,7 +176,7 @@ const initCompanyFromLine = (line) => {
     telephone: terms[9] !== "NULL" ? terms[9] : "",
     tranche_effectif: terms[10] !== "NULL" ? terms[10] : "",
     website: terms[11] !== "NULL" ? terms[11] : "",
-    type: "lbb",
+    type: "lba",
   };
 };
 
