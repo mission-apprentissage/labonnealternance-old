@@ -2,6 +2,8 @@
 
 ## 1.18.1 [07/02/2022]
 [1053] Notification sur slack
+[1071] Fix bug boutons multiples PRDV
+[924] Masquer contact si bouton PRDV
 
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
