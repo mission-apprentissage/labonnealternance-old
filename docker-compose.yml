@@ -46,7 +46,8 @@ services:
   mongodb:
     image: mongo:4.2.6-bionic
     container_name: labonnealternance_mongodb
-    mem_limit: 1g
+    mem_limit: 2g
+    command: --wiredTigerCacheSizeGB 1.8
     restart: unless-stopped
     networks:
       - labonnealternance_network
