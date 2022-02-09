@@ -231,11 +231,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ) : (
             ""
           )}
-          {kind === "formation" ? (
-            <TrainingDetail training={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} isCfa={isCfa} />
-          ) : (
-            ""
-          )}
+          {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
         </div>
       </section>
     </>
