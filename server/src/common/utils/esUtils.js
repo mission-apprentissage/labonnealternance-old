@@ -7,7 +7,7 @@ const rebuildIndex = async (model, { skipNotFound } = { skipNotFound: false }) =
 
   logger.info(`Removing '${index}' index...`);
   try {
-    await client.indices.delete({ index: "tralala" });
+    await client.indices.delete({ index });
   } catch (err) {
     if (!skipNotFound) {
       throw err;
