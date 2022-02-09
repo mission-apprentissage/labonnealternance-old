@@ -16,7 +16,7 @@ const { initSAVERemoveMap, initSAVEUpdateMap, initSAVEAddMap } = require("./init
 const { updateSAVECompanies } = require("./updateSAVECompanies");
 
 const defaultPredictionByROMEThreshold = 0.2; // 0.2 arbitraire
-const CBSPredictionByROMEThreshold = 4; // 4 arbitraire
+const CBSPredictionByROMEThreshold = 3.84; // 3.84 arbitraire
 let predictionByROMEThreshold = defaultPredictionByROMEThreshold;
 
 let nafScoreMap = {};
@@ -176,7 +176,7 @@ const initCompanyFromLine = (line) => {
     telephone: terms[9] !== "NULL" ? terms[9] : "",
     tranche_effectif: terms[10] !== "NULL" ? terms[10] : "",
     website: terms[11] !== "NULL" ? terms[11] : "",
-    type: "lbb",
+    type: "lba",
   };
 };
 
@@ -327,7 +327,7 @@ module.exports = async ({
       await updateSAVECompanies({ updateMap });
 
       if (shouldBuildIndex) {
-        await rebuildIndex(BonnesBoites);
+        await rebuildIndex(BonnesBoites, { skipNotFound: true });
       }
 
       logMessage("info", `End updating lbb db`);

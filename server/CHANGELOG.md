@@ -1,7 +1,9 @@
 # CHANGELOG
 
 ## 1.18.1 [07/02/2022]
+Affinage score d'affichage CBS
 [1053] Notification sur slack
+[1069] Type lba par défaut sur l'import lbb
 [1071] Fix bug boutons multiples PRDV
 [924] Masquer contact si bouton PRDV
 
