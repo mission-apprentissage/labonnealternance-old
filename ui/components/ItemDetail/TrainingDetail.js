@@ -4,6 +4,7 @@ import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainingsAndSelectedItem } from "../../store/actions";
 import fetchTrainingDetails from "../../services/fetchTrainingDetails";
+import fetchPrdv from "../../services/fetchPrdv";
 import sendTrainingOpenedEventToCatalogue from "../../services/sendTrainingOpenedEventToCatalogue";
 import questionmarkIcon from "public/images/icons/questionmark2.svg";
 import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
@@ -16,7 +17,7 @@ import { Spinner } from "reactstrap";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 
-const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
+const TrainingDetail = ({ training, isCfa }) => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
@@ -38,23 +39,14 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   useEffect(() => {
-    if (window && window.initPrdvWidget) {
-      const el = document.getElementsByClassName("widget-prdv");
-
-      if (el.length) {
-        async function callWidget() {
-          const result = await window.initPrdvWidget();
-          if (!result[0].error) {
-            SendTrackEvent({
-              event: "Prise de rendez-vous - Affichage",
-              itemId: training.idRcoFormation,
-            });
-          }
+    if (!training.prdvLoaded) {
+      fetchPrdv(training).then((result) => {
+        if (result) {
+          applyDataFromPrdv(result.error === "indisponible" ? "" : result.form_url);
         }
-        callWidget();
-      }
+      });
     }
-  }, [training.idRcoFormation]);
+  }, [training.id]);
 
   useEffect(() => {
     if (training && !training.lbfLoaded) {
@@ -84,14 +76,37 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
     });
   };
 
+  const applyDataFromPrdv = (url) => {
+    let updatedTrainings = trainings;
+    updatedTrainings.forEach(async (v) => {
+      if (v.id === training.id) {
+        if (!v.prdvLoaded) {
+          v.prdvLoaded = true;
+
+          try {
+            v.prdvUrl = url;
+            dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
+          } catch (err) {}
+        }
+        setLoading(false);
+      }
+    });
+  };
+
   const buildPrdvButton = () => {
-    return (
+    return training?.prdvUrl ? (
       <div
         className="widget-prdv gtmPrdv"
         data-referrer="lba"
         data-id-cle-ministere-educatif={training.cleMinistereEducatif}
         data-id-rco-formation={training.idRcoFormation}
-      />
+      >
+        <a href={training.prdvUrl} target="_blank" rel="noopener noreferrer" className="gtmPrdv">
+          Prendre rendez-vous
+        </a>
+      </div>
+    ) : (
+      ""
     );
   };
 
@@ -102,7 +117,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
 
   let didask = (
     <p>
-      Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ? 
+      Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ?
       <span className="c-detail-traininglink ml-1">
         <a
           href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
@@ -119,7 +134,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
 
   let contactInfo = (
     <>
-      {contactEmail ? (
+      {!training.prdvUrl && contactEmail ? (
         <p className="c-detail-km c-detail-contactlink">
           <a href={`mailto:${contactEmail}`} className="ml-1">
             {contactEmail}
@@ -156,25 +171,16 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   return (
     <>
       <div className="text-left">
-        {contactPhone || contactEmail ? (
+        {contactPhone || (!training.prdvUrl && contactEmail) ? (
           <div className="d-flex mb-3">
-            {seeInfo ? (
-              <>
-                <span className="d-block">
-                  <img className="cardIcon" src={contactIcon} alt="" />
-                </span>
-                <span className="ml-2 d-block">
-                  <span className="c-detail-address d-block">{contactInfo}</span>
-                </span>
-              </>
-            ) : (
-              <button
-                className={`c-see-info d-block btn btn-outline-primary gtmContact gtmFormation`}
-                onClick={() => setSeeInfo(true)}
-              >
-                Voir les informations de contact
-              </button>
-            )}
+            <>
+              <span className="d-block">
+                <img className="cardIcon" src={contactIcon} alt="" />
+              </span>
+              <span className="ml-2 d-block">
+                <span className="c-detail-address d-block">{contactInfo}</span>
+              </span>
+            </>
           </div>
         ) : (
           ""
@@ -246,7 +252,11 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
         ""
       )}
 
-      <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, training)} key={getGoingtoId(kind, training)} />
+      {training?.prdvUrl ? (
+        ""
+      ) : (
+        <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, training)} key={getGoingtoId(kind, training)} />
+      )}
 
       <br />
     </>

@@ -4,6 +4,8 @@
 Affinage score d'affichage CBS
 [1053] Notification sur slack
 [1069] Type lba par défaut sur l'import lbb
+[1071] Fix bug boutons multiples PRDV
+[924] Masquer contact si bouton PRDV
 
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
