@@ -1,5 +1,5 @@
 import axios from "axios";
-import env from "utils/env";
+import env from "../utils/env";
 import _ from "lodash";
 import { logError } from "../utils/tools";
 
