@@ -17,7 +17,7 @@ import { Spinner } from "reactstrap";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 
-const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
+const TrainingDetail = ({ training, isCfa }) => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
@@ -134,7 +134,7 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
 
   let contactInfo = (
     <>
-      {contactEmail ? (
+      {!training.prdvUrl && contactEmail ? (
         <p className="c-detail-km c-detail-contactlink">
           <a href={`mailto:${contactEmail}`} className="ml-1">
             {contactEmail}
@@ -171,25 +171,16 @@ const TrainingDetail = ({ training, seeInfo, setSeeInfo, isCfa }) => {
   return (
     <>
       <div className="text-left">
-        {!training.prdvUrl && (contactPhone || contactEmail) ? (
+        {contactPhone || (!training.prdvUrl && contactEmail) ? (
           <div className="d-flex mb-3">
-            {seeInfo ? (
-              <>
-                <span className="d-block">
-                  <img className="cardIcon" src={contactIcon} alt="" />
-                </span>
-                <span className="ml-2 d-block">
-                  <span className="c-detail-address d-block">{contactInfo}</span>
-                </span>
-              </>
-            ) : (
-              <button
-                className={`c-see-info d-block btn btn-outline-primary gtmContact gtmFormation`}
-                onClick={() => setSeeInfo(true)}
-              >
-                Voir les informations de contact
-              </button>
-            )}
+            <>
+              <span className="d-block">
+                <img className="cardIcon" src={contactIcon} alt="" />
+              </span>
+              <span className="ml-2 d-block">
+                <span className="c-detail-address d-block">{contactInfo}</span>
+              </span>
+            </>
           </div>
         ) : (
           ""
