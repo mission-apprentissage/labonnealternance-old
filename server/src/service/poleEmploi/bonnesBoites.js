@@ -4,7 +4,6 @@ const { itemModel } = require("../../model/itemModel");
 const { isOriginLocal } = require("../../common/utils/isOriginLocal");
 const { manageApiError } = require("../../common/utils/errorManager");
 const { encryptMailWithIV } = require("../../common/utils/encryptString");
-const logger = require("../../common/logger");
 
 const esClient = getBonnesBoitesES();
 
@@ -96,8 +95,6 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
     //socialNetwork: company.social_network,
     url: company.website,
   };
-
-  logger.info(`company : ${company.siret} - ${company.enseigne}`);
 
   //resultCompany.url = company.url;
 
