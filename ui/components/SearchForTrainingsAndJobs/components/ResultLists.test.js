@@ -12,7 +12,20 @@ describe("ResultList", () => {
 
   it("By default displays a result list", () => {
     // Given /When
-    render(<ResultLists setActiveFilter={() => { }} selectedItem={null} handleSelectItem={() => { }} showSearchForm={() => { }} isTrainingSearchLoading={false} isJobSearchLoading={false} handleExtendedSearch={() => { }} searchForJobsOnNewCenter={() => { }} searchForTrainingsOnNewCenter={() => { }} jobSearchError={''} allJobSearchError={false} trainingSearchError={''} shouldShowWelcomeMessage={false}
+    render(<ResultLists 
+              setActiveFilter={() => { }} 
+              selectedItem={null} 
+              handleSelectItem={() => { }} 
+              showSearchForm={() => { }} 
+              isTrainingSearchLoading={false} 
+              isJobSearchLoading={false} 
+              handleExtendedSearch={() => { }} 
+              searchForJobsOnNewCenter={() => { }} 
+              searchForTrainingsOnNewCenter={() => { }} 
+              jobSearchError={''} 
+              allJobSearchError={false} 
+              trainingSearchError={''} 
+              shouldShowWelcomeMessage={false}
               isTestMode={true}
               stubbedExtendedSearch={false}
               stubbedHasSearch={true}
