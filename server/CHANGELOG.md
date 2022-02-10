@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.2 [08/02/2022]
+[1059] Mauvais onglet ouvert après navigation
+
 ## 1.18.1 [07/02/2022]
 Affinage score d'affichage CBS
 [1053] Notification sur slack
