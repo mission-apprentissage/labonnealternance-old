@@ -1,14 +1,12 @@
 # CHANGELOG
 
-## 1.18.2 [08/02/2022]
-[1059] Mauvais onglet ouvert après navigation
-
 ## 1.18.1 [07/02/2022]
 Affinage score d'affichage CBS
 [1053] Notification sur slack
 [1069] Type lba par défaut sur l'import lbb
 [1071] Fix bug boutons multiples PRDV
 [924] Masquer contact si bouton PRDV
+[1059] Mauvais onglet ouvert après navigation
 
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
