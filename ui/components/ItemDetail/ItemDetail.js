@@ -13,6 +13,7 @@ import chevronClose from "public/images/close.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { rawPostalAddress } from "../../utils/addressUtils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
+import { filterLayers } from "../../utils/mapTools";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
@@ -32,6 +33,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   useEffect(() => {
     setSeeInfo(false);
+    filterLayers(activeFilter);
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
   let actualTitle =
