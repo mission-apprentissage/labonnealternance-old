@@ -134,9 +134,34 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
 
     const esQueryIndexFragment = getBonnesBoitesEsQueryIndexFragment(companyLimit);
 
+    //const esQuerySort =
+
     const responseBonnesBoites = await esClient.search({
       ...esQueryIndexFragment,
       body: {
+        /*
+
+        "query": {
+    "function_score": {
+        "query": {
+            "bool" : {
+                "must" : {
+                    "term" : { "user" : "rph" }
+                }
+            }
+        },
+        "random_score": {}
+    }
+  }
+
+
+
+  "sort": [
+    "_score",
+    {"_geo_distance"
+
+        */
+
         query: {
           bool: {
             must: mustTerm,
