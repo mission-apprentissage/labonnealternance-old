@@ -26,7 +26,7 @@ const getSomeLbbCompanies = async ({
 }) => {
   let companies = null;
   let currentRadius = strictRadius ? radius : 20000;
-  let companyLimit = 150; //TODO: query params options or default value from properties -> size || 100
+  let companyLimit = 250; //TODO: query params options or default value from properties -> size || 100
 
   companies = await getLbbCompanies({
     romes,
@@ -115,9 +115,17 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
   return resultCompany;
 };
 
-const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type, caller, api = "jobV1" }) => {
+const getLbbCompanies = async ({
+  romes,
+  latitude,
+  longitude,
+  /*radius,*/ companyLimit,
+  type,
+  caller,
+  api = "jobV1",
+}) => {
   try {
-    const distance = radius || 10;
+    //const distance = radius || 10;
 
     let mustTerm = [
       {
@@ -134,7 +142,49 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
 
     const esQueryIndexFragment = getBonnesBoitesEsQueryIndexFragment(companyLimit);
 
-    //const esQuerySort =
+    let esQuerySort = {
+      sort: [
+        {
+          _geo_distance: {
+            geo_coordonnees: [parseFloat(longitude), parseFloat(latitude)],
+            order: "asc",
+            unit: "km",
+            mode: "min",
+            distance_type: "arc",
+            ignore_unmapped: true,
+          },
+        },
+      ],
+    };
+
+    let esQuery = {
+      query: {
+        bool: {
+          must: mustTerm,
+          /*filter: {
+            geo_distance: {
+              distance: `${distance}km`,
+              geo_coordonnees: {
+                lat: latitude,
+                lon: longitude,
+              },
+            },
+          },*/
+        },
+      },
+    };
+
+    /*
+    if(condition ....)
+     */
+
+    esQuery = {
+      query: {
+        function_score: esQuery,
+      },
+    };
+
+    esQuerySort.sort.splice(0, 0, "_score");
 
     const responseBonnesBoites = await esClient.search({
       ...esQueryIndexFragment,
@@ -162,32 +212,8 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
 
         */
 
-        query: {
-          bool: {
-            must: mustTerm,
-            filter: {
-              geo_distance: {
-                distance: `${distance}km`,
-                geo_coordonnees: {
-                  lat: latitude,
-                  lon: longitude,
-                },
-              },
-            },
-          },
-        },
-        sort: [
-          {
-            _geo_distance: {
-              geo_coordonnees: [parseFloat(longitude), parseFloat(latitude)],
-              order: "asc",
-              unit: "km",
-              mode: "min",
-              distance_type: "arc",
-              ignore_unmapped: true,
-            },
-          },
-        ],
+        ...esQuery,
+        ...esQuerySort,
       },
     });
 
