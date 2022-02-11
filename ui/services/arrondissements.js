@@ -1,13 +1,12 @@
-import { every, tail } from 'lodash';
 
 const simplifiedArrondissements = (rawItems, town) => {
   
   const result = JSON.parse(JSON.stringify(rawItems))
 
-  const allAreInTheTown = every(result, (e) => e?.label?.indexOf(town) === 0)
-  const allButFirstHaveArrondissement = every(tail(result), (e) => e?.label?.indexOf('Arrondissement') > 0)
-
-  if (allAreInTheTown && allButFirstHaveArrondissement) {
+  const firstIsInTown = result[0]?.label?.toLowerCase()?.indexOf(town?.toLowerCase()) >= 0
+  const secondIsInTown = result[1]?.label?.toLowerCase()?.indexOf(town?.toLowerCase()) >= 0
+  const secondHasArrondissement = result[1]?.label?.toLowerCase()?.indexOf('arrondissement') >= 0
+  if (firstIsInTown && secondIsInTown && secondHasArrondissement) {
     // Only town will be shown
     result[0].label = result[0].label.split(' ')[0]
   }
