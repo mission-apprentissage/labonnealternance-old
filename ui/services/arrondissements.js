@@ -24,6 +24,8 @@ const simplifiedItems = (rawItems) => {
   }
   else if (rawItems[0]?.label?.toLowerCase()?.includes('marseille')) {    
     return simplifiedArrondissements(rawItems, 'Marseille')
+  } else {
+    return rawItems
   }
 }
 
