@@ -1,13 +1,21 @@
-import { simplifiedArrondissements } from './arrondissements';
+import { simplifiedArrondissements, simplifiedItems } from './arrondissements';
 
 describe('arrondissements', () => {
 
-  
   it('.simplifiedArrondissements : Simplifies the first item', async () => {
-    let parisItems = getTownItems('Paris')
-    let res = simplifiedArrondissements(parisItems, 'Paris')
-    expect(parisItems).toEqual(parisItems);
-    expect(res[0].label).toEqual('Paris');
+    let nantesItems = getTownItems('nantes')
+    expect(nantesItems[0].label).not.toEqual('nantes');
+    let res = simplifiedArrondissements(nantesItems, 'nantes')
+    expect(nantesItems).toEqual(nantesItems);
+    expect(res[0].label).toEqual('nantes');
+  });
+
+  it('.simplifiedItems : Do not change anything outsite Paris, Lyon, Marseille', async () => {
+    let nantesItems = getTownItems('nantes')
+    expect(nantesItems[0].label).not.toEqual('nantes');
+    let res = simplifiedItems(nantesItems, 'nantes')
+    expect(nantesItems).toEqual(nantesItems);
+    expect(res).toEqual(nantesItems);
   });
 
   let getTownItems = function (townName) {
