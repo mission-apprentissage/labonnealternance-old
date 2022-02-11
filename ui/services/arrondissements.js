@@ -15,13 +15,13 @@ const simplifiedArrondissements = (rawItems, town) => {
 
 const simplifiedItems = (rawItems) => {
   
-  if (rawItems[0]?.label?.toLowerCase()?.includes('paris')) {
+  const firstLabel = rawItems[0]?.label?.toLowerCase() || ''
+
+  if (firstLabel.includes('paris')) {
     return simplifiedArrondissements(rawItems, 'Paris')
-  }
-  else if (rawItems[0]?.label?.toLowerCase()?.includes('lyon')) {
+  } else if (firstLabel.includes('lyon')) {
     return simplifiedArrondissements(rawItems, 'Lyon')
-  }
-  else if (rawItems[0]?.label?.toLowerCase()?.includes('marseille')) {    
+  } else if (firstLabel.includes('marseille')) {    
     return simplifiedArrondissements(rawItems, 'Marseille')
   } else {
     return rawItems
