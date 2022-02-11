@@ -7,6 +7,7 @@ Affinage score d'affichage CBS
 [1071] Fix bug boutons multiples PRDV
 [924] Masquer contact si bouton PRDV
 [1059] Mauvais onglet ouvert après navigation
+[1025] Rechercher des villes avec arrondissements
 
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
