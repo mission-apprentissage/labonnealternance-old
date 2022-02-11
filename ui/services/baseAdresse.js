@@ -1,6 +1,6 @@
 import axios from "axios";
 import memoize from "../utils/memoize";
-import simplifiedArrondissements from "./simplifiedArrondissements";
+import { simplifiedItems } from "./arrondissements";
 
 export const fetchAddresses = memoize((value, type) => {
   if (value) {
@@ -45,7 +45,7 @@ export const fetchAddresses = memoize((value, type) => {
       });
 
       console.log('returnedItems', returnedItems);
-      let simplifiedReturnedItems = simplifiedArrondissements(returnedItems)
+      let simplifiedReturnedItems = simplifiedItems(returnedItems)
       return simplifiedReturnedItems;
     });
   } else return [];
