@@ -33,7 +33,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   useEffect(() => {
     setSeeInfo(false);
-    filterLayers(activeFilter);
+    try {
+      filterLayers(activeFilter);
+    } catch (err) {
+      //notice: gère des erreurs qui se présentent à l'initialisation de la page quand mapbox n'est pas prêt.
+    }
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
   let actualTitle =
