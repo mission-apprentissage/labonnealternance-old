@@ -44,7 +44,6 @@ export const fetchAddresses = memoize((value, type) => {
         };
       });
 
-      console.log('returnedItems', returnedItems);
       let simplifiedReturnedItems = simplifiedItems(returnedItems)
       return simplifiedReturnedItems;
     });
@@ -64,8 +63,6 @@ export const fetchAddressFromCoordinates = (coordinates, type) => {
         label: feature.properties.label,
       };
     });
-
-    //console.log("returned items : ", returnedItems);
 
     return returnedItems;
   });
