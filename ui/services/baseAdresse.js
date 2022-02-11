@@ -1,5 +1,6 @@
 import axios from "axios";
 import memoize from "../utils/memoize";
+import { simplifiedItems } from "./arrondissements";
 
 export const fetchAddresses = memoize((value, type) => {
   if (value) {
@@ -43,9 +44,8 @@ export const fetchAddresses = memoize((value, type) => {
         };
       });
 
-      //console.log("returned items : ", returnedItems);
-
-      return returnedItems;
+      let simplifiedReturnedItems = simplifiedItems(returnedItems)
+      return simplifiedReturnedItems;
     });
   } else return [];
 });
@@ -63,8 +63,6 @@ export const fetchAddressFromCoordinates = (coordinates, type) => {
         label: feature.properties.label,
       };
     });
-
-    //console.log("returned items : ", returnedItems);
 
     return returnedItems;
   });
