@@ -156,8 +156,9 @@ const SearchForTrainingsAndJobs = () => {
     setSearchRadius(values.radius || 30);
     dispatch(setExtendedSearch(false));
 
-    flyToLocation({ center: searchCenter, zoom: 10 });
-
+    if(searchCenter) { flyToLocation({ center: searchCenter, zoom: 10 }); }
+    else { flyToLocation({ center: coordinatesOfFrance, zoom: 5 }); }
+  
     dispatch(setFormValues({ ...values }));
 
     if (scopeContext.isTraining) {
