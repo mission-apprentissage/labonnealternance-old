@@ -627,6 +627,8 @@ const setTrainingMarkers = async (trainingList) => {
   }
 };
 
+const coordinatesOfFrance = [2.213749, 46.227638];
+
 export {
   map,
   isMapInitialized,
@@ -647,4 +649,5 @@ export {
   setSelectedJobMarker,
   setSelectedTrainingMarker,
   setSelectedMarker,
+  coordinatesOfFrance,
 };
