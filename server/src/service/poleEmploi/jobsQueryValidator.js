@@ -22,9 +22,11 @@ const jobsQueryValidator = (query) => {
   // rayon de recherche : radius
   validateRadius(query.radius, error_messages);
 
-  // coordonnées gps : latitude et longitude
-  validateLatitude(query.latitude, error_messages);
-  validateLongitude(query.longitude, error_messages);
+  // coordonnées gps optionnelles : latitude et longitude
+  if (query.latitude || query.longitude) {
+    validateLatitude(query.latitude, error_messages);
+    validateLongitude(query.longitude, error_messages);
+  }
 
   // code INSEE : insee
   if (query.caller) {
