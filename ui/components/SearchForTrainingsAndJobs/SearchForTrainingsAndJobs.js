@@ -149,7 +149,7 @@ const SearchForTrainingsAndJobs = () => {
 
   const handleSearchSubmit = async ({values,followUpItem=null}) => {
     // centrage de la carte sur le lieu de recherche
-    const searchCenter = values.location?[values.location.value.coordinates[0], values.location.value.coordinates[1]]:null;
+    const searchCenter = values.location.value?[values.location.value.coordinates[0], values.location.value.coordinates[1]]:null;
     const searchTimestamp = new Date().getTime();
     setShouldShowWelcomeMessage(false);
 

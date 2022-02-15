@@ -80,7 +80,7 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
   const address = `${company.numero_rue} ${company.libelle_rue}, ${company.code_postal} ${company.ville}`.trim();
 
   resultCompany.place = {
-    distance: company.distance.length > 1 ? null : Math.round(10 * company.distance[0]) / 10 ?? 0,
+    distance: company.distance?.length ? Math.round(10 * company.distance[0]) / 10 ?? 0 : null,
     fullAddress: address,
     latitude: company.geo_coordonnees.split(",")[0],
     longitude: company.geo_coordonnees.split(",")[1],
@@ -118,7 +118,7 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => 
 const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type, caller, api = "jobV1" }) => {
   try {
     const distance = radius || 10;
-    console.log(distance);
+
     let mustTerm = [
       {
         match: {
@@ -136,16 +136,18 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
 
     let esQuerySort = {
       sort: [
-        {
-          _geo_distance: {
-            geo_coordonnees: [parseFloat(longitude), parseFloat(latitude)],
-            order: "asc",
-            unit: "km",
-            mode: "min",
-            distance_type: "arc",
-            ignore_unmapped: true,
-          },
-        },
+        latitude || latitude === 0
+          ? {
+              _geo_distance: {
+                geo_coordonnees: [parseFloat(longitude), parseFloat(latitude)],
+                order: "asc",
+                unit: "km",
+                mode: "min",
+                distance_type: "arc",
+                ignore_unmapped: true,
+              },
+            }
+          : "_score",
       ],
     };
 
@@ -157,7 +159,7 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
       },
     };
 
-    /*if (latitude || latitude === 0) {
+    if (latitude || latitude === 0) {
       esQuery.query.bool.filter = {
         geo_distance: {
           distance: `${distance}km`,
@@ -167,15 +169,13 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
           },
         },
       };
-    } else {*/
-    esQuery = {
-      query: {
-        function_score: esQuery,
-      },
-    };
-
-    esQuerySort.sort.splice(0, 0, "_score");
-    /*}*/
+    } else {
+      esQuery = {
+        query: {
+          function_score: esQuery,
+        },
+      };
+    }
 
     const responseBonnesBoites = await esClient.search({
       ...esQueryIndexFragment,
@@ -188,7 +188,7 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
     let bonnesBoites = [];
 
     responseBonnesBoites.body.hits.hits.forEach((bonneBoite) => {
-      bonnesBoites.push({ ...bonneBoite._source, distance: bonneBoite.sort });
+      bonnesBoites.push({ ...bonneBoite._source, distance: latitude || latitude === 0 ? bonneBoite.sort : null });
     });
 
     if (!latitude && latitude !== 0) {

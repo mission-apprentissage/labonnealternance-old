@@ -34,8 +34,8 @@ export const searchForTrainingsFunction = async ({
       params: {
         romes: getRomeFromParameters({ values, widgetParameters }),
         rncps: getRncpsFromParameters({ values, widgetParameters }),
-        longitude: values.location ? values.location.value.coordinates[0] : null,
-        latitude: values.location ? values.location.value.coordinates[1] : null,
+        longitude: values?.location?.value ? values.location.value.coordinates[0] : null,
+        latitude: values?.location?.value ? values.location.value.coordinates[1] : null,
         radius: values.radius || 30,
         diploma: values.diploma,
       },

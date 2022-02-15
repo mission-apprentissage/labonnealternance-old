@@ -34,13 +34,15 @@ export const searchForJobsFunction = async ({
   setAllJobSearchError(false);
 
   try {
-    const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
+    const searchCenter = values?.location?.value
+      ? [values.location.value.coordinates[0], values.location.value.coordinates[1]]
+      : null;
 
     const response = await axios.get(jobsApi, {
       params: {
         romes: getRomeFromParameters({ values, widgetParameters }),
-        longitude: values.location ? values.location.value.coordinates[0] : null,
-        latitude: values.location ? values.location.value.coordinates[1] : null,
+        longitude: values?.location?.value ? values.location.value.coordinates[0] : null,
+        latitude: values?.location?.value ? values.location.value.coordinates[1] : null,
         insee: values.location.insee,
         zipcode: values.location.zipcode,
         radius: values.radius || 30,

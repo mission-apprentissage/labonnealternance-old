@@ -8,8 +8,9 @@ const { formationsQueryValidator, formationsRegionQueryValidator } = require("./
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const crypto = require("crypto");
 const { manageApiError } = require("../common/utils/errorManager");
+const logger = require("../common/logger");
 
-const formationResultLimit = 500;
+const formationResultLimit = 250;
 
 const lbfDescriptionUrl = "https://labonneformation.pole-emploi.fr/api/v1/detail";
 
@@ -53,6 +54,10 @@ const getFormations = async ({
   try {
     const distance = radius || 30;
 
+    const useGeoLocation = coords ? true : false;
+    const latitude = coords ? coords[1] : null;
+    const longitude = coords ? coords[0] : null;
+
     let mustTerm = [
       romes
         ? {
@@ -90,37 +95,63 @@ const getFormations = async ({
 
     mustTerm.push(publishedMustTerm);
 
+    let esQuerySort = {
+      sort: [
+        useGeoLocation
+          ? {
+              _geo_distance: {
+                idea_geo_coordonnees_etablissement: [parseFloat(longitude), parseFloat(latitude)],
+                order: "asc",
+                unit: "km",
+                mode: "min",
+                distance_type: "arc",
+                ignore_unmapped: true,
+              },
+            }
+          : "_score",
+      ],
+    };
+
+    let esQuery = {
+      query: {
+        bool: {
+          must: mustTerm,
+        },
+      },
+    };
+
+    if (useGeoLocation) {
+      esQuery.query.bool.filter = {
+        geo_distance: {
+          distance: `${distance}km`,
+          idea_geo_coordonnees_etablissement: {
+            lat: latitude,
+            lon: longitude,
+          },
+        },
+      };
+    }
+
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
+
+    /*console.log("esQuerySort : ",esQuerySort);
+    console.log("esQuery : ",esQuery);*/
+
+    logger.info(
+      JSON.stringify({
+        ...esQueryIndexFragment,
+        body: {
+          ...esQuery,
+          ...esQuerySort,
+        },
+      })
+    );
 
     const responseFormations = await esClient.search({
       ...esQueryIndexFragment,
       body: {
-        query: {
-          bool: {
-            must: mustTerm,
-            filter: {
-              geo_distance: {
-                distance: `${distance}km`,
-                idea_geo_coordonnees_etablissement: {
-                  lat: coords[1],
-                  lon: coords[0],
-                },
-              },
-            },
-          },
-        },
-        sort: [
-          {
-            _geo_distance: {
-              idea_geo_coordonnees_etablissement: [parseFloat(coords[0]), parseFloat(coords[1])],
-              order: "asc",
-              unit: "km",
-              mode: "min",
-              distance_type: "arc",
-              ignore_unmapped: true,
-            },
-          },
-        ],
+        ...esQuery,
+        ...esQuerySort,
       },
     });
 
@@ -530,7 +561,7 @@ const getFormationsQuery = async (query) => {
     const formations = await getAtLeastSomeFormations({
       romes: query.romes ? query.romes.split(",") : null,
       rncps: query.rncps ? query.rncps.split(",") : null,
-      coords: [query.longitude, query.latitude],
+      coords: query.longitude ? [query.longitude, query.latitude] : null,
       radius: query.radius,
       diploma: query.diploma,
       maxOutLimitFormation: 5,
