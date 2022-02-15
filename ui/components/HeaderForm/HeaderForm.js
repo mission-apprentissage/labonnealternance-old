@@ -79,7 +79,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
             <div className="ml-3">
               <div className={`formGroup formGroup--logobar ${errors.location ? "formGroup--logobar-onerror" : ""}`}>
                 <AutoCompleteField
-                  kind="Lieu *"
+                  kind="Lieu"
                   items={[]}
                   initialSelectedItem={contextFormValues?.location ?? null}
                   itemToStringFunction={autoCompleteToStringFunction}

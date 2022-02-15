@@ -8,6 +8,12 @@ const { manageApiError } = require("../../common/utils/errorManager");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
 
 const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius, caller, api }) => {
+  /*if (!lat) {
+    return {
+      results: [],
+    };
+  }*/
+
   // la liste des romes peut être supérieure au maximum de trois autorisés par l'api offre de PE
   // on segmente les romes en blocs de max 3 et lance autant d'appels parallèles que nécessaires
   let chunkedRomes = [];
@@ -190,6 +196,9 @@ const peContratsAlternances = "E2,FS"; //E2 -> Contrat d'Apprentissage, FS -> co
 const getPeJobs = async ({ romes, insee, radius, jobLimit, caller, api = "jobV1" }) => {
   try {
     const token = await getAccessToken("pe");
+
+    const hasLocation = insee ? true : false;
+
     let headers = peApiHeaders;
     headers.Authorization = `Bearer ${token}`;
 
@@ -205,10 +214,14 @@ const getPeJobs = async ({ romes, insee, radius, jobLimit, caller, api = "jobV1"
       codeROME: romes,
       commune: codeInsee,
       distance,
-      sort: 2, //sort: 0, TODO: remettre sort 0 après expérimentation CBS
+      sort: hasLocation ? 2 : 0, //sort: 0, TODO: remettre sort 0 après expérimentation CBS
       natureContrat: peContratsAlternances,
       range: `0-${jobLimit - 1}`,
     };
+
+    if (hasLocation) {
+      params.insee = codeInsee;
+    }
 
     const jobs = await axios.get(`${peJobsApiEndpoint}`, {
       params,

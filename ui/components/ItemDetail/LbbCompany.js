@@ -34,6 +34,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
   const centerSearchOnCompany = async (e) => {
     if (e) {
       e.stopPropagation();
+      e.preventDefault();
     }
 
     // récupération du code insee manquant depuis la base d'adresse

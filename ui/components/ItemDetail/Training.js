@@ -57,6 +57,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
   const centerSearchOnTraining = async (e) => {
     if (e) {
       e.stopPropagation();
+      e.preventDefault();
     }
 
     // reconstruction des critères d'adresse selon l'adresse du centre de formation
@@ -132,7 +133,9 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
             ""
           )}
           <span className="cardDistance pt-1">
-            {Math.round(training.place.distance)} km(s) du lieu de recherche
+            {training.place.distance !== null
+              ? `${Math.round(training.place.distance)} km(s) du lieu de recherche`
+              : ""}
             {showTextOnly ? (
               ""
             ) : (
@@ -147,7 +150,8 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
             ""
           ) : (
             <>
-              {Math.round(training.place.distance) > currentSearchRadius && scopeContext.isJob
+              {(training.place.distance === null || Math.round(training.place.distance) > currentSearchRadius) &&
+              scopeContext.isJob
                 ? getCenterSearchOnTrainingButton()
                 : ""}
             </>

@@ -8,7 +8,7 @@ const { formationsQueryValidator, formationsRegionQueryValidator } = require("./
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const crypto = require("crypto");
 const { manageApiError } = require("../common/utils/errorManager");
-const logger = require("../common/logger");
+//const logger = require("../common/logger");
 
 const formationResultLimit = 250;
 
@@ -137,7 +137,7 @@ const getFormations = async ({
     /*console.log("esQuerySort : ",esQuerySort);
     console.log("esQuery : ",esQuery);*/
 
-    logger.info(
+    /*logger.info(
       JSON.stringify({
         ...esQueryIndexFragment,
         body: {
@@ -145,7 +145,7 @@ const getFormations = async ({
           ...esQuerySort,
         },
       })
-    );
+    );*/
 
     const responseFormations = await esClient.search({
       ...esQueryIndexFragment,

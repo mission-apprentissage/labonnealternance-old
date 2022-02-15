@@ -104,7 +104,7 @@ const SearchForm = (props) => {
               <Col xs="12">
                 <div className={`formGroup mt-3 ${errors.location ? "c-searchform--onerror" : ""}`}>
                   <AutoCompleteField
-                    kind="Lieu *"
+                    kind="Lieu"
                     items={[]}
                     initialSelectedItem={contextFormValues?.location ?? null}
                     itemToStringFunction={autoCompleteToStringFunction}

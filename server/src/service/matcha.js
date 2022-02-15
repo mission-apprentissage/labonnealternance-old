@@ -13,6 +13,12 @@ const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
 const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, caller }) => {
   try {
+    if (!latitude) {
+      return {
+        results: [],
+      };
+    }
+
     const distance = radius || 10;
 
     let params = {
