@@ -11,21 +11,19 @@ const matchaApiEndpoint = `https://matcha${
 const matchaSearchEndPoint = `${matchaApiEndpoint}/search`;
 const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
+const coordinatesOfFrance = [2.213749, 46.227638];
+
 const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, caller }) => {
   try {
-    if (!latitude) {
-      return {
-        results: [],
-      };
-    }
+    const hasLocation = latitude === undefined ? false : true;
 
-    const distance = radius || 10;
+    let distance = hasLocation ? radius || 10 : 21000;
 
     let params = {
       romes: romes.split(","),
       distance,
-      lat: latitude,
-      lon: longitude,
+      lat: hasLocation ? latitude : coordinatesOfFrance[1],
+      lon: hasLocation ? longitude : coordinatesOfFrance[0],
     };
 
     const jobs = await axios.post(`${matchaSearchEndPoint}`, params);
