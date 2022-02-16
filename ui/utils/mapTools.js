@@ -227,7 +227,7 @@ const initializeMap = ({
     }
 
     if (trainings && trainings.length) {
-      setTrainingMarkers(factorTrainingsForMap(trainings));
+      setTrainingMarkers(factorTrainingsForMap(trainings), { centerMapOnTraining: false });
     }
   });
 
@@ -592,14 +592,16 @@ const updateSelectedMarkerCollection = async (item, layer) => {
   }
 };
 
-const setTrainingMarkers = async (trainingList) => {
+const setTrainingMarkers = async (trainingList, options) => {
   if (isMapInitialized) {
     await waitForMapReadiness();
 
     if (trainingList) {
-      // centrage sur formation la plus proche
-      let newZoom = getZoomLevelForDistance(trainingList[0].items[0].place.distance);
-      map.flyTo({ center: trainingList[0].coords, zoom: newZoom });
+      if (!options || options.centerMapOnTraining) {
+        // centrage sur formation la plus proche
+        let newZoom = getZoomLevelForDistance(trainingList[0].items[0].place.distance);
+        map.flyTo({ center: trainingList[0].coords, zoom: newZoom });
+      }
 
       let features = [];
 
