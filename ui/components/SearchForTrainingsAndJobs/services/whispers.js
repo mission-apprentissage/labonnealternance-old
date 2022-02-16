@@ -64,7 +64,7 @@ function domInsertion(document, randomlyChosenResultCard, msg, indx=0) {
   insertAfter(randomlyChosenResultCard, whisperNode)
 }
 
-function getHTML(text, link, theme, msgId) {
+function getHTML(text, link) {
 
   window['SendTrackEvent'] = SendTrackEvent;
 
