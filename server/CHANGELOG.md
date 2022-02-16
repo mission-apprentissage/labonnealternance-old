@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.2 [16/02/2022]
+[1024] Astuces : supprimer la mesure d'utilité
+
 ## 1.18.1 [07/02/2022]
 Affinage score d'affichage CBS
 [1053] Notification sur slack
