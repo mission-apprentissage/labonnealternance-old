@@ -149,7 +149,7 @@ const SearchForTrainingsAndJobs = () => {
 
   const handleSearchSubmit = async ({values,followUpItem=null}) => {
     // centrage de la carte sur le lieu de recherche
-    const searchCenter = values.location.value?[values.location.value.coordinates[0], values.location.value.coordinates[1]]:null;
+    const searchCenter = values.location?.value?[values.location.value.coordinates[0], values.location.value.coordinates[1]]:null;
     const searchTimestamp = new Date().getTime();
     setShouldShowWelcomeMessage(false);
 
@@ -158,7 +158,7 @@ const SearchForTrainingsAndJobs = () => {
     dispatch(setExtendedSearch(false));
 
     if(searchCenter) { flyToLocation({ center: searchCenter, zoom: 10 }); }
-    else { flyToLocation({ center: coordinatesOfFrance, zoom: 5 }); }
+    else { flyToLocation({ center: coordinatesOfFrance, zoom: 4 }); }
   
     dispatch(setFormValues({ ...values }));
 

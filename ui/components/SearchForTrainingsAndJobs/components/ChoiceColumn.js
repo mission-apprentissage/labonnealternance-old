@@ -61,7 +61,7 @@ const ChoiceColumn = ({
     }
   });
 
-  useEffect( () => {
+  useEffect(() => {
     whispers.insertWhisper(document, isTrainingSearchLoading || isJobSearchLoading);
   });
 
@@ -192,7 +192,7 @@ const ChoiceColumn = ({
       />
     );
   };
-  
+
   const getSearchForm = () => {
     return (
       <div className="d-block d-md-none">
