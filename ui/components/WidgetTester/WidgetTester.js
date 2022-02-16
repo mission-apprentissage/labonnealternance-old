@@ -194,7 +194,7 @@ const WidgetTester = () => {
                       compareItemFunction={compareAutoCompleteValues}
                       onInputValueChangeFunction={jobChanged}
                       name="jobField"
-                      placeholder="Ex : boulangerie"
+                      placeholder="Indiquez un métier ou diplôme"
                       searchPlaceholder="Indiquez le métier recherché ci-dessus"
                     />
                   </div>
