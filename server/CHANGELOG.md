@@ -1,8 +1,5 @@
 # CHANGELOG
 
-## 1.18.2 [16/02/2022]
-[1024] Astuces : supprimer la mesure d'utilité
-
 ## 1.18.1 [07/02/2022]
 Affinage score d'affichage CBS
 [1053] Notification sur slack
@@ -11,6 +8,7 @@ Affinage score d'affichage CBS
 [924] Masquer contact si bouton PRDV
 [1059] Mauvais onglet ouvert après navigation
 [1025] Rechercher des villes avec arrondissements
+[1024] Astuces : supprimer la mesure d'utilité
 
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
