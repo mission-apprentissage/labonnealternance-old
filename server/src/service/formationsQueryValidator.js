@@ -21,13 +21,13 @@ const formationsQueryValidator = (query) => {
   // codes ROME : romes
   validateRomeOrDomain({ romes: query.romes, romeDomain: query.romeDomain, romeLimit: 20 }, error_messages);
 
-  // rayon de recherche : radius
-  validateRadius(query.radius, error_messages);
-
   // coordonnées gps optionnelles : latitude et longitude
   if (query.latitude || query.longitude) {
     validateLatitude(query.latitude, error_messages);
     validateLongitude(query.longitude, error_messages);
+
+    // rayon de recherche : radius
+    validateRadius(query.radius, error_messages);
   }
 
   // diploma mal formée si présente
