@@ -9,7 +9,7 @@ Affinage score d'affichage CBS
 [1059] Mauvais onglet ouvert après navigation
 [1025] Rechercher des villes avec arrondissements
 [1024] Astuces : supprimer la mesure d'utilité
-[1092] Anomalies
+[1092] Fix anomalies d'affichage ligne insécable trop longue
 
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
