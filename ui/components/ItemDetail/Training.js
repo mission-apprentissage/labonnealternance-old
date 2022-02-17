@@ -57,6 +57,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
   const centerSearchOnTraining = async (e) => {
     if (e) {
       e.stopPropagation();
+      e.preventDefault();
     }
 
     // reconstruction des critères d'adresse selon l'adresse du centre de formation
