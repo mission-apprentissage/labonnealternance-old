@@ -18,10 +18,10 @@ const getJobsEtFormationsQuery = async (query) => {
         ? getFormations({
             romes: query.romes ? query.romes.split(",") : null,
             rncps: query.rncps ? query.rncps.split(",") : null,
-            coords: [query.longitude, query.latitude],
+            coords: query.longitude || query.longitude ? [query.longitude, query.latitude] : null,
             radius: query.radius,
             diploma: query.diploma,
-            limit: 500,
+            limit: 150,
             romeDomain: query.romeDomain,
             caller: query.caller,
             api: "jobEtFormationV1",

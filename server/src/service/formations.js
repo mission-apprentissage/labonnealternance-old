@@ -10,7 +10,7 @@ const crypto = require("crypto");
 const { manageApiError } = require("../common/utils/errorManager");
 //const logger = require("../common/logger");
 
-const formationResultLimit = 250;
+const formationResultLimit = 150;
 
 const lbfDescriptionUrl = "https://labonneformation.pole-emploi.fr/api/v1/detail";
 
@@ -49,7 +49,7 @@ const getFormations = async ({
   caller,
   api = "formationV1",
 }) => {
-  //console.log(romes, coords, radius, diploma);
+  console.log(romes, coords, radius, diploma);
 
   try {
     const distance = radius || 30;
@@ -134,19 +134,6 @@ const getFormations = async ({
 
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
-    /*console.log("esQuerySort : ",esQuerySort);
-    console.log("esQuery : ",esQuery);*/
-
-    /*logger.info(
-      JSON.stringify({
-        ...esQueryIndexFragment,
-        body: {
-          ...esQuery,
-          ...esQuerySort,
-        },
-      })
-    );*/
-
     const responseFormations = await esClient.search({
       ...esQueryIndexFragment,
       body: {
@@ -164,6 +151,7 @@ const getFormations = async ({
 
     return formations;
   } catch (error) {
+    console.log("ici : ", error);
     return manageApiError({
       error,
       api,
