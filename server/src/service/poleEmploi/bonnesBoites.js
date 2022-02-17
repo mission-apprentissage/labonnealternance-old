@@ -13,20 +13,11 @@ const isAllowedSource = ({ referer, caller }) => {
   return isOriginLocal(referer) || allowedSources.split("|").indexOf(caller) >= 0;
 };
 
-const getSomeLbbCompanies = async ({
-  romes,
-  latitude,
-  longitude,
-  radius,
-  type,
-  strictRadius,
-  referer,
-  caller,
-  api = "jobV1",
-}) => {
+const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, referer, caller, api = "jobV1" }) => {
+  const hasLocation = latitude === undefined ? false : true;
   let companies = null;
-  let currentRadius = strictRadius ? radius : 20000;
-  let companyLimit = 250; //TODO: query params options or default value from properties -> size || 100
+  let currentRadius = hasLocation ? radius : 21000;
+  let companyLimit = 150; //TODO: query params options or default value from properties -> size || 100
 
   companies = await getLbbCompanies({
     romes,
@@ -40,7 +31,7 @@ const getSomeLbbCompanies = async ({
   });
 
   if (companies && companies.length) {
-    companies = transformLbbCompaniesForIdea({ companies, radius, type, strictRadius, referer, caller });
+    companies = transformLbbCompaniesForIdea({ companies, radius, type, referer, caller });
   }
 
   return companies;

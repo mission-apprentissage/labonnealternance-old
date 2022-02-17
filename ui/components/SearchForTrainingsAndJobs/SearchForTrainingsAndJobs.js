@@ -167,7 +167,7 @@ const SearchForTrainingsAndJobs = () => {
     }
 
     if (scopeContext.isJob) {
-      searchForJobsWithStrictRadius({values,searchTimestamp,followUpItem,selectFollowUpItem});
+      searchForJobs({values,searchTimestamp,followUpItem,selectFollowUpItem});
     }
     dispatch(setIsFormVisible(false));
 
@@ -223,14 +223,9 @@ const SearchForTrainingsAndJobs = () => {
     });
   };
 
-  const searchForJobsWithStrictRadius = async ({values, searchTimestamp, followUpItem, selectFollowUpItem}) => {
-    searchForJobs({values, searchTimestamp, strictRadius:"strict", followUpItem, selectFollowUpItem});
-  };
-
-  const searchForJobs = async ({values, searchTimestamp, strictRadius, followUpItem, selectFollowUpItem}) => {
+  const searchForJobs = async ({values, searchTimestamp, followUpItem, selectFollowUpItem}) => {
     searchForJobsFunction({
       values,
-      strictRadius,
       searchTimestamp,
       setIsJobSearchLoading,
       dispatch,
@@ -344,7 +339,6 @@ const SearchForTrainingsAndJobs = () => {
             searchForTrainings={searchForTrainings}
             trainingSearchError={trainingSearchError}
             searchForJobs={searchForJobs}
-            searchForJobsWithStrictRadius={searchForJobsWithStrictRadius}
             isJobSearchLoading={isJobSearchLoading}
             jobSearchError={jobSearchError}
             allJobSearchError={allJobSearchError}

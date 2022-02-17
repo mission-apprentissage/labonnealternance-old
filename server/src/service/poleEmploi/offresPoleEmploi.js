@@ -7,7 +7,7 @@ const { manageApiError } = require("../../common/utils/errorManager");
 //const poleEmploi = require("./common.js");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
 
-const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius, caller, api }) => {
+const getSomePeJobs = async ({ romes, insee, radius, lat, long, caller, api }) => {
   /*if (!lat) {
     return {
       results: [],
@@ -33,7 +33,6 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius, ca
         radius,
         lat,
         long,
-        strictRadius,
         caller,
         api,
       });
@@ -69,9 +68,9 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius, ca
 };
 
 // appel de l'api offres pour un bloc de 1 à 3 romes
-const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, strictRadius, caller, api }) => {
+const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, caller, api }) => {
   let jobResult = null;
-  let currentRadius = strictRadius ? radius : 20000;
+  let currentRadius = radius || 20000;
   let jobLimit = 50; //TODO: query params options or default value from properties -> size || 50
 
   let trys = 0;

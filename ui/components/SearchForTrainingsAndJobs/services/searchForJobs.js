@@ -13,7 +13,6 @@ import { SendTrackEvent } from "utils/gtm";
 
 export const searchForJobsFunction = async ({
   values,
-  strictRadius,
   searchTimestamp,
   setIsJobSearchLoading,
   dispatch,
@@ -46,7 +45,6 @@ export const searchForJobsFunction = async ({
         insee: values?.location?.insee,
         zipcode: values?.location?.zipcode,
         radius: values.radius || 30,
-        strictRadius: strictRadius ? "strict" : null,
       },
     });
 
