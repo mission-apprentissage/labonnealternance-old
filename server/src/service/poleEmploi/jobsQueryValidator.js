@@ -29,14 +29,12 @@ const jobsQueryValidator = (query) => {
   }
 
   // code INSEE : insee
-  if (query.caller) {
+  if (query.caller && (query.longitude || query.longitude)) {
     validateInsee(query.insee, error_messages);
   }
 
   // source mal formée si présente
   validateApiSources(query.sources, error_messages, ["lbb", "lba", "offres", "matcha"]);
-
-  // strictRadius devient valeur par défaut, l'inverse doit être explicite
 
   if (error_messages.length) return { error: "wrong_parameters", error_messages };
 
