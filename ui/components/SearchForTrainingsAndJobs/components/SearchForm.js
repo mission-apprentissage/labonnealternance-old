@@ -86,7 +86,7 @@ const SearchForm = (props) => {
                           compareItemFunction={compareAutoCompleteValues}
                           onInputValueChangeFunction={jobChanged}
                           name="jobField"
-                          placeholder="Ex : boulangerie"
+                          placeholder="Indiquez un métier ou diplôme"
                           searchPlaceholder="Indiquez un métier ou diplôme ci-dessus"
                           splitItemsByTypes={[
                             { type: "job", typeLabel: "Métiers", size: 4 },
