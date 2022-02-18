@@ -25,11 +25,11 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
       evnt.metaKey ||
       (evnt.button && evnt.button == 1)
     ) {
-      console.log('newtab?')
+      // newtab was clicked
       localStorage.setItem('newtab', 'true')
-      return false;
+      return;
     } else {
-      console.log('direct....')
+      // direct access
       evnt.preventDefault();
       setAllowDim(false); // fixation du flag
       handleSelectItem(training, "training");
