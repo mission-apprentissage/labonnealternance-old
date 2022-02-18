@@ -8,6 +8,8 @@ import { searchForTrainingsFunction } from "components/SearchForTrainingsAndJobs
 import { searchForJobsFunction } from "components/SearchForTrainingsAndJobs/services/searchForJobs";
 import { useDispatch, useSelector } from "react-redux";
 import pushHistory from "utils/pushHistory";
+import useLocalStorage from "services/useLocalStorage";
+
 import {
   setSelectedItem,
   setItemToScrollTo,
@@ -45,9 +47,12 @@ import { currentPage, setCurrentPage, currentSearch, setCurrentSearch } from "ut
 import updateUiFromHistory from "services/updateUiFromHistory";
 
 const SearchForTrainingsAndJobs = () => {
+
   const dispatch = useDispatch();
   const scopeContext = useScopeContext();
-
+  const [newtab, setNewtab] = useLocalStorage('newtab', null);
+  const [hideMap, setHideMap] = useState(false);
+  
   const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues } = useSelector(
     (state) => state.trainings
   );
@@ -66,6 +71,15 @@ const SearchForTrainingsAndJobs = () => {
   const router = useRouter();
 
   useEffect(() => {
+    if (newtab == 'true') {
+      setHideMap(true)
+      setNewtab(null)
+    } else {
+      setHideMap(false)
+    }
+    console.log('is localstorage newtab ', localStorage.getItem('newtab'))
+    console.log('is localstorage by effect ', newtab)
+
     const handleRouteChange = (url) => {
 
       updateUiFromHistory({
@@ -352,11 +366,16 @@ const SearchForTrainingsAndJobs = () => {
           />
         </Col>
         <Col className={`p-0 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
-          <Map
-            handleSearchSubmit={handleSearchSubmit}
-            showSearchForm={showSearchForm}
-            selectItemOnMap={selectItemOnMap}
-          />
+          {
+            newtab == 'true' ? 
+              '' 
+            :
+              <Map
+                handleSearchSubmit={handleSearchSubmit}
+                showSearchForm={showSearchForm}
+                selectItemOnMap={selectItemOnMap}
+              />
+          }
         </Col>
       </Row>
       <MapListSwitchButton

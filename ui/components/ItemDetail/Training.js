@@ -21,7 +21,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
   const actualLocalStorage = window.localStorage || {}
 
-  const [newtab, setNewtab] = useLocalStorage('blabla', null, actualLocalStorage);
+  const [newtab, setNewtab] = useLocalStorage('newtab', null, actualLocalStorage);
 
   const onSelectItem = (evnt) => {
     if (
@@ -31,11 +31,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
       (evnt.button && evnt.button == 1)
     ) {
       console.log('newtab?')
-      setNewtab('value')
-      let href = evnt.target.getAttribute("href")
-      console.log('evnt', evnt);
-      // href += 'fromtab=true'
-      // evnt.target.setAttribute('href', href)
+      setNewtab('true')
       return;
     } else {
       console.log('direct....')
