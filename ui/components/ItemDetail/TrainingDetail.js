@@ -237,8 +237,8 @@ const TrainingDetail = ({ training, isCfa }) => {
                   <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
                   <span className="c-detail-traininglink">
                     <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
+                      &nbsp;le site Onisep&nbsp;
                       <img src={gotoIcon} alt="Lien" />
-                      &nbsp;le site Onisep
                     </a>
                   </span>
                 </p>
