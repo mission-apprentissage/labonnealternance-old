@@ -12,6 +12,7 @@ Affinage score d'affichage CBS
 [1092] Fix anomalies d'affichage ligne insécable trop longue
 [1068] Optimisation import formations
 [1097] Fix boutons sur cartes
+[1100] Mails lbb
 
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
