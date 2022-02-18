@@ -18,6 +18,10 @@ import { Spinner } from "reactstrap";
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 
 const TrainingDetail = ({ training, isCfa }) => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const fromtab = urlParams.get('display')
+  console.log(fromtab);
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);

@@ -18,10 +18,24 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
   const [allowDim, setAllowDim] = useState(true); // cet état évite un appel qui masque la mise en avant de l'icône lors de l'ouverture du détail
 
-  const onSelectItem = (e) => {
-    e.preventDefault();
-    setAllowDim(false); // fixation du flag
-    handleSelectItem(training, "training");
+  const onSelectItem = (evnt) => {
+    if (
+      evnt.ctrlKey ||
+      evnt.shiftKey ||
+      evnt.metaKey ||
+      (evnt.button && evnt.button == 1)
+    ) {
+      console.log('newtab?')
+      // let href = evnt.target.getAttribute("href")
+      // href += 'fromtab=true'
+      // evnt.target.setAttribute('href', href)
+      return;
+    } else {
+      console.log('direct....')
+      evnt.preventDefault();
+      setAllowDim(false); // fixation du flag
+      handleSelectItem(training, "training");
+    }
   };
 
   const getHightlightClass = () => {
