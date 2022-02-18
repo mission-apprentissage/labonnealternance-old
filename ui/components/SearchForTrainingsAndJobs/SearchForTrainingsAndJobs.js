@@ -66,12 +66,15 @@ const SearchForTrainingsAndJobs = () => {
 
   const router = useRouter();
 
+  const displayMapClicked = () => {
+    setLoadMap(true)
+  }
+
   useEffect(() => {
     if (localStorage.getItem('newtab') === 'true') {
       setLoadMap(false)
       localStorage.removeItem('newtab');
     }
-    console.log('useEffect once...');
   }, []);
 
   useEffect(() => {
@@ -369,7 +372,11 @@ const SearchForTrainingsAndJobs = () => {
                 selectItemOnMap={selectItemOnMap}
               />
             :
-              ''
+              <div className="d-flex-center h-100">
+                <button className="btn btn-lg btn-dark" onClick={displayMapClicked}>
+                  Voir les résultats sur la carte
+                </button>
+              </div>
           }
         </Col>
       </Row>
