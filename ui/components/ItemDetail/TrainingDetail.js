@@ -125,8 +125,8 @@ const TrainingDetail = ({ training, isCfa }) => {
           rel="noopener noreferrer"
           className="gtmDidaskFormation"
         >
+          &nbsp;Préparez votre premier contact avec un CFA !&nbsp;
           <img src={gotoIcon} alt="Lien" />
-          &nbsp;Préparez votre premier contact avec un CFA !
         </a>
       </span>
     </p>
