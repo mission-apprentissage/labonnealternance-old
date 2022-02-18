@@ -9,6 +9,7 @@ import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
+import useLocalStorage from "../../services/useLocalStorage";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
   const { formValues, itemParameters, selectedMapPopupItem } = useSelector((state) => state.trainings);
@@ -18,6 +19,10 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
 
   const [allowDim, setAllowDim] = useState(true); // cet état évite un appel qui masque la mise en avant de l'icône lors de l'ouverture du détail
 
+  const actualLocalStorage = window.localStorage || {}
+
+  const [newtab, setNewtab] = useLocalStorage('blabla', null, actualLocalStorage);
+
   const onSelectItem = (evnt) => {
     if (
       evnt.ctrlKey ||
@@ -26,7 +31,9 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
       (evnt.button && evnt.button == 1)
     ) {
       console.log('newtab?')
-      // let href = evnt.target.getAttribute("href")
+      setNewtab('value')
+      let href = evnt.target.getAttribute("href")
+      console.log('evnt', evnt);
       // href += 'fromtab=true'
       // evnt.target.setAttribute('href', href)
       return;

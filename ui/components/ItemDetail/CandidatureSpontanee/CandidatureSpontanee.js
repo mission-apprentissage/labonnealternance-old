@@ -9,7 +9,7 @@ import toggleCandidature from "./services/toggleCandidature";
 import { getValidationSchema, getInitialSchemaValues } from "./services/getSchema";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import { capitalizeFirstLetter } from "../../../utils/strutils";
-import useLocalStorage from "./services/useLocalStorage";
+import useLocalStorage from "../../../services/useLocalStorage";
 import hasAlreadySubmittedCandidature from "./services/hasAlreadySubmittedCandidature";
 import { getItemId } from "../../../utils/getItemId";
 
