@@ -14,8 +14,8 @@ const DidAsk2 = () => {
             rel="noopener noreferrer"
             className="gtmDidask2"
           >
-            <img src={gotoIcon} alt="Lien" />
             &nbsp;ces cas pratiques !
+            <img src={gotoIcon} alt="Lien" />
           </a>
         </span>
         <span className="ml-1"> !</span>
