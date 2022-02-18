@@ -62,8 +62,17 @@ const SearchForTrainingsAndJobs = () => {
   const [allJobSearchError, setAllJobSearchError] = useState(false);
   const [trainingSearchError, setTrainingSearchError] = useState("");
   const [isLoading, setIsLoading] = useState(hasSearch ? false : true);
+  const [loadMap, setLoadMap] = useState(true);
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (localStorage.getItem('newtab') === 'true') {
+      setLoadMap(false)
+      localStorage.removeItem('newtab');
+    }
+    console.log('useEffect once...');
+  }, []);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -352,11 +361,16 @@ const SearchForTrainingsAndJobs = () => {
           />
         </Col>
         <Col className={`p-0 ${visiblePane === "resultMap" ? "activeXSPane" : "inactiveXSPane"}`} xs="12" md="7">
-          <Map
-            handleSearchSubmit={handleSearchSubmit}
-            showSearchForm={showSearchForm}
-            selectItemOnMap={selectItemOnMap}
-          />
+          {
+            loadMap ?
+              <Map
+                handleSearchSubmit={handleSearchSubmit}
+                showSearchForm={showSearchForm}
+                selectItemOnMap={selectItemOnMap}
+              />
+            :
+              ''
+          }
         </Col>
       </Row>
       <MapListSwitchButton

@@ -26,7 +26,8 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
       (evnt.button && evnt.button == 1)
     ) {
       console.log('newtab?')
-      return;
+      localStorage.setItem('newtab', 'true')
+      return false;
     } else {
       console.log('direct....')
       evnt.preventDefault();
