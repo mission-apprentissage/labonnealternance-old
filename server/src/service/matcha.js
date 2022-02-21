@@ -4,7 +4,7 @@ const config = require("config");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const { manageApiError } = require("../common/utils/errorManager");
 const { encryptMailWithIV } = require("../common/utils/encryptString");
-const { isAllowedSource, isAllowedClearEmail } = require("./jobsEtFormations");
+const { isAllowedSource, isAllowedClearEmail } = require("../common/utils/isAllowedSource");
 
 const matchaApiEndpoint = `https://matcha${
   config.env === "production" ? "" : "-recette"

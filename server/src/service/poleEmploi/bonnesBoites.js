@@ -2,7 +2,7 @@ const { getBonnesBoitesES } = require("../../common/esClient");
 const { itemModel } = require("../../model/itemModel");
 const { manageApiError } = require("../../common/utils/errorManager");
 const { encryptMailWithIV } = require("../../common/utils/encryptString");
-const { isAllowedSource, isAllowedClearEmail } = require("../jobsEtFormations");
+const { isAllowedSource, isAllowedClearEmail } = require("../../common/utils/isAllowedSource");
 
 const esClient = getBonnesBoitesES();
 
