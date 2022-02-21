@@ -13,6 +13,7 @@ import chevronClose from "public/images/close.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { rawPostalAddress } from "../../utils/addressUtils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
+import { filterLayers } from "../../utils/mapTools";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
@@ -32,6 +33,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   useEffect(() => {
     setSeeInfo(false);
+    try {
+      filterLayers(activeFilter);
+    } catch (err) {
+      //notice: gère des erreurs qui se présentent à l'initialisation de la page quand mapbox n'est pas prêt.
+    }
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
   let actualTitle =
@@ -231,11 +237,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ) : (
             ""
           )}
-          {kind === "formation" ? (
-            <TrainingDetail training={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} isCfa={isCfa} />
-          ) : (
-            ""
-          )}
+          {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
         </div>
       </section>
     </>

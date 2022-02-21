@@ -1,9 +1,20 @@
 const Sentry = require("@sentry/node");
-
+const config = require("config");
+const { isOriginLocal } = require("../common/utils/isOriginLocal");
 const { getFormations, transformFormationsForIdea } = require("./formations");
 const { getJobsFromApi } = require("./poleEmploi/jobsAndCompanies");
 const { jobsEtFormationsQueryValidator } = require("./jobsEtFormationsQueryValidator");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
+
+const allowedSources = config.private.allowedSources;
+
+const isAllowedSource = ({ referer, caller }) => {
+  return isOriginLocal(referer) || isAllowedClearEmail({ caller });
+};
+
+const isAllowedClearEmail = ({ caller }) => {
+  return allowedSources.split("|").indexOf(caller) >= 0;
+};
 
 const getJobsEtFormationsQuery = async (query) => {
   const queryValidationResult = jobsEtFormationsQueryValidator(query);
@@ -78,4 +89,4 @@ const getJobsEtFormationsQuery = async (query) => {
   }
 };
 
-module.exports = { getJobsEtFormationsQuery };
+module.exports = { getJobsEtFormationsQuery, isAllowedSource, isAllowedClearEmail };

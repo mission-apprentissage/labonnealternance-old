@@ -50,6 +50,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
   const centerSearchOnJob = async (e) => {
     if (e) {
       e.stopPropagation();
+      e.preventDefault();
     }
 
     let jobPlace = job.place;
