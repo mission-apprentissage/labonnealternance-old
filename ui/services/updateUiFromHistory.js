@@ -23,6 +23,7 @@ export const updateUiFromHistory = ({
   setTrainings,
   setJobs,
   setActiveFilter,
+  activeFilter
 }) => {
   // récupération des query parameters donnant des indications sur l'état de l'interface
   let urlParams;
@@ -37,7 +38,9 @@ export const updateUiFromHistory = ({
   const jobName = urlParams ? urlParams.get("job_name") : "";
   const address = urlParams ? urlParams.get("address") : "";
 
-  setActiveFilter("all"); // restauration des onglets à all pour assurer la présence de marker dans le dom
+  if (!activeFilter) {
+    setActiveFilter("all"); // restauration des onglets à all pour assurer la présence de marker dans le dom
+  }
   try {
     filterLayers("all");
   } catch (err) {

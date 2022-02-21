@@ -5,9 +5,13 @@ const rebuildIndex = async (model, { skipNotFound } = { skipNotFound: false }) =
   let client = getElasticInstance();
   let index = model.collection.collectionName; // Assume model name = index name
 
-  if (!skipNotFound) {
-    logger.info(`Removing '${index}' index...`);
+  logger.info(`Removing '${index}' index...`);
+  try {
     await client.indices.delete({ index });
+  } catch (err) {
+    if (!skipNotFound) {
+      throw err;
+    }
   }
 
   logger.info(`Re-creating '${index}' index with mapping...`);
