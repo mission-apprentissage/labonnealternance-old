@@ -14,6 +14,10 @@ import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
+const getContractTypes = (contractTypes) => {
+  return contractTypes instanceof Array ? contractTypes.join(", ") : contractTypes;
+};
+
 const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
@@ -113,7 +117,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             Début de contrat : {defaultTo(jobStartDate, ReactHtmlParser("<em>Donnée manquante</em>"))}
           </div>
           <div className="c-detail-metanature">
-            Nature du contrat : {defaultTo(contractType, ReactHtmlParser("<em>Donnée manquante</em>"))}
+            Nature du contrat :{" "}
+            {defaultTo(getContractTypes(contractType), ReactHtmlParser("<em>Donnée manquante</em>"))}
           </div>
         </div>
 
@@ -121,7 +126,11 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           <h3 className="c-detail-description-title c-detail-description-title--matcha1">Niveau requis</h3>
           {isNonEmptyString(job?.diplomaLevel)
             ? job.diplomaLevel.split(", ").map((diploma, indx) => {
-                return <div className="c-detail-diploma d-inline-block" key={indx}>{diploma}</div>;
+                return (
+                  <div className="c-detail-diploma d-inline-block" key={indx}>
+                    {diploma}
+                  </div>
+                );
               })
             : "Non défini"}
         </div>
@@ -143,9 +152,9 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
           <div className="c-detail-advice__body">
             <div className="c-detail-advice-text mt-0">
-              <span className="c-detail-advice-highlight"> {job.company.name} </span> nous a récemment fait
-              parvenir un besoin de recrutement :<span className="c-detail-advice-highlight"> {jobTitle}</span>. Cela
-              signifie que l'établissement est activement à la recherche d’un.e candidat.e.
+              <span className="c-detail-advice-highlight"> {job.company.name} </span> nous a récemment fait parvenir un
+              besoin de recrutement :<span className="c-detail-advice-highlight"> {jobTitle}</span>. Cela signifie que
+              l'établissement est activement à la recherche d’un.e candidat.e.
             </div>
             <div className="c-detail-advice-text c-detail-advice-text--tag">
               Vous avez donc tout intérêt à le contacter rapidement, avant que l’offre ne soit pourvue !
@@ -154,11 +163,11 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
-        {contactEmail ? 
+        {contactEmail ? (
           <CandidatureSpontanee item={job} />
-          :
+        ) : (
           <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, job)} key={getGoingtoId(kind, job)} />
-        }
+        )}
 
         <div className="mt-3">&nbsp;</div>
       </div>

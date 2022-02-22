@@ -25,7 +25,7 @@ import TagCfaDEntreprise from "./TagCfaDEntreprise";
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
-  const isCfa = isCfaEntreprise(selectedItem?.company?.siret);
+  const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
 
   const distance = selectedItem?.place?.distance;
 

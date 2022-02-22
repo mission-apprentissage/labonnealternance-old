@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.18.2 [22/02/2022]
+[1114] Plusieurs types de contrat pour Matcha
+[1113] Affichage CFA d'entreprise aussi pour siret gestionnaire
+
 ## 1.18.1 [07/02/2022]
 Affinage score d'affichage CBS
 [1053] Notification sur slack

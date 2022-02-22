@@ -456,6 +456,7 @@ const transformFormationForIdea = (formation) => {
       // uniquement pour formation
       id: formation.source.etablissement_gestionnaire_id,
       uai: formation.source.etablissement_gestionnaire_uai,
+      siret: formation.source.etablissement_gestionnaire_siret,
       type: formation.source.etablissement_gestionnaire_type,
       hasConvention: formation.source.etablissement_gestionnaire_conventionne,
       place: {
@@ -706,6 +707,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
       "etablissement_gestionnaire_uai",
       "etablissement_gestionnaire_conventionne",
       "etablissement_gestionnaire_type",
+      "etablissement_gestionnaire_siret",
       "etablissement_gestionnaire_adresse",
       "etablissement_gestionnaire_code_postal",
       "etablissement_gestionnaire_localite",
