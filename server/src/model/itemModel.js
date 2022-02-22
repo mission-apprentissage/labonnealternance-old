@@ -45,6 +45,7 @@ const itemModel = (type) => {
       }*/,
 
       headquarter: null /*{    // uniquement pour formation
+                siret, // formation -> etablissement_gestionaire_siret
                 id, // formation -> etablissement_gestionnaire_id
                 uai,// formation -> etablissement_gestionnaire_uai
                 type,// formation -> etablissement_gestionnaire_type
