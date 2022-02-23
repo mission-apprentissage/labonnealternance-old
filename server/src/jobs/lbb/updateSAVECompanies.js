@@ -17,19 +17,19 @@ const updateSAVECompanies = async ({ updateMap }) => {
 
       if (company?.email === "remove") {
         bonneBoite.email = "";
-      } else if (company.email) {
+      } else if (company.email && company.email != "NULL") {
         bonneBoite.email = company.email;
       }
 
       if (company?.telephone === "remove") {
         bonneBoite.telephone = "";
-      } else if (company.telephone) {
+      } else if (company.telephone && company.telephone != "NULL") {
         bonneBoite.telephone = company.telephone;
       }
 
       if (company?.website === "remove") {
         bonneBoite.website = "";
-      } else if (company.website) {
+      } else if (company.website && company.website != "NULL") {
         bonneBoite.website = company.website;
       }
 
