@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.4 [24/02/2022]
+[1027] Eviter le chargement de la map automatique
+
 ## 1.18.1 [07/02/2022]
 Affinage score d'affichage CBS
 [1053] Notification sur slack
@@ -12,7 +15,6 @@ Affinage score d'affichage CBS
 [1092] Fix anomalies d'affichage ligne insécable trop longue
 [1068] Optimisation import formations
 [1097] Fix boutons sur cartes
-[1027] Eviter le chargement de la map automatique
 
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb
