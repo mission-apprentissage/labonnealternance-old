@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.4 [24/02/2022]
+[1066] Recherche France entière
+
 ## 1.18.1 [07/02/2022]
 Affinage score d'affichage CBS
 [1053] Notification sur slack
