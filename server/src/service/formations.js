@@ -356,6 +356,8 @@ const getAtLeastSomeFormations = async ({
       //throw new Error("BANG");
       formations = transformFormationsForIdea(formations);
 
+      sortFormations(formations);
+
       if (caller) {
         trackApiCall({
           caller: caller,
@@ -768,17 +770,21 @@ const getEsRegionTermFragment = (region) => {
 
 const sortFormations = (formations) => {
   formations.results.sort((a, b) => {
-    if (a.company.name < b.company.name) {
+    if (a?.place?.distance !== null) {
+      return 0;
+    }
+
+    if (a?.title?.toLowerCase() < b?.title?.toLowerCase()) {
       return -1;
     }
-    if (a.company.name > b.company.name) {
+    if (a?.title?.toLowerCase() > b?.title?.toLowerCase()) {
       return 1;
     }
 
-    if (a.title < b.title) {
+    if (a?.company?.name?.toLowerCase() < b?.company?.name?.toLowerCase()) {
       return -1;
     }
-    if (a.title > b.title) {
+    if (a?.company?.name?.toLowerCase() > b?.company?.name?.toLowerCase()) {
       return 1;
     }
 
