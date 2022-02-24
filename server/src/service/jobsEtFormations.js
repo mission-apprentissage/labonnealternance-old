@@ -1,6 +1,6 @@
 const Sentry = require("@sentry/node");
 
-const { getFormations, transformFormationsForIdea } = require("./formations");
+const { getFormations, transformFormationsForIdea, deduplicateFormations } = require("./formations");
 const { getJobsFromApi } = require("./poleEmploi/jobsAndCompanies");
 const { jobsEtFormationsQueryValidator } = require("./jobsEtFormationsQueryValidator");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
@@ -36,6 +36,7 @@ const getJobsEtFormationsQuery = async (query) => {
     ]);
 
     if (formations && formations?.result !== "error") {
+      formations = deduplicateFormations(formations);
       formations = transformFormationsForIdea(formations);
     }
 

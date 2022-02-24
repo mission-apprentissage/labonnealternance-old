@@ -49,8 +49,6 @@ const getFormations = async ({
   caller,
   api = "formationV1",
 }) => {
-  console.log(romes, coords, radius, diploma);
-
   try {
     const distance = radius || 30;
 
