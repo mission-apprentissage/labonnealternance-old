@@ -5,6 +5,7 @@ const {
   getMetiersPourCfd,
   getMetiersPourEtablissement,
   getTousLesMetiers,
+  getIntitulesAndRomes,
 } = require("../../service/domainesMetiers");
 /**
  * API romes
@@ -61,6 +62,23 @@ module.exports = () => {
           res.status(400);
         } else {
           res.status(500);
+        }
+      }
+
+      return res.json(result);
+    })
+  );
+
+  router.get(
+    "/intitule",
+    tryCatch(async (req, res) => {
+      const result = await getIntitulesAndRomes(req.query.label);
+
+      if (result.error) {
+        if (result.error === "missing_parameters") {
+          return res.status(400);
+        } else {
+          return res.status(500);
         }
       }
 
