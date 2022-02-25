@@ -165,36 +165,60 @@ const SatisfactionForm = ({ formType }) => {
                     value={formik.values.comment}
                   />
                 </fieldset>
-
-
-                <fieldset
-                  data-testid="fieldset-email"
-                  className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
-                    }`}
-                >
-                  <label htmlFor="email">E-mail *</label>
-                  <input
-                    id="email"
-                    data-testid="email"
-                    name="email"
-                    type="email"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email}
-                  />
-                  {formik.touched.email && formik.errors.email ? (
-                    <div className="c-candidature-erreur visible">{formik.errors.email}</div>
-                  ) : (
-                    <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
-                  )}
-                  {testingParameters?.simulatedRecipient ? (
-                    <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
-                  ) : (
-                    ""
-                  )}
-                </fieldset>
-
                 {getFieldError()}
+
+                <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4">
+                  <fieldset
+                    data-testid="fieldset-email"
+                    className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
+                      }`}
+                  >
+                    <label htmlFor="email">E-mail *</label>
+                    <input
+                      id="email"
+                      data-testid="email"
+                      name="email"
+                      type="email"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.email}
+                    />
+                    {formik.touched.email && formik.errors.email ? (
+                      <div className="c-candidature-erreur visible">{formik.errors.email}</div>
+                    ) : (
+                      <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
+                    )}
+                    {testingParameters?.simulatedRecipient ? (
+                      <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
+                    ) : (
+                      ""
+                    )}
+                  </fieldset>
+
+                  <fieldset
+                    data-testid="fieldset-phone"
+                    className={`mt-1 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : "is-not-validated"
+                      }`}
+                  >
+                    <label htmlFor="email">Téléphone *</label>
+                    <input
+                      id="phone"
+                      data-testid="phone"
+                      name="phone"
+                      type="text"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.phone}
+                    />
+                    {formik.touched.phone && formik.errors.phone ? (
+                      <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
+                    ) : (
+                      <div className="invisible">{"pas d'erreur"}</div>
+                    )}
+                  </fieldset>
+                </div>
+
+
                 <div className="d-flex flex-row-reverse">
                   <button
                     aria-label="jenvoie-mon-commentaire"
