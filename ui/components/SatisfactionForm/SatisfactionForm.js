@@ -31,7 +31,7 @@ const SatisfactionForm = ({ formType }) => {
     let localIntention = getValueFromPath("intention")
     let text = (
       <div className="mb-4">
-        <p className="pt-5">Merci beaucoup pour votre réponse {}</p>
+        <p className="pt-4">Merci beaucoup pour votre réponse {}</p>
         {localIntention === 'entretien' ?
           <div>
             <strong>Vous avez indiqué accepter la candidature de</strong>
