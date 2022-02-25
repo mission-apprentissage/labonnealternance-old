@@ -30,7 +30,7 @@ const SatisfactionForm = ({ formType }) => {
   const getFeedbackText = () => {
     let localIntention = getValueFromPath("intention")
     let text = (
-      <>
+      <div className="mb-4">
         <p className="pt-5">Merci beaucoup pour votre réponse {}</p>
         {localIntention === 'entretien' ?
           <div>
@@ -45,7 +45,7 @@ const SatisfactionForm = ({ formType }) => {
           :
           ''
         }
-      </>
+      </div>
     );
 
     if (formType === "avis") {
@@ -167,7 +167,7 @@ const SatisfactionForm = ({ formType }) => {
                 </fieldset>
                 {getFieldError()}
 
-                <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4 justify-content-between">
+                <div className="c-candidature-personaldata d-flex flex-column flex-md-row justify-content-between">
                   <div>
                     <fieldset
                       data-testid="fieldset-email"
@@ -228,10 +228,10 @@ const SatisfactionForm = ({ formType }) => {
                 <div className="d-flex flex-row-reverse">
                   <button
                     aria-label="jenvoie-mon-commentaire"
-                    className={`btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default`}
+                    className={`btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default mt-3`}
                     type="submit"
                   >
-                    {"J'envoie mon commentaire !"}
+                    {"j'envoie mon commentaire !"}
                   </button>
                 </div>
               </form>
