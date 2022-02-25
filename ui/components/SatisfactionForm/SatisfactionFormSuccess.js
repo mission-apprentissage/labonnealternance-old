@@ -12,11 +12,11 @@ const SatisfactionFormSuccess = () => {
           </div>
           <h1 className="h4 text-center">
             <strong>
-              Merci beaucoup d’avoir pris le temps de nous aider à améliorer le service La Bonne Alternance
+              Merci beaucoup d'avoir pris le temps de nous aider à améliorer le service La Bonne Alternance
             </strong>
           </h1>
           <p className="pt-3 halflead text-center">
-            Nous prenons connaissance de tous les retours pour faire évoluer le service.
+            Aidez-nous à le rendre encore meilleur en nous faisant part de vos suggestions d'amélioration !
           </p>
         </div>
       </div>
