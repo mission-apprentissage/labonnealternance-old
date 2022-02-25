@@ -9,6 +9,7 @@ import SatisfactionFormNavigation from "./SatisfactionFormNavigation.js";
 
 import { getValueFromPath } from "../../utils/tools";
 import { amongst } from "../../utils/arrayutils";
+import { testingParameters } from "../../utils/testingParameters";
 
 let iv = null;
 let id = null;
@@ -105,6 +106,10 @@ const SatisfactionForm = ({ formType }) => {
     initialValues: { comment: "" },
     validationSchema: Yup.object({
       comment: Yup.string().nullable().required("Veuillez remplir le commentaire"),
+      email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
+      phone: Yup.string()
+        .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
+        .required("⚠ Le téléphone est obligatoire"),
     }),
     onSubmit: async (formikValues) => {
       await submitCommentaire(
@@ -160,6 +165,35 @@ const SatisfactionForm = ({ formType }) => {
                     value={formik.values.comment}
                   />
                 </fieldset>
+
+
+                <fieldset
+                  data-testid="fieldset-email"
+                  className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
+                    }`}
+                >
+                  <label htmlFor="email">E-mail *</label>
+                  <input
+                    id="email"
+                    data-testid="email"
+                    name="email"
+                    type="email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
+                  />
+                  {formik.touched.email && formik.errors.email ? (
+                    <div className="c-candidature-erreur visible">{formik.errors.email}</div>
+                  ) : (
+                    <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
+                  )}
+                  {testingParameters?.simulatedRecipient ? (
+                    <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
+                  ) : (
+                    ""
+                  )}
+                </fieldset>
+
                 {getFieldError()}
                 <div className="d-flex flex-row-reverse">
                   <button
