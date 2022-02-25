@@ -27,12 +27,23 @@ const SatisfactionForm = ({ formType }) => {
   };
 
   const getFeedbackText = () => {
+    let localIntention = getValueFromPath("intention")
     let text = (
       <>
-        <p className="pt-5">Merci beaucoup pour votre réponse</p>
-        <p className="pt-2">
-          Aidez-nous à rendre le service meilleur en nous faisant part de vos suggestions d'amélioration !
-        </p>
+        <p className="pt-5">Merci beaucoup pour votre réponse {}</p>
+        {localIntention === 'entretien' ?
+          <div>
+            <strong>Vous avez indiqué accepter la candidature de</strong>
+            <p className="pt-4 pb-0 mb-0">
+              Souhaitez-vous envoyer un message ou commentaire au candidat pour pour lui proposer une date de rencontre / d'entretien ?
+            </p>
+            <p>
+              <small class="satisfaction-smallhint">Le candidat recevra votre commentaire ainsi que vos coordonnées directement sur sa boîte mail.</small>
+            </p>
+          </div>
+          :
+          ''
+        }
       </>
     );
 
