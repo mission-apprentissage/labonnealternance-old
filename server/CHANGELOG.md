@@ -18,6 +18,7 @@ Endpoint mise à jour email Bonne Boîte
 
 ## 1.18.3 [23/02/2022]
 Adaptation script pour SAVE update
+[1072] Maj Rencontrer le candidat
 
 ## 1.18.2 [22/02/2022]
 [1114] Plusieurs types de contrat pour Matcha
