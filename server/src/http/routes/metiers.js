@@ -76,9 +76,9 @@ module.exports = () => {
 
       if (result.error) {
         if (result.error === "missing_parameters") {
-          return res.status(400);
+          res.status(400);
         } else {
-          return res.status(500);
+          res.status(500);
         }
       }
 
