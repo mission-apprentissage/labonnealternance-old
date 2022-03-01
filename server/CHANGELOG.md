@@ -1,4 +1,7 @@
 # CHANGELOG
+
+## 1.18.5 [1/03/2022]
+Ajout du détail du code ROME sur les offres Matcha
 ## 1.18.4 [25/02/2022]
 Ajout d'une route sur l'intitulé ROME
 

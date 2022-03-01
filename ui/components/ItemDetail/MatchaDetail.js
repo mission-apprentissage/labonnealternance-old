@@ -1,16 +1,14 @@
-import React, { useEffect } from "react";
-import questionmarkIcon from "public/images/icons/questionmark.svg";
-import { get, defaultTo, random } from "lodash";
-import { formatDate } from "../../utils/strutils";
+import { defaultTo, get, random } from "lodash";
 import contactIcon from "public/images/icons/contact_icon.svg";
+import questionmarkIcon from "public/images/icons/questionmark.svg";
+import React, { useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { SendTrackEvent } from "../../utils/gtm";
-import { isNonEmptyString, capitalizeFirstLetter } from "../../utils/strutils";
+import { capitalizeFirstLetter, formatDate, isNonEmptyString } from "../../utils/strutils";
+import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
-
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
-import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -41,6 +39,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   const jobTitle = get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"));
   const jobStartDate = job?.job?.creationDate ? formatDate(job.job.jobStartDate) : undefined;
   const contractType = get(job, "job.contractType", undefined);
+  const romeDefinition = job?.job?.romeDetails?.definition.split("\\n");
+  const romeCompetence = get(job, "job.romeDetails.competencesDeBase", undefined);
 
   let contactInfo = (
     <>
@@ -142,6 +142,28 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         ) : (
           ""
+        )}
+
+        {romeDefinition && romeDefinition.length > 0 && (
+          <div className="c-detail-description">
+            <h3 className="c-detail-description-title">Description de l'offre</h3>
+            <ul>
+              {romeDefinition.map((x) => (
+                <li>{x}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {romeCompetence && romeCompetence.length > 0 && (
+          <div className="c-detail-description">
+            <h3 className="c-detail-description-title">Compétences de base associées</h3>
+            <ul>
+              {romeCompetence.map((x) => (
+                <li>{x}</li>
+              ))}
+            </ul>
+          </div>
         )}
 
         <hr className="c-detail-header-separator" />
