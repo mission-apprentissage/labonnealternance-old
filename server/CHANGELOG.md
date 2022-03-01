@@ -1,4 +1,9 @@
 # CHANGELOG
+## 1.18.4 [25/02/2022]
+Ajout d'une route sur l'intitulé ROME
+
+## 1.18.3 [23/02/2022]
+Adaptation script pour SAVE update
 
 ## 1.18.3 [23/02/2022]
 Adaptation script pour SAVE update
