@@ -9,10 +9,12 @@ const HomeReview = () => {
       <section className="c-home-review container mb-0 mb-sm-5 p-4">
         <div className="row">
           <div className="col-12 col-lg-4">
-            <img src={homereview} className="card-img-top c-home-review__img" alt="Une dame dit bonjour" />
+            <div className="d-flex-center h-100">
+              <img src={homereview} className="card-img-top c-home-review__img" alt="Une dame dit bonjour" />
+            </div>
           </div>
           <div className="col-12 col-lg-8">
-            <p className="pt-2">
+            <p className="pt-5 pt-md-2">
               <strong>Donnez votre avis</strong>
             </p>
             <h2 className="c-home-review-title">Améliorons ensemble La Bonne Alternance</h2>

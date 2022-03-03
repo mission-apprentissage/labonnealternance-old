@@ -19,7 +19,7 @@ const DescriptionMissionApprentissage = () => {
               des jeunes, des CFA et des entreprises.
             </p>
             <p className="">
-              Sa création a été décidée par les ministres en charge de l’éducation nationale, de l’enseignement supérieur, du travail et de la transformation publique.
+              Sa création a été décidée par les ministres en charge de l'éducation nationale, de l'enseignement supérieur, du travail et de la transformation publique.
             </p>
             <a
               className="btn btn-outline-primary px-1 px-sm-5 c-home-descr__more"
