@@ -5,14 +5,14 @@ const DescriptionMissionApprentissage = () => {
     <>
       <section className="c-home-descr container mb-0 mb-sm-5 p-3">
         <div className="row">
-          <div className="col-12 col-lg-5">
+          <div className="col-12 col-lg-4">
             <h1 className="c-home-descr__title">
               <span className="d-block c-page-title is-color-1">La mission</span>
               <span className="d-block c-page-title is-color-2">apprentissage</span>
             </h1>
             <hr className="c-page-title-separator" align="left" />
           </div>
-          <div className="col-12 col-lg-7">
+          <div className="col-12 col-lg-8">
             <h2 className="c-home-descr__subtitle">Faciliter les entrées en apprentissage</h2>
             <p className="m-0">
               La Mission apprentissage vise à lever les freins à l'essor de l'apprentissage et faciliter la mise en contact
