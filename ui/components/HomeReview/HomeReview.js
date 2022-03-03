@@ -12,22 +12,20 @@ const HomeReview = () => {
             <img src={homereview} className="card-img-top" alt="Une dame dit bonjour" />
           </div>
           <div className="col-12 col-lg-7">
-            <h2 className="c-home-descr__subtitle">Faciliter les entrées en apprentissage</h2>
+            <h2 className="c-home-descr__subtitle">Améliorons ensemble La Bonne Alternance</h2>
             <p className="m-0">
-              La Mission apprentissage vise à lever les freins à l'essor de l'apprentissage et faciliter la mise en contact
-              des jeunes, des CFA et des entreprises.
+              La Bonne Alternance est un service jeune et en construction. Pour le faire évoluer, nous consultons régulièrement les utilisateurs actuels ainsi que les futurs utilisateurs du service. Nous prenons en compte vos cas d'usage, les freins que vous rencontrez, et vos besoins.
             </p>
-            <p className="">
-              Sa création a été décidée par les ministres en charge de l'éducation nationale, de l'enseignement supérieur, du travail et de la transformation publique.
+            <p className="pt-2">
+              <strong>Nous organisons régulièrement des échanges , des tests utilisateurs ou des démos des nouvelles fonctionnalités. Si cela vous intéresse, renseignez vos coordonnées dans le formulaire sur le lien ci-dessous. </strong>
             </p>
             <a
-              className="btn btn-outline-primary px-1 px-sm-5 c-home-descr__more"
+              className="btn btn-outline-primary px-1 px-sm-5 mt-3"
               rel="noopener noreferrer"
               href="https://mission-apprentissage.gitbook.io/general/"
               target="_blank"
             >
-              <span className="d-inline px-3 px-sm-0">En savoir plus </span>
-              <span className="d-none d-sm-inline">sur la mission apprentissage</span>
+              <span className="d-inline px-3 px-sm-0">Je participe !</span>
             </a>
           </div>
         </div>
