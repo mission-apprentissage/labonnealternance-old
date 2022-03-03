@@ -1,2 +1,6 @@
-;ID;VALUE
-;PETIT_TITRE_1;aaa
+;PETIT_TITRE_1;Petit titre 1
+;GROS_TITRE_2;Gros titre 2
+;TEXTE_1_NON_GRAS;Lorem ipsum dolor sit amet, consectetur adipisicing elit
+;TEXTE_2_GRAS;The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software
+;LIBELLE_CTA;Libellé CTA
+;URL_CTA;https://mission-apprentissage.gitbook.io/general/  
