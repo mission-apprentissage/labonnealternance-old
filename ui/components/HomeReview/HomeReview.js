@@ -4,7 +4,6 @@ import homereview from "public/images/homereview.svg";
 
 
 const HomeReview = (props) => {
-  console.log('props', props);
   return (
     <>
       <section className="c-home-review container mb-0 mb-sm-5 p-4">
@@ -39,26 +38,5 @@ const HomeReview = (props) => {
     </>
   );
 };
-
-
-// This function gets called at build time on server-side.
-// It won't be called on client-side, so you can even do
-// direct database queries.
-export async function getStaticProps() {
-  // Call an external API endpoint to get reviews.
-  // You can use any data fetching library
-  const res = await fetch('https://github.com/mission-apprentissage/labonnealternance/blob/datasets/ui/config/review.csv')
-  const reviews = await res.json()
-  console.log('reviews', reviews);
-
-  // By returning { props: { reviews } }, the Blog component
-  // will receive `reviews` as a prop at build time
-  return {
-    props: {
-      reviews,
-    },
-  }
-}
-
 
 export default HomeReview;

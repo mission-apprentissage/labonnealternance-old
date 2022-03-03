@@ -63,6 +63,7 @@ export async function getStaticProps() {
 
   const dataTowns = getStaticVilles(path, fs, txtDirectory);
   const dataJobs = getStaticMetiers(path, fs, txtDirectory);
+  console.log('dataJobs', dataJobs);
 
   // The value of the `props` key will be
   //  passed to the `Catalog` component
