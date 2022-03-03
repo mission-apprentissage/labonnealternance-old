@@ -13,8 +13,11 @@ import howtocircle2 from "public/images/howtocircle2.svg";
 import howtocircle3 from "public/images/howtocircle3.svg";
 import howtocircle4 from "public/images/howtocircle4.svg";
 import howtocircle5 from "public/images/howtocircle5.svg";
+import axios from "axios";
+import csvToArray from "utils/csvToArray.js"
 
-const Home = () => {
+const Home = (props) => {
+  console.log('props', props);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,5 +45,33 @@ const Home = () => {
     </div>
   );
 };
+
+// This function gets called at build time on server-side.
+// It won't be called on client-side, so you can even do
+// direct database queries.
+export async function getStaticProps() {
+  // Call an external API endpoint to get reviews.
+  // You can use any data fetching library
+  const reviews = await getAllReviews()
+  console.log('reviews', reviews);
+
+  // By returning { props: { reviews } }, the Blog component
+  // will receive `reviews` as a prop at build time
+  return {
+    props: {
+      reviews,
+    },
+  }
+}
+
+async function getAllReviews() {
+  const response = await axios.get('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets/ui/config/review.csv');
+  console.log('response.data', response.data);
+  // const csv = csvToArray(response.data)
+  // console.log('csv', csv);
+  return {};
+}
+
+
 
 export default Home;
