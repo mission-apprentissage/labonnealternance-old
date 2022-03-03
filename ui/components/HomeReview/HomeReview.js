@@ -6,13 +6,16 @@ import homereview from "public/images/homereview.svg";
 const HomeReview = () => {
   return (
     <>
-      <section className="c-home-review container mb-0 mb-sm-5 p-5">
+      <section className="c-home-review container mb-0 mb-sm-5 p-4">
         <div className="row">
-          <div className="col-12 col-lg-5">
-            <img src={homereview} className="card-img-top" alt="Une dame dit bonjour" />
+          <div className="col-12 col-lg-4">
+            <img src={homereview} className="card-img-top c-home-review__img" alt="Une dame dit bonjour" />
           </div>
-          <div className="col-12 col-lg-7">
-            <h2 className="c-home-descr__subtitle">Améliorons ensemble La Bonne Alternance</h2>
+          <div className="col-12 col-lg-8">
+            <p className="pt-2">
+              <strong>Donnez votre avis</strong>
+            </p>
+            <h2 className="c-home-review-title">Améliorons ensemble La Bonne Alternance</h2>
             <p className="m-0">
               La Bonne Alternance est un service jeune et en construction. Pour le faire évoluer, nous consultons régulièrement les utilisateurs actuels ainsi que les futurs utilisateurs du service. Nous prenons en compte vos cas d'usage, les freins que vous rencontrez, et vos besoins.
             </p>
