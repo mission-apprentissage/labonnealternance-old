@@ -15,6 +15,7 @@ import howtocircle4 from "public/images/howtocircle4.svg";
 import howtocircle5 from "public/images/howtocircle5.svg";
 import axios from "axios";
 import csvToArray from "utils/csvToArray.js"
+import { some } from "lodash";
 
 const Home = (props) => {
   console.log('props', props);
@@ -67,8 +68,42 @@ export async function getStaticProps() {
 async function getAllReviews() {
   const response = await axios.get('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets/ui/config/review.csv');
   console.log('response.data', response.data);
-  // const csv = csvToArray(response.data)
-  // console.log('csv', csv);
+  const csv = csvToArray(response.data)
+
+  /*
+    [
+      {
+        PETIT_TITRE_1: 'Un petit titre',
+        GROS_TITRE_2: 'Un gros titre',
+        TEXTE_1_NON_GRAS: ' Un texte non gras',
+        TEXTE_2_GRAS: ' Un texte gras',
+        LIBELLE_CTA: ' Visitez le site',
+        URL_CTA: 'https://mission-apprentissage.gitbook.io/general/',
+        '': ''
+      },
+      {
+        PETIT_TITRE_1: '',
+        GROS_TITRE_2: undefined,
+        TEXTE_1_NON_GRAS: undefined,
+        TEXTE_2_GRAS: undefined,
+        LIBELLE_CTA: undefined,
+        URL_CTA: undefined,
+        '': undefined
+      }
+    ]
+  */
+
+  const cleanedCsv = csv
+                      // the filter will clear the object with falsy-only values
+                      .filter((e) => {
+                        return some(e, (k) => !!k)
+                      })
+                      // the map will clear the property ''
+                      .map((e) => {
+                        delete e['']
+                        return e
+                      })
+  console.log('cleanedCsv', cleanedCsv);
   return {};
 }
 
