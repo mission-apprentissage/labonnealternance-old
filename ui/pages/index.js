@@ -101,10 +101,15 @@ async function getAllReviews() {
                       // the map will clear the property ''
                       .map((e) => {
                         delete e['']
+                        // trim all values
+                        Object.keys(e).forEach(k => e[k] = e[k].trim());
                         return e
                       })
-  console.log('cleanedCsv', cleanedCsv);
-  return {};
+
+  let result = cleanedCsv[0] || {}
+  console.log('result', result);
+
+  return result;
 }
 
 
