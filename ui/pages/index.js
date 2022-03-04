@@ -18,7 +18,6 @@ import csvToArray from "utils/csvToArray.js"
 import { some } from "lodash";
 
 const Home = (props) => {
-  console.log('props', props);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -54,7 +53,6 @@ export async function getStaticProps() {
   // Call an external API endpoint to get reviews.
   // You can use any data fetching library
   const reviews = await getAllReviews()
-  console.log('reviews', reviews);
 
   // By returning { props: { reviews } }, the Blog component
   // will receive `reviews` as a prop at build time
@@ -67,7 +65,6 @@ export async function getStaticProps() {
 
 async function getAllReviews() {
   const response = await axios.get('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets/ui/config/review.csv');
-  console.log('response.data', response.data);
   const csv = csvToArray(response.data)
 
   /*
@@ -107,7 +104,6 @@ async function getAllReviews() {
                       })
 
   let result = cleanedCsv[0] || {}
-  console.log('result', result);
 
   return result;
 }
