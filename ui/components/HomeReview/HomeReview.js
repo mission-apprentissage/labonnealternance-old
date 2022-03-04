@@ -15,7 +15,15 @@ const HomeReview = (props) => {
           </div>
           <div className="col-12 col-lg-8">
             <p className="pt-5 pt-md-2">
-              <strong>Donnez votre avis</strong>
+              {
+                 props?.reviews?.PETIT_TITRE_1 ?
+                    <>
+                      <strong>{props.reviews.PETIT_TITRE_1}</strong>
+                    </>
+                  : 
+                    <>
+                    </>
+              }
             </p>
             <h2 className="c-home-review-title">Améliorons ensemble La Bonne Alternance</h2>
             <p className="m-0">
