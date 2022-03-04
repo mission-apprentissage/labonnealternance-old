@@ -25,21 +25,58 @@ const HomeReview = (props) => {
                     </>
               }
             </p>
-            <h2 className="c-home-review-title">Améliorons ensemble La Bonne Alternance</h2>
+            <h2 className="c-home-review-title">
+              {
+                props?.reviews?.GROS_TITRE_2 ?
+                  <>
+                    <strong>{props.reviews.GROS_TITRE_2}</strong>
+                  </>
+                  :
+                  <>
+                  </>
+              }
+            </h2>
             <p className="m-0">
-              La Bonne Alternance est un service jeune et en construction. Pour le faire évoluer, nous consultons régulièrement les utilisateurs actuels ainsi que les futurs utilisateurs du service. Nous prenons en compte vos cas d'usage, les freins que vous rencontrez, et vos besoins.
+              {
+                props?.reviews?.TEXTE_1_NON_GRAS ?
+                  <>
+                    {props.reviews.TEXTE_1_NON_GRAS}
+                  </>
+                  :
+                  <>
+                  </>
+              }
             </p>
             <p className="pt-2">
-              <strong>Nous organisons régulièrement des échanges , des tests utilisateurs ou des démos des nouvelles fonctionnalités. Si cela vous intéresse, renseignez vos coordonnées dans le formulaire sur le lien ci-dessous. </strong>
+              {
+                props?.reviews?.TEXTE_2_GRAS ?
+                  <>
+                    <strong>{props.reviews.TEXTE_2_GRAS}</strong>
+                  </>
+                  :
+                  <>
+                  </>
+              }
             </p>
-            <a
-              className="btn btn-outline-primary px-1 px-sm-5 mt-3"
-              rel="noopener noreferrer"
-              href="https://mission-apprentissage.gitbook.io/general/"
-              target="_blank"
-            >
-              <span className="d-inline px-3 px-sm-0">Je participe !</span>
-            </a>
+
+            {
+              props?.reviews?.URL_CTA ?
+                <>
+                  <a
+                    className="btn btn-outline-primary px-1 px-sm-5 mt-3"
+                    rel="noopener noreferrer"
+                    href={props.reviews.URL_CTA}
+                    target="_blank"
+                  >
+                    <span className="d-inline px-3 px-sm-0">{props?.reviews?.LIBELLE_CTA || 'Voir'}</span>
+                  </a>
+                </>
+                :
+                <>
+                </>
+            }
+
+
           </div>
         </div>
       </section>
