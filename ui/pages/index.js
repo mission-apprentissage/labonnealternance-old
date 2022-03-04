@@ -39,7 +39,7 @@ const Home = (props) => {
         <HowTo />
       </div>
 
-      <HomeReview />
+      <HomeReview reviews={props.reviews} />
       
       <DescriptionMissionApprentissage />
       <Footer />
