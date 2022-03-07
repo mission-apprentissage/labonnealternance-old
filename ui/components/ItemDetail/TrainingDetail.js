@@ -125,7 +125,7 @@ const TrainingDetail = ({ training, isCfa }) => {
           rel="noopener noreferrer"
           className="gtmDidaskFormation"
         >
-          &nbsp;Préparez votre premier contact avec un CFA !&nbsp;
+          Préparez votre premier contact avec un CFA !&nbsp;
           <img src={gotoIcon} alt="Lien" />
         </a>
       </span>
@@ -237,7 +237,7 @@ const TrainingDetail = ({ training, isCfa }) => {
                   <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
                   <span className="c-detail-traininglink">
                     <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
-                      &nbsp;le site Onisep&nbsp;
+                      le site Onisep&nbsp;
                       <img src={gotoIcon} alt="Lien" />
                     </a>
                   </span>
