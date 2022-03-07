@@ -119,7 +119,9 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
               <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
             </div>
             <div className="col-12 col-lg-6  d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
-              <TagCfaDEntreprise isCfa={isCfaEntreprise(training?.company?.siret)} />
+              <TagCfaDEntreprise
+                isCfa={isCfaEntreprise(training?.company?.siret, training?.company?.headquarter?.siret)}
+              />
             </div>
           </div>
 

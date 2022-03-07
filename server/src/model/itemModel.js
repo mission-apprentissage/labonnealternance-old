@@ -45,6 +45,7 @@ const itemModel = (type) => {
       }*/,
 
       headquarter: null /*{    // uniquement pour formation
+                siret, // formation -> etablissement_gestionaire_siret
                 id, // formation -> etablissement_gestionnaire_id
                 uai,// formation -> etablissement_gestionnaire_uai
                 type,// formation -> etablissement_gestionnaire_type
@@ -82,6 +83,7 @@ const itemModel = (type) => {
             contractDescription,   // pe -> typeContratLibelle
             duration,              // pe -> dureeTravailLibelle
             jobStartDate,          // matcha -> offres.date_debut_apprentissage 
+            romeDetails            // matcha -> offres.rome_detail -> détail du code ROME
         },*/,
 
     romes: null /*[

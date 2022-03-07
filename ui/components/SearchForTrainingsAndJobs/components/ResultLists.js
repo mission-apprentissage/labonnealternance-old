@@ -243,6 +243,7 @@ const ResultLists = (props) => {
           getJobCount={getJobCount}
           jobs={props.jobs}
           trainings={props.trainings}
+          activeFilter={props.activeFilter}
           showSearchForm={props.showSearchForm}
         />
         {getErrorMessages()}

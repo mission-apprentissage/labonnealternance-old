@@ -68,7 +68,6 @@ const SearchForTrainingsAndJobs = () => {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      //console.log("route change from routing ", url);
 
       updateUiFromHistory({
         url,
@@ -88,6 +87,7 @@ const SearchForTrainingsAndJobs = () => {
         setTrainings,
         setJobs,
         setActiveFilter,
+        activeFilter
       });
     };
 

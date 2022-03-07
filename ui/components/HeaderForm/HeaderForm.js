@@ -67,7 +67,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 compareItemFunction={compareAutoCompleteValues}
                 onInputValueChangeFunction={jobChanged}
                 name="jobField"
-                placeholder={isHome ? "Indiquez un métier ou diplôme" : "Ex : boulangerie"}
+                placeholder="Indiquez un métier ou diplôme"
                 searchPlaceholder="Indiquez un métier ou diplôme ci-dessus"
                 splitItemsByTypes={[
                   { type: "job", typeLabel: "Métiers", size: 4 },
@@ -111,7 +111,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
             </div>
             <div className="c-logobar-formgroup c-logobar-formgroup--diploma ml-3">
               <label htmlFor="jobField" className="c-logobar-label c-logobar-label--diploma">
-                Niveau d'études
+                Niveau d'études visé
               </label>
               <div className="c-logobar-field">
                 <Input

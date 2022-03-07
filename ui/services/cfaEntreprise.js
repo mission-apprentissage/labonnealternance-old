@@ -24,8 +24,10 @@ const listeCfaEntreprise = [
   "89127069600018",
   "89883464300014",
   "85163550800019",
+  "40130835800019",
+  "88514020200015",
 ];
 
-export const isCfaEntreprise = (siret) => {
-  return listeCfaEntreprise.indexOf(siret) >= 0;
+export const isCfaEntreprise = (siret, siretGestionnaire) => {
+  return listeCfaEntreprise.indexOf(siret) >= 0 || listeCfaEntreprise.indexOf(siretGestionnaire) >= 0;
 };

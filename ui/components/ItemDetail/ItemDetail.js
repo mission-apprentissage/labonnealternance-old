@@ -13,6 +13,7 @@ import chevronClose from "public/images/close.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { rawPostalAddress } from "../../utils/addressUtils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
+import { filterLayers } from "../../utils/mapTools";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
@@ -24,7 +25,7 @@ import TagCfaDEntreprise from "./TagCfaDEntreprise";
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
-  const isCfa = isCfaEntreprise(selectedItem?.company?.siret);
+  const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
 
   const distance = selectedItem?.place?.distance;
 
@@ -32,6 +33,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   useEffect(() => {
     setSeeInfo(false);
+    try {
+      filterLayers(activeFilter);
+    } catch (err) {
+      //notice: gère des erreurs qui se présentent à l'initialisation de la page quand mapbox n'est pas prêt.
+    }
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
   let actualTitle =
