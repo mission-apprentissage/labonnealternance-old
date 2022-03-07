@@ -1,7 +1,16 @@
 # CHANGELOG
 
-## 1.18.4 [24/02/2022]
+## 1.18.4 [08/03/2022]
 [1027] Eviter le chargement de la map automatique
+Ajout d'une route sur l'intitulé ROME
+Ajout du détail du code ROME sur les offres Matcha
+
+## 1.18.3 [23/02/2022]
+Adaptation script pour SAVE update
+
+## 1.18.2 [22/02/2022]
+[1114] Plusieurs types de contrat pour Matcha
+[1113] Affichage CFA d'entreprise aussi pour siret gestionnaire
 
 ## 1.18.1 [07/02/2022]
 Affinage score d'affichage CBS
@@ -15,6 +24,7 @@ Affinage score d'affichage CBS
 [1092] Fix anomalies d'affichage ligne insécable trop longue
 [1068] Optimisation import formations
 [1097] Fix boutons sur cartes
+[1100] Mails lbb
 
 ## 1.18.0 [31/01/2022]
 [992] Utilisation elasticsarch lbb

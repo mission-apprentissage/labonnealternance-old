@@ -4,6 +4,7 @@ const config = require("config");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const { manageApiError } = require("../common/utils/errorManager");
 const { encryptMailWithIV } = require("../common/utils/encryptString");
+const { isAllowedSource, isAllowedClearEmail } = require("../common/utils/isAllowedSource");
 
 const matchaApiEndpoint = `https://matcha${
   config.env === "production" ? "" : "-recette"
@@ -11,7 +12,7 @@ const matchaApiEndpoint = `https://matcha${
 const matchaSearchEndPoint = `${matchaApiEndpoint}/search`;
 const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
-const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, caller }) => {
+const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, caller, referer }) => {
   try {
     const distance = radius || 10;
 
@@ -24,21 +25,29 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, caller }
 
     const jobs = await axios.post(`${matchaSearchEndPoint}`, params);
 
-    return transformMatchaJobsForIdea(jobs.data, radius, latitude, longitude);
+    return transformMatchaJobsForIdea({ jobs: jobs.data, caller, referer });
   } catch (error) {
     return manageApiError({ error, api, caller, errorTitle: `getting jobs from Matcha (${api})` });
   }
 };
 
 // update du contenu avec des résultats pertinents par rapport au rayon
-const transformMatchaJobsForIdea = (jobs) => {
+const transformMatchaJobsForIdea = ({ jobs, referer, caller }) => {
   let resultJobs = {
     results: [],
   };
 
   if (jobs && jobs.length) {
+    const contactAllowedOrigin = isAllowedSource({ referer, caller });
+    const clearContactAllowedOrigin = isAllowedClearEmail({ caller });
+
     for (let i = 0; i < jobs.length; ++i) {
-      let companyJobs = transformMatchaJobForIdea(jobs[i]._source, jobs[i].sort[0]);
+      let companyJobs = transformMatchaJobForIdea({
+        job: jobs[i]._source,
+        distance: jobs[i].sort[0],
+        contactAllowedOrigin,
+        clearContactAllowedOrigin,
+      });
       companyJobs.map((job) => resultJobs.results.push(job));
     }
   }
@@ -46,10 +55,14 @@ const transformMatchaJobsForIdea = (jobs) => {
   return resultJobs;
 };
 
-const getMatchaJobById = async ({ id, caller }) => {
+const getMatchaJobById = async ({ id, referer, caller }) => {
   try {
     const jobs = await axios.get(`${matchaJobEndPoint}/${id}`);
-    const job = transformMatchaJobForIdea(jobs.data);
+    const job = transformMatchaJobForIdea({
+      job: jobs.data,
+      contactAllowedOrigin: isAllowedSource({ referer, caller }),
+      clearContactAllowedOrigin: isAllowedClearEmail({ caller }),
+    });
 
     if (caller) {
       trackApiCall({ caller: caller, nb_emplois: 1, result_count: 1, api: "jobV1/matcha", result: "OK" });
@@ -62,20 +75,27 @@ const getMatchaJobById = async ({ id, caller }) => {
 };
 
 // Adaptation au modèle Idea et conservation des seules infos utilisées des offres
-const transformMatchaJobForIdea = (job, distance) => {
+const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, contactAllowedOrigin }) => {
   let resultJobs = [];
 
   job.offres.map((offre, idx) => {
     let resultJob = itemModel("matcha");
+
+    let email = {};
+
+    if (contactAllowedOrigin) {
+      email = clearContactAllowedOrigin ? { email: job.email } : encryptMailWithIV(job.email);
+    }
+
     resultJob.id = `${job.id_form}-${idx}`;
     resultJob.title = offre.libelle;
     resultJob.contact = {
-      ...encryptMailWithIV(job.email),
+      ...email,
       name: job.prenom + " " + job.nom,
       phone: job.telephone,
     };
 
-    resultJob.place.distance = Math.round(10 * distance) / 10;
+    resultJob.place.distance = distance ? Math.round(10 * distance) / 10 : 0;
     resultJob.place.fullAddress = job.adresse;
     resultJob.place.address = job.adresse;
     resultJob.place.latitude = job.geo_coordonnees.split(",")[0];
@@ -94,6 +114,7 @@ const transformMatchaJobForIdea = (job, distance) => {
       creationDate: job.createdAt,
       contractType: offre.type,
       jobStartDate: offre.date_debut_apprentissage,
+      romeDetails: offre.rome_detail,
     };
 
     resultJob.romes = [];

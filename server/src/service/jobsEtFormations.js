@@ -1,5 +1,4 @@
 const Sentry = require("@sentry/node");
-
 const { getFormations, transformFormationsForIdea } = require("./formations");
 const { getJobsFromApi } = require("./poleEmploi/jobsAndCompanies");
 const { jobsEtFormationsQueryValidator } = require("./jobsEtFormationsQueryValidator");

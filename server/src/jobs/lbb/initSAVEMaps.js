@@ -63,24 +63,24 @@ const parseUpdateLine = (line) => {
     let sirets = terms[1].replace(/"/g, "").trim().split(/,|\s/g);
     sirets = sirets.map((siret) => siret.padStart(14, "0"));
 
-    let email = terms[3].replace(/"/g, "").trim();
-    let telephone = terms[4].replace(/"/g, "").trim();
-    let website = terms[5].replace(/"/g, "").trim();
+    let email = terms[3]?.replace(/"/g, "")?.trim();
+    let telephone = terms[4]?.replace(/"/g, "")?.trim();
+    let website = terms[5]?.replace(/"/g, "")?.trim();
 
     let removeEmail = terms[6]; // "0" | "1"
     let removePhone = terms[7];
     let removeWebsite = terms[8];
 
-    let romesToBoost = terms[11].replace(/"/g, "");
+    let romesToBoost = terms[11]?.replace(/"/g, "");
 
-    let emailAlternance = terms[15].replace(/"/g, "");
-    let romesAlternance = terms[16].replace(/"/g, "");
+    let emailAlternance = terms[15]?.replace(/"/g, "");
+    let romesAlternance = terms[16]?.replace(/"/g, "");
 
     let scoreAlternance = terms[20];
-    let phoneAlternance = terms[22].replace(/"/g, "");
+    let phoneAlternance = terms[22]?.replace(/"/g, "");
     let websiteAlternance = terms[23];
-    let newCompanyName = terms[27].replace(/"/g, "");
-    let newOfficeName = terms[28].replace(/"/g, "");
+    let newCompanyName = terms[27]?.replace(/"/g, "");
+    let newOfficeName = terms[28]?.replace(/"/g, "");
 
     website = websiteAlternance ? websiteAlternance : website;
     telephone = phoneAlternance ? phoneAlternance : telephone;

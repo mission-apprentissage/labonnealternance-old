@@ -1,17 +1,10 @@
-const config = require("config");
 const { getBonnesBoitesES } = require("../../common/esClient");
 const { itemModel } = require("../../model/itemModel");
-const { isOriginLocal } = require("../../common/utils/isOriginLocal");
 const { manageApiError } = require("../../common/utils/errorManager");
 const { encryptMailWithIV } = require("../../common/utils/encryptString");
+const { isAllowedSource, isAllowedClearEmail } = require("../../common/utils/isAllowedSource");
 
 const esClient = getBonnesBoitesES();
-
-const allowedSources = config.private.allowedSources;
-
-const isAllowedSource = ({ referer, caller }) => {
-  return isOriginLocal(referer) || allowedSources.split("|").indexOf(caller) >= 0;
-};
 
 const getSomeLbbCompanies = async ({
   romes,
@@ -53,9 +46,15 @@ const transformLbbCompaniesForIdea = ({ companies, type, referer, caller }) => {
 
   if (companies && companies.length) {
     const contactAllowedOrigin = isAllowedSource({ referer, caller });
+    const clearContactAllowedOrigin = isAllowedClearEmail({ caller });
 
     for (let i = 0; i < companies.length; ++i) {
-      let company = transformLbbCompanyForIdea({ company: companies[i], type, contactAllowedOrigin });
+      let company = transformLbbCompanyForIdea({
+        company: companies[i],
+        type,
+        contactAllowedOrigin,
+        clearContactAllowedOrigin,
+      });
       resultCompanies.results.push(company);
     }
   }
@@ -64,14 +63,15 @@ const transformLbbCompaniesForIdea = ({ companies, type, referer, caller }) => {
 };
 
 // Adaptation au modèle Idea et conservation des seules infos utilisées des offres
-const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin }) => {
+const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin, clearContactAllowedOrigin }) => {
   let resultCompany = itemModel(type);
 
   resultCompany.title = company.enseigne;
+  let email = clearContactAllowedOrigin ? { email: company.email } : encryptMailWithIV(company.email);
 
   if (contactAllowedOrigin) {
     resultCompany.contact = {
-      ...encryptMailWithIV(company.email),
+      ...email,
       phone: company.telephone,
     };
   }
@@ -212,6 +212,7 @@ const getCompanyFromSiret = async ({ siret, referer, caller, type }) => {
         company: { ...responseBonnesBoites.body.hits.hits[0]._source, distance: 0 },
         type,
         contactAllowedOrigin: isAllowedSource({ referer, caller }),
+        clearContactAllowedOrigin: isAllowedClearEmail({ caller }),
       });
 
       return type === "lbb" ? { lbbCompanies: [company] } : { lbaCompanies: [company] };
