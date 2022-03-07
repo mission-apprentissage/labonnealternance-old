@@ -71,6 +71,28 @@ const getMultiMatchTermForDiploma = (term) => {
   };
 };
 
+const getMultiMatchTermForIntituleRome = (term) => {
+  return {
+    bool: {
+      must: {
+        multi_match: {
+          query: term,
+          fields: [
+            "intitules_romes^80",
+            "appellations_romes^15",
+            "intitules_rncps^7",
+            "domaine^3",
+            "mots_clefs_specifiques^40",
+            "mots_clefs^3",
+          ],
+          type: "phrase_prefix",
+          operator: "or",
+        },
+      },
+    },
+  };
+};
+
 const getMetiers = async ({ title = null, romes = null, rncps = null }) => {
   if (!title && !romes && !rncps) {
     return {
@@ -196,6 +218,52 @@ const getLabelsAndRomes = async (searchKeyword, withRomeLabels) => {
     return { labelsAndRomes };
   } catch (error) {
     return manageError({ error, msgToLog: "getting metiers from title" });
+  }
+};
+
+const getIntitulesAndRomes = async (searchKeyword) => {
+  if (!searchKeyword) {
+    return {
+      error: "missing_parameters",
+      error_messages: ["Parameters must include a label to search for."],
+    };
+  }
+
+  try {
+    let terms = [];
+
+    searchKeyword.split(" ").forEach((term, idx) => {
+      if (idx === 0 || term.length > 2) {
+        terms.push(getMultiMatchTermForIntituleRome(term));
+      }
+    });
+
+    const esClient = getDomainesMetiersES();
+
+    let sources = ["intitules_romes", "couples_romes_metiers"];
+
+    const response = await esClient.search({
+      index: "domainesmetiers",
+      size: 20,
+      _sourceIncludes: sources,
+      body: {
+        query: {
+          bool: {
+            should: terms,
+          },
+        },
+      },
+    });
+
+    let intitulesAndRomes = [];
+
+    response.body.hits.hits.map((item) => {
+      intitulesAndRomes.push([...item._source.couples_romes_metiers]);
+    });
+
+    return { intitule: _.uniqBy(_.flatten(intitulesAndRomes), "codeRome") };
+  } catch (error) {
+    return manageError({ error, msgToLog: "getting intitule from title" });
   }
 };
 
@@ -394,6 +462,7 @@ const getTousLesMetiers = async () => {
 
 module.exports = {
   getRomesAndLabelsFromTitleQuery,
+  getIntitulesAndRomes,
   updateRomesMetiersQuery,
   getMissingRNCPs,
   getMetiersPourCfd,
