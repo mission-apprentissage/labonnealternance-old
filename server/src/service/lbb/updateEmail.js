@@ -32,7 +32,7 @@ const updateEmail = async (query) => {
 
       return bonneBoite;
     } catch (err) {
-      if (err === "error - validation of data failed") {
+      if (err === validationError) {
         return { error: "wrong_parameters" };
       } else {
         Sentry.captureException(err);
