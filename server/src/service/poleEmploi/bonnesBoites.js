@@ -6,12 +6,6 @@ const { isAllowedSource, isAllowedClearEmail } = require("../../common/utils/isA
 
 const esClient = getBonnesBoitesES();
 
-const allowedSources = config.private.allowedSources;
-
-const isAllowedSource = ({ referer, caller }) => {
-  return isOriginLocal(referer) || allowedSources.split("|").indexOf(caller) >= 0;
-};
-
 const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, referer, caller, api = "jobV1" }) => {
   const hasLocation = latitude === undefined ? false : true;
   let companies = null;
