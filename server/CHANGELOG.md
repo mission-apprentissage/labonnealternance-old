@@ -2,6 +2,7 @@
 
 ## 1.18.5 [10/03/2022]
 [1066] Recherche France entière
+[1116] Fix accès par ID fiches formations
 
 ## 1.18.4 [08/03/2022]
 Ajout d'une route sur l'intitulé ROME
