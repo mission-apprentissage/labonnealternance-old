@@ -149,7 +149,6 @@ const getFormations = async ({
 
     return formations;
   } catch (error) {
-    console.log("ici : ", error);
     return manageApiError({
       error,
       api,
