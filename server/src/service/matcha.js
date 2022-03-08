@@ -114,6 +114,7 @@ const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, c
       creationDate: job.createdAt,
       contractType: offre.type,
       jobStartDate: offre.date_debut_apprentissage,
+      romeDetails: offre.rome_detail,
     };
 
     resultJob.romes = [];

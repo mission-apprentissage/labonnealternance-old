@@ -5,6 +5,7 @@ const {
   getMetiersPourCfd,
   getMetiersPourEtablissement,
   getTousLesMetiers,
+  getIntitulesAndRomes,
 } = require("../../service/domainesMetiers");
 /**
  * API romes
@@ -55,6 +56,23 @@ module.exports = () => {
     "/",
     tryCatch(async (req, res) => {
       const result = await getMetiers({ title: req.query.title, romes: req.query.romes, rncps: req.query.rncps });
+
+      if (result.error) {
+        if (result.error === "missing_parameters") {
+          res.status(400);
+        } else {
+          res.status(500);
+        }
+      }
+
+      return res.json(result);
+    })
+  );
+
+  router.get(
+    "/intitule",
+    tryCatch(async (req, res) => {
+      const result = await getIntitulesAndRomes(req.query.label);
 
       if (result.error) {
         if (result.error === "missing_parameters") {

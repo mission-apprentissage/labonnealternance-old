@@ -111,7 +111,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
             </div>
             <div className="c-logobar-formgroup c-logobar-formgroup--diploma ml-3">
               <label htmlFor="jobField" className="c-logobar-label c-logobar-label--diploma">
-                Niveau d'études
+                Niveau d'études visé
               </label>
               <div className="c-logobar-field">
                 <Input
