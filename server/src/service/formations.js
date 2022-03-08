@@ -2,6 +2,7 @@ const { getFormationsES } = require("../common/esClient");
 const axios = require("axios");
 const config = require("config");
 const Sentry = require("@sentry/node");
+const { getCurrentFormationsSourceCollection } = require("../common/components/indexSourceFormations");
 const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
 const { formationsQueryValidator, formationsRegionQueryValidator } = require("./formationsQueryValidator");
@@ -160,33 +161,12 @@ const getFormations = async ({
 
 const getFormation = async ({ id, caller }) => {
   try {
-    let mustTerm = [
-      {
-        match: {
-          cle_ministere_educatif: id,
-        },
-      },
-    ];
-
-    const esQueryIndexFragment = getFormationEsQueryIndexFragment(1);
-
-    const responseFormation = await esClient.search({
-      ...esQueryIndexFragment,
-      body: {
-        query: {
-          bool: {
-            must: mustTerm,
-          },
-        },
-      },
-    });
+    const Formation = await getCurrentFormationsSourceCollection();
+    const responseFormation = await Formation.findOne({ cle_ministere_educatif: id });
 
     //throw new Error("BOOM");
     let formations = [];
-
-    responseFormation.body.hits.hits.forEach((formation) => {
-      formations.push({ source: formation._source, id: formation._id });
-    });
+    formations.push({ source: responseFormation });
 
     return formations;
   } catch (error) {
