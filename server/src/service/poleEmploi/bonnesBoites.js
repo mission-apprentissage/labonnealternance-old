@@ -6,19 +6,10 @@ const { isAllowedSource, isAllowedClearEmail } = require("../../common/utils/isA
 
 const esClient = getBonnesBoitesES();
 
-const getSomeLbbCompanies = async ({
-  romes,
-  latitude,
-  longitude,
-  radius,
-  type,
-  strictRadius,
-  referer,
-  caller,
-  api = "jobV1",
-}) => {
+const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, referer, caller, api = "jobV1" }) => {
+  const hasLocation = latitude === undefined ? false : true;
   let companies = null;
-  let currentRadius = strictRadius ? radius : 20000;
+  let currentRadius = hasLocation ? radius : 21000;
   let companyLimit = 150; //TODO: query params options or default value from properties -> size || 100
 
   companies = await getLbbCompanies({
@@ -33,7 +24,7 @@ const getSomeLbbCompanies = async ({
   });
 
   if (companies && companies.length) {
-    companies = transformLbbCompaniesForIdea({ companies, radius, type, strictRadius, referer, caller });
+    companies = transformLbbCompaniesForIdea({ companies, radius, type, referer, caller });
   }
 
   return companies;
@@ -80,7 +71,7 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin, clear
   const address = `${company.numero_rue} ${company.libelle_rue}, ${company.code_postal} ${company.ville}`.trim();
 
   resultCompany.place = {
-    distance: Math.round(10 * company.distance[0]) / 10 ?? 0,
+    distance: company.distance?.length ? Math.round(10 * company.distance[0]) / 10 ?? 0 : null,
     fullAddress: address,
     latitude: company.geo_coordonnees.split(",")[0],
     longitude: company.geo_coordonnees.split(",")[1],
@@ -134,43 +125,68 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
 
     const esQueryIndexFragment = getBonnesBoitesEsQueryIndexFragment(companyLimit);
 
+    let esQuerySort = {
+      sort: [
+        latitude || latitude === 0
+          ? {
+              _geo_distance: {
+                geo_coordonnees: [parseFloat(longitude), parseFloat(latitude)],
+                order: "asc",
+                unit: "km",
+                mode: "min",
+                distance_type: "arc",
+                ignore_unmapped: true,
+              },
+            }
+          : "_score",
+      ],
+    };
+
+    let esQuery = {
+      query: {
+        bool: {
+          must: mustTerm,
+        },
+      },
+    };
+
+    if (latitude || latitude === 0) {
+      esQuery.query.bool.filter = {
+        geo_distance: {
+          distance: `${distance}km`,
+          geo_coordonnees: {
+            lat: latitude,
+            lon: longitude,
+          },
+        },
+      };
+    } else {
+      esQuery = {
+        query: {
+          function_score: esQuery,
+        },
+      };
+    }
+
     const responseBonnesBoites = await esClient.search({
       ...esQueryIndexFragment,
       body: {
-        query: {
-          bool: {
-            must: mustTerm,
-            filter: {
-              geo_distance: {
-                distance: `${distance}km`,
-                geo_coordonnees: {
-                  lat: latitude,
-                  lon: longitude,
-                },
-              },
-            },
-          },
-        },
-        sort: [
-          {
-            _geo_distance: {
-              geo_coordonnees: [parseFloat(longitude), parseFloat(latitude)],
-              order: "asc",
-              unit: "km",
-              mode: "min",
-              distance_type: "arc",
-              ignore_unmapped: true,
-            },
-          },
-        ],
+        ...esQuery,
+        ...esQuerySort,
       },
     });
 
     let bonnesBoites = [];
 
     responseBonnesBoites.body.hits.hits.forEach((bonneBoite) => {
-      bonnesBoites.push({ ...bonneBoite._source, distance: bonneBoite.sort });
+      bonnesBoites.push({ ...bonneBoite._source, distance: latitude || latitude === 0 ? bonneBoite.sort : null });
     });
+
+    if (!latitude && latitude !== 0) {
+      bonnesBoites.sort(function (a, b) {
+        return a.enseigne.toLowerCase().localeCompare(b.enseigne.toLowerCase());
+      });
+    }
 
     return bonnesBoites;
   } catch (error) {

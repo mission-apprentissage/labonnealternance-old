@@ -7,7 +7,7 @@ const { manageApiError } = require("../../common/utils/errorManager");
 //const poleEmploi = require("./common.js");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
 
-const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius, caller, api }) => {
+const getSomePeJobs = async ({ romes, insee, radius, lat, long, caller, api }) => {
   // la liste des romes peut être supérieure au maximum de trois autorisés par l'api offre de PE
   // on segmente les romes en blocs de max 3 et lance autant d'appels parallèles que nécessaires
   let chunkedRomes = [];
@@ -27,7 +27,6 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius, ca
         radius,
         lat,
         long,
-        strictRadius,
         caller,
         api,
       });
@@ -63,9 +62,9 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, strictRadius, ca
 };
 
 // appel de l'api offres pour un bloc de 1 à 3 romes
-const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, strictRadius, caller, api }) => {
+const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, caller, api }) => {
   let jobResult = null;
-  let currentRadius = strictRadius ? radius : 20000;
+  let currentRadius = radius || 20000;
   let jobLimit = 50; //TODO: query params options or default value from properties -> size || 50
 
   let trys = 0;
@@ -190,6 +189,9 @@ const peContratsAlternances = "E2,FS"; //E2 -> Contrat d'Apprentissage, FS -> co
 const getPeJobs = async ({ romes, insee, radius, jobLimit, caller, api = "jobV1" }) => {
   try {
     const token = await getAccessToken("pe");
+
+    const hasLocation = insee ? true : false;
+
     let headers = peApiHeaders;
     headers.Authorization = `Bearer ${token}`;
 
@@ -205,10 +207,14 @@ const getPeJobs = async ({ romes, insee, radius, jobLimit, caller, api = "jobV1"
       codeROME: romes,
       commune: codeInsee,
       distance,
-      sort: 2, //sort: 0, TODO: remettre sort 0 après expérimentation CBS
+      sort: hasLocation ? 2 : 0, //sort: 0, TODO: remettre sort 0 après expérimentation CBS
       natureContrat: peContratsAlternances,
       range: `0-${jobLimit - 1}`,
     };
+
+    if (hasLocation) {
+      params.insee = codeInsee;
+    }
 
     const jobs = await axios.get(`${peJobsApiEndpoint}`, {
       params,

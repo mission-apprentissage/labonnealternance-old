@@ -13,7 +13,6 @@ import { SendTrackEvent } from "utils/gtm";
 
 export const searchForJobsFunction = async ({
   values,
-  strictRadius,
   searchTimestamp,
   setIsJobSearchLoading,
   dispatch,
@@ -34,17 +33,18 @@ export const searchForJobsFunction = async ({
   setAllJobSearchError(false);
 
   try {
-    const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
+    const searchCenter = values?.location?.value
+      ? [values.location.value.coordinates[0], values.location.value.coordinates[1]]
+      : null;
 
     const response = await axios.get(jobsApi, {
       params: {
         romes: getRomeFromParameters({ values, widgetParameters }),
-        longitude: values.location.value.coordinates[0],
-        latitude: values.location.value.coordinates[1],
-        insee: values.location.insee,
-        zipcode: values.location.zipcode,
+        longitude: values?.location?.value ? values.location.value.coordinates[0] : null,
+        latitude: values?.location?.value ? values.location.value.coordinates[1] : null,
+        insee: values?.location?.insee,
+        zipcode: values?.location?.zipcode,
         radius: values.radius || 30,
-        strictRadius: strictRadius ? "strict" : null,
       },
     });
 

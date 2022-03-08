@@ -77,7 +77,6 @@ export const loadItem = async ({
 
       searchForJobsFunction({
         values,
-        strictRadius: true,
         searchTimestamp,
         setIsJobSearchLoading,
         dispatch,

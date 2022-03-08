@@ -14,11 +14,9 @@ export const getWidgetParameters = () => {
 
   let p = getValueFromPath("lat");
   if (p && !isNaN(p)) parameters.lat = parseFloat(p);
-  else applyWidgetParameters = false;
 
   p = getValueFromPath("lon");
   if (p && !isNaN(p)) parameters.lon = parseFloat(p);
-  else applyWidgetParameters = false;
 
   p = getValueFromPath("romes"); // todo appliquer un ctrl regexp sur romes, max 3
   if (p) parameters.romes = p;
@@ -49,7 +47,7 @@ export const getWidgetParameters = () => {
   widgetParameters.parameters = parameters;
   widgetParameters.applyWidgetParameters = applyWidgetParameters;
 
-  if (applyWidgetParameters && parameters.address && parameters.jobName && parameters.zipcode && parameters.insee) {
+  if (applyWidgetParameters && parameters.jobName) {
     widgetParameters.applyFormValues = true;
   }
 
@@ -117,21 +115,27 @@ export const buildFormValuesFromParameterString = (urlParams) =>
 }*/
 
 const buildFormValuesFromParameters = (params) => {
+  let location = params.lon
+    ? {
+        location: {
+          value: {
+            coordinates: [params.lon, params.lat],
+            type: "Point",
+          },
+          insee: params.insee,
+          zipcode: params.zipcode,
+          label: params.address,
+        },
+      }
+    : { location: null };
+
   let formValues = {
     job: {
       label: params.jobName,
       romes: params.romes.split(","),
       rncps: params.rncps ? params.rncps.split(",") : [],
     },
-    location: {
-      value: {
-        coordinates: [params.lon, params.lat],
-        type: "Point",
-      },
-      insee: params.insee,
-      zipcode: params.zipcode,
-      label: params.address,
-    },
+    ...location,
     radius: params.radius,
     diploma: params.diploma,
   };

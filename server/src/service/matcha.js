@@ -12,20 +12,30 @@ const matchaApiEndpoint = `https://matcha${
 const matchaSearchEndPoint = `${matchaApiEndpoint}/search`;
 const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
-const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, caller, referer }) => {
+const coordinatesOfFrance = [2.213749, 46.227638];
+
+const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, caller }) => {
   try {
-    const distance = radius || 10;
+    const hasLocation = latitude === undefined ? false : true;
+
+    let distance = hasLocation ? radius || 10 : 21000;
 
     let params = {
       romes: romes.split(","),
       distance,
-      lat: latitude,
-      lon: longitude,
+      lat: hasLocation ? latitude : coordinatesOfFrance[1],
+      lon: hasLocation ? longitude : coordinatesOfFrance[0],
     };
 
     const jobs = await axios.post(`${matchaSearchEndPoint}`, params);
 
-    return transformMatchaJobsForIdea({ jobs: jobs.data, caller, referer });
+    let matchas = transformMatchaJobsForIdea(jobs.data, radius, latitude, longitude);
+
+    if (!hasLocation) {
+      sortMatchas(matchas);
+    }
+
+    return matchas;
   } catch (error) {
     return manageApiError({ error, api, caller, errorTitle: `getting jobs from Matcha (${api})` });
   }
@@ -124,6 +134,26 @@ const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, c
   });
 
   return resultJobs;
+};
+
+const sortMatchas = (matchas) => {
+  matchas.results.sort((a, b) => {
+    if (a?.title?.toLowerCase() < b?.title?.toLowerCase()) {
+      return -1;
+    }
+    if (a?.title?.toLowerCase() > b?.title?.toLowerCase()) {
+      return 1;
+    }
+
+    if (a?.company?.name?.toLowerCase() < b?.company?.name?.toLowerCase()) {
+      return -1;
+    }
+    if (a?.company?.name?.toLowerCase() > b?.company?.name?.toLowerCase()) {
+      return 1;
+    }
+
+    return 0;
+  });
 };
 
 module.exports = { getMatchaJobById, getMatchaJobs };

@@ -58,8 +58,8 @@ const SearchForm = (props) => {
           <Form className={`c-searchform c-searchform--column is-home-${props.isHome}`}>
             <Row>
               {widgetParameters?.parameters?.jobName &&
-                widgetParameters?.parameters?.romes &&
-                widgetParameters?.parameters?.frozenJob ? (
+              widgetParameters?.parameters?.romes &&
+              widgetParameters?.parameters?.frozenJob ? (
                 <Col xs="12">
                   <div className="formGroup">
                     <label>{`Vous souhaitez travailler dans le domaine de ${widgetParameters.parameters.jobName}`}</label>
@@ -104,7 +104,7 @@ const SearchForm = (props) => {
               <Col xs="12">
                 <div className={`formGroup mt-3 ${errors.location ? "c-searchform--onerror" : ""}`}>
                   <AutoCompleteField
-                    kind="Lieu *"
+                    kind="Lieu"
                     items={[]}
                     initialSelectedItem={contextFormValues?.location ?? null}
                     itemToStringFunction={autoCompleteToStringFunction}
