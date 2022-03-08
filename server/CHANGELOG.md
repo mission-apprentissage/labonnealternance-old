@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.5 [10/03/2022]
+[1116] Fix accès par ID fiches formations
+
 ## 1.18.4 [08/03/2022]
 Ajout d'une route sur l'intitulé ROME
 Ajout du détail du code ROME sur les offres Matcha
