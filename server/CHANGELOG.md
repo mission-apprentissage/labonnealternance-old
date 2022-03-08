@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.5 [10/03/2022]
+[1116] Fix accès par ID fiches formations
+
 ## 1.18.3 [23/02/2022]
 Adaptation script pour SAVE update
 
