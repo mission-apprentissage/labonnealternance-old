@@ -6,9 +6,10 @@ const Yup = require("yup");
 
 const validationError = "error - validation of data failed";
 
-const validateSiretAndEmail = async (validable) => {
+const validateSiretAndContactInfo = async (validable) => {
   let schema = Yup.object().shape({
     email: Yup.string().nullable().email("email_format"),
+    phone: Yup.number().transform(emptyStringToNull).nullable(),
     siret: Yup.string().required("siret_missing"),
   });
   await schema.validate(validable).catch(function () {
@@ -17,16 +18,31 @@ const validateSiretAndEmail = async (validable) => {
   return "ok";
 };
 
-const updateEmail = async (query) => {
+// helper for yup transform function
+function emptyStringToNull(value, originalValue) {
+  if (typeof originalValue === "string" && originalValue === "") {
+    return null;
+  }
+  return value;
+}
+
+const updateContactInfo = async (query) => {
   if (!query.secret) {
     return { error: "secret_missing" };
   } else if (query.secret !== config.private.secretUpdateRomesMetiers) {
     return { error: "wrong_secret" };
   } else {
     try {
-      await validateSiretAndEmail({ siret: query.siret, email: query.email });
+      await validateSiretAndContactInfo({ siret: query.siret, email: query.email, phone: query.phone });
       let bonneBoite = await BonnesBoites.findOne({ siret: query.siret });
-      bonneBoite.email = query.email;
+
+      if (query.email !== undefined) {
+        bonneBoite.email = query.email;
+      }
+
+      if (query.phone !== undefined) {
+        bonneBoite.telephone = query.phone;
+      }
 
       await bonneBoite.save();
 
@@ -46,5 +62,5 @@ const updateEmail = async (query) => {
 };
 
 module.exports = {
-  updateEmail,
+  updateContactInfo,
 };
