@@ -49,23 +49,33 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
         shouldHandleMapSearch = false;
 
         let values = formValues;
-        values.location.value.coordinates = [mapPosition.lon, mapPosition.lat];
+        if (!values?.location?.value) {
+          values.location = {
+            value: {
+              type: "Point",
+            },
+          };
+        }
 
-        try {
-          // récupération du code insee depuis la base d'adresse
-          const addresses = await fetchAddressFromCoordinates([mapPosition.lon, mapPosition.lat]);
+        if (mapPosition.lon && mapPosition.lat) {
+          values.location.value.coordinates = [mapPosition.lon, mapPosition.lat];
 
-          if (addresses.length) {
-            values.location.insee = addresses[0].insee;
-            values.location.zipcode = addresses[0].zipcode;
-            values.location.label = addresses[0].label;
-          } else {
-            values.location.insee = null;
-            values.location.label = null;
-            values.location.zipcode = null;
-          }
-        } catch (err) {}
-        await handleSearchSubmit({ values });
+          try {
+            // récupération du code insee depuis la base d'adresse
+            const addresses = await fetchAddressFromCoordinates([mapPosition.lon, mapPosition.lat]);
+
+            if (addresses.length) {
+              values.location.insee = addresses[0].insee;
+              values.location.zipcode = addresses[0].zipcode;
+              values.location.label = addresses[0].label;
+            } else {
+              values.location.insee = null;
+              values.location.label = null;
+              values.location.zipcode = null;
+            }
+          } catch (err) {}
+          await handleSearchSubmit({ values });
+        }
 
         shouldHandleMapSearch = true;
       }
