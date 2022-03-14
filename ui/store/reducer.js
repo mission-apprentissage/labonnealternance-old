@@ -16,6 +16,7 @@ const initialState = {
   widgetParameters: null,
   itemParameters: null,
   selectedMapPopupItem: null,
+  opcoFilter: null,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -110,6 +111,11 @@ const mainReducer = (state = initialState, action) => {
     res = {
       ...state_copy,
       selectedMapPopupItem: action.selectedMapPopupItem,
+    };
+  } else if (action.type === actionsTypes.SET_OPCO_FILTER) {
+    res = {
+      ...state_copy,
+      opcoFilter: action.opcoFilter,
     };
   } else {
     res = state_copy;
