@@ -10,15 +10,11 @@ const updateOpcos = async (query) => {
     return { error: "wrong_secret" };
   } else {
     try {
-      console.log("YOP");
       let result = await updateOpcoJob();
-      console.log("LA BOOM");
       return result;
     } catch (err) {
       Sentry.captureException(err);
-
       let error_msg = _.get(err, "meta.body") ?? err.message;
-
       return { error: error_msg };
     }
   }

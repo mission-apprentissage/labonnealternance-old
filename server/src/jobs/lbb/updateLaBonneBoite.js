@@ -3,7 +3,7 @@ const fs = require("fs");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const _ = require("lodash");
 const geoData = require("../../common/utils/geoData");
-const { GeoLocation, BonnesBoites } = require("../../common/model");
+const { GeoLocation, BonnesBoites, Opco } = require("../../common/model");
 const { rebuildIndex } = require("../../common/utils/esUtils");
 //const config = require("config");
 const initNafScoreMap = require("./initNafScoreMap.js");
@@ -146,6 +146,18 @@ const getGeoLocationForCompany = async (bonneBoite) => {
   } else return null;
 };
 
+const getOpcoForCompany = async (bonneBoite) => {
+  if (!bonneBoite.opco) {
+    const siren = bonneBoite.siret.substring(0, 9);
+
+    const result = await Opco.findOne({ siren });
+
+    if (result) {
+      bonneBoite.opco = result.opco;
+    }
+  }
+};
+
 const printProgress = () => {
   if (count % 50000 === 0) {
     logMessage(
@@ -246,6 +258,7 @@ const buildAndFilterBonneBoiteFromData = async (company) => {
   }
 
   let geo = await getGeoLocationForCompany(bonneBoite);
+  getOpcoForCompany(bonneBoite);
 
   if (!bonneBoite.geo_coordonnees) {
     if (!geo) {
