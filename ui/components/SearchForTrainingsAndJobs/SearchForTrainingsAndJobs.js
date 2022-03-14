@@ -49,7 +49,7 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useScopeContext();
 
-  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues } = useSelector(
+  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
     (state) => state.trainings
   );
 
@@ -240,6 +240,7 @@ const SearchForTrainingsAndJobs = () => {
       widgetParameters,
       followUpItem,
       selectFollowUpItem,      
+      opcoFilter,
     });
   };
 

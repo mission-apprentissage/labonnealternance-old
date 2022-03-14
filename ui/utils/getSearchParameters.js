@@ -15,7 +15,7 @@ export const getSearchQueryParameters = (searchParameters) => {
           searchParameters.location.label ? encodeURIComponent(searchParameters.location.label) : ""
         }`
       : ""
-  }`;
+  }${searchParameters?.opcoFiter ? `&opco=${searchParameters.opcoFiter}` : ""}`;
 
   return result;
 };

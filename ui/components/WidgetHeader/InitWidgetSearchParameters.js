@@ -11,7 +11,9 @@ import { useDispatch, useSelector } from "react-redux";
 const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleItemLoad }) => {
   const dispatch = useDispatch();
 
-  const { widgetParameters, itemParameters, shouldExecuteSearch, formValues } = useSelector((state) => state.trainings);
+  const { widgetParameters, itemParameters, shouldExecuteSearch, formValues, opcoFilter } = useSelector(
+    (state) => state.trainings
+  );
 
   useEffect(() => {
     // initialisation par les query params
@@ -68,6 +70,7 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
             romes: p.romes.split(","),
           },
           radius: p.radius || 30,
+          opco: opcoFilter,
         };
 
         if (p.lon || p.lat) {
