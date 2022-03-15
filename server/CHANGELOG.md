@@ -1,4 +1,6 @@
 # CHANGELOG
+## 1.18.5 [15/03/2022]
+Amélioration du retour des intitulés ROME pour Matcha
 
 ## 1.18.5 [10/03/2022]
 [1066] Recherche France entière
