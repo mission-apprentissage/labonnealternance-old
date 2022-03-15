@@ -153,7 +153,7 @@ const getOpcoForCompany = async (bonneBoite) => {
     const result = await Opco.findOne({ siren });
 
     if (result) {
-      return result.opco;
+      return result.opco.toLowerCase();
     } else {
       return null;
     }
