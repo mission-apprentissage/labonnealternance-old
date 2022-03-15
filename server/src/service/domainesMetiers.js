@@ -6,6 +6,7 @@ const updateDomainesMetiers = require("../jobs/domainesMetiers/updateDomainesMet
 const getMissingRNCPsFromDomainesMetiers = require("../jobs/domainesMetiers/getMissingRNCPsFromDomainesMetiers");
 const Sentry = require("@sentry/node");
 const { getRomesFromCfd, getRomesFromSiret } = require("./romesFromCatalogue");
+const { matchSorter } = require("match-sorter");
 
 const getRomesAndLabelsFromTitleQuery = async (query) => {
   if (!query.title) return { error: "title_missing" };
@@ -78,13 +79,15 @@ const getMultiMatchTermForIntituleRome = (term) => {
         multi_match: {
           query: term,
           fields: [
-            "intitules_romes^80",
-            "appellations_romes^15",
-            "intitules_rncps^7",
-            "domaine^3",
-            "mots_clefs_specifiques^40",
-            "mots_clefs^3",
+            "intitules_romes",
+            // "domaine^30",
+            // "appellations_romes^2",
+            // "intitules_rncps^7",
+            // "domaine^3",
+            // "mots_clefs^30",
           ],
+          // type: "phrase_prefix",
+          // type: "phrase_prefix",
           type: "phrase_prefix",
           operator: "or",
         },
@@ -240,7 +243,7 @@ const getIntitulesAndRomes = async (searchKeyword) => {
 
     const esClient = getDomainesMetiersES();
 
-    let sources = ["intitules_romes", "couples_romes_metiers"];
+    let sources = ["couples_romes_metiers"];
 
     const response = await esClient.search({
       index: "domainesmetiers",
@@ -255,13 +258,22 @@ const getIntitulesAndRomes = async (searchKeyword) => {
       },
     });
 
+    console.log(response.body.hits);
+
     let intitulesAndRomes = [];
 
     response.body.hits.hits.map((item) => {
       intitulesAndRomes.push([...item._source.couples_romes_metiers]);
     });
 
-    return { intitule: _.uniqBy(_.flatten(intitulesAndRomes), "codeRome") };
+    let intitulesAndRomesUnique = _.uniqBy(_.flatten(intitulesAndRomes), "codeRome");
+
+    let intitule = matchSorter(intitulesAndRomesUnique, searchKeyword, {
+      keys: ["intitule"],
+      threshold: matchSorter.rankings.NO_MATCH,
+    });
+
+    return { intitule };
   } catch (error) {
     return manageError({ error, msgToLog: "getting intitule from title" });
   }
