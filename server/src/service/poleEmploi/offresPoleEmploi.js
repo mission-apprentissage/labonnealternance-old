@@ -3,11 +3,12 @@ const axios = require("axios");
 const { itemModel } = require("../../model/itemModel");
 const { trackApiCall } = require("../../common/utils/sendTrackingEvent");
 const { manageApiError } = require("../../common/utils/errorManager");
+const filterJobsByOpco = require("../filterJobsByOpco");
 
 //const poleEmploi = require("./common.js");
 const { getAccessToken, peApiHeaders, getRoundedRadius } = require("./common.js");
 
-const getSomePeJobs = async ({ romes, insee, radius, lat, long, caller, api }) => {
+const getSomePeJobs = async ({ romes, insee, radius, lat, long, caller, opco, api }) => {
   // la liste des romes peut être supérieure au maximum de trois autorisés par l'api offre de PE
   // on segmente les romes en blocs de max 3 et lance autant d'appels parallèles que nécessaires
   let chunkedRomes = [];
@@ -56,6 +57,11 @@ const getSomePeJobs = async ({ romes, insee, radius, lat, long, caller, api }) =
     jobs[0].results.sort((a, b) => {
       return b.place.distance - a.place.distance;
     });
+  }
+
+  // filtrage sur l'opco
+  if (opco) {
+    jobs[0].results = await filterJobsByOpco({ opco, jobs: jobs[0].results });
   }
 
   return jobs[0];
