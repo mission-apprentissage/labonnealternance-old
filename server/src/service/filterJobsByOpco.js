@@ -14,7 +14,7 @@ module.exports = async ({ opco, jobs }) => {
     return [];
   }
 
-  let opcoCompanies = await Opco.find({ siren: sirens, opco });
+  let opcoCompanies = await Opco.find({ siren: sirens, opco: opco.toLowerCase() });
 
   // les sociétés n'appartenant pas à l'opco en paramètres ne sont pas retournées
   if (opcoCompanies.length === 0) {
