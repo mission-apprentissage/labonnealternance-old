@@ -35,7 +35,7 @@ const AccesRecruteur = () => (
             <h2 className="c-recruteur-hero-title">Exprimez votre besoin en alternance</h2>
             <p className="c-recruteur-hero-text">Notre service Matcha vous permet de publier en quelques minutes vos offres sur <strong>La Bonne Alternance.</strong></p>
             <div className="mb-2">
-              <a href="https://matcha.apprentissage.beta.gouv.fr/lba/" target="_blank" className="btn btn-primary ml-1" rel="noopener noreferrer">
+              <a href="https://matcha.apprentissage.beta.gouv.fr/creation/entreprise/lba" target="_blank" className="btn btn-primary ml-1" rel="noopener noreferrer">
                 Publier une offre d'emploi en alternance
               </a>
             </div>
