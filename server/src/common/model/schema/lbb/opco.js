@@ -9,11 +9,13 @@ const opco = {
   opco: {
     type: String,
     default: null,
+    index: true,
     description: "Nom de l'opco",
   },
   idcc: {
     type: String,
     default: null,
+    index: true,
     description: "Identifiant convention collective",
   },
 };
