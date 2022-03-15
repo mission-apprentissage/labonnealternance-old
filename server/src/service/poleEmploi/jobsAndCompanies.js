@@ -95,6 +95,7 @@ const getJobsFromApi = async ({ query, api }) => {
             long: query.longitude,
             caller: query.caller,
             api,
+            opco: query.opco,
           })
         : null,
       sources.indexOf("lba") >= 0
@@ -107,6 +108,7 @@ const getJobsFromApi = async ({ query, api }) => {
             referer: query.referer,
             caller: query.caller,
             api,
+            opco: query.opco,
           })
         : null,
       sources.indexOf("lbb") >= 0
@@ -119,6 +121,7 @@ const getJobsFromApi = async ({ query, api }) => {
             referer: query.referer,
             caller: query.caller,
             api,
+            opco: query.opco,
           })
         : null,
       sources.indexOf("matcha") >= 0
@@ -130,6 +133,7 @@ const getJobsFromApi = async ({ query, api }) => {
             api,
             referer: query.referer,
             caller: query.caller,
+            opco: query.opco,
           })
         : null,
     ]);
