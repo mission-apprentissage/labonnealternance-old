@@ -6,7 +6,17 @@ const { isAllowedSource, isAllowedClearEmail } = require("../../common/utils/isA
 
 const esClient = getBonnesBoitesES();
 
-const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, referer, caller, api = "jobV1" }) => {
+const getSomeLbbCompanies = async ({
+  romes,
+  latitude,
+  longitude,
+  radius,
+  type,
+  referer,
+  caller,
+  opco,
+  api = "jobV1",
+}) => {
   const hasLocation = latitude === undefined ? false : true;
   let companies = null;
   let currentRadius = hasLocation ? radius : 21000;
@@ -21,6 +31,7 @@ const getSomeLbbCompanies = async ({ romes, latitude, longitude, radius, type, r
     type,
     caller,
     api,
+    opco,
   });
 
   if (companies && companies.length) {
@@ -106,7 +117,17 @@ const transformLbbCompanyForIdea = ({ company, type, contactAllowedOrigin, clear
   return resultCompany;
 };
 
-const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimit, type, caller, api = "jobV1" }) => {
+const getLbbCompanies = async ({
+  romes,
+  latitude,
+  longitude,
+  radius,
+  companyLimit,
+  type,
+  caller,
+  opco,
+  api = "jobV1",
+}) => {
   try {
     const distance = radius || 10;
 
@@ -122,6 +143,14 @@ const getLbbCompanies = async ({ romes, latitude, longitude, radius, companyLimi
         },
       },
     ];
+
+    if (opco) {
+      mustTerm.push({
+        match: {
+          opco,
+        },
+      });
+    }
 
     const esQueryIndexFragment = getBonnesBoitesEsQueryIndexFragment(companyLimit);
 

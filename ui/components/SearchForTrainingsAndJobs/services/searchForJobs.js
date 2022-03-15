@@ -27,6 +27,7 @@ export const searchForJobsFunction = async ({
   widgetParameters,
   followUpItem,
   selectFollowUpItem,
+  opcoFilter,
 }) => {
   setIsJobSearchLoading(true);
   setJobSearchError("");
@@ -45,6 +46,7 @@ export const searchForJobsFunction = async ({
         insee: values?.location?.insee,
         zipcode: values?.location?.zipcode,
         radius: values.radius || 30,
+        opco: opcoFilter,
       },
     });
 

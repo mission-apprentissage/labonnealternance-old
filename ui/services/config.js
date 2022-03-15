@@ -1,7 +1,7 @@
 import { getValueFromPath } from "utils/tools";
 import { campaignParameters } from "utils/campaignParameters";
 import { testingParameters } from "../utils/testingParameters";
-import { setWidgetParameters, setItemParameters } from "store/actions";
+import { setWidgetParameters, setItemParameters, setOpcoFilter } from "store/actions";
 import { push } from "connected-next-router";
 
 export const getWidgetParameters = () => {
@@ -82,6 +82,14 @@ export const getItemParameters = () => {
   return itemParameters;
 };
 
+export const getOpcoFilter = ({ dispatch }) => {
+  let opcoFilter = getValueFromPath("opco");
+
+  if (opcoFilter) {
+    dispatch(setOpcoFilter(opcoFilter));
+  }
+};
+
 export const initTestingParameters = () => {
   if (!testingParameters?.secret) {
     let p = getValueFromPath("secret");
@@ -153,6 +161,8 @@ export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
     }
     dispatch(setWidgetParameters(widgetParameters));
   }
+
+  getOpcoFilter({ dispatch });
 
   const itemParameters = getItemParameters();
   if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {

@@ -86,6 +86,18 @@ const bonneBoiteSchema = {
     default: "lba",
     description: "Type de bonne boîte : lba | lbb",
   },
+  opco: {
+    type: String,
+    default: null,
+    description: "L'OPCO de la société",
+    index: true,
+  },
+  /*idcc: {
+    type: String,
+    default: null,
+    description: "L'IDCC de la société",
+    index: true,
+  },*/
   created_at: {
     type: Date,
     default: Date.now,

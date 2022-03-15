@@ -5,7 +5,7 @@ const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const { manageApiError } = require("../common/utils/errorManager");
 const { encryptMailWithIV } = require("../common/utils/encryptString");
 const { isAllowedSource, isAllowedClearEmail } = require("../common/utils/isAllowedSource");
-
+const filterJobsByOpco = require("./filterJobsByOpco");
 const matchaApiEndpoint = `https://matcha${
   config.env === "production" ? "" : "-recette"
 }.apprentissage.beta.gouv.fr/api/formulaire`;
@@ -14,7 +14,7 @@ const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
 const coordinatesOfFrance = [2.213749, 46.227638];
 
-const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, caller }) => {
+const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, caller }) => {
   try {
     const hasLocation = latitude === undefined ? false : true;
 
@@ -30,6 +30,11 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, caller }
     const jobs = await axios.post(`${matchaSearchEndPoint}`, params);
 
     let matchas = transformMatchaJobsForIdea(jobs.data, radius, latitude, longitude);
+
+    // filtrage sur l'opco
+    if (opco) {
+      matchas.results = await filterJobsByOpco({ opco, jobs: matchas.results });
+    }
 
     if (!hasLocation) {
       sortMatchas(matchas);

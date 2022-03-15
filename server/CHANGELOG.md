@@ -4,6 +4,7 @@
 [1066] Recherche France entière
 [1116] Fix accès par ID fiches formations
 [1127] Endpoint mise à jour téléphone Bonne Boîte
+[1107] Filtrage par Opco
 Amélioration du retour des intitulés ROME pour Matcha
 
 ## 1.18.4 [08/03/2022]

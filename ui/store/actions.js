@@ -16,6 +16,7 @@ export const types = {
   SET_ITEM_PARAMETERS: "trainings/SET_ITEM_PARAMETERS",
   SET_TRAININGS_AND_SELECTED_ITEM: "trainings/SET_TRAININGS_AND_SELECTED_ITEM",
   SET_SELECTED_MAP_POPUP_ITEM: "trainings/SET_SELECTED_MAP_POPUP_ITEM",
+  SET_OPCO_FILTER: "trainings/SET_OPCO_FILTER",
 };
 
 export const setResults = (trainings = [], jobs = []) => {
@@ -136,5 +137,12 @@ export const setItemParameters = (itemParameters = true) => {
   return {
     type: types.SET_ITEM_PARAMETERS,
     itemParameters,
+  };
+};
+
+export const setOpcoFilter = (opcoFilter = null) => {
+  return {
+    type: types.SET_OPCO_FILTER,
+    opcoFilter,
   };
 };

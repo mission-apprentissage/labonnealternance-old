@@ -2,6 +2,7 @@ const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
 const { updateLaBonneBoite } = require("../../service/lbb/updateLaBonneBoite");
 const { updateGeoLocations } = require("../../service/lbb/updateGeoLocations");
+const { updateOpcos } = require("../../service/lbb/updateOpcos");
 const { updateContactInfo } = require("../../service/lbb/updateContactInfo");
 
 /**
@@ -22,6 +23,14 @@ module.exports = () => {
     "/updateGeoLocations",
     tryCatch(async (req, res) => {
       const result = await updateGeoLocations(req.query);
+      return res.json(result);
+    })
+  );
+
+  router.get(
+    "/updateOpcos",
+    tryCatch(async (req, res) => {
+      const result = await updateOpcos(req.query);
       return res.json(result);
     })
   );
