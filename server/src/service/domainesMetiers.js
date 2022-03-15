@@ -78,16 +78,7 @@ const getMultiMatchTermForIntituleRome = (term) => {
       must: {
         multi_match: {
           query: term,
-          fields: [
-            "intitules_romes",
-            // "domaine^30",
-            // "appellations_romes^2",
-            // "intitules_rncps^7",
-            // "domaine^3",
-            // "mots_clefs^30",
-          ],
-          // type: "phrase_prefix",
-          // type: "phrase_prefix",
+          fields: ["intitules_romes"],
           type: "phrase_prefix",
           operator: "or",
         },
@@ -257,8 +248,6 @@ const getIntitulesAndRomes = async (searchKeyword) => {
         },
       },
     });
-
-    console.log(response.body.hits);
 
     let intitulesAndRomes = [];
 
