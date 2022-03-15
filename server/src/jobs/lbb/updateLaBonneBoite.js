@@ -153,7 +153,9 @@ const getOpcoForCompany = async (bonneBoite) => {
     const result = await Opco.findOne({ siren });
 
     if (result) {
-      bonneBoite.opco = result.opco;
+      return result.opco;
+    } else {
+      return null;
     }
   }
 };
@@ -258,7 +260,6 @@ const buildAndFilterBonneBoiteFromData = async (company) => {
   }
 
   let geo = await getGeoLocationForCompany(bonneBoite);
-  getOpcoForCompany(bonneBoite);
 
   if (!bonneBoite.geo_coordonnees) {
     if (!geo) {
@@ -269,6 +270,8 @@ const buildAndFilterBonneBoiteFromData = async (company) => {
       bonneBoite.geo_coordonnees = geo.geoLocation;
     }
   }
+
+  bonneBoite.opco = await getOpcoForCompany(bonneBoite);
 
   return bonneBoite;
 };
