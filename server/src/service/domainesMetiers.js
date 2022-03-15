@@ -257,12 +257,12 @@ const getIntitulesAndRomes = async (searchKeyword) => {
 
     let intitulesAndRomesUnique = _.uniqBy(_.flatten(intitulesAndRomes), "codeRome");
 
-    let intitule = matchSorter(intitulesAndRomesUnique, searchKeyword, {
+    let coupleIntituleRome = matchSorter(intitulesAndRomesUnique, searchKeyword, {
       keys: ["intitule"],
       threshold: matchSorter.rankings.NO_MATCH,
     });
 
-    return { intitule };
+    return { coupleIntituleRome };
   } catch (error) {
     return manageError({ error, msgToLog: "getting intitule from title" });
   }
