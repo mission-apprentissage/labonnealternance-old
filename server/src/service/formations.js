@@ -2,14 +2,16 @@ const { getFormationsES } = require("../common/esClient");
 const axios = require("axios");
 const config = require("config");
 const Sentry = require("@sentry/node");
+const { getCurrentFormationsSourceCollection } = require("../common/components/indexSourceFormations");
 const _ = require("lodash");
 const { itemModel } = require("../model/itemModel");
 const { formationsQueryValidator, formationsRegionQueryValidator } = require("./formationsQueryValidator");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const crypto = require("crypto");
 const { manageApiError } = require("../common/utils/errorManager");
+//const logger = require("../common/logger");
 
-const formationResultLimit = 500;
+const formationResultLimit = 150;
 
 const lbfDescriptionUrl = "https://labonneformation.pole-emploi.fr/api/v1/detail";
 
@@ -48,10 +50,12 @@ const getFormations = async ({
   caller,
   api = "formationV1",
 }) => {
-  //console.log(romes, coords, radius, diploma);
-
   try {
     const distance = radius || 30;
+
+    const useGeoLocation = coords ? true : false;
+    const latitude = coords ? coords[1] : null;
+    const longitude = coords ? coords[0] : null;
 
     let mustTerm = [
       romes
@@ -90,37 +94,50 @@ const getFormations = async ({
 
     mustTerm.push(publishedMustTerm);
 
+    let esQuerySort = {
+      sort: [
+        useGeoLocation
+          ? {
+              _geo_distance: {
+                idea_geo_coordonnees_etablissement: [parseFloat(longitude), parseFloat(latitude)],
+                order: "asc",
+                unit: "km",
+                mode: "min",
+                distance_type: "arc",
+                ignore_unmapped: true,
+              },
+            }
+          : "_score",
+      ],
+    };
+
+    let esQuery = {
+      query: {
+        bool: {
+          must: mustTerm,
+        },
+      },
+    };
+
+    if (useGeoLocation) {
+      esQuery.query.bool.filter = {
+        geo_distance: {
+          distance: `${distance}km`,
+          idea_geo_coordonnees_etablissement: {
+            lat: latitude,
+            lon: longitude,
+          },
+        },
+      };
+    }
+
     const esQueryIndexFragment = getFormationEsQueryIndexFragment(limit);
 
     const responseFormations = await esClient.search({
       ...esQueryIndexFragment,
       body: {
-        query: {
-          bool: {
-            must: mustTerm,
-            filter: {
-              geo_distance: {
-                distance: `${distance}km`,
-                idea_geo_coordonnees_etablissement: {
-                  lat: coords[1],
-                  lon: coords[0],
-                },
-              },
-            },
-          },
-        },
-        sort: [
-          {
-            _geo_distance: {
-              idea_geo_coordonnees_etablissement: [parseFloat(coords[0]), parseFloat(coords[1])],
-              order: "asc",
-              unit: "km",
-              mode: "min",
-              distance_type: "arc",
-              ignore_unmapped: true,
-            },
-          },
-        ],
+        ...esQuery,
+        ...esQuerySort,
       },
     });
 
@@ -144,33 +161,12 @@ const getFormations = async ({
 
 const getFormation = async ({ id, caller }) => {
   try {
-    let mustTerm = [
-      {
-        match: {
-          cle_ministere_educatif: id,
-        },
-      },
-    ];
-
-    const esQueryIndexFragment = getFormationEsQueryIndexFragment(1);
-
-    const responseFormation = await esClient.search({
-      ...esQueryIndexFragment,
-      body: {
-        query: {
-          bool: {
-            must: mustTerm,
-          },
-        },
-      },
-    });
+    const Formation = await getCurrentFormationsSourceCollection();
+    const responseFormation = await Formation.findOne({ cle_ministere_educatif: id });
 
     //throw new Error("BOOM");
     let formations = [];
-
-    responseFormation.body.hits.hits.forEach((formation) => {
-      formations.push({ source: formation._source, id: formation._id });
-    });
+    formations.push({ source: responseFormation });
 
     return formations;
   } catch (error) {
@@ -338,6 +334,8 @@ const getAtLeastSomeFormations = async ({
 
       //throw new Error("BANG");
       formations = transformFormationsForIdea(formations);
+
+      sortFormations(formations);
 
       if (caller) {
         trackApiCall({
@@ -531,7 +529,7 @@ const getFormationsQuery = async (query) => {
     const formations = await getAtLeastSomeFormations({
       romes: query.romes ? query.romes.split(",") : null,
       rncps: query.rncps ? query.rncps.split(",") : null,
-      coords: [query.longitude, query.latitude],
+      coords: query.longitude ? [query.longitude, query.latitude] : null,
       radius: query.radius,
       diploma: query.diploma,
       maxOutLimitFormation: 5,
@@ -753,17 +751,21 @@ const getEsRegionTermFragment = (region) => {
 
 const sortFormations = (formations) => {
   formations.results.sort((a, b) => {
-    if (a.company.name < b.company.name) {
+    if (a?.place?.distance !== null) {
+      return 0;
+    }
+
+    if (a?.title?.toLowerCase() < b?.title?.toLowerCase()) {
       return -1;
     }
-    if (a.company.name > b.company.name) {
+    if (a?.title?.toLowerCase() > b?.title?.toLowerCase()) {
       return 1;
     }
 
-    if (a.title < b.title) {
+    if (a?.company?.name?.toLowerCase() < b?.company?.name?.toLowerCase()) {
       return -1;
     }
-    if (a.title > b.title) {
+    if (a?.company?.name?.toLowerCase() > b?.company?.name?.toLowerCase()) {
       return 1;
     }
 

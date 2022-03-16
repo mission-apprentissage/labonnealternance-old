@@ -1,5 +1,6 @@
 const Sentry = require("@sentry/node");
-const { getFormations, transformFormationsForIdea } = require("./formations");
+
+const { getFormations, transformFormationsForIdea, deduplicateFormations } = require("./formations");
 const { getJobsFromApi } = require("./poleEmploi/jobsAndCompanies");
 const { jobsEtFormationsQueryValidator } = require("./jobsEtFormationsQueryValidator");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
@@ -17,10 +18,10 @@ const getJobsEtFormationsQuery = async (query) => {
         ? getFormations({
             romes: query.romes ? query.romes.split(",") : null,
             rncps: query.rncps ? query.rncps.split(",") : null,
-            coords: [query.longitude, query.latitude],
+            coords: query.longitude || query.longitude ? [query.longitude, query.latitude] : null,
             radius: query.radius,
             diploma: query.diploma,
-            limit: 500,
+            limit: 150,
             romeDomain: query.romeDomain,
             caller: query.caller,
             api: "jobEtFormationV1",
@@ -35,6 +36,7 @@ const getJobsEtFormationsQuery = async (query) => {
     ]);
 
     if (formations && formations?.result !== "error") {
+      formations = deduplicateFormations(formations);
       formations = transformFormationsForIdea(formations);
     }
 

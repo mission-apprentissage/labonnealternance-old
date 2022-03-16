@@ -63,29 +63,35 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
       if (widgetParameters.applyFormValues) {
         handleSearchSubmit({ values: widgetParameters.formValues, followUpItem: selectItem ? itemParameters : null });
       } else {
-        // récupération du code insee depuis la base d'adresse
-        const addresses = await fetchAddressFromCoordinates([p.lon, p.lat]);
+        let values = {
+          job: {
+            romes: p.romes.split(","),
+          },
+          radius: p.radius || 30,
+        };
 
-        if (addresses.length) {
-          let values = {
-            location: {
-              value: {
-                type: "Point",
-                coordinates: [p.lon, p.lat],
+        if (p.lon || p.lat) {
+          // récupération du code insee depuis la base d'adresse
+          let addresses;
+
+          addresses = await fetchAddressFromCoordinates([p.lon, p.lat]);
+
+          if (addresses.length) {
+            values = {
+              ...values,
+              location: {
+                value: {
+                  type: "Point",
+                  coordinates: [p.lon, p.lat],
+                },
+                insee: addresses[0].insee,
               },
-              insee: addresses[0].insee,
-            },
-            job: {
-              romes: p.romes.split(","),
-            },
-            radius: p.radius || 30,
-            ...addresses[0],
-          };
-
-          handleSearchSubmit({ values, followUpItem: selectItem ? itemParameters : null });
-        } else {
-          console.log("aucun lieu trouvé");
+              ...addresses[0],
+            };
+          }
         }
+
+        handleSearchSubmit({ values, followUpItem: selectItem ? itemParameters : null });
       }
       setIsLoading(false);
     } catch (err) {
