@@ -2,7 +2,8 @@ const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
 const { updateLaBonneBoite } = require("../../service/lbb/updateLaBonneBoite");
 const { updateGeoLocations } = require("../../service/lbb/updateGeoLocations");
-const { updateEmail } = require("../../service/lbb/updateEmail");
+const { updateOpcos } = require("../../service/lbb/updateOpcos");
+const { updateContactInfo } = require("../../service/lbb/updateContactInfo");
 
 /**
  * API romes
@@ -27,9 +28,17 @@ module.exports = () => {
   );
 
   router.get(
-    "/updateEmail",
+    "/updateOpcos",
     tryCatch(async (req, res) => {
-      const result = await updateEmail(req.query);
+      const result = await updateOpcos(req.query);
+      return res.json(result);
+    })
+  );
+
+  router.get(
+    "/updateContactInfo",
+    tryCatch(async (req, res) => {
+      const result = await updateContactInfo(req.query);
       return res.json(result);
     })
   );

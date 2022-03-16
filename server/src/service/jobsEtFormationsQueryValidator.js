@@ -20,18 +20,22 @@ const jobsEtFormationsQueryValidator = (query) => {
   // codes ROME : romes
   validateRomes(query.romes, error_messages);
 
-  // rayon de recherche : radius
-  validateRadius(query.radius, error_messages);
+  // coordonnées gps optionnelles : latitude et longitude
+  if (query.latitude || query.longitude) {
+    validateLatitude(query.latitude, error_messages);
+    validateLongitude(query.longitude, error_messages);
 
-  // coordonnées gps : latitude et longitude
-  validateLatitude(query.latitude, error_messages);
-  validateLongitude(query.longitude, error_messages);
+    // rayon de recherche : radius
+    validateRadius(query.radius, error_messages);
+  }
 
   // diploma mal formée si présente
   validateDiploma(query.diploma, error_messages);
 
   // code INSEE : insee
-  validateInsee(query.insee, error_messages);
+  if (query.longitude) {
+    validateInsee(query.insee, error_messages);
+  }
 
   // source mal formée si présente
   validateApiSources(query.sources, error_messages, ["formations", "lbb", "lba", "offres", "matcha"]);

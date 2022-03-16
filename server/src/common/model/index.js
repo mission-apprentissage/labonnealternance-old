@@ -40,6 +40,7 @@ module.exports = {
   SourceFormations: createModel("sourceformations", schema.sourceFormationsSchema),
   GeoLocation: createModel("geolocation", schema.geoLocationSchema),
   EmailBlacklist: createModel("emailblacklist", schema.emailBlacklist),
+  Opco: createModel("opco", schema.opco),
   BonnesBoites: createModel("bonnesboites", schema.bonneBoiteSchema, {
     esIndexName: "bonnesboites",
   }),

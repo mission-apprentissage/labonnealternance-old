@@ -1,4 +1,4 @@
-const { SourceFormations } = require("../model");
+const { SourceFormations, ConvertedFormation_0, ConvertedFormation_1 } = require("../model");
 const { Client } = require("@elastic/elasticsearch");
 const _ = require("lodash");
 const logger = require("../logger");
@@ -13,6 +13,15 @@ const getCurrentFormationsSourceIndex = async () => {
     return sourceFormation[0]?.currentIndex || "convertedformation_1";
   } catch (err) {
     return "convertedformation_1";
+  }
+};
+
+const getCurrentFormationsSourceCollection = async () => {
+  try {
+    const sourceFormation = await SourceFormations.find({});
+    return sourceFormation[0]?.currentIndex === "convertedformation_1" ? ConvertedFormation_1 : ConvertedFormation_0;
+  } catch (err) {
+    return ConvertedFormation_1;
   }
 };
 
@@ -68,6 +77,7 @@ const updateFormationsIndexAlias = async ({ masterIndex, indexToUnAlias }) => {
 
 module.exports = {
   getCurrentFormationsSourceIndex,
+  getCurrentFormationsSourceCollection,
   updateFormationsSourceIndex,
   updateFormationsIndexAlias,
 };

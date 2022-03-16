@@ -30,12 +30,13 @@ export const searchForTrainingsFunction = async ({
   setTrainingSearchError("");
   clearTrainings();
   try {
+    const hasLocation = values?.location?.value ? true : false;
     const response = await axios.get(trainingsApi, {
       params: {
         romes: getRomeFromParameters({ values, widgetParameters }),
         rncps: getRncpsFromParameters({ values, widgetParameters }),
-        longitude: values.location.value.coordinates[0],
-        latitude: values.location.value.coordinates[1],
+        longitude: hasLocation ? values.location.value.coordinates[0] : null,
+        latitude: hasLocation ? values.location.value.coordinates[1] : null,
         radius: values.radius || 30,
         diploma: values.diploma,
       },
@@ -62,7 +63,9 @@ export const searchForTrainingsFunction = async ({
     dispatch(setIsFormVisible(false));
 
     if (response.data.results.length) {
-      setTrainingMarkers(factorTrainingsForMap(response.data.results));
+      setTrainingMarkers(factorTrainingsForMap(response.data.results), {
+        centerMapOnTraining: hasLocation ? true : false,
+      });
 
       if (followUpItem?.parameters.type === "training") {
         selectFollowUpItem({

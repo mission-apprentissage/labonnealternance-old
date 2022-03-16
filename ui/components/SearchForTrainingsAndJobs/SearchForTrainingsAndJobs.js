@@ -33,6 +33,7 @@ import {
   setSelectedMarker,
   resizeMap,
   isMapInitialized,
+  coordinatesOfFrance,
 } from "utils/mapTools";
 
 import { useScopeContext } from "context/ScopeContext";
@@ -48,7 +49,7 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useScopeContext();
 
-  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues } = useSelector(
+  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
     (state) => state.trainings
   );
 
@@ -148,7 +149,7 @@ const SearchForTrainingsAndJobs = () => {
 
   const handleSearchSubmit = async ({values,followUpItem=null}) => {
     // centrage de la carte sur le lieu de recherche
-    const searchCenter = [values.location.value.coordinates[0], values.location.value.coordinates[1]];
+    const searchCenter = values.location?.value?[values.location.value.coordinates[0], values.location.value.coordinates[1]]:null;
     const searchTimestamp = new Date().getTime();
     setShouldShowWelcomeMessage(false);
 
@@ -156,8 +157,9 @@ const SearchForTrainingsAndJobs = () => {
     setSearchRadius(values.radius || 30);
     dispatch(setExtendedSearch(false));
 
-    flyToLocation({ center: searchCenter, zoom: 10 });
-
+    if(searchCenter) { flyToLocation({ center: searchCenter, zoom: 10 }); }
+    else { flyToLocation({ center: coordinatesOfFrance, zoom: 4 }); }
+  
     dispatch(setFormValues({ ...values }));
 
     if (scopeContext.isTraining) {
@@ -165,7 +167,7 @@ const SearchForTrainingsAndJobs = () => {
     }
 
     if (scopeContext.isJob) {
-      searchForJobsWithStrictRadius({values,searchTimestamp,followUpItem,selectFollowUpItem});
+      searchForJobs({values,searchTimestamp,followUpItem,selectFollowUpItem});
     }
     dispatch(setIsFormVisible(false));
 
@@ -221,14 +223,9 @@ const SearchForTrainingsAndJobs = () => {
     });
   };
 
-  const searchForJobsWithStrictRadius = async ({values, searchTimestamp, followUpItem, selectFollowUpItem}) => {
-    searchForJobs({values, searchTimestamp, strictRadius:"strict", followUpItem, selectFollowUpItem});
-  };
-
-  const searchForJobs = async ({values, searchTimestamp, strictRadius, followUpItem, selectFollowUpItem}) => {
+  const searchForJobs = async ({values, searchTimestamp, followUpItem, selectFollowUpItem}) => {
     searchForJobsFunction({
       values,
-      strictRadius,
       searchTimestamp,
       setIsJobSearchLoading,
       dispatch,
@@ -243,6 +240,7 @@ const SearchForTrainingsAndJobs = () => {
       widgetParameters,
       followUpItem,
       selectFollowUpItem,      
+      opcoFilter,
     });
   };
 
@@ -342,7 +340,6 @@ const SearchForTrainingsAndJobs = () => {
             searchForTrainings={searchForTrainings}
             trainingSearchError={trainingSearchError}
             searchForJobs={searchForJobs}
-            searchForJobsWithStrictRadius={searchForJobsWithStrictRadius}
             isJobSearchLoading={isJobSearchLoading}
             jobSearchError={jobSearchError}
             allJobSearchError={allJobSearchError}

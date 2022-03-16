@@ -40,7 +40,7 @@ export const loadItem = async ({
     let itemMarker = null;
 
     if (item.type === "training") {
-      const response = await axios.get(trainingApi + "/" + item.itemId);
+      const response = await axios.get(trainingApi + "/" + encodeURIComponent(item.itemId));
 
       if (response.data.result === "error") {
         logError("Training Search Error", `${response.data.message}`);
@@ -77,7 +77,6 @@ export const loadItem = async ({
 
       searchForJobsFunction({
         values,
-        strictRadius: true,
         searchTimestamp,
         setIsJobSearchLoading,
         dispatch,

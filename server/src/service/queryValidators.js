@@ -68,7 +68,7 @@ const validateRadius = (radius, error_messages, min = 0, max = 200) => {
   // rayon de recherche : radius
   if (radius === undefined || radius === "") error_messages.push("radius : Search radius is missing.");
   else if (isNaN(radius)) error_messages.push("radius : Search radius must be a number.");
-  else if (parseInt(radius) < min || parseInt(radius) > max)
+  else if (parseInt(radius) < min || (parseInt(radius) > max && parseInt(radius) !== 20000))
     error_messages.push(`radius : Search radius must be a number between ${min} and ${max}.`);
 };
 

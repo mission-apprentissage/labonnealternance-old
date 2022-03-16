@@ -45,7 +45,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
       ? selectedItem?.title || selectedItem?.longTitle
       : selectedItem?.company?.name || selectedItem?.title || selectedItem?.longTitle;
 
-  const { extendedSearch } = useSelector((state) => state.trainings);
+  const { extendedSearch, formValues } = useSelector((state) => state.trainings);
+  const hasLocation = formValues?.location?.value ? true : false;
 
   const currentList = useSelector((store) => {
     let picked = pick(store.trainings, ["trainings", "jobs"]);
@@ -204,7 +205,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <p className="d-flex mt-4 text-left">
               <span className="d-block">
                 <span className="c-detail-address d-block">{get(selectedItem, "place.fullAddress", "")}</span>
-                {distance ? (
+                {hasLocation && distance ? (
                   <span className="c-detail-km d-block">
                     {round(distance, 1) + " "}
                     km(s) du lieu de recherche

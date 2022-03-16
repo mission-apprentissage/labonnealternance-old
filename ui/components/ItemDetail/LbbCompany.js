@@ -87,7 +87,9 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
     }
   };
 
-  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(company)}&${getSearchQueryParameters(formValues)}`
+  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(
+    company
+  )}&${getSearchQueryParameters(formValues)}`;
 
   return (
     <a
@@ -121,7 +123,7 @@ const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTraining
           </div>
 
           <span className="cardDistance pt-1">
-            {company.place.distance} km(s) du lieu de recherche
+            {company.place.distance ? `${company.place.distance} km(s) du lieu de recherche` : ""}
             {showTextOnly ? (
               ""
             ) : (

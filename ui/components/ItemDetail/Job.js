@@ -15,6 +15,8 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
 
   const currentSearchRadius = formValues?.radius || 30;
 
+  const hasLocation = formValues?.location?.value ? true : false;
+
   const [allowDim, setAllowDim] = useState(true); // cet état évite un appel qui masque la mise en avant de l'icône lors de l'ouverture du détail
 
   const kind = job?.ideaType;
@@ -102,7 +104,9 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
     }
   };
 
-  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(job)}&${getSearchQueryParameters(formValues)}`
+  const actualLink = `/recherche-apprentissage?display=list&page=fiche&${getItemQueryParameters(
+    job
+  )}&${getSearchQueryParameters(formValues)}`;
 
   return (
     <a
@@ -136,10 +140,14 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
           </div>
 
           <span className="cardDistance pt-1">
-            {isDepartmentJob(job) ? (
-              "Dans votre zone de recherche"
+            {hasLocation ? (
+              isDepartmentJob(job) ? (
+                "Dans votre zone de recherche"
+              ) : (
+                <>{job.place.distance} km(s) du lieu de recherche</>
+              )
             ) : (
-              <>{job.place.distance} km(s) du lieu de recherche</>
+              ""
             )}
             {showTextOnly ? (
               ""

@@ -34,7 +34,6 @@ const ChoiceColumn = ({
   searchForTrainings,
   trainingSearchError,
   searchForJobs,
-  searchForJobsWithStrictRadius,
   isJobSearchLoading,
   jobSearchError,
   allJobSearchError,
@@ -61,7 +60,7 @@ const ChoiceColumn = ({
     }
   });
 
-  useEffect( () => {
+  useEffect(() => {
     whispers.insertWhisper(document, isTrainingSearchLoading || isJobSearchLoading);
   });
 
@@ -123,7 +122,7 @@ const ChoiceColumn = ({
       searchTimestamp,
     });
     setCurrentSearch(searchTimestamp);
-    searchForJobs({ values: formValues, searchTimestamp });
+    searchForJobs({ values: { ...formValues, radius: 20000 }, searchTimestamp });
   };
 
   const searchOnNewCenter = async (newCenter, isTrainingSearch, isJobSearch) => {
@@ -153,7 +152,7 @@ const ChoiceColumn = ({
     });
     setCurrentSearch(searchTimestamp);
 
-    searchForJobsWithStrictRadius({ values: formValues, searchTimestamp });
+    searchForJobs({ values: formValues, searchTimestamp });
 
     if (isTrainingSearch) {
       searchForTrainings({ values: formValues, searchTimestamp });
@@ -192,7 +191,7 @@ const ChoiceColumn = ({
       />
     );
   };
-  
+
   const getSearchForm = () => {
     return (
       <div className="d-block d-md-none">

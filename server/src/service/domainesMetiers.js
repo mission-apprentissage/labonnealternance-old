@@ -6,6 +6,7 @@ const updateDomainesMetiers = require("../jobs/domainesMetiers/updateDomainesMet
 const getMissingRNCPsFromDomainesMetiers = require("../jobs/domainesMetiers/getMissingRNCPsFromDomainesMetiers");
 const Sentry = require("@sentry/node");
 const { getRomesFromCfd, getRomesFromSiret } = require("./romesFromCatalogue");
+const { matchSorter } = require("match-sorter");
 
 const getRomesAndLabelsFromTitleQuery = async (query) => {
   if (!query.title) return { error: "title_missing" };
@@ -77,14 +78,7 @@ const getMultiMatchTermForIntituleRome = (term) => {
       must: {
         multi_match: {
           query: term,
-          fields: [
-            "intitules_romes^80",
-            "appellations_romes^15",
-            "intitules_rncps^7",
-            "domaine^3",
-            "mots_clefs_specifiques^40",
-            "mots_clefs^3",
-          ],
+          fields: ["intitules_romes"],
           type: "phrase_prefix",
           operator: "or",
         },
@@ -240,7 +234,7 @@ const getIntitulesAndRomes = async (searchKeyword) => {
 
     const esClient = getDomainesMetiersES();
 
-    let sources = ["intitules_romes", "couples_romes_metiers"];
+    let sources = ["couples_romes_metiers"];
 
     const response = await esClient.search({
       index: "domainesmetiers",
@@ -261,7 +255,14 @@ const getIntitulesAndRomes = async (searchKeyword) => {
       intitulesAndRomes.push([...item._source.couples_romes_metiers]);
     });
 
-    return { intitule: _.uniqBy(_.flatten(intitulesAndRomes), "codeRome") };
+    let intitulesAndRomesUnique = _.uniqBy(_.flatten(intitulesAndRomes), "codeRome");
+
+    let coupleIntituleRome = matchSorter(intitulesAndRomesUnique, searchKeyword, {
+      keys: ["intitule"],
+      threshold: matchSorter.rankings.NO_MATCH,
+    });
+
+    return { coupleIntituleRome };
   } catch (error) {
     return manageError({ error, msgToLog: "getting intitule from title" });
   }
