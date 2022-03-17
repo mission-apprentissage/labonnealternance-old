@@ -3,13 +3,13 @@
 ## 1.18.6 [18/03/2022]
 [1136] Fix bouton retour au formulaire sur widget emploi
 [1128] Fix call api PE France entière sans radius
+[1072] Maj Rencontrer le candidat
 
 ## 1.18.5 [10/03/2022]
 [1066] Recherche France entière
 [1116] Fix accès par ID fiches formations
 [1127] Endpoint mise à jour téléphone Bonne Boîte
 [1107] Filtrage par Opco
-[1072] Maj Rencontrer le candidat
 Amélioration du retour des intitulés ROME pour Matcha
 
 ## 1.18.4 [08/03/2022]
