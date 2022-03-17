@@ -36,7 +36,7 @@ const SatisfactionForm = ({ formType }) => {
           <div>
             <strong>Vous avez indiqué accepter cette candidature.</strong>
             <p className="pt-4 pb-0 mb-0">
-              Souhaitez-vous envoyer un message ou commentaire au candidat pour pour lui proposer une date de rencontre / d'entretien ?
+              Souhaitez-vous envoyer un message ou commentaire au candidat pour lui proposer une date de rencontre / d'entretien ?
             </p>
             <p>
               <small class="satisfaction-smallhint">Le candidat recevra votre commentaire ainsi que vos coordonnées directement sur sa boîte mail.</small>
