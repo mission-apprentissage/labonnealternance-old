@@ -34,7 +34,7 @@ const SatisfactionForm = ({ formType }) => {
         <p className="pt-4">Merci beaucoup pour votre réponse {}</p>
         {localIntention === 'entretien' ?
           <div>
-            <strong>Vous avez indiqué accepter la candidature de</strong>
+            <strong>Vous avez indiqué accepter cette candidature.</strong>
             <p className="pt-4 pb-0 mb-0">
               Souhaitez-vous envoyer un message ou commentaire au candidat pour pour lui proposer une date de rencontre / d'entretien ?
             </p>
@@ -183,7 +183,7 @@ const SatisfactionForm = ({ formType }) => {
                         type="email"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        value={formik.values.email}
+                        value={formik.values.email || ""}
                       />
                       {formik.touched.email && formik.errors.email ? (
                         <div className="c-candidature-erreur visible">{formik.errors.email}</div>
@@ -213,7 +213,7 @@ const SatisfactionForm = ({ formType }) => {
                         type="text"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        value={formik.values.phone}
+                        value={formik.values.phone || ""}
                       />
                       {formik.touched.phone && formik.errors.phone ? (
                         <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
