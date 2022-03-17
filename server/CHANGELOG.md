@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.6 [17/03/2022]
+[1075] Ecrans confirmation
+
 ## 1.18.5 [10/03/2022]
 [1066] Recherche France entière
 [1116] Fix accès par ID fiches formations
@@ -14,7 +17,6 @@ Endpoint mise à jour email Bonne Boîte
 
 ## 1.18.3 [23/02/2022]
 Adaptation script pour SAVE update
-[1075] Ecrans confirmation
 
 ## 1.18.2 [22/02/2022]
 [1114] Plusieurs types de contrat pour Matcha
