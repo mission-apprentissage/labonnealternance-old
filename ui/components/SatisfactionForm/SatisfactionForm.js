@@ -31,7 +31,7 @@ const SatisfactionForm = ({ formType }) => {
       <>
         <p className="pt-5">Merci beaucoup pour votre réponse</p>
         <p className="pt-2">
-          <strong>Vous avez indiqué refuser la candidature de</strong>  
+          <strong>Vous avez indiqué refuser cette candidature.</strong>  
         </p>
         <p className="pt-2 pb-0 mb-0">
           Précisez les raisons de votre refus au candidat, en lui envoyant un message personnalisé.
