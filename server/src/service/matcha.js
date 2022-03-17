@@ -110,6 +110,10 @@ const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, c
       phone: job.telephone,
     };
 
+    resultJob.tranche_effectif = job.tranche_effectif;
+    resultJob.libelle_naf = job.libelle_naf;
+    resultJob.date_creation_etablissement = job.date_creation_etablissement;
+
     resultJob.place.distance = distance ? Math.round(10 * distance) / 10 : 0;
     resultJob.place.fullAddress = job.adresse;
     resultJob.place.address = job.adresse;
