@@ -9,6 +9,7 @@
 [1116] Fix accès par ID fiches formations
 [1127] Endpoint mise à jour téléphone Bonne Boîte
 [1107] Filtrage par Opco
+[1072] Maj Rencontrer le candidat
 Amélioration du retour des intitulés ROME pour Matcha
 
 ## 1.18.4 [08/03/2022]
@@ -18,7 +19,6 @@ Endpoint mise à jour email Bonne Boîte
 
 ## 1.18.3 [23/02/2022]
 Adaptation script pour SAVE update
-[1072] Maj Rencontrer le candidat
 
 ## 1.18.2 [22/02/2022]
 [1114] Plusieurs types de contrat pour Matcha
