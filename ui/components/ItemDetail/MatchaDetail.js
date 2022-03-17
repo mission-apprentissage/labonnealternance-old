@@ -41,9 +41,9 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   const contractType = get(job, "job.contractType", undefined);
   const romeDefinition = job?.job?.romeDetails?.definition.split("\\n");
   const romeCompetence = get(job, "job.romeDetails.competencesDeBase", undefined);
-  const tranche_effectif = get(job, "tranche_effectif", undefined);
-  const date_creation_etablissement = get(job, "date_creation_etablissement", undefined);
-  const libelle_naf = get(job, "libelle_naf", undefined);
+  const tranche_effectif = get(job, "company.size", undefined);
+  const date_creation_etablissement = get(job, "company.creationDate", undefined);
+  const libelle_naf = get(job, "nafs[0].libelle_naf", undefined);
 
   let contactInfo = (
     <>

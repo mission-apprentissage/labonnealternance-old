@@ -110,10 +110,6 @@ const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, c
       phone: job.telephone,
     };
 
-    resultJob.tranche_effectif = job.tranche_effectif;
-    resultJob.libelle_naf = job.libelle_naf;
-    resultJob.date_creation_etablissement = job.date_creation_etablissement;
-
     resultJob.place.distance = distance ? Math.round(10 * distance) / 10 : 0;
     resultJob.place.fullAddress = job.adresse;
     resultJob.place.address = job.adresse;
@@ -122,6 +118,9 @@ const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, c
 
     resultJob.company.siret = job.siret;
     resultJob.company.name = job.raison_sociale;
+    resultJob.company.size = job.tranche_effectif;
+    resultJob.nafs[0].libelle_naf = job.libelle_naf;
+    resultJob.company.creationDate = job.date_creation_etablissement;
 
     resultJob.diplomaLevel = offre.niveau;
     resultJob.createdAt = job.createdAt;

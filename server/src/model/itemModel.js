@@ -33,7 +33,7 @@ const itemModel = (type) => {
     company: {
       name: null, // pe -> entreprise.nom | formation -> etablissement_formateur_entreprise_raison_sociale | lbb/lba -> name | matcha -> raison_sociale
       siret: null, // lbb/lba -> siret | formation -> etablissement_formateur_siret | matcha -> siret | pe -> entreprise.siret réservé à notre front
-      size: null, // lbb/lba -> headcount_text
+      size: null, // lbb/lba -> headcount_text | matcha -> tranche_effectif
       logo: null, // pe -> entreprise.logo
       description: null, // pe -> entreprise.description
       socialNetwork: null, // lbb / lba -> social_network
@@ -43,7 +43,7 @@ const itemModel = (type) => {
       place: null /*{
             city,   // formation -> etablissement_formateur_localite
       }*/,
-
+      creationDate: null, // matcha -> date_creation_etablissement
       headquarter: null /*{    // uniquement pour formation
                 siret, // formation -> etablissement_gestionaire_siret
                 id, // formation -> etablissement_gestionnaire_id
@@ -84,9 +84,6 @@ const itemModel = (type) => {
             duration,              // pe -> dureeTravailLibelle
             jobStartDate,          // matcha -> offres.date_debut_apprentissage 
             romeDetails            // matcha -> offres.rome_detail -> détail du code ROME
-            libelle_naf            // matcha -> libelle_naf
-            tranche_effectif       // matcha -> tranche_effectif
-            date_creation_etablissement     // matcha -> date_creation_etablissement
         },*/,
 
     romes: null /*[
@@ -100,6 +97,7 @@ const itemModel = (type) => {
             {
                 code,               // lbb/lba -> naf
                 label,              // lbb/lba -> naf_text
+                libelle_naf         // matcha -> libelle_naf
             }
         ],*/,
     training: null /* alimentation côté client à l'ouverture d'une formation
