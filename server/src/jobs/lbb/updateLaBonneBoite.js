@@ -202,7 +202,7 @@ const parseLine = async (line) => {
   let company = initCompanyFromLine(line);
 
   if (isCompanyRemoved(company.siret)) {
-    BonnesBoites.remove({ siret: company.siret });
+    await BonnesBoites.remove({ siret: company.siret });
     return null;
   }
 
