@@ -1,6 +1,5 @@
 # CHANGELOG
 
-
 ## 1.18.6 [17/03/2022]
 [1072] Maj Rencontrer le candidat
 
