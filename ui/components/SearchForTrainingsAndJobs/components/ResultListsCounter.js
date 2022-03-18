@@ -4,19 +4,18 @@ import FilterButton from "./FilterButton";
 import purpleFilterIcon from "public/images/icons/purpleFilter.svg";
 
 const ResultListsCounter = (props) => {
-
-  const scopeContext = props.scopeContext
-  const filterButtonClicked = props.filterButtonClicked
-  const displayCount = props.displayCount
-  const getJobCount = props.getJobCount
-  const allJobSearchError = props.allJobSearchError
-  const trainingSearchError = props.trainingSearchError
-  const isTrainingSearchLoading = props.isTrainingSearchLoading
-  const isJobSearchLoading = props.isJobSearchLoading
-  const jobs = props.jobs
-  const trainings = props.trainings
-  const activeFilter = props.activeFilter
-  const showSearchForm = props.showSearchForm
+  const scopeContext = props.scopeContext;
+  const filterButtonClicked = props.filterButtonClicked;
+  const displayCount = props.displayCount;
+  const getJobCount = props.getJobCount;
+  const allJobSearchError = props.allJobSearchError;
+  const trainingSearchError = props.trainingSearchError;
+  const isTrainingSearchLoading = props.isTrainingSearchLoading;
+  const isJobSearchLoading = props.isJobSearchLoading;
+  const jobs = props.jobs;
+  const trainings = props.trainings;
+  const activeFilter = props.activeFilter;
+  const showSearchForm = props.showSearchForm;
 
   if (allJobSearchError && trainingSearchError) return "";
 
@@ -49,7 +48,6 @@ const ResultListsCounter = (props) => {
     }
   }
 
-
   let trainingCount = 0;
   let trainingPart = "";
   let trainingLoading = "";
@@ -79,8 +77,7 @@ const ResultListsCounter = (props) => {
     }
   }
 
-  let correspondText = `${count === 0 ? " ne" : ""}${count <= 1 ? " correspond" : " correspondent"
-    } à votre recherche`;
+  let correspondText = `${count === 0 ? " ne" : ""}${count <= 1 ? " correspond" : " correspondent"} à votre recherche`;
 
   return (
     <div className="pt-0">
@@ -88,7 +85,7 @@ const ResultListsCounter = (props) => {
         {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
           <div className={`c-resultlist-correspond-display-${displayCount}`}>
             <span className="c-resultlist-correspond c-resultlist-correspond--bold">
-              {trainingPart} {trainingPart && jobPart ? " et " : ""} {jobPart} {" "}
+              {trainingPart} {trainingPart && jobPart ? " et " : ""} {jobPart}{" "}
             </span>
             <span className="c-resultlist-correspond c-resultlist-correspond--light">{correspondText}</span>
           </div>
@@ -114,35 +111,37 @@ const ResultListsCounter = (props) => {
           ""
         )}
       </div>
-      {!trainingLoading && !jobLoading && scopeContext.isJob && scopeContext.isTraining ? (
-        <div className="c-filterbuttons">
-          <FilterButton
-            type="all"
-            isActive={activeFilter === "all"}
-            handleFilterButtonClicked={filterButtonClicked}
-          />
-          <FilterButton
-            type="jobs"
-            count={jobCount}
-            isActive={activeFilter === "jobs"}
-            handleFilterButtonClicked={filterButtonClicked}
-          />
-          <FilterButton
-            type="trainings"
-            count={trainingCount}
-            isActive={activeFilter === "trainings"}
-            handleFilterButtonClicked={filterButtonClicked}
-          />
-          <div className="c-resultlist-purplefilter" onClick={showSearchForm}>
-            <img src={purpleFilterIcon} alt="Image de filtres" />
-          </div>
+
+      <div className="c-filterbuttons">
+        {!trainingLoading && !jobLoading && scopeContext.isJob && scopeContext.isTraining ? (
+          <>
+            <FilterButton
+              type="all"
+              isActive={activeFilter === "all"}
+              handleFilterButtonClicked={filterButtonClicked}
+            />
+            <FilterButton
+              type="jobs"
+              count={jobCount}
+              isActive={activeFilter === "jobs"}
+              handleFilterButtonClicked={filterButtonClicked}
+            />
+            <FilterButton
+              type="trainings"
+              count={trainingCount}
+              isActive={activeFilter === "trainings"}
+              handleFilterButtonClicked={filterButtonClicked}
+            />
+          </>
+        ) : (
+          ""
+        )}
+        <div className="c-resultlist-purplefilter" onClick={showSearchForm}>
+          <img src={purpleFilterIcon} alt="Image de filtres" />
         </div>
-      ) : (
-        ""
-      )}
+      </div>
     </div>
   );
-
 };
 
 export default ResultListsCounter;
