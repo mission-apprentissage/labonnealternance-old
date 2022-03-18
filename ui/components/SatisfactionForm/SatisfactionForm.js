@@ -117,6 +117,8 @@ const SatisfactionForm = ({ formType }) => {
       await submitCommentaire(
         {
           comment: formikValues.comment,
+          phone: formikValues.phone,
+          email: formikValues.email,
           id,
           iv,
           formType,
