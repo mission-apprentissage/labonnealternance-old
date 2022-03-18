@@ -120,6 +120,7 @@ const SatisfactionForm = ({ formType }) => {
           phone: formikValues.phone,
           email: formikValues.email,
           id,
+          intention,
           iv,
           formType,
         },
