@@ -146,7 +146,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
         {romeDefinition && romeDefinition.length && (
           <div className="c-detail-description">
-            <h3 className="c-detail-description-title">Description de l'offre</h3>
+            <h3 className="c-detail-description-title">Description du métier</h3>
             <ul>
               {romeDefinition.map((definition) => (
                 <li>{definition}</li>
@@ -157,7 +157,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
         {romeCompetence && romeCompetence.length && (
           <div className="c-detail-description">
-            <h3 className="c-detail-description-title">Compétences de base associées</h3>
+            <h3 className="c-detail-description-title">Compétences visées</h3>
             <ul>
               {romeCompetence.map((competence) => (
                 <li>{competence.libelle}</li>
