@@ -221,6 +221,7 @@ const saveApplicationFeedbackComment = async ({ query }) => {
 };
 
 const saveApplicationIntention = async ({ query, mailer }) => {
+  console.log('query', query);
   await validateIntentionApplication({
     id: query.id,
     iv: query.iv,
@@ -254,6 +255,8 @@ const saveApplicationIntention = async ({ query, mailer }) => {
 };
 
 const saveApplicationIntentionComment = async ({ query }) => {
+  // email and phone should appear
+  console.log('query2', query);
   await validateFeedbackApplicationComment({
     id: query.id,
     iv: query.iv,
