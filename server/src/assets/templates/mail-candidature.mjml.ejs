@@ -83,7 +83,7 @@
                         Que comptez vous faire ?
                     </mj-text>
                     
-                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=entretien&id=<%= data.id %>&iv=<%= data.iv %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
+                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=entretien&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
                         css-class="intention-link" 
                         width="250px" 
                         border-radius="12px"
@@ -94,7 +94,7 @@
                         background-color="#FDF2F3" 
                         border="1px solid #000091"><img src="<%= data.images.recrute %>" alt="" style="margin-right:5px;" />&nbsp;Rencontrer le candidat</mj-button>
 
-                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=ne_sais_pas&id=<%= data.id %>&iv=<%= data.iv %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
+                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=ne_sais_pas&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
                         css-class="intention-link" 
                         width="250px" 
                         border-radius="12px"
@@ -105,7 +105,7 @@
                         background-color="#FDF2F3" 
                         border="1px solid #000091"><img src="<%= data.images.nspp %>" alt="" style="margin-right:5px;" />&nbsp;En attente de décision</mj-button>
                     
-                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=refus&id=<%= data.id %>&iv=<%= data.iv %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
+                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=refus&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
                         css-class="intention-link" 
                         width="250px" 
                         border-radius="12px"
