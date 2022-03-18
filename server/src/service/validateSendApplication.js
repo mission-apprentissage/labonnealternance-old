@@ -62,8 +62,6 @@ const validateIntentionApplication = async (validable) => {
     intention: Yup.string()
       .required("⚠ Avis manquant.")
       .matches(/(refus|ne_sais_pas|entretien)/, "⚠ Valeur non conforme"),
-    email: Yup.string().email("⚠ Adresse e-mail invalide."),
-    phone: Yup.string().matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres"),
   });
   await schema.validate(validable).catch(function () {
     throw "error - validation of data failed";
