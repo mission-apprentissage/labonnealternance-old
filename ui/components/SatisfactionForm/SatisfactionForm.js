@@ -163,7 +163,7 @@ const SatisfactionForm = ({ formType }) => {
                     id="comment"
                     data-testid="comment"
                     name="comment"
-                    placeholder="J’ai une suggestion à propos de ..."
+                    placeholder="Nous acceptons votre candidature parce que..."
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.comment}
@@ -232,7 +232,7 @@ const SatisfactionForm = ({ formType }) => {
                 <div className="d-flex flex-row-reverse">
                   <button
                     aria-label="jenvoie-mon-commentaire"
-                    className={`btn btn-dark btn-dark-action c-candidature-submit c-candidature-submit--default mt-3`}
+                    className={`btn btn-dark btn-dark-action c-satisfaction-submit mt-3`}
                     type="submit"
                   >
                     {"j'envoie mon commentaire !"}
