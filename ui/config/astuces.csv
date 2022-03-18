@@ -12,7 +12,6 @@
 ;AID_MATERIEL;Aide;Vous allez avoir besoin de matériel pour votre apprentissage (couteaux de cuisine, ciseaux de coiffure, ...) ? Il existe des aides financières au premier équipement !;
 ;AID_QUIT_DOMICILE;Aide;Vous devez quitter le domicile familial pour vos études ? Action Logement vous aide à vous installer.;https://www.actionlogement.fr/aide-logement-apprentis
 ;AID_FINAN_ABO;Aide;La plupart des régions aident au financement des abonnements en transport en commun pour les alternants : renseignez-vous !;
-;AID_ANAF;Aide ;L'ANAF (Association Nationale des Apprentis de France) peut vous aider à tout moment de votre parcours et pour toute question que vous vous posez ! ;http://www.anaf.fr/
 ;FOR_PORT_OUV;Formation;La plupart des organismes de formations font des journées portes ouvertes : vous avez l'occasion d'échanger avec des alternants !;
 ;EMP_SEC_PUB;Emploi;Le secteur public (mairies, ministères, départements, régions, ...) recrute aussi des alternants, pensez-y ! ;https://www.pass.fonction-publique.gouv.fr/
 ;FOR_COMBIEN_6_MOIS;Formation;Combien de personnes ont trouvé un emploi dans les 6 mois après avoir obtenu le diplôme que vous souhaitez préparer ? La réponse ici ! ;https://www.inserjeunes.education.gouv.fr/diffusion/accueil
@@ -25,3 +24,8 @@
 ;EMP_EMAIL_PRO;Emploi;Les recruteurs font attention à de petits détails ! Professionnalisez vos candidatures en utilisant une adresse email adaptée aux contacts professionnels (par exemple : nom.prénom@email.fr);
 ;EMP_QUAL_RECH;Emploi; Motivation, Dynamisme et Présentation soignée : 3 qualités recherchées par les employeurs de jeunes candidats. Mettez-les en avant dans votre candidature !;
 ;ORI_METIER_DIAGORIENTE;Orientation;Identifiez les métiers qui vous correspondent avec Diagoriente ! Inscrivez-vous gratuitement.;https://web-app.diagoriente.beta.gouv.fr/#/inscription?utm_campaign=lba-jan2022-orientation
+;ORI_PARCOURS_ANAF;Orientation;L'ANAF (Association Nationale des Apprentis de France) peut vous aider à tout moment de votre parcours et pour toute question que vous vous posez !;http://www.anaf.fr/
+;ORI_FAQ_ANAF;Orientation;Toutes les réponses aux questions sur l'apprentissage et l'alternance; http://help.sosapprenti.fr/fr/
+;FOR_HANDICAP;Formation;En situation de handicap ? Vous pouvez vous former en alternance ! Le référent handicap de votre formation est là pour vous aider.;
+;EMP_SIMUL_SALAIRE;Emploi;Quel sera votre salaire en alternance ? Faites une simulation sur le portail de l’alternance.;https://www.alternance.emploi.gouv.fr/simulateur-alternant/etape-1
+;EMP_FINANCE_FORM;Emploi;Se former en alternance est gratuit ! Votre employeur prend en charge le financement de votre formation.;
