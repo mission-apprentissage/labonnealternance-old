@@ -225,6 +225,8 @@ const saveApplicationIntention = async ({ query, mailer }) => {
     id: query.id,
     iv: query.iv,
     intention: query.intention,
+    email: query.email,
+    phone: query.phone,
   });
 
   let decryptedId = decryptWithIV(query.id, query.iv);
@@ -236,7 +238,13 @@ const saveApplicationIntention = async ({ query, mailer }) => {
       { returnNewDocument: true }
     );
 
-    sendNotificationToApplicant({ mailer, application, intention: query.intention });
+    sendNotificationToApplicant({
+      mailer,
+      application,
+      intention: query.intention,
+      email: query.email,
+      phone: query.phone,
+    });
 
     return { result: "ok", message: "intention registered" };
   } catch (err) {
@@ -287,14 +295,14 @@ const debugUpdateApplicationStatus = async ({ mailer, query, shouldCheckSecret }
   }
 };
 
-const sendNotificationToApplicant = async ({ mailer, application, intention }) => {
+const sendNotificationToApplicant = async ({ mailer, application, intention, email, phone }) => {
   switch (intention) {
     case "entretien": {
       mailer.sendEmail(
         application.applicant_email,
         `Réponse à votre candidature chez ${application.company_name}`,
         getEmailTemplate("mail-candidat-entretien"),
-        { ...application._doc, ...images }
+        { ...application._doc, ...images, email, phone }
       );
       break;
     }
