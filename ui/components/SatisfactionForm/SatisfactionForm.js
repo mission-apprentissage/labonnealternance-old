@@ -12,6 +12,8 @@ import { amongst } from "../../utils/arrayutils";
 import { testingParameters } from "../../utils/testingParameters";
 
 let iv = null;
+let fn = null;
+let ln = null;
 let id = null;
 let avis = null;
 let intention = null;
@@ -29,17 +31,19 @@ const SatisfactionForm = ({ formType }) => {
 
   const getFeedbackText = () => {
     let localIntention = getValueFromPath("intention")
+    let firstName = getValueFromPath("fn")
+    let lastName = getValueFromPath("ln")
     let text = (
       <div className="mb-4">
-        <p className="pt-4">Merci beaucoup pour votre réponse {}</p>
+        <p className="pt-4">Merci beaucoup pour votre réponse.</p>
         {localIntention === 'entretien' ?
           <div>
-            <strong>Vous avez indiqué accepter cette candidature.</strong>
+            <strong>Vous avez indiqué accepter la candidature de {`${firstName} ${lastName}`}.</strong>
             <p className="pt-4 pb-0 mb-0">
               Souhaitez-vous envoyer un message ou commentaire au candidat pour lui proposer une date de rencontre / d'entretien ?
             </p>
             <p>
-              <small class="satisfaction-smallhint">Le candidat recevra votre commentaire ainsi que vos coordonnées directement sur sa boîte mail.</small>
+              <small className="satisfaction-smallhint">Le candidat recevra votre commentaire ainsi que vos coordonnées directement sur sa boîte mail.</small>
             </p>
           </div>
           :
