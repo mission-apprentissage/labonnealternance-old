@@ -12,8 +12,6 @@ import { amongst } from "../../utils/arrayutils";
 import { testingParameters } from "../../utils/testingParameters";
 
 let iv = null;
-let fn = null;
-let ln = null;
 let id = null;
 let avis = null;
 let intention = null;
