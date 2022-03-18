@@ -231,20 +231,11 @@ const saveApplicationIntention = async ({ query, mailer }) => {
   let decryptedId = decryptWithIV(query.id, query.iv);
 
   try {
-    const application = await Application.findOneAndUpdate(
+    await Application.findOneAndUpdate(
       { _id: ObjectId(decryptedId) },
       { company_intention: query.intention, company_feedback_date: new Date() },
       { returnNewDocument: true }
     );
-
-    sendNotificationToApplicant({
-      mailer,
-      application,
-      intention: query.intention,
-      email: query.email,
-      phone: query.phone,
-      comment: query.comment,
-    });
 
     return { result: "ok", message: "intention registered" };
   } catch (err) {
@@ -254,7 +245,7 @@ const saveApplicationIntention = async ({ query, mailer }) => {
   }
 };
 
-const saveApplicationIntentionComment = async ({ query }) => {
+const saveApplicationIntentionComment = async ({ query, mailer }) => {
   // email and phone should appear
   console.log('query2', query);
   await validateFeedbackApplicationComment({
@@ -266,10 +257,19 @@ const saveApplicationIntentionComment = async ({ query }) => {
   let decryptedId = decryptWithIV(query.id, query.iv);
 
   try {
-    await Application.findOneAndUpdate(
+    const application = await Application.findOneAndUpdate(
       { _id: ObjectId(decryptedId) },
       { company_feedback: query.comment, company_feedback_date: new Date() }
     );
+
+    sendNotificationToApplicant({
+      mailer,
+      application,
+      intention: query.intention,
+      email: query.email,
+      phone: query.phone,
+      comment: query.comment,
+    });
 
     return { result: "ok", message: "comment registered" };
   } catch (err) {

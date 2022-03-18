@@ -89,7 +89,7 @@ const SatisfactionForm = ({ formType }) => {
       if (formType === "avis" && amongst(avis, ["utile", "pasUtile", "neutre"])) {
         postFeedback({ iv, id, avis });
       } else if (formType === "intention" && amongst(intention, ["refus", "ne_sais_pas", "entretien"])) {
-        postIntention({ iv, id, intention });
+        // postIntention({ iv, id, intention });
       } //else invalid params 2
     } //else invalid params
   };
