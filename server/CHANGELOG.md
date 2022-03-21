@@ -1,7 +1,7 @@
 # CHANGELOG
 
-## 1.18.6 [17/03/2022]
-Ajout d'information divers sur l'entreprise sur les offres Matcha
+## 1.18.6 [21/03/2022]
+Ajout d'information divers sur les offres Matcha
 
 ## 1.18.5 [10/03/2022]
 [1066] Recherche France entière

@@ -41,9 +41,14 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   const contractType = get(job, "job.contractType", undefined);
   const romeDefinition = job?.job?.romeDetails?.definition.split("\\n");
   const romeCompetence = get(job, "job.romeDetails.competencesDeBase", undefined);
-  const tranche_effectif = get(job, "company.size", undefined);
-  const date_creation_etablissement = get(job, "company.creationDate", undefined);
-  const libelle_naf = get(job, "nafs[0].libelle_naf", undefined);
+  const trancheEffectif = get(job, "company.size", undefined);
+  const dateCreationEtablissement = get(job, "company.creationDate", undefined);
+  const libelleNaf = get(job, "nafs[0].libelle_naf", undefined);
+  const rythmeAlternance = get(job, "job.rythmeAlternance", undefined);
+  const elligibleHandicapBoolean = get(job, "job.elligibleHandicap", undefined);
+  const elligibleHandicap = elligibleHandicapBoolean && "Oui";
+  const dureeContrat = get(job, "job.dureeContrat", undefined);
+  const quantiteContrat = get(job, "job.quantiteContrat", undefined);
 
   let contactInfo = (
     <>
@@ -67,16 +72,16 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
     <>
       <p className="mb-3">
         <span className="c-detail-sizetitle d-block">Activité principale de l'établissement</span>
-        <span className="c-detail-sizetext d-block">{libelle_naf}</span>
+        <span className="c-detail-sizetext d-block">{libelleNaf}</span>
       </p>
       <p className="mb-3">
         <span className="c-detail-sizetitle d-block">Date de creation</span>
-        <span className="c-detail-sizetext d-block">{date_creation_etablissement}</span>
+        <span className="c-detail-sizetext d-block">{dateCreationEtablissement}</span>
       </p>
-      {tranche_effectif && (
+      {trancheEffectif && (
         <p className="mb-3">
           <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
-          <span className="c-detail-sizetext d-block">{tranche_effectif}</span>
+          <span className="c-detail-sizetext d-block">{trancheEffectif}</span>
         </p>
       )}
       {contactPhone ? (
@@ -137,6 +142,23 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             Nature du contrat :{" "}
             {defaultTo(getContractTypes(contractType), ReactHtmlParser("<em>Donnée manquante</em>"))}
           </div>
+          <div className="c-detail-metarythmealternance">
+            Rythme de l’alternance :{" "}
+            {defaultTo(rythmeAlternance, ReactHtmlParser("<em>Donnée non renseigné par l'entreprise</em>"))}
+          </div>
+          <div className="c-detail-metadureecontrat">
+            Durée du contrat :{" "}
+            {defaultTo(dureeContrat, ReactHtmlParser("<em>Donnée non renseigné par l'entreprise</em>"))}
+          </div>
+          <div className="c-detail-metaquantitecontrat">
+            Nombre de poste(s) disponible(s) :{" "}
+            {defaultTo(quantiteContrat, ReactHtmlParser("<em>Donnée manquante</em>"))}
+          </div>
+          {elligibleHandicapBoolean && (
+            <div className="c-detail-metahandicap">
+              Poste ouvert aux personnes en situation de handicap : {elligibleHandicap}
+            </div>
+          )}
         </div>
 
         <div className="c-detail-description">
@@ -163,7 +185,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
         {romeDefinition && romeDefinition.length && (
           <div className="c-detail-description">
-            <h3 className="c-detail-description-title">Description de l'offre</h3>
+            <h3 className="c-detail-description-title">Description du métier</h3>
             <ul>
               {romeDefinition.map((definition) => (
                 <li>{definition}</li>
@@ -174,7 +196,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
         {romeCompetence && romeCompetence.length && (
           <div className="c-detail-description">
-            <h3 className="c-detail-description-title">Compétences de base associées</h3>
+            <h3 className="c-detail-description-title">Compétences de base visées</h3>
             <ul>
               {romeCompetence.map((competence) => (
                 <li>{competence.libelle}</li>

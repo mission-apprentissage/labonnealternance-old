@@ -133,6 +133,10 @@ const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, c
       contractType: offre.type,
       jobStartDate: offre.date_debut_apprentissage,
       romeDetails: offre.rome_detail,
+      rythmeAlternance: offre.rythme_alternance,
+      dureeContrat: offre.duree_contrat,
+      quantiteContrat: offre.quantite,
+      elligibleHandicap: offre.elligible_handicap,
     };
 
     resultJob.romes = [];

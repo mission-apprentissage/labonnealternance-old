@@ -84,6 +84,10 @@ const itemModel = (type) => {
             duration,              // pe -> dureeTravailLibelle
             jobStartDate,          // matcha -> offres.date_debut_apprentissage 
             romeDetails            // matcha -> offres.rome_detail -> détail du code ROME
+            rythmeAlternance       // matcha -> offres.rythme_alternance
+            elligibleHandicap      // matcha -> offres.elligible_handicap
+            dureeContrat           // matcha -> offres.duree_contrat
+            quantiteContrat        // matcha -> offres.quantite
         },*/,
 
     romes: null /*[
