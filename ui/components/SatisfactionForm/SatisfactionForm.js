@@ -47,6 +47,19 @@ const SatisfactionForm = ({ formType }) => {
           :
           ''
         }
+        {localIntention === 'ne_sais_pas' ?
+          <div>
+            <strong>Vous avez indiqué temporiser la candidature de {`${firstName} ${lastName}`}.</strong>
+            <p className="pt-4 pb-0 mb-0">
+              Précisez au candidat votre intérêt pour sa candidature, en lui envoyant un message personnalisé.
+            </p>
+            <p>
+              <small className="satisfaction-smallhint">Le candidat recevra votre commentaire ainsi que vos coordonnées directement sur sa boîte mail.</small>
+            </p>
+          </div>
+          :
+          ''
+        }
       </div>
     );
 
@@ -164,7 +177,7 @@ const SatisfactionForm = ({ formType }) => {
                     id="comment"
                     data-testid="comment"
                     name="comment"
-                    placeholder="Nous acceptons votre candidature parce que..."
+                    placeholder={`${intention === 'entretien' ? "Nous acceptons votre candidature parce que..." : "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..." }`}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.comment}
