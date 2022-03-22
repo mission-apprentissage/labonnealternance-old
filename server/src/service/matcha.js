@@ -14,7 +14,7 @@ const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
 const coordinatesOfFrance = [2.213749, 46.227638];
 
-const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, caller }) => {
+const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, caller, referer }) => {
   try {
     const hasLocation = latitude === undefined ? false : true;
 
@@ -29,7 +29,7 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, ca
 
     const jobs = await axios.post(`${matchaSearchEndPoint}`, params);
 
-    let matchas = transformMatchaJobsForIdea(jobs.data, radius, latitude, longitude);
+    let matchas = transformMatchaJobsForIdea({ jobs: jobs.data, caller, referer });
 
     // filtrage sur l'opco
     if (opco) {
@@ -47,7 +47,7 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, ca
 };
 
 // update du contenu avec des résultats pertinents par rapport au rayon
-const transformMatchaJobsForIdea = ({ jobs, referer, caller }) => {
+const transformMatchaJobsForIdea = ({ jobs, caller, referer }) => {
   let resultJobs = {
     results: [],
   };
