@@ -97,7 +97,6 @@ module.exports = (components) => {
     "/intention",
     limiter1Per5Second,
     tryCatch(async (req, res) => {
-      console.log('req.body for /intention', req.body);
       const result = await saveApplicationIntention({
         query: req.body,
         ...components,

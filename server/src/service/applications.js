@@ -220,7 +220,7 @@ const saveApplicationFeedbackComment = async ({ query }) => {
   }
 };
 
-const saveApplicationIntention = async ({ query, mailer }) => {
+const saveApplicationIntention = async ({ query }) => {
   await validateIntentionApplication({
     id: query.id,
     iv: query.iv,
