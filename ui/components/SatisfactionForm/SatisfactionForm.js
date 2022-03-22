@@ -172,12 +172,12 @@ const SatisfactionForm = ({ formType }) => {
                   className={`pt-2 c-candidature-field ${
                     formik.touched.comment ? `is-valid-${!formik.errors.comment}` : "is-not-validated"
                   }`}
-                >
+                > 
                   <textarea
                     id="comment"
                     data-testid="comment"
                     name="comment"
-                    placeholder={`${intention === 'entretien' ? "Nous acceptons votre candidature parce que..." : "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..." }`}
+                    placeholder={`${getValueFromPath("intention") === 'entretien' ? "Nous acceptons votre candidature parce que..." : getValueFromPath("intention") === 'ne_sais_pas' ? "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..." : "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ..." }`}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.comment}
