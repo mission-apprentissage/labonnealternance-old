@@ -43,7 +43,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   const romeCompetence = get(job, "job.romeDetails.competencesDeBase", undefined);
   const trancheEffectif = get(job, "company.size", undefined);
   const dateCreationEtablissement = get(job, "company.creationDate", undefined);
-  const libelleNaf = get(job, "nafs[0].libelle_naf", undefined);
+  const libelleNaf = get(job, "nafs[0].label", undefined);
   const rythmeAlternance = get(job, "job.rythmeAlternance", undefined);
   const elligibleHandicapBoolean = get(job, "job.elligibleHandicap", undefined);
   const elligibleHandicap = elligibleHandicapBoolean && "Oui";

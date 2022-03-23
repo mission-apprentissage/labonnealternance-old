@@ -100,8 +100,7 @@ const itemModel = (type) => {
     nafs: null /* [
             {
                 code,               // lbb/lba -> naf
-                label,              // lbb/lba -> naf_text
-                libelle_naf         // matcha -> libelle_naf
+                label,              // lbb/lba -> naf_text | matcha -> libelle_naf
             }
         ],*/,
     training: null /* alimentation côté client à l'ouverture d'une formation
