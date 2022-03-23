@@ -99,7 +99,7 @@ const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, c
     let email = {};
 
     if (contactAllowedOrigin) {
-      email = clearContactAllowedOrigin ? { email: job.email } : encryptMailWithIV(job.email);
+      email = clearContactAllowedOrigin ? { email: job.email } : encryptMailWithIV({ value: job.email });
     }
 
     resultJob.id = `${job.id_form}-${idx}`;

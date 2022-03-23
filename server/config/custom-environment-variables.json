@@ -42,6 +42,7 @@
     "serverSentryDsn": "SERVER_SENTRY_DSN",
     "googleAnalyticsUA": "LABONNEALTERNANCE_GOOGLE_ANALYTICS_UA",
     "secretUpdateRomesMetiers": "LABONNEALTERNANCE_SECRET_UPDATE_ROMES_METIERS",
+    "secret1j1s": "LABONNEALTERNANCE_SECRET_1J1S",
     "jobSlackWebhook": "LABONNEALTERNANCE_JOB_SLACK_WEBHOOK",
     "allowedSources": "LABONNEALTERNANCE_ALLOWED_SOURCES",
     "smtp":

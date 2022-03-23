@@ -33,7 +33,7 @@ describe(__filename, () => {
   it("Encryption décryption fonctionne", () => {
     const value = "Chaîne@crypter";
 
-    const encryptedValue = encrypt(value);
+    const encryptedValue = encrypt({ value });
     const decryptedValue = decrypt(encryptedValue);
 
     assert.notStrictEqual(value, encryptedValue);
