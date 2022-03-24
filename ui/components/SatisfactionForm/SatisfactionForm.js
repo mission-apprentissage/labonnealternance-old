@@ -112,6 +112,19 @@ const SatisfactionForm = ({ formType }) => {
     return errorMsg;
   };
 
+  const getPlaceHolderText = () => {
+    let localIntention = getValueFromPath("intention")
+    let res = ''
+    if (localIntention === 'ne_sais_pas' ) {
+      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..."
+    } else if (localIntention === 'entretien') {
+      res = 'Nous acceptons votre candidature parce que...'
+    } else {
+      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ..."
+    }
+    return res
+  }
+
   return (
     <div className="c-formulaire-satisfaction">
       <SatisfactionFormNavigation />
@@ -131,7 +144,7 @@ const SatisfactionForm = ({ formType }) => {
                     id="comment"
                     data-testid="comment"
                     name="comment"
-                    placeholder={`${getValueFromPath("intention") === 'entretien' ? "Nous acceptons votre candidature parce que..." : getValueFromPath("intention") === 'ne_sais_pas' ? "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..." : "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ..." }`}
+                    placeholder={`${getPlaceHolderText()}`}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values.comment}

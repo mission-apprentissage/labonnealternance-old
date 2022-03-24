@@ -10,7 +10,6 @@ const {
   validateCompanyEmail,
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
-  validateIntentionApplication,
 } = require("./validateSendApplication");
 const logger = require("../common/logger");
 const publicUrl = config.publicUrl;
@@ -220,30 +219,6 @@ const saveApplicationFeedbackComment = async ({ query }) => {
   }
 };
 
-const saveApplicationIntention = async ({ query }) => {
-  await validateIntentionApplication({
-    id: query.id,
-    iv: query.iv,
-    intention: query.intention,
-  });
-
-  let decryptedId = decryptWithIV(query.id, query.iv);
-
-  try {
-    await Application.findOneAndUpdate(
-      { _id: ObjectId(decryptedId) },
-      { company_intention: query.intention, company_feedback_date: new Date() },
-      { returnNewDocument: true }
-    );
-
-    return { result: "ok", message: "intention registered" };
-  } catch (err) {
-    console.log("err ", err);
-    Sentry.captureException(err);
-    return { error: "error_saving_intention" };
-  }
-};
-
 const saveApplicationIntentionComment = async ({ query, mailer }) => {
   // email and phone should appear
   await validateFeedbackApplicationComment({
@@ -257,7 +232,7 @@ const saveApplicationIntentionComment = async ({ query, mailer }) => {
   try {
     const application = await Application.findOneAndUpdate(
       { _id: ObjectId(decryptedId) },
-      { company_feedback: query.comment, company_feedback_date: new Date() }
+      { company_intention: query.intention, company_feedback: query.comment, company_feedback_date: new Date() }
     );
 
     sendNotificationToApplicant({
@@ -474,7 +449,6 @@ module.exports = {
   sendApplication,
   saveApplicationFeedback,
   saveApplicationFeedbackComment,
-  saveApplicationIntention,
   saveApplicationIntentionComment,
   updateApplicationStatus,
   debugUpdateApplicationStatus,
