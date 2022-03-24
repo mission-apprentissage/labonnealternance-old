@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import postFeedback from "./services/postFeedback";
-import postIntention from "./services/postIntention";
 import submitCommentaire from "./services/submitCommentaire.js";
 import SatisfactionFormSuccess from "./SatisfactionFormSuccess.js";
 import SatisfactionFormNavigation from "./SatisfactionFormNavigation.js";
 
 import { getValueFromPath } from "../../utils/tools";
-import { amongst } from "../../utils/arrayutils";
 import { testingParameters } from "../../utils/testingParameters";
 
 let iv = null;
@@ -63,55 +60,12 @@ const SatisfactionForm = ({ formType }) => {
       </div>
     );
 
-    if (formType === "avis") {
-      if (avisState === "utile") {
-        text = (
-          <>
-            <p className="pt-5">
-              Merci beaucoup d'avoir pris le temps de nous faire un retour et d'avoir trouvé le service satisfaisant.
-            </p>
-            <p className="pt-2">
-              Aidez-nous à le rendre encore meilleur en nous faisant part de vos suggestions d'amélioration !
-            </p>
-          </>
-        );
-      } else if (avisState === "neutre") {
-        text = (
-          <>
-            <p className="pt-5">Nous sommes désolés que le service ne vous apporte pas entière satisfaction.</p>
-            <p className="pt-2">Selon vous, comment pourrions-nous améliorer le service La Bonne Alternance ?</p>
-          </>
-        );
-      } else if (avisState === "pasUtile") {
-        text = (
-          <>
-            <p className="pt-5">
-              Nous sommes désolés que le service La Bonne Alternance ne vous apporte pas satisfaction.
-            </p>
-            <p className="pt-2">Aidez-nous à l'améliorer en nous partageant vos attentes.</p>
-          </>
-        );
-      }
-    }
-
     return text;
-  };
-
-  const saveAnswer = () => {
-    if (iv && id) {
-      if (formType === "avis" && amongst(avis, ["utile", "pasUtile", "neutre"])) {
-        postFeedback({ iv, id, avis });
-      } else if (formType === "intention" && amongst(intention, ["refus", "ne_sais_pas", "entretien"])) {
-        // postIntention({ iv, id, intention });
-      } //else invalid params 2
-    } //else invalid params
   };
 
   useEffect(() => {
     // enregistrement en state des params provenant du path
     initParametersFromPath();
-    // requête post avis pour enregistrement en base si et seulement si params corrects
-    saveAnswer();
   }, []);
 
   const [sendingState, setSendingState] = useState("not_sent");
