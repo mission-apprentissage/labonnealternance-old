@@ -7,6 +7,7 @@ import SatisfactionFormNavigation from "./SatisfactionFormNavigation.js";
 
 import { getValueFromPath } from "../../utils/tools";
 import { testingParameters } from "../../utils/testingParameters";
+import { useRouter } from 'next/router'
 
 let iv = null;
 let id = null;
@@ -25,13 +26,14 @@ const SatisfactionForm = ({ formType }) => {
   };
 
   const getFeedbackText = () => {
-    let localIntention = getValueFromPath("intention")
-    let firstName = getValueFromPath("fn")
-    let lastName = getValueFromPath("ln")
+    const router = useRouter()
+    const { intention, fn, ln } = router.query
+    let firstName = fn
+    let lastName = ln
     let text = (
       <div className="mb-4">
         <p className="pt-4">Merci beaucoup pour votre réponse.</p>
-        {localIntention === 'entretien' ?
+        {intention === 'entretien' ?
           <div>
             <strong>Vous avez indiqué accepter la candidature de {`${firstName} ${lastName}`}.</strong>
             <p className="pt-4 pb-0 mb-0">
@@ -44,7 +46,7 @@ const SatisfactionForm = ({ formType }) => {
           :
           ''
         }
-        {localIntention === 'ne_sais_pas' ?
+        {intention === 'ne_sais_pas' ?
           <div>
             <strong>Vous avez indiqué temporiser la candidature de {`${firstName} ${lastName}`}.</strong>
             <p className="pt-4 pb-0 mb-0">
@@ -113,11 +115,12 @@ const SatisfactionForm = ({ formType }) => {
   };
 
   const getPlaceHolderText = () => {
-    let localIntention = getValueFromPath("intention")
+    const router = useRouter()
+    const { intention } = router.query
     let res = ''
-    if (localIntention === 'ne_sais_pas' ) {
+    if (intention === 'ne_sais_pas' ) {
       res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..."
-    } else if (localIntention === 'entretien') {
+    } else if (intention === 'entretien') {
       res = 'Nous acceptons votre candidature parce que...'
     } else {
       res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ..."
