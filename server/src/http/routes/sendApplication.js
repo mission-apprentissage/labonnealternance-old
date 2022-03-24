@@ -109,7 +109,6 @@ module.exports = (components) => {
     "/intentionComment",
     limiter1Per20Second,
     tryCatch(async (req, res) => {
-      console.log("req.body for /intentionComment", req.body);
       const result = await saveApplicationIntentionComment({
         query: req.body,
         ...components,
