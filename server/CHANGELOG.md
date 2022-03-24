@@ -1,9 +1,12 @@
 # CHANGELOG
 
+## 1.18.7 [24/03/2022]
+[1072] Maj Rencontrer le candidat
+
+
 ## 1.18.6 [18/03/2022]
 [1136] Fix bouton retour au formulaire sur widget emploi
 [1128] Fix call api PE France entière sans radius
-[1072] Maj Rencontrer le candidat
 
 ## 1.18.5 [10/03/2022]
 [1066] Recherche France entière
