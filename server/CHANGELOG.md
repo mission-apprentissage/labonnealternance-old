@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ## 1.18.7 [25/03/2022]
 [1081] Bloc paramétrable : "Avis" sur la Home
 
