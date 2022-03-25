@@ -27,7 +27,7 @@ const SatisfactionForm = ({ formType }) => {
 
   const getFeedbackText = () => {
     const router = useRouter()
-    const { intention, fn, ln } = router.query
+    const { intention, fn, ln } = router?.query ? router.query : {intention: 'intention', fn: 'prénom', ln: 'nom'}
     let firstName = fn
     let lastName = ln
     let text = (
@@ -116,7 +116,7 @@ const SatisfactionForm = ({ formType }) => {
 
   const getPlaceHolderText = () => {
     const router = useRouter()
-    const { intention } = router.query
+    const { intention} = router?.query ? router.query : { intention: 'intention' }
     let res = ''
     if (intention === 'ne_sais_pas' ) {
       res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..."
