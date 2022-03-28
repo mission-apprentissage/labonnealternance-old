@@ -40,16 +40,19 @@ const encryptIdWithIV = (id) => {
   } else return { id: "" };
 };
 
-const decrypt = (value, iv) => {
-  const decipher = crypto.createDecipheriv(algo, secretLba, iv || weakIv);
+const decrypt = ({ value, iv, secret }) => {
+  const decipher = crypto.createDecipheriv(algo, secret || secretLba, iv || weakIv);
   let decrypted = decipher.update(value, outputEncoding, inputEncoding);
   decrypted += decipher.final(inputEncoding);
-  return decrypted.toString();
+
+  const decryptedString = decrypted.toString();
+
+  return decryptedString;
 };
 
 const decryptWithIV = (value, ivHex) => {
   const iv = Buffer.from(ivHex, "hex");
-  return decrypt(value, iv);
+  return decrypt({ value, iv });
 };
 
 module.exports = {

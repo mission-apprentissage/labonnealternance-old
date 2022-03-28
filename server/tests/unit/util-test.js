@@ -34,7 +34,7 @@ describe(__filename, () => {
     const value = "Chaîne@crypter";
 
     const encryptedValue = encrypt({ value });
-    const decryptedValue = decrypt(encryptedValue);
+    const decryptedValue = decrypt({ value: encryptedValue });
 
     assert.notStrictEqual(value, encryptedValue);
     assert.strictEqual(value, decryptedValue);
