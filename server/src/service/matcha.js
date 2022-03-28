@@ -54,14 +54,12 @@ const transformMatchaJobsForIdea = ({ jobs, caller, referer }) => {
 
   if (jobs && jobs.length) {
     const contactAllowedOrigin = isAllowedSource({ referer, caller });
-    //const clearContactAllowedOrigin = isAllowedClearEmail({ caller });
 
     for (let i = 0; i < jobs.length; ++i) {
       let companyJobs = transformMatchaJobForIdea({
         job: jobs[i]._source,
         distance: jobs[i].sort[0],
         contactAllowedOrigin,
-        //clearContactAllowedOrigin,
         caller,
       });
       companyJobs.map((job) => resultJobs.results.push(job));
@@ -77,7 +75,6 @@ const getMatchaJobById = async ({ id, referer, caller }) => {
     const job = transformMatchaJobForIdea({
       job: jobs.data,
       contactAllowedOrigin: isAllowedSource({ referer, caller }),
-      //clearContactAllowedOrigin: isAllowedClearEmail({ caller }),
       caller,
     });
 
@@ -92,7 +89,7 @@ const getMatchaJobById = async ({ id, referer, caller }) => {
 };
 
 // Adaptation au modèle Idea et conservation des seules infos utilisées des offres
-const transformMatchaJobForIdea = ({ job, distance, /*clearContactAllowedOrigin,*/ caller, contactAllowedOrigin }) => {
+const transformMatchaJobForIdea = ({ job, distance, caller, contactAllowedOrigin }) => {
   let resultJobs = [];
 
   job.offres.map((offre, idx) => {
