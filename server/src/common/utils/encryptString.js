@@ -16,16 +16,14 @@ const encrypt = ({ value, iv, secret }) => {
   return crypted.toString();
 };
 
-const encryptFor1j1s = ({ value, iv }) => {
-  return encrypt({ value, iv, secret: secret1j1s });
-};
-
-const encryptMailWithIV = ({ value }) => {
+const encryptMailWithIV = ({ value, caller }) => {
   const iv = crypto.randomBytes(16);
+
+  const secret = caller === "1jeune1solution" ? secret1j1s : secretLba;
 
   if (value) {
     return {
-      email: encrypt({ value, iv }),
+      email: encrypt({ value, iv, secret }),
       iv: iv.toString(outputEncoding),
     };
   } else return { email: "" };
@@ -56,7 +54,6 @@ const decryptWithIV = (value, ivHex) => {
 
 module.exports = {
   encrypt,
-  encryptFor1j1s,
   encryptMailWithIV,
   encryptIdWithIV,
   decrypt,

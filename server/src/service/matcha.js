@@ -4,7 +4,7 @@ const config = require("config");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const { manageApiError } = require("../common/utils/errorManager");
 const { encryptMailWithIV } = require("../common/utils/encryptString");
-const { isAllowedSource, isAllowedClearEmail } = require("../common/utils/isAllowedSource");
+const { isAllowedSource } = require("../common/utils/isAllowedSource");
 const filterJobsByOpco = require("./filterJobsByOpco");
 const matchaApiEndpoint = `https://matcha${
   config.env === "production" ? "" : "-recette"
@@ -54,14 +54,15 @@ const transformMatchaJobsForIdea = ({ jobs, caller, referer }) => {
 
   if (jobs && jobs.length) {
     const contactAllowedOrigin = isAllowedSource({ referer, caller });
-    const clearContactAllowedOrigin = isAllowedClearEmail({ caller });
+    //const clearContactAllowedOrigin = isAllowedClearEmail({ caller });
 
     for (let i = 0; i < jobs.length; ++i) {
       let companyJobs = transformMatchaJobForIdea({
         job: jobs[i]._source,
         distance: jobs[i].sort[0],
         contactAllowedOrigin,
-        clearContactAllowedOrigin,
+        //clearContactAllowedOrigin,
+        caller,
       });
       companyJobs.map((job) => resultJobs.results.push(job));
     }
@@ -76,7 +77,8 @@ const getMatchaJobById = async ({ id, referer, caller }) => {
     const job = transformMatchaJobForIdea({
       job: jobs.data,
       contactAllowedOrigin: isAllowedSource({ referer, caller }),
-      clearContactAllowedOrigin: isAllowedClearEmail({ caller }),
+      //clearContactAllowedOrigin: isAllowedClearEmail({ caller }),
+      caller,
     });
 
     if (caller) {
@@ -90,7 +92,7 @@ const getMatchaJobById = async ({ id, referer, caller }) => {
 };
 
 // Adaptation au modèle Idea et conservation des seules infos utilisées des offres
-const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, contactAllowedOrigin }) => {
+const transformMatchaJobForIdea = ({ job, distance, /*clearContactAllowedOrigin,*/ caller, contactAllowedOrigin }) => {
   let resultJobs = [];
 
   job.offres.map((offre, idx) => {
@@ -99,7 +101,7 @@ const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, c
     let email = {};
 
     if (contactAllowedOrigin) {
-      email = clearContactAllowedOrigin ? { email: job.email } : encryptMailWithIV({ value: job.email });
+      email = encryptMailWithIV({ value: job.email, caller });
     }
 
     resultJob.id = `${job.id_form}-${idx}`;
