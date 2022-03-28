@@ -26,6 +26,7 @@ const listeCfaEntreprise = [
   "85163550800019",
   "40130835800019",
   "88514020200015",
+  "32368273200033",
 ];
 
 export const isCfaEntreprise = (siret, siretGestionnaire) => {

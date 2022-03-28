@@ -117,6 +117,9 @@ const transformMatchaJobForIdea = ({ job, distance, caller, contactAllowedOrigin
 
     resultJob.company.siret = job.siret;
     resultJob.company.name = job.raison_sociale;
+    resultJob.company.size = job.tranche_effectif;
+    resultJob.nafs[0].label = job.libelle_naf;
+    resultJob.company.creationDate = job.date_creation_etablissement;
 
     resultJob.diplomaLevel = offre.niveau;
     resultJob.createdAt = job.createdAt;
@@ -129,6 +132,10 @@ const transformMatchaJobForIdea = ({ job, distance, caller, contactAllowedOrigin
       contractType: offre.type,
       jobStartDate: offre.date_debut_apprentissage,
       romeDetails: offre.rome_detail,
+      rythmeAlternance: offre.rythme_alternance,
+      dureeContrat: offre.duree_contrat,
+      quantiteContrat: offre.quantite,
+      elligibleHandicap: offre.elligible_handicap,
     };
 
     resultJob.romes = [];
