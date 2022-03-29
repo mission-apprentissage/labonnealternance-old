@@ -68,7 +68,7 @@ const transformLbbCompanyForIdea = ({ company, type, caller, contactAllowedOrigi
   let resultCompany = itemModel(type);
 
   resultCompany.title = company.enseigne;
-  let email = encryptMailWithIV({ value: company.email, caller });
+  let email = encryptMailWithIV({ value: company.email !== "null" ? company.email : "", caller });
 
   if (contactAllowedOrigin) {
     resultCompany.contact = {
