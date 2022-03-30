@@ -72,18 +72,18 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
   return (
     <>
-      <p className="mb-3" style="text-align:left">
-        <span className="c-detail-sizetitle d-block">Activité principale de l'établissement</span>
-        <span className="c-detail-sizetext d-block">{libelleNaf}</span>
+      <p className="mb-3 d-flex">
+        <span className="c-detail-sizetitle">Activité</span>
+        <span className="c-detail-sizetext d-block ml-2">{libelleNaf}</span>
       </p>
-      <p className="mb-3" style="text-align:left">
-        <span className="c-detail-sizetitle d-block">Date de creation</span>
-        <span className="c-detail-sizetext d-block">{dateCreationEtablissementFormated}</span>
+      <p className="mb-3 d-flex">
+        <span className="c-detail-sizetitle">Date de creation</span>
+        <span className="c-detail-sizetext d-block ml-2">{dateCreationEtablissementFormated}</span>
       </p>
       {trancheEffectif && (
-        <p className="mb-3" style="text-align:left">
-          <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
-          <span className="c-detail-sizetext d-block">{trancheEffectif}</span>
+        <p className="mb-3 d-flex">
+          <span className="c-detail-sizetitle">Taille de l'entreprise</span>
+          <span className="c-detail-sizetext d-block ml-2">{trancheEffectif}</span>
         </p>
       )}
       {contactPhone ? (
