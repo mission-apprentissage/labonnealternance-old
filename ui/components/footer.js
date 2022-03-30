@@ -32,6 +32,7 @@ const Footer = (props) => {
               <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://gouvernement.fr">gouvernement.fr</a>
               <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://service-public.fr">service-public.fr</a>
               <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://data.gouv.fr">data.gouv.fr</a>
+              <a className="c-footer-official-link" target="_blank" rel="noopener norefferer" href="https://pole-emploi.fr/">pole-emploi.fr</a>
             </div>
           </Col>
         </Row>
