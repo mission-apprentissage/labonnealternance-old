@@ -241,22 +241,6 @@ httpTests(__filename, ({ startServer }) => {
     );
   });
 
-  it("Vérifie que les requêtes avec rome inconnu retournent bien une erreur explicite pour les appels lbb et lba", async () => {
-    const { httpClient } = await startServer();
-
-    let response = await httpClient.get(
-      "/api/V1/jobs?romes=X0000&radius=0&sources=lba,lbb&longitude=180&latitude=90&insee=12345&caller=a"
-    );
-
-    assert.strictEqual(response.status, 200);
-
-    assert.strictEqual(response.data.lbaCompanies.result, "error");
-    //assert.ok(response.data.lbaCompanies.statusText.indexOf("Unknown rome_code") >= 0);
-
-    assert.strictEqual(response.data.lbbCompanies.result, "error");
-    //assert.ok(response.data.lbbCompanies.statusText.indexOf("Unknown rome_code") >= 0);
-  });
-
   it("Vérifie que la route offre PE par id répond", async () => {
     const { httpClient } = await startServer();
 
