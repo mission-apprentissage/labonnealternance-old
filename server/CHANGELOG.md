@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## 1.18.7 [23/03/2022]
+## 1.18.7 [29/03/2022]
 Ajout information entreprise & offre Matcha
+[1145] Fix emails à "null"
 
 ## 1.18.6 [18/03/2022]
 [1136] Fix bouton retour au formulaire sur widget emploi
