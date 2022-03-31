@@ -178,30 +178,6 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           </li>
         </ul>
       </div>
-      <div className="c-detail-lbb-siretzone">
-        <div className="c-detail-lbb-siretno p-0 m-0">N° de siret</div>
-        <div className="c-detail-lbb-siretactual p-0 mt-2">
-          {defaultTo(siret, ReactHtmlParser("<em>Non renseigné</em>"))}
-        </div>
-        {siret ? (
-          <div className="c-detail-lbb-siretok">
-            <div className="c-detail-lbb-siretno">C'est mon entreprise</div>
-            <div className="c-detail-lbb-siretaction mt-2">
-              <a
-                className="btn btn-outline-primary c-detail-lbb-siretbutton px-1 px-sm-3 c-home-descr__more"
-                target="_blank"
-                rel="noopener noreferrer"
-                href={modificationLink}
-              >
-                <img src={gotoIcon} alt="Aller à" />
-                <span className="c-detail-lbb-siretbutton d-inline px-1 px-sm-0 ml-2">Modifier les informations </span>
-              </a>
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
     </>
   );
 };
