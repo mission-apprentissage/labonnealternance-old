@@ -16,69 +16,70 @@ const HomeReview = (props) => {
               </div>
             </div>
             <div className="col-12 col-lg-8">
-              <p className="pt-5 pt-md-2">
-                {
-                  props?.reviews?.PETIT_TITRE_1 ?
-                    <>
-                      <strong>{props.reviews.PETIT_TITRE_1}</strong>
-                    </>
-                    :
-                    <>
-                    </>
-                }
-              </p>
-              <h2 className="c-home-review-title">
-                {
-                  props?.reviews?.GROS_TITRE_2 ?
-                    <>
-                      <strong>{props.reviews.GROS_TITRE_2}</strong>
-                    </>
-                    :
-                    <>
-                    </>
-                }
-              </h2>
-              <p className="m-0">
-                {
-                  props?.reviews?.TEXTE_1_NON_GRAS ?
-                    <>
-                      {props.reviews.TEXTE_1_NON_GRAS}
-                    </>
-                    :
-                    <>
-                    </>
-                }
-              </p>
-              <p className="pt-2">
-                {
-                  props?.reviews?.TEXTE_2_GRAS ?
-                    <>
-                      <strong>{props.reviews.TEXTE_2_GRAS}</strong>
-                    </>
-                    :
-                    <>
-                    </>
-                }
-              </p>
+              <div className="c-home-review-content">  
+                <p className="pt-5 pt-md-2">
+                  {
+                    props?.reviews?.PETIT_TITRE_1 ?
+                      <>
+                        <strong>{props.reviews.PETIT_TITRE_1}</strong>
+                      </>
+                      :
+                      <>
+                      </>
+                  }
+                </p>
+                <h2 className="c-home-review-title">
+                  {
+                    props?.reviews?.GROS_TITRE_2 ?
+                      <>
+                        <strong>{props.reviews.GROS_TITRE_2}</strong>
+                      </>
+                      :
+                      <>
+                      </>
+                  }
+                </h2>
+                <p className="m-0">
+                  {
+                    props?.reviews?.TEXTE_1_NON_GRAS ?
+                      <>
+                        {props.reviews.TEXTE_1_NON_GRAS}
+                      </>
+                      :
+                      <>
+                      </>
+                  }
+                </p>
+                <p className="pt-2">
+                  {
+                    props?.reviews?.TEXTE_2_GRAS ?
+                      <>
+                        <strong>{props.reviews.TEXTE_2_GRAS}</strong>
+                      </>
+                      :
+                      <>
+                      </>
+                  }
+                </p>
 
-              {
-                props?.reviews?.URL_CTA ?
-                  <>
-                    <a
-                      className="btn btn-outline-primary px-1 px-sm-5 mt-3"
-                      rel="noopener noreferrer"
-                      href={props.reviews.URL_CTA}
-                      target="_blank"
-                    >
-                      <span className="d-inline px-3 px-sm-0">{props?.reviews?.LIBELLE_CTA || 'Voir'}</span>
-                    </a>
-                  </>
-                  :
-                  <>
-                  </>
-              }
+                {
+                  props?.reviews?.URL_CTA ?
+                    <>
+                      <a
+                        className="btn btn-outline-primary px-1 px-sm-5 mt-3"
+                        rel="noopener noreferrer"
+                        href={props.reviews.URL_CTA}
+                        target="_blank"
+                      >
+                        <span className="d-inline px-3 px-sm-0">{props?.reviews?.LIBELLE_CTA || 'Voir'}</span>
+                      </a>
+                    </>
+                    :
+                    <>
+                    </>
+                }
 
-
+              </div>
             </div>
           </div>
         </section>

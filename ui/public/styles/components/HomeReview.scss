@@ -18,3 +18,10 @@
   font-size: 32px;
   line-height: 40px;
 }
+
+.c-home-review-content {
+  margin-left: 30%;
+  @include media-breakpoint-up(lg) {
+    margin-left: 0;
+  }
+}
