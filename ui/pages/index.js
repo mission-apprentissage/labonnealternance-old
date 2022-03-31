@@ -4,7 +4,6 @@ import HomeHero from "components/HomeHero";
 import HowTo from "components/HowTo";
 import HomeReview from "components/HomeReview";
 import { initParametersFromQuery } from "services/config";
-import DescriptionMissionApprentissage from "components/DescriptionMissionApprentissage";
 import Footer from "components/footer";
 import { useDispatch } from "react-redux";
 import ScrollToTop from "components/ScrollToTop";
@@ -40,7 +39,6 @@ const Home = (props) => {
 
       <HomeReview reviews={props.reviews} />
 
-      <DescriptionMissionApprentissage />
       <Footer />
     </div>
   );
