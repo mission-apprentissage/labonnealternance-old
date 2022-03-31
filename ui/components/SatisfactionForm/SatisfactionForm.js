@@ -132,7 +132,7 @@ const SatisfactionForm = ({ formType }) => {
       res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..."
     } else if (intention === 'entretien') {
       res = 'Nous acceptons votre candidature parce que...'
-    } else {
+    } else if (intention === 'refus') {
       res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ..."
     }
     return res
