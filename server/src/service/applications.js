@@ -227,8 +227,6 @@ const saveApplicationIntentionComment = async ({ query, mailer }) => {
     comment: query.comment,
   });
 
-  // console.log('query.comment', query.comment);
-
   let decryptedId = decryptWithIV(query.id, query.iv);
 
   try {
