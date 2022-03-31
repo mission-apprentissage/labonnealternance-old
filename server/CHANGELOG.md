@@ -4,6 +4,7 @@
 Ajout information entreprise & offre Matcha
 [1145] Fix emails à "null"
 [1102] Correction breakpoint CSS
+[1047] Nouveau bloc Home
 [1072] Maj Rencontrer le candidat
 
 ## 1.18.6 [18/03/2022]
