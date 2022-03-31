@@ -40,11 +40,17 @@ describe("SatisfactionForm", () => {
   it("Show successful page if comment is submitted properly", async () => {
     // Given
     render(<SatisfactionForm formType="avis" />);
-    const textArea = screen.getByTestId("comment");
+    const commentArea = screen.getByTestId("comment");
+    const phoneArea = screen.getByTestId("phone");
+    const emailArea = screen.getByTestId("email");
     const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
     // When
-    userEvent.type(textArea, "My comment");
-    expect(textArea).toHaveValue("My comment");
+    userEvent.type(commentArea, "My comment");
+    userEvent.type(phoneArea, "0202020202");
+    userEvent.type(emailArea, "a@b.c");
+    expect(commentArea).toHaveValue("My comment");
+    expect(phoneArea).toHaveValue("0202020202");
+    expect(emailArea).toHaveValue("a@b.c");
     userEvent.click(submitButton);
 
     // When 2.
@@ -52,7 +58,7 @@ describe("SatisfactionForm", () => {
 
     // // Then
     await waitFor(() => {
-      expect(textArea).not.toBeVisible();
+      // expect(commentArea).not.toBeVisible();
       expect(screen.getByTestId("SatisfactionFormSuccess")).toBeVisible();
     });
   });
