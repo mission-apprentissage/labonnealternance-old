@@ -1,6 +1,7 @@
 .c-navbar-brand-img {
-  width: 191px;
+  width: 151px;
   @include media-breakpoint-down(sm) { 
+    display: none;
     width: 110px;
   }
 }

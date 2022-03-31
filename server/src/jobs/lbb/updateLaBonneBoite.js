@@ -186,7 +186,7 @@ const initCompanyFromLine = (line) => {
     libelle_rue: terms[5],
     code_commune: terms[6],
     code_postal: terms[7],
-    email: terms[8] !== "NULL" ? terms[8] : "",
+    email: terms[8].toUpperCase() !== "NULL" ? terms[8] : "",
     telephone: terms[9] !== "NULL" ? terms[9] : "",
     tranche_effectif: terms[10] !== "NULL" ? terms[10] : "",
     website: terms[11] !== "NULL" ? terms[11] : "",
