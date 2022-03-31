@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.18.7 [31/03/2022]
+## 1.18.7 [25/03/2022]
 Ajout information entreprise & offre Matcha
 [1145] Fix emails à "null"
 [1102] Correction breakpoint CSS
