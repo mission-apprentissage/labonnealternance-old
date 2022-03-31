@@ -20,9 +20,6 @@ const SatisfactionForm = ({ formType }) => {
     id = getValueFromPath("id");
     avis = getValueFromPath("avis");
     intention = getValueFromPath("intention");
-    if (formType === "avis") {
-      setAvisState(avis);
-    }
   };
 
   const getFeedbackText = () => {
@@ -32,6 +29,7 @@ const SatisfactionForm = ({ formType }) => {
     let lastName = ln
     let text = (
       <div className="mb-4">
+        {intention}
         <p className="pt-4">Merci beaucoup pour votre réponse.</p>
         {intention === 'entretien' ?
           <div>
@@ -59,6 +57,19 @@ const SatisfactionForm = ({ formType }) => {
           :
           ''
         }
+        {intention === 'refus' ?
+          <div>
+            <strong>Vous avez indiqué refuser la candidature de {`${firstName} ${lastName}`}.</strong>
+            <p className="pt-4 pb-0 mb-0">
+              Souhaitez-vous envoyer un message ou commentaire au candidat pour préciser les raisons de votre décision ?
+            </p>
+            <p>
+              <small className="satisfaction-smallhint">Le candidat recevra votre commentaire directement sur sa boite mail.</small>
+            </p>
+          </div>
+          :
+          ''
+        }
       </div>
     );
 
@@ -71,7 +82,6 @@ const SatisfactionForm = ({ formType }) => {
   }, []);
 
   const [sendingState, setSendingState] = useState("not_sent");
-  const [avisState, setAvisState] = useState("");
 
   const formik = useFormik({
     initialValues: { comment: "" },
