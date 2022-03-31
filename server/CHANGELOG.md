@@ -1,8 +1,14 @@
 # CHANGELOG
 
-## 1.18.7 [23/03/2022]
+## 1.18.8 [05/04/2022]
 [1110] Cryptage email pour 1j1s
+
+## 1.18.7 [31/03/2022]
 Ajout information entreprise & offre Matcha
+[1145] Fix emails à "null"
+[1102] Correction breakpoint CSS
+[1047] Nouveau bloc Home
+[1072] Maj Rencontrer le candidat
 
 ## 1.18.6 [18/03/2022]
 [1136] Fix bouton retour au formulaire sur widget emploi

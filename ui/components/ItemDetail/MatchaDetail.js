@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { defaultTo, get, random } from "lodash";
 import contactIcon from "public/images/icons/contact_icon.svg";
 import questionmarkIcon from "public/images/icons/questionmark.svg";
@@ -43,6 +44,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   const romeCompetence = get(job, "job.romeDetails.competencesDeBase", undefined);
   const trancheEffectif = get(job, "company.size", undefined);
   const dateCreationEtablissement = get(job, "company.creationDate", undefined);
+  const dateCreationEtablissementFormated = dayjs(dateCreationEtablissement).format("DD/MM/YYYY");
   const libelleNaf = get(job, "nafs[0].label", undefined);
   const rythmeAlternance = get(job, "job.rythmeAlternance", undefined);
   const elligibleHandicapBoolean = get(job, "job.elligibleHandicap", undefined);
@@ -70,18 +72,18 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
   return (
     <>
-      <p className="mb-3">
-        <span className="c-detail-sizetitle d-block">Activité principale de l'établissement</span>
-        <span className="c-detail-sizetext d-block">{libelleNaf}</span>
+      <p className="mb-3 d-flex">
+        <span className="c-detail-sizetitle">Activité</span>
+        <span className="c-detail-sizetext d-block ml-2">{libelleNaf}</span>
       </p>
-      <p className="mb-3">
-        <span className="c-detail-sizetitle d-block">Date de creation</span>
-        <span className="c-detail-sizetext d-block">{dateCreationEtablissement}</span>
+      <p className="mb-3 d-flex">
+        <span className="c-detail-sizetitle">Date de creation</span>
+        <span className="c-detail-sizetext d-block ml-2">{dateCreationEtablissementFormated}</span>
       </p>
       {trancheEffectif && (
-        <p className="mb-3">
-          <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
-          <span className="c-detail-sizetext d-block">{trancheEffectif}</span>
+        <p className="mb-3 d-flex">
+          <span className="c-detail-sizetitle">Taille de l'entreprise</span>
+          <span className="c-detail-sizetext d-block ml-2">{trancheEffectif}</span>
         </p>
       )}
       {contactPhone ? (
