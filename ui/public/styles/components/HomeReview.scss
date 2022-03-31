@@ -20,8 +20,10 @@
 }
 
 .c-home-review-content {
-  margin-left: 30%;
-  @include media-breakpoint-up(lg) {
-    margin-left: 0;
+  @include media-breakpoint-down(md) {
+    max-width: 256px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
   }
 }
