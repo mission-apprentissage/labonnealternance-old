@@ -11,14 +11,13 @@ import { useRouter } from 'next/router'
 
 let iv = null;
 let id = null;
-let avis = null;
 let intention = null;
 
 const SatisfactionForm = ({ formType }) => {
+
   const initParametersFromPath = () => {
     iv = getValueFromPath("iv");
     id = getValueFromPath("id");
-    avis = getValueFromPath("avis");
     intention = getValueFromPath("intention");
   };
 
@@ -29,7 +28,6 @@ const SatisfactionForm = ({ formType }) => {
     let lastName = ln
     let text = (
       <div className="mb-4">
-        {intention}
         <p className="pt-4">Merci beaucoup pour votre réponse.</p>
         {intention === 'entretien' ?
           <div>
@@ -83,15 +81,29 @@ const SatisfactionForm = ({ formType }) => {
 
   const [sendingState, setSendingState] = useState("not_sent");
 
+  const getValidationSchema = () => {
+    const router = useRouter()
+    const { intention } = router?.query ? router.query : { intention: 'intention' }
+    let res = Yup.object({})
+    if (intention === 'refus') {
+      res = Yup.object({
+        comment: Yup.string().nullable().required("Veuillez remplir le commentaire"),
+      })
+    } else {
+      res = Yup.object({
+        comment: Yup.string().nullable().required("Veuillez remplir le commentaire"),
+        email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
+        phone: Yup.string()
+          .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
+          .required("⚠ Le téléphone est obligatoire"),
+      })
+    }
+    return res;
+  }
+
   const formik = useFormik({
     initialValues: { comment: "" },
-    validationSchema: Yup.object({
-      comment: Yup.string().nullable().required("Veuillez remplir le commentaire"),
-      email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
-      phone: Yup.string()
-        .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
-        .required("⚠ Le téléphone est obligatoire"),
-    }),
+    validationSchema: getValidationSchema(intention),
     onSubmit: async (formikValues) => {
       await submitCommentaire(
         {
