@@ -198,7 +198,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
         {romeCompetence && romeCompetence.length && (
           <div className="c-detail-description">
-            <h3 className="c-detail-description-title">Compétences de base visées</h3>
+            <h3 className="c-detail-description-title">Compétences visées</h3>
             <ul>
               {romeCompetence.map((competence) => (
                 <li>{competence.libelle}</li>
