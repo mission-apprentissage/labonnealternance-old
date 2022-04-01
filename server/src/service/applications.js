@@ -286,7 +286,7 @@ const sendNotificationToApplicant = async ({ mailer, application, intention, ema
         application.applicant_email,
         `Réponse à votre candidature chez ${application.company_name}`,
         getEmailTemplate("mail-candidat-nsp"),
-        { ...application._doc, ...images }
+        { ...application._doc, ...images, email, phone, comment }
       );
       break;
     }
@@ -295,7 +295,7 @@ const sendNotificationToApplicant = async ({ mailer, application, intention, ema
         application.applicant_email,
         `Réponse à votre candidature chez ${application.company_name}`,
         getEmailTemplate("mail-candidat-refus"),
-        { ...application._doc, ...images }
+        { ...application._doc, ...images, comment }
       );
       break;
     }
