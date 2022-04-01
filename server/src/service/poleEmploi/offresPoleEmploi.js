@@ -76,7 +76,7 @@ const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, c
   let trys = 0;
 
   while (trys < 3) {
-    jobResult = await getPeJobs({ romes, insee, currentRadius, jobLimit, caller, api });
+    jobResult = await getPeJobs({ romes, insee, radius: currentRadius, jobLimit, caller, api });
 
     if (jobResult.status === 429) {
       console.log("PE jobs api quota exceeded. Retrying : ", trys + 1);
@@ -89,7 +89,7 @@ const getSomePeJobsForChunkedRomes = async ({ romes, insee, radius, lat, long, c
   if (jobResult?.result === "error") {
     return jobResult;
   } else {
-    return transformPeJobsForIdea({ jobs: jobResult, radius, lat, long, caller });
+    return transformPeJobsForIdea({ jobs: jobResult, radius: currentRadius, lat, long, caller });
   }
 };
 
@@ -212,7 +212,6 @@ const getPeJobs = async ({ romes, insee, radius, jobLimit, caller, api = "jobV1"
     let params = {
       codeROME: romes,
       commune: codeInsee,
-      distance,
       sort: hasLocation ? 2 : 0, //sort: 0, TODO: remettre sort 0 après expérimentation CBS
       natureContrat: peContratsAlternances,
       range: `0-${jobLimit - 1}`,
@@ -220,6 +219,7 @@ const getPeJobs = async ({ romes, insee, radius, jobLimit, caller, api = "jobV1"
 
     if (hasLocation) {
       params.insee = codeInsee;
+      params.distance = distance;
     }
 
     const jobs = await axios.get(`${peJobsApiEndpoint}`, {

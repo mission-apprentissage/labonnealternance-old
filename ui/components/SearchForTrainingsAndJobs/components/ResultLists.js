@@ -221,7 +221,7 @@ const ResultLists = (props) => {
     );
   };
 
-  const [displayCount, setDisplayCount] = useState(false);
+  const [displayCount, setDisplayCount] = useState(true);
   const handleScroll = () => {
     setDisplayCount(document.querySelector(".c-result-list__text").scrollTop < 30);
   };

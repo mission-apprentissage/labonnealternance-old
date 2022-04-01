@@ -3,7 +3,7 @@ export const mergeJobs = (jobs) => {
   let mergedArray = [];
 
   if (jobs) {
-    mergedArray = concatSources([jobs.peJobs, jobs.matchas]);
+    mergedArray = concatSources([jobs.matchas, jobs.peJobs]);
     mergedArray = sortMergedSources(mergedArray);
   }
 

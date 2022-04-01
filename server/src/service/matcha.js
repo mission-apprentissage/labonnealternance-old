@@ -14,7 +14,7 @@ const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
 const coordinatesOfFrance = [2.213749, 46.227638];
 
-const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, caller }) => {
+const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, caller, referer }) => {
   try {
     const hasLocation = latitude === undefined ? false : true;
 
@@ -29,7 +29,7 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, ca
 
     const jobs = await axios.post(`${matchaSearchEndPoint}`, params);
 
-    let matchas = transformMatchaJobsForIdea(jobs.data, radius, latitude, longitude);
+    let matchas = transformMatchaJobsForIdea({ jobs: jobs.data, caller, referer });
 
     // filtrage sur l'opco
     if (opco) {
@@ -47,7 +47,7 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, ca
 };
 
 // update du contenu avec des résultats pertinents par rapport au rayon
-const transformMatchaJobsForIdea = ({ jobs, referer, caller }) => {
+const transformMatchaJobsForIdea = ({ jobs, caller, referer }) => {
   let resultJobs = {
     results: [],
   };
@@ -118,6 +118,9 @@ const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, c
 
     resultJob.company.siret = job.siret;
     resultJob.company.name = job.raison_sociale;
+    resultJob.company.size = job.tranche_effectif;
+    resultJob.nafs = [{ label: job.libelle_naf }];
+    resultJob.company.creationDate = job.date_creation_etablissement;
 
     resultJob.diplomaLevel = offre.niveau;
     resultJob.createdAt = job.createdAt;
@@ -130,6 +133,10 @@ const transformMatchaJobForIdea = ({ job, distance, clearContactAllowedOrigin, c
       contractType: offre.type,
       jobStartDate: offre.date_debut_apprentissage,
       romeDetails: offre.rome_detail,
+      rythmeAlternance: offre.rythme_alternance,
+      dureeContrat: offre.duree_contrat,
+      quantiteContrat: offre.quantite,
+      elligibleHandicap: offre.elligible_handicap,
     };
 
     resultJob.romes = [];

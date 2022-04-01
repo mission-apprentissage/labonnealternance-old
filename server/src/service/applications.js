@@ -10,7 +10,6 @@ const {
   validateCompanyEmail,
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
-  validateIntentionApplication,
 } = require("./validateSendApplication");
 const logger = require("../common/logger");
 const publicUrl = config.publicUrl;
@@ -220,33 +219,8 @@ const saveApplicationFeedbackComment = async ({ query }) => {
   }
 };
 
-const saveApplicationIntention = async ({ query, mailer }) => {
-  await validateIntentionApplication({
-    id: query.id,
-    iv: query.iv,
-    intention: query.intention,
-  });
-
-  let decryptedId = decryptWithIV(query.id, query.iv);
-
-  try {
-    const application = await Application.findOneAndUpdate(
-      { _id: ObjectId(decryptedId) },
-      { company_intention: query.intention, company_feedback_date: new Date() },
-      { returnNewDocument: true }
-    );
-
-    sendNotificationToApplicant({ mailer, application, intention: query.intention });
-
-    return { result: "ok", message: "intention registered" };
-  } catch (err) {
-    console.log("err ", err);
-    Sentry.captureException(err);
-    return { error: "error_saving_intention" };
-  }
-};
-
-const saveApplicationIntentionComment = async ({ query }) => {
+const saveApplicationIntentionComment = async ({ query, mailer }) => {
+  // email and phone should appear
   await validateFeedbackApplicationComment({
     id: query.id,
     iv: query.iv,
@@ -256,10 +230,19 @@ const saveApplicationIntentionComment = async ({ query }) => {
   let decryptedId = decryptWithIV(query.id, query.iv);
 
   try {
-    await Application.findOneAndUpdate(
+    const application = await Application.findOneAndUpdate(
       { _id: ObjectId(decryptedId) },
-      { company_feedback: query.comment, company_feedback_date: new Date() }
+      { company_intention: query.intention, company_feedback: query.comment, company_feedback_date: new Date() }
     );
+
+    sendNotificationToApplicant({
+      mailer,
+      application,
+      intention: query.intention,
+      email: query.email,
+      phone: query.phone,
+      comment: query.comment,
+    });
 
     return { result: "ok", message: "comment registered" };
   } catch (err) {
@@ -287,14 +270,14 @@ const debugUpdateApplicationStatus = async ({ mailer, query, shouldCheckSecret }
   }
 };
 
-const sendNotificationToApplicant = async ({ mailer, application, intention }) => {
+const sendNotificationToApplicant = async ({ mailer, application, intention, email, phone, comment }) => {
   switch (intention) {
     case "entretien": {
       mailer.sendEmail(
         application.applicant_email,
         `Réponse à votre candidature chez ${application.company_name}`,
         getEmailTemplate("mail-candidat-entretien"),
-        { ...application._doc, ...images }
+        { ...application._doc, ...images, email, phone, comment }
       );
       break;
     }
@@ -303,7 +286,7 @@ const sendNotificationToApplicant = async ({ mailer, application, intention }) =
         application.applicant_email,
         `Réponse à votre candidature chez ${application.company_name}`,
         getEmailTemplate("mail-candidat-nsp"),
-        { ...application._doc, ...images }
+        { ...application._doc, ...images, email, phone, comment }
       );
       break;
     }
@@ -312,7 +295,7 @@ const sendNotificationToApplicant = async ({ mailer, application, intention }) =
         application.applicant_email,
         `Réponse à votre candidature chez ${application.company_name}`,
         getEmailTemplate("mail-candidat-refus"),
-        { ...application._doc, ...images }
+        { ...application._doc, ...images, comment }
       );
       break;
     }
@@ -466,7 +449,6 @@ module.exports = {
   sendApplication,
   saveApplicationFeedback,
   saveApplicationFeedbackComment,
-  saveApplicationIntention,
   saveApplicationIntentionComment,
   updateApplicationStatus,
   debugUpdateApplicationStatus,
