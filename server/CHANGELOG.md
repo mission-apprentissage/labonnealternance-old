@@ -6,6 +6,7 @@ Ajout information entreprise & offre Matcha
 [1102] Correction breakpoint CSS
 [1047] Nouveau bloc Home
 [1072] Maj Rencontrer le candidat
+[1075] Ecran de confirmation - vocabulaire
 [1084] Cas de refus pr le candidat
 
 ## 1.18.6 [18/03/2022]
