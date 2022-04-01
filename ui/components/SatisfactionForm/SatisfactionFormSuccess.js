@@ -1,23 +1,37 @@
 import React from "react";
 
+import { useRouter } from 'next/router'
 
 const SatisfactionFormSuccess = () => {
+
+  const readIntention = () => {
+    const router = useRouter()
+    const { intention } = router?.query ? router.query : { intention: 'intention' }
+    return intention
+  }
 
   return (
     <div className="container flex-center pt-5" data-testid="SatisfactionFormSuccess">
       <div className="row flex-center py-5">
         <div className="col col-lg-7 mx-auto">
-          <div className="d-flex-center pb-5">
-            <img src="/images/tada.svg" alt="Cotillons" className="" width="56" height="56" />
-          </div>
           <h1 className="h4 text-center">
-            <strong>
-              Merci beaucoup d’avoir pris le temps de nous aider à améliorer le service La Bonne Alternance
-            </strong>
+            <strong>Merci d'avoir pris le temps d'envoyer un commentaire au candidat. </strong> 
           </h1>
-          <p className="pt-3 halflead text-center">
-            Nous prenons connaissance de tous les retours pour faire évoluer le service.
-          </p>
+          {readIntention() === 'ne_sais_pas' || readIntention() === 'entretien' ?
+            <>
+              <p className="pt-3 halflead text-center">
+                Il dispose désormais de vos coordonnées pour poursuivre l'échange.
+              </p>
+            </>
+          :
+            <>
+              <p className="pt-3 halflead text-center">
+                Cela permet aux futurs alternants de comprendre les raisons du refus, et de s'améliorer pour leurs prochaines candidatures.
+              </p>
+            </>
+          }
+              
+
         </div>
       </div>
     </div>

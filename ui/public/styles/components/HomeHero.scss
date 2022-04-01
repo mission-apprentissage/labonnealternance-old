@@ -79,6 +79,12 @@
   color: $gray-500;
 }
 
+.c-logobar-form .c-logobar-label {
+  @include media-breakpoint-between(sm, md) {
+    font-size: 10px;  
+  }
+}
+
 .c-input-work-container {
   position: relative;
   @include media-breakpoint-up(lg) {
