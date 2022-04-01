@@ -39,7 +39,7 @@ const SatisfactionForm = ({ formType }) => {
           <div>
             <strong>Vous avez indiqué accepter la candidature de {`${firstName} ${lastName}`}.</strong>
             <p className="pt-4 pb-0 mb-0">
-              Souhaitez-vous envoyer un message ou commentaire au candidat pour lui proposer une date de rencontre / d'entretien ?
+              Planifiez une date de rencontre avec le candidat, en lui envoyant un message personnalisé.
             </p>
             <p>
               <small className="satisfaction-smallhint">Le candidat recevra votre commentaire ainsi que vos coordonnées directement sur sa boîte mail.</small>
@@ -147,11 +147,11 @@ const SatisfactionForm = ({ formType }) => {
     const { intention} = router?.query ? router.query : { intention: 'intention' }
     let res = ''
     if (intention === 'ne_sais_pas' ) {
-      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..."
+      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..."
     } else if (intention === 'entretien') {
-      res = 'Nous acceptons votre candidature parce que...'
-    } else if (intention === 'refus') {
-      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ..."
+      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention et nous souhaiterions échanger avec vous. Seriez-vous disponible le ..."
+    } else {
+      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ..."
     }
     return res
   }
