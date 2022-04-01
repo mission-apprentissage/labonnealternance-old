@@ -185,7 +185,7 @@ const SatisfactionForm = ({ formType }) => {
                   </fieldset>
                   {getFieldError()}
                   
-                  {isNonEmptyString(readIntention()) && readIntention() !== 'refus' ?
+                  {readIntention() !== 'refus' ?
                     <div className="c-candidature-personaldata d-flex flex-column flex-md-row justify-content-between">
                       <div>
                         <fieldset
