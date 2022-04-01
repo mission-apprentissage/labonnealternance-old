@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import submitCommentaire from "./services/submitCommentaire.js";
 import SatisfactionFormSuccess from "./SatisfactionFormSuccess.js";
 import SatisfactionFormNavigation from "./SatisfactionFormNavigation.js";
+import { isNonEmptyString } from "../../utils/strutils";
 
 import { getValueFromPath } from "../../utils/tools";
 import { testingParameters } from "../../utils/testingParameters";
@@ -164,96 +165,100 @@ const SatisfactionForm = ({ formType }) => {
           <div className="row flex-center py-5">
             <div className="col col-lg-7 mx-auto">
               {getFeedbackText()}
-              <form onSubmit={formik.handleSubmit} className="">
-                <fieldset
-                  data-testid="fieldset-message"
-                  className={`pt-2 c-candidature-field ${
-                    formik.touched.comment ? `is-valid-${!formik.errors.comment}` : "is-not-validated"
-                  }`}
-                > 
-                  <textarea
-                    id="comment"
-                    data-testid="comment"
-                    name="comment"
-                    placeholder={`${getPlaceHolderText()}`}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.comment}
-                  />
-                </fieldset>
-                {getFieldError()}
-                
-                {readIntention() !== 'refus' ?
-                  <div className="c-candidature-personaldata d-flex flex-column flex-md-row justify-content-between">
-                    <div>
-                      <fieldset
-                        data-testid="fieldset-email"
-                        className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
-                          }`}
-                      >
-                        <label htmlFor="email">E-mail *</label>
-                        <input
-                          id="email"
-                          className="w-100"
-                          data-testid="email"
-                          name="email"
-                          type="email"
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          value={formik.values.email || ""}
-                        />
-                        {formik.touched.email && formik.errors.email ? (
-                          <div className="c-candidature-erreur visible">{formik.errors.email}</div>
-                        ) : (
-                          <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
-                        )}
-                        {testingParameters?.simulatedRecipient ? (
-                          <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
-                        ) : (
-                          ""
-                        )}
-                      </fieldset>
-                    </div>
+              {isNonEmptyString(readIntention()) ? 
+                <form onSubmit={formik.handleSubmit} className="">
+                  <fieldset
+                    data-testid="fieldset-message"
+                    className={`pt-2 c-candidature-field ${
+                      formik.touched.comment ? `is-valid-${!formik.errors.comment}` : "is-not-validated"
+                    }`}
+                  > 
+                    <textarea
+                      id="comment"
+                      data-testid="comment"
+                      name="comment"
+                      placeholder={`${getPlaceHolderText()}`}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      value={formik.values.comment}
+                    />
+                  </fieldset>
+                  {getFieldError()}
+                  
+                  {readIntention() !== 'refus' ?
+                    <div className="c-candidature-personaldata d-flex flex-column flex-md-row justify-content-between">
+                      <div>
+                        <fieldset
+                          data-testid="fieldset-email"
+                          className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
+                            }`}
+                        >
+                          <label htmlFor="email">E-mail *</label>
+                          <input
+                            id="email"
+                            className="w-100"
+                            data-testid="email"
+                            name="email"
+                            type="email"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.email || ""}
+                          />
+                          {formik.touched.email && formik.errors.email ? (
+                            <div className="c-candidature-erreur visible">{formik.errors.email}</div>
+                          ) : (
+                            <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
+                          )}
+                          {testingParameters?.simulatedRecipient ? (
+                            <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
+                          ) : (
+                            ""
+                          )}
+                        </fieldset>
+                      </div>
 
-                    <div>
-                      <fieldset
-                        data-testid="fieldset-phone"
-                        className={`mt-1 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : "is-not-validated"
-                          }`}
-                      >
-                        <label htmlFor="email">Téléphone *</label>
-                        <input
-                          id="phone"
-                          className="w-100"
-                          data-testid="phone"
-                          name="phone"
-                          type="text"
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          value={formik.values.phone || ""}
-                        />
-                        {formik.touched.phone && formik.errors.phone ? (
-                          <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
-                        ) : (
-                          <div className="invisible">{"pas d'erreur"}</div>
-                        )}
-                      </fieldset>
+                      <div>
+                        <fieldset
+                          data-testid="fieldset-phone"
+                          className={`mt-1 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : "is-not-validated"
+                            }`}
+                        >
+                          <label htmlFor="email">Téléphone *</label>
+                          <input
+                            id="phone"
+                            className="w-100"
+                            data-testid="phone"
+                            name="phone"
+                            type="text"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.phone || ""}
+                          />
+                          {formik.touched.phone && formik.errors.phone ? (
+                            <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
+                          ) : (
+                            <div className="invisible">{"pas d'erreur"}</div>
+                          )}
+                        </fieldset>
+                      </div>
                     </div>
+                  :
+                    ''
+                  }
+
+                  <div className="d-flex flex-row-reverse">
+                    <button
+                      aria-label="jenvoie-mon-commentaire"
+                      className={`btn btn-dark btn-dark-action c-satisfaction-submit mt-3`}
+                      type="submit"
+                    >
+                      {"j'envoie mon commentaire !"}
+                    </button>
                   </div>
+                </form>
                 :
-                  ''
-                }
-
-                <div className="d-flex flex-row-reverse">
-                  <button
-                    aria-label="jenvoie-mon-commentaire"
-                    className={`btn btn-dark btn-dark-action c-satisfaction-submit mt-3`}
-                    type="submit"
-                  >
-                    {"j'envoie mon commentaire !"}
-                  </button>
-                </div>
-              </form>
+                ''
+              }
             </div>
           </div>
         </div>
