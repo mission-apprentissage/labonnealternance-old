@@ -15,8 +15,6 @@ const HeadLaBonneAlternance = (props) => {
       envrnt = "local";
     }
 
-    console.log(" --- ", { env: envrnt, shoudLoadAnalytics: props.shouldLoadAnalytics });
-
     return { env: envrnt, shoudLoadAnalytics: props.shouldLoadAnalytics };
   };
 
