@@ -50,6 +50,10 @@
     padding-right: 1rem;
     font-size: 14px;
   }
+  @include media-breakpoint-between(md, lg) {
+    padding-left: .3rem;
+    padding-right: .3rem;
+  }
 }
 
 .c-filterbuttons-hint {
