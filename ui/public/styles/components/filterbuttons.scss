@@ -1,10 +1,13 @@
 
-.c-filterbuttons {
+.c-filterzone {
   display: flex;
   flex-direction: column;
+  @include media-breakpoint-up(sm) { 
+    // flex-direction: row;
+  }
   @include media-breakpoint-up(lg) { 
-    flex-flow: nowrap;
-    flex-direction: row;
+    // flex-flow: nowrap;
+    // flex-direction: row;
   }
   flex-wrap: wrap;
   justify-content: left;
@@ -12,11 +15,21 @@
   margin-bottom: 4px;
 }
 
+.c-filterbuttons {
+  display: flex;
+  flex-direction: row;
+  @include media-breakpoint-up(sm) { 
+    // flex-direction: row;
+  }
+}
+
 .c-result-list__header {
   background-color: #F9F8F6;
 }
 
 .c-filterbutton {
+  padding-left: .3rem;
+  padding-right: .3rem;
   text-align: center;
   font-size: 14px;
   line-height: 24px;
@@ -33,6 +46,8 @@
   border-radius: 40px;
   padding-bottom: 3px;
   @include media-breakpoint-up(sm) { 
+    padding-left: 1rem;
+    padding-right: 1rem;
     font-size: 14px;
   }
 }
@@ -77,7 +92,7 @@
 
 .c-filterbutton-count {
   display: none;
-  @include media-breakpoint-up(sm) { 
+  @include media-breakpoint-up(lg) { 
     display: inline;
   }
 }

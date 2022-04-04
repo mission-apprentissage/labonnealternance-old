@@ -112,27 +112,30 @@ const ResultListsCounter = (props) => {
         )}
       </div>
 
-      <div className="c-filterbuttons mt-3">
+      <div className="c-filterzone mt-3">
         {!trainingLoading && !jobLoading && scopeContext.isJob && scopeContext.isTraining ? (
           <>
             <div className="c-filterbuttons-hint mr-3">Que souhaitez-vous voir ?</div>
-            <FilterButton
-              type="all"
-              isActive={activeFilter === "all"}
-              handleFilterButtonClicked={filterButtonClicked}
-            />
-            <FilterButton
-              type="jobs"
-              count={jobCount}
-              isActive={activeFilter === "jobs"}
-              handleFilterButtonClicked={filterButtonClicked}
-            />
-            <FilterButton
-              type="trainings"
-              count={trainingCount}
-              isActive={activeFilter === "trainings"}
-              handleFilterButtonClicked={filterButtonClicked}
-            />
+            <div className="c-filterbuttons">
+              <FilterButton
+                type="all"
+                isActive={activeFilter === "all"}
+                handleFilterButtonClicked={filterButtonClicked}
+              />
+              <FilterButton
+                type="jobs"
+                count={jobCount}
+                isActive={activeFilter === "jobs"}
+                handleFilterButtonClicked={filterButtonClicked}
+              />
+              <FilterButton
+                type="trainings"
+                count={trainingCount}
+                isActive={activeFilter === "trainings"}
+                handleFilterButtonClicked={filterButtonClicked}
+              />
+
+            </div>
           </>
         ) : (
           ""
