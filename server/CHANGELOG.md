@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.8 [05/04/2022]
+[1150] Désactivation Tag Commander selon la source
+
 ## 1.18.7 [31/03/2022]
 Ajout information entreprise & offre Matcha
 [1145] Fix emails à "null"

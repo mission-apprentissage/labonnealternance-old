@@ -27,7 +27,7 @@ class ExampleApp extends App {
     }
 
     // identification des exceptions au chargement d'analytics
-    if (req?.url.indexOf("caller=TSA") >= 0) {
+    if (req?.url.match(/caller=TSA/g)) {
       shouldLoadAnalytics = false;
     }
 
