@@ -45,12 +45,10 @@
 .c-filterbutton.is-active {
   border: none;
   font-weight: 700;
-  border-bottom: 2px solid $gray-750;
   padding-bottom: 10px;
   @include media-breakpoint-up(sm) { 
     padding-bottom: 20px;
     color: $gray-750;
-    border-bottom: 2px solid $gray-750;
     display: inline;
   }
 }
