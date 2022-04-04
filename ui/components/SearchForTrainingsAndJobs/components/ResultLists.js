@@ -232,7 +232,7 @@ const ResultLists = (props) => {
         props.selectedItem ? "c-result-list--item" : ""
       }`}
     >
-      <div className={`c-result-list__header ${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
+      <div className={`${props.shouldShowWelcomeMessage || props.selectedItem ? "d-none" : ""}`}>
         <ResultListsCounter
           scopeContext={scopeContext}
           filterButtonClicked={filterButtonClicked}

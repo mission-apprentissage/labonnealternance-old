@@ -4,27 +4,36 @@
   flex-wrap: wrap;
   justify-content: left;
   padding-left: 31px;
-  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.25);
   margin-bottom: 4px;
 }
 
 .c-filterbutton {
   text-align: center;
   font-size: 14px;
+  line-height: 24px;
   background: none;
   width: fit-content;
   outline: none;
   border: none;
-  padding: 21px 0 12px 0;
+  // padding: 4px 16px 4px 16px;
   color: $gray-750;
   margin-right: 15px;
   padding-left: 5px;
   padding-right: 5px;
+  color: #000091;
+  background: #E3E3FD;
+  border-radius: 40px;
   @include media-breakpoint-up(sm) { 
-    padding: 21px 5px 21px 5px;
     font-size: 14px;
     margin-right: 40px;
   }
+}
+
+.c-filterbutton.is-active {
+  font-weight: 700;
+  padding-bottom: 10px;
+  background: #000091;
+  color: white;
 }
 
 .c-filterbutton--all:after {
@@ -42,16 +51,6 @@
   }
 }
 
-.c-filterbutton.is-active {
-  border: none;
-  font-weight: 700;
-  padding-bottom: 10px;
-  @include media-breakpoint-up(sm) { 
-    padding-bottom: 20px;
-    color: $gray-750;
-    display: inline;
-  }
-}
 
 .c-filterbutton:hover,
 .c-filterbutton:focus {

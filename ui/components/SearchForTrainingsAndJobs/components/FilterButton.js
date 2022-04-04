@@ -24,7 +24,7 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   return (
     <button
       onClick={handleClick}
-      className={`gtmFilterButton gtmFilterButton${capitalizeFirstLetter(type)} c-filterbutton c-filterbutton--${type} ${isActive ? "is-active" : ""}`}
+      className={`mb-2 px-3 gtmFilterButton gtmFilterButton${capitalizeFirstLetter(type)} c-filterbutton c-filterbutton--${type} ${isActive ? "is-active" : ""}`}
     >
       {ReactHtmlParser(getText())}
     </button>
