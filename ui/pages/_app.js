@@ -19,20 +19,35 @@ class ExampleApp extends App {
     // récupération du hostname pour initialiser les fonts en preload
     const { req } = context.ctx;
     let host = "";
+    let blockAnalytics = false;
+    //console.log("headers ",req?.headers);
     if (req?.headers?.host) {
       host = req.headers.host;
       host = `${host.startsWith("localhost") ? "http" : "https"}://${host}`;
     }
-    return { host };
+    console.log("MAIS ?",req?.headers);
+    if(req?.headers?.referrer && req?.headers?.referrer.indexOf("caller=TSA") >= 0) {
+      console.log("yeah");
+      blockAnalytics = true;
+    }
+    else
+    {
+      console.log("hum ", req?.headers?.referrer);
+    }
+
+    return { host, blockAnalytics };
   }
 
   render() {
-    const { Component, pageProps, host } = this.props;
+    const { Component, pageProps, host, blockAnalytics } = this.props;
 
     return (
       <>
         <main className="c-app">
-          <HeadLaBonneAlternance publicUrl={host && process.env.publicUrl ? host : ""} />
+          <HeadLaBonneAlternance
+            blockAnalytics={blockAnalytics}
+            publicUrl={host && process.env.publicUrl ? host : ""}
+          />
           <ConnectedRouter>
             <Component {...pageProps} />
           </ConnectedRouter>
