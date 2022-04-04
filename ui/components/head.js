@@ -5,15 +5,19 @@ import env from "utils/env";
 
 const HeadLaBonneAlternance = (props) => {
   const getEnvFromProps = () => {
-    console.log("props ",props);
-    
     let host = props.publicUrl || env;
 
-    let result = "production";
-    if (host?.indexOf("recette") >= 0) result = "recette";
-    if (host?.indexOf("local") >= 0) result = "local";
+    let envrnt = "production";
+    if (host?.indexOf("recette") >= 0) {
+      envrnt = "recette";
+    }
+    if (host?.indexOf("local") >= 0) {
+      envrnt = "local";
+    }
 
-    return result;
+    console.log(" --- ", { env: envrnt, shoudLoadAnalytics: props.shouldLoadAnalytics });
+
+    return { env: envrnt, shoudLoadAnalytics: props.shouldLoadAnalytics };
   };
 
   return (
@@ -47,12 +51,10 @@ const HeadLaBonneAlternance = (props) => {
         content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
       />
 
-      <script>console.log("truc");</script>
-
-      {getEnvFromProps() !== "local" ? (
+      {getEnvFromProps().env !== "local" && getEnvFromProps().shoudLoadAnalytics ? (
         <script
           async
-          src={`https://cdn.tagcommander.com/5234/${getEnvFromProps() !== "production" ? "uat/" : ""}tc_lba_31.js`}
+          src={`https://cdn.tagcommander.com/5234/${getEnvFromProps().env !== "production" ? "uat/" : ""}tc_lba_31.js`}
         ></script>
       ) : (
         ""
