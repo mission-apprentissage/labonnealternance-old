@@ -112,9 +112,10 @@ const ResultListsCounter = (props) => {
         )}
       </div>
 
-      <div className="c-filterbuttons">
+      <div className="c-filterbuttons mt-3">
         {!trainingLoading && !jobLoading && scopeContext.isJob && scopeContext.isTraining ? (
           <>
+            <div className="c-filterbuttons-hint mr-3">Que souhaitez-vous voir ?</div>
             <FilterButton
               type="all"
               isActive={activeFilter === "all"}
