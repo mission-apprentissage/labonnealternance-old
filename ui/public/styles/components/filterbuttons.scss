@@ -1,3 +1,4 @@
+
 .c-filterbuttons {
   display: inline-block;
   display: flex;
@@ -5,6 +6,10 @@
   justify-content: left;
   padding-left: 31px;
   margin-bottom: 4px;
+}
+
+.c-result-list__header {
+  background-color: #F9F8F6;
 }
 
 .c-filterbutton {
