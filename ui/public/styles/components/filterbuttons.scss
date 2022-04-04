@@ -6,6 +6,9 @@
   justify-content: left;
   padding-left: 31px;
   margin-bottom: 4px;
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+  }
 }
 
 .c-filterbuttons {
