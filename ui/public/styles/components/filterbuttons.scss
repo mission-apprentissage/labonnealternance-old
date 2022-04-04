@@ -2,13 +2,6 @@
 .c-filterzone {
   display: flex;
   flex-direction: column;
-  @include media-breakpoint-up(sm) { 
-    // flex-direction: row;
-  }
-  @include media-breakpoint-up(lg) { 
-    // flex-flow: nowrap;
-    // flex-direction: row;
-  }
   flex-wrap: wrap;
   justify-content: left;
   padding-left: 31px;
@@ -18,9 +11,6 @@
 .c-filterbuttons {
   display: flex;
   flex-direction: row;
-  @include media-breakpoint-up(sm) { 
-    // flex-direction: row;
-  }
 }
 
 .c-result-list__header {
@@ -59,10 +49,7 @@
 .c-filterbuttons-hint {
   text-align: left;
   font-size: 14px;
-  margin-bottom: 10px;
-  @include media-breakpoint-up(lg) {
-    margin-bottom: 0px;
-  }
+  margin-bottom: 5px;
 }
 
 .c-filterbutton.is-active {

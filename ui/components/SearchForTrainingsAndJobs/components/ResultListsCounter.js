@@ -134,15 +134,14 @@ const ResultListsCounter = (props) => {
                 isActive={activeFilter === "trainings"}
                 handleFilterButtonClicked={filterButtonClicked}
               />
-
+              <div className="c-resultlist-purplefilter" onClick={showSearchForm}>
+                <img src={purpleFilterIcon} alt="Image de filtres" />
+              </div>
             </div>
           </>
         ) : (
           ""
         )}
-        <div className="c-resultlist-purplefilter" onClick={showSearchForm}>
-          <img src={purpleFilterIcon} alt="Image de filtres" />
-        </div>
       </div>
     </div>
   );
