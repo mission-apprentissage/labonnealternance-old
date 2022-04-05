@@ -399,29 +399,11 @@ const WidgetTester = () => {
         <Row className="widgetList">
           <Col xs="12">
             <hr />
-            <h3>Largeur 317 px - hauteur 640 px</h3>
-            {getWidget({
-              title: "narrow",
-              height: 640,
-              width: 317,
-            })}
-          </Col>
-          <Col xs="12">
-            <hr />
             <h3>Largeur 360 px - hauteur 640 px</h3>
             {getWidget({
               title: "mobile",
               height: 640,
               width: 360,
-            })}
-          </Col>
-          <Col xs="12">
-            <hr />
-            <h3>Largeur 768 px - hauteur 800 px</h3>
-            {getWidget({
-              title: "tablet",
-              height: 800,
-              width: 768,
             })}
           </Col>
           <Col xs="12">
