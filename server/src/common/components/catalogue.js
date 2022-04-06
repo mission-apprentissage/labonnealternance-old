@@ -33,9 +33,9 @@ const getConvertedFormations = async (options, chunckCallback = null) => {
   }
 };
 
-const countFormations = async (query = { published: true }) => {
+const countFormations = async () => {
   try {
-    const response = await API.get(`${config.formationsEndPoint}/count`, { params: { query } });
+    const response = await API.get(`${config.formationsEndPoint}/count`);
     return response.data;
   } catch (error) {
     logger.error(error);

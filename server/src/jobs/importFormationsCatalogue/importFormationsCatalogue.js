@@ -54,7 +54,7 @@ const importFormations = async ({ workIndex, workMongo }) => {
   try {
     const db = mongooseInstance.connection;
 
-    await getConvertedFormations({ limit: 1000, query: { published: true } }, async (chunck) => {
+    await getConvertedFormations({ limit: 1000 }, async (chunck) => {
       logger.info(`Inserting ${chunck.length} formations ...`);
 
       await oleoduc(
