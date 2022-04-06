@@ -137,7 +137,7 @@ const WidgetTester = () => {
       ideaUrl += widgetParams.romes ? `&romes=${widgetParams.romes}` : "";
       ideaUrl += widgetParams.location ? `&lon=${widgetParams.location[0]}&lat=${widgetParams.location[1]}` : "";
       ideaUrl += widgetParams.radius ? `&radius=${widgetParams.radius}` : "";
-      ideaUrl += widgetParams.opco ? `&return_uri=${encodeURIComponent(widgetParams.opco)}` : "";
+      ideaUrl += widgetParams.opco ? `&opco=${encodeURIComponent(widgetParams.opco)}` : "";
       ideaUrl += widgetParams.jobName ? `&job_name=${encodeURIComponent(widgetParams.jobName)}` : "";
       ideaUrl += widgetParams.frozenJob ? "&frozen_job=1" : "";
     } else ideaUrl = `${ideaUrl}/${path}`;
