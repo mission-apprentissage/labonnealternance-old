@@ -112,8 +112,7 @@ const WidgetTester = () => {
     res.radius = values.radius || null;
     res.scope = values.scope || null;
     res.caller = values.caller || null;
-    res.returnURI = values.returnURI || null;
-    res.returnLogoURL = values.returnLogoURL || null;
+    res.opco = values.opco || null;
     res.jobName = values.jobName || null;
     res.frozenJob = values.frozen_job || null;
 
@@ -138,8 +137,7 @@ const WidgetTester = () => {
       ideaUrl += widgetParams.romes ? `&romes=${widgetParams.romes}` : "";
       ideaUrl += widgetParams.location ? `&lon=${widgetParams.location[0]}&lat=${widgetParams.location[1]}` : "";
       ideaUrl += widgetParams.radius ? `&radius=${widgetParams.radius}` : "";
-      ideaUrl += widgetParams.returnURI ? `&return_uri=${encodeURIComponent(widgetParams.returnURI)}` : "";
-      ideaUrl += widgetParams.returnLogoURL ? `&return_logo_url=${encodeURIComponent(widgetParams.returnLogoURL)}` : "";
+      ideaUrl += widgetParams.opco ? `&return_uri=${encodeURIComponent(widgetParams.opco)}` : "";
       ideaUrl += widgetParams.jobName ? `&job_name=${encodeURIComponent(widgetParams.jobName)}` : "";
       ideaUrl += widgetParams.frozenJob ? "&frozen_job=1" : "";
     } else ideaUrl = `${ideaUrl}/${path}`;
@@ -173,8 +171,7 @@ const WidgetTester = () => {
           radius: 0,
           scope: "",
           caller: "adresse_contact@mail.com identifiant_appelant",
-          returnURI: "/",
-          returnLogoURL: "",
+          opco: "",
         }}
         onSubmit={handleSearchSubmit}
       >
@@ -318,18 +315,9 @@ const WidgetTester = () => {
               <Col xs="12">
                 <div className="formGroup">
                   <label>
-                    URI au click du bouton de retour (<strong>return_uri</strong>)
+                    Filtrage des opportunités d'emploi pour un OPCO. Optionnel (<strong>opco</strong>)
                   </label>
-                  <Field type="text" className="widgetTestPage--textInput" name="returnURI" />
-                </div>
-              </Col>
-
-              <Col xs="12">
-                <div className="formGroup">
-                  <label>
-                    URL de l'image du bouton de retour (<strong>return_logo_url</strong>)
-                  </label>
-                  <Field type="text" className="widgetTestPage--textInput" name="returnLogoURL" />
+                  <Field type="text" className="widgetTestPage--textInput" name="opco" />
                 </div>
               </Col>
 
