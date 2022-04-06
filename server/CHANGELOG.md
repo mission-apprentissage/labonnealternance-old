@@ -4,6 +4,7 @@
 [1150] Désactivation Tag Commander selon la source
 [1103] Màj CSS onglets
 [1137] Màj de la page de test du widget
+[1151] changement route catalogue
 
 ## 1.18.7 [31/03/2022]
 Ajout information entreprise & offre Matcha
