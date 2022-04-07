@@ -158,6 +158,16 @@ const SatisfactionForm = ({ formType }) => {
     return res
   }
 
+  const getErrorClassFor = (formikObj, target) => {
+    let res = "is-not-validated"
+    if (formikObj.errors[target]) {
+      res = "is-valid-false"
+    } else if (formikObj.values[target]) {
+      res = "is-valid-true"
+    }
+    return res
+  }
+
   return (
     <div className="c-formulaire-satisfaction">
       <SatisfactionFormNavigation />
@@ -172,10 +182,8 @@ const SatisfactionForm = ({ formType }) => {
 
                   <fieldset
                     data-testid="fieldset-message"
-                    className={`pt-2 c-candidature-field ${
-                      formik.touched.comment ? `is-valid-${!formik.errors.comment}` : "is-not-validated"
-                    }`}
-                    > 
+                    className={`pt-2 c-candidature-field ${getErrorClassFor(formik, "comment")}`}
+                    >
                     <textarea
                       id="comment"
                       data-testid="comment"
@@ -193,8 +201,7 @@ const SatisfactionForm = ({ formType }) => {
                       <div>
                         <fieldset
                           data-testid="fieldset-email"
-                          className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik?.errors?.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
-                            }`}
+                          className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${getErrorClassFor(formik, "email")}`}
                         >
                           <label htmlFor="email">E-mail *</label>
                           <input
@@ -223,8 +230,7 @@ const SatisfactionForm = ({ formType }) => {
                       <div>
                         <fieldset
                           data-testid="fieldset-phone"
-                          className={`mt-1 mt-md-0 c-candidature-field ${formik?.errors?.phone ? `is-valid-${!formik.errors.phone}` : "is-not-validated"
-                            }`}
+                          className={`mt-1 mt-md-0 c-candidature-field ${getErrorClassFor(formik, "phone")}`}
                         >
                           <label htmlFor="email">Téléphone *</label>
                           <input
