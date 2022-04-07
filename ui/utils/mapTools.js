@@ -6,6 +6,7 @@ import * as mapboxgl from "mapbox-gl";
 import { Provider } from "react-redux";
 import { fetchAddresses } from "../services/baseAdresse";
 import { scrollToElementInContainer, getItemElement } from "./tools";
+import { isArea } from "./isArea";
 
 let currentPopup = null;
 let map = null;
@@ -433,13 +434,33 @@ const computeMissingPositionAndDistance = async (searchCenter, jobs) => {
         if (job.place.city) {
           let city = job.place.city; // complétion du numéro du département pour réduire les résultats erronés (ex : Saint Benoit à la réunion pour 86 - ST BENOIT)
           let dpt = city.substring(0, 2);
-          dpt += "000";
-          city = dpt + city.substring(2);
+          let area = null;
+          if (isNaN(dpt)) {
+            area = isArea(city);
+          } else {
+            if (city[3] === "-") {
+              area = isArea(city.substring(5));
+            }
 
-          addresses = await fetchAddresses(city, "municipality"); // on force à Municipality pour ne pas avoir des rues dans de mauvaise localités
+            if (!area) {
+              dpt += "000";
+              city = dpt + city.substring(2);
+            }
+          }
+          if (area) {
+            addresses = [
+              {
+                value: { coordinates: [area.lon, area.lat] },
+              },
+            ];
+          } else {
+            addresses = await fetchAddresses(city, "municipality"); // on force à Municipality pour ne pas avoir des rues dans de mauvaise localités
+          }
         } else {
           addresses = await fetchAddresses(job.place.address, "municipality"); // on force à Municipality pour ne pas avoir des rues dans de mauvaise localités
         }
+
+        console.log("PLACE : ", job.place, "adresses", addresses[0]);
 
         if (addresses.length) {
           job.place.longitude = addresses[0].value.coordinates[0];
