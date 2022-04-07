@@ -435,18 +435,16 @@ const computeMissingPositionAndDistance = async (searchCenter, jobs) => {
           let city = job.place.city; // complétion du numéro du département pour réduire les résultats erronés (ex : Saint Benoit à la réunion pour 86 - ST BENOIT)
           let dpt = city.substring(0, 2);
           let area = null;
-          if (isNaN(dpt)) {
-            area = isArea(city);
-          } else {
-            if (city[3] === "-") {
-              area = isArea(city.substring(5));
-            }
 
-            if (!area) {
-              dpt += "000";
-              city = dpt + city.substring(2);
-            }
+          if (isNaN(dpt)) {
+            // ex : Ile-de-France
+            area = isArea(city);
+          } else if (city[3] === "-") {
+            // ex : 75 - Paris (Dept.)
+            area = isArea(dpt);
           }
+          //else ex : 69 Lyon
+
           if (area) {
             addresses = [
               {
@@ -454,6 +452,8 @@ const computeMissingPositionAndDistance = async (searchCenter, jobs) => {
               },
             ];
           } else {
+            dpt += "000";
+            city = dpt + city.substring(2);
             addresses = await fetchAddresses(city, "municipality"); // on force à Municipality pour ne pas avoir des rues dans de mauvaise localités
           }
         } else {
