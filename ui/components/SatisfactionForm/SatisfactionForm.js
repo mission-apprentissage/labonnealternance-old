@@ -193,7 +193,7 @@ const SatisfactionForm = ({ formType }) => {
                       <div>
                         <fieldset
                           data-testid="fieldset-email"
-                          className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
+                          className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik?.errors?.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
                             }`}
                         >
                           <label htmlFor="email">E-mail *</label>
@@ -223,7 +223,7 @@ const SatisfactionForm = ({ formType }) => {
                       <div>
                         <fieldset
                           data-testid="fieldset-phone"
-                          className={`mt-1 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : "is-not-validated"
+                          className={`mt-1 mt-md-0 c-candidature-field ${formik?.errors?.phone ? `is-valid-${!formik.errors.phone}` : "is-not-validated"
                             }`}
                         >
                           <label htmlFor="email">Téléphone *</label>
