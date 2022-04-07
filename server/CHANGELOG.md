@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.9 [08/04/2022]
+[1153] Fix mauvaises positions régions et départements
+
 ## 1.18.8 [05/04/2022]
 [1150] Désactivation Tag Commander selon la source
 [1103] Màj CSS onglets
