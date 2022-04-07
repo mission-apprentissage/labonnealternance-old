@@ -10,11 +10,11 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   };
 
   const getText = () => {
-    let res = `<span class="c-filterbutton-count">${count} </span>`;
+    let res = "";
     if (type === "trainings") {
-      res += `formation${count <= 1 ? '' : 's'}`;
+      res = "Les formations";
     } else if (type === "jobs") {
-      res += `entreprise${count <= 1 ? '' : 's'}`;
+      res = "Les entreprises";
     } else if (type === "all") {
       res = "";
     }
@@ -24,7 +24,7 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   return (
     <button
       onClick={handleClick}
-      className={`mb-2 gtmFilterButton gtmFilterButton${capitalizeFirstLetter(type)} c-filterbutton c-filterbutton--${type} ${isActive ? "is-active" : ""}`}
+      className={`gtmFilterButton gtmFilterButton${capitalizeFirstLetter(type)} c-filterbutton c-filterbutton--${type} ${isActive ? "is-active" : ""}`}
     >
       {ReactHtmlParser(getText())}
     </button>

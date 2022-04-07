@@ -7,6 +7,7 @@
   padding-left: 31px;
   margin-bottom: 4px;
   @include media-breakpoint-up(lg) {
+    align-items: center;
     flex-direction: row;
   }
 }
@@ -52,7 +53,6 @@
 .c-filterbuttons-hint {
   text-align: left;
   font-size: 14px;
-  margin-bottom: 5px;
 }
 
 .c-filterbutton.is-active {
@@ -63,9 +63,6 @@
 
 .c-filterbutton--all:after {
   content: 'Tout';
-  @include media-breakpoint-up(sm) { 
-    content: 'Voir tout';
-  }
 }
 
 .c-filterbutton-img {
