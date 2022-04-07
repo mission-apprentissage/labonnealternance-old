@@ -97,10 +97,11 @@ const SatisfactionForm = ({ formType }) => {
         comment: Yup.string().nullable().required("Veuillez remplir le commentaire"),
       })
     } else {
+      console.log('else42');
       res = Yup.object({
         comment: Yup.string().nullable().required("Veuillez remplir le commentaire"),
-        email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
-        phone: Yup.string()
+        email: Yup.string().nullable().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
+        phone: Yup.string().nullable()
           .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
           .required("⚠ Le téléphone est obligatoire"),
       })
@@ -166,13 +167,15 @@ const SatisfactionForm = ({ formType }) => {
             <div className="col col-lg-7 mx-auto">
               {getFeedbackText()}
               {isNonEmptyString(readIntention()) ? 
+                
                 <form onSubmit={formik.handleSubmit} className="">
+
                   <fieldset
                     data-testid="fieldset-message"
                     className={`pt-2 c-candidature-field ${
                       formik.touched.comment ? `is-valid-${!formik.errors.comment}` : "is-not-validated"
                     }`}
-                  > 
+                    > 
                     <textarea
                       id="comment"
                       data-testid="comment"
@@ -181,7 +184,7 @@ const SatisfactionForm = ({ formType }) => {
                       onBlur={formik.handleBlur}
                       onChange={formik.handleChange}
                       value={formik.values.comment}
-                    />
+                      />
                   </fieldset>
                   {getFieldError()}
                   
@@ -204,7 +207,7 @@ const SatisfactionForm = ({ formType }) => {
                             onBlur={formik.handleBlur}
                             value={formik.values.email || ""}
                           />
-                          {formik.touched.email && formik.errors.email ? (
+                          {formik.errors.email ? (
                             <div className="c-candidature-erreur visible">{formik.errors.email}</div>
                           ) : (
                             <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
@@ -234,7 +237,7 @@ const SatisfactionForm = ({ formType }) => {
                             onBlur={formik.handleBlur}
                             value={formik.values.phone || ""}
                           />
-                          {formik.touched.phone && formik.errors.phone ? (
+                          {formik.errors.phone ? (
                             <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
                           ) : (
                             <div className="invisible">{"pas d'erreur"}</div>
