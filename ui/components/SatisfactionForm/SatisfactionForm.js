@@ -97,7 +97,6 @@ const SatisfactionForm = ({ formType }) => {
         comment: Yup.string().nullable().required("Veuillez remplir le message"),
       })
     } else {
-      console.log('else42');
       res = Yup.object({
         comment: Yup.string().required("Veuillez remplir le commentaire"),
         email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
