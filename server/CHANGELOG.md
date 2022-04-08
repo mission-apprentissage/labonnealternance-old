@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.18.8 [08/04/2022]
+[1153] Fix mauvaises positions régions et départements
 [1152] Reliquats MEP e-mails
 [1103b] Reliquats onglets
 [1149] Superposition de blocs
