@@ -206,7 +206,7 @@ const TrainingDetail = ({ training, isCfa }) => {
       )}
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
 
-      <div className="c-detail-prdv mt-3 ml-3 mb-4 w-75">{buildPrdvButton()}</div>
+      <div className="c-detail-prdv mt-3 mb-4 w-75">{buildPrdvButton()}</div>
 
       {getLoading()}
 
