@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## 1.18.9 [08/04/2022]
+## 1.18.8 [08/04/2022]
 [1153] Fix mauvaises positions régions et départements
-
-## 1.18.8 [05/04/2022]
+[1152] Reliquats MEP e-mails
+[1103b] Reliquats onglets
+[1149] Superposition de blocs
 [1150] Désactivation Tag Commander selon la source
 [1103] Màj CSS onglets
 [1137] Màj de la page de test du widget
