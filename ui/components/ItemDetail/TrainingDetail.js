@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
-import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainingsAndSelectedItem } from "../../store/actions";
 import fetchTrainingDetails from "../../services/fetchTrainingDetails";
 import fetchPrdv from "../../services/fetchPrdv";
 import sendTrainingOpenedEventToCatalogue from "../../services/sendTrainingOpenedEventToCatalogue";
-import questionmarkIcon from "public/images/icons/questionmark2.svg";
 import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
 import sablierIcon from "public/images/icons/training-sablier.svg";
+import questionmarkIcon from "public/images/icons/training-questionmark.svg";
 import { SendTrackEvent } from "../../utils/gtm";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "../../utils/strutils";
@@ -159,39 +158,22 @@ const TrainingDetail = ({ training, isCfa }) => {
       {getTrainingDetails(training.training)}
 
       {training.onisepUrl ? (
-        <div className={"c-detail-advice mt-4 c-detail-advice--training c-detail-advice--training-cfa-" + isCfa}>
-          <div className="c-detail-advice__figure">
+        <div className="c-detail-newadvice">
+          <div>
             <img src={questionmarkIcon} alt="point d'interrogation" />
+            <span>{training.title ? training.title : training.longTitle}</span>
           </div>
-          <div className="c-detail-advice__body">
-            {isCfa ? (
-              <div className="c-detail-advice-text">
-                <p className="c-detail-advice-cfatitle">Cet établissement est un CFA d’entreprise.</p>
-                <p>La particularité ? Il s’agit d’une formule complète Emploi + Formation !</p>
-                <p>Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :</p>
-                <ul>
-                  <li>commencez par vous inscrire à la formation pour accéder ensuite au contrat,</li>
-                  <li>ou commencez par postuler à une offre d'emploi pour être ensuite inscrit en formation.</li>
-                </ul>
-                <p>Prenez contact avec cet établissement ou consultez son site web pour en savoir + !</p>
-
-                {didask}
-              </div>
-            ) : (
-              <div className="c-detail-advice-text">
-                <p>
-                  <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
-                  <span className="c-detail-traininglink">
-                    <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
-                      le site Onisep&nbsp;
-                      <img src={gotoIcon} alt="Lien" />
-                    </a>
-                  </span>
-                </p>
-
-                {didask}
-              </div>
-            )}
+          <div>
+            <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
+            <span className="c-detail-traininglink">
+              <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
+                le site Onisep&nbsp;
+                <img src={gotoIcon} alt="Lien" />
+              </a>
+            </span>
+          </div>
+          <div>
+            Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ? Préparez votre premier contact avec un CFA
           </div>
         </div>
       ) : (
@@ -289,8 +271,6 @@ const getTrainingDetails = (training) => {
       {getTrainingSessions(training)}
     </>
   );
-
-  //console.log("res : ",res);
 
   return res;
 };
