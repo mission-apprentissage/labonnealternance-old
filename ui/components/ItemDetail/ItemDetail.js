@@ -124,6 +124,23 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     );
   };
 
+  const buildPrdvButton = (training) => {
+    return training?.prdvUrl ? (
+      <div
+        className="widget-prdv gtmPrdv"
+        data-referrer="lba"
+        data-id-cle-ministere-educatif={training.cleMinistereEducatif}
+        data-id-rco-formation={training.idRcoFormation}
+      >
+        <a href={training.prdvUrl} target="_blank" rel="noopener noreferrer" className="gtmPrdv">
+          Prendre rendez-vous
+        </a>
+      </div>
+    ) : (
+      ""
+    );
+  };
+
   return (
     <>
       <section
@@ -206,6 +223,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             {kind === "matcha" ? <div className="c-detail-matcha-subtitle text-left">{selectedItem.title}</div> : ""}
 
             {kind === "formation" ?
+            <>
                 <p className="d-flex mt-4 text-left">
                   <span className="d-block">
                     <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -215,6 +233,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                     <span className="c-detail-address">&nbsp;{get(selectedItem, "place.city", "")}</span>
                   </span>
                 </p>
+                <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
+                <div className="c-detail-prdv mt-3 mb-4 w-75">{buildPrdvButton(selectedItem)}</div>
+            </>
               :
                 <p className="d-flex mt-4 text-left">
                   <span className="d-block">

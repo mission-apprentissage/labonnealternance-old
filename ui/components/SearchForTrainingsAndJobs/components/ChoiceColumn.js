@@ -236,16 +236,17 @@ const ChoiceColumn = ({
 
   return (
     <div id="choiceColumn" className={`choiceCol ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}>
-      {isLoading ? (
-        <LoadingScreen />
-      ) : (
-        <>
-          {getInitialDesktopText()}
-          {getSearchForm()}
-          {trainings.length === 0 && isJobSearchLoading ? <div></div> : getResultLists()}
-          {getSelectedItemDetail()}
-        </>
-      )}
+
+        {isLoading ? (
+          <LoadingScreen />
+        ) : (
+          <>
+            {getInitialDesktopText()}
+            {getSearchForm()}
+            {trainings.length === 0 && isJobSearchLoading ? <div></div> : getResultLists()}
+            {getSelectedItemDetail()}
+          </>
+        )}
     </div>
   );
 };
