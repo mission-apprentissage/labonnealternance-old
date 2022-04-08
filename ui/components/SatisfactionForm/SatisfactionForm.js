@@ -98,7 +98,7 @@ const SatisfactionForm = ({ formType }) => {
       })
     } else {
       res = Yup.object({
-        comment: Yup.string().nullable().required("Veuillez remplir le message"),
+        comment: Yup.string().required("Veuillez remplir le commentaire"),
         email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
         phone: Yup.string()
           .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
@@ -157,6 +157,16 @@ const SatisfactionForm = ({ formType }) => {
     return res
   }
 
+  const getErrorClassFor = (formikObj, target) => {
+    let res = "is-not-validated"
+    if (formikObj.errors[target]) {
+      res = "is-valid-false"
+    } else if (formikObj.values[target]) {
+      res = "is-valid-true"
+    }
+    return res
+  }
+
   return (
     <div className="c-formulaire-satisfaction">
       <SatisfactionFormNavigation />
@@ -166,13 +176,13 @@ const SatisfactionForm = ({ formType }) => {
             <div className="col col-lg-7 mx-auto">
               {getFeedbackText()}
               {isNonEmptyString(readIntention()) ? 
+                
                 <form onSubmit={formik.handleSubmit} className="">
+
                   <fieldset
                     data-testid="fieldset-message"
-                    className={`pt-2 c-candidature-field ${
-                      formik.touched.comment ? `is-valid-${!formik.errors.comment}` : "is-not-validated"
-                    }`}
-                  > 
+                    className={`pt-2 c-candidature-field ${getErrorClassFor(formik, "comment")}`}
+                    >
                     <textarea
                       id="comment"
                       data-testid="comment"
@@ -181,7 +191,7 @@ const SatisfactionForm = ({ formType }) => {
                       onBlur={formik.handleBlur}
                       onChange={formik.handleChange}
                       value={formik.values.comment}
-                    />
+                      />
                   </fieldset>
                   {getFieldError()}
                   
@@ -190,8 +200,7 @@ const SatisfactionForm = ({ formType }) => {
                       <div>
                         <fieldset
                           data-testid="fieldset-email"
-                          className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
-                            }`}
+                          className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${getErrorClassFor(formik, "email")}`}
                         >
                           <label htmlFor="email">E-mail *</label>
                           <input
@@ -204,7 +213,7 @@ const SatisfactionForm = ({ formType }) => {
                             onBlur={formik.handleBlur}
                             value={formik.values.email || ""}
                           />
-                          {formik.touched.email && formik.errors.email ? (
+                          {formik.errors.email ? (
                             <div className="c-candidature-erreur visible">{formik.errors.email}</div>
                           ) : (
                             <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
@@ -220,8 +229,7 @@ const SatisfactionForm = ({ formType }) => {
                       <div>
                         <fieldset
                           data-testid="fieldset-phone"
-                          className={`mt-1 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : "is-not-validated"
-                            }`}
+                          className={`mt-1 mt-md-0 c-candidature-field ${getErrorClassFor(formik, "phone")}`}
                         >
                           <label htmlFor="email">Téléphone *</label>
                           <input
@@ -234,7 +242,7 @@ const SatisfactionForm = ({ formType }) => {
                             onBlur={formik.handleBlur}
                             value={formik.values.phone || ""}
                           />
-                          {formik.touched.phone && formik.errors.phone ? (
+                          {formik.errors.phone ? (
                             <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
                           ) : (
                             <div className="invisible">{"pas d'erreur"}</div>
