@@ -2,11 +2,11 @@
 
 .c-resultlist-correspond {
   letter-spacing: 0px;
+  font-size: 18px;
   text-align: left;
 }
 
 .c-resultlist-correspond--light {
-  font-size: 14px;
   font-weight: 400;
   line-height: 19px;
   display: block;
@@ -16,7 +16,6 @@
 }
 
 .c-resultlist-correspond--bold {
-  font-size: 18px;
   font-weight: 700;
   line-height: 27px;
   display: block;
@@ -46,6 +45,7 @@
  }
 
 .c-resultlist-purplefilter {
+  margin-top: -10px;
   margin-left: auto;
   margin-right: 30px;
   cursor: pointer;

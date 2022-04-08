@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 1.18.8 [08/04/2022]
+[1153] Fix mauvaises positions régions et départements
+[1152] Reliquats MEP e-mails
+[1103b] Reliquats onglets
+[1149] Superposition de blocs
+[1150] Désactivation Tag Commander selon la source
+[1103] Màj CSS onglets
+[1137] Màj de la page de test du widget
+[1151] changement route catalogue
+
 ## 1.18.7 [31/03/2022]
 Ajout information entreprise & offre Matcha
 [1145] Fix emails à "null"

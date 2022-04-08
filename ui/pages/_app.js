@@ -19,20 +19,31 @@ class ExampleApp extends App {
     // récupération du hostname pour initialiser les fonts en preload
     const { req } = context.ctx;
     let host = "";
+    let shouldLoadAnalytics = true;
+
     if (req?.headers?.host) {
       host = req.headers.host;
       host = `${host.startsWith("localhost") ? "http" : "https"}://${host}`;
     }
-    return { host };
+
+    // identification des exceptions au chargement d'analytics
+    if (/caller=TSA/g.test(req?.url)) {
+      shouldLoadAnalytics = false;
+    }
+
+    return { host, shouldLoadAnalytics };
   }
 
   render() {
-    const { Component, pageProps, host } = this.props;
+    const { Component, pageProps, host, shouldLoadAnalytics } = this.props;
 
     return (
       <>
         <main className="c-app">
-          <HeadLaBonneAlternance publicUrl={host && process.env.publicUrl ? host : ""} />
+          <HeadLaBonneAlternance
+            shouldLoadAnalytics={shouldLoadAnalytics}
+            publicUrl={host && process.env.publicUrl ? host : ""}
+          />
           <ConnectedRouter>
             <Component {...pageProps} />
           </ConnectedRouter>
