@@ -171,7 +171,6 @@ const TrainingDetail = ({ training, isCfa }) => {
       ) : (
         ""
       )}
-      <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
 
       {getLoading()}
 
