@@ -33,6 +33,7 @@ export const AutoCompleteField = ({
   illustration,
   searchPlaceholder,
   splitItemsByTypes = null,
+  isDisabled = false,
   ...props
 }) => {
   useEffect(() => {
@@ -199,6 +200,7 @@ export const AutoCompleteField = ({
               onFocusTriggered(e);
             },
           })}
+          disabled={isDisabled}
           className={`${classesOfInsider} ${
             inputValue && inputValue.length > 20 ? "is-text-too-long" : "is-text-not-too-long"
           }`}

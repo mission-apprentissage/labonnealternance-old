@@ -66,6 +66,11 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                 onSelectedItemChangeFunction={partialRight(updateValuesFromJobAutoComplete, setDiplomas)}
                 compareItemFunction={compareAutoCompleteValues}
                 onInputValueChangeFunction={jobChanged}
+                isDisabled={
+                  widgetParameters?.parameters?.jobName &&
+                  widgetParameters?.parameters?.romes &&
+                  widgetParameters?.parameters?.frozenJob
+                }
                 name="jobField"
                 placeholder="Indiquez un métier ou diplôme"
                 searchPlaceholder="Indiquez un métier ou diplôme ci-dessus"
