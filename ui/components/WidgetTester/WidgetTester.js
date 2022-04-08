@@ -381,7 +381,7 @@ const WidgetTester = () => {
           </Col>
 
           <Col xs="12">
-            URL associés à l'attribut <strong>src</strong> de l'iframe : {getIdeaUrlWithParams()}
+            URL associée à l'attribut <strong>src</strong> de l'iframe : {getIdeaUrlWithParams()}
           </Col>
         </Row>
         <Row className="widgetList">
