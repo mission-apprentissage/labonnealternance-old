@@ -153,24 +153,6 @@ const TrainingDetail = ({ training, isCfa }) => {
 
   return (
     <>
-      {companyUrl ? (
-        <p className="mb-3 text-left">
-          <span className="c-detail-sizetext d-block">
-            <img className="mt-n1" src="/images/square_link.svg" alt="" />
-            <span className="ml-2">Voir le site </span>
-            <a
-              href={companyUrl}
-              target="_blank"
-              className="c-detail-training-link gtmTrainingLink"
-              rel="noopener noreferrer"
-            >
-              {companyUrl}
-            </a>
-          </span>
-        </p>
-      ) : (
-        ""
-      )}
 
       {getLoading()}
 
