@@ -13,7 +13,7 @@ describe("SatisfactionForm", () => {
     // Given
     render(<SatisfactionForm formType="avis" />);
     // When
-    const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
+    const submitButton = screen.queryByRole("button", { name: /envoyer-le-message/i });
 
     // Then
     const field = screen.getByTestId("fieldset-message");
@@ -25,7 +25,7 @@ describe("SatisfactionForm", () => {
   it("Shows error if comment is not filled", async () => {
     // Given
     render(<SatisfactionForm formType="avis" />);
-    const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
+    const submitButton = screen.queryByRole("button", { name: /envoyer-le-message/i });
     // When
     userEvent.click(submitButton);
 
@@ -43,7 +43,7 @@ describe("SatisfactionForm", () => {
     const commentArea = screen.getByTestId("comment");
     const phoneArea = screen.getByTestId("phone");
     const emailArea = screen.getByTestId("email");
-    const submitButton = screen.queryByRole("button", { name: /jenvoie-mon-commentaire/i });
+    const submitButton = screen.queryByRole("button", { name: /envoyer-le-message/i });
     // When
     userEvent.type(commentArea, "My comment");
     userEvent.type(phoneArea, "0202020202");

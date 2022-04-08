@@ -256,7 +256,7 @@ const SatisfactionForm = ({ formType }) => {
 
                   <div className="d-flex flex-row-reverse">
                     <button
-                      aria-label="jenvoie-mon-commentaire"
+                      aria-label="envoyer-le-message"
                       className={`btn btn-dark btn-dark-action c-satisfaction-submit mt-3`}
                       type="submit"
                     >
