@@ -93,23 +93,6 @@ const TrainingDetail = ({ training, isCfa }) => {
     });
   };
 
-  const buildPrdvButton = () => {
-    return training?.prdvUrl ? (
-      <div
-        className="widget-prdv gtmPrdv"
-        data-referrer="lba"
-        data-id-cle-ministere-educatif={training.cleMinistereEducatif}
-        data-id-rco-formation={training.idRcoFormation}
-      >
-        <a href={training.prdvUrl} target="_blank" rel="noopener noreferrer" className="gtmPrdv">
-          Prendre rendez-vous
-        </a>
-      </div>
-    ) : (
-      ""
-    );
-  };
-
   const kind = training?.ideaType;
   let contactEmail = training?.contact?.email;
   let contactPhone = training?.contact?.phone;
@@ -170,22 +153,6 @@ const TrainingDetail = ({ training, isCfa }) => {
 
   return (
     <>
-      <div className="text-left">
-        {contactPhone || (!training.prdvUrl && contactEmail) ? (
-          <div className="d-flex mb-3">
-            <>
-              <span className="d-block">
-                <img className="cardIcon" src={contactIcon} alt="" />
-              </span>
-              <span className="ml-2 d-block">
-                <span className="c-detail-address d-block">{contactInfo}</span>
-              </span>
-            </>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
       {companyUrl ? (
         <p className="mb-3 text-left">
           <span className="c-detail-sizetext d-block">
@@ -205,8 +172,6 @@ const TrainingDetail = ({ training, isCfa }) => {
         ""
       )}
       <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
-
-      <div className="c-detail-prdv mt-3 mb-4 w-75">{buildPrdvButton()}</div>
 
       {getLoading()}
 
@@ -279,7 +244,7 @@ const updateTrainingFromLbf = (training, detailsFromLbf) => {
   }
 };
 
-const getTrainingDetails = (training, loading) => {
+const getTrainingDetails = (training) => {
   if (!training) return "";
 
   let res = (
@@ -288,7 +253,7 @@ const getTrainingDetails = (training, loading) => {
         <div className="c-detail-description is-first media">
           <img src={clipboardListIcon} alt="dossier" />
           <div className="c-detail-training media-body">
-            <h3 className="c-detail-description-title mb-3 mt-0">Description</h3>
+            <h3 className="c-detail-description-title mb-3 mt-0">Description de la formation</h3>
             <span className="dont-break-out">{training.description}</span>
           </div>
         </div>
