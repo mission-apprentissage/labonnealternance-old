@@ -43,7 +43,7 @@ const SatisfactionForm = ({ formType }) => {
               Planifiez une date de rencontre avec le candidat, en lui envoyant un message personnalisé.
             </p>
             <p>
-              <small className="satisfaction-smallhint">Le candidat recevra votre commentaire ainsi que vos coordonnées directement sur sa boîte mail.</small>
+              <small className="satisfaction-smallhint">Le candidat recevra votre message ainsi que vos coordonnées directement sur sa boîte mail.</small>
             </p>
           </div>
           :
@@ -56,7 +56,7 @@ const SatisfactionForm = ({ formType }) => {
               Précisez au candidat votre intérêt pour sa candidature, en lui envoyant un message personnalisé.
             </p>
             <p>
-              <small className="satisfaction-smallhint">Le candidat recevra votre commentaire ainsi que vos coordonnées directement sur sa boîte mail.</small>
+              <small className="satisfaction-smallhint">Le candidat recevra votre message ainsi que vos coordonnées directement sur sa boîte mail.</small>
             </p>
           </div>
           :
@@ -66,10 +66,10 @@ const SatisfactionForm = ({ formType }) => {
           <div>
             <strong>Vous avez indiqué refuser la candidature de {`${firstName} ${lastName}`}.</strong>
             <p className="pt-4 pb-0 mb-0">
-              Souhaitez-vous envoyer un message ou commentaire au candidat pour préciser les raisons de votre décision ?
+              Précisez les raisons de votre refus au candidat, en lui envoyant un message personnalisé.
             </p>
             <p>
-              <small className="satisfaction-smallhint">Le candidat recevra votre commentaire directement sur sa boite mail.</small>
+              <small className="satisfaction-smallhint">Le candidat recevra votre message directement sur sa boîte mail.</small>
             </p>
           </div>
           :
@@ -94,7 +94,7 @@ const SatisfactionForm = ({ formType }) => {
     let res = Yup.object({})
     if (intention === 'refus') {
       res = Yup.object({
-        comment: Yup.string().nullable().required("Veuillez remplir le commentaire"),
+        comment: Yup.string().nullable().required("Veuillez remplir le message"),
       })
     } else {
       console.log('else42');
@@ -261,7 +261,7 @@ const SatisfactionForm = ({ formType }) => {
                       className={`btn btn-dark btn-dark-action c-satisfaction-submit mt-3`}
                       type="submit"
                     >
-                      {"j'envoie mon commentaire !"}
+                      {"Envoyer le message"}
                     </button>
                   </div>
                 </form>

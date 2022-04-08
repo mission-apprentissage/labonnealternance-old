@@ -275,7 +275,7 @@ const sendNotificationToApplicant = async ({ mailer, application, intention, ema
     case "entretien": {
       mailer.sendEmail(
         application.applicant_email,
-        `Réponse à votre candidature chez ${application.company_name}`,
+        `Réponse positive à votre candidature chez ${application.company_name}`,
         getEmailTemplate("mail-candidat-entretien"),
         { ...application._doc, ...images, email, phone, comment }
       );
