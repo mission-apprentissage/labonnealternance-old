@@ -15,7 +15,7 @@ const SatisfactionFormSuccess = () => {
       <div className="row flex-center py-5">
         <div className="col col-lg-7 mx-auto">
           <h1 className="h4 text-center">
-            <strong>Merci d'avoir pris le temps d'envoyer un commentaire au candidat. </strong> 
+            <strong>Merci d'avoir pris le temps d'envoyer un message au candidat. </strong> 
           </h1>
           {readIntention() === 'ne_sais_pas' || readIntention() === 'entretien' ?
             <>
