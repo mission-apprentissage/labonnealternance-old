@@ -1,7 +1,17 @@
 # CHANGELOG
 
-## 1.18.8 [05/04/2022]
+## 1.18.9 [13/04/2022]
 [1110] Cryptage email pour 1j1s
+
+## 1.18.8 [08/04/2022]
+[1153] Fix mauvaises positions régions et départements
+[1152] Reliquats MEP e-mails
+[1103b] Reliquats onglets
+[1149] Superposition de blocs
+[1150] Désactivation Tag Commander selon la source
+[1103] Màj CSS onglets
+[1137] Màj de la page de test du widget
+[1151] changement route catalogue
 
 ## 1.18.7 [31/03/2022]
 Ajout information entreprise & offre Matcha
@@ -9,6 +19,9 @@ Ajout information entreprise & offre Matcha
 [1102] Correction breakpoint CSS
 [1047] Nouveau bloc Home
 [1072] Maj Rencontrer le candidat
+[1075] Ecran de confirmation - vocabulaire
+[1084] Cas de refus pr le candidat
+[1142] Offres Matcha avant offres PE
 
 ## 1.18.6 [18/03/2022]
 [1136] Fix bouton retour au formulaire sur widget emploi

@@ -112,33 +112,36 @@ const ResultListsCounter = (props) => {
         )}
       </div>
 
-      <div className="c-filterbuttons">
+      <div className="c-filterzone mt-3">
         {!trainingLoading && !jobLoading && scopeContext.isJob && scopeContext.isTraining ? (
           <>
-            <FilterButton
-              type="all"
-              isActive={activeFilter === "all"}
-              handleFilterButtonClicked={filterButtonClicked}
-            />
-            <FilterButton
-              type="jobs"
-              count={jobCount}
-              isActive={activeFilter === "jobs"}
-              handleFilterButtonClicked={filterButtonClicked}
-            />
-            <FilterButton
-              type="trainings"
-              count={trainingCount}
-              isActive={activeFilter === "trainings"}
-              handleFilterButtonClicked={filterButtonClicked}
-            />
+            <div className="c-filterbuttons-hint mr-3">Que souhaitez-vous voir ?</div>
+            <div className="c-filterbuttons">
+              <FilterButton
+                type="all"
+                isActive={activeFilter === "all"}
+                handleFilterButtonClicked={filterButtonClicked}
+              />
+              <FilterButton
+                type="jobs"
+                count={jobCount}
+                isActive={activeFilter === "jobs"}
+                handleFilterButtonClicked={filterButtonClicked}
+              />
+              <FilterButton
+                type="trainings"
+                count={trainingCount}
+                isActive={activeFilter === "trainings"}
+                handleFilterButtonClicked={filterButtonClicked}
+              />
+              <div className="c-resultlist-purplefilter" onClick={showSearchForm}>
+                <img src={purpleFilterIcon} alt="Image de filtres" />
+              </div>
+            </div>
           </>
         ) : (
           ""
         )}
-        <div className="c-resultlist-purplefilter" onClick={showSearchForm}>
-          <img src={purpleFilterIcon} alt="Image de filtres" />
-        </div>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import submitCommentaire from "./services/submitCommentaire.js";
 import SatisfactionFormSuccess from "./SatisfactionFormSuccess.js";
 import SatisfactionFormNavigation from "./SatisfactionFormNavigation.js";
+import { isNonEmptyString } from "../../utils/strutils";
 
 import { getValueFromPath } from "../../utils/tools";
 import { testingParameters } from "../../utils/testingParameters";
@@ -11,18 +12,20 @@ import { useRouter } from 'next/router'
 
 let iv = null;
 let id = null;
-let avis = null;
 let intention = null;
 
 const SatisfactionForm = ({ formType }) => {
+
   const initParametersFromPath = () => {
     iv = getValueFromPath("iv");
     id = getValueFromPath("id");
-    avis = getValueFromPath("avis");
     intention = getValueFromPath("intention");
-    if (formType === "avis") {
-      setAvisState(avis);
-    }
+  };
+
+  const readIntention = () => {
+    const router = useRouter()
+    const { intention } = router?.query ? router.query : { intention: 'intention' }
+    return intention
   };
 
   const getFeedbackText = () => {
@@ -37,10 +40,10 @@ const SatisfactionForm = ({ formType }) => {
           <div>
             <strong>Vous avez indiqué accepter la candidature de {`${firstName} ${lastName}`}.</strong>
             <p className="pt-4 pb-0 mb-0">
-              Souhaitez-vous envoyer un message ou commentaire au candidat pour lui proposer une date de rencontre / d'entretien ?
+              Planifiez une date de rencontre avec le candidat, en lui envoyant un message personnalisé.
             </p>
             <p>
-              <small className="satisfaction-smallhint">Le candidat recevra votre commentaire ainsi que vos coordonnées directement sur sa boîte mail.</small>
+              <small className="satisfaction-smallhint">Le candidat recevra votre message ainsi que vos coordonnées directement sur sa boîte mail.</small>
             </p>
           </div>
           :
@@ -53,7 +56,20 @@ const SatisfactionForm = ({ formType }) => {
               Précisez au candidat votre intérêt pour sa candidature, en lui envoyant un message personnalisé.
             </p>
             <p>
-              <small className="satisfaction-smallhint">Le candidat recevra votre commentaire ainsi que vos coordonnées directement sur sa boîte mail.</small>
+              <small className="satisfaction-smallhint">Le candidat recevra votre message ainsi que vos coordonnées directement sur sa boîte mail.</small>
+            </p>
+          </div>
+          :
+          ''
+        }
+        {intention === 'refus' ?
+          <div>
+            <strong>Vous avez indiqué refuser la candidature de {`${firstName} ${lastName}`}.</strong>
+            <p className="pt-4 pb-0 mb-0">
+              Précisez les raisons de votre refus au candidat, en lui envoyant un message personnalisé.
+            </p>
+            <p>
+              <small className="satisfaction-smallhint">Le candidat recevra votre message directement sur sa boîte mail.</small>
             </p>
           </div>
           :
@@ -71,17 +87,30 @@ const SatisfactionForm = ({ formType }) => {
   }, []);
 
   const [sendingState, setSendingState] = useState("not_sent");
-  const [avisState, setAvisState] = useState("");
+
+  const getValidationSchema = () => {
+    const router = useRouter()
+    const { intention } = router?.query ? router.query : { intention: 'intention' }
+    let res = Yup.object({})
+    if (intention === 'refus') {
+      res = Yup.object({
+        comment: Yup.string().nullable().required("Veuillez remplir le message"),
+      })
+    } else {
+      res = Yup.object({
+        comment: Yup.string().required("Veuillez remplir le commentaire"),
+        email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
+        phone: Yup.string()
+          .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
+          .required("⚠ Le téléphone est obligatoire"),
+      })
+    }
+    return res;
+  }
 
   const formik = useFormik({
     initialValues: { comment: "" },
-    validationSchema: Yup.object({
-      comment: Yup.string().nullable().required("Veuillez remplir le commentaire"),
-      email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est obligatoire."),
-      phone: Yup.string()
-        .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
-        .required("⚠ Le téléphone est obligatoire"),
-    }),
+    validationSchema: getValidationSchema(intention),
     onSubmit: async (formikValues) => {
       await submitCommentaire(
         {
@@ -119,11 +148,21 @@ const SatisfactionForm = ({ formType }) => {
     const { intention} = router?.query ? router.query : { intention: 'intention' }
     let res = ''
     if (intention === 'ne_sais_pas' ) {
-      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..."
+      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..."
     } else if (intention === 'entretien') {
-      res = 'Nous acceptons votre candidature parce que...'
+      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention et nous souhaiterions échanger avec vous. Seriez-vous disponible le ..."
     } else {
-      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement.Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ..."
+      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ..."
+    }
+    return res
+  }
+
+  const getErrorClassFor = (formikObj, target) => {
+    let res = "is-not-validated"
+    if (formikObj.errors[target]) {
+      res = "is-valid-false"
+    } else if (formikObj.values[target]) {
+      res = "is-valid-true"
     }
     return res
   }
@@ -136,93 +175,98 @@ const SatisfactionForm = ({ formType }) => {
           <div className="row flex-center py-5">
             <div className="col col-lg-7 mx-auto">
               {getFeedbackText()}
-              <form onSubmit={formik.handleSubmit} className="">
-                <fieldset
-                  data-testid="fieldset-message"
-                  className={`pt-2 c-candidature-field ${
-                    formik.touched.comment ? `is-valid-${!formik.errors.comment}` : "is-not-validated"
-                  }`}
-                > 
-                  <textarea
-                    id="comment"
-                    data-testid="comment"
-                    name="comment"
-                    placeholder={`${getPlaceHolderText()}`}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.comment}
-                  />
-                </fieldset>
-                {getFieldError()}
+              {isNonEmptyString(readIntention()) ? 
+                
+                <form onSubmit={formik.handleSubmit} className="">
 
-                <div className="c-candidature-personaldata d-flex flex-column flex-md-row justify-content-between">
-                  <div>
-                    <fieldset
-                      data-testid="fieldset-email"
-                      className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${formik.touched.email ? `is-valid-${!formik.errors.email}` : "is-not-validated"
-                        }`}
+                  <fieldset
+                    data-testid="fieldset-message"
+                    className={`pt-2 c-candidature-field ${getErrorClassFor(formik, "comment")}`}
                     >
-                      <label htmlFor="email">E-mail *</label>
-                      <input
-                        id="email"
-                        className="w-100"
-                        data-testid="email"
-                        name="email"
-                        type="email"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.email || ""}
+                    <textarea
+                      id="comment"
+                      data-testid="comment"
+                      name="comment"
+                      placeholder={`${getPlaceHolderText()}`}
+                      onBlur={formik.handleBlur}
+                      onChange={formik.handleChange}
+                      value={formik.values.comment}
                       />
-                      {formik.touched.email && formik.errors.email ? (
-                        <div className="c-candidature-erreur visible">{formik.errors.email}</div>
-                      ) : (
-                        <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
-                      )}
-                      {testingParameters?.simulatedRecipient ? (
-                        <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
-                      ) : (
-                        ""
-                      )}
-                    </fieldset>
-                  </div>
+                  </fieldset>
+                  {getFieldError()}
+                  
+                  {readIntention() !== 'refus' ?
+                    <div className="c-candidature-personaldata d-flex flex-column flex-md-row justify-content-between">
+                      <div>
+                        <fieldset
+                          data-testid="fieldset-email"
+                          className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${getErrorClassFor(formik, "email")}`}
+                        >
+                          <label htmlFor="email">E-mail *</label>
+                          <input
+                            id="email"
+                            className="w-100"
+                            data-testid="email"
+                            name="email"
+                            type="email"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.email || ""}
+                          />
+                          {formik.errors.email ? (
+                            <div className="c-candidature-erreur visible">{formik.errors.email}</div>
+                          ) : (
+                            <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
+                          )}
+                          {testingParameters?.simulatedRecipient ? (
+                            <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
+                          ) : (
+                            ""
+                          )}
+                        </fieldset>
+                      </div>
 
-                  <div>
-                    <fieldset
-                      data-testid="fieldset-phone"
-                      className={`mt-1 mt-md-0 c-candidature-field ${formik.touched.phone ? `is-valid-${!formik.errors.phone}` : "is-not-validated"
-                        }`}
+                      <div>
+                        <fieldset
+                          data-testid="fieldset-phone"
+                          className={`mt-1 mt-md-0 c-candidature-field ${getErrorClassFor(formik, "phone")}`}
+                        >
+                          <label htmlFor="email">Téléphone *</label>
+                          <input
+                            id="phone"
+                            className="w-100"
+                            data-testid="phone"
+                            name="phone"
+                            type="text"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.phone || ""}
+                          />
+                          {formik.errors.phone ? (
+                            <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
+                          ) : (
+                            <div className="invisible">{"pas d'erreur"}</div>
+                          )}
+                        </fieldset>
+                      </div>
+                    </div>
+                  :
+                    ''
+                  }
+
+                  <div className="d-flex flex-row-reverse">
+                    <button
+                      aria-label="envoyer-le-message"
+                      className={`btn btn-dark btn-dark-action c-satisfaction-submit mt-3`}
+                      type="submit"
                     >
-                      <label htmlFor="email">Téléphone *</label>
-                      <input
-                        id="phone"
-                        className="w-100"
-                        data-testid="phone"
-                        name="phone"
-                        type="text"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.phone || ""}
-                      />
-                      {formik.touched.phone && formik.errors.phone ? (
-                        <div className="c-candidature-erreur visible">{formik.errors.phone}</div>
-                      ) : (
-                        <div className="invisible">{"pas d'erreur"}</div>
-                      )}
-                    </fieldset>
+                      {"Envoyer le message"}
+                    </button>
                   </div>
-                </div>
-
-
-                <div className="d-flex flex-row-reverse">
-                  <button
-                    aria-label="jenvoie-mon-commentaire"
-                    className={`btn btn-dark btn-dark-action c-satisfaction-submit mt-3`}
-                    type="submit"
-                  >
-                    {"j'envoie mon commentaire !"}
-                  </button>
-                </div>
-              </form>
+                </form>
+                :
+                ''
+              }
             </div>
           </div>
         </div>

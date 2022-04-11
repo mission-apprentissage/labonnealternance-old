@@ -13,7 +13,7 @@ import howtocircle3 from "public/images/howtocircle3.svg";
 import howtocircle4 from "public/images/howtocircle4.svg";
 import howtocircle5 from "public/images/howtocircle5.svg";
 import axios from "axios";
-import csvToArray from "utils/csvToArray.js"
+import csvToArray from "utils/csvToArray.js";
 import { some } from "lodash";
 
 const Home = (props) => {
@@ -50,7 +50,7 @@ const Home = (props) => {
 export async function getStaticProps() {
   // Call an external API endpoint to get reviews.
   // You can use any data fetching library
-  const reviews = await getAllReviews()
+  const reviews = await getAllReviews();
 
   // By returning { props: { reviews } }, the Blog component
   // will receive `reviews` as a prop at build time
@@ -58,12 +58,14 @@ export async function getStaticProps() {
     props: {
       reviews,
     },
-  }
+  };
 }
 
 async function getAllReviews() {
-  const response = await axios.get('https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets/ui/config/review.csv');
-  const csv = csvToArray(response.data)
+  const response = await axios.get(
+    "https://raw.githubusercontent.com/mission-apprentissage/labonnealternance/datasets/ui/config/review.csv"
+  );
+  const csv = csvToArray(response.data);
 
   /*
     [
@@ -91,21 +93,19 @@ async function getAllReviews() {
   const cleanedCsv = csv
     // the filter will clear the object with falsy-only values
     .filter((e) => {
-      return some(e, (k) => !!k)
+      return some(e, (k) => !!k);
     })
     // the map will clear the property ''
     .map((e) => {
-      delete e['']
+      delete e[""];
       // trim all values
-      Object.keys(e).forEach(k => e[k] = e[k].trim());
-      return e
-    })
+      Object.keys(e).forEach((k) => (e[k] = e[k].trim()));
+      return e;
+    });
 
-  let result = cleanedCsv[0] || {}
+  let result = cleanedCsv[0] || {};
 
-  return result;
+  return {} /*result*/;
 }
-
-
 
 export default Home;
