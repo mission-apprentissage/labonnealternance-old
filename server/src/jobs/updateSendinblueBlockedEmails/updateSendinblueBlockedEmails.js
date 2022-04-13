@@ -7,10 +7,7 @@ const { EmailBlacklist, BonnesBoites } = require("../../common/model/");
 const SibApiV3Sdk = require("sib-api-v3-sdk");
 
 const saveBlacklistEmails = async (contacts) => {
-  //console.log("saving contacts : ", contacts.length);
   for (let i = 0; i < contacts.length; ++i) {
-    //console.log(contacts[i].email);
-
     let email = contacts[i].email;
     let blackListedEmail = await EmailBlacklist.findOne({ email });
     if (!blackListedEmail) {
@@ -22,8 +19,7 @@ const saveBlacklistEmails = async (contacts) => {
         source: "sendinblue",
       });
       await blackListedEmail.save();
-    } else {
-      console.log("trouvé ! ", blackListedEmail);
+      blacklistedAddressCount++;
     }
   }
 };
@@ -39,12 +35,11 @@ const cleanCompanies = async (companies) => {
 const cleanCompany = async (company) => {
   company.email = "";
   await company.save();
+  modifiedCompanyCount++;
 };
 
 const updateBlockedEmails = async ({ query }) => {
   logMessage("info", `Début mise à jour blacklist sendinblue`);
-
-  console.log("query : ", query);
 
   let defaultClient = SibApiV3Sdk.ApiClient.instance;
   let apiKey = defaultClient.authentications["api-key"];
@@ -71,8 +66,6 @@ const updateBlockedEmails = async ({ query }) => {
     senders,
   };
 
-  console.log("avant  ", opts);
-
   let result = await apiInstance.getTransacBlockedContacts(opts);
 
   total = result.count;
@@ -87,26 +80,17 @@ const updateBlockedEmails = async ({ query }) => {
     offset += limit;
     result = await apiInstance.getTransacBlockedContacts({ ...opts, offset });
   }
-
-  console.log("après  ", offset, total, opts);
-  /*.then(
-  function (data) {
-    //console.log("API called successfully. Returned data: ", data);
-    console.log(data.count);
-    console.log(data.contacts.length);
-    console.log(data.contacts[5].email);
-  },
-  function (error) {
-    console.error(error);
-  }
-);*/
 };
 
 let running = false;
+let blacklistedAddressCount = 0;
+let modifiedCompanyCount = 0;
 
 module.exports = async ({ query }) => {
   if (!running) {
     running = true;
+    blacklistedAddressCount = 0;
+    modifiedCompanyCount = 0;
 
     try {
       logMessage("info", " -- Import blocked email addresses -- ");
@@ -116,8 +100,12 @@ module.exports = async ({ query }) => {
       logMessage("info", `Fin traitement`);
 
       running = false;
+      blacklistedAddressCount = 0;
+      modifiedCompanyCount = 0;
 
-      //notifyToSlack(`Mise à jour des adresses emails bloquées terminée`);
+      notifyToSlack(
+        `Mise à jour des adresses emails bloquées terminée. ${blacklistedAddressCount} adresse(s) bloquée(s). ${modifiedCompanyCount} société(s) impactée(s).`
+      );
 
       return {
         result: "Mise à jour des adresses emails bloquées terminée",
