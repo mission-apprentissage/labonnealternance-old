@@ -5,6 +5,7 @@ const { ObjectId } = require("mongodb");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
 const { encryptIdWithIV, decryptWithIV } = require("../common/utils/encryptString");
 const { Application, EmailBlacklist, BonnesBoites } = require("../common/model");
+const updateSendinblueBlockedEmails = require("../jobs/updateSendinblueBlockedEmails/updateSendinblueBlockedEmails");
 const {
   validateSendApplication,
   validateCompanyEmail,
@@ -443,6 +444,16 @@ const getEmailTemplate = (type = "mail-candidat") => {
   return path.join(__dirname, `../assets/templates/${type}.mjml.ejs`);
 };
 
+const updateBlockedEmails = async ({ query, shouldCheckSecret }) => {
+  if (shouldCheckSecret && !query.secret) {
+    logger.error("Debugging sendinblue webhook : secret missing");
+  } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
+    logger.error("Debugging sendinblue webhook : wrong secret");
+  } else {
+    await updateSendinblueBlockedEmails({ query });
+  }
+};
+
 module.exports = {
   getApplications,
   sendTestMail,
@@ -452,4 +463,5 @@ module.exports = {
   saveApplicationIntentionComment,
   updateApplicationStatus,
   debugUpdateApplicationStatus,
+  updateBlockedEmails,
 };
