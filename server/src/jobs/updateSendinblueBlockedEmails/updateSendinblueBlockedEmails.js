@@ -72,7 +72,7 @@ const updateBlockedEmails = async ({ query }) => {
 
   total = result.count;
 
-  if (!total) {
+  if (!Number.isFinite(total)) {
     return;
   }
 
