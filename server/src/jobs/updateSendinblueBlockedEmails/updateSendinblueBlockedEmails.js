@@ -47,10 +47,12 @@ const updateBlockedEmails = async ({ query }) => {
 
   let apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
-  const today = new Date();
-  const todayStr = `${today.getFullYear()}-${today.getMonth() < 9 ? "0" : ""}${today.getMonth() + 1}-${
-    today.getDate() < 10 ? "0" : ""
-  }${today.getDate()}`;
+  let yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  const todayStr = `${yesterday.getFullYear()}-${yesterday.getMonth() < 9 ? "0" : ""}${yesterday.getMonth() + 1}-${
+    yesterday.getDate() < 10 ? "0" : ""
+  }${yesterday.getDate()}`;
   const limit = 100;
   const senders = ["no-reply@apprentissage.beta.gouv.fr"];
   let total = 0;
