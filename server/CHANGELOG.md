@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.9 [14/04/2022]
+[1008] Blacklister les emails bloqués sur sendinblue
+
 ## 1.18.8 [08/04/2022]
 [1153] Fix mauvaises positions régions et départements
 [1152] Reliquats MEP e-mails
