@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## 1.18.9 [13/04/2022]
+## 1.18.9 [14/04/2022]
+[1008] Blacklister les emails bloqués sur sendinblue
 [1110] Cryptage email pour 1j1s
 
 ## 1.18.8 [08/04/2022]
