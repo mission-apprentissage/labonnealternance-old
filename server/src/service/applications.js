@@ -445,7 +445,7 @@ const getEmailTemplate = (type = "mail-candidat") => {
 };
 
 const updateBlockedEmails = async ({ query, shouldCheckSecret }) => {
-  if (shouldCheckSecret && !query.secret) {
+  if (shouldCheckSecret && (!query || !query.secret)) {
     logger.error("Debugging sendinblue webhook : secret missing");
   } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
     logger.error("Debugging sendinblue webhook : wrong secret");
