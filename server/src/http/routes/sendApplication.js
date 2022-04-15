@@ -9,6 +9,7 @@ const {
   saveApplicationIntentionComment,
   updateApplicationStatus,
   debugUpdateApplicationStatus,
+  updateBlockedEmails,
 } = require("../../service/applications");
 const rateLimit = require("express-rate-limit");
 const apiKeyAuthMiddleware = require("../middlewares/apiKeyAuthMiddleware");
@@ -129,6 +130,14 @@ module.exports = (components) => {
     "/webhook",
     tryCatch(async (req, res) => {
       debugUpdateApplicationStatus({ shouldCheckSecret: true, query: req.query, ...components });
+      return res.json({ result: "ok" });
+    })
+  );
+
+  router.get(
+    "/updateBlockedEmails",
+    tryCatch(async (req, res) => {
+      updateBlockedEmails({ shouldCheckSecret: true, query: req.query, ...components });
       return res.json({ result: "ok" });
     })
   );
