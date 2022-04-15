@@ -2,7 +2,13 @@ import _ from "lodash";
 
 const isNonEmptyString = (val) => _.isString(val) && val.trim().length > 0;
 
-const capitalizeFirstLetter = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const capitalizeFirstLetter = (s) => {
+  let res = ''
+  if (isNonEmptyString(s)) {
+    res = s.charAt(0).toUpperCase() + s.slice(1)
+  }
+  return res
+};
 
 // See https://stackoverflow.com/a/4009771/2595513
 const countInstances = (string, word) => {

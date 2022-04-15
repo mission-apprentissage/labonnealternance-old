@@ -1,3 +1,5 @@
+import { capitalizeFirstLetter } from "../../utils/strutils";
+import { getPathLink } from "../../utils/tools";
 
 const LocationDetail = ({ item }) => {
 
@@ -16,10 +18,26 @@ const LocationDetail = ({ item }) => {
         <div className="c-locationdetail-distance">
           2km du lieu de recherche
         </div>
-        <div>
-          Obtenir l'itinéraire
+        <div className="c-locationdetail-itinerary">
+          <span className="d-block mt-2">
+            <span>
+              <img className="cardIcon mr-2" src="/images/icons/small_map_point.svg" alt="point de localisation" />
+            </span>
+            <span className="c-detail-sizetext">
+              <a
+                href={getPathLink(item)}
+                target="_blank"
+                className={`c-detail-googledir-link gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
+                rel="noopener noreferrer"
+              >
+                <span>
+                  Obtenir l'itinéraire <img className="mt-n1" src="/images/square_link.svg" alt="lien" />
+                </span>
+              </a>
+            </span>
+          </span>
         </div>
-        <div>
+        <div className="c-locationdetail-knowmore">
           En savoir plus
         </div>
       </div>
