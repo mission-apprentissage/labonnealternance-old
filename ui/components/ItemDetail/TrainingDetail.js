@@ -90,51 +90,6 @@ const TrainingDetail = ({ training, isCfa }) => {
     });
   };
 
-  const kind = training?.ideaType;
-  let contactEmail = training?.contact?.email;
-  let contactPhone = training?.contact?.phone;
-  let companyUrl = training?.company?.url;
-
-  let didask = (
-    <p>
-      Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ?
-      <span className="c-detail-traininglink ml-1">
-        <a
-          href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="gtmDidaskFormation"
-        >
-          Préparez votre premier contact avec un CFA !&nbsp;
-          <img src={gotoIcon} alt="Lien" />
-        </a>
-      </span>
-    </p>
-  );
-
-  let contactInfo = (
-    <>
-      {!training.prdvUrl && contactEmail ? (
-        <p className="c-detail-km c-detail-contactlink">
-          <a href={`mailto:${contactEmail}`} className="ml-1">
-            {contactEmail}
-          </a>
-        </p>
-      ) : (
-        ""
-      )}
-      {contactPhone ? (
-        <p className="c-detail-km c-detail-contactlink">
-          <a href={`tel:${contactPhone}`} className="ml-1">
-            {contactPhone}
-          </a>
-        </p>
-      ) : (
-        ""
-      )}
-    </>
-  );
-
   const getLoading = () => {
     return loading ? (
       <span className="trainingColor">
@@ -150,11 +105,8 @@ const TrainingDetail = ({ training, isCfa }) => {
 
   return (
     <>
-
       {getLoading()}
-
       {getTrainingDetails(training.training)}
-
       {training.onisepUrl ? (
         <div className="c-detail-newadvice mt-4 mb-5 pl-4">
           <div className="pt-1 pb-2">
@@ -177,7 +129,6 @@ const TrainingDetail = ({ training, isCfa }) => {
       ) : (
         ""
       )}
-
     </>
   );
 };
