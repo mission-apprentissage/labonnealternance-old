@@ -45,7 +45,7 @@ const LocationDetail = ({ item }) => {
           </span>
         </div>
 
-        {item?.company?.id ? (
+        {item?.company?.url ? (
           <>
             <div className="c-locationdetail-knowmore mb-2">
               <span>
@@ -54,12 +54,12 @@ const LocationDetail = ({ item }) => {
               <span className="c-detail-sizetext">
                   <span className="">En savoir plus sur &nbsp;</span>
                   <a
-                    href={item.company.id}
+                    href={item.company.url}
                     target="_blank"
                     className="c-detail-training-link gtmTrainingLink"
                     rel="noopener noreferrer"
                   >
-                    {item.company.id}
+                    {item.company.url}
                   </a>
               </span>
             </div>
