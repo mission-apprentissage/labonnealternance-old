@@ -6,6 +6,7 @@ const LocationDetail = ({ item }) => {
 
   const kind = item?.ideaType;
   const title = kind === "formation" ? "Quelques informations sur le centre de formation" : "Quelques informations sur l'établissement"
+  let phone = item?.contact?.phone;
 
   return (
     <>
@@ -28,22 +29,33 @@ const LocationDetail = ({ item }) => {
         )}
 
         <div className="c-locationdetail-itinerary">
-          <span className="d-block mt-2">
-            <span>
-              <img className="cardIcon mr-2" src="/images/icons/small_map_point.svg" alt="point de localisation" />
-            </span>
-            <span className="c-detail-sizetext">
-              <a
-                href={getPathLink(item)}
-                target="_blank"
-                className={`c-detail-googledir-link gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
-                rel="noopener noreferrer"
-              >
-                <span>
-                  Obtenir l'itinéraire <img className="mt-n1" src="/images/square_link.svg" alt="lien" />
-                </span>
-              </a>
-            </span>
+          <span>
+            <img className="cardIcon mr-3" src="/images/icons/small_map_point.svg" alt="point de localisation" />
+          </span>
+          <span className="c-detail-sizetext">
+            <a
+              href={getPathLink(item)}
+              target="_blank"
+              className={`c-detail-googledir-link gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
+              rel="noopener noreferrer"
+            >
+              <span>
+                Obtenir l'itinéraire <img className="mt-n1" src="/images/square_link.svg" alt="lien" />
+              </span>
+            </a>
+          </span>
+        </div>
+
+        <div className="c-locationdetail-email">
+          email...
+        </div>
+
+        <div className="c-locationdetail-phone">
+          <span>
+            <img className="mr-3 pl-1" src="/images/icons/small_phone.svg" alt="téléphone" />
+          </span>
+          <span className="c-detail-sizetext">
+            {phone}
           </span>
         </div>
 
