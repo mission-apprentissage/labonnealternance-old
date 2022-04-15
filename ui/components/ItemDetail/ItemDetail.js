@@ -234,8 +234,15 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                     <span className="c-detail-address">&nbsp;{get(selectedItem, "place.city", "")}</span>
                   </span>
                 </p>
-                <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
-                <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
+                {
+                  selectedItem?.prdvUrl ? 
+                    <>
+                      <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
+                      <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
+                    </>
+                    :
+                    <div>&nbsp;</div>
+                }
             </>
               :
                 <p className="d-flex mt-4 text-left">
