@@ -22,7 +22,7 @@ const LocationDetail = ({ item }) => {
 
         {item?.place?.distance ? (
           <div className="c-locationdetail-distance">
-            {`${round(item?.place?.distance, 1)} km(s) du lieu de recherche`} 
+            {`${round(item.place.distance, 1)} km(s) du lieu de recherche`} 
           </div>
         ) : (
           ""
@@ -46,18 +46,33 @@ const LocationDetail = ({ item }) => {
           </span>
         </div>
 
-        <div className="c-locationdetail-email">
-          email...
-        </div>
+        {item?.contact?.email ? (
+          <div className="c-locationdetail-email">
+            <span>
+              <img className="mr-3 pl-1" src="/images/icons/small_email.svg" alt="email" />
+            </span>
+            <span className="c-detail-sizetext">
+              {item.contact.email}
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
 
-        <div className="c-locationdetail-phone">
-          <span>
-            <img className="mr-3 pl-1" src="/images/icons/small_phone.svg" alt="téléphone" />
-          </span>
-          <span className="c-detail-sizetext">
-            {phone}
-          </span>
-        </div>
+        {item?.contact?.phone ? (
+          <div className="c-locationdetail-phone">
+            <span>
+              <img className="mr-3 pl-1" src="/images/icons/small_phone.svg" alt="téléphone" />
+            </span>
+            <span className="c-detail-sizetext">
+              {item.contact.phone}
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
+
+
 
         <div className="c-locationdetail-knowmore">
           En savoir plus
