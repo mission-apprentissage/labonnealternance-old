@@ -21,6 +21,7 @@ import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
 import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
+import LocationDetail from "./LocationDetail";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   console.log('selectedItem', selectedItem);
@@ -275,7 +276,10 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             ""
           )}
           {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
+
+
         </div>
+        <LocationDetail item={selectedItem}></LocationDetail>
       </section>
     </>
   );
