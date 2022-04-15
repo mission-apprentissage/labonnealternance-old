@@ -15,7 +15,7 @@ const LocationDetail = ({ item }) => {
           {title}
         </div>
 
-        <div className="c-locationdetail-address">
+        <div className="c-locationdetail-address mt-3">
           {item?.place?.fullAddress}
         </div>
 
@@ -27,7 +27,7 @@ const LocationDetail = ({ item }) => {
           ""
         )}
 
-        <div className="c-locationdetail-itinerary">
+        <div className="c-locationdetail-itinerary mt-3 mb-2">
           <span>
             <img className="cardIcon mr-3" src="/images/icons/small_map_point.svg" alt="point de localisation" />
           </span>
@@ -45,8 +45,31 @@ const LocationDetail = ({ item }) => {
           </span>
         </div>
 
+        {item?.company?.id ? (
+          <>
+            <div className="c-locationdetail-knowmore mb-2">
+              <span>
+                <img className="mr-3 pl-1" src="/images/icons/small_info.svg" alt="point info" />
+              </span>
+              <span className="c-detail-sizetext">
+                  <span className="">En savoir plus sur &nbsp;</span>
+                  <a
+                    href={item.company.id}
+                    target="_blank"
+                    className="c-detail-training-link gtmTrainingLink"
+                    rel="noopener noreferrer"
+                  >
+                    {item.company.id}
+                  </a>
+              </span>
+            </div>
+          </>
+        ) : (
+          ""
+        )}
+
         {item?.contact?.email ? (
-          <div className="c-locationdetail-email">
+          <div className="c-locationdetail-email mb-2">
             <span>
               <img className="mr-3 pl-1" src="/images/icons/small_email.svg" alt="email" />
             </span>
@@ -59,7 +82,7 @@ const LocationDetail = ({ item }) => {
         )}
 
         {item?.contact?.phone ? (
-          <div className="c-locationdetail-phone">
+          <div className="c-locationdetail-phone mb-2">
             <span>
               <img className="mr-3 pl-1" src="/images/icons/small_phone.svg" alt="téléphone" />
             </span>
@@ -71,24 +94,6 @@ const LocationDetail = ({ item }) => {
           ""
         )}
 
-        {item?.company?.id ? (
-          <div className="c-locationdetail-knowmore">
-            <span className="c-detail-sizetext d-block">
-              <img className="mt-n1" src="/images/square_link.svg" alt="lien" />
-              <span className="ml-2">En savoir plus sur</span>
-              <a
-                href={item.company.id}
-                target="_blank"
-                className="c-detail-training-link gtmTrainingLink"
-                rel="noopener noreferrer"
-              >
-                {item.company.id}
-              </a>
-            </span>
-          </div>
-        ) : (
-          ""
-        )}
 
       </div>
     </>
