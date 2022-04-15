@@ -68,7 +68,7 @@ const LocationDetail = ({ item }) => {
           ""
         )}
 
-        {item?.contact?.email ? (
+        {item?.contact?.email && !item?.prdvUrl ? (
           <div className="c-locationdetail-email mb-2">
             <span>
               <img className="mr-3 pl-1" src="/images/icons/small_email.svg" alt="email" />
