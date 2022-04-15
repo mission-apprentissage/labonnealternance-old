@@ -180,13 +180,6 @@ const TrainingDetail = ({ training, isCfa }) => {
         ""
       )}
 
-      {training?.prdvUrl ? (
-        ""
-      ) : (
-        <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, training)} key={getGoingtoId(kind, training)} />
-      )}
-
-      <br />
     </>
   );
 };
