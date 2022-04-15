@@ -101,13 +101,11 @@ module.exports = async ({ query }) => {
 
       logMessage("info", `Fin traitement`);
 
-      running = false;
-      blacklistedAddressCount = 0;
-      modifiedCompanyCount = 0;
-
       notifyToSlack(
         `Mise à jour des adresses emails bloquées terminée. ${blacklistedAddressCount} adresse(s) bloquée(s). ${modifiedCompanyCount} société(s) impactée(s).`
       );
+
+      running = false;
 
       return {
         result: "Mise à jour des adresses emails bloquées terminée",
