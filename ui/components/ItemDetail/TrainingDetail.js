@@ -14,8 +14,6 @@ import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "../../utils/strutils";
 import { Spinner } from "reactstrap";
 
-import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
-
 const TrainingDetail = ({ training, isCfa }) => {
   const dispatch = useDispatch();
 
@@ -158,7 +156,7 @@ const TrainingDetail = ({ training, isCfa }) => {
       {getTrainingDetails(training.training)}
 
       {training.onisepUrl ? (
-        <div className="c-detail-newadvice mt-3 mb-5 pl-4">
+        <div className="c-detail-newadvice mt-4 mb-5 pl-4">
           <div className="pt-1 pb-2">
             <img src={questionmarkIcon} alt="point d'interrogation" />
             <span className="c-detail-newadvice-title ml-3">{training.title ? training.title : training.longTitle}</span>
