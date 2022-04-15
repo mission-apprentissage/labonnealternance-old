@@ -158,10 +158,10 @@ const TrainingDetail = ({ training, isCfa }) => {
       {getTrainingDetails(training.training)}
 
       {training.onisepUrl ? (
-        <div className="c-detail-newadvice">
-          <div>
+        <div className="c-detail-newadvice mt-3 mb-5 pl-4">
+          <div className="pt-1 pb-2">
             <img src={questionmarkIcon} alt="point d'interrogation" />
-            <span>{training.title ? training.title : training.longTitle}</span>
+            <span className="c-detail-newadvice-title ml-3">{training.title ? training.title : training.longTitle}</span>
           </div>
           <div>
             <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
@@ -172,7 +172,7 @@ const TrainingDetail = ({ training, isCfa }) => {
               </a>
             </span>
           </div>
-          <div>
+          <div className="mt-2 mb-2">
             Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ? Préparez votre premier contact avec un CFA
           </div>
         </div>
