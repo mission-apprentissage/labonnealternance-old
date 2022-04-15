@@ -6,7 +6,6 @@ const LocationDetail = ({ item }) => {
 
   const kind = item?.ideaType;
   const title = kind === "formation" ? "Quelques informations sur le centre de formation" : "Quelques informations sur l'établissement"
-  let phone = item?.contact?.phone;
 
   return (
     <>
@@ -72,11 +71,24 @@ const LocationDetail = ({ item }) => {
           ""
         )}
 
-
-
-        <div className="c-locationdetail-knowmore">
-          En savoir plus
-        </div>
+        {item?.company?.id ? (
+          <div className="c-locationdetail-knowmore">
+            <span className="c-detail-sizetext d-block">
+              <img className="mt-n1" src="/images/square_link.svg" alt="lien" />
+              <span className="ml-2">En savoir plus sur</span>
+              <a
+                href={item.company.id}
+                target="_blank"
+                className="c-detail-training-link gtmTrainingLink"
+                rel="noopener noreferrer"
+              >
+                {item.company.id}
+              </a>
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
 
       </div>
     </>
