@@ -1,10 +1,15 @@
-// fusionne les offres pe et matcha et les trie par ordre croissant de distance
+// retourne les offres matcha triées par ordre croissant de distance au centre de recherche suivi des offres
+// pe triées par ordre croissant de distance au centre de recherche.
 export const mergeJobs = (jobs) => {
   let mergedArray = [];
 
   if (jobs) {
-    mergedArray = concatSources([jobs.matchas, jobs.peJobs]);
-    mergedArray = sortMergedSources(mergedArray);
+    if (jobs.matchas && jobs.matchas.length) {
+      mergedArray = mergedArray.concat(sortMergedSources(jobs.matchas));
+    }
+    if (jobs.peJobs && jobs.peJobs.length) {
+      mergedArray = mergedArray.concat(sortMergedSources(jobs.peJobs));
+    }
   }
 
   return mergedArray;
@@ -59,7 +64,7 @@ const sortMergedSources = (mergedArray) => {
   return mergedArray;
 };
 
-// détermine si l'offre pe est liée au département avec une géoloc non précisée 
+// détermine si l'offre pe est liée au département avec une géoloc non précisée
 export const isDepartmentJob = (job) => {
   let isDepartmentJob = false;
   if (
