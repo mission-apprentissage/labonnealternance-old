@@ -57,6 +57,11 @@ const HeadLaBonneAlternance = (props) => {
       ) : (
         ""
       )}
+      <script
+        defer
+        data-domain="labonnealternance-recette.apprentissage.beta.gouv.fr"
+        src="https://plausible.io/js/plausible.js"
+      ></script>
     </Head>
   );
 };
