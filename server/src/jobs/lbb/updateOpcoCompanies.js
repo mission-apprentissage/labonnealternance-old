@@ -36,11 +36,34 @@ const parseOpco = (line) => {
   };
 };
 
+const fetchOpcoFile = async () => {
+  // suppression fichier temporaire
+  /*
+    Le fichier est disponible via notre API référentiel.
+
+    Le swagger : https://api.akto.fr/referentiel/swagger/index.html
+    Le endpoint pour récupérer le csv : /dump/adherents
+    
+
+    L’accès est sécurisé via une authentification AAD :
+
+    Client Id : c6a6b396-82b9-4ab1-acc0-21b1c0ad8ae3
+    Secret Id :
+    Tenant Id : 0285c9cb-dd17-4c1e-9621-c83e9204ad68
+    Scope : api://ef286853-e767-4dd1-8de3-67116195eaad/.default
+  */
+  // récupération autorisation d'accès
+  // fetch du fichier https://api.akto.fr/referentiel/api/v1/Dump/Adherents
+  // enregistrement du fichier
+};
+
 module.exports = async () => {
   if (!running) {
     running = true;
     try {
       logMessage("info", " -- Start inserting opco sirens -- ");
+
+      await fetchOpcoFile();
 
       await Opco.deleteMany({});
 
