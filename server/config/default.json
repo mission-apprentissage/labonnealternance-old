@@ -47,6 +47,7 @@
     "serverSentryDsn": "https://61156c2d46b54369b777900d475ee0f9@o154210.ingest.sentry.io/5562203",
     "secretUpdateRomesMetiers": "1234",
     "secret1j1s": "5678",
+    "secretAkto": "1234",
     "jobSlackWebhook": "https://hooks.slack.com/services",
     "allowedSources": "allowed",
     "lbb": 
