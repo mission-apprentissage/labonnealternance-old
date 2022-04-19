@@ -1,10 +1,18 @@
 const fs = require("fs");
+const config = require("config");
+const axios = require("axios");
 const path = require("path");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const { Opco } = require("../../common/model");
 const _ = require("lodash");
 const { logMessage } = require("../../common/utils/logMessage");
 const opcoAktoSirenFilePath = path.join(__dirname, "./assets/20220301-Akto_SIREN.csv");
+
+const aadTokenUrl = "https://login.microsoftonline.com/0285c9cb-dd17-4c1e-9621-c83e9204ad68/oauth2/v2.0/token";
+const grantType = "client_credentials";
+const clientId = "c6a6b396-82b9-4ab1-acc0-21b1c0ad8ae3";
+const scope = "api://ef286853-e767-4dd1-8de3-67116195eaad/.default";
+const clientSecret = config.private.secretAkto;
 
 let i = 0;
 let running = false;
@@ -36,24 +44,33 @@ const parseOpco = (line) => {
   };
 };
 
+const getAADToken = async () => {
+  const params = new URLSearchParams();
+  params.append("grant_type", grantType);
+  params.append("client_id", clientId);
+  params.append("client_secret", clientSecret);
+  params.append("scope", scope);
+
+  const config = {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  };
+
+  let res = await axios.post(aadTokenUrl, params, config);
+
+  console.log(res.data.access_token);
+
+  return res.data.access_token;
+};
+
 const fetchOpcoFile = async () => {
+  const token = await getAADToken();
+
+  const headers = { Authorization: `Bearer ${token}` };
+
+  /*const res = */ await axios.get("https://api.akto.fr/referentiel/api/v1/Dump/Adherents", { headers });
   // suppression fichier temporaire
-  /*
-    Le fichier est disponible via notre API référentiel.
-
-    Le swagger : https://api.akto.fr/referentiel/swagger/index.html
-    Le endpoint pour récupérer le csv : /dump/adherents
-    
-
-    L’accès est sécurisé via une authentification AAD :
-
-    Client Id : c6a6b396-82b9-4ab1-acc0-21b1c0ad8ae3
-    Secret Id :
-    Tenant Id : 0285c9cb-dd17-4c1e-9621-c83e9204ad68
-    Scope : api://ef286853-e767-4dd1-8de3-67116195eaad/.default
-  */
-  // récupération autorisation d'accès
-  // fetch du fichier https://api.akto.fr/referentiel/api/v1/Dump/Adherents
   // enregistrement du fichier
 };
 
