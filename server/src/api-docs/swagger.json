@@ -496,7 +496,7 @@
             "in": "query",
             "required": false,
             "type": "string",
-            "description": "Un filtre sur les sociétés affectées à un opérateur de compétence. Valeurs acceptées : akto",
+            "description": "Un filtre sur les sociétés affectées à un opérateur de compétences. Valeurs acceptées : akto",
             "example": "akto"
         },
 
