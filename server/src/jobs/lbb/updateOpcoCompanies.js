@@ -64,8 +64,6 @@ const getAADToken = async () => {
 
   let res = await axios.post(aadTokenUrl, params, config);
 
-  console.log(res.data.access_token);
-
   return res.data.access_token;
 };
 
