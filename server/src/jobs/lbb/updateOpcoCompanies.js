@@ -1,4 +1,5 @@
 const fs = require("fs");
+const fetch = require("node-fetch");
 const config = require("config");
 const axios = require("axios");
 const path = require("path");
@@ -6,13 +7,17 @@ const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc")
 const { Opco } = require("../../common/model");
 const _ = require("lodash");
 const { logMessage } = require("../../common/utils/logMessage");
-const opcoAktoSirenFilePath = path.join(__dirname, "./assets/20220301-Akto_SIREN.csv");
+//const opcoAktoSirenFilePath = path.join(__dirname, "./assets/20220301-Akto_SIREN.csv");
+const { notifyToSlack } = require("../../common/utils/slackUtils");
+
+const opcoSirenFile = path.join(__dirname, "./assets/opco_sirens.csv");
 
 const aadTokenUrl = "https://login.microsoftonline.com/0285c9cb-dd17-4c1e-9621-c83e9204ad68/oauth2/v2.0/token";
 const grantType = "client_credentials";
 const clientId = "c6a6b396-82b9-4ab1-acc0-21b1c0ad8ae3";
 const scope = "api://ef286853-e767-4dd1-8de3-67116195eaad/.default";
 const clientSecret = config.private.secretAkto;
+const opcoDumpUrl = "https://api.akto.fr/referentiel/api/v1/Dump/Adherents";
 
 let i = 0;
 let running = false;
@@ -69,9 +74,25 @@ const fetchOpcoFile = async () => {
 
   const headers = { Authorization: `Bearer ${token}` };
 
-  /*const res = */ await axios.get("https://api.akto.fr/referentiel/api/v1/Dump/Adherents", { headers });
-  // suppression fichier temporaire
-  // enregistrement du fichier
+  await fetch(opcoDumpUrl, { headers }).then(
+    (res) =>
+      new Promise((resolve, reject) => {
+        logMessage("info", " Receiving SIREN file ");
+        const dest = fs.createWriteStream(opcoSirenFile);
+        res.body.pipe(dest);
+        dest.on("close", () => resolve());
+        dest.on("error", reject);
+      })
+  );
+};
+
+const removeOpcoFile = async () => {
+  logMessage("info", " Removing SIREN file ");
+  try {
+    await fs.unlinkSync(opcoSirenFile);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = async () => {
@@ -80,13 +101,15 @@ module.exports = async () => {
     try {
       logMessage("info", " -- Start inserting opco sirens -- ");
 
+      await removeOpcoFile();
+
       await fetchOpcoFile();
 
       await Opco.deleteMany({});
 
       // extraction depuis les établissements des adresses à géolocaliser
       await oleoduc(
-        fs.createReadStream(opcoAktoSirenFilePath),
+        fs.createReadStream(opcoSirenFile),
         readLineByLine(),
         transformData((line) => parseOpco(line)),
         writeData(async (opco) => {
@@ -95,6 +118,8 @@ module.exports = async () => {
       );
 
       logMessage("info", `End inserting opco sirens (${i})`);
+
+      notifyToSlack(`Fin d'insertion des SIRENs akto (${i})`);
 
       resetContext();
 
