@@ -137,6 +137,10 @@ const parseUpdateLine = (line) => {
         removedRomes,
       };
 
+      if (siret === "48799544100036") {
+        logMessage("info", "removedRomes " + removedRomes.toString());
+      }
+
       companies.push(company);
     });
 
