@@ -11,7 +11,7 @@ const LocationDetail = ({ item }) => {
     <>
       <div className="c-detail-body c-locationdetail mt-4">
 
-        <div className="c-locationdetail-title">
+        <div className="c-locationdetail-title mt-2">
           {title}
         </div>
 
@@ -27,7 +27,7 @@ const LocationDetail = ({ item }) => {
           ""
         )}
 
-        <div className="c-locationdetail-line mt-3 mb-2">
+        <div className="c-locationdetail-line mt-3">
           <span className="c-locationdetail-imgcontainer">
             <img className="" src="/images/icons/small_map_point.svg" alt="point de localisation" />
           </span>
@@ -47,7 +47,7 @@ const LocationDetail = ({ item }) => {
 
         {item?.company?.url ? (
           <>
-            <div className="c-locationdetail-knowmore mb-2">
+            <div className="c-locationdetail-line mt-1">
               <span className="c-locationdetail-imgcontainer">
                 <img className="" src="/images/icons/small_info.svg" alt="point info" />
               </span>
@@ -69,7 +69,7 @@ const LocationDetail = ({ item }) => {
         )}
 
         {item?.contact?.email && !item?.prdvUrl ? (
-          <div className="c-locationdetail-line  mb-2">
+          <div className="c-locationdetail-line mt-1">
             <span className="c-locationdetail-imgcontainer">
               <img className="" src="/images/icons/small_email.svg" alt="email" />
             </span>
@@ -82,7 +82,7 @@ const LocationDetail = ({ item }) => {
         )}
 
         {item?.contact?.phone ? (
-          <div className="c-locationdetail-line mb-2">
+          <div className="c-locationdetail-line mt-1">
             <span className="c-locationdetail-imgcontainer">
               <img className="" src="/images/icons/small_phone.svg" alt="téléphone" />
             </span>

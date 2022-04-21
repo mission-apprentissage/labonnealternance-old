@@ -49,18 +49,6 @@ const ChoiceColumn = ({
     (state) => state.trainings
   );
 
-
-  useEffect(() => {
-
-    document.addEventListener("scroll", () => {
-      console.log('.................gotcha');
-
-    });
-
-
-  }, []);
-
-
   useEffect(() => {
     if (itemToScrollTo) {
       const itemElement = getItemElement(itemToScrollTo);
