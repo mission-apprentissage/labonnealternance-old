@@ -16,6 +16,7 @@ const updateSAVECompanies = async ({ updateMap }) => {
     }
 
     if (bonneBoite) {
+      let shouldSave = true;
       // remplacement pour une bonneBoite trouvée par les données modifiées dans la table update SAVE
       if (company.raisonsociale) {
         bonneBoite.raisonsociale = company.raisonsociale;
@@ -60,11 +61,13 @@ const updateSAVECompanies = async ({ updateMap }) => {
         if (bonneBoite.romes.length === 0) {
           logMessage("info", "suppression bb car pas de romes " + bonneBoite.siret);
           await bonneBoite.remove();
-          return;
+          shouldSave = false;
         }
       }
 
-      await bonneBoite.save();
+      if (shouldSave) {
+        await bonneBoite.save();
+      }
     }
   }
   logMessage("info", "Ended updateSAVECompanies");
