@@ -144,20 +144,17 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     );
   };
 
-  const [collapseHeader, setCollapseHeader] = useState(true);
-  let previousScroll = 0
-  const maxScroll = 300
+  const [collapseHeader, setCollapseHeader] = useState(false);
+  const maxScroll = 100
   const handleScroll = () => {
     let currentScroll = document.querySelector(".c-detail").scrollTop
-    console.log('currentScroll', currentScroll);
-    // HACK: prevent flickering
-    if (currentScroll - previousScroll > 2) {
-      setCollapseHeader(true)
+    if (collapseHeader) {
+      currentScroll +=100
+      setCollapseHeader(currentScroll > maxScroll)
     } else {
-      previousScroll = currentScroll
+      currentScroll -=100
       setCollapseHeader(currentScroll > maxScroll)
     }
-    console.log('previousScroll', previousScroll);
   };
 
   return (
