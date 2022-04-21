@@ -8,13 +8,6 @@ const updateSAVECompanies = async ({ updateMap }) => {
 
     let bonneBoite = await BonnesBoites.findOne({ siret: company.siret });
 
-    if (key === "48799544100036") {
-      logMessage(
-        "info",
-        "romes a retirer pour 48799544100036 " + key + " - " + company.siret + " - " + company.removedRomes.toString()
-      );
-    }
-
     if (bonneBoite) {
       let shouldSave = true;
       // remplacement pour une bonneBoite trouvée par les données modifiées dans la table update SAVE
@@ -48,16 +41,7 @@ const updateSAVECompanies = async ({ updateMap }) => {
       }
 
       if (company.removedRomes) {
-        if (key === "48799544100036") {
-          logMessage("info", "nous y sommes romes a retirer pour 48799544100036");
-        }
-
         bonneBoite.romes = bonneBoite.romes.filter((el) => !company.removedRomes.includes(el));
-
-        if (key === "48799544100036") {
-          logMessage("info", "apres  48799544100036 " + bonneBoite.romes.toString());
-        }
-
         if (bonneBoite.romes.length === 0) {
           logMessage("info", "suppression bb car pas de romes " + bonneBoite.siret);
           await bonneBoite.remove();
