@@ -148,13 +148,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const maxScroll = 100
   const handleScroll = () => {
     let currentScroll = document.querySelector(".c-detail").scrollTop
-    if (collapseHeader) {
-      currentScroll +=100
-      setCollapseHeader(currentScroll > maxScroll)
-    } else {
-      currentScroll -=100
-      setCollapseHeader(currentScroll > maxScroll)
-    }
+    currentScroll += collapseHeader ? 100 : -100
+    setCollapseHeader(currentScroll > maxScroll)
   };
 
   return (
