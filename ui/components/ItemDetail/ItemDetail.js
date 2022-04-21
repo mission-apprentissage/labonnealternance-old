@@ -32,9 +32,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   const [seeInfo, setSeeInfo] = useState(false);
 
-
-
-
   useEffect(() => {
     setSeeInfo(false);
     try {
@@ -286,7 +283,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             ""
           )}
           {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
-
 
         </div>
         <LocationDetail item={selectedItem}></LocationDetail>
