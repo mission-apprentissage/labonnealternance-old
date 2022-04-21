@@ -39,6 +39,10 @@ const updateSAVECompanies = async ({ updateMap }) => {
         bonneBoite.romes = [...new Set(company.romes.concat(bonneBoite.romes))];
       }
 
+      if (company.removedRomes) {
+        bonneBoite.romes = bonneBoite.romes.filter((el) => !company.removedRomes.includes(el));
+      }
+
       await bonneBoite.save();
     }
   }
