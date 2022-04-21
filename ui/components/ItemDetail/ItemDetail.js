@@ -146,7 +146,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   const [collapseHeader, setCollapseHeader] = useState(true);
   const handleScroll = () => {
-    setCollapseHeader(document.querySelector(".c-detail").scrollTop > 100);
+    let currentScroll = document.querySelector(".c-detail").scrollTop
+    setCollapseHeader(currentScroll > 100)
   };
 
   return (
@@ -220,7 +221,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
             {amongst(kind, ["formation"]) ? (
-              <p className={`c-detail-activity c-detail-title--formation mt-3`}>
+              <p className={`c-detail-activity c-detail-title--formation`}>
                 <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
                 <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
               </p>
