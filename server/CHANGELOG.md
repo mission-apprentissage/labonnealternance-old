@@ -5,6 +5,7 @@
 [LBA6-18] Essai Plausible
 [LBA6-53] Récupération du fichier des SIRENs Akto
 [LBA6-52] Matchas avant offres PE dans tous les cas
+[LBA6-51] Formation : Refonte fiche détaillée
 
 ## 1.18.9 [14/04/2022]
 [1008] Blacklister les emails bloqués sur sendinblue
