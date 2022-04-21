@@ -11,9 +11,9 @@ import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
-import { rawPostalAddress } from "../../utils/addressUtils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
+import { getPathLink } from "../../utils/tools";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
@@ -93,14 +93,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     let currentIndex = findIndex(currentList, selectedItem);
     let prevIndex = currentIndex == 0 ? currentList.length - 1 : currentIndex - 1;
     handleSelectItem(currentList[prevIndex]);
-  };
-
-  const getPathLink = () => {
-    return `https://www.google.fr/maps/dir//
-            ${encodeURIComponent(rawPostalAddress(selectedItem.place.fullAddress))}/@
-            ${selectedItem.place.latitude},
-            ${selectedItem.place.longitude},
-            14z/`;
   };
 
   const getPathBlock = () => {
