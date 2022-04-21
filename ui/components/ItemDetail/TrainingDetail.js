@@ -241,6 +241,7 @@ const getTrainingSessions = (training) => {
               </div>
             );
           })}
+          <div>&nbsp;</div>
         </div>
       </div>
     ) : (
