@@ -24,7 +24,6 @@ import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import LocationDetail from "./LocationDetail";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
-  console.log('selectedItem', selectedItem);
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
@@ -32,6 +31,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const distance = selectedItem?.place?.distance;
 
   const [seeInfo, setSeeInfo] = useState(false);
+
+
+
 
   useEffect(() => {
     setSeeInfo(false);
@@ -142,10 +144,16 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     );
   };
 
+  const [collapseHeader, setCollapseHeader] = useState(true);
+  const handleScroll = () => {
+    setCollapseHeader(document.querySelector(".c-detail").scrollTop > 100);
+  };
+
   return (
     <>
       <section
-        className={`c-detail itemDetail ${kind ? `gtmDetail${capitalizeFirstLetter(kind)}` : ""} ${
+        onScroll={handleScroll}
+        className={`c-detail c-detail--collapse-header-${collapseHeader} itemDetail ${kind ? `gtmDetail${capitalizeFirstLetter(kind)}` : ""} ${
           selectedItem ? "" : "hiddenItemDetail"
         }`}
         {...swipeHandlers}
@@ -165,7 +173,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         )}
         <header className="c-detail-header">
           <div className="">
-            <div className="d-flex justify-content-end mb-2">
+            <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
               <div className="mr-auto">
                 {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
                 {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
