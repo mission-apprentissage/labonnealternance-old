@@ -6,6 +6,7 @@
 [LBA6-53] Récupération du fichier des SIRENs Akto
 [LBA6-52] Matchas avant offres PE dans tous les cas
 [LBA6-30] Séparation traitement suppressions SAVE du traitement du fichier principal
+[LBA6-60] Prise en compte des romes supprimés via SAVE
 
 ## 1.18.9 [14/04/2022]
 [1008] Blacklister les emails bloqués sur sendinblue
