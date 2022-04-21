@@ -27,9 +27,9 @@ const LocationDetail = ({ item }) => {
           ""
         )}
 
-        <div className="c-locationdetail-itinerary mt-3 mb-2">
-          <span>
-            <img className="cardIcon mr-3" src="/images/icons/small_map_point.svg" alt="point de localisation" />
+        <div className="c-locationdetail-line mt-3 mb-2">
+          <span className="c-locationdetail-imgcontainer">
+            <img className="" src="/images/icons/small_map_point.svg" alt="point de localisation" />
           </span>
           <span className="c-detail-sizetext">
             <a
@@ -48,8 +48,8 @@ const LocationDetail = ({ item }) => {
         {item?.company?.url ? (
           <>
             <div className="c-locationdetail-knowmore mb-2">
-              <span>
-                <img className="mr-3 pl-1" src="/images/icons/small_info.svg" alt="point info" />
+              <span className="c-locationdetail-imgcontainer">
+                <img className="" src="/images/icons/small_info.svg" alt="point info" />
               </span>
               <span className="c-detail-sizetext">
                   <span className="">En savoir plus sur &nbsp;</span>
@@ -69,9 +69,9 @@ const LocationDetail = ({ item }) => {
         )}
 
         {item?.contact?.email && !item?.prdvUrl ? (
-          <div className="c-locationdetail-email mb-2">
-            <span>
-              <img className="mr-3 pl-1" src="/images/icons/small_email.svg" alt="email" />
+          <div className="c-locationdetail-line  mb-2">
+            <span className="c-locationdetail-imgcontainer">
+              <img className="" src="/images/icons/small_email.svg" alt="email" />
             </span>
             <span className="c-detail-sizetext">
               {item.contact.email}
@@ -82,9 +82,9 @@ const LocationDetail = ({ item }) => {
         )}
 
         {item?.contact?.phone ? (
-          <div className="c-locationdetail-phone mb-2">
-            <span>
-              <img className="mr-3 pl-1" src="/images/icons/small_phone.svg" alt="téléphone" />
+          <div className="c-locationdetail-line mb-2">
+            <span className="c-locationdetail-imgcontainer">
+              <img className="" src="/images/icons/small_phone.svg" alt="téléphone" />
             </span>
             <span className="c-detail-sizetext">
               {item.contact.phone}
