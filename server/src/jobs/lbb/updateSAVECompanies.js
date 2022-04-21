@@ -9,7 +9,7 @@ const updateSAVECompanies = async ({ updateMap }) => {
     let bonneBoite = await BonnesBoites.findOne({ siret: company.siret });
 
     if (company.siret === "48799544100036") {
-      logMessage("info", "romes a retirer pour 48799544100036");
+      logMessage("info", "romes a retirer pour 48799544100036 " + company.removedRomes.toString());
     }
 
     if (bonneBoite) {
@@ -50,7 +50,7 @@ const updateSAVECompanies = async ({ updateMap }) => {
 
         bonneBoite.romes = bonneBoite.romes.filter((el) => !company.removedRomes.includes(el));
         if (bonneBoite.romes.length === 0) {
-          logMessage("info", "suppression bb car pas de romes");
+          logMessage("info", "suppression bb car pas de romes " + bonneBoite.siret);
           await bonneBoite.remove();
           return;
         }
