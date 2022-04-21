@@ -138,7 +138,7 @@ const parseUpdateLine = (line) => {
       };
 
       if (siret === "48799544100036") {
-        logMessage("info", "removedRomes " + removedRomes.toString());
+        logMessage("info", "removedRomes 48799544100036 dans map " + removedRomes.toString());
       }
 
       companies.push(company);
