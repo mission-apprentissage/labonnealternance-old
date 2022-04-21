@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useScopeContext } from "../../../context/ScopeContext";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,6 +48,18 @@ const ChoiceColumn = ({
   const { trainings, jobs, selectedItem, itemToScrollTo, formValues /*, currentPage*/ } = useSelector(
     (state) => state.trainings
   );
+
+
+  useEffect(() => {
+
+    document.addEventListener("scroll", () => {
+      console.log('.................gotcha');
+
+    });
+
+
+  }, []);
+
 
   useEffect(() => {
     if (itemToScrollTo) {
