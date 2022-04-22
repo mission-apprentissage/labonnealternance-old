@@ -12,9 +12,11 @@ const CandidatureSpontaneeWhat = () => {
       <div style={{
         display: 'block', width: 900, padding: 30
       }}>
-        <Button color="primary" onClick={() => {
+        <button className="c-accordion-button" onClick={() => {
           setIsOpen(!isOpen)
-        }}>Toggle Me to see Collapse Component!</Button>
+        }}>
+          Toggle Me to see Collapse Component!
+        </button>
         <Collapse isOpen={isOpen}>
           <p>I am sample Text to display</p>
         </Collapse>
