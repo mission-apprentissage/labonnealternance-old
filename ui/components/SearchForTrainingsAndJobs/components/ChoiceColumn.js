@@ -235,7 +235,7 @@ const ChoiceColumn = ({
   };
 
   return (
-    <div id="choiceColumn" className={`choiceCol ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}>
+    <div id="choiceColumn" className={`choiceCol w-75 ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}>
 
         {isLoading ? (
           <LoadingScreen />
