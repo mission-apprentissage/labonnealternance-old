@@ -9,6 +9,7 @@ const updateSAVECompanies = async ({ updateMap }) => {
     let bonneBoite = await BonnesBoites.findOne({ siret: company.siret });
 
     if (bonneBoite) {
+      let shouldSave = true;
       // remplacement pour une bonneBoite trouvée par les données modifiées dans la table update SAVE
       if (company.raisonsociale) {
         bonneBoite.raisonsociale = company.raisonsociale;
@@ -39,7 +40,18 @@ const updateSAVECompanies = async ({ updateMap }) => {
         bonneBoite.romes = [...new Set(company.romes.concat(bonneBoite.romes))];
       }
 
-      await bonneBoite.save();
+      if (company.removedRomes) {
+        bonneBoite.romes = bonneBoite.romes.filter((el) => !company.removedRomes.includes(el));
+        if (bonneBoite.romes.length === 0) {
+          logMessage("info", "suppression bb car pas de romes " + bonneBoite.siret);
+          await bonneBoite.remove();
+          shouldSave = false;
+        }
+      }
+
+      if (shouldSave) {
+        await bonneBoite.save();
+      }
     }
   }
   logMessage("info", "Ended updateSAVECompanies");

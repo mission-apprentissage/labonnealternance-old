@@ -52,6 +52,9 @@
                     },
                     {
                         "$ref": "#/parameters/caller"
+                    },
+                    {
+                        "$ref": "#/parameters/opco"
                     }                    
                 ],
 
@@ -157,7 +160,10 @@
                     },
                     {
                         "$ref": "#/parameters/caller"
-                    }                    
+                    },
+                    {
+                        "$ref": "#/parameters/opco"
+                    }                                        
                 ],
 
                 "responses": {
@@ -213,7 +219,10 @@
                     },
                     {
                         "$ref": "#/parameters/caller"
-                    }                    
+                    },
+                    {
+                        "$ref": "#/parameters/opco"
+                    }                                        
                 ],
 
                 "responses": {
@@ -479,6 +488,16 @@
             "type": "string",
             "description": "Un terme libre de recherche de métier.",
             "example": "Décoration"
+        },
+
+        "opco":
+        {
+            "name": "opco",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Un filtre sur les sociétés affectées à un opérateur de compétences. Valeurs acceptées : akto",
+            "example": "akto"
         },
 
         "rncps":

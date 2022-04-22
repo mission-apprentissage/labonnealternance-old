@@ -57,6 +57,15 @@ const HeadLaBonneAlternance = (props) => {
       ) : (
         ""
       )}
+      <script
+        defer
+        data-domain={
+          getEnvFromProps().env !== "production"
+            ? "labonnealternance-recette.apprentissage.beta.gouv.fr"
+            : "labonnealternance.pole-emploi.fr,labonnealternance.apprentissage.beta.gouv.fr"
+        }
+        src="https://plausible.io/js/plausible.js"
+      ></script>
     </Head>
   );
 };
