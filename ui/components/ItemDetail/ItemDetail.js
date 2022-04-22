@@ -238,22 +238,22 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 </>
               :
                 <div className="c-detail-emptyspace">&nbsp;</div>
-              }            
+            }            
+            {kind === "peJob" && selectedItem?.url ? (
+              <div className="c-detail-description-me col-12 col-md-5">
+                <div className="c-detail-pelink my-3">
+                  <a className="btn btn-dark ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
+                    Je postule sur Pôle emploi
+                  </a>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </header>
 
         <div className="c-detail-body mt-4">
-          {kind === "peJob" && selectedItem?.url ? (
-            <div className="c-detail-description-me col-12 col-md-5">
-              <div className="c-detail-pelink my-3">
-                <a className="btn btn-dark ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
-                  Je postule sur Pôle emploi
-                </a>
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
           {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
           {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
           {amongst(kind, ["lbb", "lba"]) ? (
