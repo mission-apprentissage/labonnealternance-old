@@ -262,9 +262,22 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ) : (
             ""
           )}
+          
           {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
 
         </div>
+
+        <div className="c-needHelp">
+          <div className="c-needHelp-title">
+            Besoin d'aide ? 
+          </div>            
+          <div className="c-needHelp-text">
+            Découvrez les modules de formation de La Bonne Alternance. Des modules de quelques minutes pour bien préparer vos candidatures.
+          </div>            
+        </div>
+
+
+
         <LocationDetail item={selectedItem}></LocationDetail>
       </section>
     </>
