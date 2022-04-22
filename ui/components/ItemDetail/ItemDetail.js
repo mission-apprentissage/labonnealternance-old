@@ -185,8 +185,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               </div>
             </div>
 
-            <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
-
             {amongst(kind, ["lba", "lbb"]) ? (
               <p className={`c-detail-activity c-detail-title--${kind}`}>
                 {get(selectedItem, "nafs[0].label", "Candidature spontanée")}
@@ -195,12 +193,15 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
             {amongst(kind, ["formation"]) ? (
-              <p className={`c-detail-activity c-detail-title--formation`}>
-                {`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}
+              <p className={`c-detail-activity c-detail-title--formation mt-3`}>
+                <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
+                <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
               </p>
             ) : (
               ""
             )}
+            <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
+
             {kind === "matcha" ? <div className="c-detail-matcha-subtitle text-left">{selectedItem.title}</div> : ""}
             <p className="d-flex mt-4 text-left">
               <span className="d-block">
