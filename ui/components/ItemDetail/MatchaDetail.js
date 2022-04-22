@@ -226,12 +226,6 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           </div>
         </div>
 
-        {contactEmail ? (
-          <CandidatureSpontanee item={job} />
-        ) : (
-          <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, job)} key={getGoingtoId(kind, job)} />
-        )}
-
         <div className="mt-3">&nbsp;</div>
       </div>
     </>
