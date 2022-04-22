@@ -57,7 +57,7 @@ const CandidatureSpontanee = (props) => {
 
   return (
     <div className="c-candidature" data-testid="CandidatureSpontanee">
-      <div className="c-detail-description-me col-12 col-md-5">
+      <div className="c-detail-description-me">
         <div className="c-detail-pelink my-3">
           {
             (hasAlreadySubmittedCandidature({applied, modal})) ?
