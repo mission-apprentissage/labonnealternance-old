@@ -23,6 +23,7 @@ import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import LocationDetail from "./LocationDetail";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
+import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
@@ -226,7 +227,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             )}
             <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
 
-            {amongst(kind, ["lbb", "lba", "matcha"]) && isNonEmptyString(selectedItem?.contact?.email) ?
+            {isCandidatureSpontanee(selectedItem) ?
               <>
                 <hr class="c-detail-header-separator mt-0"/>
                 <CandidatureSpontanee item={selectedItem} />

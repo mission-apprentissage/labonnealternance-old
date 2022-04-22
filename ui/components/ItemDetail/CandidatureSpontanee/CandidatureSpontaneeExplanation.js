@@ -2,7 +2,7 @@ import React from "react";
 
 import { Collapse } from "reactstrap"
 
-const CandidatureSpontaneeWhat = (props) => {
+const CandidatureSpontaneeExplanation = (props) => {
 
   // Collapse Open state
   const [isOpen, setIsOpen] = React.useState(false);
@@ -12,7 +12,7 @@ const CandidatureSpontaneeWhat = (props) => {
     if (props.about == "what") {
       res = "Qu'est ce qu'une candidature spontanée ?"
     } else if (props.about == "how") {
-      res = "Taille de l'entreprise"
+      res = "Comment se préparer pour une candidature spontanée ? "
     }
     return res
   }
@@ -87,4 +87,4 @@ const CandidatureSpontaneeWhat = (props) => {
 
 };
 
-export default CandidatureSpontaneeWhat;
+export default CandidatureSpontaneeExplanation;
