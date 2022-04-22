@@ -205,8 +205,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             </div>
 
             {amongst(kind, ["lba", "lbb"]) ? (
-              <p className={`c-detail-activity c-detail-title--${kind}`}>
-                {get(selectedItem, "nafs[0].label", "Candidature spontanée")}
+              <p className={`c-detail-activity c-detail-title--formation`}>
+                <span>{`${get(selectedItem, "company.name", "")}`}</span>
+                <span className="c-detail-activity__proposal">&nbsp;a des salariés qui exercent le métier auquel vous vous destinez. Envoyez votre candidature spontanée !</span>
               </p>
             ) : (
               ""
