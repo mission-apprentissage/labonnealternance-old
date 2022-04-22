@@ -53,7 +53,7 @@
 }
 
 .c-detail-activity {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 17px;
   letter-spacing: 0;
@@ -219,6 +219,12 @@
 }
 
 .c-detail-description-me {
+  text-align: left;
+  button {
+    padding: 8px 24px;
+    background: #000091;
+    border-radius: 8px;
+  }
 }
 
 .c-detail-description-title {
