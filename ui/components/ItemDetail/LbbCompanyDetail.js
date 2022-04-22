@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import questionmarkIcon from "public/images/icons/questionmark.svg";
-import gotoIcon from "public/images/icons/goto.svg";
 import { defaultTo, random } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import contactIcon from "../../public/images/icons/contact_icon.svg";
@@ -8,12 +7,10 @@ import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
 import { SendTrackEvent } from "../../utils/gtm";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
-import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
-import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+import CandidatureSpontaneeWhat from "./CandidatureSpontanee/CandidatureSpontaneeWhat";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
-  let modificationLink = `https://labonneboite.pole-emploi.fr/verification-informations-entreprise/${siret}`;
 
   useEffect(() => {
     SendTrackEvent({
@@ -60,6 +57,9 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   return (
     <>
       <div className="text-left">
+        <p className="mb-3">
+          <CandidatureSpontaneeWhat/>
+        </p>
         <p className="mb-3">
           <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
           <span className="c-detail-sizetext d-block">
