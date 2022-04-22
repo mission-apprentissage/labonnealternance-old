@@ -26,12 +26,6 @@ const CandidatureSpontaneeExplanation = (props) => {
     } else if (props.about == "how") {
       res = <>
         <p className="c-detail-lbb-paragraph">
-          L'entreprise n'a pas déposé d'offre d'emploi, vous pouvez tout de même lui envoyer votre CV pour lui indiquer
-          que vous seriez très intéressé pour intégrer son équipe dans le cadre de votre apprentissage.
-        </p>
-
-        <h2 className="c-detail-lbb-title">Comment se préparer pour une candidature spontanée ?</h2>
-        <p className="c-detail-lbb-paragraph">
           Adaptez votre lettre de motivation à l'entreprise aux informations recueillies : Activité, actualités et
           valeurs
         </p>
@@ -76,7 +70,8 @@ const CandidatureSpontaneeExplanation = (props) => {
         <button className="c-accordion-button" onClick={() => {
           setIsOpen(!isOpen)
         }}>
-          {getTitle()}
+          <span className="c-accordion-button-title">{getTitle()}</span>
+          <span className="c-accordion-button-plus">{isOpen ? "-" : "+"}</span>
         </button>
         <Collapse isOpen={isOpen}>
           {getText()}

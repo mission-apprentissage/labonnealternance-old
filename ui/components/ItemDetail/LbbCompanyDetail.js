@@ -58,8 +58,8 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
     <>
       <div className="text-left">
         <p className="mb-3">
-          <CandidatureSpontaneeExplanation about={"what"}/>
-          <CandidatureSpontaneeExplanation about={"how"}/>
+          <CandidatureSpontaneeExplanation about={"what"} />
+          <CandidatureSpontaneeExplanation about={"how"} />
         </p>
       </div>
     </>
