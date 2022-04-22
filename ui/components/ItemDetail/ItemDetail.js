@@ -206,9 +206,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               </div>
             </div>
 
-            {amongst(kind, ["lba", "lbb"]) ? (
+            {amongst(kind, ["lba", "lbb", "matcha"]) ? (
               <>
-                <p className={`c-detail-activity c-detail-title--formation`}>
+                <p className={`c-detail-activity c-detail-title--entreprise`}>
                   <span>{`${get(selectedItem, "company.name", "")}`}</span>
                   <span className="c-detail-activity__proposal">&nbsp;a des salariés qui exercent le métier auquel vous vous destinez. Envoyez votre candidature spontanée !</span>
                 </p>
@@ -228,7 +228,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             {amongst(kind, ["lbb", "lba", "matcha"]) && isNonEmptyString(selectedItem?.contact?.email) ?
               <>
-                <hr class="c-detail-header-separator"/>
+                <hr class="c-detail-header-separator mt-0"/>
                 <CandidatureSpontanee item={selectedItem} />
               </>
               :
