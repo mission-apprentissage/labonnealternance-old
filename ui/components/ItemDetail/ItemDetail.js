@@ -10,7 +10,7 @@ import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
-import { capitalizeFirstLetter } from "../../utils/strutils";
+import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
 import { getPathLink } from "../../utils/tools";
@@ -22,9 +22,11 @@ import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import LocationDetail from "./LocationDetail";
+import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
+  console.log('selectedItem', selectedItem);
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
 
@@ -224,6 +226,14 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             )}
             <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
 
+            {amongst(kind, ["lbb", "lba", "matcha"]) && isNonEmptyString(selectedItem?.contact?.email) ?
+              <>
+                <CandidatureSpontanee item={selectedItem} />
+              </>
+              :
+              ""
+            }
+
             {kind === "matcha" ? <div className="c-detail-matcha-subtitle text-left">{selectedItem.title}</div> : ""}
 
             <p className="mt-4 c-detail-address-section">
@@ -242,18 +252,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 </>
               :
                 <div className="c-detail-emptyspace">&nbsp;</div>
-            }            
-            {kind === "peJob" && selectedItem?.url ? (
-              <div className="c-detail-description-me col-12 col-md-5">
-                <div className="c-detail-pelink my-3">
-                  <a className="btn btn-dark ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
-                    Je postule sur Pôle emploi
-                  </a>
-                </div>
-              </div>
-            ) : (
-              ""
-            )}
+            }
           </div>
         </header>
 
