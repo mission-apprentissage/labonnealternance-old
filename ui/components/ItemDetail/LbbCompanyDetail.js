@@ -58,7 +58,7 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
     <>
       <div className="text-left">
         <p className="mb-3">
-          <CandidatureSpontaneeWhat/>
+          <CandidatureSpontaneeWhat about={"what"}/>
         </p>
         <p className="mb-3">
           <span className="c-detail-sizetitle d-block">Taille de l'entreprise</span>
