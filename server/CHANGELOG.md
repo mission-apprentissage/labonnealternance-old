@@ -1,7 +1,8 @@
 # CHANGELOG
 
 ## 1.18.10 [21/04/2022]
-[LBA6-51] Formation : Refonte fiche détaillée
+[LBA6-51] Formation : Refonte fiche détaillée formation
+[LBA6-26] Formation : Refonte fiche détaillée entreprise
 [LBA6-49] Api-doc opco
 [LBA6-18] Essai Plausible
 [LBA6-53] Récupération du fichier des SIRENs Akto
