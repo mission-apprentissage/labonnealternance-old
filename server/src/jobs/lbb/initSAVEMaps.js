@@ -73,8 +73,12 @@ const parseUpdateLine = (line) => {
 
     let romesToBoost = terms[11]?.replace(/"/g, "");
 
+    let romesToRemove = terms[13]?.replace(/"/g, "");
+
     let emailAlternance = terms[15]?.replace(/"/g, "");
     let romesAlternance = terms[16]?.replace(/"/g, "");
+
+    let romesAlternanceToRemove = terms[18]?.replace(/"/g, "");
 
     let scoreAlternance = terms[20];
     let phoneAlternance = terms[22]?.replace(/"/g, "");
@@ -106,6 +110,18 @@ const parseUpdateLine = (line) => {
       ];
     }
 
+    let removedRomes = null;
+    if (romesToRemove || romesAlternanceToRemove) {
+      // merge et unique sur les romes
+      removedRomes = [
+        ...new Set(
+          (romesToRemove ? romesToRemove.split(",") : []).concat(
+            romesAlternanceToRemove ? romesAlternanceToRemove.split(",") : []
+          )
+        ),
+      ];
+    }
+
     let name = newCompanyName || newOfficeName;
 
     sirets.forEach((siret) => {
@@ -118,6 +134,7 @@ const parseUpdateLine = (line) => {
         website,
         type,
         romes,
+        removedRomes,
       };
 
       companies.push(company);

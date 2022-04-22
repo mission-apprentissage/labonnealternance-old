@@ -225,6 +225,14 @@ const insertSAVECompanies = async () => {
   logMessage("info", "Ended insertSAVECompanies");
 };
 
+const removeSAVECompanies = async () => {
+  logMessage("info", "Starting removeSAVECompanies");
+  for (const key in removeMap) {
+    await BonnesBoites.remove({ siret: key });
+  }
+  logMessage("info", "Ended removeSAVECompanies");
+};
+
 /*
   Initialize bonneBoite from data, add missing data from maps, 
 */
@@ -337,6 +345,8 @@ module.exports = async ({
         }
 
         await processBonnesBoitesFile();
+      } else if (shouldInitSAVEMaps) {
+        await removeSAVECompanies();
       }
 
       await insertSAVECompanies();
