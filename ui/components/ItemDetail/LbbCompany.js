@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import jobIcon from "../../public/images/icons/job.svg";
+import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
 import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
