@@ -1,15 +1,6 @@
-import dayjs from "dayjs";
-import { defaultTo, get, random } from "lodash";
-import contactIcon from "public/images/icons/contact_icon.svg";
-import questionmarkIcon from "public/images/icons/questionmark.svg";
 import React, { useEffect } from "react";
-import ReactHtmlParser from "react-html-parser";
 import { SendTrackEvent } from "../../utils/gtm";
-import { capitalizeFirstLetter, formatDate, isNonEmptyString } from "../../utils/strutils";
-import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
-import DidAsk1 from "./DidAsk1";
-import DidAsk2 from "./DidAsk2";
-import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+import { formatDate } from "../../utils/strutils";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -30,41 +21,11 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
     });
   }, [job?.job?.id]);
 
-  const description = get(job, "job.description", undefined);
 
-  const kind = job?.ideaType;
 
-  let contactEmail = job?.contact?.email;
-  let contactPhone = job?.contact?.phone;
 
-  const jobTitle = get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"));
   const jobStartDate = job?.job?.jobStartDate ? formatDate(job.job.jobStartDate) : undefined;
-  const contractType = get(job, "job.contractType", undefined);
-  const romeDefinition = job?.job?.romeDetails?.definition.split("\\n");
-  const romeCompetence = get(job, "job.romeDetails.competencesDeBase", undefined);
-  const trancheEffectif = get(job, "company.size", undefined);
-  const dateCreationEtablissement = get(job, "company.creationDate", undefined);
-  const dateCreationEtablissementFormated = dayjs(dateCreationEtablissement).format("DD/MM/YYYY");
-  const libelleNaf = get(job, "nafs[0].label", undefined);
-  const rythmeAlternance = get(job, "job.rythmeAlternance", undefined);
-  const elligibleHandicapBoolean = get(job, "job.elligibleHandicap", undefined);
-  const elligibleHandicap = elligibleHandicapBoolean && "Oui";
-  const dureeContrat = get(job, "job.dureeContrat", undefined);
-  const quantiteContrat = get(job, "job.quantiteContrat", undefined);
 
-  let contactInfo = (
-    <>
-      {contactPhone ? (
-        <p className="c-detail-km c-detail-contactlink">
-          <a href={`tel:${contactPhone}`} className="ml-1">
-            {contactPhone}
-          </a>
-        </p>
-      ) : (
-        ""
-      )}
-    </>
-  );
 
   const getGoogleSearchParameters = () => {
     return encodeURIComponent(`${job.company.name} ${job.place.address}`);
@@ -78,10 +39,10 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           <strong>Début du contrat le : </strong> {jobStartDate}
         </div>
         <div>
-          <strong>Nature du contrat : </strong> {contractType}
+          <strong>Nature du contrat : </strong> {getContractTypes(job?.job?.contractType)}
         </div>
         <div>
-          <strong>Niveau requis :</strong>
+          <strong>Niveau requis :</strong> non défini
         </div>
       </div>
       <p>
