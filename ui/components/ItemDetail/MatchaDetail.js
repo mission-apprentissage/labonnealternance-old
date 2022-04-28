@@ -38,7 +38,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   let contactPhone = job?.contact?.phone;
 
   const jobTitle = get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"));
-  const jobStartDate = job?.job?.creationDate ? formatDate(job.job.jobStartDate) : undefined;
+  const jobStartDate = job?.job?.jobStartDate ? formatDate(job.job.jobStartDate) : undefined;
   const contractType = get(job, "job.contractType", undefined);
   const romeDefinition = job?.job?.romeDetails?.definition.split("\\n");
   const romeCompetence = get(job, "job.romeDetails.competencesDeBase", undefined);
@@ -75,10 +75,10 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
       <h2 className="c-locationdetail-title mt-2">Description de l'offre</h2>
       <div className="c-matcha-detail-container">
         <div>
-          <strong>Début du contrat le :</strong>
+          <strong>Début du contrat le : </strong> {jobStartDate}
         </div>
         <div>
-          <strong>Nature du contrat :</strong>
+          <strong>Nature du contrat : </strong> {contractType}
         </div>
         <div>
           <strong>Niveau requis :</strong>
