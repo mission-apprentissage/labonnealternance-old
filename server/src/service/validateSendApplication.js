@@ -11,7 +11,7 @@ const validateSendApplication = async (validable) => {
       .required("⚠ Le téléphone est requis"),
   });
   await schema.validate(validable).catch(function () {
-    throw "error - validation of data failed";
+    return "données de candidature invalides";
   });
   return "ok";
 };
@@ -24,8 +24,13 @@ const validateCompanyEmail = async (validable) => {
     cryptedEmail: Yup.string().email("⚠ Adresse e-mail chiffrée invalide."),
   });
   await schema.validate(validable).catch(function () {
-    throw "error - validation of data failed";
+    return "email société invalide";
   });
+  return "ok";
+};
+
+const validatePermanentEmail = async (validable) => {
+  console.log(validable);
   return "ok";
 };
 
@@ -75,4 +80,5 @@ module.exports = {
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
   validateIntentionApplication,
+  validatePermanentEmail,
 };
