@@ -11,9 +11,9 @@ const LocationDetail = ({ item }) => {
     <>
       <div className="c-detail-body c-locationdetail mt-4">
 
-        <div className="c-locationdetail-title mt-2">
+        <h2 className="c-locationdetail-title mt-2">
           {title}
-        </div>
+        </h2>
 
         <div className="c-locationdetail-address mt-3">
           {item?.place?.fullAddress}

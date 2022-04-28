@@ -6,14 +6,12 @@ import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { findIndex, concat, pick, get, defaultTo, round } from "lodash";
 import { amongst } from "../../utils/arrayutils";
-import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
 import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
-import { getPathLink } from "../../utils/tools";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
@@ -22,6 +20,7 @@ import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import LocationDetail from "./LocationDetail";
+import DescriptionDetail from "./DescriptionDetail";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
 
@@ -215,9 +214,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             )}
 
             {kind === "matcha" ?
-              <div className="c-detail-title c-detail-title--matcha">
+              <h1 className="c-detail-title c-detail-title--matcha">
                 {selectedItem.title}
-              </div>
+              </h1>
               :
               <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
             }
@@ -278,9 +277,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           : 
           ""
         }
-
-
-
 
         <LocationDetail item={selectedItem}></LocationDetail>
       </section>
