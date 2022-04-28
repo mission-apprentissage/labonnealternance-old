@@ -19,28 +19,28 @@ const CandidatureSpontanee = (props) => {
   const kind = props?.item?.ideaType || "";
 
   const uniqId = (kind, item) => {
-    return `candidaturespontanee-${kind}-${getItemId(item)}`
-  }
+    return `candidaturespontanee-${kind}-${getItemId(item)}`;
+  };
 
-  const actualLocalStorage = props.fakeLocalStorage || window.localStorage || {}
-  
+  const actualLocalStorage = props.fakeLocalStorage || window.localStorage || {};
+
   const toggle = () => {
     toggleCandidature({ modal, setSendingState, setModal });
   };
-  
+
   const [applied, setApplied] = useLocalStorage(uniqId(kind, props.item), null, actualLocalStorage);
 
   useEffect(() => {
     setModal(false);
 
-    // HACK HERE : reapply setApplied to currentUniqId to re-detect 
+    // HACK HERE : reapply setApplied to currentUniqId to re-detect
     // if user already applied each time the user swap to another item.
     let currentUniqId = actualLocalStorage.getItem(uniqId(kind, props.item));
     if (currentUniqId) {
-      setApplied(currentUniqId)
+      setApplied(currentUniqId);
     } else {
       // setApplied(null) is MANDATORY to avoid "already-applied message" when user swaps.
-      setApplied(null)
+      setApplied(null);
     }
   }, [props?.item]);
 
@@ -50,7 +50,7 @@ const CandidatureSpontanee = (props) => {
     onSubmit: async (applicantValues) => {
       let success = await submitCandidature(applicantValues, setSendingState, props.item);
       if (success) {
-        setApplied(Date.now().toString())
+        setApplied(Date.now().toString());
       }
     },
   });
@@ -59,49 +59,61 @@ const CandidatureSpontanee = (props) => {
     <div className="c-candidature" data-testid="CandidatureSpontanee">
       <div className="c-detail-description-me col-12 col-md-5">
         <div className="c-detail-pelink my-3">
-          {
-            (hasAlreadySubmittedCandidature({applied, modal})) ?
-              <>
-                <div data-testid="already-applied">
-                  Vous avez déjà postulé le {new Date(parseInt(applied, 10)).toLocaleDateString("fr-FR", {year: 'numeric', month: 'long', day: 'numeric'})}
-                </div>
-              </>
-              :
-              <>
-                <Button
-                  onClick={toggle}
-                  className={`btn btn-dark ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
-                  aria-label="jenvoie-une-candidature-spontanee"
-                >
-                  J'envoie ma candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}
-                </Button>
-                <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"} backdrop="static">
-                  <form onSubmit={formik.handleSubmit} className="c-candidature-form">
-                    <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
+          {hasAlreadySubmittedCandidature({ applied, modal }) ? (
+            <>
+              <div data-testid="already-applied">
+                Vous avez déjà postulé le{" "}
+                {new Date(parseInt(applied, 10)).toLocaleDateString("fr-FR", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </div>
+            </>
+          ) : (
+            <>
+              <Button
+                onClick={toggle}
+                className={`btn btn-dark ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
+                aria-label="jenvoie-une-candidature-spontanee"
+              >
+                J'envoie ma candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}
+              </Button>
+              <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"} backdrop="static">
+                <form onSubmit={formik.handleSubmit} className="c-candidature-form">
+                  <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
 
-                    {with_str(sendingState).amongst(["not_sent", "currently_sending"]) ? (
-                      <CandidatureSpontaneeNominalBodyFooter
-                        formik={formik}
-                        sendingState={sendingState}
-                        company={props?.item?.company?.name}
-                        item={props?.item}
-                        kind={kind}
-                      />
-                    ) : (
-                      <></>
-                    )}
+                  {with_str(sendingState).amongst(["not_sent", "currently_sending"]) ? (
+                    <CandidatureSpontaneeNominalBodyFooter
+                      formik={formik}
+                      sendingState={sendingState}
+                      company={props?.item?.company?.name}
+                      item={props?.item}
+                      kind={kind}
+                    />
+                  ) : (
+                    <></>
+                  )}
 
-                    {with_str(sendingState).amongst(["ok_sent"]) ? (
-                      <CandidatureSpontaneeWorked kind={kind} email={formik.values.email} company={props?.item?.company?.name} />
-                    ) : (
-                      <></>
-                    )}
+                  {with_str(sendingState).amongst(["ok_sent"]) ? (
+                    <CandidatureSpontaneeWorked
+                      kind={kind}
+                      email={formik.values.email}
+                      company={props?.item?.company?.name}
+                    />
+                  ) : (
+                    <></>
+                  )}
 
-                    {with_str(sendingState).amongst(["not_sent_because_of_errors"]) ? <CandidatureSpontaneeFailed /> : <></>}
-                  </form>
-                </Modal>
-              </>
-          }
+                  {with_str(sendingState).amongst(["not_sent_because_of_errors"]) ? (
+                    <CandidatureSpontaneeFailed />
+                  ) : (
+                    <></>
+                  )}
+                </form>
+              </Modal>
+            </>
+          )}
         </div>
       </div>
     </div>
