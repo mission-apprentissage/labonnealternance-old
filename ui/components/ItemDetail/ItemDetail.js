@@ -215,7 +215,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               <>
                 <p className={`c-detail-activity c-detail-title--entreprise`}>
                   <span>{`${get(selectedItem, "company.name", "")}`}</span>
-                  <span className="c-detail-activity__proposal">&nbsp;a des salariés qui exercent le métier auquel vous vous destinez. Envoyez votre candidature spontanée !</span>
+                  <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre dans le domaine suivant</span>
                 </p>
               </>
             ) : (
