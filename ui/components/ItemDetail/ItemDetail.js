@@ -171,7 +171,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
               <div className="mr-auto">
                 {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
-                {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
+                {amongst(kind, ["lbb", "lba"]) && isCandidatureSpontanee(selectedItem) ?
+                  <TagCandidatureSpontanee /> 
+                  : 
+                  ""
+                }
                 {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
               </div>
               <div>
