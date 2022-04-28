@@ -5,14 +5,27 @@ import { round } from "lodash";
 const LocationDetail = ({ item }) => {
 
   const kind = item?.ideaType;
-  const title = kind === "formation" ? "Quelques informations sur le centre de formation" : "Quelques informations sur l'établissement"
+  
+  const getTitle = (oneItem) => {
+    const oneKind = oneItem?.ideaType;
+    const isMandataire = oneItem?.company?.mandataire
+    let res = ''
+    if (oneKind === "formation") {
+      res = "Quelques informations sur le centre de formation"
+    } else if (oneKind === "matcha" && isMandataire) {
+      res = "Quelques informations sur l'établissement"
+    } else if (oneKind === "matcha" && !isMandataire) {
+      res = "Contactez le CFA pour avoir plus d'informations"
+    }
+    return res
+  }
 
   return (
     <>
       <div className="c-detail-body c-locationdetail mt-4">
 
         <h2 className="c-locationdetail-title mt-2">
-          {title}
+          {getTitle(item)}
         </h2>
 
         <div className="c-locationdetail-address mt-3">
