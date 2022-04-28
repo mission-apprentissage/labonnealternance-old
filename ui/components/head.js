@@ -60,7 +60,7 @@ const HeadLaBonneAlternance = (props) => {
       {getEnvFromProps().env === "production" ? (
         <script
           defer
-          data-domain="labonnealternance.pole-emploi.fr,labonnealternance.apprentissage.beta.gouv.fr"
+          data-domain="labonnealternance.apprentissage.beta.gouv.fr"
           src="https://plausible.io/js/plausible.js"
         ></script>
       ) : (
