@@ -68,7 +68,7 @@ const LocationDetail = ({ item }) => {
           ""
         )}
 
-        {item?.contact?.email && !item?.prdvUrl ? (
+        {item?.contact?.email && !item?.prdvUrl && kind !== 'matcha' ?  (
           <div className="c-locationdetail-line mt-1">
             <span className="c-locationdetail-imgcontainer">
               <img className="" src="/images/icons/small_email.svg" alt="email" />
