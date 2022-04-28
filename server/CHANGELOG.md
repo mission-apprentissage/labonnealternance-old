@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.11 [28/04/2022]
+[LBA6-110] Récupération du flag établissement mandataire
+
 ## 1.18.10 [21/04/2022]
 [LBA6-49] Api-doc opco
 [LBA6-18] Essai Plausible
