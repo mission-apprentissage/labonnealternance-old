@@ -266,14 +266,19 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
         </div>
 
-        <div className="c-needHelp">
-          <div className="c-needHelp-title">
-            Besoin d'aide ? 
-          </div>            
-          <div className="c-needHelp-text">
-            Découvrez les modules de formation de La Bonne Alternance. Des modules de quelques minutes pour bien préparer vos candidatures.
-          </div>            
-        </div>
+        {amongst(kind, ["lbb", "lba"]) ? 
+          <div className="c-needHelp">
+            <div className="c-needHelp-title">
+              Besoin d'aide ? 
+            </div>            
+            <div className="c-needHelp-text">
+              Découvrez les modules de formation de La Bonne Alternance. Des modules de quelques minutes pour bien préparer vos candidatures.
+            </div>            
+          </div>
+          : 
+          ""
+        }
+
 
 
 
