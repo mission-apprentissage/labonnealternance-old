@@ -213,7 +213,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             {amongst(kind, ["lba", "lbb", "matcha"]) ? (
               <>
-                <p className={`c-detail-activity c-detail-title--entreprise`}>
+                <p className={`c-detail-activity c-detail-title--entreprise mt-3`}>
                   <span>{`${get(selectedItem, "company.name", "")}`}</span>
                   <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre dans le domaine suivant</span>
                 </p>
