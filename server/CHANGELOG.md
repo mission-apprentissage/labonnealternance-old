@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.18.11 [28/04/2022]
+[LBA6-32] Contrôle des emails des candidats : pas d'email temporaire
+
 ## 1.18.10 [21/04/2022]
 [LBA6-49] Api-doc opco
 [LBA6-18] Essai Plausible
