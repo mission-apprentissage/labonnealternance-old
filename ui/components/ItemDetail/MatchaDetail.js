@@ -85,7 +85,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         </div>
       </div>
       <p>
-        {job.company.name}  nous a récemment fait parvenir un besoin de recrutement :  Coiffure, CAP / BEP. Cela signifie que l'établissement est activement à la recherche d'un.e candidat.e.
+        <span className="c-detail-bolded">{job.company.name}</span>  nous a récemment fait parvenir un besoin de recrutement :  <span className="c-detail-bolded">{job.title}</span>. Cela signifie que l'établissement est activement à la recherche d'un.e candidat.e.
       </p>
       <p>
         Vous avez donc tout intérêt à le contacter rapidement, avant que l'offre ne soit pourvue !
