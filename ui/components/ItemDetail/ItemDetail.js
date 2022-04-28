@@ -95,30 +95,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     handleSelectItem(currentList[prevIndex]);
   };
 
-  const getPathBlock = () => {
-    return selectedItem ? (
-      <span className="d-block mt-2">
-        <span>
-          <img className="cardIcon mr-2" src={smallMapPointIcon} alt="" />
-        </span>
-        <span className="c-detail-sizetext">
-          <a
-            href={getPathLink()}
-            target="_blank"
-            className={`c-detail-googledir-link gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
-            rel="noopener noreferrer"
-          >
-            <span>
-              Obtenir l'itinéraire <img className="mt-n1" src="/images/square_link.svg" alt="" />
-            </span>
-          </a>
-        </span>
-      </span>
-    ) : (
-      ""
-    );
-  };
-
   const buildPrdvButton = (training) => {
     return <div
       className="widget-prdv gtmPrdv"
