@@ -229,7 +229,22 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             ) : (
               ""
             )}
-            <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
+            {amongst(kind, ["formation"]) ? (
+              <p className={`c-detail-activity c-detail-title--formation`}>
+                <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
+                <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
+              </p>
+            ) : (
+              ""
+            )}
+
+            {kind === "matcha" ?
+              <div className="c-detail-title c-detail-title--matcha">
+                {selectedItem.title}
+              </div>
+              :
+              <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
+            }
 
             {isCandidatureSpontanee(selectedItem) ?
               <>
@@ -240,7 +255,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             }
 
-            {kind === "matcha" ? <div className="c-detail-matcha-subtitle text-left">{selectedItem.title}</div> : ""}
+
 
             <p className="mt-4 c-detail-address-section">
               <span className="d-block">
