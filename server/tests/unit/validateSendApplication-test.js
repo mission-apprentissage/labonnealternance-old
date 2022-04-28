@@ -7,6 +7,7 @@ chai.use(require("chai-as-promised"));
 const {
   validateSendApplication,
   validateFeedbackApplication,
+  validatePermanentEmail,
 } = require("../../src/service/validateSendApplication.js");
 
 describe(__filename, () => {
@@ -17,6 +18,12 @@ describe(__filename, () => {
     await expect(validateSendApplication({ lastName: "too long name, more than 15 characters, will fail" })).to.equal(
       "données de candidature invalides"
     );
+  });
+  it("validateSendApplication : Echoue si un l'email est d'une boîte temporaire", async () => {
+    await expect(validatePermanentEmail({ email: "test@10minutemail.com" })).to.equal("email temporaire non autorisé");
+  });
+  it("validateSendApplication : Succès si l'email n'est pas d'une boîte temporaire", async () => {
+    await expect(validatePermanentEmail({ email: "test@gmail.com" })).to.equal("ok");
   });
   it("validateSendApplication : Passe si tous les champs sont valides", async () => {
     expect(

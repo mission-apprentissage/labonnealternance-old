@@ -1,4 +1,5 @@
 const Yup = require("yup");
+const { isEmailBurner } = require("burner-email-providers");
 
 const validateSendApplication = async (validable) => {
   let schema = Yup.object().shape({
@@ -30,7 +31,9 @@ const validateCompanyEmail = async (validable) => {
 };
 
 const validatePermanentEmail = async (validable) => {
-  console.log(validable);
+  if (isEmailBurner(validable.email)) {
+    return "email temporaire non autorisé";
+  }
   return "ok";
 };
 
