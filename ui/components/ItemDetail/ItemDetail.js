@@ -20,7 +20,6 @@ import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import LocationDetail from "./LocationDetail";
-import DescriptionDetail from "./DescriptionDetail";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
 
