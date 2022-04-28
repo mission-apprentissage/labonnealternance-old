@@ -19,7 +19,7 @@ const formatDate = (d) => {
   let resultDate = "";
 
   try {
-    resultDate = new Date(d).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    resultDate = new Date(d).toLocaleDateString('fr-FR', { year: "numeric", month: "short", day: "numeric" });
   } catch (err) {}
 
   return resultDate;
