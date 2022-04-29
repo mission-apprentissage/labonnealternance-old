@@ -20,11 +20,6 @@
   text-align: left;
 }
 .c-goingto-thumb {
-  color: $info;
-  background: transparent;
-  font-size: 16px;
-  border: 1px solid $info;
-  border-radius: 8px;
-  padding: 8px 41px;
-  font-weight: bold;
+  border: none;
+  background-color: inherit;
 }

@@ -16,7 +16,7 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
   return (
     <div className="c-detail-body c-goingto mt-4" data-testid="GoingToContactQuestion">
       <span className="c-goingto-title">Allez-vous contacter cet entreprise ?</span>
-      <div className="d-flex-center mt-2">
+      <span className="d-flex">
         {thanks ? (
           <>
             <div className="c-goingto-thanks mt-3">
@@ -25,27 +25,27 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
           </>
         ) : (
           <>
-            <button
-              type="button"
-              className={`c-goingto-thumb gtmThumbUp gtm${capitalizeFirstLetter(kind)}`}
-              onClick={() => {
-                setThanks(true);
-              }}>
-              <img src={thumbup} alt="oui : pouce vers le haut" />
-              <span className="ml-1">Oui</span>
-            </button>
-            <button
-              type="button"
-              className={`c-goingto-thumb ml-2 gtmThumbDown gtm${capitalizeFirstLetter(kind)}`}
-              onClick={() => {
-                setThanks(true);
-              }}>
-              <img src={thumbdown} alt="non : pouce vers le bas" />
-              <span className="ml-1">Non</span>
-            </button>
+            <div className="c-goingto-buttons">
+              <button
+                type="button"
+                className={`c-goingto-thumb gtmThumbUp gtm${capitalizeFirstLetter(kind)}`}
+                onClick={() => {
+                  setThanks(true);
+                }}>
+                <span className="ml-1">👍 Oui</span>
+              </button>
+              <button
+                type="button"
+                className={`c-goingto-thumb ml-2 gtmThumbDown gtm${capitalizeFirstLetter(kind)}`}
+                onClick={() => {
+                  setThanks(true);
+                }}>
+                <span className="ml-1">👎 Non</span>
+              </button>
+            </div>
           </>
         )}
-      </div>
+      </span>
     </div>
   );
 };
