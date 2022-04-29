@@ -58,7 +58,7 @@ const CandidatureSpontanee = (props) => {
   return (
     <div className="c-candidature" data-testid="CandidatureSpontanee">
       <div className="c-detail-description-me">
-        <div className="c-detail-pelink my-3">
+        <div className="c-detail-pelink mt-3">
           {
             (hasAlreadySubmittedCandidature({applied, modal})) ?
               <>
@@ -103,6 +103,21 @@ const CandidatureSpontanee = (props) => {
               </>
           }
         </div>
+        {
+          props?.item?.company?.mandataire ?
+          <>
+            <div className="c-mandataire-hint d-flex-center my-3">
+              <span className="c-mandataire-hintimg">
+                <img className="" src="/images/icons/small_info.svg" alt="point info"/>
+              </span>
+                <span className="c-mandataire-hinttext ml-2">
+                <span className="">Votre candidature sera envoyée au centre de formation en charge du recrutement pour le compte de l’entreprise.    </span>
+              </span>
+            </div>
+          </>
+          :
+          ""
+        }
       </div>
     </div>
   );
