@@ -36,7 +36,7 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
               </button>
               <button
                 type="button"
-                className={`c-goingto-thumb ml-2 gtmThumbDown gtm${capitalizeFirstLetter(kind)}`}
+                className={`c-goingto-thumb gtmThumbDown gtm${capitalizeFirstLetter(kind)}`}
                 onClick={() => {
                   setThanks(true);
                 }}>
