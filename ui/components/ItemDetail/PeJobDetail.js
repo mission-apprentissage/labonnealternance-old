@@ -26,69 +26,39 @@ const PeJobDetail = ({ job }) => {
     });
   }, [job?.job?.id]);
 
-  const description = get(job, "job.description", undefined);
-  const contractDuration = get(job, "job.contractDescription", undefined);
-  const contractRythm = get(job, "job.duration", undefined);
-  const creationDate = job?.job?.creationDate ? formatDate(job.job.creationDate) : undefined;
+  const description = job?.job?.description
+  const contractDuration = job?.job?.contractDescription
+  const contractRythm = job?.job?.duration || "Non défini"
+  const creationDate = formatDate(job?.job?.creationDate)
 
   const kind = job?.ideaType;
 
+
+
   return (
     <>
-      <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
-      <div>
-        <div className="c-detail-company">
-          {get(job, "company.name", ReactHtmlParser("<em>Entreprise non précisée</em>"))}
-          <span className="c-detail-proposal"> propose actuellement cette offre</span>
+      <h2 className="c-locationdetail-title mt-2">Description de l'offre</h2>
+      <div className="c-matcha-detail-container">
+        <div>
+          <strong>Publiée le : </strong> {creationDate}
         </div>
-        <h2 className="c-detail-jobtitle">{get(job, "title", ReactHtmlParser("<em>Titre non précisé</em>"))}</h2>
-        <div className="c-detail-meta">
-          <div className="c-detail-metadate">
-            Publiée le : {defaultTo(creationDate, ReactHtmlParser("<em>Donnée manquante</em>"))}
-          </div>
-          <div className="c-detail-metanature">Nature du contrat : Alternance</div>
-          <div className="c-detail-metaduration">
-            Durée : {defaultTo(contractDuration, ReactHtmlParser("<em>Donnée manquante</em>"))}
-          </div>
-          <div className="c-detail-metarythm">
-            Rythme : {defaultTo(contractRythm, ReactHtmlParser("<em>Donnée manquante</em>"))}
-          </div>
+        <div className="my-2">
+          <strong>Nature du contrat : </strong> Alternance
         </div>
-
-        {description ? (
-          <div className="c-detail-description">
-            <h3 className="c-detail-description-title">Description de l'offre</h3>
-            <div className="c-detail-description-text">{ReactHtmlParser(md.render(description))}</div>
-          </div>
-        ) : (
-          ""
-        )}
-
-        <div className="c-detail-advice">
-          <div className="c-detail-advice__figure">
-            <img src={questionmarkIcon} alt="point d'interrogation" />
-          </div>
-          <div className="c-detail-advice__body">
-            <div className="c-detail-advice-title">Le saviez-vous ?</div>
-            <div className="c-detail-advice-text c-detail-advice-text--first">
-              Diversifiez vos démarches en envoyant aussi des
-              <span className="c-detail-advice-highlight"> candidatures spontanées </span>
-              aux entreprises qui n'ont pas diffusé d'offre !
-            </div>
-            <div className="c-detail-advice-text c-detail-advice-text--tag">
-              Repérez les tags suivants dans la liste de résultats
-            </div>
-            <div className="c-detail-advice-tag">
-              <TagCandidatureSpontanee />
-            </div>
-            {!!random(0, 1) ? <DidAsk1 /> : <DidAsk2 />}
-          </div>
+        <div className="my-2">
+          <strong>Durée :</strong> {contractDuration}
         </div>
-        
-        <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, job)} key={getGoingtoId(kind, job)} />
-
-        <div className="mt-5">&nbsp;</div>
+        <div>
+          <strong>Rythme :</strong> {contractRythm}
+        </div>
       </div>
+      {description ? (
+        <div className="c-detail-description">
+          <div className="c-detail-description-text">{ReactHtmlParser(md.render(description))}</div>
+        </div>
+      ) : (
+        ""
+      )}
     </>
   );
 };
