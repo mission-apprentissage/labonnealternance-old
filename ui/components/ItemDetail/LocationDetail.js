@@ -12,9 +12,9 @@ const LocationDetail = ({ item }) => {
     let res = 'Quelques informations'
     if (oneKind === "formation") {
       res = "Quelques informations sur le centre de formation"
-    } else if (oneKind === "matcha" && isMandataire) {
-      res = "Quelques informations sur l'établissement"
     } else if (oneKind === "matcha" && !isMandataire) {
+      res = "Quelques informations sur l'établissement"
+    } else if (oneKind === "matcha" && isMandataire) {
       res = "Contactez le CFA pour avoir plus d'informations"
     }
     return res
