@@ -29,10 +29,14 @@ const validateCompanyEmail = async (validable) => {
       .required("⚠ L'adresse e-mail société est requise."),
     cryptedEmail: Yup.string().email("⚠ Adresse e-mail chiffrée invalide."),
   });
-  await schema.validate(validable).catch(function () {
-    return "email société invalide";
+  let validation = await schema.validate(validable).catch(function () {
+    return "erreur";
   });
-  return "ok";
+  if (validation === "erreur") {
+    return "email société invalide";
+  } else {
+    return "ok";
+  }
 };
 
 const validatePermanentEmail = async (validable) => {
