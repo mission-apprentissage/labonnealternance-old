@@ -16,6 +16,8 @@ const LocationDetail = ({ item }) => {
       res = "Quelques informations sur l'établissement"
     } else if (oneKind === "matcha" && isMandataire) {
       res = "Contactez le CFA pour avoir plus d'informations"
+    } else if (oneKind === "peJob") {
+      res = "Quelques informations sur l'entreprise"
     }
     return res
   }
