@@ -12,18 +12,18 @@ const {
 
 describe(__filename, () => {
   it("validateSendApplication : Echoue si mauvais argument passé en param", async () => {
-    await expect(validateSendApplication()).to.equal("données de candidature invalides");
+    expect(await validateSendApplication()).to.equal("données de candidature invalides");
   });
   it("validateSendApplication : Echoue si un des champs ne passe pas la validation", async () => {
-    await expect(validateSendApplication({ lastName: "too long name, more than 15 characters, will fail" })).to.equal(
+    expect(await validateSendApplication({ lastName: "too long name, more than 15 characters, will fail" })).to.equal(
       "données de candidature invalides"
     );
   });
   it("validateSendApplication : Echoue si un l'email est d'une boîte temporaire", async () => {
-    await expect(validatePermanentEmail({ email: "test@10minutemail.com" })).to.equal("email temporaire non autorisé");
+    expect(await validatePermanentEmail({ email: "test@10minutemail.com" })).to.equal("email temporaire non autorisé");
   });
   it("validateSendApplication : Succès si l'email n'est pas d'une boîte temporaire", async () => {
-    await expect(validatePermanentEmail({ email: "test@gmail.com" })).to.equal("ok");
+    expect(await validatePermanentEmail({ email: "test@gmail.com" })).to.equal("ok");
   });
   it("validateSendApplication : Passe si tous les champs sont valides", async () => {
     expect(

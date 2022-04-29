@@ -11,10 +11,15 @@ const validateSendApplication = async (validable) => {
       .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
       .required("⚠ Le téléphone est requis"),
   });
-  await schema.validate(validable).catch(function () {
-    return "données de candidature invalides";
+  let validation = await schema.validate(validable).catch(function () {
+    return "erreur";
   });
-  return "ok";
+
+  if (validation === "erreur") {
+    return "données de candidature invalides";
+  } else {
+    return "ok";
+  }
 };
 
 const validateCompanyEmail = async (validable) => {
