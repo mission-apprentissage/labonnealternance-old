@@ -14,8 +14,8 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
   const [thanks, setThanks] = useSessionStorage(uniqId, false);
 
   return (
-    <div className="c-goingto mt-4" data-testid="GoingToContactQuestion">
-      <span className="c-goingto-title">Allez-vous contacter cet établissement ?</span>
+    <div className="c-detail-body c-goingto mt-4" data-testid="GoingToContactQuestion">
+      <span className="c-goingto-title">Allez-vous contacter cet entreprise ?</span>
       <div className="d-flex-center mt-2">
         {thanks ? (
           <>
