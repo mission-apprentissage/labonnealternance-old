@@ -15,8 +15,8 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
 
   return (
     <div className="c-detail-body c-goingto mt-4" data-testid="GoingToContactQuestion">
-      <span className="c-goingto-title">Allez-vous contacter cet entreprise ?</span>
-      <span className="d-flex">
+      <div className="c-goingto-title">Allez-vous contacter cet entreprise ?</div>
+      <div className="">
         {thanks ? (
           <>
             <div className="c-goingto-thanks mt-3">
@@ -45,7 +45,7 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
             </div>
           </>
         )}
-      </span>
+      </div>
     </div>
   );
 };
