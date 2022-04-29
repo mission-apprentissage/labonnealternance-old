@@ -38,22 +38,34 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         <div>
           <strong>Début du contrat le : </strong> {jobStartDate}
         </div>
-        <div>
+        <div className="my-2">
           <strong>Nature du contrat : </strong> {getContractTypes(job?.job?.contractType)}
         </div>
         <div>
           <strong>Niveau requis :</strong> non défini
         </div>
       </div>
-      <p>
-        <span className="c-detail-bolded">{job.company.name}</span>  nous a récemment fait parvenir un besoin de recrutement :  <span className="c-detail-bolded">{job.title}</span>. Cela signifie que l'établissement est activement à la recherche d'un.e candidat.e.
-      </p>
-      <p>
-        Vous avez donc tout intérêt à le contacter rapidement, avant que l'offre ne soit pourvue !
-      </p>
-      <p>
-        Trouver et convaincre une entreprise de vous embaucher ? On vous donne des conseils ici pour vous aider !
-      </p>
+      {
+        job?.company?.mandataire ?
+          <>
+            <p>
+              Offre publiée par <span className="c-detail-bolded">{job.company.name}</span> pour une entreprise partenaire du centre de formation.
+            </p>
+          </>
+        :
+          <>
+            <p>
+              <span className="c-detail-bolded">{job.company.name}</span>  nous a récemment fait parvenir un besoin de recrutement :  <span className="c-detail-bolded">{job.title}</span>. Cela signifie que l'établissement est activement à la recherche d'un.e candidat.e.
+            </p>
+            <p>
+              Vous avez donc tout intérêt à le contacter rapidement, avant que l'offre ne soit pourvue !
+            </p>
+            <p>
+              Trouver et convaincre une entreprise de vous embaucher ? On vous donne des conseils ici pour vous aider !
+            </p>
+          </>
+      }
+
     </>
   );
 };
