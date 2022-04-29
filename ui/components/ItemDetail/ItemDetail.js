@@ -281,7 +281,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
         <LocationDetail item={selectedItem}></LocationDetail>
 
-        <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, selectedItem)} key={getGoingtoId(kind, selectedItem)} />
+        {amongst(kind, ["peJob"]) ? 
+         <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, selectedItem)} key={getGoingtoId(kind, selectedItem)} />
+         : 
+         ""
+         }
 
         
       </section>
