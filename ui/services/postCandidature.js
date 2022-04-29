@@ -15,7 +15,14 @@ export default async function postCandidature(
   let res = "";
 
   const candidatureApi = _baseUrl + "/api/application";
-  const response = await _axios.post(candidatureApi, extractCandidatureParams(applicant_h, company_h));
+
+  let response = null;
+
+  try {
+    response = await _axios.post(candidatureApi, extractCandidatureParams(applicant_h, company_h));
+  } catch (error) {
+    response = error.response;
+  }
 
   const isAxiosError = !!_.get(response, "data.error");
   const isSimulatedError = false;
@@ -25,10 +32,13 @@ export default async function postCandidature(
     if (isAxiosError) {
       _logError("Candidature API error", `Candidature API error ${response.data.error}`);
       console.log("response", response);
+      res = response.data.error;
     } else if (isSimulatedError) {
       _logError("Candidature API error simulated");
+      res = "simulated_error";
+    } else {
+      res = "unexpected_error";
     }
-    res = "error";
   } else {
     res = "ok";
   }

@@ -105,8 +105,8 @@ const CandidatureSpontanee = (props) => {
                     <></>
                   )}
 
-                  {with_str(sendingState).amongst(["not_sent_because_of_errors"]) ? (
-                    <CandidatureSpontaneeFailed />
+                  {with_str(sendingState).amongst(["not_sent_because_of_errors", "email temporaire non autorisé"]) ? (
+                    <CandidatureSpontaneeFailed sendingState={sendingState} />
                   ) : (
                     <></>
                   )}
