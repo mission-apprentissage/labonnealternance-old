@@ -19,6 +19,17 @@ const LocationDetail = ({ item }) => {
     }
     return res
   }
+  
+  const shouldDisplayEmail = (oneItem) => {
+    let res = false
+    const oneKind = oneItem?.ideaType;
+    if (oneKind === "matcha") {
+      res = item?.company?.mandataire
+    } else {
+      res = item?.contact?.email && !item?.prdvUrl
+    }
+    return res
+  }
 
   return (
     <>
@@ -81,7 +92,7 @@ const LocationDetail = ({ item }) => {
           ""
         )}
 
-        {item?.contact?.email && !item?.prdvUrl && kind !== 'matcha' ?  (
+        {shouldDisplayEmail(item) ?  (
           <div className="c-locationdetail-line mt-1">
             <span className="c-locationdetail-imgcontainer">
               <img className="" src="/images/icons/small_email.svg" alt="email" />
