@@ -23,6 +23,8 @@ import LocationDetail from "./LocationDetail";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
 
+import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
   console.log('selectedItem', selectedItem);
@@ -278,6 +280,10 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         }
 
         <LocationDetail item={selectedItem}></LocationDetail>
+
+        <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, selectedItem)} key={getGoingtoId(kind, selectedItem)} />
+
+        
       </section>
     </>
   );
