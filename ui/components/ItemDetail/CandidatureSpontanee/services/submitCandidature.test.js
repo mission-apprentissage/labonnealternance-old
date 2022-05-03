@@ -4,7 +4,7 @@ describe("submitCandidature", () => {
   it("By default, change current state if no error", async () => {
     // given
     const mockedSetSendingState = jest.fn();
-    const mockedPostCandidature = (o) => {
+    const mockedPostCandidature = (applicants, items) => {
       return "ok";
     };
     const repeatFunc = (x) => {
@@ -41,7 +41,7 @@ describe("submitCandidature", () => {
   it("If post result error, change state with an error", async () => {
     // given
     const mockedSetSendingState = jest.fn();
-    const mockedPostCandidature = (o) => {
+    const mockedPostCandidature = (applicants, items) => {
       return "error";
     };
     const repeatFunc = (x) => {
