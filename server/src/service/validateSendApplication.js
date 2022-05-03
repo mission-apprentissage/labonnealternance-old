@@ -1,4 +1,5 @@
 const Yup = require("yup");
+const { isEmailBurner } = require("burner-email-providers");
 
 const validateSendApplication = async (validable) => {
   let schema = Yup.object().shape({
@@ -10,10 +11,15 @@ const validateSendApplication = async (validable) => {
       .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
       .required("⚠ Le téléphone est requis"),
   });
-  await schema.validate(validable).catch(function () {
-    throw "error - validation of data failed";
+  let validation = await schema.validate(validable).catch(function () {
+    return "erreur";
   });
-  return "ok";
+
+  if (validation === "erreur") {
+    return "données de candidature invalides";
+  } else {
+    return "ok";
+  }
 };
 
 const validateCompanyEmail = async (validable) => {
@@ -23,9 +29,20 @@ const validateCompanyEmail = async (validable) => {
       .required("⚠ L'adresse e-mail société est requise."),
     cryptedEmail: Yup.string().email("⚠ Adresse e-mail chiffrée invalide."),
   });
-  await schema.validate(validable).catch(function () {
-    throw "error - validation of data failed";
+  let validation = await schema.validate(validable).catch(function () {
+    return "erreur";
   });
+  if (validation === "erreur") {
+    return "email société invalide";
+  } else {
+    return "ok";
+  }
+};
+
+const validatePermanentEmail = async (validable) => {
+  if (isEmailBurner(validable.email)) {
+    return "email temporaire non autorisé";
+  }
   return "ok";
 };
 
@@ -75,4 +92,5 @@ module.exports = {
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
   validateIntentionApplication,
+  validatePermanentEmail,
 };

@@ -11,6 +11,7 @@ const {
   validateCompanyEmail,
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
+  validatePermanentEmail,
 } = require("./validateSendApplication");
 const logger = require("../common/logger");
 const publicUrl = config.publicUrl;
@@ -98,7 +99,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
   } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
     return { error: "wrong_secret" };
   } else {
-    await validateSendApplication({
+    let validationResult = await validateSendApplication({
       fileName: query.applicant_file_name,
       email: query.applicant_email,
       firstName: query.applicant_first_name,
@@ -106,13 +107,27 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       phone: query.applicant_phone,
     });
 
+    if (validationResult !== "ok") {
+      return { error: validationResult };
+    }
+
+    validationResult = await validatePermanentEmail({ email: query.applicant_email });
+
+    if (validationResult !== "ok") {
+      return { error: validationResult };
+    }
+
     let companyEmail = shouldCheckSecret ? query.company_email : decryptWithIV(query.company_email, query.iv); // utilisation email de test ou decrypt vrai mail crypté
     let cryptedEmail = shouldCheckSecret ? decryptWithIV(query.crypted_company_email, query.iv) : ""; // présent uniquement pour les tests utilisateurs
 
-    await validateCompanyEmail({
+    validationResult = await validateCompanyEmail({
       companyEmail,
       cryptedEmail,
     });
+
+    if (validationResult !== "ok") {
+      return { error: validationResult };
+    }
 
     try {
       let application = initApplication(query, companyEmail);
@@ -167,7 +182,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
 
       return { result: "ok", message: "messages sent" };
     } catch (err) {
-      console.log("err ", err);
+      logger.error(`Error sending application. Reason : ${err}`);
       Sentry.captureException(err);
       return { error: "error_sending_application" };
     }
@@ -406,7 +421,7 @@ const addEmailToBlacklist = async (email, source) => {
     }).save();
   } catch (err) {
     // catching unique address error
-    // do nothing
+    logger.error(`Failed to save email to blacklist (${email}). Reason : ${err}`);
   }
 };
 
