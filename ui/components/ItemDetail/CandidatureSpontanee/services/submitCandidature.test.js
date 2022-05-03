@@ -4,9 +4,9 @@ describe("submitCandidature", () => {
   it("By default, change current state if no error", async () => {
     // given
     const mockedSetSendingState = jest.fn();
-    const mockedPostCandidature = (applicants, items) => {
+    const mockedPostCandidature = jest.fn((applicants, items) => {
       return "ok";
-    };
+    });
     const repeatFunc = (x) => {
       return x;
     };
@@ -28,9 +28,9 @@ describe("submitCandidature", () => {
     // given
     const mockedSetSendingState = jest.fn();
     const emptyFunc = () => {};
-    const mockedPostCandidature = () => {
+    const mockedPostCandidature = jest.fn(() => {
       throw "Custom error";
-    };
+    });
     // when
     await submitCandidature(null, mockedSetSendingState, {}, mockedPostCandidature, emptyFunc);
     // then
@@ -41,9 +41,9 @@ describe("submitCandidature", () => {
   it("If post result error, change state with an error", async () => {
     // given
     const mockedSetSendingState = jest.fn();
-    const mockedPostCandidature = (applicants, items) => {
+    const mockedPostCandidature = jest.fn((applicants, items) => {
       return "error";
-    };
+    });
     const repeatFunc = (x) => {
       return x;
     };
