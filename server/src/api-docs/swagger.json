@@ -1279,6 +1279,11 @@
                     "type": "string",
                     "description": "Lieu de formation seulement : l'uai du lieu de formation"
                 },
+                "mandataire":
+                {
+                    "type": "boolean",
+                    "description": "Indique si l'offre est déposée par un CFA mandataire (offres Matcha seulement)"  
+                },
                 "headquarter":
                 {
                     "type": "object",
