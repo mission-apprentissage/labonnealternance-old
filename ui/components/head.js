@@ -61,10 +61,10 @@ const HeadLaBonneAlternance = (props) => {
         defer
         data-domain={
           getEnvFromProps().env !== "production"
-            ? "labonnealternance-recette.apprentissage.beta.gouv.fr"
-            : "labonnealternance.pole-emploi.fr,labonnealternance.apprentissage.beta.gouv.fr"
+            ? "labonnealternance-recette2.apprentissage.beta.gouv.fr"
+            : "labonnealternance.apprentissage.beta.gouv.fr"
         }
-        src="https://plausible.io/js/plausible.js"
+        src="https://plausible.io/js/script.hash.js"
       ></script>
     </Head>
   );
