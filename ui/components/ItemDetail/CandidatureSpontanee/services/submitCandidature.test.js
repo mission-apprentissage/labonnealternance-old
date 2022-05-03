@@ -58,6 +58,6 @@ describe("submitCandidature", () => {
     // then
     expect(mockedPostCandidature).toHaveBeenCalledWith({ applicants: "values" }, { items: "some" });
     expect(mockedSetSendingState).toHaveBeenCalledWith("currently_sending");
-    expect(mockedSetSendingState).toHaveBeenCalledWith("ok_sent");
+    expect(mockedSetSendingState).toHaveBeenCalledWith("not_sent_because_of_errors");
   });
 });
