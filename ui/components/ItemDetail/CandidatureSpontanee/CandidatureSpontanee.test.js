@@ -5,13 +5,12 @@ import nock from "nock";
 import userEvent from "@testing-library/user-event";
 
 describe("CandidatureSpontanee", () => {
-
   function buildFakeStorage() {
     let storage = {};
 
     return {
       setItem: function (key, value) {
-        storage[key] = value || '';
+        storage[key] = value || "";
       },
       getItem: function (key) {
         return key in storage ? storage[key] : null;
@@ -19,13 +18,13 @@ describe("CandidatureSpontanee", () => {
     };
   }
 
-  const consoleLog = console.log
-  let fakeLocalStorage = null
+  const consoleLog = console.log;
+  let fakeLocalStorage = null;
 
   beforeEach(() => {
-    console.log = consoleLog
+    console.log = consoleLog;
     nock.disableNetConnect();
-    fakeLocalStorage = buildFakeStorage()
+    fakeLocalStorage = buildFakeStorage();
   });
 
   it("By default displays a button, not a modal", () => {
@@ -147,28 +146,28 @@ describe("CandidatureSpontanee", () => {
       expect(title).toHaveTextContent("Candidature spontanée");
     });
     // Then 3.
-    expect(fakeLocalStorage.getItem('candidaturespontanee-lbb-40400744500079')).not.toBeNull();
+    expect(fakeLocalStorage.getItem("candidaturespontanee-lbb-40400744500079")).not.toBeNull();
   });
 
   it("LBB - user has already submit application", async () => {
     // Given
-    fakeLocalStorage.setItem('candidaturespontanee-lbb-40400744500079', '1641477787024')
+    fakeLocalStorage.setItem("candidaturespontanee-lbb-40400744500079", "1641477787024");
     // When
     render(<CandidatureSpontanee item={realisticLbb} fakeLocalStorage={fakeLocalStorage} />);
     // Then
-    expect(screen.getByTestId('already-applied')).toHaveTextContent('Vous avez déjà postulé le 6 janvier 2022');
-  })
+    expect(screen.getByTestId("already-applied")).toHaveTextContent("Vous avez déjà postulé le 6 janvier 2022");
+  });
 
   it("LBB - full but failing test", async () => {
     // Given
-    
+
     // HACK : prevent manually-triggered error 500 to litter the console
     // See https://stackoverflow.com/a/67448856/2595513
-    console.log = jest.fn()
-    
+    console.log = jest.fn();
+
     openLbbModal(render, screen, fireEvent);
     fillModalTextInputs(screen);
-    
+
     // When 1.
     const pdfFile = new File(["hello"], "hello.pdf", { type: "text/pdf" });
     const pdfInput = screen.getByTestId("fileDropzone");
@@ -193,16 +192,16 @@ describe("CandidatureSpontanee", () => {
       expect(title).toHaveTextContent("Une erreur est survenue.");
     });
     // Then 3.
-    expect(fakeLocalStorage.getItem('candidaturespontanee-lbb-40400744500079')).toBeFalsy();
-    expect(screen.queryByTestId('already-applied')).toBeNull();
+    expect(fakeLocalStorage.getItem("candidaturespontanee-lbb-40400744500079")).toBeFalsy();
+    expect(screen.queryByTestId("already-applied")).toBeNull();
   });
   it("LBB - full but failing test", async () => {
     // Given
 
     // HACK : prevent manually-triggered error 500 to litter the console
     // See https://stackoverflow.com/a/67448856/2595513
-    console.log = jest.fn()
-    
+    console.log = jest.fn();
+
     openLbbModal(render, screen, fireEvent);
     fillModalTextInputs(screen);
 
@@ -259,23 +258,23 @@ describe("CandidatureSpontanee", () => {
       expect(title).toHaveTextContent("Postuler à l'offre de Lamacompta");
     });
     // Then 3.
-    expect(fakeLocalStorage.getItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75')).not.toBeNull();
+    expect(fakeLocalStorage.getItem("candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75")).not.toBeNull();
   });
   it("MATCHA - user has already submit application", async () => {
     // Given
-    fakeLocalStorage.setItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75', '1641477787024')
+    fakeLocalStorage.setItem("candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75", "1641477787024");
     // When
     render(<CandidatureSpontanee item={realisticMatcha} fakeLocalStorage={fakeLocalStorage} />);
     // Then
-    expect(screen.getByTestId('already-applied')).toHaveTextContent('Vous avez déjà postulé le 6 janvier 2022');
-  })
+    expect(screen.getByTestId("already-applied")).toHaveTextContent("Vous avez déjà postulé le 6 janvier 2022");
+  });
   it("MATCHA - full but FAILING test", async () => {
     // Given
 
     // HACK : prevent manually-triggered error 500 to litter the console
     // See https://stackoverflow.com/a/67448856/2595513
-    console.log = jest.fn()
-    
+    console.log = jest.fn();
+
     openMatchaModal(render, screen, fireEvent);
     fillModalTextInputs(screen);
 
@@ -303,15 +302,15 @@ describe("CandidatureSpontanee", () => {
       expect(title).toHaveTextContent("Une erreur est survenue.");
     });
     // Then 3.
-    expect(fakeLocalStorage.getItem('candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75')).toBeFalsy();
+    expect(fakeLocalStorage.getItem("candidaturespontanee-matcha-611ccfa4bb8f010028f0bd75")).toBeFalsy();
   });
   it("MATCHA - full but FAILING test", async () => {
     // Given
 
     // HACK : prevent manually-triggered error 500 to litter the console
     // See https://stackoverflow.com/a/67448856/2595513
-    console.log = jest.fn()
-    
+    console.log = jest.fn();
+
     openMatchaModal(render, screen, fireEvent);
     fillModalTextInputs(screen);
 
@@ -341,12 +340,12 @@ describe("CandidatureSpontanee", () => {
   });
 
   const openLbbModal = (render, screen, fireEvent) => {
-    render(<CandidatureSpontanee item={realisticLbb} fakeLocalStorage={fakeLocalStorage}/>);
+    render(<CandidatureSpontanee item={realisticLbb} fakeLocalStorage={fakeLocalStorage} />);
     const button = screen.queryByRole("button", { name: /jenvoie-une-candidature-spontanee/i });
     fireEvent.click(button);
   };
   const openMatchaModal = (render, screen, fireEvent) => {
-    render(<CandidatureSpontanee item={realisticMatcha} fakeLocalStorage={fakeLocalStorage}/>);
+    render(<CandidatureSpontanee item={realisticMatcha} fakeLocalStorage={fakeLocalStorage} />);
     const button = screen.queryByRole("button", { name: /jenvoie-une-candidature-spontanee/i });
     fireEvent.click(button);
   };

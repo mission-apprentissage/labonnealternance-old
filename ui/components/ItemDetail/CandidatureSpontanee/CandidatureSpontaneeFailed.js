@@ -11,7 +11,7 @@ const CandidatureSpontaneeFailed = ({ sendingState }) => {
             <img src={error2} alt="erreur" />
           </div>
           <div className="ml-3 pl-3">
-            <h2 className="c-candidature-worked-title" data-testid="CandidatureSpontaneeFailedTitle">
+            <h2 className="c-candidature-worked-title" data-testid="CandidatureSpontaneeFailedTempEmailTitle">
               Les adresses emails temporaires ne sont pas acceptées
             </h2>
           </div>
