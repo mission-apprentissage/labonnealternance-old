@@ -228,7 +228,7 @@ const TrainingDetail = ({ training, isCfa }) => {
                     <ExternalLink
                       url={training.onisepUrl}
                       title="le site Onisep"
-                      withLink={<img src={gotoIcon} alt="Lien" />}
+                      withPic={<img src={gotoIcon} alt="Lien" />}
                     />
                   </span>
                 </p>

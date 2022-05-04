@@ -6,12 +6,12 @@ import Breadcrumb from "components/breadcrumb";
 import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
+import ExternalLink from "@/components/externalLink";
 
 const AccesRecruteur = () => (
   <div>
-
     <NextSeo
-      title='Acces recruteur | La Bonne Alternance | Trouvez votre alternance'
+      title="Acces recruteur | La Bonne Alternance | Trouvez votre alternance"
       description="Exprimez votre besoin en alternance. Aucune inscription ne vous sera demandée."
     />
 
@@ -33,18 +33,27 @@ const AccesRecruteur = () => (
           <p className="mb-3">Dernière mise à jour le : 06/05/2021</p>
           <div className="c-recruteur-hero p-5 mb-5">
             <h2 className="c-recruteur-hero-title">Exprimez votre besoin en alternance</h2>
-            <p className="c-recruteur-hero-text">Notre service Matcha vous permet de publier en quelques minutes vos offres sur <strong>La Bonne Alternance.</strong></p>
+            <p className="c-recruteur-hero-text">
+              Notre service Matcha vous permet de publier en quelques minutes vos offres sur{" "}
+              <strong>La Bonne Alternance.</strong>
+            </p>
             <div className="mb-2">
-              <a href="https://matcha.apprentissage.beta.gouv.fr/creation/entreprise/lba" target="_blank" className="btn btn-primary ml-1" rel="noopener noreferrer">
-                Publier une offre d'emploi en alternance
-              </a>
+              <ExternalLink
+                className="btn btn-primary ml-1"
+                url="https://matcha.apprentissage.beta.gouv.fr/creation/entreprise/lba"
+                title="Publier une offre d'emploi en alternance"
+              />
             </div>
             <div>
-              <small><em>Aucune inscription ne vous sera demandée</em></small>
+              <small>
+                <em>Aucune inscription ne vous sera demandée</em>
+              </small>
             </div>
           </div>
           <section>
-            <h2 className="mb-3 h5 c-recruteur-title">Conditions d’affichage des offres d'emploi sur La Bonne Alternance</h2>
+            <h2 className="mb-3 h5 c-recruteur-title">
+              Conditions d’affichage des offres d'emploi sur La Bonne Alternance
+            </h2>
             <p>
               Seules les offres d'emploi en contrat d’apprentissage et en contrat de professionnalisation sont visibles
               sur La Bonne Alternance.
@@ -56,22 +65,28 @@ const AccesRecruteur = () => (
             <ul>
               <li>
                 vous l’avez publiée sur &nbsp;
-                <a href="https://pole-emploi.fr" target="_blank" className="" rel="noopener noreferrer">
-                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien pole-emploi.fr" />
-                  <span className="ml-1">pole-emploi.fr</span>
-                </a>
+                <ExternalLink
+                  url="https://pole-emploi.fr"
+                  withPic={<img className="mt-n1" src="/images/square_link.svg" alt="Lien pole-emploi.fr" />}
+                  picPosition="left"
+                  title={<span className="ml-1">pole-emploi.fr</span>}
+                />
                 &nbsp; ou &nbsp;
-                <a href="https://1jeune1solution.gouv.fr" target="_blank" className="" rel="noopener noreferrer">
-                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien 1jeune1solution.gouv.fr" />
-                  <span className="ml-1">1jeune1solution.gouv.fr</span>
-                </a>
+                <ExternalLink
+                  url="https://1jeune1solution.gouv.fr"
+                  withPic={<img className="mt-n1" src="/images/square_link.svg" alt="Lien pole-emploi.fr" />}
+                  picPosition="left"
+                  title={<span className="ml-1">1jeune1solution.gouv.fr</span>}
+                />
               </li>
               <li>
                 vous l’avez publiée auprès de l’un des partenaires de &nbsp;
-                <a href="https://pole-emploi.fr" target="_blank" className="" rel="noopener noreferrer">
-                  <img className="mt-n1" src="/images/square_link.svg" alt="Lien pole-emploi.fr" />
-                  <span className="ml-1">Pôle Emploi</span>
-                </a>
+                <ExternalLink
+                  url="https://pole-emploi.fr"
+                  withPic={<img className="mt-n1" src="/images/square_link.svg" alt="Lien pole-emploi.fr" />}
+                  picPosition="left"
+                  title={<span className="ml-1">Pôle Emploi</span>}
+                />
                 , et que ce dernier a ouvert la multidiffusion de votre offre
               </li>
               <li>
@@ -93,15 +108,12 @@ const AccesRecruteur = () => (
             <p>
               La liste d’entreprises est mise à jour tous les mois. Vous pouvez demander le référencement ou le
               déréférencement sur La Bonne Alternance grâce à ce &nbsp;
-              <a
-                href="https://labonneboite.pole-emploi.fr/informations-entreprise/action"
-                target="_blank"
-                className=""
-                rel="noopener noreferrer"
-              >
-                <img className="mt-n1" src="/images/square_link.svg" alt="Lien formulaire la bonne boîte" />
-                <span className="ml-1">formulaire</span>.
-              </a>
+              <ExternalLink
+                url="https://labonneboite.pole-emploi.fr/informations-entreprise/action"
+                withPic={<img className="mt-n1" src="/images/square_link.svg" alt="Lien formulaire la bonne boîte" />}
+                picPosition="left"
+                title={<span className="ml-1">formulaire</span>}
+              />
               &nbsp;
             </p>
           </section>
@@ -111,15 +123,12 @@ const AccesRecruteur = () => (
             </h2>
             <p>
               Accédez à ce &nbsp;
-              <a
-                href="https://labonneboite.pole-emploi.fr/informations-entreprise/action"
-                target="_blank"
-                className=""
-                rel="noopener noreferrer"
-              >
-                <img className="mt-n1" src="/images/square_link.svg" alt="Lien formulaire la bonne boîte" />
-                <span className="ml-1">formulaire</span>
-              </a>
+              <ExternalLink
+                url="https://labonneboite.pole-emploi.fr/informations-entreprise/action"
+                withPic={<img className="mt-n1" src="/images/square_link.svg" alt="Lien formulaire la bonne boîte" />}
+                picPosition="left"
+                title={<span className="ml-1">formulaire</span>}
+              />
               &nbsp; pour nous transmettre votre demande.
             </p>
           </section>
