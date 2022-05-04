@@ -15,12 +15,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
     <>
       <ModalBody data-testid="modalbody-nominal">
         <h1 className="c-candidature-title" data-testid="CandidatureSpontaneeTitle">
-          {
-            kind === 'matcha' ?
-              <>Postuler à l'offre de {company}</>
-              :
-              <>Candidature spontanée</>
-          }
+          {kind === "matcha" ? <>Postuler à l'offre de {company}</> : <>Candidature spontanée</>}
         </h1>
 
         <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4">
@@ -124,16 +119,13 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
           </fieldset>
         </div>
 
-        <CandidatureSpontaneeMessage formik={formik} kind={kind}/>
+        <CandidatureSpontaneeMessage formik={formik} kind={kind} />
 
         <div className="c-candidature-message mt-3">
           <CandidatureSpontaneeFileDropzone formik={formik} setFileValue={setFileValue} />
         </div>
 
-        <fieldset
-          data-testid="fieldset-terms"
-          className="c-candidature-terms mt-3"
-        >
+        <fieldset data-testid="fieldset-terms" className="c-candidature-terms mt-3">
           <label htmlFor="terms" className="c-candidature-terms-text">
             <div>
               En remplissant ce formulaire, vous acceptez les{" "}

@@ -16,6 +16,7 @@ import { formatDate } from "../../utils/strutils";
 import { Spinner } from "reactstrap";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+import ExternalLink from "../externalLink";
 
 const TrainingDetail = ({ training, isCfa }) => {
   const dispatch = useDispatch();
@@ -101,9 +102,7 @@ const TrainingDetail = ({ training, isCfa }) => {
         data-id-cle-ministere-educatif={training.cleMinistereEducatif}
         data-id-rco-formation={training.idRcoFormation}
       >
-        <a href={training.prdvUrl} target="_blank" rel="noopener noreferrer" className="gtmPrdv">
-          Prendre rendez-vous
-        </a>
+        <ExternalLink className="gtmPrdv" url={training.prdvUrl} title="Prendre rendez-vous" />
       </div>
     ) : (
       ""
@@ -119,15 +118,12 @@ const TrainingDetail = ({ training, isCfa }) => {
     <p>
       Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ?
       <span className="c-detail-traininglink ml-1">
-        <a
-          href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
-          target="_blank"
-          rel="noopener noreferrer"
+        <ExternalLink
           className="gtmDidaskFormation"
-        >
-          Préparez votre premier contact avec un CFA !&nbsp;
-          <img src={gotoIcon} alt="Lien" />
-        </a>
+          url="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
+          title="Préparez votre premier contact avec un CFA !"
+          withPic={<img src={gotoIcon} alt="Lien" />}
+        />
       </span>
     </p>
   );
@@ -191,14 +187,7 @@ const TrainingDetail = ({ training, isCfa }) => {
           <span className="c-detail-sizetext d-block">
             <img className="mt-n1" src="/images/square_link.svg" alt="" />
             <span className="ml-2">Voir le site </span>
-            <a
-              href={companyUrl}
-              target="_blank"
-              className="c-detail-training-link gtmTrainingLink"
-              rel="noopener noreferrer"
-            >
-              {companyUrl}
-            </a>
+            <ExternalLink className="c-detail-training-link gtmTrainingLink" url={companyUrl} title={companyUrl} />
           </span>
         </p>
       ) : (
@@ -236,10 +225,11 @@ const TrainingDetail = ({ training, isCfa }) => {
                 <p>
                   <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
                   <span className="c-detail-traininglink">
-                    <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
-                      le site Onisep&nbsp;
-                      <img src={gotoIcon} alt="Lien" />
-                    </a>
+                    <ExternalLink
+                      url={training.onisepUrl}
+                      title="le site Onisep"
+                      withLink={<img src={gotoIcon} alt="Lien" />}
+                    />
                   </span>
                 </p>
 
@@ -294,7 +284,7 @@ const getTrainingDetails = (training, loading) => {
         </div>
       ) : (
         ""
-        )}
+      )}
 
       {training.objectif ? (
         <div className="c-detail-description media">

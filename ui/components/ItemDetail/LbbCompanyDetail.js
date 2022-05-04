@@ -140,27 +140,23 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           <br />
           Besoin d'aide pour concevoir votre CV ? Il existe plusieurs outils gratuits :
           <br />
-          <a href="https://cv.clicnjob.fr/" className="gtmCVLink gtmClicnjob" rel="noopener noreferrer" target="_blank">
-            https://cv.clicnjob.fr/
-          </a>
+          <ExternalLink
+            className="gtmCVLink gtmClicnjob"
+            url="https://cv.clicnjob.fr/"
+            title="https://cv.clicnjob.fr/"
+          />
           <br />
-          <a
-            href="https://cvdesignr.com/fr"
+          <ExternalLink
             className="gtmCVLink gtmCvdesigner"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            https://cvdesignr.com/fr
-          </a>
+            url="https://cvdesignr.com/fr"
+            title="https://cvdesignr.com/fr"
+          />
           <br />
-          <a
-            href="https://www.canva.com/fr_fr/creer/cv/"
+          <ExternalLink
             className="gtmCVLink gtmCanva"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            https://www.canva.com/fr_fr/creer/cv/
-          </a>
+            url="https://www.canva.com/fr_fr/creer/cv/"
+            title="https://www.canva.com/fr_fr/creer/cv/"
+          />
         </p>
         <p className="c-detail-lbb-paragraph">Conseil : Allez voir le site de l'entreprise si elle en a un.</p>
 
