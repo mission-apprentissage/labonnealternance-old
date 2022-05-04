@@ -14,6 +14,7 @@ import { capitalizeFirstLetter } from "../../utils/strutils";
 import { rawPostalAddress } from "../../utils/addressUtils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
+import ExternalLink from "../externalLink";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
@@ -106,16 +107,12 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <img className="cardIcon mr-2" src={smallMapPointIcon} alt="" />
         </span>
         <span className="c-detail-sizetext">
-          <a
-            href={getPathLink()}
-            target="_blank"
+          <ExternalLink
             className={`c-detail-googledir-link gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
-            rel="noopener noreferrer"
-          >
-            <span>
-              Obtenir l'itinéraire <img className="mt-n1" src="/images/square_link.svg" alt="" />
-            </span>
-          </a>
+            url={getPathLink()}
+            title="Obtenir l'itinéraire"
+            withPic={<img className="mt-n1" src="/images/square_link.svg" alt="" />}
+          />
         </span>
       </span>
     ) : (

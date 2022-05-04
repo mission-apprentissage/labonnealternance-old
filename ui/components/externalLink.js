@@ -1,7 +1,7 @@
 import React from "react";
 import { SendPlausibleEvent } from "../utils/gtm";
 
-const ExternalLink = ({ url, title, className = "", withPic, picPosition = "right" }) => {
+const ExternalLink = ({ url, title, className = "", withPic, picPosition = "right", dataTestid }) => {
   const onClick = () => {
     SendPlausibleEvent("Clic lien externe", {
       url,
@@ -21,7 +21,14 @@ const ExternalLink = ({ url, title, className = "", withPic, picPosition = "righ
   };
 
   return (
-    <a className={className} target="_blank" rel="noopener norefferer" href={url} onClick={onClick}>
+    <a
+      className={className}
+      target="_blank"
+      rel="noopener norefferer"
+      href={url}
+      onClick={onClick}
+      data-testid={dataTestid}
+    >
       {getPic("left")}
       {title}
       {getPic("right")}

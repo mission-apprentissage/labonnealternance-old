@@ -2,6 +2,7 @@ import React from "react";
 
 import homereview from "public/images/homereview.svg";
 import { some, values } from "lodash";
+import ExternalLink from "../externalLink";
 
 const HomeReview = (props) => {
   return (
@@ -49,14 +50,11 @@ const HomeReview = (props) => {
 
                 {props?.reviews?.URL_CTA ? (
                   <>
-                    <a
+                    <ExternalLink
                       className="btn btn-outline-primary px-1 px-sm-5 mt-3"
-                      rel="noopener noreferrer"
-                      href={props.reviews.URL_CTA}
-                      target="_blank"
-                    >
-                      <span className="d-inline px-3 px-sm-0">{props?.reviews?.LIBELLE_CTA || "Voir"}</span>
-                    </a>
+                      url={props.reviews.URL_CTA}
+                      title={<span className="d-inline px-3 px-sm-0">{props?.reviews?.LIBELLE_CTA || "Voir"}</span>}
+                    />
                   </>
                 ) : (
                   <></>

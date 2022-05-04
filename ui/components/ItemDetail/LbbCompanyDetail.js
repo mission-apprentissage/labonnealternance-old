@@ -10,6 +10,7 @@ import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+import ExternalLink from "../externalLink";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
@@ -93,15 +94,12 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           <span className="c-detail-sizetext d-block">
             <img className="mt-n1" src="/images/square_link.svg" alt="" />
             <span className="ml-2">En savoir plus sur </span>
-            <a
-              href={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
-              target="_blank"
+            <ExternalLink
               className="c-detail-google-search gtmGoogleLink"
-              rel="noopener noreferrer"
-              data-testid="link-knowmore-lbb"
-            >
-              {lbb.title}
-            </a>
+              url={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
+              title={lbb.title}
+              dataTestid="link-knowmore-lbb"
+            />
           </span>
         </p>
       </div>
