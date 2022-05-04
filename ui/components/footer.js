@@ -176,13 +176,11 @@ const Footer = (props) => {
             <Col className="col-12">
               <div className="c-footer-smallword c-footer-lastword">
                 Sauf mention contraire, tous les contenus de ce site sont sous licence{" "}
-                <a
-                  href="https://www.etalab.gouv.fr/licence-version-2-0-de-la-licence-ouverte-suite-a-la-consultation-et-presentation-du-decret"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  etalab-2.0 <img className="ml-1" src="/images/square_link.svg" alt="Lien" />
-                </a>
+                <ExternalLink
+                  url="https://www.etalab.gouv.fr/licence-version-2-0-de-la-licence-ouverte-suite-a-la-consultation-et-presentation-du-decret"
+                  title="etalab-2.0"
+                  withPic={<img className="ml-1" src="/images/square_link.svg" alt="Lien" />}
+                />
               </div>
             </Col>
           </Row>
