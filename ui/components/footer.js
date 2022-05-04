@@ -33,38 +33,18 @@ const Footer = (props) => {
                   url="https://legifrance.gouv.fr"
                   title="legifrance.gouv.fr"
                 />
-                <a
+                <ExternalLink
                   className="c-footer-official-link"
-                  target="_blank"
-                  rel="noopener norefferer"
-                  href="https://gouvernement.fr"
-                >
-                  gouvernement.fr
-                </a>
-                <a
+                  url="https://gouvernement.fr"
+                  title="gouvernement.fr"
+                />
+                <ExternalLink
                   className="c-footer-official-link"
-                  target="_blank"
-                  rel="noopener norefferer"
-                  href="https://service-public.fr"
-                >
-                  service-public.fr
-                </a>
-                <a
-                  className="c-footer-official-link"
-                  target="_blank"
-                  rel="noopener norefferer"
-                  href="https://data.gouv.fr"
-                >
-                  data.gouv.fr
-                </a>
-                <a
-                  className="c-footer-official-link"
-                  target="_blank"
-                  rel="noopener norefferer"
-                  href="https://pole-emploi.fr/"
-                >
-                  pole-emploi.fr
-                </a>
+                  url="https://service-public.fr"
+                  title="service-public.fr"
+                />
+                <ExternalLink className="c-footer-official-link" url="https://data.gouv.fr" title="data.gouv.fr" />
+                <ExternalLink className="c-footer-official-link" url="https://pole-emploi.fr" title="pole-emploi.fr" />
               </div>
             </Col>
           </Row>
