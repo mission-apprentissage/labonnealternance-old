@@ -108,7 +108,7 @@ const TrainingDetail = ({ training, isCfa }) => {
       {getLoading()}
       {getTrainingDetails(training.training)}
       {training.onisepUrl ? (
-        <div className="c-detail-newadvice mt-4 mb-5 pl-4">
+        <div className="c-detail-newadvice mt-4 pl-4">
           <div className="pt-1 pb-2">
             <img src={questionmarkIcon} alt="point d'interrogation" />
             <span className="c-detail-newadvice-title ml-3">{training.title ? training.title : training.longTitle}</span>
