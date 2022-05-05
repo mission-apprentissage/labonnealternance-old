@@ -12,8 +12,17 @@
 }
 
 .c-detail--collapse-header-true {
+<<<<<<< HEAD
 
 
+=======
+  .c-detail-title {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+>>>>>>> e78cb4c... collapsed header
   .c-detail-header {
     @extend .col-12;
     @extend .col-md-5;
@@ -31,9 +40,14 @@
   .c-detail-emptyspace {
     display: none;
   }
-  .c-detail-title--formation {
+  .c-detail-title.c-detail-title--formation {
+    margin-top: 16px;
+    margin-bottom: 16px;
     font-size: 16px;
     line-height: 24px;
+  }
+  .c-detail-title--entreprise {
+    display: none;
   }
   .c-tiny-btn-bar {
     @extend .mb-0;
