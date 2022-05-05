@@ -170,7 +170,7 @@ const getTrainingDetails = (training) => {
         <div className="c-detail-description media">
           <img src={targetIcon} alt="cible" />
           <div className="c-detail-training media-body">
-            <h3 className="c-detail-description-title mb-3 mt-0">Objectif</h3>
+            <h3 className="c-detail-description-title mb-3 mt-0">Objectifs</h3>
             <span className="dont-break-out">{training.objectif}</span>
           </div>
         </div>
