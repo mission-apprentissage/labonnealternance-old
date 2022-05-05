@@ -7,8 +7,12 @@
   }
 }
 
+.c-tagcfa-container {
+  margin-bottom: 1rem;
+}
 
 .c-detail--collapse-header-true {
+
 
   .c-detail-header {
     @extend .col-12;
@@ -30,6 +34,7 @@
   .c-detail-title--formation {
     font-size: 16px;
     line-height: 24px;
+    // margin-bottom: 0;
   }
   .c-tiny-btn-bar {
     @extend .mb-0;
