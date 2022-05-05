@@ -59,6 +59,7 @@ const CandidatureSpontanee = (props) => {
     <div className="c-candidature" data-testid="CandidatureSpontanee">
       <div className="c-detail-description-me">
         <div className="c-detail-pelink my-3">
+<<<<<<< HEAD
           {hasAlreadySubmittedCandidature({ applied, modal }) ? (
             <>
               <div data-testid="already-applied">
@@ -82,6 +83,27 @@ const CandidatureSpontanee = (props) => {
               <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"} backdrop="static">
                 <form onSubmit={formik.handleSubmit} className="c-candidature-form">
                   <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
+=======
+          {
+            (hasAlreadySubmittedCandidature({applied, modal})) ?
+              <>
+                <div data-testid="already-applied">
+                  Vous avez déjà postulé le {new Date(parseInt(applied, 10)).toLocaleDateString("fr-FR", {year: 'numeric', month: 'long', day: 'numeric'})}
+                </div>
+              </>
+              :
+              <>
+                <Button
+                  onClick={toggle}
+                  className={`btn btn-dark gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
+                  aria-label="jenvoie-une-candidature-spontanee"
+                >
+                  J'envoie ma candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}
+                </Button>
+                <Modal isOpen={modal} toggle={toggle} className={"c-candidature-modal"} backdrop="static">
+                  <form onSubmit={formik.handleSubmit} className="c-candidature-form">
+                    <ModalHeader toggle={toggle} className={"c-candidature-modal-header"}></ModalHeader>
+>>>>>>> 0df1715... better padding
 
                   {with_str(sendingState).amongst(["not_sent", "currently_sending"]) ? (
                     <CandidatureSpontaneeNominalBodyFooter
