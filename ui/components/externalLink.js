@@ -26,7 +26,7 @@ const ExternalLink = ({ url, title, className = "", withPic, picPosition = "righ
       target="_blank"
       rel="noopener norefferer"
       href={url}
-      onClick={onClick}
+      //onClick={onClick}
       data-testid={dataTestid}
     >
       {getPic("left")}

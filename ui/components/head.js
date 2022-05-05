@@ -64,7 +64,7 @@ const HeadLaBonneAlternance = (props) => {
             ? "labonnealternance-recette2.apprentissage.beta.gouv.fr"
             : "labonnealternance.apprentissage.beta.gouv.fr"
         }
-        src="https://plausible.io/js/script.hash.js"
+        src="https://plausible.io/js/script.local.hash.outbound-links.js"
       ></script>
     </Head>
   );
