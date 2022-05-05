@@ -166,7 +166,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         <header className="c-detail-header">
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
-              <div className="mr-auto">
+              <div className="mr-auto c-tagcfa-container">
                 {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
                 {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
                 {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}

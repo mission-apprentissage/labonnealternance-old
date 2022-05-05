@@ -5,13 +5,11 @@
   .c-tiny-btn-bar {
     @extend .mb-2;
   }
-  .c-detail-title--formation {
-    @extend .mt-3;
-  }
 }
 
 
 .c-detail--collapse-header-true {
+  
   .c-detail-header {
     @extend .col-12;
     @extend .col-md-5;
