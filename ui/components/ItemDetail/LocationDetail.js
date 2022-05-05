@@ -11,7 +11,7 @@ const LocationDetail = ({ item }) => {
     <>
       <div className="c-detail-body c-locationdetail mt-4">
 
-        <div className="c-locationdetail-title mt-2">
+        <div className="c-locationdetail-title mt-3">
           {title}
         </div>
 
