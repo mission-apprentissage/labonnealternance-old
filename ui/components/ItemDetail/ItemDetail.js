@@ -117,20 +117,16 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   };
 
   const buildPrdvButton = (training) => {
-    return training?.prdvUrl ? (
-      <div
-        className="widget-prdv gtmPrdv"
-        data-referrer="lba"
-        data-id-cle-ministere-educatif={training.cleMinistereEducatif}
-        data-id-rco-formation={training.idRcoFormation}
-      >
-        <a href={training.prdvUrl} target="_blank" rel="noopener noreferrer" className="gtmPrdv">
-          Prendre rendez-vous
-        </a>
-      </div>
-    ) : (
-      ""
-    );
+    return <div
+      className="widget-prdv gtmPrdv"
+      data-referrer="lba"
+      data-id-cle-ministere-educatif={training.cleMinistereEducatif}
+      data-id-rco-formation={training.idRcoFormation}
+    >
+      <a href={training.prdvUrl} target="_blank" rel="noopener noreferrer" className="gtmPrdv">
+        Prendre rendez-vous
+      </a>
+    </div>
   };
 
   const [collapseHeader, setCollapseHeader] = useState(false);
