@@ -3,9 +3,9 @@
 ## 1.18.11 [28/04/2022]
 [LBA6-32] Contrôle des emails des candidats : pas d'email temporaire
 [LBA6-110] Récupération du flag établissement mandataire
+[LBA6-51] Formation : Refonte fiche détaillée
 
 ## 1.18.10 [21/04/2022]
-[LBA6-51] Formation : Refonte fiche détaillée
 [LBA6-49] Api-doc opco
 [LBA6-18] Essai Plausible
 [LBA6-53] Récupération du fichier des SIRENs Akto
