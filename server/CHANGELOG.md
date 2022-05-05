@@ -3,6 +3,7 @@
 ## 1.18.11 [28/04/2022]
 [LBA6-32] Contrôle des emails des candidats : pas d'email temporaire
 [LBA6-110] Récupération du flag établissement mandataire
+[LBA6-32] Proposition fautes de frappes emails
 
 ## 1.18.10 [21/04/2022]
 [LBA6-49] Api-doc opco

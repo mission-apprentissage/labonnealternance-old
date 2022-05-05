@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
 import CandidatureSpontaneeMessage from "./CandidatureSpontaneeMessage";
 import { testingParameters } from "../../../utils/testingParameters";
+import emailMisspelled, { top100 } from "email-misspelled";
+
+const emailChecker = emailMisspelled({ maxMisspelled: 3, domains: top100 });
 
 const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind }) => {
   const setFileValue = (fileValue) => {
@@ -11,16 +14,20 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
     formik.values.fileContent = fileValue?.fileContent || null;
   };
 
+  const [suggestedEmails, setSuggestedEmails] = useState([]);
+
+  const onEmailChange = (e) => {
+    let checkedEmail = emailChecker(e.target.value);
+    console.log(checkedEmail);
+    setSuggestedEmails(checkedEmail);
+    formik.handleChange(e);
+  };
+
   return (
     <>
       <ModalBody data-testid="modalbody-nominal">
         <h1 className="c-candidature-title" data-testid="CandidatureSpontaneeTitle">
-          {
-            kind === 'matcha' ?
-              <>Postuler à l'offre de {company}</>
-              :
-              <>Candidature spontanée</>
-          }
+          {kind === "matcha" ? <>Postuler à l'offre de {company}</> : <>Candidature spontanée</>}
         </h1>
 
         <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4">
@@ -84,10 +91,11 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
               data-testid="email"
               name="email"
               type="email"
-              onChange={formik.handleChange}
+              onChange={onEmailChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
             />
+            {suggestedEmails.length > 0 ? suggestedEmails.map((sE) => <div>{sE.corrected}</div>) : ""}
             {formik.touched.email && formik.errors.email ? (
               <div className="c-candidature-erreur visible">{formik.errors.email}</div>
             ) : (
@@ -124,16 +132,13 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
           </fieldset>
         </div>
 
-        <CandidatureSpontaneeMessage formik={formik} kind={kind}/>
+        <CandidatureSpontaneeMessage formik={formik} kind={kind} />
 
         <div className="c-candidature-message mt-3">
           <CandidatureSpontaneeFileDropzone formik={formik} setFileValue={setFileValue} />
         </div>
 
-        <fieldset
-          data-testid="fieldset-terms"
-          className="c-candidature-terms mt-3"
-        >
+        <fieldset data-testid="fieldset-terms" className="c-candidature-terms mt-3">
           <label htmlFor="terms" className="c-candidature-terms-text">
             <div>
               En remplissant ce formulaire, vous acceptez les{" "}
