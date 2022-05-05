@@ -115,6 +115,21 @@ const CandidatureSpontanee = (props) => {
             </>
           )}
         </div>
+        {
+          props?.item?.company?.mandataire ?
+          <>
+            <div className="c-mandataire-hint d-flex-center my-3">
+              <span className="c-mandataire-hintimg">
+                <img className="" src="/images/icons/small_info.svg" alt="point info"/>
+              </span>
+                <span className="c-mandataire-hinttext ml-2">
+                <span className="">Votre candidature sera envoyée au centre de formation en charge du recrutement pour le compte de l’entreprise.    </span>
+              </span>
+            </div>
+          </>
+          :
+          ""
+        }
       </div>
     </div>
   );
