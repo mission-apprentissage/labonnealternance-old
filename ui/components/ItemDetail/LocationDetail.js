@@ -9,7 +9,7 @@ const LocationDetail = ({ item }) => {
   const getTitle = (oneItem) => {
     const oneKind = oneItem?.ideaType;
     const isMandataire = oneItem?.company?.mandataire
-    let res = ''
+    let res = 'Quelques informations'
     if (oneKind === "formation") {
       res = "Quelques informations sur le centre de formation"
     } else if (oneKind === "matcha" && isMandataire) {
