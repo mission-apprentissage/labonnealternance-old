@@ -224,6 +224,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             {amongst(kind, ["lbb", "lba", "matcha"]) && isNonEmptyString(selectedItem?.contact?.email) ?
               <>
+                <hr class="c-detail-header-separator"/>
                 <CandidatureSpontanee item={selectedItem} />
               </>
               :
