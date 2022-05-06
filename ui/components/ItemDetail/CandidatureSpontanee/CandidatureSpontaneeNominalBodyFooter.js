@@ -101,14 +101,12 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             />
             {suggestedEmails.length > 0 ? (
               <div className="c-candidature-misspelled">
-                Voulez vous dire :
-                <div className="float-right">
-                  {suggestedEmails.map((sE) => (
-                    <div key={sE.corrected} onClick={clickSuggestion} className="c-candidature-suggestion">
-                      {sE.corrected}
-                    </div>
-                  ))}
-                </div>
+                <span className="c-candidature-misspelled__prompt">Voulez vous dire ?</span>
+                {suggestedEmails.map((sE) => (
+                  <button key={sE.corrected} onClick={clickSuggestion} className="c-candidature-misspelled__suggestion">
+                    {sE.corrected}
+                  </button>
+                ))}
               </div>
             ) : (
               ""
