@@ -31,6 +31,8 @@ const LocationDetail = ({ item }) => {
     const oneKind = oneItem?.ideaType;
     if (oneKind === "matcha") {
       res = item?.company?.mandataire
+    } else if (oneKind === "lbb" || oneKind === "lba") {
+      res = false
     } else {
       res = item?.contact?.email && !item?.prdvUrl
     }
