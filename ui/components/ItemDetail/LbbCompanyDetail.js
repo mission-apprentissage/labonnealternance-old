@@ -27,15 +27,6 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   const kind = lbb?.ideaType;
   let contactPhone = lbb?.contact?.phone;
 
-  let companySize = lbb?.company?.size?.toLowerCase();
-  if (!companySize) {
-    companySize = "non renseigné";
-  } else if (companySize.startsWith("0")) {
-    companySize = "petite entreprise";
-  } else {
-    companySize = `${companySize.split("-")[0]} à ${companySize.split("-")[1]} salariés`;
-  }
-
   let contactInfo = (
     <>
       {contactPhone ? (

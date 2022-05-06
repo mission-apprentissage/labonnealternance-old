@@ -10,6 +10,16 @@ const LocationDetail = ({ item }) => {
     return encodeURIComponent(`${item.company.name} ${item.place.address}`);
   };
 
+  let companySize = item?.company?.size?.toLowerCase();
+  if (!companySize) {
+    companySize = "non renseigné";
+  } else if (companySize.startsWith("0")) {
+    companySize = "petite entreprise";
+  } else {
+    companySize = `${companySize.split("-")[0]} à ${companySize.split("-")[1]} salariés`;
+  }
+
+
   const getTitle = (oneItem) => {
     const oneKind = oneItem?.ideaType;
     const isMandataire = oneItem?.company?.mandataire
@@ -148,8 +158,15 @@ const LocationDetail = ({ item }) => {
             <div className="c-locationdetail-line mt-1">
               <span className="c-locationdetail-imgcontainer">
               </span>
-                <span className="c-detail-sizetext c-locationdetail-hint">
+                <span className="c-detail-sizetext c-locationdetail-hint mb-0">
                   Renseignez-vous sur l'établissement pour préparer votre candidature
+              </span>
+            </div>
+            <div className="c-locationdetail-line mt-1">
+              <span className="c-locationdetail-imgcontainer">
+              </span>
+                <span className="c-detail-sizetext">
+                  <strong>Taille de l'entreprise :&nbsp;</strong> {companySize}
               </span>
             </div>
           </>
