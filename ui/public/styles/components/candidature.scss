@@ -101,6 +101,16 @@ h1.c-candidature-title {
   color: #E10600;
 }
 
+.c-candidature-misspelled {
+  font-size: 12px;
+  color: #6a6a6a;
+
+  .c-candidature-suggestion {
+    font-size: 12px;
+    color: #f07f87;
+  }
+}
+
 .c-candidature-message-title {
   font-family: Marianne;
   font-size: 16px;

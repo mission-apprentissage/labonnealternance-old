@@ -18,9 +18,13 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
 
   const onEmailChange = (e) => {
     let checkedEmail = emailChecker(e.target.value);
-    console.log(checkedEmail);
     setSuggestedEmails(checkedEmail);
     formik.handleChange(e);
+  };
+
+  const clickSuggestion = (e) => {
+    formik.setFieldValue("email", e.currentTarget.innerHTML);
+    setSuggestedEmails([]);
   };
 
   return (
@@ -95,7 +99,20 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
               onBlur={formik.handleBlur}
               value={formik.values.email}
             />
-            {suggestedEmails.length > 0 ? suggestedEmails.map((sE) => <div>{sE.corrected}</div>) : ""}
+            {suggestedEmails.length > 0 ? (
+              <div className="c-candidature-misspelled">
+                Voulez vous dire :
+                <div className="float-right">
+                  {suggestedEmails.map((sE) => (
+                    <div key={sE.corrected} onClick={clickSuggestion} className="c-candidature-suggestion">
+                      {sE.corrected}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
             {formik.touched.email && formik.errors.email ? (
               <div className="c-candidature-erreur visible">{formik.errors.email}</div>
             ) : (
