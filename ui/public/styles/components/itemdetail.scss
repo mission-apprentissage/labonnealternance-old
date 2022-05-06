@@ -236,10 +236,11 @@ a.resultCard:hover {
 .c-detail-google-search,
 .c-detail-google-search:hover
 {
-  color: $pinksoft750;
+  font-size: 16px;
   font-weight: 700;
-  border-bottom: 2px solid $pinksoft750;
-  text-decoration: none;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: $gray-700;
 }
 
 .c-detail-googledir-link,

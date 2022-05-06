@@ -26,11 +26,6 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
   const jobStartDate = job?.job?.jobStartDate ? formatDate(job.job.jobStartDate) : undefined;
 
-
-  const getGoogleSearchParameters = () => {
-    return encodeURIComponent(`${job.company.name} ${job.place.address}`);
-  };
-
   return (
     <>
       <h2 className="c-locationdetail-title mt-2">Description de l'offre</h2>
