@@ -6,6 +6,10 @@ const LocationDetail = ({ item }) => {
 
   const kind = item?.ideaType;
   
+  const getGoogleSearchParameters = () => {
+    return encodeURIComponent(`${item.company.name} ${item.place.address}`);
+  };
+
   const getTitle = (oneItem) => {
     const oneKind = oneItem?.ideaType;
     const isMandataire = oneItem?.company?.mandataire
@@ -120,6 +124,29 @@ const LocationDetail = ({ item }) => {
           ""
         )}
 
+        {
+          kind === 'matcha' ? 
+          <>
+            <div className="c-locationdetail-line mt-1">
+              <span className="c-locationdetail-imgcontainer">
+                <img className="" src="/images/info.svg" alt="info" />
+              </span>
+              <span className="c-detail-sizetext">
+                En savoir plus sur&nbsp;
+                <a
+                  href={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
+                  target="_blank"
+                  className="c-detail-google-search gtmGoogleLink"
+                  rel="noopener noreferrer"
+                >
+                    {item.company.name} <img className="mt-n1" src="/images/square_link.svg" alt="lien" />
+                </a>
+              </span>
+            </div>
+          </>
+          :
+          <></>
+        }
 
       </div>
     </>
