@@ -17,9 +17,7 @@
 
 
 .c-detail-header.c-detail--collapse-header-true {
-  @extend .col-12;
-  @extend .col-md-5;
-  position: fixed;
+  position: sticky;
   z-index: 1;
   top: 0;
   left: 0;
