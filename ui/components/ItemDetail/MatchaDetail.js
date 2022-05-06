@@ -45,9 +45,11 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           <strong>Niveau requis :</strong> {
             job?.diplomaLevel ? 
             <>
-                {job?.diplomaLevel.split(', ').map(function (d, idx) {
-                  return (<span key={idx} className="c-required-level">{d}</span>)
-                })}
+                <div className="c-required-levels">
+                  {job?.diplomaLevel.split(', ').map(function (d, idx) {
+                    return (<span key={idx} className="c-required-level">{d}</span>)
+                  })}
+                </div>
             </> :
               "non défini"
             }
