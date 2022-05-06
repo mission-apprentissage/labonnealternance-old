@@ -112,7 +112,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const maxScroll = 100
   const handleScroll = () => {
     let currentScroll = document.querySelector(".c-detail").scrollTop
-    console.log('currentScroll', currentScroll);
     currentScroll += collapseHeader ? 100 : -100
     setCollapseHeader(currentScroll > maxScroll)
   };
@@ -191,14 +190,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                   <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre dans le domaine suivant</span>
                 </p>
               </>
-            ) : (
-              ""
-            )}
-            {amongst(kind, ["formation"]) ? (
-              <p className={`c-detail-activity c-detail-title--formation`}>
-                <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
-                <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
-              </p>
             ) : (
               ""
             )}
