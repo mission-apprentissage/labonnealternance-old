@@ -3,7 +3,6 @@ export const getItemId = (item) => {
 };
 
 export const getItemIdAndType = (item) => {
-  console.log('item issss', item);
   let itemId = item.id;
   let type = "training";
 

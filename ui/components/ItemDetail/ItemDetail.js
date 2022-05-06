@@ -112,6 +112,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const maxScroll = 100
   const handleScroll = () => {
     let currentScroll = document.querySelector(".c-detail").scrollTop
+    console.log('currentScroll', currentScroll);
     currentScroll += collapseHeader ? 100 : -100
     setCollapseHeader(currentScroll > maxScroll)
   };
@@ -120,7 +121,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     <>
       <section
         onScroll={handleScroll}
-        className={`c-detail c-detail--collapse-header-${collapseHeader} itemDetail ${kind ? `gtmDetail${capitalizeFirstLetter(kind)}` : ""} ${
+        className={`c-detail itemDetail ${kind ? `gtmDetail${capitalizeFirstLetter(kind)}` : ""} ${
           selectedItem ? "" : "hiddenItemDetail"
         }`}
         {...swipeHandlers}
@@ -138,7 +139,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         ) : (
           ""
         )}
-        <header className="c-detail-header">
+        <header className={`c-detail-header c-detail--collapse-header-${collapseHeader}`}>
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
               <div className="mr-auto c-tagcfa-container">

@@ -42,7 +42,15 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           <strong>Nature du contrat : </strong> {getContractTypes(job?.job?.contractType)}
         </div>
         <div>
-          <strong>Niveau requis :</strong> non défini
+          <strong>Niveau requis :</strong> {
+            job?.diplomaLevel ? 
+            <>
+                {job?.diplomaLevel.split(', ').map(function (d, idx) {
+                  return (<span key={idx} className="c-required-level">{d}</span>)
+                })}
+            </> :
+              "non défini"
+            }
         </div>
       </div>
       {
