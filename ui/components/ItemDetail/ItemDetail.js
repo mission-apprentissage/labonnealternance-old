@@ -143,7 +143,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
               <div className="mr-auto c-tagcfa-container">
                 {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
-                {amongst(kind, ["lbb", "lba"]) && isCandidatureSpontanee(selectedItem) ?
+                {amongst(kind, ["lbb", "lba"]) ?
                   <TagCandidatureSpontanee /> 
                   : 
                   ""
@@ -185,7 +185,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             {amongst(kind, ["lba", "lbb", "matcha"]) ? (
               <>
-                <p className={`c-detail-activity c-detail-title--entreprise mt-3`}>
+                <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
                   <span>{`${get(selectedItem, "company.name", "")}`}</span>
                   <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre dans le domaine suivant</span>
                 </p>
