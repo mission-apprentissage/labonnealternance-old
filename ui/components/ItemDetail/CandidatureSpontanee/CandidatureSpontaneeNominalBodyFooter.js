@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
 import CandidatureSpontaneeMessage from "./CandidatureSpontaneeMessage";
 import { testingParameters } from "../../../utils/testingParameters";
+import emailMisspelled, { top100 } from "email-misspelled";
+
+const emailChecker = emailMisspelled({ maxMisspelled: 3, domains: top100 });
 
 const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind }) => {
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
     formik.values.fileContent = fileValue?.fileContent || null;
+  };
+
+  const [suggestedEmails, setSuggestedEmails] = useState([]);
+
+  const onEmailChange = (e) => {
+    const checkedEmail = emailChecker(e.target.value);
+    setSuggestedEmails(checkedEmail);
+    formik.handleChange(e);
+  };
+
+  const clickSuggestion = (e) => {
+    formik.setFieldValue("email", e.currentTarget.innerHTML);
+    setSuggestedEmails([]);
   };
 
   return (
@@ -79,10 +95,22 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
               data-testid="email"
               name="email"
               type="email"
-              onChange={formik.handleChange}
+              onChange={onEmailChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
             />
+            {suggestedEmails.length > 0 ? (
+              <div className="c-candidature-misspelled">
+                <span className="c-candidature-misspelled__prompt">Voulez vous dire ?</span>
+                {suggestedEmails.map((sE) => (
+                  <button key={sE.corrected} onClick={clickSuggestion} className="c-candidature-misspelled__suggestion">
+                    {sE.corrected}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
             {formik.touched.email && formik.errors.email ? (
               <div className="c-candidature-erreur visible">{formik.errors.email}</div>
             ) : (
