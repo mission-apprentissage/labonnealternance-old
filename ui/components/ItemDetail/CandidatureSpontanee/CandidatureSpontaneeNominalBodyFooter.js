@@ -17,7 +17,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
   const [suggestedEmails, setSuggestedEmails] = useState([]);
 
   const onEmailChange = (e) => {
-    let checkedEmail = emailChecker(e.target.value);
+    const checkedEmail = emailChecker(e.target.value);
     setSuggestedEmails(checkedEmail);
     formik.handleChange(e);
   };
