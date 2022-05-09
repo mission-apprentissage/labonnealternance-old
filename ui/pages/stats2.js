@@ -41,8 +41,8 @@ const stats = () => (
       <div>
         <iframe
           title="stats_lba"
-          width="100%"
-          src="https://datastudio.google.com/reporting/1v-Sim2qMlFSMn4n9JJWaMk8PIONvM757"
+          className="c-stats-iframe c-stats-iframe__lba"
+          src="https://labonnealternance.apprentissage.beta.gouv.fr/metabase/public/dashboard/fead16ad-b526-4e30-861b-f8967eb17f93"
         />
       </div>
     </div>

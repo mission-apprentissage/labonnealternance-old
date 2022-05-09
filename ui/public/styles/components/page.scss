@@ -37,3 +37,11 @@
     height: 500px;
   }
 }
+
+.c-stats-iframe.c-stats-iframe__lba {
+  height: 1200px;
+
+  @include media-breakpoint-up(lg) { 
+    height: 800px;
+  }
+}
