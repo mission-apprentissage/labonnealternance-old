@@ -15,7 +15,7 @@ export const SendTrackEvent = (event) => {
 };
 
 export const SendPlausibleEvent = (name, props) => {
-  if (window?.plausible) {
+  if (typeof window !== "undefined" && window?.plausible) {
     window.plausible(name, { props });
   }
 };
