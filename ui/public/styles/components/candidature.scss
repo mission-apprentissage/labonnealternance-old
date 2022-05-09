@@ -284,9 +284,11 @@ button.c-candidature-filedropzone-removefile
   text-decoration: underline;
 }
 
-.btn.gtmFormulaireCandidature {
+.btn.btn-blue {
   background-color: #000091;
+  text-decoration: none;
+  color: white;
 }
-.btn.gtmFormulaireCandidature:hover{
+.btn.btn-blue:hover {
   background-color: #0000d1;
 }
