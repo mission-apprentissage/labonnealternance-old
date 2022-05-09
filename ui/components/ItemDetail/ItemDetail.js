@@ -20,6 +20,7 @@ import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import LocationDetail from "./LocationDetail";
+import DidYouKnow from "./DidYouKnow";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
 
@@ -270,9 +271,12 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         <LocationDetail item={selectedItem}></LocationDetail>
 
         {amongst(kind, ["peJob"]) ? 
-         <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, selectedItem)} key={getGoingtoId(kind, selectedItem)} />
+          <>
+            <DidYouKnow item={selectedItem}></DidYouKnow >
+            <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, selectedItem)} key={getGoingtoId(kind, selectedItem)} />
+          </>
          : 
-         ""
+           <></>
          }
 
         
