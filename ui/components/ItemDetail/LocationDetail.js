@@ -43,6 +43,8 @@ const LocationDetail = ({ item }) => {
       res = item?.company?.mandataire
     } else if (oneKind === "lbb" || oneKind === "lba") {
       res = false
+    } else if (oneKind === "peJob") {
+      res = false
     } else {
       res = item?.contact?.email && !item?.prdvUrl
     }

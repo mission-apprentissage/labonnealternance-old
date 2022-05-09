@@ -15,7 +15,7 @@ const DidYouKnow = ({ item }) => {
           <p>
             <TagCandidatureSpontanee/>
           </p>
-          <p className="mb-3">
+          <p className="pb-3">
             <span className="d-block">Un employeur vous a proposé un entretien ?</span>
             <span className="d-block">
               <strong><u>On vous donne des conseils pour vous aider à le preparer.</u></strong>  
