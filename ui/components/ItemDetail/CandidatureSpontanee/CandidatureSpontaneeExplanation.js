@@ -73,7 +73,7 @@ const CandidatureSpontaneeExplanation = (props) => {
           <span className="c-accordion-button-title">{getTitle()}</span>
           <span className="c-accordion-button-plus">{isOpen ? "-" : "+"}</span>
         </button>
-        <Collapse isOpen={isOpen}>
+        <Collapse isOpen={isOpen} className="c-collapser">
           {getText()}
         </Collapse>
       </div >
