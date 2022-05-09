@@ -45,6 +45,16 @@ const stats = () => (
           src="https://labonnealternance.apprentissage.beta.gouv.fr/metabase/public/dashboard/fead16ad-b526-4e30-861b-f8967eb17f93"
         />
       </div>
+
+      <div>
+        <iframe
+          title="stats_lba_plausible"
+          className="c-stats-iframe c-stats-iframe__lba"
+          plausible-embed
+          src="https://plausible.io/share/labonnealternance.apprentissage.beta.gouv.fr?auth=Ck7r5NwNNf9IveZVA5U0O&embed=true&theme=light&background=transparent"
+          loading="lazy"
+        ></iframe>
+      </div>
     </div>
     <div className="mb-3">&nbsp;</div>
     <Footer />
