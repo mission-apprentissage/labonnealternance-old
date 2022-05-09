@@ -25,6 +25,7 @@ import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+import gotoIcon from "public/images/icons/goto.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
@@ -275,7 +276,35 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             </div>            
             <div className="c-needHelp-text">
               Découvrez les modules de formation de La Bonne Alternance. Des modules de quelques minutes pour bien préparer vos candidatures.
-            </div>            
+            </div>
+            <ul className="c-needHelp-listLinks">
+              <li>
+                <span className="c-detail-traininglink ml-1">
+                  <a
+                    href="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gtmDidask1 c-needHelp-link"
+                  >
+                    Chercher un employeur &nbsp;
+                    <img src={gotoIcon} alt="Lien" />
+                  </a>
+                </span>
+              </li>
+              <li>
+                <span className="c-detail-traininglink ml-1">
+                  <a
+                    href="https://dinum-beta.didask.com/courses/demonstration/60d1adbb877dae00003f0eac"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="gtmDidask2 c-needHelp-link"
+                  >
+                    Préparer un entretien avec un employeur&nbsp;
+                    <img src={gotoIcon} alt="Lien" />
+                  </a>
+                </span>
+              </li>
+            </ul>            
           </div>
           : 
           ""

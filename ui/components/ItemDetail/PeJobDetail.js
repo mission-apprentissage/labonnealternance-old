@@ -32,8 +32,6 @@ const PeJobDetail = ({ job }) => {
 
   const kind = job?.ideaType;
 
-
-
   return (
     <>
       <h2 className="c-locationdetail-title mt-2">Description de l'offre</h2>
