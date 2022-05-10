@@ -4,6 +4,7 @@ import Breadcrumb from "components/breadcrumb";
 import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
+import ExternalLink from "@/components/externalLink";
 
 const Organisme = (props) => {
   return (
@@ -34,13 +35,10 @@ const Organisme = (props) => {
             <p>Pour référencer votre formation, rendez-vous sur le site du Carif-Oref :</p>
             <p className="c-organisme-link">
               <img className="mt-n1 mr-2" src="/images/square_link.svg" alt="Lien relancer son offre de formation" />
-              <a
-                href="https://reseau.intercariforef.org/referencer-son-offre-de-formation"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                https://reseau.intercariforef.org/referencer-son-offre-de-formation.
-              </a>
+              <ExternalLink
+                url="https://reseau.intercariforef.org/referencer-son-offre-de-formation"
+                title="https://reseau.intercariforef.org/referencer-son-offre-de-formation."
+              />
             </p>
             <p>
               Veuillez noter que pour le moment, seules les formations en apprentissage sont référencées sur La Bonne

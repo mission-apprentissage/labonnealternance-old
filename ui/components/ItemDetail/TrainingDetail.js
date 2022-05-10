@@ -164,7 +164,7 @@ const getTrainingDetails = (training) => {
         </div>
       ) : (
         ""
-        )}
+      )}
 
       {training.objectif ? (
         <div className="c-detail-description media">

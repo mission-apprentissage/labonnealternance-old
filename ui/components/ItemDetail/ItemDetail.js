@@ -12,6 +12,7 @@ import chevronClose from "public/images/close.svg";
 import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
+import ExternalLink from "../externalLink";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";

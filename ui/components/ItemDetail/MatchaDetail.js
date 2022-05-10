@@ -21,9 +21,6 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
     });
   }, [job?.job?.id]);
 
-
-
-
   const jobStartDate = job?.job?.jobStartDate ? formatDate(job.job.jobStartDate) : undefined;
 
   return (
