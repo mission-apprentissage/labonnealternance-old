@@ -5,7 +5,7 @@ import Breadcrumb from "components/breadcrumb";
 
 import Footer from "components/footer";
 
-const stats = () => (
+const stats2 = () => (
   <div>
     <ScrollToTop />
     <Navigation />
@@ -36,6 +36,7 @@ const stats = () => (
           className="c-stats-iframe"
           title="stats_matcha"
           src="https://matcha.apprentissage.beta.gouv.fr/metabase/public/dashboard/404744cc-61aa-41df-983c-bdee1e992543"
+          loading="lazy"
         />
       </div>
       <div>
@@ -43,6 +44,7 @@ const stats = () => (
           title="stats_lba"
           className="c-stats-iframe c-stats-iframe__lba"
           src="https://labonnealternance.apprentissage.beta.gouv.fr/metabase/public/dashboard/fead16ad-b526-4e30-861b-f8967eb17f93"
+          loading="lazy"
         />
       </div>
 
@@ -61,4 +63,4 @@ const stats = () => (
   </div>
 );
 
-export default stats;
+export default stats2;
