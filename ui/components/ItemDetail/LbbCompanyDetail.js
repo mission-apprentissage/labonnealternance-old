@@ -10,6 +10,7 @@ import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+import ExternalLink from "../externalLink";
 
 const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
   let siret = lbb?.company?.siret;
@@ -93,15 +94,12 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           <span className="c-detail-sizetext d-block">
             <img className="mt-n1" src="/images/square_link.svg" alt="" />
             <span className="ml-2">En savoir plus sur </span>
-            <a
-              href={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
-              target="_blank"
+            <ExternalLink
               className="c-detail-google-search gtmGoogleLink"
-              rel="noopener noreferrer"
-              data-testid="link-knowmore-lbb"
-            >
-              {lbb.title}
-            </a>
+              url={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
+              title={lbb.title}
+              dataTestid="link-knowmore-lbb"
+            />
           </span>
         </p>
       </div>
@@ -142,27 +140,23 @@ const LbbCompanyDetail = ({ lbb, seeInfo, setSeeInfo }) => {
           <br />
           Besoin d'aide pour concevoir votre CV ? Il existe plusieurs outils gratuits :
           <br />
-          <a href="https://cv.clicnjob.fr/" className="gtmCVLink gtmClicnjob" rel="noopener noreferrer" target="_blank">
-            https://cv.clicnjob.fr/
-          </a>
+          <ExternalLink
+            className="gtmCVLink gtmClicnjob"
+            url="https://cv.clicnjob.fr/"
+            title="https://cv.clicnjob.fr/"
+          />
           <br />
-          <a
-            href="https://cvdesignr.com/fr"
+          <ExternalLink
             className="gtmCVLink gtmCvdesigner"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            https://cvdesignr.com/fr
-          </a>
+            url="https://cvdesignr.com/fr"
+            title="https://cvdesignr.com/fr"
+          />
           <br />
-          <a
-            href="https://www.canva.com/fr_fr/creer/cv/"
+          <ExternalLink
             className="gtmCVLink gtmCanva"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            https://www.canva.com/fr_fr/creer/cv/
-          </a>
+            url="https://www.canva.com/fr_fr/creer/cv/"
+            title="https://www.canva.com/fr_fr/creer/cv/"
+          />
         </p>
         <p className="c-detail-lbb-paragraph">Conseil : Allez voir le site de l'entreprise si elle en a un.</p>
 

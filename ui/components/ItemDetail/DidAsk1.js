@@ -1,6 +1,7 @@
 import React from "react";
 
 import gotoIcon from "public/images/icons/goto.svg";
+import ExternalLink from "../externalLink";
 
 const DidAsk1 = () => {
   return (
@@ -8,15 +9,12 @@ const DidAsk1 = () => {
       <p>
         Trouver et convaincre une entreprise de vous embaucher ? On vous donne
         <span className="c-detail-traininglink ml-1">
-          <a
-            href="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
-            target="_blank"
-            rel="noopener noreferrer"
+          <ExternalLink
             className="gtmDidask1"
-          >
-            des conseils pour vous aider !&nbsp;
-            <img src={gotoIcon} alt="Lien" />
-          </a>
+            url="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
+            title="des conseils pour vous aider !"
+            withPic={<img src={gotoIcon} alt="Lien" />}
+          />
         </span>
       </p>
     </div>

@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { SendTrackEvent } from "../../utils/gtm";
 import { capitalizeFirstLetter, formatDate, isNonEmptyString } from "../../utils/strutils";
+import ExternalLink from "../externalLink";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import DidAsk1 from "./DidAsk1";
 import DidAsk2 from "./DidAsk2";
@@ -115,14 +116,11 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         <span className={"d-block c-detail-sizetext c-detail-sizetext--" + kind}>
           <img className="mt-n1" src="/images/info.svg" alt="information" />
           <span className="ml-2 c-detail-knowmore">En savoir plus sur </span>
-          <a
-            href={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
-            target="_blank"
+          <ExternalLink
             className="c-detail-google-search gtmGoogleLink"
-            rel="noopener noreferrer"
-          >
-            {job.company.name}
-          </a>
+            url={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
+            title={job.company.name}
+          />
         </span>
       </p>
       <hr className={"mb-4 c-detail-header-separator c-detail-header-separator--" + kind} />
