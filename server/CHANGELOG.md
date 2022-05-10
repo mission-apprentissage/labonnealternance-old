@@ -5,6 +5,7 @@
 [LBA6-110] Récupération du flag établissement mandataire
 [LBA6-112] Events plausible
 [LBA6-32] Proposition fautes de frappes emails
+[LBA6-99] Infos CFA mandataire
 
 ## 1.18.10 [21/04/2022]
 [LBA6-49] Api-doc opco

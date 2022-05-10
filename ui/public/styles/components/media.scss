@@ -27,6 +27,7 @@
   padding: 0.5rem;
   padding-top: 0.25rem;
   font-size: 12px;
+  display: inline-block;
   @include media-breakpoint-up(lg) {
     font-size: 8px;
   }
@@ -45,7 +46,23 @@
 .c-media-tag.c-media-tag--smiley {
   color: #22967E;
   background: #E5F7F4;
+  
+  img {
+    width: 16px;
+  }
+}
+.c-media-tag.c-media-tag--2nd {
+  margin-left: 0px;
+  margin-top: 3px;
+  margin-right: 4px;
+
+  @include media-breakpoint-up(lg) {
+    margin-left: 4px;
+    margin-right: 0px;
+  }
+  
 }
 .c-media-tag span {
   vertical-align: bottom;
+  white-space: nowrap;
 }
