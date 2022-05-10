@@ -66,7 +66,21 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
               Vous avez donc tout intérêt à le contacter rapidement, avant que l'offre ne soit pourvue !
             </p>
             <p>
-              Trouver et convaincre une entreprise de vous embaucher ? On vous donne des conseils ici pour vous aider !
+              Trouver et convaincre une entreprise de vous embaucher ? 
+
+              <span className="c-detail-traininglink ml-1">
+                <a
+                  href="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gtmDidask1"
+                >
+                  On vous donne des conseils ici pour vous aider !&nbsp;
+                  <img src='../../images/icons/goto.svg' alt="Lien" />
+                </a>
+              </span>
+
+              
             </p>
           </>
       }

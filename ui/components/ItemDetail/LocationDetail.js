@@ -1,6 +1,7 @@
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { getPathLink } from "../../utils/tools";
 import { round } from "lodash";
+import { string_wrapper as with_str } from "../../utils/wrapper_utils";
 
 const LocationDetail = ({ item }) => {
 
@@ -15,8 +16,6 @@ const LocationDetail = ({ item }) => {
     companySize = "non renseigné";
   } else if (companySize.startsWith("0")) {
     companySize = "petite entreprise";
-  } else {
-    companySize = `${companySize.split("-")[0]} à ${companySize.split("-")[1]} salariés`;
   }
 
 
@@ -40,13 +39,17 @@ const LocationDetail = ({ item }) => {
     let res = false
     const oneKind = oneItem?.ideaType;
     if (oneKind === "matcha") {
-      res = item?.company?.mandataire
+      res = !!item?.company?.mandataire
     } else if (oneKind === "lbb" || oneKind === "lba") {
       res = false
     } else if (oneKind === "peJob") {
       res = false
     } else {
-      res = item?.contact?.email && !item?.prdvUrl
+      res = !!item?.contact?.email && !item?.prdvUrl
+    }
+    if (res) {
+      // au cas où : on n'affiche l'email que si il n'est pas chiffré
+      res = with_str('@').in(item?.contact?.email)
     }
     return res
   }

@@ -37,12 +37,11 @@
   display: flex;
 }
 
-.c-locationdetail-hint {
-  margin-top: -3px;
+.c-detail-sizetext.c-locationdetail-hint {
   font-size: 14px;
   font-style: italic;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
   color: #9C9C9C;
