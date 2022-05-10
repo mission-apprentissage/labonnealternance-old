@@ -5,6 +5,7 @@ import Breadcrumb from "components/breadcrumb";
 import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
+import ExternalLink from "@/components/externalLink";
 const MentionsLegales = () => (
   <div>
     <NextSeo
@@ -75,14 +76,8 @@ const MentionsLegales = () => (
           </p>
           <p>
             Le site La Bonne Alternance est en cours d'optimisation afin de le rendre conforme au{" "}
-            <a
-              href="https://www.numerique.gouv.fr/publications/rgaa-accessibilite"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              RGAA v3
-            </a>
-            . La déclaration de conformité sera publiée ultérieurement.
+            <ExternalLink url="https://www.numerique.gouv.fr/publications/rgaa-accessibilite" title="RGAA v3" />. La
+            déclaration de conformité sera publiée ultérieurement.
           </p>
 
           <h3>Nos engagements</h3>
@@ -114,14 +109,7 @@ const MentionsLegales = () => (
 
           <p>
             Vous pouvez également soumettre vos demandes de modification sur la plate-forme{" "}
-            <a
-              href="https://github.com/mission-apprentissage/labonnealternance"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Github
-            </a>
-            .
+            <ExternalLink url="https://github.com/mission-apprentissage/labonnealternance" title="Github" />.
           </p>
 
           <p>
@@ -135,13 +123,10 @@ const MentionsLegales = () => (
           <h3>En savoir plus</h3>
           <p>
             Pour en savoir plus sur la politique d’accessibilité numérique de l’État :<br />
-            <a
-              href="http://references.modernisation.gouv.fr/accessibilite-numerique"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              http://references.modernisation.gouv.fr/accessibilite-numerique
-            </a>
+            <ExternalLink
+              url="http://references.modernisation.gouv.fr/accessibilite-numerique"
+              title="http://references.modernisation.gouv.fr/accessibilite-numerique"
+            />
           </p>
 
           <h3>Sécurité</h3>

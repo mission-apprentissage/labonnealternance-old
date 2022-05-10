@@ -15,11 +15,11 @@ import logoAvril from "public/images/logo-avril.svg";
 import logoClara from "public/images/logo-clara.svg";
 
 import Footer from "components/footer";
+import ExternalLink from "@/components/externalLink";
 const APROPOS = () => (
   <div>
-
     <NextSeo
-      title='A propos | La Bonne Alternance | Trouvez votre alternance'
+      title="A propos | La Bonne Alternance | Trouvez votre alternance"
       description="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance."
     />
 
@@ -66,10 +66,9 @@ const APROPOS = () => (
             La Bonne Alternance est d’abord une start-up interne de Pôle emploi créée et développée par des conseillers.{" "}
             <br />
             Reprise par la{" "}
-            <a href="https://mission-apprentissage.gitbook.io/general/" rel="nooepener noreferrer" target="_blank">
-              Mission apprentissage
-            </a>{" "}
-            en 2020, le site ajoute désormais des informations sur les formations en apprentissage et les offres d'emploi en alternance.
+            <ExternalLink url="https://mission-apprentissage.gitbook.io/general/" title="Mission apprentissage" /> en
+            2020, le site ajoute désormais des informations sur les formations en apprentissage et les offres d'emploi
+            en alternance.
           </p>
 
           <h2 className="c-about-title">Les services de La Bonne Alternance</h2>
@@ -82,13 +81,10 @@ const APROPOS = () => (
               <div className="c-about-card__title">Matcha</div>
               <div className="c-about-card__text">Susciter des recrutements en apprentissage</div>
               <div className="c-about-card__link">
-                <a
-                  href="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/untitled"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  En savoir plus
-                </a>
+                <ExternalLink
+                  url="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/untitled"
+                  title="En savoir plus"
+                />
               </div>
             </div>
           </div>
@@ -101,9 +97,7 @@ const APROPOS = () => (
               <div className="c-about-card__title">Catalogue des formations</div>
               <div className="c-about-card__text">Un catalogue élargi de formations en apprentissage</div>
               <div className="c-about-card__link">
-                <a href="https://mission-apprentissage.gitbook.io/catalogue/" rel="noopener noreferrer" target="_blank">
-                  En savoir plus
-                </a>
+                <ExternalLink url="https://mission-apprentissage.gitbook.io/catalogue/" title="En savoir plus" />
               </div>
             </div>
           </div>
@@ -116,13 +110,10 @@ const APROPOS = () => (
               <div className="c-about-card__title">Prise de rendez-vous</div>
               <div className="c-about-card__text">Pour échanger facilement avec les centres de formation</div>
               <div className="c-about-card__link">
-                <a
-                  href="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/prise-de-rendez-vous"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  En savoir plus
-                </a>
+                <ExternalLink
+                  url="https://mission-apprentissage.gitbook.io/general/les-services-en-devenir/prise-de-rendez-vous"
+                  title="En savoir plus"
+                />
               </div>
             </div>
           </div>
@@ -135,14 +126,11 @@ const APROPOS = () => (
                 <img src={logoLbb} width="134" alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a
-                  href="https://labonneboite.pole-emploi.fr/"
-                  rel="noopener noreferrer"
-                  target="_blank"
+                <ExternalLink
                   className="c-about-card__text2 stretched-link"
-                >
-                  Trouver des entreprises qui recrutent sans déposer d'offres d'emploi
-                </a>
+                  url="https://labonneboite.pole-emploi.fr/"
+                  title="Trouver des entreprises qui recrutent sans déposer d'offres d'emploi"
+                />
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
@@ -150,14 +138,11 @@ const APROPOS = () => (
                 <img src={logoLbf} width="134" alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a
-                  href="https://labonneformation.pole-emploi.fr/"
-                  rel="noopener noreferrer"
-                  target="_blank"
+                <ExternalLink
                   className="c-about-card__text2 stretched-link"
-                >
-                  Trouvez une formation en fonction de votre profil ET du marché du travail
-                </a>
+                  url="https://labonneformation.pole-emploi.fr/"
+                  title="Trouvez une formation en fonction de votre profil ET du marché du travail"
+                />
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
@@ -165,14 +150,11 @@ const APROPOS = () => (
                 <img src={logoMaintenant} width="134" alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a
-                  href="https://maintenant.pole-emploi.fr/"
-                  rel="noopener noreferrer"
-                  target="_blank"
+                <ExternalLink
                   className="c-about-card__text2 stretched-link"
-                >
-                  Vous valez plus qu'un CV ! Trouvez le bon job en moins de 5 minutes
-                </a>
+                  url="https://maintenant.pole-emploi.fr/"
+                  title="Vous valez plus qu'un CV ! Trouvez le bon job en moins de 5 minutes"
+                />
               </div>
             </div>
           </div>
@@ -183,14 +165,11 @@ const APROPOS = () => (
                 <img src={logoMemo} width="114" className={"c-about-card__img--memo"} alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a
-                  href="https://memo.pole-emploi.fr/"
-                  rel="noopener noreferrer"
-                  target="_blank"
+                <ExternalLink
                   className="c-about-card__text2 stretched-link"
-                >
-                  Organiser votre recherche d'emploi avec notre tableau de bord
-                </a>
+                  url="https://memo.pole-emploi.fr/"
+                  title="Organiser votre recherche d'emploi avec notre tableau de bord"
+                />
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
@@ -198,14 +177,11 @@ const APROPOS = () => (
                 <img src={logoAvril} width="114" className={"c-about-card__img--avril"} alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a
-                  href="https://avril.pole-emploi.fr/"
-                  rel="noopener noreferrer"
-                  target="_blank"
+                <ExternalLink
                   className="c-about-card__text2 stretched-link"
-                >
-                  Trouvez une formation en fonction de votre profil ET du marché du travail
-                </a>
+                  url="https://avril.pole-emploi.fr/"
+                  title="Trouvez une formation en fonction de votre profil ET du marché du travail"
+                />
               </div>
             </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
@@ -213,14 +189,11 @@ const APROPOS = () => (
                 <img src={logoClara} width="134" className={"c-about-card__img--clara"} alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
-                <a
-                  href="https://clara.pole-emploi.fr/"
-                  rel="noopener noreferrer"
-                  target="_blank"
+                <ExternalLink
                   className="c-about-card__text2 stretched-link"
-                >
-                  Découvrez les aides et mesures qui vont accélérer votre retour à l'emploi.
-                </a>
+                  url="https://clara.pole-emploi.fr/"
+                  title="Découvrez les aides et mesures qui vont accélérer votre retour à l'emploi."
+                />
               </div>
             </div>
           </div>
@@ -231,9 +204,7 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="https://diagoriente.beta.gouv.fr/" target="_blank" rel="noopener noreferrer">
-                    Diagoriente
-                  </a>
+                  <ExternalLink url="https://diagoriente.beta.gouv.fr/" title="Diagoriente" />
                 </span>
               </div>
               <div className="c-about-otherright">
@@ -246,13 +217,10 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a
-                    href="https://www.parcoursup.fr/index.php?desc=formations_apprentissage"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Parcoursup
-                  </a>
+                  <ExternalLink
+                    url="https://www.parcoursup.fr/index.php?desc=formations_apprentissage"
+                    title="Parcoursup"
+                  />
                 </span>
               </div>
               <div className="c-about-otherright">
@@ -263,13 +231,7 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a
-                    href="https://www.parcoursup.fr/index.php?desc=services_numeriques"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Parcoursup
-                  </a>
+                  <ExternalLink url="https://www.parcoursup.fr/index.php?desc=services_numeriques" title="Parcoursup" />
                 </span>
               </div>
               <div className="c-about-otherright">
@@ -282,9 +244,7 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="https://www.myjobglasses.com/" target="_blank" rel="noopener noreferrer">
-                    Myjobglasses
-                  </a>
+                  <ExternalLink url="https://www.myjobglasses.com/" title="Myjobglasses" />
                 </span>
               </div>
               <div className="c-about-otherright">
@@ -297,13 +257,10 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a
-                    href="https://openclassrooms.com/fr/courses/6003601-decouvrez-lalternance"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Openclassrooms
-                  </a>
+                  <ExternalLink
+                    url="https://openclassrooms.com/fr/courses/6003601-decouvrez-lalternance"
+                    title="Openclassrooms"
+                  />
                 </span>
               </div>
               <div className="c-about-otherright">
@@ -316,9 +273,7 @@ const APROPOS = () => (
               <div className="c-about-otherleft">
                 <span className="c-about-otherbullet">•</span>
                 <span className="c-about-otherlink">
-                  <a href="https://www.1jeune1solution.gouv.fr/" target="_blank" rel="noopener noreferrer">
-                    #1jeune1solution
-                  </a>
+                  <ExternalLink url="https://www.1jeune1solution.gouv.fr/" title="#1jeune1solution" />
                 </span>
               </div>
               <div className="c-about-otherright">
