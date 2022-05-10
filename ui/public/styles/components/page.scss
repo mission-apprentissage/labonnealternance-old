@@ -27,3 +27,21 @@
   border-top: 4px solid #3A55D1;
   @extend .my-5;
 }
+
+.c-stats-iframe {
+  width: 100%;
+  border: 0;
+  height: 780px;
+
+  @include media-breakpoint-up(lg) { 
+    height: 500px;
+  }
+}
+
+.c-stats-iframe.c-stats-iframe__lba {
+  height: 1200px;
+
+  @include media-breakpoint-up(lg) { 
+    height: 800px;
+  }
+}
