@@ -48,10 +48,11 @@ const CandidatureSpontanee = (props) => {
     initialValues: getInitialSchemaValues(),
     validationSchema: getValidationSchema(kind),
     onSubmit: async (applicantValues) => {
-      let success = await submitCandidature(applicantValues, setSendingState, props.item);
+      console.log("----- ",applicantValues);
+      /*let success = await submitCandidature(applicantValues, setSendingState, props.item);
       if (success) {
         setApplied(Date.now().toString());
-      }
+      }*/
     },
   });
 

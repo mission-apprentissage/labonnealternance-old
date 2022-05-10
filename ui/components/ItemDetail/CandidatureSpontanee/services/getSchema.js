@@ -9,6 +9,7 @@ export function getInitialSchemaValues() {
     fileName: "",
     fileContent: null,
     message: "",
+    interetOffresMandataire: null,
   };
 }
 
