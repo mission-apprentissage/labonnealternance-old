@@ -1,14 +1,7 @@
 import React, { useEffect } from "react";
-import questionmarkIcon from "public/images/icons/questionmark.svg";
-import { get, defaultTo, random } from "lodash";
 import ReactHtmlParser from "react-html-parser";
 import { formatDate } from "../../utils/strutils";
 import { SendTrackEvent } from "../../utils/gtm";
-import DidAsk1 from "./DidAsk1";
-import DidAsk2 from "./DidAsk2";
-
-import  GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
-
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
