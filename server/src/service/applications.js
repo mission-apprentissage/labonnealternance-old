@@ -12,6 +12,7 @@ const {
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
   validatePermanentEmail,
+  checkUserApplicationCount,
 } = require("./validateSendApplication");
 const logger = require("../common/logger");
 const publicUrl = config.publicUrl;
@@ -42,13 +43,13 @@ const images = {
 const initApplication = (query, companyEmail) => {
   return new Application({
     applicant_file_name: query.applicant_file_name,
-    applicant_email: query.applicant_email,
+    applicant_email: query.applicant_email.toLowerCase(),
     applicant_first_name: query.applicant_first_name,
     applicant_last_name: query.applicant_last_name,
     applicant_phone: query.applicant_phone,
     message: prepareMessageForMail(query.message),
     company_siret: query.company_siret,
-    company_email: companyEmail,
+    company_email: companyEmail.toLowerCase(),
     company_name: query.company_name,
     company_naf: query.company_naf,
     company_address: query.company_address,
@@ -124,6 +125,12 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       companyEmail,
       cryptedEmail,
     });
+
+    if (validationResult !== "ok") {
+      return { error: validationResult };
+    }
+
+    validationResult = await checkUserApplicationCount(query.applicant_email.toLowerCase());
 
     if (validationResult !== "ok") {
       return { error: validationResult };
