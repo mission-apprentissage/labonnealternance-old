@@ -35,6 +35,12 @@
     font-size: 12px;
   }
 }
+
+.c-media-tag span {
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+
 .c-media-tag.c-media-tag--briefcase {
   color: $pinksoft750;
   background: #FFF4F2;
@@ -59,10 +65,5 @@
   @include media-breakpoint-up(lg) {
     margin-left: 4px;
     margin-right: 0px;
-  }
-  
-}
-.c-media-tag span {
-  vertical-align: bottom;
-  white-space: nowrap;
+  } 
 }

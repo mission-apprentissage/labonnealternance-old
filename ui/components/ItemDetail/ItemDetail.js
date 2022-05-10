@@ -22,11 +22,13 @@ import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
 import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
+import TagFormationAssociee from "./TagFormationAssociee";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
+  const isMandataire = selectedItem?.company?.mandataire;
 
   const distance = selectedItem?.place?.distance;
 
@@ -144,10 +146,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         <header className="c-detail-header">
           <div className="">
             <div className="d-flex justify-content-end mb-2">
-              <div className="mr-auto">
+              <div className="mr-auto text-left">
                 {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
                 {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
                 {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
+                {amongst(kind, ["matcha"]) && isMandataire ? <TagFormationAssociee isMandataire /> : ""}
               </div>
               <div>
                 <button
