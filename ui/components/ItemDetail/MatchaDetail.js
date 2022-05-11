@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { SendTrackEvent } from "../../utils/gtm";
 import { formatDate } from "../../utils/strutils";
+import ExternalLink from "../externalLink";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -34,54 +35,52 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           <strong>Nature du contrat : </strong> {getContractTypes(job?.job?.contractType)}
         </div>
         <div>
-          <strong>Niveau requis :</strong> {
-            job?.diplomaLevel ? 
+          <strong>Niveau requis :</strong>{" "}
+          {job?.diplomaLevel ? (
             <>
-                <div className="c-required-levels">
-                  {job?.diplomaLevel.split(', ').map(function (d, idx) {
-                    return (<span key={idx} className="c-required-level">{d}</span>)
-                  })}
-                </div>
-            </> :
-              "non défini"
-            }
+              <div className="c-required-levels">
+                {job?.diplomaLevel.split(", ").map(function (d, idx) {
+                  return (
+                    <span key={idx} className="c-required-level">
+                      {d}
+                    </span>
+                  );
+                })}
+              </div>
+            </>
+          ) : (
+            "non défini"
+          )}
         </div>
       </div>
-      {
-        job?.company?.mandataire ?
-          <>
-            <p>
-              Offre publiée par <span className="c-detail-bolded">{job.company.name}</span> pour une entreprise partenaire du centre de formation.
-            </p>
-          </>
-        :
-          <>
-            <p>
-              <span className="c-detail-bolded">{job.company.name}</span>  nous a récemment fait parvenir un besoin de recrutement :  <span className="c-detail-bolded">{job.title}</span>. Cela signifie que l'établissement est activement à la recherche d'un.e candidat.e.
-            </p>
-            <p>
-              Vous avez donc tout intérêt à le contacter rapidement, avant que l'offre ne soit pourvue !
-            </p>
-            <p>
-              Trouver et convaincre une entreprise de vous embaucher ? 
-
-              <span className="c-detail-traininglink ml-1">
-                <a
-                  href="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="gtmDidask1"
-                >
-                  On vous donne des conseils ici pour vous aider !&nbsp;
-                  <img src='../../images/icons/goto.svg' alt="Lien" />
-                </a>
-              </span>
-
-              
-            </p>
-          </>
-      }
-
+      {job?.company?.mandataire ? (
+        <>
+          <p>
+            Offre publiée par <span className="c-detail-bolded">{job.company.name}</span> pour une entreprise partenaire
+            du centre de formation.
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            <span className="c-detail-bolded">{job.company.name}</span> nous a récemment fait parvenir un besoin de
+            recrutement : <span className="c-detail-bolded">{job.title}</span>. Cela signifie que l'établissement est
+            activement à la recherche d'un.e candidat.e.
+          </p>
+          <p>Vous avez donc tout intérêt à le contacter rapidement, avant que l'offre ne soit pourvue !</p>
+          <p>
+            Trouver et convaincre une entreprise de vous embaucher ?
+            <span className="c-detail-traininglink ml-1">
+              <ExternalLink
+                className="gtmDidask1"
+                url="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
+                title="On vous donne des conseils ici pour vous aider !"
+                withPic={<img src="../../images/icons/goto.svg" alt="Lien" />}
+              />
+            </span>
+          </p>
+        </>
+      )}
     </>
   );
 };

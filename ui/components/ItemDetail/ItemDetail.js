@@ -30,7 +30,7 @@ import gotoIcon from "public/images/icons/goto.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
-  console.log('selectedItem', selectedItem);
+  console.log("selectedItem", selectedItem);
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
 
@@ -99,24 +99,24 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   };
 
   const buildPrdvButton = (training) => {
-    return <div
-      className="widget-prdv gtmPrdv"
-      data-referrer="lba"
-      data-id-cle-ministere-educatif={training.cleMinistereEducatif}
-      data-id-rco-formation={training.idRcoFormation}
-    >
-      <a href={training.prdvUrl} target="_blank" rel="noopener noreferrer" className="gtmPrdv">
-        Prendre rendez-vous
-      </a>
-    </div>
+    return (
+      <div
+        className="widget-prdv gtmPrdv"
+        data-referrer="lba"
+        data-id-cle-ministere-educatif={training.cleMinistereEducatif}
+        data-id-rco-formation={training.idRcoFormation}
+      >
+        <ExternalLink className="gtmPrdv" url={training.prdvUrl} title="Prendre rendez-vous" />
+      </div>
+    );
   };
 
   const [collapseHeader, setCollapseHeader] = useState(false);
-  const maxScroll = 100
+  const maxScroll = 100;
   const handleScroll = () => {
-    let currentScroll = document.querySelector(".c-detail").scrollTop
-    currentScroll += collapseHeader ? 100 : -100
-    setCollapseHeader(currentScroll > maxScroll)
+    let currentScroll = document.querySelector(".c-detail").scrollTop;
+    currentScroll += collapseHeader ? 100 : -100;
+    setCollapseHeader(currentScroll > maxScroll);
   };
 
   return (
@@ -146,11 +146,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
               <div className="mr-auto c-tagcfa-container">
                 {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
-                {amongst(kind, ["lbb", "lba"]) ?
-                  <TagCandidatureSpontanee /> 
-                  : 
-                  ""
-                }
+                {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
                 {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
               </div>
               <div>
@@ -190,7 +186,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               <>
                 <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
                   <span>{`${get(selectedItem, "company.name", "")}`}</span>
-                  <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre dans le domaine suivant</span>
+                  <span className="c-detail-activity__proposal">
+                    &nbsp;propose actuellement cette offre dans le domaine suivant
+                  </span>
                 </p>
               </>
             ) : (
@@ -205,21 +203,24 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
 
-            {kind === "matcha" ?
-              <h1 className="c-detail-title c-detail-title--matcha">
-                {selectedItem.title}
-              </h1>
-              :
+            {kind === "matcha" ? (
+              <h1 className="c-detail-title c-detail-title--matcha">{selectedItem.title}</h1>
+            ) : (
               <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
-            }
+            )}
 
             <p className="mt-4 c-detail-address-section">
               <span className="d-block">
                 <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 21.7279L2.636 15.3639C1.37734 14.1052 0.520187 12.5016 0.172928 10.7558C-0.17433 9.00995 0.00390685 7.20035 0.685099 5.55582C1.36629 3.91129 2.51984 2.50569 3.99988 1.51677C5.47992 0.527838 7.21998 0 9 0C10.78 0 12.5201 0.527838 14.0001 1.51677C15.4802 2.50569 16.6337 3.91129 17.3149 5.55582C17.9961 7.20035 18.1743 9.00995 17.8271 10.7558C17.4798 12.5016 16.6227 14.1052 15.364 15.3639L9 21.7279ZM13.95 13.9499C14.9289 12.9709 15.5955 11.7236 15.8656 10.3658C16.1356 9.00795 15.9969 7.60052 15.4671 6.32148C14.9373 5.04244 14.04 3.94923 12.8889 3.18009C11.7378 2.41095 10.3844 2.00043 9 2.00043C7.61557 2.00043 6.26222 2.41095 5.11109 3.18009C3.95996 3.94923 3.06275 5.04244 2.53292 6.32148C2.00308 7.60052 1.86442 9.00795 2.13445 10.3658C2.40449 11.7236 3.07111 12.9709 4.05 13.9499L9 18.8999L13.95 13.9499ZM9 10.9999C8.46957 10.9999 7.96086 10.7892 7.58579 10.4141C7.21072 10.0391 7 9.53035 7 8.99992C7 8.46949 7.21072 7.96078 7.58579 7.58571C7.96086 7.21064 8.46957 6.99992 9 6.99992C9.53044 6.99992 10.0391 7.21064 10.4142 7.58571C10.7893 7.96078 11 8.46949 11 8.99992C11 9.53035 10.7893 10.0391 10.4142 10.4141C10.0391 10.7892 9.53044 10.9999 9 10.9999Z" fill="#2A2A2A" />
+                  <path
+                    d="M9 21.7279L2.636 15.3639C1.37734 14.1052 0.520187 12.5016 0.172928 10.7558C-0.17433 9.00995 0.00390685 7.20035 0.685099 5.55582C1.36629 3.91129 2.51984 2.50569 3.99988 1.51677C5.47992 0.527838 7.21998 0 9 0C10.78 0 12.5201 0.527838 14.0001 1.51677C15.4802 2.50569 16.6337 3.91129 17.3149 5.55582C17.9961 7.20035 18.1743 9.00995 17.8271 10.7558C17.4798 12.5016 16.6227 14.1052 15.364 15.3639L9 21.7279ZM13.95 13.9499C14.9289 12.9709 15.5955 11.7236 15.8656 10.3658C16.1356 9.00795 15.9969 7.60052 15.4671 6.32148C14.9373 5.04244 14.04 3.94923 12.8889 3.18009C11.7378 2.41095 10.3844 2.00043 9 2.00043C7.61557 2.00043 6.26222 2.41095 5.11109 3.18009C3.95996 3.94923 3.06275 5.04244 2.53292 6.32148C2.00308 7.60052 1.86442 9.00795 2.13445 10.3658C2.40449 11.7236 3.07111 12.9709 4.05 13.9499L9 18.8999L13.95 13.9499ZM9 10.9999C8.46957 10.9999 7.96086 10.7892 7.58579 10.4141C7.21072 10.0391 7 9.53035 7 8.99992C7 8.46949 7.21072 7.96078 7.58579 7.58571C7.96086 7.21064 8.46957 6.99992 9 6.99992C9.53044 6.99992 10.0391 7.21064 10.4142 7.58571C10.7893 7.96078 11 8.46949 11 8.99992C11 9.53035 10.7893 10.0391 10.4142 10.4141C10.0391 10.7892 9.53044 10.9999 9 10.9999Z"
+                    fill="#2A2A2A"
+                  />
                 </svg>
                 <span className="c-detail-address">&nbsp;{get(selectedItem, "place.zipCode", "")}</span>
-                <span className="c-detail-address">&nbsp;{selectedItem?.place?.city || selectedItem?.place?.address}</span>
+                <span className="c-detail-address">
+                  &nbsp;{selectedItem?.place?.city || selectedItem?.place?.address}
+                </span>
               </span>
             </p>
 
@@ -235,25 +236,23 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
 
-            {isCandidatureSpontanee(selectedItem) ?
+            {isCandidatureSpontanee(selectedItem) ? (
               <>
-                <hr class="c-detail-header-separator mt-0"/>
+                <hr class="c-detail-header-separator mt-0" />
                 <CandidatureSpontanee item={selectedItem} />
               </>
-              :
+            ) : (
               ""
-            }
+            )}
 
-
-
-            {kind === "formation" && selectedItem?.prdvUrl ?
-                <>
-                  <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
-                  <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
-                </>
-              :
-                <div className="c-detail-emptyspace">&nbsp;</div>
-            }
+            {kind === "formation" && selectedItem?.prdvUrl ? (
+              <>
+                <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
+                <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
+              </>
+            ) : (
+              <div className="c-detail-emptyspace">&nbsp;</div>
+            )}
           </div>
         </header>
 
@@ -265,64 +264,58 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ) : (
             ""
           )}
-          
-          {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
 
+          {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
         </div>
 
-        {amongst(kind, ["lbb", "lba"]) ? 
+        {amongst(kind, ["lbb", "lba"]) ? (
           <div className="c-needHelp">
-            <div className="c-needHelp-title">
-              Besoin d'aide ? 
-            </div>            
+            <div className="c-needHelp-title">Besoin d'aide ?</div>
             <div className="c-needHelp-text">
-              Découvrez les modules de formation de La Bonne Alternance. Des modules de quelques minutes pour bien préparer vos candidatures.
+              Découvrez les modules de formation de La Bonne Alternance. Des modules de quelques minutes pour bien
+              préparer vos candidatures.
             </div>
             <ul className="c-needHelp-listLinks">
               <li>
                 <span className="c-detail-traininglink ml-1">
-                  <a
-                    href="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <ExternalLink
                     className="gtmDidask1 c-needHelp-link"
-                  >
-                    Chercher un employeur &nbsp;
-                    <img src={gotoIcon} alt="Lien" />
-                  </a>
+                    url="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
+                    title="Chercher un employeur"
+                    withPic={<img src={gotoIcon} alt="Lien" />}
+                  />
                 </span>
               </li>
               <li>
                 <span className="c-detail-traininglink ml-1">
-                  <a
-                    href="https://dinum-beta.didask.com/courses/demonstration/60d1adbb877dae00003f0eac"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="gtmDidask2 c-needHelp-link"
-                  >
-                    Préparer un entretien avec un employeur&nbsp;
-                    <img src={gotoIcon} alt="Lien" />
-                  </a>
+                  <ExternalLink
+                    className="gtmDidask2  c-needHelp-link"
+                    url="https://dinum-beta.didask.com/courses/demonstration/60d1adbb877dae00003f0eac"
+                    title="Préparer un entretien avec un employeur"
+                    withPic={<img src={gotoIcon} alt="Lien" />}
+                  />
                 </span>
               </li>
-            </ul>            
+            </ul>
           </div>
-          : 
+        ) : (
           ""
-        }
+        )}
 
         <LocationDetail item={selectedItem}></LocationDetail>
 
-        {amongst(kind, ["peJob"]) ? 
+        {amongst(kind, ["peJob"]) ? (
           <>
-            <DidYouKnow item={selectedItem}></DidYouKnow >
-            <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, selectedItem)} key={getGoingtoId(kind, selectedItem)} />
+            <DidYouKnow item={selectedItem}></DidYouKnow>
+            <GoingToContactQuestion
+              kind={kind}
+              uniqId={getGoingtoId(kind, selectedItem)}
+              key={getGoingtoId(kind, selectedItem)}
+            />
           </>
-         : 
-           <></>
-         }
-
-        
+        ) : (
+          <></>
+        )}
       </section>
     </>
   );
