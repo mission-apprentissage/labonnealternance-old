@@ -72,19 +72,9 @@
     min-width: 40px;
 }
 
-.c-candidature-terms--knowmore {
-  .form-check-input
-  {
-    position: unset;
-    margin-left: 0;
-    width: 20px;
-    height: 20px;
-
-    input {
-      flex: unset;
-      margin-right: 0px;
-    }
-  }
-
-
+.c-candidature-terms--knowmore input {
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
+  margin-right: 18px;
 }
