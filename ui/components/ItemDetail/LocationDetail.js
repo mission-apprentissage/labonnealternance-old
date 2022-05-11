@@ -21,7 +21,7 @@ const LocationDetail = ({ item }) => {
 
   const getTitle = (oneItem) => {
     const oneKind = oneItem?.ideaType;
-    const isMandataire = oneItem?.company?.mandataire;
+    const isMandataire = item?.company?.mandataire;
     let res = "Quelques informations";
     if (oneKind === "formation") {
       res = "Quelques informations sur le centre de formation";
@@ -59,7 +59,15 @@ const LocationDetail = ({ item }) => {
       <div className="c-detail-body c-locationdetail mt-4">
         <h2 className="c-locationdetail-title mt-2">{getTitle(item)}</h2>
 
-        <div className="c-locationdetail-address mt-3">{item?.place?.fullAddress}</div>
+        {item?.company?.mandataire ? (
+          <div className="c-locationdetail-address mt-4">
+            Le centre de formation peut vous renseigner sur cette offre d’emploi ainsi que les formations qu’il propose.
+          </div>
+        ) : (
+          ""
+        )}
+
+        <div className="c-locationdetail-address mt-4">{item?.place?.fullAddress}</div>
 
         {item?.place?.distance ? (
           <div className="c-locationdetail-distance">
