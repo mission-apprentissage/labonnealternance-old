@@ -119,6 +119,10 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     setCollapseHeader(currentScroll > maxScroll);
   };
 
+  const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
+    return oneKind === "peJob" && oneItem?.url
+  }
+
   return (
     <>
       <section
@@ -224,7 +228,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               </span>
             </p>
 
-            {kind === "peJob" && selectedItem?.url ? (
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               <div className="c-detail-description-me">
                 <div className="c-detail-pelink my-3">
                   <a className="btn btn-blue ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
@@ -307,11 +311,16 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         {amongst(kind, ["peJob"]) ? (
           <>
             <DidYouKnow item={selectedItem}></DidYouKnow>
-            <GoingToContactQuestion
-              kind={kind}
-              uniqId={getGoingtoId(kind, selectedItem)}
-              key={getGoingtoId(kind, selectedItem)}
-            />
+
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ?
+              ""
+              : 
+              <GoingToContactQuestion
+                kind={kind}
+                uniqId={getGoingtoId(kind, selectedItem)}
+                key={getGoingtoId(kind, selectedItem)}
+              />
+             }
           </>
         ) : (
           <></>

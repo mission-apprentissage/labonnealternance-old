@@ -1,5 +1,7 @@
 import React from "react";
 import TagCandidatureSpontanee from "../../components/ItemDetail/TagCandidatureSpontanee.js";
+import ExternalLink from "../externalLink";
+import gotoIcon from "public/images/icons/goto.svg";
 
 const DidYouKnow = ({ item }) => {
   return (
@@ -16,9 +18,14 @@ const DidYouKnow = ({ item }) => {
         <p className="pb-3">
           <span className="d-block">Un employeur vous a proposé un entretien ?</span>
           <span className="d-block">
-            <strong>
-              <u>On vous donne des conseils pour vous aider à le preparer.</u>
-            </strong>
+            <span className="c-detail-traininglink c-detail-traininglink--strong">
+                <ExternalLink
+                  className="gtmDidask2  c-needHelp-link"
+                  url="https://dinum-beta.didask.com/courses/demonstration/60d1adbb877dae00003f0eac"
+                  title="On vous donne des conseils pour vous aider à le preparer."
+                  withPic={<img src={gotoIcon} alt="Lien" />}
+                />
+              </span>
           </span>
         </p>
       </div>

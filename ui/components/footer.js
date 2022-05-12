@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Navbar, Container } from "reactstrap";
+import { Row, Col, Container } from "reactstrap";
 import ExternalLink from "./externalLink";
 import { push } from "connected-next-router";
 import { useDispatch } from "react-redux";

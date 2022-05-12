@@ -485,6 +485,9 @@ a.c-detail-lbb-siretbutton {
   a:hover {
     text-decoration: none;
   }
+  &--strong {
+    font-weight: bold;
+  }
 }
 
 .c-detail-seeinfo {
