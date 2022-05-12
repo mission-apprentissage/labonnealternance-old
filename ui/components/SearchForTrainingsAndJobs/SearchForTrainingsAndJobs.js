@@ -36,7 +36,6 @@ import {
   coordinatesOfFrance,
 } from "utils/mapTools";
 
-//import { useScopeContext } from "context/ScopeContext";
 import { ScopeContext } from "context/ScopeContext";
 
 import Map from "components/Map";
@@ -48,7 +47,6 @@ import updateUiFromHistory from "services/updateUiFromHistory";
 
 const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
-  //const scopeContext = useScopeContext();
   const scopeContext = useContext(ScopeContext);
 
   const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
