@@ -5,38 +5,15 @@ import LbbCompanyDetail from './LbbCompanyDetail';
 describe('LbbCompanyDetail', () => {
 
 
-  it('Displays a link about the company', () => {
+  it('Displays the LBB component', () => {
     // Given
-    render(<LbbCompanyDetail lbb={lbbWithoutEmail} seeInfo={false} setSeeInfo={()=>{}}/>)
+    render(<LbbCompanyDetail lbb={lbbWithoutEmail} />)
     // When
-    const knowMoreLbb = screen.getByTestId('link-knowmore-lbb')
+    const knowMoreLbb = screen.getByTestId('lbb-component')
     // Then
-    expect(knowMoreLbb).toHaveTextContent('DATA BUSINESS MARKETING');
+    expect(knowMoreLbb).toHaveTextContent("Qu\'est ce qu\'une candidature spontanée");
   })
 
-  it('When Lbb has NO email, displays GoingToContactQuestion, but not CandidatureSpontanee', () => {
-    // Given
-    render(<LbbCompanyDetail lbb={lbbWithoutEmail} seeInfo={false} setSeeInfo={()=>{}}/>)
-    // When
-    const candidatureSpontanee = screen.queryByTestId('CandidatureSpontanee')
-    const goingToContactQuestion = screen.queryByTestId('GoingToContactQuestion')
-    // Then
-    expect(goingToContactQuestion).not.toBeNull();
-    expect(candidatureSpontanee).toBeNull();
-  })
-
-  it('When Lbb has an email, displays CandidatureSpontanee, but not GoingToContactQuestion', () => {
-    // Given
-    let lbbWithEmail = lbbWithoutEmail
-    lbbWithEmail.contact.email = 'someone@example.com'
-    render(<LbbCompanyDetail lbb={lbbWithEmail} seeInfo={false} setSeeInfo={()=>{}}/>)
-    // When
-    const candidatureSpontanee = screen.queryByTestId('CandidatureSpontanee')
-    const goingToContactQuestion = screen.queryByTestId('GoingToContactQuestion')
-    // Then
-    expect(candidatureSpontanee).not.toBeNull();
-    expect(goingToContactQuestion).toBeNull();
-  })
 
   let lbbWithoutEmail = {
     "ideaType": "lbb",
