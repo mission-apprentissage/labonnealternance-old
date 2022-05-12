@@ -23,7 +23,7 @@ const CandidatureSpontaneeExplanation = (props) => {
       res = (
         <p>
           L'entreprise n'a pas déposé d'offre d'emploi, vous pouvez tout de même lui envoyer votre CV pour lui indiquer
-          que vous seriez très intéressé pour intégrer son équipe dans le cadre de votre apprentissage.
+          que vous seriez très intéressé⸱e pour intégrer son équipe dans le cadre de votre apprentissage.
         </p>
       );
     } else if (props.about == "how") {
@@ -35,7 +35,7 @@ const CandidatureSpontaneeExplanation = (props) => {
           </p>
           <p className="c-detail-lbb-paragraph">
             Mettez en valeur vos qualités en lien avec le métier recherché et indiquez pourquoi vous souhaitez réaliser
-            votre apprentissage dans cette entreprise en particulier.
+            votre alternance dans cette entreprise en particulier.
             <br />
             <br />
             Besoin d'aide pour concevoir votre CV ? Il existe plusieurs outils gratuits :

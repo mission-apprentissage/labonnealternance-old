@@ -15,6 +15,10 @@ const countInstances = (string, word) => {
   return string.split(word).length - 1;
 }
 
+const endsWithNumber = (str) => {
+  return /[0-9]+$/.test(str);
+}
+
 const formatDate = (d) => {
   let resultDate = "";
 
@@ -25,4 +29,4 @@ const formatDate = (d) => {
   return resultDate;
 };
 
-export { isNonEmptyString, capitalizeFirstLetter, formatDate, countInstances };
+export { isNonEmptyString, capitalizeFirstLetter, formatDate, countInstances, endsWithNumber };

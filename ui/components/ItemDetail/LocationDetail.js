@@ -4,6 +4,7 @@ import { getPathLink } from "../../utils/tools";
 import { round } from "lodash";
 import { string_wrapper as with_str } from "../../utils/wrapper_utils";
 import ExternalLink from "../externalLink";
+import { endsWithNumber } from "../../utils/strutils";
 
 const LocationDetail = ({ item }) => {
   const kind = item?.ideaType;
@@ -13,24 +14,26 @@ const LocationDetail = ({ item }) => {
   };
 
   let companySize = item?.company?.size?.toLowerCase();
+  console.log('companySize', companySize);
   if (!companySize) {
     companySize = "non renseigné";
   } else if (companySize.startsWith("0")) {
     companySize = "petite entreprise";
   }
+  if (endsWithNumber(companySize)) {
+    companySize += " salariés"
+  }
 
   const getTitle = (oneItem) => {
     const oneKind = oneItem?.ideaType;
     const isMandataire = item?.company?.mandataire;
-    let res = "Quelques informations";
+    let res = "Quelques informations sur l'entreprise";
     if (oneKind === "formation") {
       res = "Quelques informations sur le centre de formation";
     } else if (oneKind === "matcha" && !isMandataire) {
       res = "Quelques informations sur l'établissement";
     } else if (oneKind === "matcha" && isMandataire) {
       res = "Contactez le CFA pour avoir plus d'informations";
-    } else if (oneKind === "peJob") {
-      res = "Quelques informations sur l'entreprise";
     }
     return res;
   };
