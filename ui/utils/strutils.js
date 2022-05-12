@@ -2,7 +2,13 @@ import _ from "lodash";
 
 const isNonEmptyString = (val) => _.isString(val) && val.trim().length > 0;
 
-const capitalizeFirstLetter = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const capitalizeFirstLetter = (s) => {
+  let res = ''
+  if (isNonEmptyString(s)) {
+    res = s.charAt(0).toUpperCase() + s.slice(1)
+  }
+  return res
+};
 
 // See https://stackoverflow.com/a/4009771/2595513
 const countInstances = (string, word) => {
@@ -13,7 +19,7 @@ const formatDate = (d) => {
   let resultDate = "";
 
   try {
-    resultDate = new Date(d).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    resultDate = new Date(d).toLocaleDateString('fr-FR', { year: "numeric", month: "short", day: "numeric" });
   } catch (err) {}
 
   return resultDate;

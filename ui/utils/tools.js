@@ -1,4 +1,17 @@
 import * as Sentry from "@sentry/react";
+import { rawPostalAddress } from './addressUtils';
+
+const getPathLink = (anyItem) => {
+  let res = ''
+  if (anyItem?.place) {
+    res = `https://www.google.fr/maps/dir//
+            ${encodeURIComponent(rawPostalAddress(anyItem.place.fullAddress))}/@
+            ${anyItem.place.latitude},
+            ${anyItem.place.longitude},
+            14z/`;
+  }
+  return res
+};
 
 const getValueFromPath = (key) => {
   let res = ""
@@ -74,4 +87,4 @@ const logError = (title, error) => {
   console.log(`Error ${title} sent to Sentry`);
 };
 
-export { getValueFromPath, scrollToTop, scrollToElementInContainer, getItemElement, logError };
+export { getPathLink, getValueFromPath, scrollToTop, scrollToElementInContainer, getItemElement, logError };

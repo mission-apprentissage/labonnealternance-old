@@ -4,6 +4,8 @@
 [LBA6-32] Contrôle des emails des candidats : pas d'email temporaire
 [LBA6-110] Récupération du flag établissement mandataire
 [LBA6-32] Proposition fautes de frappes emails
+[LBA6-51] Formation : Refonte fiche détaillée
+[LBA6-26] Formation : Refonte fiche détaillée entreprise
 [LBA6-127] Refonte page stats
 [LBA6-32] Limitation nombre de candidatures par jour
 [LBA6-112] Events plausible
