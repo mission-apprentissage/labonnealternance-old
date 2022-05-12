@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { useRouter } from "next/router";
 
@@ -36,7 +36,8 @@ import {
   coordinatesOfFrance,
 } from "utils/mapTools";
 
-import { useScopeContext } from "context/ScopeContext";
+//import { useScopeContext } from "context/ScopeContext";
+import { ScopeContext } from "context/ScopeContext";
 
 import Map from "components/Map";
 import { Row, Col } from "reactstrap";
@@ -47,7 +48,8 @@ import updateUiFromHistory from "services/updateUiFromHistory";
 
 const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
-  const scopeContext = useScopeContext();
+  //const scopeContext = useScopeContext();
+  const scopeContext = useContext(ScopeContext);
 
   const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
     (state) => state.trainings
