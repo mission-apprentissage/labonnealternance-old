@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useScopeContext } from "../../../context/ScopeContext";
 import { useDispatch, useSelector } from "react-redux";
@@ -235,17 +235,18 @@ const ChoiceColumn = ({
   };
 
   return (
-    <div id="choiceColumn" className={`choiceCol ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}>
-      {isLoading ? (
-        <LoadingScreen />
-      ) : (
-        <>
-          {getInitialDesktopText()}
-          {getSearchForm()}
-          {trainings.length === 0 && isJobSearchLoading ? <div></div> : getResultLists()}
-          {getSelectedItemDetail()}
-        </>
-      )}
+    <div id="choiceColumn" className={`choiceCol w-75 ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}>
+
+        {isLoading ? (
+          <LoadingScreen />
+        ) : (
+          <>
+            {getInitialDesktopText()}
+            {getSearchForm()}
+            {trainings.length === 0 && isJobSearchLoading ? <div></div> : getResultLists()}
+            {getSelectedItemDetail()}
+          </>
+        )}
     </div>
   );
 };

@@ -1,5 +1,7 @@
 const Yup = require("yup");
+const config = require("config");
 const { isEmailBurner } = require("burner-email-providers");
+const { Application } = require("../common/model");
 
 const validateSendApplication = async (validable) => {
   let schema = Yup.object().shape({
@@ -44,6 +46,25 @@ const validatePermanentEmail = async (validable) => {
     return "email temporaire non autorisé";
   }
   return "ok";
+};
+
+const checkUserApplicationCount = async (applicantEmail) => {
+  let start = new Date();
+  start.setHours(0, 0, 0, 0);
+
+  let end = new Date();
+  end.setHours(23, 59, 59, 999);
+
+  let appCount = await Application.countDocuments({
+    applicant_email: applicantEmail.toLowerCase(),
+    created_at: { $gte: start, $lt: end },
+  });
+
+  if (appCount > config.maxApplicationPerDay) {
+    return "max candidatures atteint";
+  } else {
+    return "ok";
+  }
 };
 
 const validateFeedbackApplication = async (validable) => {
@@ -93,4 +114,5 @@ module.exports = {
   validateFeedbackApplicationComment,
   validateIntentionApplication,
   validatePermanentEmail,
+  checkUserApplicationCount,
 };

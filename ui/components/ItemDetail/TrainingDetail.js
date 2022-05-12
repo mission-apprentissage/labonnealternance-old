@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
-import contactIcon from "../../public/images/icons/contact_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainingsAndSelectedItem } from "../../store/actions";
 import fetchTrainingDetails from "../../services/fetchTrainingDetails";
 import fetchPrdv from "../../services/fetchPrdv";
 import sendTrainingOpenedEventToCatalogue from "../../services/sendTrainingOpenedEventToCatalogue";
-import questionmarkIcon from "public/images/icons/questionmark2.svg";
 import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
 import sablierIcon from "public/images/icons/training-sablier.svg";
+import questionmarkIcon from "public/images/icons/training-questionmark.svg";
 import { SendTrackEvent } from "../../utils/gtm";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "../../utils/strutils";
 import { Spinner } from "reactstrap";
-
-import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
-import ExternalLink from "../externalLink";
 
 const TrainingDetail = ({ training, isCfa }) => {
   const dispatch = useDispatch();
@@ -94,63 +90,6 @@ const TrainingDetail = ({ training, isCfa }) => {
     });
   };
 
-  const buildPrdvButton = () => {
-    return training?.prdvUrl ? (
-      <div
-        className="widget-prdv gtmPrdv"
-        data-referrer="lba"
-        data-id-cle-ministere-educatif={training.cleMinistereEducatif}
-        data-id-rco-formation={training.idRcoFormation}
-      >
-        <ExternalLink className="gtmPrdv" url={training.prdvUrl} title="Prendre rendez-vous" />
-      </div>
-    ) : (
-      ""
-    );
-  };
-
-  const kind = training?.ideaType;
-  let contactEmail = training?.contact?.email;
-  let contactPhone = training?.contact?.phone;
-  let companyUrl = training?.company?.url;
-
-  let didask = (
-    <p>
-      Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ?
-      <span className="c-detail-traininglink ml-1">
-        <ExternalLink
-          className="gtmDidaskFormation"
-          url="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
-          title="Préparez votre premier contact avec un CFA !"
-          withPic={<img src={gotoIcon} alt="Lien" />}
-        />
-      </span>
-    </p>
-  );
-
-  let contactInfo = (
-    <>
-      {!training.prdvUrl && contactEmail ? (
-        <p className="c-detail-km c-detail-contactlink">
-          <a href={`mailto:${contactEmail}`} className="ml-1">
-            {contactEmail}
-          </a>
-        </p>
-      ) : (
-        ""
-      )}
-      {contactPhone ? (
-        <p className="c-detail-km c-detail-contactlink">
-          <a href={`tel:${contactPhone}`} className="ml-1">
-            {contactPhone}
-          </a>
-        </p>
-      ) : (
-        ""
-      )}
-    </>
-  );
-
   const getLoading = () => {
     return loading ? (
       <span className="trainingColor">
@@ -166,89 +105,30 @@ const TrainingDetail = ({ training, isCfa }) => {
 
   return (
     <>
-      <div className="text-left">
-        {contactPhone || (!training.prdvUrl && contactEmail) ? (
-          <div className="d-flex mb-3">
-            <>
-              <span className="d-block">
-                <img className="cardIcon" src={contactIcon} alt="" />
-              </span>
-              <span className="ml-2 d-block">
-                <span className="c-detail-address d-block">{contactInfo}</span>
-              </span>
-            </>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
-      {companyUrl ? (
-        <p className="mb-3 text-left">
-          <span className="c-detail-sizetext d-block">
-            <img className="mt-n1" src="/images/square_link.svg" alt="" />
-            <span className="ml-2">Voir le site </span>
-            <ExternalLink className="c-detail-training-link gtmTrainingLink" url={companyUrl} title={companyUrl} />
-          </span>
-        </p>
-      ) : (
-        ""
-      )}
-      <hr className={"c-detail-header-separator c-detail-header-separator--" + kind} />
-
-      <div className="c-detail-prdv mt-3 ml-3 mb-4 w-75">{buildPrdvButton()}</div>
-
       {getLoading()}
-
       {getTrainingDetails(training.training)}
-
       {training.onisepUrl ? (
-        <div className={"c-detail-advice mt-4 c-detail-advice--training c-detail-advice--training-cfa-" + isCfa}>
-          <div className="c-detail-advice__figure">
+        <div className="c-detail-newadvice mt-4 pl-4">
+          <div className="pt-1 pb-2">
             <img src={questionmarkIcon} alt="point d'interrogation" />
+            <span className="c-detail-newadvice-title ml-3">{training.title ? training.title : training.longTitle}</span>
           </div>
-          <div className="c-detail-advice__body">
-            {isCfa ? (
-              <div className="c-detail-advice-text">
-                <p className="c-detail-advice-cfatitle">Cet établissement est un CFA d’entreprise.</p>
-                <p>La particularité ? Il s’agit d’une formule complète Emploi + Formation !</p>
-                <p>Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :</p>
-                <ul>
-                  <li>commencez par vous inscrire à la formation pour accéder ensuite au contrat,</li>
-                  <li>ou commencez par postuler à une offre d'emploi pour être ensuite inscrit en formation.</li>
-                </ul>
-                <p>Prenez contact avec cet établissement ou consultez son site web pour en savoir + !</p>
-
-                {didask}
-              </div>
-            ) : (
-              <div className="c-detail-advice-text">
-                <p>
-                  <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
-                  <span className="c-detail-traininglink">
-                    <ExternalLink
-                      url={training.onisepUrl}
-                      title="le site Onisep"
-                      withPic={<img src={gotoIcon} alt="Lien" />}
-                    />
-                  </span>
-                </p>
-
-                {didask}
-              </div>
-            )}
+          <div>
+            <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
+            <span className="c-detail-traininglink">
+              <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
+                le site Onisep&nbsp;
+                <img src={gotoIcon} alt="Lien" />
+              </a>
+            </span>
+          </div>
+          <div className="mt-2 mb-2">
+            Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ? Préparez votre premier contact avec un CFA
           </div>
         </div>
       ) : (
         ""
       )}
-
-      {training?.prdvUrl ? (
-        ""
-      ) : (
-        <GoingToContactQuestion kind={kind} uniqId={getGoingtoId(kind, training)} key={getGoingtoId(kind, training)} />
-      )}
-
-      <br />
     </>
   );
 };
@@ -269,7 +149,7 @@ const updateTrainingFromLbf = (training, detailsFromLbf) => {
   }
 };
 
-const getTrainingDetails = (training, loading) => {
+const getTrainingDetails = (training) => {
   if (!training) return "";
 
   let res = (
@@ -278,7 +158,7 @@ const getTrainingDetails = (training, loading) => {
         <div className="c-detail-description is-first media">
           <img src={clipboardListIcon} alt="dossier" />
           <div className="c-detail-training media-body">
-            <h3 className="c-detail-description-title mb-3 mt-0">Description</h3>
+            <h3 className="c-detail-description-title mb-3 mt-0">Description de la formation</h3>
             <span className="dont-break-out">{training.description}</span>
           </div>
         </div>
@@ -290,7 +170,7 @@ const getTrainingDetails = (training, loading) => {
         <div className="c-detail-description media">
           <img src={targetIcon} alt="cible" />
           <div className="c-detail-training media-body">
-            <h3 className="c-detail-description-title mb-3 mt-0">Objectif</h3>
+            <h3 className="c-detail-description-title mb-3 mt-0">Objectifs</h3>
             <span className="dont-break-out">{training.objectif}</span>
           </div>
         </div>
@@ -334,8 +214,6 @@ const getTrainingDetails = (training, loading) => {
     </>
   );
 
-  //console.log("res : ",res);
-
   return res;
 };
 
@@ -363,6 +241,7 @@ const getTrainingSessions = (training) => {
               </div>
             );
           })}
+          <div>&nbsp;</div>
         </div>
       </div>
     ) : (

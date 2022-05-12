@@ -211,33 +211,43 @@ a.resultCard:hover {
   a
   {
     display: inline-block;
-    width: 100%;
-    background-color: rgb(42, 42, 42);
-    border: 1px solid rgb(42, 42, 42);
+    background-color: #000091;
+    border: 1px solid #000091;
     border-radius: 8px;
     color: #fff !important;
     font-size: 18px;
     font-weight: 700;  
-    padding: 6px 16px;
+    padding: 6px 32px;
     text-align: center;
     vertical-align: middle;
+    padding: 6px 12px;
+    @include media-breakpoint-up(sm) {
+      padding: 6px 32px;
+    }
+    @include media-breakpoint-up(md) {
+      padding: 6px 12px;
+    }
+    @include media-breakpoint-up(lg) {
+      padding: 6px 32px;
+    }
   }
 }
 
 .c-detail-google-search,
 .c-detail-google-search:hover
 {
-  color: $pinksoft750;
+  text-decoration: underline;
+  font-size: 16px;
   font-weight: 700;
-  border-bottom: 2px solid $pinksoft750;
-  text-decoration: none;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: $gray-700;
 }
 
 .c-detail-googledir-link,
 .c-detail-googledir-link:hover
 {
   color: $gray-700;
-  text-decoration: underline;
   text-underline-offset: 3px;
 }
 
