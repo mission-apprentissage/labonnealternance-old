@@ -20,6 +20,7 @@ import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
 import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
+import TagFormationAssociee from "./TagFormationAssociee";
 import LocationDetail from "./LocationDetail";
 import DidYouKnow from "./DidYouKnow";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
@@ -33,6 +34,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   console.log("selectedItem", selectedItem);
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
+  const isMandataire = selectedItem?.company?.mandataire;
 
   const distance = selectedItem?.place?.distance;
 
@@ -148,10 +150,12 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         <header className={`c-detail-header c-detail--collapse-header-${collapseHeader}`}>
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
-              <div className="mr-auto c-tagcfa-container">
+              <div className="mr-auto c-tagcfa-container text-left">
+
                 {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
                 {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
                 {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
+                {amongst(kind, ["matcha"]) && isMandataire ? <TagFormationAssociee isMandataire /> : ""}
               </div>
               <div>
                 <button

@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
 import CandidatureSpontaneeMessage from "./CandidatureSpontaneeMessage";
+import CandidatureSpontaneeMandataireMessage from "./CandidatureSpontaneeMandataireMessage";
+import CandidatureSpontaneeMandataireKnowMoreCheckbox from "./CandidatureSpontaneeMandataireKnowMoreCheckbox";
 import { testingParameters } from "../../../utils/testingParameters";
 import emailMisspelled, { top100 } from "email-misspelled";
 
 const emailChecker = emailMisspelled({ maxMisspelled: 3, domains: top100 });
 
 const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind }) => {
+
+  useEffect(() => {
+    formik.values.interetOffresMandataire = false;
+  }, [company]);
+
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
     formik.values.fileContent = fileValue?.fileContent || null;
@@ -153,6 +160,11 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
           <CandidatureSpontaneeFileDropzone formik={formik} setFileValue={setFileValue} />
         </div>
 
+        <div className="c-candidature-message mt-3">
+          <CandidatureSpontaneeMandataireMessage item={item} />
+          <CandidatureSpontaneeMandataireKnowMoreCheckbox item={item} formik={formik} />
+        </div>
+
         <fieldset data-testid="fieldset-terms" className="c-candidature-terms mt-3">
           <label htmlFor="terms" className="c-candidature-terms-text">
             <div>
@@ -160,7 +172,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
               <a href="/cgu" className="c-candidature-link" target="_blank">
                 Conditions générales d'utilisation
               </a>{" "}
-              du service La Bonne Alternance et acceptez le partage de vos informations avec {company}
+              du service La Bonne Alternance et acceptez le partage de vos informations avec l'établissement {company}
             </div>
           </label>
         </fieldset>

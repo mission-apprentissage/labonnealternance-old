@@ -9,6 +9,7 @@ import { fetchAddresses } from "../../services/baseAdresse";
 import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
+import TagFormationAssociee from "./TagFormationAssociee";
 
 const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { formValues, selectedMapPopupItem } = useSelector((state) => state.trainings);
@@ -131,6 +132,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
             </div>
             <div className="col-12 col-lg-5 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
               <TagOffreEmploi />
+              <TagFormationAssociee isMandataire={job?.company?.mandataire} />
             </div>
           </div>
 

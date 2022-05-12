@@ -56,6 +56,7 @@ const initApplication = (query, companyEmail) => {
     company_type: query.company_type,
     job_title: query.job_title,
     job_id: query.job_id,
+    interet_offres_mandataire: query.interet_offres_mandataire,
   });
 };
 
