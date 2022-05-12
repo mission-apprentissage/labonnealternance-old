@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.19.0 [22/05/2022]
+[LBA6-68] Remplacement redux par API context
+
 ## 1.18.11 [11/05/2022]
 [LBA6-32] Contrôle des emails des candidats : pas d'email temporaire
 [LBA6-110] Récupération du flag établissement mandataire

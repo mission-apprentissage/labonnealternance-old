@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-import { useScopeContext } from "../../../context/ScopeContext";
+//import { useScopeContext } from "../../../context/ScopeContext";
+import { ScopeContext } from "../../../context/ScopeContext";
 import { useDispatch, useSelector } from "react-redux";
 import distance from "@turf/distance";
 import { scrollToTop, scrollToElementInContainer, getItemElement } from "../../../utils/tools";
@@ -43,7 +44,8 @@ const ChoiceColumn = ({
 }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const scopeContext = useScopeContext();
+  //const scopeContext = useScopeContext();
+  const scopeContext = useContext(ScopeContext);
 
   const { trainings, jobs, selectedItem, itemToScrollTo, formValues /*, currentPage*/ } = useSelector(
     (state) => state.trainings
