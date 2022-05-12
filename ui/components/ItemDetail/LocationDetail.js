@@ -14,7 +14,6 @@ const LocationDetail = ({ item }) => {
   };
 
   let companySize = item?.company?.size?.toLowerCase();
-  console.log('companySize', companySize);
   if (!companySize) {
     companySize = "non renseigné";
   } else if (companySize.startsWith("0")) {
