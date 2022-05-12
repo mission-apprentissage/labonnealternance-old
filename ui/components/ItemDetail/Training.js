@@ -3,7 +3,6 @@ import trainingIcon from "../../public/images/icons/book.svg";
 import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
-//import { useScopeContext } from "../../context/ScopeContext";
 import { ScopeContext } from "../../context/ScopeContext";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";

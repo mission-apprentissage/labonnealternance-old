@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-//import { useScopeContext } from "../../../context/ScopeContext";
 import { ScopeContext } from "../../../context/ScopeContext";
 
 const ExtendedSearchButton = ({ title, hasJob, handleExtendedSearch }) => {
@@ -7,7 +6,6 @@ const ExtendedSearchButton = ({ title, hasJob, handleExtendedSearch }) => {
     handleExtendedSearch();
   };
 
-  //const scopeContext = useScopeContext();
   const scopeContext = useContext(ScopeContext);
 
   const gtmClass = function () {

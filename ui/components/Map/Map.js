@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useStore, useDispatch, useSelector } from "react-redux";
 import { setSelectedItem, setSelectedMapPopupItem } from "store/actions";
 import { currentPage, setCurrentPage, currentSearch } from "utils/currentPage.js";
-//import { useScopeContext } from "context/ScopeContext";
 import { ScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
 import MapSearchButton from "./MapSearchButton";
@@ -25,7 +24,6 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   });
   const router = useRouter();
 
-  //const scopeContext = useScopeContext();
   const scopeContext = useContext(ScopeContext);
 
   const [mapInitialized, setMapInitialized] = useState(false);
