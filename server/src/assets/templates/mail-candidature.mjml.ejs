@@ -103,28 +103,28 @@
             <mj-section>
                 <mj-column>
                     <mj-table line-height="100%">
-                    <tr>
-                        <td valign="top" style="padding-top:5px;"><img style="width:120px; height:48px;" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" /></td>
-                        <td valign="top" style="line-height: 22px; padding-left: 40px; padding-top:0;">
-                        <% if (data.company_type == "matcha" ) { %>
-                            Vous recevez cette candidature car vous avez déposé une offre sur le service 
-                            <a style="font-weight:bold; color:black" 
-                                href="https://matcha.apprentissage.beta.gouv.fr/">
-                                Matcha
-                            </a>.
-                            <br/><br/>
-                            Votre offre est donc visible sur :
-                            <ul>
-                                <li>
-                                    La Bonne Alternance, un site web conçu par Pôle emploi et porté par le Ministère de l’éducation nationale, de l’enseignement supérieur, du travail et de la transformation publique
-                                </li>
-                                <li>
-                                    Nos sites partenaires, afin d'étendre la portée de votre recrutement là où les candidats se trouvent.
-                                </li>
-                            </ul>
-                        <% } %>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td valign="top" style="padding-top:5px;"><img style="width:120px; height:48px;" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" /></td>
+                            <td valign="top" style="font-size:14px;line-height: 22px; padding-left: 40px; padding-top:0;">
+                            <% if (data.company_type == "matcha" ) { %>
+                                Vous recevez cette candidature car vous avez déposé une offre sur le service 
+                                <a style="font-weight:bold; color:black" 
+                                    href="https://matcha.apprentissage.beta.gouv.fr/">
+                                    Matcha
+                                </a>.
+                                <br/><br/>
+                                Votre offre est donc visible sur :
+                                <ul>
+                                    <li>
+                                        La Bonne Alternance, un site web conçu par Pôle emploi et porté par le Ministère de l’éducation nationale, de l’enseignement supérieur, du travail et de la transformation publique
+                                    </li>
+                                    <li>
+                                        Nos sites partenaires, afin d'étendre la portée de votre recrutement là où les candidats se trouvent.
+                                    </li>
+                                </ul>
+                            <% } %>
+                            </td>
+                        </tr>
                     </mj-table>
                 </mj-column>
             </mj-section>
