@@ -6,6 +6,7 @@
 [LBA6-135] Restauration info métier Matcha
 
 ## 1.18.11 [11/05/2022]
+[LBA6-11] MAJ email envoyé au recruteur lors d'une candidature Matcha
 [LBA6-32] Contrôle des emails des candidats : pas d'email temporaire
 [LBA6-110] Récupération du flag établissement mandataire
 [LBA6-32] Proposition fautes de frappes emails
