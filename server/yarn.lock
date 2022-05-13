@@ -822,6 +822,11 @@ bunyan@1.8.12:
     mv "~2"
     safe-json-stringify "~1"
 
+burner-email-providers@1.0.67:
+  version "1.0.67"
+  resolved "https://registry.yarnpkg.com/burner-email-providers/-/burner-email-providers-1.0.67.tgz#6759dbd1bef2eea6c093bd111d72687e4194c42a"
+  integrity sha512-w3aWPwragdi/fyGvPFl3Ll4jlbsVecdiC/vsApzyTMReylKBl8w+nN0Oh4fGJanu7Mcn13Xgnrl1OyQk7XEiug==
+
 bytes@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.0.tgz#f6cf7933a360e0588fa9fde85651cdc7f805d1f6"

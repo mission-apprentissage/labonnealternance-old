@@ -8292,6 +8292,11 @@ elliptic@^6.0.0, elliptic@^6.5.2:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
+email-misspelled@3.3.9:
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/email-misspelled/-/email-misspelled-3.3.9.tgz#23477b0192a688bdf4a6f0f7e27b6992b3fa885b"
+  integrity sha512-sezTIIoMuQl3Msh1H6el7OjVqYI8t1QEt6Em+A/YIlMZSa/9C1SoBG5w4j/TaUMI6fNB9AvL1lTdpYEE+Hcnbw==
+
 emitter-component@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/emitter-component/-/emitter-component-1.1.1.tgz#065e2dbed6959bf470679edabeaf7981d1003ab6"

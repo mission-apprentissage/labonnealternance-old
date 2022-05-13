@@ -8,14 +8,13 @@ import { isNonEmptyString } from "../../utils/strutils";
 
 import { getValueFromPath } from "../../utils/tools";
 import { testingParameters } from "../../utils/testingParameters";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 let iv = null;
 let id = null;
 let intention = null;
 
 const SatisfactionForm = ({ formType }) => {
-
   const initParametersFromPath = () => {
     iv = getValueFromPath("iv");
     id = getValueFromPath("id");
@@ -23,58 +22,64 @@ const SatisfactionForm = ({ formType }) => {
   };
 
   const readIntention = () => {
-    const router = useRouter()
-    const { intention } = router?.query ? router.query : { intention: 'intention' }
-    return intention
+    const router = useRouter();
+    const { intention } = router?.query ? router.query : { intention: "intention" };
+    return intention;
   };
 
   const getFeedbackText = () => {
-    const router = useRouter()
-    const { intention, fn, ln } = router?.query ? router.query : {intention: 'intention', fn: 'prénom', ln: 'nom'}
-    let firstName = fn
-    let lastName = ln
+    const router = useRouter();
+    const { intention, fn, ln } = router?.query ? router.query : { intention: "intention", fn: "prénom", ln: "nom" };
+    let firstName = fn;
+    let lastName = ln;
     let text = (
       <div className="mb-4">
         <p className="pt-4">Merci beaucoup pour votre réponse.</p>
-        {intention === 'entretien' ?
+        {intention === "entretien" ? (
           <div>
             <strong>Vous avez indiqué accepter la candidature de {`${firstName} ${lastName}`}.</strong>
             <p className="pt-4 pb-0 mb-0">
               Planifiez une date de rencontre avec le candidat, en lui envoyant un message personnalisé.
             </p>
             <p>
-              <small className="satisfaction-smallhint">Le candidat recevra votre message ainsi que vos coordonnées directement sur sa boîte mail.</small>
+              <small className="satisfaction-smallhint">
+                Le candidat recevra votre message ainsi que vos coordonnées directement sur sa boîte mail.
+              </small>
             </p>
           </div>
-          :
-          ''
-        }
-        {intention === 'ne_sais_pas' ?
+        ) : (
+          ""
+        )}
+        {intention === "ne_sais_pas" ? (
           <div>
             <strong>Vous avez indiqué temporiser la candidature de {`${firstName} ${lastName}`}.</strong>
             <p className="pt-4 pb-0 mb-0">
               Précisez au candidat votre intérêt pour sa candidature, en lui envoyant un message personnalisé.
             </p>
             <p>
-              <small className="satisfaction-smallhint">Le candidat recevra votre message ainsi que vos coordonnées directement sur sa boîte mail.</small>
+              <small className="satisfaction-smallhint">
+                Le candidat recevra votre message ainsi que vos coordonnées directement sur sa boîte mail.
+              </small>
             </p>
           </div>
-          :
-          ''
-        }
-        {intention === 'refus' ?
+        ) : (
+          ""
+        )}
+        {intention === "refus" ? (
           <div>
             <strong>Vous avez indiqué refuser la candidature de {`${firstName} ${lastName}`}.</strong>
             <p className="pt-4 pb-0 mb-0">
               Précisez les raisons de votre refus au candidat, en lui envoyant un message personnalisé.
             </p>
             <p>
-              <small className="satisfaction-smallhint">Le candidat recevra votre message directement sur sa boîte mail.</small>
+              <small className="satisfaction-smallhint">
+                Le candidat recevra votre message directement sur sa boîte mail.
+              </small>
             </p>
           </div>
-          :
-          ''
-        }
+        ) : (
+          ""
+        )}
       </div>
     );
 
@@ -89,13 +94,13 @@ const SatisfactionForm = ({ formType }) => {
   const [sendingState, setSendingState] = useState("not_sent");
 
   const getValidationSchema = () => {
-    const router = useRouter()
-    const { intention } = router?.query ? router.query : { intention: 'intention' }
-    let res = Yup.object({})
-    if (intention === 'refus') {
+    const router = useRouter();
+    const { intention } = router?.query ? router.query : { intention: "intention" };
+    let res = Yup.object({});
+    if (intention === "refus") {
       res = Yup.object({
         comment: Yup.string().nullable().required("Veuillez remplir le message"),
-      })
+      });
     } else {
       res = Yup.object({
         comment: Yup.string().required("Veuillez remplir le message"),
@@ -103,10 +108,10 @@ const SatisfactionForm = ({ formType }) => {
         phone: Yup.string()
           .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
           .required("⚠ Le téléphone est obligatoire"),
-      })
+      });
     }
     return res;
-  }
+  };
 
   const formik = useFormik({
     initialValues: { comment: "" },
@@ -134,7 +139,7 @@ const SatisfactionForm = ({ formType }) => {
     } else if (sendingState === "not_sent_because_of_errors") {
       errorMsg = (
         <div className="c-candidature-erreur mb-2 visible">
-          Une erreur technique empêche l'enregistrement de votre avis. Merci de réessayer ultérieurement;
+          Une erreur technique empêche l'enregistrement de votre avis. Merci de réessayer ultérieurement
         </div>
       );
     } else {
@@ -144,28 +149,31 @@ const SatisfactionForm = ({ formType }) => {
   };
 
   const getPlaceHolderText = () => {
-    const router = useRouter()
-    const { intention} = router?.query ? router.query : { intention: 'intention' }
-    let res = ''
-    if (intention === 'ne_sais_pas' ) {
-      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ..."
-    } else if (intention === 'entretien') {
-      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention et nous souhaiterions échanger avec vous. Seriez-vous disponible le ..."
+    const router = useRouter();
+    const { intention } = router?.query ? router.query : { intention: "intention" };
+    let res = "";
+    if (intention === "ne_sais_pas") {
+      res =
+        "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention mais nous ne sommes actuellement pas ...";
+    } else if (intention === "entretien") {
+      res =
+        "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Votre candidature a retenu toute notre attention et nous souhaiterions échanger avec vous. Seriez-vous disponible le ...";
     } else {
-      res = "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ..."
+      res =
+        "Bonjour, Merci pour l'intérêt que vous portez à notre établissement. Nous ne sommes malheureusement pas en mesure de donner une suite favorable à votre candidature car ...";
     }
-    return res
-  }
+    return res;
+  };
 
   const getErrorClassFor = (formikObj, target) => {
-    let res = "is-not-validated"
+    let res = "is-not-validated";
     if (formikObj.errors[target]) {
-      res = "is-valid-false"
+      res = "is-valid-false";
     } else if (formikObj.values[target]) {
-      res = "is-valid-true"
+      res = "is-valid-true";
     }
-    return res
-  }
+    return res;
+  };
 
   return (
     <div className="c-formulaire-satisfaction">
@@ -175,14 +183,12 @@ const SatisfactionForm = ({ formType }) => {
           <div className="row flex-center py-5">
             <div className="col col-lg-7 mx-auto">
               {getFeedbackText()}
-              {isNonEmptyString(readIntention()) ? 
-                
+              {isNonEmptyString(readIntention()) ? (
                 <form onSubmit={formik.handleSubmit} className="">
-
                   <fieldset
                     data-testid="fieldset-message"
                     className={`pt-2 c-candidature-field ${getErrorClassFor(formik, "comment")}`}
-                    >
+                  >
                     <textarea
                       id="comment"
                       data-testid="comment"
@@ -191,16 +197,19 @@ const SatisfactionForm = ({ formType }) => {
                       onBlur={formik.handleBlur}
                       onChange={formik.handleChange}
                       value={formik.values.comment}
-                      />
+                    />
                   </fieldset>
                   {getFieldError()}
-                  
-                  {readIntention() !== 'refus' ?
+
+                  {readIntention() !== "refus" ? (
                     <div className="c-candidature-personaldata d-flex flex-column flex-md-row justify-content-between">
                       <div>
                         <fieldset
                           data-testid="fieldset-email"
-                          className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${getErrorClassFor(formik, "email")}`}
+                          className={`mt-1 mt-md-0 mr-0 mr-md-3 c-candidature-field ${getErrorClassFor(
+                            formik,
+                            "email"
+                          )}`}
                         >
                           <label htmlFor="email">E-mail *</label>
                           <input
@@ -250,9 +259,9 @@ const SatisfactionForm = ({ formType }) => {
                         </fieldset>
                       </div>
                     </div>
-                  :
-                    ''
-                  }
+                  ) : (
+                    ""
+                  )}
 
                   <div className="d-flex flex-row-reverse">
                     <button
@@ -264,9 +273,9 @@ const SatisfactionForm = ({ formType }) => {
                     </button>
                   </div>
                 </form>
-                :
-                ''
-              }
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

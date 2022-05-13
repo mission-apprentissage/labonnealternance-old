@@ -6,14 +6,13 @@ import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { findIndex, concat, pick, get, defaultTo, round } from "lodash";
 import { amongst } from "../../utils/arrayutils";
-import smallMapPointIcon from "public/images/icons/small_map_point.svg";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
-import { capitalizeFirstLetter } from "../../utils/strutils";
-import { rawPostalAddress } from "../../utils/addressUtils";
+import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
+import ExternalLink from "../externalLink";
 
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
@@ -21,11 +20,20 @@ import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
 import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
+import TagFormationAssociee from "./TagFormationAssociee";
+import LocationDetail from "./LocationDetail";
+import DidYouKnow from "./DidYouKnow";
+import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
+import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
+
+import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
+import gotoIcon from "public/images/icons/goto.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
+  const isMandataire = selectedItem?.company?.mandataire;
 
   const distance = selectedItem?.place?.distance;
 
@@ -91,41 +99,35 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     handleSelectItem(currentList[prevIndex]);
   };
 
-  const getPathLink = () => {
-    return `https://www.google.fr/maps/dir//
-            ${encodeURIComponent(rawPostalAddress(selectedItem.place.fullAddress))}/@
-            ${selectedItem.place.latitude},
-            ${selectedItem.place.longitude},
-            14z/`;
-  };
-
-  const getPathBlock = () => {
-    return selectedItem ? (
-      <span className="d-block mt-2">
-        <span>
-          <img className="cardIcon mr-2" src={smallMapPointIcon} alt="" />
-        </span>
-        <span className="c-detail-sizetext">
-          <a
-            href={getPathLink()}
-            target="_blank"
-            className={`c-detail-googledir-link gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
-            rel="noopener noreferrer"
-          >
-            <span>
-              Obtenir l'itinéraire <img className="mt-n1" src="/images/square_link.svg" alt="" />
-            </span>
-          </a>
-        </span>
-      </span>
-    ) : (
-      ""
+  const buildPrdvButton = (training) => {
+    return (
+      <div
+        className="widget-prdv gtmPrdv"
+        data-referrer="lba"
+        data-id-cle-ministere-educatif={training.cleMinistereEducatif}
+        data-id-rco-formation={training.idRcoFormation}
+      >
+        <ExternalLink className="gtmPrdv" url={training.prdvUrl} title="Prendre rendez-vous" />
+      </div>
     );
   };
+
+  const [collapseHeader, setCollapseHeader] = useState(false);
+  const maxScroll = 100;
+  const handleScroll = () => {
+    let currentScroll = document.querySelector(".c-detail").scrollTop;
+    currentScroll += collapseHeader ? 100 : -100;
+    setCollapseHeader(currentScroll > maxScroll);
+  };
+
+  const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
+    return oneKind === "peJob" && oneItem?.url
+  }
 
   return (
     <>
       <section
+        onScroll={handleScroll}
         className={`c-detail itemDetail ${kind ? `gtmDetail${capitalizeFirstLetter(kind)}` : ""} ${
           selectedItem ? "" : "hiddenItemDetail"
         }`}
@@ -144,13 +146,15 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         ) : (
           ""
         )}
-        <header className="c-detail-header">
-          <div className="">
-            <div className="d-flex justify-content-end mb-2">
-              <div className="mr-auto">
+        <header className={`c-detail-header c-detail--collapse-header-${collapseHeader}`}>
+          <div className="w-100">
+            <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
+              <div className="mr-auto c-tagcfa-container text-left">
+
                 {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
                 {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
                 {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
+                {amongst(kind, ["matcha"]) && isMandataire ? <TagFormationAssociee isMandataire /> : ""}
               </div>
               <div>
                 <button
@@ -185,52 +189,81 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               </div>
             </div>
 
-            <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
-
-            {amongst(kind, ["lba", "lbb"]) ? (
-              <p className={`c-detail-activity c-detail-title--${kind}`}>
-                {get(selectedItem, "nafs[0].label", "Candidature spontanée")}
-              </p>
+            {amongst(kind, ["lba", "lbb", "matcha"]) ? (
+              <>
+                <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
+                  <span>{`${get(selectedItem, "company.name", "")}`}</span>
+                  <span className="c-detail-activity__proposal">
+                    &nbsp;propose actuellement cette offre dans le domaine suivant
+                  </span>
+                </p>
+              </>
             ) : (
               ""
             )}
             {amongst(kind, ["formation"]) ? (
               <p className={`c-detail-activity c-detail-title--formation`}>
-                {`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}
+                <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
+                <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
               </p>
             ) : (
               ""
             )}
-            {kind === "matcha" ? <div className="c-detail-matcha-subtitle text-left">{selectedItem.title}</div> : ""}
-            <p className="d-flex mt-4 text-left">
+
+            {kind === "matcha" ? (
+              <h1 className="c-detail-title c-detail-title--matcha">{selectedItem.title}</h1>
+            ) : (
+              <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
+            )}
+
+            <p className="mt-4 c-detail-address-section">
               <span className="d-block">
-                <span className="c-detail-address d-block">{get(selectedItem, "place.fullAddress", "")}</span>
-                {hasLocation && distance ? (
-                  <span className="c-detail-km d-block">
-                    {round(distance, 1) + " "}
-                    km(s) du lieu de recherche
-                  </span>
-                ) : (
-                  ""
-                )}
-                {getPathBlock()}
+                <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M9 21.7279L2.636 15.3639C1.37734 14.1052 0.520187 12.5016 0.172928 10.7558C-0.17433 9.00995 0.00390685 7.20035 0.685099 5.55582C1.36629 3.91129 2.51984 2.50569 3.99988 1.51677C5.47992 0.527838 7.21998 0 9 0C10.78 0 12.5201 0.527838 14.0001 1.51677C15.4802 2.50569 16.6337 3.91129 17.3149 5.55582C17.9961 7.20035 18.1743 9.00995 17.8271 10.7558C17.4798 12.5016 16.6227 14.1052 15.364 15.3639L9 21.7279ZM13.95 13.9499C14.9289 12.9709 15.5955 11.7236 15.8656 10.3658C16.1356 9.00795 15.9969 7.60052 15.4671 6.32148C14.9373 5.04244 14.04 3.94923 12.8889 3.18009C11.7378 2.41095 10.3844 2.00043 9 2.00043C7.61557 2.00043 6.26222 2.41095 5.11109 3.18009C3.95996 3.94923 3.06275 5.04244 2.53292 6.32148C2.00308 7.60052 1.86442 9.00795 2.13445 10.3658C2.40449 11.7236 3.07111 12.9709 4.05 13.9499L9 18.8999L13.95 13.9499ZM9 10.9999C8.46957 10.9999 7.96086 10.7892 7.58579 10.4141C7.21072 10.0391 7 9.53035 7 8.99992C7 8.46949 7.21072 7.96078 7.58579 7.58571C7.96086 7.21064 8.46957 6.99992 9 6.99992C9.53044 6.99992 10.0391 7.21064 10.4142 7.58571C10.7893 7.96078 11 8.46949 11 8.99992C11 9.53035 10.7893 10.0391 10.4142 10.4141C10.0391 10.7892 9.53044 10.9999 9 10.9999Z"
+                    fill="#2A2A2A"
+                  />
+                </svg>
+                <span className="c-detail-address">&nbsp;{get(selectedItem, "place.zipCode", "")}</span>
+                <span className="c-detail-address">
+                  &nbsp;{selectedItem?.place?.city || selectedItem?.place?.address}
+                </span>
               </span>
             </p>
+
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
+              <div className="c-detail-description-me">
+                <div className="c-detail-pelink my-3">
+                  <a className="btn btn-blue ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
+                    Je postule sur Pôle emploi
+                  </a>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+
+            {isCandidatureSpontanee(selectedItem) ? (
+              <>
+                <hr class="c-detail-header-separator mt-0" />
+                <CandidatureSpontanee item={selectedItem} />
+              </>
+            ) : (
+              ""
+            )}
+
+            {kind === "formation" && selectedItem?.prdvUrl ? (
+              <>
+                <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
+                <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
+              </>
+            ) : (
+              <div className="c-detail-emptyspace">&nbsp;</div>
+            )}
           </div>
         </header>
 
         <div className="c-detail-body mt-4">
-          {kind === "peJob" && selectedItem?.url ? (
-            <div className="c-detail-description-me col-12 col-md-5">
-              <div className="c-detail-pelink my-3">
-                <a className="btn btn-dark ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
-                  Je postule sur Pôle emploi
-                </a>
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
           {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
           {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
           {amongst(kind, ["lbb", "lba"]) ? (
@@ -238,8 +271,63 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ) : (
             ""
           )}
+
           {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
         </div>
+
+        {amongst(kind, ["lbb", "lba"]) ? (
+          <div className="c-needHelp">
+            <div className="c-needHelp-title">Besoin d'aide ?</div>
+            <div className="c-needHelp-text">
+              Découvrez les modules de formation de La Bonne Alternance. Des modules de quelques minutes pour bien
+              préparer vos candidatures.
+            </div>
+            <ul className="c-needHelp-listLinks">
+              <li>
+                <span className="c-detail-traininglink ml-1">
+                  <ExternalLink
+                    className="gtmDidask1 c-needHelp-link"
+                    url="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
+                    title="Chercher un employeur"
+                    withPic={<img src={gotoIcon} alt="Lien" />}
+                  />
+                </span>
+              </li>
+              <li>
+                <span className="c-detail-traininglink ml-1">
+                  <ExternalLink
+                    className="gtmDidask2  c-needHelp-link"
+                    url="https://dinum-beta.didask.com/courses/demonstration/60d1adbb877dae00003f0eac"
+                    title="Préparer un entretien avec un employeur"
+                    withPic={<img src={gotoIcon} alt="Lien" />}
+                  />
+                </span>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          ""
+        )}
+
+        <LocationDetail item={selectedItem}></LocationDetail>
+
+        {amongst(kind, ["peJob"]) ? (
+          <>
+            <DidYouKnow item={selectedItem}></DidYouKnow>
+
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ?
+              ""
+              : 
+              <GoingToContactQuestion
+                kind={kind}
+                uniqId={getGoingtoId(kind, selectedItem)}
+                key={getGoingtoId(kind, selectedItem)}
+              />
+             }
+          </>
+        ) : (
+          <></>
+        )}
       </section>
     </>
   );

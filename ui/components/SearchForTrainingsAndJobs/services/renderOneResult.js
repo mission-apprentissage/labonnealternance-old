@@ -1,12 +1,11 @@
+import React from "react";
 import Training from "../../../components/ItemDetail/Training";
 import Job from "../../../components/ItemDetail/Job";
 import LbbCompany from "../../../components/ItemDetail/LbbCompany";
 
 export const renderJob = (isTestMode, idx, job, handleSelectItem, searchForJobsOnNewCenter) => {
   if (isTestMode) {
-    return (
-      <div key={idx} data-testid={`Job-${job?.id}`}></div>
-    )
+    return <div key={idx} data-testid={`Job-${job?.id}`}></div>;
   } else {
     return (
       <Job
@@ -17,12 +16,10 @@ export const renderJob = (isTestMode, idx, job, handleSelectItem, searchForJobsO
       />
     );
   }
-}
+};
 export const renderTraining = (isTestMode, idx, training, handleSelectItem, searchForJobsOnNewCenter) => {
   if (isTestMode) {
-    return (
-      <div key={idx} data-testid={`Training-${training?.id}`}></div>
-    )
+    return <div key={idx} data-testid={`Training-${training?.id}`}></div>;
   } else {
     return (
       <Training
@@ -33,12 +30,10 @@ export const renderTraining = (isTestMode, idx, training, handleSelectItem, sear
       />
     );
   }
-}
+};
 export const renderLbb = (isTestMode, idx, company, handleSelectItem, searchForTrainingsOnNewCenter) => {
   if (isTestMode) {
-    return (
-      <div key={idx} data-testid={`LbbCompany-${company?.id}`}></div>
-    )
+    return <div key={idx} data-testid={`LbbCompany-${company?.id}`}></div>;
   } else {
     return (
       <LbbCompany
@@ -49,4 +44,4 @@ export const renderLbb = (isTestMode, idx, company, handleSelectItem, searchForT
       />
     );
   }
-}
+};
