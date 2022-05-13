@@ -1,7 +1,7 @@
 <mjml>
     <mj-head>
         <mj-title>Candidature de <%= data.applicant_email %></mj-title>
-        <mj-font name="Inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'" />
+        <mj-font name="Ubuntu" href="https://fonts.googleapis.com/css?family=Ubuntu" />
         <mj-style inline="inline">
             a:link,a:visited, a:hover, a:active {color: #206BC4;}, a {color: #3A55D1;}, body{background: #F9F8F6;}
             a.purple {color: #3A55D1; text-decoration: none}
@@ -21,7 +21,7 @@
 
         </mj-style>
         <mj-attributes>
-            <mj-text padding="0px" color="#232E3C" font-family="Inter,sans-serif" font-size="14px" line-height="23px" />
+            <mj-text padding="0px" color="#232E3C" font-family="Ubuntu,Arial" font-size="14px" line-height="23px" />
             <mj-divider padding="0px" />
         </mj-attributes>
     </mj-head>
@@ -70,51 +70,22 @@
                     <mj-text font-size="16px" padding-bottom="15px">E-mail : <span class="form-value"> <%= data.applicant_email %> </span> </mj-text>
                     <mj-text font-size="13px" padding-bottom="15px"><img style="margin-bottom: -3px; margin-right:3px" src="<%= data.images.icoInfo %>" alt="" />&nbsp;&nbsp;Vous trouverez le curriculum vitae du candidat en pièce jointe.</mj-text>
                     <mj-text font-size="16px" padding-bottom="15px">Message du candidat : </mj-text>
-                    <mj-text font-size="16px" padding-bottom="15px"><div class="form-value" width="100%"> <%- data.message %> </div> </mj-text>
-                </mj-column>
-            </mj-section>
-        </mj-wrapper>
-
-        <mj-section padding-bottom="30px"></mj-section>
-        <mj-wrapper background-color="#FDF2F3" padding="10px 0 5px" border-radius="10px">
-            <mj-section padding="15px">
-                <mj-column align="left">
-                    <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
-                        Que comptez vous faire ?
+                    <mj-text font-size="16px" padding-bottom="32px"><div class="form-value" width="100%"> <%- data.message %> </div> </mj-text>
+                    <mj-text padding-bottom="16px" font-size="18px" padding="0px" font-weight="700" line-height="28px"text-decoration="none" color="#3A3A3A">
+                        Que pensez-vous faire ?
                     </mj-text>
-                    
-                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=entretien&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
-                        css-class="intention-link" 
-                        width="250px" 
-                        border-radius="12px"
-                        border-color="#000091"                     
-                        color="#000091" 
-                        font-size="14px"
-                        align="left"
-                        background-color="#FDF2F3" 
-                        border="1px solid #000091"><img src="<%= data.images.recrute %>" alt="" style="margin-right:5px;" />&nbsp;Rencontrer le candidat</mj-button>
-
-                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=ne_sais_pas&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
-                        css-class="intention-link" 
-                        width="250px" 
-                        border-radius="12px"
-                        border-color="#000091"                     
-                        color="#000091" 
-                        font-size="14px"
-                        align="left"
-                        background-color="#FDF2F3" 
-                        border="1px solid #000091"><img src="<%= data.images.nspp %>" alt="" style="margin-right:5px;" />&nbsp;En attente de décision</mj-button>
-                    
-                    <mj-button href="<%= data.publicUrl %>/formulaire-intention?intention=refus&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat" 
-                        css-class="intention-link" 
-                        width="250px" 
-                        border-radius="12px"
-                        border-color="#000091"                     
-                        color="#000091" 
-                        font-size="14px"
-                        align="left"
-                        background-color="#FDF2F3" 
-                        border="1px solid #000091"><img src="<%= data.images.recrutePas %>" alt="" style="margin-right:5px;" />&nbsp;Refuser la candidature</mj-button>
+                    <mj-button
+                        href="<%= data.publicUrl %>/formulaire-intention?intention=entretien&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat"
+                        css-class="intention-link" width="250px" border-color="#000091" color="#000091"
+                        font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;Rencontrer le candidat</mj-button>
+                    <mj-button
+                        href="<%= data.publicUrl %>/formulaire-intention?intention=ne_sais_pas&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat"
+                        css-class="intention-link" width="250px" border-color="#000091" color="#000091"
+                        font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;En attente de décision</mj-button>
+                    <mj-button
+                        href="<%= data.publicUrl %>/formulaire-intention?intention=refus&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat"
+                        css-class="intention-link" width="250px" border-color="#000091" color="#000091"
+                        font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;Refuser la candidature</mj-button>
                 </mj-column>
             </mj-section>
         </mj-wrapper>

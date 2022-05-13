@@ -9,7 +9,7 @@ import { amongst } from "../../utils/arrayutils";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
-import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
+import { capitalizeFirstLetter } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
 import ExternalLink from "../externalLink";
@@ -31,11 +31,10 @@ import gotoIcon from "public/images/icons/goto.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
+  console.log('selectedItem', selectedItem);
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
   const isMandataire = selectedItem?.company?.mandataire;
-
-  const distance = selectedItem?.place?.distance;
 
   const [seeInfo, setSeeInfo] = useState(false);
 
@@ -245,7 +244,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             {isCandidatureSpontanee(selectedItem) ? (
               <>
-                <hr class="c-detail-header-separator mt-0" />
+                <hr className="c-detail-header-separator mt-0" />
                 <CandidatureSpontanee item={selectedItem} />
               </>
             ) : (
