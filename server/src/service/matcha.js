@@ -118,7 +118,10 @@ const transformMatchaJobForIdea = ({ job, distance, caller, contactAllowedOrigin
     resultJob.company.siret = job.siret;
     resultJob.company.name = job.raison_sociale;
     resultJob.company.size = job.tranche_effectif;
+
+    resultJob.company.mandataire = job.mandataire;
     resultJob.nafs = [{ label: job.libelle_naf }];
+    resultJob.company.mandataire = job.mandataire;
     resultJob.company.creationDate = job.date_creation_etablissement;
 
     resultJob.diplomaLevel = offre.niveau;

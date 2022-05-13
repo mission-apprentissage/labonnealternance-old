@@ -27,6 +27,7 @@
   padding: 0.5rem;
   padding-top: 0.25rem;
   font-size: 12px;
+  display: inline-block;
   @include media-breakpoint-up(lg) {
     font-size: 8px;
   }
@@ -34,6 +35,12 @@
     font-size: 12px;
   }
 }
+
+.c-media-tag span {
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+
 .c-media-tag.c-media-tag--briefcase {
   color: $pinksoft750;
   background: #FFF4F2;
@@ -45,7 +52,31 @@
 .c-media-tag.c-media-tag--smiley {
   color: #22967E;
   background: #E5F7F4;
+  
+  img {
+    width: 16px;
+  }
 }
-.c-media-tag span {
-  vertical-align: bottom;
+.c-media-tag.c-media-tag--2nd {
+  margin-left: 0px;
+  margin-top: 3px;
+  margin-right: 4px;
+
+  @include media-breakpoint-up(lg) {
+    margin-left: 4px;
+    margin-right: 0px;
+  } 
+}
+
+.c-candidature-terms td {
+    min-width: 40px;
+}
+
+.c-candidature-terms--knowmore input {
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
+  margin-right: 18px !important;
+  position: relative;
+  top: 5px;
 }

@@ -1,4 +1,7 @@
 const Yup = require("yup");
+const config = require("config");
+const { isEmailBurner } = require("burner-email-providers");
+const { Application } = require("../common/model");
 
 const validateSendApplication = async (validable) => {
   let schema = Yup.object().shape({
@@ -10,10 +13,15 @@ const validateSendApplication = async (validable) => {
       .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
       .required("⚠ Le téléphone est requis"),
   });
-  await schema.validate(validable).catch(function () {
-    throw "error - validation of data failed";
+  let validation = await schema.validate(validable).catch(function () {
+    return "erreur";
   });
-  return "ok";
+
+  if (validation === "erreur") {
+    return "données de candidature invalides";
+  } else {
+    return "ok";
+  }
 };
 
 const validateCompanyEmail = async (validable) => {
@@ -23,10 +31,40 @@ const validateCompanyEmail = async (validable) => {
       .required("⚠ L'adresse e-mail société est requise."),
     cryptedEmail: Yup.string().email("⚠ Adresse e-mail chiffrée invalide."),
   });
-  await schema.validate(validable).catch(function () {
-    throw "error - validation of data failed";
+  let validation = await schema.validate(validable).catch(function () {
+    return "erreur";
   });
+  if (validation === "erreur") {
+    return "email société invalide";
+  } else {
+    return "ok";
+  }
+};
+
+const validatePermanentEmail = async (validable) => {
+  if (isEmailBurner(validable.email)) {
+    return "email temporaire non autorisé";
+  }
   return "ok";
+};
+
+const checkUserApplicationCount = async (applicantEmail) => {
+  let start = new Date();
+  start.setHours(0, 0, 0, 0);
+
+  let end = new Date();
+  end.setHours(23, 59, 59, 999);
+
+  let appCount = await Application.countDocuments({
+    applicant_email: applicantEmail.toLowerCase(),
+    created_at: { $gte: start, $lt: end },
+  });
+
+  if (appCount > config.maxApplicationPerDay) {
+    return "max candidatures atteint";
+  } else {
+    return "ok";
+  }
 };
 
 const validateFeedbackApplication = async (validable) => {
@@ -75,4 +113,6 @@ module.exports = {
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
   validateIntentionApplication,
+  validatePermanentEmail,
+  checkUserApplicationCount,
 };

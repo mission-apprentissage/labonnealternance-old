@@ -43,6 +43,7 @@ const itemModel = (type) => {
       place: null /*{
             city,   // formation -> etablissement_formateur_localite
       }*/,
+      mandataire: null, // matcha -> mandataire
       creationDate: null, // matcha -> date_creation_etablissement
       headquarter: null /*{    // uniquement pour formation
                 siret, // formation -> etablissement_gestionaire_siret

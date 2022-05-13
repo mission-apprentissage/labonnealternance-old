@@ -48,6 +48,7 @@
     "cross-env": "^7.0.2",
     "dayjs": "1.11.0",
     "downshift": "5.2.0",
+    "email-misspelled": "3.3.9",
     "formik": "^2.1.4",
     "history": "^4.10.1",
     "local-web-server": "4.2.0",

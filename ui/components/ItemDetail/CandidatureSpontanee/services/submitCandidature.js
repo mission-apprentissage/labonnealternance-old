@@ -10,18 +10,20 @@ export default async function submitCandidature(
 ) {
   setSendingState("currently_sending");
   let success = true;
-
+  let result = null;
   try {
-    await _postCandidature(applicantValues, _extractCompanyValues(item));
+    result = await _postCandidature(applicantValues, _extractCompanyValues(item));
+    if (result !== "ok") {
+      success = false;
+    }
   } catch (error) {
-    console.log("error", error);
     success = false;
   }
 
   if (success) {
     setSendingState("ok_sent");
   } else {
-    setSendingState("not_sent_because_of_errors");
+    setSendingState(result ? result : "not_sent_because_of_errors");
   }
   return success;
 }

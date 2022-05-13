@@ -1,26 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
 import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
 import CandidatureSpontaneeMessage from "./CandidatureSpontaneeMessage";
+import CandidatureSpontaneeMandataireMessage from "./CandidatureSpontaneeMandataireMessage";
+import CandidatureSpontaneeMandataireKnowMoreCheckbox from "./CandidatureSpontaneeMandataireKnowMoreCheckbox";
 import { testingParameters } from "../../../utils/testingParameters";
+import emailMisspelled, { top100 } from "email-misspelled";
+
+const emailChecker = emailMisspelled({ maxMisspelled: 3, domains: top100 });
 
 const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind }) => {
+
+  useEffect(() => {
+    formik.values.interetOffresMandataire = false;
+  }, [company]);
+
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
     formik.values.fileContent = fileValue?.fileContent || null;
+  };
+
+  const [suggestedEmails, setSuggestedEmails] = useState([]);
+
+  const onEmailChange = (e) => {
+    const checkedEmail = emailChecker(e.target.value);
+    setSuggestedEmails(checkedEmail);
+    formik.handleChange(e);
+  };
+
+  const clickSuggestion = (e) => {
+    formik.setFieldValue("email", e.currentTarget.innerHTML);
+    setSuggestedEmails([]);
   };
 
   return (
     <>
       <ModalBody data-testid="modalbody-nominal">
         <h1 className="c-candidature-title" data-testid="CandidatureSpontaneeTitle">
-          {
-            kind === 'matcha' ?
-              <>Postuler à l'offre de {company}</>
-              :
-              <>Candidature spontanée</>
-          }
+          {kind === "matcha" ? <>Postuler à l'offre de {company}</> : <>Candidature spontanée</>}
         </h1>
 
         <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4">
@@ -84,10 +102,22 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
               data-testid="email"
               name="email"
               type="email"
-              onChange={formik.handleChange}
+              onChange={onEmailChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
             />
+            {suggestedEmails.length > 0 ? (
+              <div className="c-candidature-misspelled">
+                <span className="c-candidature-misspelled__prompt">Voulez vous dire ?</span>
+                {suggestedEmails.map((sE) => (
+                  <button key={sE.corrected} onClick={clickSuggestion} className="c-candidature-misspelled__suggestion">
+                    {sE.corrected}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              ""
+            )}
             {formik.touched.email && formik.errors.email ? (
               <div className="c-candidature-erreur visible">{formik.errors.email}</div>
             ) : (
@@ -124,23 +154,25 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
           </fieldset>
         </div>
 
-        <CandidatureSpontaneeMessage formik={formik} kind={kind}/>
+        <CandidatureSpontaneeMessage formik={formik} kind={kind} />
 
         <div className="c-candidature-message mt-3">
           <CandidatureSpontaneeFileDropzone formik={formik} setFileValue={setFileValue} />
         </div>
 
-        <fieldset
-          data-testid="fieldset-terms"
-          className="c-candidature-terms mt-3"
-        >
+        <div className="c-candidature-message mt-3">
+          <CandidatureSpontaneeMandataireMessage item={item} />
+          <CandidatureSpontaneeMandataireKnowMoreCheckbox item={item} formik={formik} />
+        </div>
+
+        <fieldset data-testid="fieldset-terms" className="c-candidature-terms mt-3">
           <label htmlFor="terms" className="c-candidature-terms-text">
             <div>
               En remplissant ce formulaire, vous acceptez les{" "}
               <a href="/cgu" className="c-candidature-link" target="_blank">
                 Conditions générales d'utilisation
               </a>{" "}
-              du service La Bonne Alternance et acceptez le partage de vos informations avec {company}
+              du service La Bonne Alternance et acceptez le partage de vos informations avec l'établissement {company}
             </div>
           </label>
         </fieldset>
