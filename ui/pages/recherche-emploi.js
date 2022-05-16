@@ -3,6 +3,7 @@ import SearchForTrainingsAndJobs from "../components/SearchForTrainingsAndJobs";
 import { useDispatch } from "react-redux";
 import { initParametersFromQuery } from "services/config";
 import { ScopeContextProvider } from "context/ScopeContext.js";
+import SearchResultContextProvider from "context/SearchResultContextProvider";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
 
@@ -28,7 +29,9 @@ const RechercheEmploi = () => {
         />
       </Head>
       <ScopeContextProvider value={{ isJob: true, isTraining: false, path: "/recherche-emploi" }}>
-        <SearchForTrainingsAndJobs />
+        <SearchResultContextProvider>
+          <SearchForTrainingsAndJobs />
+        </SearchResultContextProvider>
       </ScopeContextProvider>
     </>
   );
