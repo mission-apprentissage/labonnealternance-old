@@ -20,7 +20,6 @@ import {
   setItemToScrollTo,
   setFormValues,
   setExtendedSearch,
-  setJobs,
 } from "../../../store/actions";
 import { flyToMarker, flyToLocation, closeMapPopups, setSelectedMarker } from "../../../utils/mapTools";
 
@@ -45,10 +44,8 @@ const ChoiceColumn = ({
   const dispatch = useDispatch();
   const router = useRouter();
   const scopeContext = useContext(ScopeContext);
-  const { trainings, setTrainings } = useContext(SearchResultContext);
-  const { jobs, selectedItem, itemToScrollTo, formValues /*, currentPage*/ } = useSelector(
-    (state) => state.trainings
-  );
+  const { trainings, jobs, setTrainings, setJobs } = useContext(SearchResultContext);
+  const { selectedItem, itemToScrollTo, formValues /*, currentPage*/ } = useSelector((state) => state.trainings);
 
   useEffect(() => {
     if (itemToScrollTo) {
@@ -113,7 +110,7 @@ const ChoiceColumn = ({
     dispatch(setExtendedSearch(true));
     scrollToTop("choiceColumn");
 
-    dispatch(setJobs([]));
+    setJobs([]);
     const searchTimestamp = new Date().getTime();
     pushHistory({
       router,

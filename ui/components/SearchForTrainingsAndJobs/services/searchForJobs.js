@@ -126,7 +126,7 @@ export const searchForJobsFunction = async ({
     }
 
     sendJobSearchTrackEvent(values, results);
-    dispatch(setJobs(results));
+    setJobs(results);
     dispatch(setHasSearch(true));
     storeJobsInSession({ jobs: results, searchTimestamp });
 
