@@ -1,18 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SearchForTrainingsAndJobs from "../components/SearchForTrainingsAndJobs";
 import { useDispatch } from "react-redux";
 import { initParametersFromQuery } from "services/config";
 import { ScopeContextProvider } from "context/ScopeContext.js";
+//import { ParameterContextProvider } from "context/ParameterContext.js";
 import { NextSeo } from "next-seo";
-
+import SearchResultContextProvider from "context/SearchResultContextProvider";
 import Head from "next/head";
 
 const RechercheApprentissageFormation = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    initParametersFromQuery({ dispatch });
+    initParametersFromQuery({ dispatch /*, ParameterContextProvider*/ });
   }, []);
+
+  //const [widgetParameters, setWidgetParameters] = useState(null);
 
   return (
     <>
@@ -28,9 +31,17 @@ const RechercheApprentissageFormation = () => {
           onLoad="this.media='all'"
         />
       </Head>
+      {
+        //<ParameterContextProvider value={[widgetParameters, setWidge]}}>
+      }
       <ScopeContextProvider value={{ isJob: false, isTraining: true, path: "/recherche-apprentissage-formation" }}>
-        <SearchForTrainingsAndJobs />
+        <SearchResultContextProvider>
+          <SearchForTrainingsAndJobs />
+        </SearchResultContextProvider>
       </ScopeContextProvider>
+      {
+        //</ParameterContextProvider>
+      }
     </>
   );
 };

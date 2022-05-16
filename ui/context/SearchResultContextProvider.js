@@ -63,7 +63,7 @@ const reducer = (state, action) => {
   }
 };
 
-const SearchResultContext = createContext();
+export const SearchResultContext = createContext();
 
 const SearchResultContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);

@@ -8,6 +8,7 @@ import pushHistory from "utils/pushHistory";
 import MapSearchButton from "./MapSearchButton";
 import { map, initializeMap, isMapInitialized, setSelectedMarker } from "utils/mapTools";
 import { fetchAddressFromCoordinates } from "services/baseAdresse";
+import { SearchResultContext } from "context/SearchResultContextProvider";
 
 let mapPosition = {
   lat: null,
@@ -19,9 +20,13 @@ let shouldHandleMapSearch = true;
 
 const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   const store = useStore();
-  const { trainings, jobs, formValues, shouldMapBeVisible } = useSelector((state) => {
+  const { jobs, formValues, shouldMapBeVisible } = useSelector((state) => {
     return state.trainings;
   });
+
+  const { trainings } = useContext(SearchResultContext);
+
+
   const router = useRouter();
 
   const scopeContext = useContext(ScopeContext);
