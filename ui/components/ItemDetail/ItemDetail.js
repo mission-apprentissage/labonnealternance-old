@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
 import PeJobDetail from "./PeJobDetail";
 import MatchaDetail from "./MatchaDetail";
@@ -13,7 +13,7 @@ import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
 import ExternalLink from "../externalLink";
-
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
 
@@ -28,6 +28,24 @@ import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatur
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
+
+const getCurrentList = (store, activeFilter, extendedSearch) => {
+  let picked = pick(store, ["trainings", "jobs"]);
+  let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
+
+  let jobList = [];
+  let companyList = [];
+  if (amongst(activeFilter, ["all", "jobs"])) {
+    if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
+    else {
+      jobList = mergeJobs(get(picked, "jobs"));
+      companyList = mergeOpportunities(get(picked, "jobs"), "onlyLbbLba");
+    }
+  }
+  let fullList = concat([], trainingsArray, jobList, companyList);
+  let listWithoutEmptyValues = fullList.filter((el) => !!el);
+  return listWithoutEmptyValues;
+};
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
@@ -54,25 +72,10 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
       : selectedItem?.company?.name || selectedItem?.title || selectedItem?.longTitle;
 
   const { extendedSearch, formValues } = useSelector((state) => state.trainings);
-  const hasLocation = formValues?.location?.value ? true : false;
+  //const hasLocation = formValues?.location?.value ? true : false; ? où est ce utilisé ?
 
-  const currentList = useSelector((store) => {
-    let picked = pick(store.trainings, ["trainings", "jobs"]);
-    let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
-
-    let jobList = [];
-    let companyList = [];
-    if (amongst(activeFilter, ["all", "jobs"])) {
-      if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
-      else {
-        jobList = mergeJobs(get(picked, "jobs"));
-        companyList = mergeOpportunities(get(picked, "jobs"), "onlyLbbLba");
-      }
-    }
-    let fullList = concat([], trainingsArray, jobList, companyList);
-    let listWithoutEmptyValues = fullList.filter((el) => !!el);
-    return listWithoutEmptyValues;
-  });
+  const { trainings, jobs } = useContext(SearchResultContext);
+  const currentList = getCurrentList({ trainings, jobs }, activeFilter, extendedSearch);
 
   // See https://www.npmjs.com/package/react-swipeable
   const swipeHandlers = useSwipeable({
@@ -121,8 +124,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   };
 
   const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
-    return oneKind === "peJob" && oneItem?.url
-  }
+    return oneKind === "peJob" && oneItem?.url;
+  };
 
   return (
     <>
@@ -150,7 +153,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
               <div className="mr-auto c-tagcfa-container text-left">
-
                 {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
                 {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
                 {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
@@ -315,15 +317,15 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <>
             <DidYouKnow item={selectedItem}></DidYouKnow>
 
-            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ?
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               ""
-              : 
+            ) : (
               <GoingToContactQuestion
                 kind={kind}
                 uniqId={getGoingtoId(kind, selectedItem)}
                 key={getGoingtoId(kind, selectedItem)}
               />
-             }
+            )}
           </>
         ) : (
           <></>
