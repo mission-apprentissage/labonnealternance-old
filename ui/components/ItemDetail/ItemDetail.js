@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
 import PeJobDetail from "./PeJobDetail";
 import MatchaDetail from "./MatchaDetail";
@@ -13,7 +13,7 @@ import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
 import ExternalLink from "../externalLink";
-
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
 
@@ -61,6 +61,24 @@ const getActualTitle = ({ selectedItem, kind }) => {
   return title;
 };
 
+const getCurrentList = (store, activeFilter, extendedSearch) => {
+  let picked = pick(store, ["trainings", "jobs"]);
+  let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
+
+  let jobList = [];
+  let companyList = [];
+  if (amongst(activeFilter, ["all", "jobs"])) {
+    if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
+    else {
+      jobList = mergeJobs(get(picked, "jobs"));
+      companyList = mergeOpportunities(get(picked, "jobs"), "onlyLbbLba");
+    }
+  }
+  let fullList = concat([], trainingsArray, jobList, companyList);
+  let listWithoutEmptyValues = fullList.filter((el) => !!el);
+  return listWithoutEmptyValues;
+};
+
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
@@ -82,23 +100,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   const { extendedSearch, formValues } = useSelector((state) => state.trainings);
 
-  const currentList = useSelector((store) => {
-    let picked = pick(store.trainings, ["trainings", "jobs"]);
-    let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
-
-    let jobList = [];
-    let companyList = [];
-    if (amongst(activeFilter, ["all", "jobs"])) {
-      if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
-      else {
-        jobList = mergeJobs(get(picked, "jobs"));
-        companyList = mergeOpportunities(get(picked, "jobs"), "onlyLbbLba");
-      }
-    }
-    let fullList = concat([], trainingsArray, jobList, companyList);
-    let listWithoutEmptyValues = fullList.filter((el) => !!el);
-    return listWithoutEmptyValues;
-  });
+  const { trainings, jobs } = useContext(SearchResultContext);
+  const currentList = getCurrentList({ trainings, jobs }, activeFilter, extendedSearch);
 
   // See https://www.npmjs.com/package/react-swipeable
   const swipeHandlers = useSwipeable({
