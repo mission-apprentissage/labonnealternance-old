@@ -14,7 +14,6 @@ import {
   setIsFormVisible,
   setVisiblePane,
   setShouldMapBeVisible,
-  setJobs,
   setFormValues,
   setExtendedSearch,
   setHasSearch,
@@ -49,11 +48,11 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useContext(ScopeContext);
   
-  const { jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
+  const { hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
     (state) => state.trainings
   );
 
-  const { trainings, setTrainings } = useContext(SearchResultContext);
+  const { trainings, jobs, setTrainings, setJobs } = useContext(SearchResultContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);

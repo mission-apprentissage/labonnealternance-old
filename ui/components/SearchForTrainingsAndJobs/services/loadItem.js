@@ -155,7 +155,7 @@ export const loadItem = async ({
       }
 
       if (!errorMessage) {
-        dispatch(setJobs(results));
+        setJobs(results);
 
         dispatch(setHasSearch(true));
 
