@@ -20,12 +20,11 @@ let shouldHandleMapSearch = true;
 
 const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   const store = useStore();
-  const { jobs, formValues, shouldMapBeVisible } = useSelector((state) => {
+  const { formValues, shouldMapBeVisible } = useSelector((state) => {
     return state.trainings;
   });
 
-  const { trainings } = useContext(SearchResultContext);
-
+  const { trainings, jobs } = useContext(SearchResultContext);
 
   const router = useRouter();
 
