@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { ScopeContext } from "../../../context/ScopeContext";
+import { SearchResultContext } from "../../../context/SearchResultContextProvider";
 import { useDispatch, useSelector } from "react-redux";
 import distance from "@turf/distance";
 import { scrollToTop, scrollToElementInContainer, getItemElement } from "../../../utils/tools";
@@ -14,7 +15,7 @@ import dosearchImage from "public/images/dosearch.svg";
 import whispers from "../services/whispers.js";
 
 import {
-  setTrainings,
+  //setTrainings,
   setSelectedItem,
   setItemToScrollTo,
   setFormValues,
@@ -44,8 +45,8 @@ const ChoiceColumn = ({
   const dispatch = useDispatch();
   const router = useRouter();
   const scopeContext = useContext(ScopeContext);
-
-  const { trainings, jobs, selectedItem, itemToScrollTo, formValues /*, currentPage*/ } = useSelector(
+  const { trainings, setTrainings } = useContext(SearchResultContext);
+  const { jobs, selectedItem, itemToScrollTo, formValues /*, currentPage*/ } = useSelector(
     (state) => state.trainings
   );
 
@@ -165,7 +166,7 @@ const ChoiceColumn = ({
       trainings[i].place.distance =
         Math.round(10 * distance(coordinates, [trainings[i].place.longitude, trainings[i].place.latitude])) / 10;
     }
-    dispatch(setTrainings(trainings));
+    setTrainings(trainings);
   };
 
   const getResultLists = () => {
@@ -236,17 +237,16 @@ const ChoiceColumn = ({
 
   return (
     <div id="choiceColumn" className={`choiceCol w-75 ${shouldShowWelcomeMessage ? "c-choicecolumn__nosearch" : ""}`}>
-
-        {isLoading ? (
-          <LoadingScreen />
-        ) : (
-          <>
-            {getInitialDesktopText()}
-            {getSearchForm()}
-            {trainings.length === 0 && isJobSearchLoading ? <div></div> : getResultLists()}
-            {getSelectedItemDetail()}
-          </>
-        )}
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          {getInitialDesktopText()}
+          {getSearchForm()}
+          {trainings.length === 0 && isJobSearchLoading ? <div></div> : getResultLists()}
+          {getSelectedItemDetail()}
+        </>
+      )}
     </div>
   );
 };

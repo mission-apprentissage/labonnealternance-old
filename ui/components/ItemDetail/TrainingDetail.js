@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainingsAndSelectedItem } from "../../store/actions";
@@ -13,6 +13,7 @@ import { SendTrackEvent } from "../../utils/gtm";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "../../utils/strutils";
 import { Spinner } from "reactstrap";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
 
 const TrainingDetail = ({ training, isCfa }) => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const TrainingDetail = ({ training, isCfa }) => {
     setLoading(true);
   }, [training.id]);
 
-  const { trainings } = useSelector((state) => state.trainings);
+  const { trainings } = useContext(SearchResultContext);
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ

@@ -14,7 +14,6 @@ import {
   setIsFormVisible,
   setVisiblePane,
   setShouldMapBeVisible,
-  setTrainings,
   setJobs,
   setFormValues,
   setExtendedSearch,
@@ -37,6 +36,7 @@ import {
 } from "utils/mapTools";
 
 import { ScopeContext } from "context/ScopeContext";
+import { SearchResultContext } from "context/SearchResultContextProvider";
 
 import Map from "components/Map";
 import { Row, Col } from "reactstrap";
@@ -48,10 +48,12 @@ import updateUiFromHistory from "services/updateUiFromHistory";
 const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useContext(ScopeContext);
-
-  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
+  
+  const { jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
     (state) => state.trainings
   );
+
+  const { trainings, setTrainings } = useContext(SearchResultContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
@@ -245,7 +247,7 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   const clearTrainings = () => {
-    dispatch(setTrainings([]));
+    setTrainings([]);
     setTrainingMarkers(null);
     closeMapPopups();
   };

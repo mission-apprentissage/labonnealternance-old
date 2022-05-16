@@ -49,7 +49,7 @@ export const loadItem = async ({
 
       const searchTimestamp = new Date().getTime();
 
-      dispatch(setTrainings(response.data.results));
+      setTrainings(response.data.results);
       storeTrainingsInSession({ trainings: response.data.results, searchTimestamp });
 
       if (response.data.results.length) {
