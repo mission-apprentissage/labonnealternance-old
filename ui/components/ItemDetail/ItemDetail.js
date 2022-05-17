@@ -314,17 +314,15 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           </div>
         </header>
 
-        <div className="c-detail-body mt-4">
-          {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
-          {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
-          {amongst(kind, ["lbb", "lba"]) ? (
-            <LbbCompanyDetail lbb={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
-          ) : (
-            ""
-          )}
+        {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
+        {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
+        {amongst(kind, ["lbb", "lba"]) ? (
+          <LbbCompanyDetail lbb={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
+        ) : (
+          ""
+        )}
 
-          {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
-        </div>
+        {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
 
         {amongst(kind, ["lbb", "lba"]) ? (
           <div className="c-needHelp">

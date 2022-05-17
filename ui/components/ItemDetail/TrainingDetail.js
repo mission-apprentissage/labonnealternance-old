@@ -104,7 +104,7 @@ const TrainingDetail = ({ training, isCfa }) => {
   };
 
   return (
-    <>
+    <div className="c-detail-body mt-4">
       {getLoading()}
       {getTrainingDetails(training.training)}
       {training.onisepUrl ? (
@@ -132,7 +132,7 @@ const TrainingDetail = ({ training, isCfa }) => {
       ) : (
         ""
       )}
-    </>
+    </div>
   );
 };
 
