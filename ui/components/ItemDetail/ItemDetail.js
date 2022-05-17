@@ -67,8 +67,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
   const isMandataire = selectedItem?.company?.mandataire;
 
-  const distance = selectedItem?.place?.distance;
-
   const [seeInfo, setSeeInfo] = useState(false);
 
   useEffect(() => {
@@ -83,7 +81,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   let actualTitle = getActualTitle({ kind, selectedItem });
 
   const { extendedSearch, formValues } = useSelector((state) => state.trainings);
-  const hasLocation = formValues?.location?.value ? true : false;
 
   const currentList = useSelector((store) => {
     let picked = pick(store.trainings, ["trainings", "jobs"]);
