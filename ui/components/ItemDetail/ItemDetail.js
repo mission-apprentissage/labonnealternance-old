@@ -247,7 +247,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             {isCandidatureSpontanee(selectedItem) ? (
               <>
-                <hr class="c-detail-header-separator mt-0" />
+                <hr className="c-detail-header-separator mt-0" />
                 <CandidatureSpontanee item={selectedItem} />
               </>
             ) : (
