@@ -29,6 +29,17 @@ import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatur
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
 
+const getTags = ({ kind, isCfa, isMandataire }) => {
+  return (
+    <div className="mr-auto c-tagcfa-container text-left">
+      {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
+      {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
+      {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
+      {amongst(kind, ["matcha"]) && isMandataire ? <TagFormationAssociee isMandataire /> : ""}
+    </div>
+  );
+};
+
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
@@ -121,8 +132,46 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   };
 
   const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
-    return oneKind === "peJob" && oneItem?.url
-  }
+    return oneKind === "peJob" && oneItem?.url;
+  };
+
+  const getNavigationButtons = () => {
+    return (
+      <>
+        <div>
+          <button
+            className="c-tiny-btn"
+            onClick={() => {
+              goPrev();
+            }}
+          >
+            <img className="c-tiny-btn__image" src={chevronLeft} alt="Résultat précédent" />
+          </button>
+        </div>
+        <div className="ml-2">
+          <button
+            className="c-tiny-btn"
+            onClick={() => {
+              goNext();
+            }}
+          >
+            <img className="c-tiny-btn__image" src={chevronRight} alt="Résultat suivant" />
+          </button>
+        </div>
+        <div className="ml-2">
+          <button
+            className="c-tiny-btn"
+            onClick={() => {
+              setSeeInfo(false);
+              handleClose();
+            }}
+          >
+            <img className="c-tiny-btn__image" src={chevronClose} alt="Fermer la fenêtre" />
+          </button>
+        </div>
+      </>
+    );
+  };
 
   return (
     <>
@@ -149,47 +198,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         <header className={`c-detail-header c-detail--collapse-header-${collapseHeader}`}>
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
-              <div className="mr-auto c-tagcfa-container text-left">
-
-                {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
-                {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
-                {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
-                {amongst(kind, ["matcha"]) && isMandataire ? <TagFormationAssociee isMandataire /> : ""}
-              </div>
-              <div>
-                <button
-                  className="c-tiny-btn"
-                  onClick={() => {
-                    goPrev();
-                  }}
-                >
-                  <img className="c-tiny-btn__image" src={chevronLeft} alt="Résultat précédent" />
-                </button>
-              </div>
-              <div className="ml-2">
-                <button
-                  className="c-tiny-btn"
-                  onClick={() => {
-                    goNext();
-                  }}
-                >
-                  <img className="c-tiny-btn__image" src={chevronRight} alt="Résultat suivant" />
-                </button>
-              </div>
-              <div className="ml-2">
-                <button
-                  className="c-tiny-btn"
-                  onClick={() => {
-                    setSeeInfo(false);
-                    handleClose();
-                  }}
-                >
-                  <img className="c-tiny-btn__image" src={chevronClose} alt="Fermer la fenêtre" />
-                </button>
-              </div>
+              {getTags({ kind, isCfa, isMandataire })}
+              {getNavigationButtons()}
             </div>
 
-            {amongst(kind, ["lba", "lbb", "matcha"]) ? (
+            {kind === "matcha" ? (
               <>
                 <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
                   <span>{`${get(selectedItem, "company.name", "")}`}</span>
@@ -201,7 +214,33 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             ) : (
               ""
             )}
-            {amongst(kind, ["formation"]) ? (
+
+            {kind === "peJob" ? (
+              <>
+                <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
+                  <span>{`${get(selectedItem, "company.name", "")}`}</span>
+                  <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre</span>
+                </p>
+              </>
+            ) : (
+              ""
+            )}
+
+            {amongst(kind, ["lba", "lbb"]) ? (
+              <>
+                <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
+                  <span>{`${get(selectedItem, "company.name", "")}`}</span>
+                  <span className="c-detail-activity__proposal">
+                    &nbsp;a des salariés qui exercent le métier auquel vous vous destinez. Envoyez votre candidature
+                    spontanée !
+                  </span>
+                </p>
+              </>
+            ) : (
+              ""
+            )}
+
+            {kind === "formation" ? (
               <p className={`c-detail-activity c-detail-title--formation`}>
                 <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
                 <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
@@ -311,19 +350,19 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
         <LocationDetail item={selectedItem}></LocationDetail>
 
-        {amongst(kind, ["peJob"]) ? (
+        {kind === "peJob" ? (
           <>
             <DidYouKnow item={selectedItem}></DidYouKnow>
 
-            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ?
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               ""
-              : 
+            ) : (
               <GoingToContactQuestion
                 kind={kind}
                 uniqId={getGoingtoId(kind, selectedItem)}
                 key={getGoingtoId(kind, selectedItem)}
               />
-             }
+            )}
           </>
         ) : (
           <></>
