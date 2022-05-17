@@ -205,7 +205,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     if (kind === "peJob") {
       res = (
         <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
-          <span>{`${get(selectedItem, "company.name", "")}`}</span>
+          <span>{`${get(selectedItem, "company.name", "Une société ayant souhaité garder l'anonymat")}`}</span>
           <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre</span>
         </p>
       );
