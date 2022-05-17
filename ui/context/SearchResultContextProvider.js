@@ -11,7 +11,6 @@ const initialState = {
 };
 
 const actions = {
-  //SET_RESULTS: "SET_RESULTS",
   SET_TRAININGS: "SET_TRAININGS",
   SET_JOBS: "SET_JOBS",
   SET_SELECTED_ITEM: "SET_SELECTED_ITEM",
@@ -26,13 +25,6 @@ const reducer = (state, action) => {
   let state_copy = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
-    /*case actions.SET_RESULTS: {
-      return {
-        ...state_copy,
-        trainings: action.trainings,
-        jobs: action.jobs,
-      };
-    }*/
     case actions.SET_TRAININGS: {
       return { ...state_copy, trainings: action.trainings };
     }
@@ -70,9 +62,6 @@ const SearchResultContextProvider = ({ children }) => {
 
   const value = {
     ...state,
-    /*setResults: (trainings = [], jobs = []) => {
-      dispatch({ type: actions.SET_RESULTS, trainings, jobs });
-    },*/
     setTrainings: (trainings = []) => {
       dispatch({ type: actions.SET_TRAININGS, trainings });
     },
@@ -103,9 +92,6 @@ const SearchResultContextProvider = ({ children }) => {
 };
 
 export default SearchResultContextProvider;
-
-
-
 /*
   const initialState = {
   formValues: null,
