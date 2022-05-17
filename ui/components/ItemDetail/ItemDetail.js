@@ -40,6 +40,27 @@ const getTags = ({ kind, isCfa, isMandataire }) => {
   );
 };
 
+const getH1 = ({ kind, actualTitle }) => {
+  return <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>;
+};
+
+const getActualTitle = ({ selectedItem, kind }) => {
+  let title = "";
+
+  if (kind === "formation") {
+    title = selectedItem?.title || selectedItem?.longTitle;
+  } else if (kind === "matcha") {
+    title = selectedItem?.title;
+  } else if (kind === "peJob") {
+    title = selectedItem?.title;
+  } else {
+    // lba / lbb
+    title = selectedItem?.nafs[0]?.label;
+  }
+
+  return title;
+};
+
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
@@ -59,10 +80,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     }
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
-  let actualTitle =
-    kind === "formation"
-      ? selectedItem?.title || selectedItem?.longTitle
-      : selectedItem?.company?.name || selectedItem?.title || selectedItem?.longTitle;
+  let actualTitle = getActualTitle({ kind, selectedItem });
 
   const { extendedSearch, formValues } = useSelector((state) => state.trainings);
   const hasLocation = formValues?.location?.value ? true : false;
@@ -249,11 +267,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
 
-            {kind === "matcha" ? (
-              <h1 className="c-detail-title c-detail-title--matcha">{selectedItem.title}</h1>
-            ) : (
-              <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
-            )}
+            {getH1({ kind, actualTitle })}
 
             <p className="mt-4 c-detail-address-section">
               <span className="d-block">
