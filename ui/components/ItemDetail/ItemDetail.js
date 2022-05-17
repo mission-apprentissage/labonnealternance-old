@@ -188,6 +188,52 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     );
   };
 
+  const getSurtitre = ({ selectedItem, kind }) => {
+    let res = "";
+
+    if (kind === "matcha") {
+      res = (
+        <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
+          <span>{`${get(selectedItem, "company.name", "")}`}</span>
+          <span className="c-detail-activity__proposal">
+            &nbsp;propose actuellement cette offre dans le domaine suivant
+          </span>
+        </p>
+      );
+    }
+
+    if (kind === "peJob") {
+      res = (
+        <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
+          <span>{`${get(selectedItem, "company.name", "")}`}</span>
+          <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre</span>
+        </p>
+      );
+    }
+
+    if (amongst(kind, ["lba", "lbb"])) {
+      res = (
+        <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
+          <span>{`${get(selectedItem, "company.name", "")}`}</span>
+          <span className="c-detail-activity__proposal">
+            &nbsp;a des salariés qui exercent le métier auquel vous vous destinez. Envoyez votre candidature spontanée !
+          </span>
+        </p>
+      );
+    }
+
+    if (kind === "formation") {
+      res = (
+        <p className={`c-detail-activity c-detail-title--formation`}>
+          <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
+          <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
+        </p>
+      );
+    }
+
+    return res;
+  };
+
   return (
     <>
       <section
@@ -217,52 +263,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               {getNavigationButtons()}
             </div>
 
-            {kind === "matcha" ? (
-              <>
-                <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
-                  <span>{`${get(selectedItem, "company.name", "")}`}</span>
-                  <span className="c-detail-activity__proposal">
-                    &nbsp;propose actuellement cette offre dans le domaine suivant
-                  </span>
-                </p>
-              </>
-            ) : (
-              ""
-            )}
-
-            {kind === "peJob" ? (
-              <>
-                <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
-                  <span>{`${get(selectedItem, "company.name", "")}`}</span>
-                  <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre</span>
-                </p>
-              </>
-            ) : (
-              ""
-            )}
-
-            {amongst(kind, ["lba", "lbb"]) ? (
-              <>
-                <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
-                  <span>{`${get(selectedItem, "company.name", "")}`}</span>
-                  <span className="c-detail-activity__proposal">
-                    &nbsp;a des salariés qui exercent le métier auquel vous vous destinez. Envoyez votre candidature
-                    spontanée !
-                  </span>
-                </p>
-              </>
-            ) : (
-              ""
-            )}
-
-            {kind === "formation" ? (
-              <p className={`c-detail-activity c-detail-title--formation`}>
-                <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
-                <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
-              </p>
-            ) : (
-              ""
-            )}
+            {getSurtitre({ selectedItem, kind })}
 
             {getH1({ kind, actualTitle })}
 
