@@ -86,15 +86,19 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         )}
       </div>
 
-      <div className="c-detail-body mt-4">
-        <h2 className="c-locationdetail-title mt-2">{`En savoir plus sur ${job.title}`}</h2>
-        <div className="text-left" data-testid="lbb-component">
-          <div className="mb-3">
-            <MatchaDescription job={job} />
-            <MatchaCompetences job={job} />
+      {job?.job.romeDetails || job?.job.description ? (
+        <div className="c-detail-body mt-4">
+          <h2 className="c-locationdetail-title mt-2">{`En savoir plus sur ${job.title}`}</h2>
+          <div className="text-left" data-testid="lbb-component">
+            <div className="mb-3">
+              <MatchaDescription job={job} />
+              <MatchaCompetences job={job} />
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
     </>
   );
 };
