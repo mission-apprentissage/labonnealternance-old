@@ -7,10 +7,18 @@ const MatchaDescription = ({ job }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const getText = () => {
-    return job.job.description;
+    return (
+      <ul>
+        {job?.job?.romeDetails?.definition.split("\\n").map((definition, i) => (
+          <li key={i} className="mt-2">
+            {definition}
+          </li>
+        ))}
+      </ul>
+    );
   };
 
-  return job?.job?.description ? (
+  return job?.job?.romeDetails?.definition ? (
     <>
       <div className="c-accordion">
         <button

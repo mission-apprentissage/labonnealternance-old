@@ -86,7 +86,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         )}
       </div>
 
-      {job?.job.romeDetails || job?.job.description ? (
+      {job?.job.romeDetails ? (
         <div className="c-detail-body mt-4">
           <h2 className="c-locationdetail-title mt-2">{`En savoir plus sur ${job.title}`}</h2>
           <div className="text-left" data-testid="lbb-component">
