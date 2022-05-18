@@ -9,7 +9,6 @@ import { searchForJobsFunction } from "components/SearchForTrainingsAndJobs/serv
 import { useDispatch, useSelector } from "react-redux";
 import pushHistory from "utils/pushHistory";
 import {
-  setItemToScrollTo,
   setIsFormVisible,
   setVisiblePane,
   setShouldMapBeVisible,
@@ -51,7 +50,7 @@ const SearchForTrainingsAndJobs = () => {
     (state) => state.trainings
   );
 
-  const { trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem } = useContext(SearchResultContext);
+  const { trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo } = useContext(SearchResultContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
@@ -305,7 +304,7 @@ const SearchForTrainingsAndJobs = () => {
     setSelectedItem(null);
     setSelectedMarker(null);
     if (selectedItem) {
-      dispatch(setItemToScrollTo(selectedItem));
+      setItemToScrollTo(selectedItem);
     }
 
     if (!doNotSaveToHistory) {

@@ -14,7 +14,7 @@ import pushHistory from "../../../utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
 import whispers from "../services/whispers.js";
 
-import { setItemToScrollTo, setFormValues, setExtendedSearch } from "../../../store/actions";
+import { setFormValues, setExtendedSearch } from "../../../store/actions";
 import { flyToMarker, flyToLocation, closeMapPopups, setSelectedMarker } from "../../../utils/mapTools";
 
 const ChoiceColumn = ({
@@ -38,8 +38,17 @@ const ChoiceColumn = ({
   const dispatch = useDispatch();
   const router = useRouter();
   const scopeContext = useContext(ScopeContext);
-  const { trainings, jobs, setTrainings, setJobs, setSelectedItem, selectedItem } = useContext(SearchResultContext);
-  const { itemToScrollTo, formValues /*, currentPage*/ } = useSelector((state) => state.trainings);
+  const {
+    trainings,
+    jobs,
+    setTrainings,
+    setJobs,
+    setSelectedItem,
+    selectedItem,
+    itemToScrollTo,
+    setItemToScrollTo,
+  } = useContext(SearchResultContext);
+  const { formValues /*, currentPage*/ } = useSelector((state) => state.trainings);
 
   useEffect(() => {
     if (itemToScrollTo) {
@@ -47,7 +56,7 @@ const ChoiceColumn = ({
 
       if (itemElement) {
         scrollToElementInContainer("resultList", itemElement, 150, "auto");
-        dispatch(setItemToScrollTo(null));
+        setItemToScrollTo(null);
       }
     }
   });

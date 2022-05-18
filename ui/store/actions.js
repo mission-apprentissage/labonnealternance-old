@@ -62,14 +62,14 @@ export const setTrainingsAndSelectedItem = (trainings = [], selectedItem = null)
     selectedItem,
     trainings,
   };
-};*/
+};
 
 export const setItemToScrollTo = (itemToScrollTo = null) => {
   return {
     type: types.SET_ITEM_TO_SCROLL_TO,
     itemToScrollTo,
   };
-};
+};*/
 
 export const setFormValues = (formValues = null) => {
   return {
