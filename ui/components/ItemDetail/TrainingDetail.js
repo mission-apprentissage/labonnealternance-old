@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { setTrainingsAndSelectedItem } from "../../store/actions";
 import fetchTrainingDetails from "../../services/fetchTrainingDetails";
 import fetchPrdv from "../../services/fetchPrdv";
 import sendTrainingOpenedEventToCatalogue from "../../services/sendTrainingOpenedEventToCatalogue";
@@ -29,7 +28,7 @@ const TrainingDetail = ({ training, isCfa }) => {
     setLoading(true);
   }, [training.id]);
 
-  const { trainings } = useContext(SearchResultContext);
+  const { trainings, setTrainingsAndSelectedItem } = useContext(SearchResultContext);
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
@@ -66,7 +65,7 @@ const TrainingDetail = ({ training, isCfa }) => {
             let trainingDetail = await fetchTrainingDetails(training);
 
             updateTrainingFromLbf(v, trainingDetail);
-            dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
+            setTrainingsAndSelectedItem(updatedTrainings, v);
           } catch (err) {}
         }
         setLoading(false);
@@ -83,7 +82,7 @@ const TrainingDetail = ({ training, isCfa }) => {
 
           try {
             v.prdvUrl = url;
-            dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
+            setTrainingsAndSelectedItem(updatedTrainings, v);
           } catch (err) {}
         }
         setLoading(false);

@@ -56,13 +56,13 @@ export const setSelectedMapPopupItem = (selectedMapPopupItem = null) => {
   };
 };
 
-export const setTrainingsAndSelectedItem = (trainings = [], selectedItem = null) => {
+/*export const setTrainingsAndSelectedItem = (trainings = [], selectedItem = null) => {
   return {
     type: types.SET_TRAININGS_AND_SELECTED_ITEM,
     selectedItem,
     trainings,
   };
-};
+};*/
 
 export const setItemToScrollTo = (itemToScrollTo = null) => {
   return {
