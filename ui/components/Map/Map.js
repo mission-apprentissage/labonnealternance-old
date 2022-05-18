@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { useRouter } from "next/router";
-import { useStore, useDispatch, useSelector } from "react-redux";
-import { setSelectedMapPopupItem } from "store/actions";
+import { useStore, useSelector } from "react-redux";
 import { currentPage, setCurrentPage, currentSearch } from "utils/currentPage.js";
 import { ScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
@@ -24,7 +23,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
     return state.trainings;
   });
 
-  const { trainings, jobs, setSelectedItem } = useContext(SearchResultContext);
+  const { trainings, jobs, setSelectedItem, setSelectedMapPopupItem } = useContext(SearchResultContext);
 
   const router = useRouter();
 
@@ -32,7 +31,6 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
 
   const [mapInitialized, setMapInitialized] = useState(false);
   const mapContainer = useRef(null);
-  const dispatch = useDispatch();
 
   const unselectItem = () => {
     setSelectedItem(null);
@@ -44,7 +42,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   };
 
   const unselectMapPopupItem = () => {
-    dispatch(setSelectedMapPopupItem(null));
+    setSelectedMapPopupItem(null);
   };
 
   const handleSearchClick = async () => {
@@ -128,6 +126,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
         onMapHasMoved,
         unselectMapPopupItem,
         setSelectedItem,
+        setSelectedMapPopupItem,
       });
     }
   }, [trainings, jobs]);
@@ -147,6 +146,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
           onMapHasMoved,
           unselectMapPopupItem,
           setSelectedItem,
+          setSelectedMapPopupItem,
         });
       }, 0);
     }

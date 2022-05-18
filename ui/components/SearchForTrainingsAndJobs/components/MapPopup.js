@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { setSelectedMapPopupItem } from "../../../store/actions";
-import { useDispatch } from "react-redux";
+
 import { getJobAddress } from "../../../utils/jobs";
 import { logError } from "../../../utils/tools";
 import { ErrorMessage } from "../..";
@@ -9,9 +8,7 @@ import { setSelectedMarker } from "../../../utils/mapTools";
 import bookIcon from "public/images/icons/book.svg";
 import jobIcon from "public/images/icons/job.svg";
 
-const MapPopup = ({ type, item, handleSelectItem, setSelectedItem }) => {
-  const dispatch = useDispatch();
-
+const MapPopup = ({ type, item, handleSelectItem, setSelectedItem, setSelectedMapPopupItem }) => {
   const openItemDetail = (item) => {
     setSelectedItem(item);
     setSelectedMarker(item);
@@ -19,7 +16,7 @@ const MapPopup = ({ type, item, handleSelectItem, setSelectedItem }) => {
   };
 
   useEffect(() => {
-    dispatch(setSelectedMapPopupItem(item));
+    setSelectedMapPopupItem(item);
   }, []);
 
   const getContent = () => {
