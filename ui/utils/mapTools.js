@@ -1,3 +1,4 @@
+import React from "react";
 import distance from "@turf/distance";
 import { MapPopup } from "../components/SearchForTrainingsAndJobs/components";
 import ReactDOM from "react-dom";
