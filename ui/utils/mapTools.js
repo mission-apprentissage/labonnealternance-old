@@ -460,7 +460,7 @@ const computeMissingPositionAndDistance = async (searchCenter, jobs) => {
           addresses = await fetchAddresses(job.place.address, "municipality"); // on force à Municipality pour ne pas avoir des rues dans de mauvaise localités
         }
 
-        console.log("PLACE : ", job.place, "adresses", addresses[0]);
+        //console.log("PLACE : ", job.place, "adresses", addresses[0]);
 
         if (addresses.length) {
           job.place.longitude = addresses[0].value.coordinates[0];
