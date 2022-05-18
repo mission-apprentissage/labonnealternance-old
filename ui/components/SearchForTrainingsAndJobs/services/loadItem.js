@@ -55,7 +55,7 @@ export const loadItem = async ({
       if (response.data.results.length) {
         setTrainingMarkers(factorTrainingsForMap(response.data.results));
       }
-      dispatch(setSelectedItem(response.data.results[0]));
+      setSelectedItem(response.data.results[0]);
       setSelectedMarker(response.data.results[0]);
       itemMarker = response.data.results[0];
 
@@ -161,7 +161,7 @@ export const loadItem = async ({
 
         setJobMarkers(factorJobsForMap(results), null);
 
-        dispatch(setSelectedItem(loadedItem));
+        setSelectedItem(loadedItem);
         setSelectedMarker(loadedItem);
         itemMarker = loadedItem;
       } else {

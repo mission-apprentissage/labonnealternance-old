@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { useRouter } from "next/router";
 import { useStore, useDispatch, useSelector } from "react-redux";
-import { setSelectedItem, setSelectedMapPopupItem } from "store/actions";
+import { setSelectedMapPopupItem } from "store/actions";
 import { currentPage, setCurrentPage, currentSearch } from "utils/currentPage.js";
 import { ScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
@@ -24,7 +24,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
     return state.trainings;
   });
 
-  const { trainings, jobs } = useContext(SearchResultContext);
+  const { trainings, jobs, setSelectedItem } = useContext(SearchResultContext);
 
   const router = useRouter();
 
@@ -35,7 +35,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   const dispatch = useDispatch();
 
   const unselectItem = () => {
-    dispatch(setSelectedItem(null));
+    setSelectedItem(null);
     setSelectedMarker(null);
     if (currentPage === "fiche") {
       setCurrentPage("");
@@ -127,6 +127,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
         selectItemOnMap,
         onMapHasMoved,
         unselectMapPopupItem,
+        setSelectedItem,
       });
     }
   }, [trainings, jobs]);
@@ -145,6 +146,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
           selectItemOnMap,
           onMapHasMoved,
           unselectMapPopupItem,
+          setSelectedItem,
         });
       }, 0);
     }

@@ -1,4 +1,3 @@
-import React from "react";
 import distance from "@turf/distance";
 import { MapPopup } from "../components/SearchForTrainingsAndJobs/components";
 import ReactDOM from "react-dom";
@@ -21,6 +20,7 @@ const initializeMap = ({
   selectItemOnMap,
   onMapHasMoved,
   unselectMapPopupItem,
+  setSelectedItem,
 }) => {
   isMapInitialized = true;
 
@@ -95,7 +95,7 @@ const initializeMap = ({
         if (e?.originalEvent) {
           if (!e.originalEvent.STOP) {
             e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
-            onLayerClick(e, "job", store, selectItemOnMap, unselectItem, unselectMapPopupItem);
+            onLayerClick(e, "job", store, selectItemOnMap, unselectItem, unselectMapPopupItem, setSelectedItem);
           }
         }
       }, 5);
@@ -171,7 +171,7 @@ const initializeMap = ({
         if (e?.originalEvent) {
           if (!e.originalEvent.STOP_SOURCE) {
             e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
-            onLayerClick(e, "training", store, selectItemOnMap, unselectItem, unselectMapPopupItem);
+            onLayerClick(e, "training", store, selectItemOnMap, unselectItem, unselectMapPopupItem, setSelectedItem);
           }
         }
       }, 5);
@@ -249,7 +249,7 @@ const initializeMap = ({
   map.addControl(nav, "bottom-right");
 };
 
-const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem, unselectMapPopupItem) => {
+const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem, unselectMapPopupItem, setSelectedItem) => {
   let coordinates = e.features[0].geometry.coordinates.slice();
 
   // si cluster on a properties: {cluster: true, cluster_id: 125, point_count: 3, point_count_abbreviated: 3}
@@ -276,7 +276,7 @@ const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem, unselectMa
 
     currentPopup = new mapboxgl.Popup()
       .setLngLat(coordinates)
-      .setDOMContent(buildPopup(item, item.ideaType, store, selectItemOnMap))
+      .setDOMContent(buildPopup({ item, type: item.ideaType, store, selectItemOnMap, setSelectedItem }))
       .addTo(map);
 
     currentPopup.on("close", function (e) {
@@ -302,15 +302,19 @@ const flyToLocation = (location) => {
   }
 };
 
-const buildPopup = (item, type, store, selectItemOnMap) => {
+const buildPopup = ({ item, type, store, selectItemOnMap, setSelectedItem }) => {
   const popupNode = document.createElement("div");
 
   ReactDOM.render(
     <Provider store={store}>
-      <MapPopup handleSelectItem={selectItemOnMap} type={type} item={item} />
+      <MapPopup handleSelectItem={selectItemOnMap} setSelectedItem={setSelectedItem} type={type} item={item} />
     </Provider>,
     popupNode
   );
+
+  //ReactDOM.createPortal(<MapPopup handleSelectItem={selectItemOnMap} type={type} item={item} />, popupNode);
+
+  //console.log("LA ??? ", popupNode);
 
   return popupNode;
 };

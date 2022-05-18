@@ -1,8 +1,8 @@
 export const types = {
-  SET_RESULTS: "training/SET_RESULTS",
+  /*SET_RESULTS: "training/SET_RESULTS",
   SET_TRAININGS: "trainings/SET_TRAININGS",
   SET_JOBS: "trainings/SET_JOBS",
-  SET_SELECTED_ITEM: "trainings/SET_SELECTED_ITEM",
+  SET_SELECTED_ITEM: "trainings/SET_SELECTED_ITEM",*/
   SET_ITEM_TO_SCROLL_TO: "trainings/SET_ITEM_TO_SCROLL_TO",
   SET_FORM_VALUES: "trainings/SET_FORM_VALUES",
   SET_EXTENDED_SEARCH: "trainings/SET_EXTENDED_SEARCH",
@@ -19,6 +19,7 @@ export const types = {
   SET_OPCO_FILTER: "trainings/SET_OPCO_FILTER",
 };
 
+/*
 export const setResults = (trainings = [], jobs = []) => {
   return {
     type: types.SET_RESULTS,
@@ -47,7 +48,7 @@ export const setSelectedItem = (selectedItem = null) => {
     selectedItem,
   };
 };
-
+*/
 export const setSelectedMapPopupItem = (selectedMapPopupItem = null) => {
   return {
     type: types.SET_SELECTED_MAP_POPUP_ITEM,

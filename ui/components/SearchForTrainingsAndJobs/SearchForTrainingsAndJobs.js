@@ -9,7 +9,6 @@ import { searchForJobsFunction } from "components/SearchForTrainingsAndJobs/serv
 import { useDispatch, useSelector } from "react-redux";
 import pushHistory from "utils/pushHistory";
 import {
-  setSelectedItem,
   setItemToScrollTo,
   setIsFormVisible,
   setVisiblePane,
@@ -48,11 +47,11 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useContext(ScopeContext);
   
-  const { hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
+  const { hasSearch, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
     (state) => state.trainings
   );
 
-  const { trainings, jobs, setTrainings, setJobs } = useContext(SearchResultContext);
+  const { trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem } = useContext(SearchResultContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
@@ -111,7 +110,7 @@ const SearchForTrainingsAndJobs = () => {
     closeMapPopups();
     if (item) {
       flyToMarker(item, 12);
-      dispatch(setSelectedItem(item));
+      setSelectedItem(item);
       setSelectedMarker(item);
     }
   }
@@ -303,7 +302,7 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   const unSelectItem = (doNotSaveToHistory) => {
-    dispatch(setSelectedItem(null));
+    setSelectedItem(null);
     setSelectedMarker(null);
     if (selectedItem) {
       dispatch(setItemToScrollTo(selectedItem));

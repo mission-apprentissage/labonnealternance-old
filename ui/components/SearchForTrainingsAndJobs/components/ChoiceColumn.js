@@ -14,13 +14,7 @@ import pushHistory from "../../../utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
 import whispers from "../services/whispers.js";
 
-import {
-  //setTrainings,
-  setSelectedItem,
-  setItemToScrollTo,
-  setFormValues,
-  setExtendedSearch,
-} from "../../../store/actions";
+import { setItemToScrollTo, setFormValues, setExtendedSearch } from "../../../store/actions";
 import { flyToMarker, flyToLocation, closeMapPopups, setSelectedMarker } from "../../../utils/mapTools";
 
 const ChoiceColumn = ({
@@ -44,8 +38,8 @@ const ChoiceColumn = ({
   const dispatch = useDispatch();
   const router = useRouter();
   const scopeContext = useContext(ScopeContext);
-  const { trainings, jobs, setTrainings, setJobs } = useContext(SearchResultContext);
-  const { selectedItem, itemToScrollTo, formValues /*, currentPage*/ } = useSelector((state) => state.trainings);
+  const { trainings, jobs, setTrainings, setJobs, setSelectedItem, selectedItem } = useContext(SearchResultContext);
+  const { itemToScrollTo, formValues /*, currentPage*/ } = useSelector((state) => state.trainings);
 
   useEffect(() => {
     if (itemToScrollTo) {
@@ -69,7 +63,7 @@ const ChoiceColumn = ({
   const handleSelectItem = (item) => {
     flyToMarker(item, 12);
     closeMapPopups();
-    dispatch(setSelectedItem(item));
+    setSelectedItem(item);
 
     setSelectedMarker(item);
 
