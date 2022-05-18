@@ -17,14 +17,14 @@ const LbbCompanyDetail = ({ lbb }) => {
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   return (
-    <>
+    <div className="c-detail-body mt-4">
       <div className="text-left" data-testid="lbb-component">
         <div className="mb-3">
           <CandidatureSpontaneeExplanation about={"what"} />
           <CandidatureSpontaneeExplanation about={"how"} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
