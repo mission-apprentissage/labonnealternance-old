@@ -2,9 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import refreshSearchOnMap from "public/images/icons/refreshSearchOnMap.svg";
 import lookingGlassOnMap from "public/images/glass.svg";
+import { SearchResultContext } from "context/SearchResultContextProvider";
 
 const MapSearchButton = ({ handleSearchClick }) => {
-  const { hasSearch, formValues } = useSelector((state) => state.trainings);
+  const { formValues } = useSelector((state) => state.trainings);
+  const { hasSearch } = React.useContext(SearchResultContext);
 
   return hasSearch ? (
     <div className="c-map-searchButton">

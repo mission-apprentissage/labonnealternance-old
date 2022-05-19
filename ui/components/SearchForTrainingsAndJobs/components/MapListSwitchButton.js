@@ -2,9 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import toggleList from "public/images/icons/toggleList.svg";
 import toggleCard from "public/images/icons/toggleCard.svg";
+import { SearchResultContext } from "context/SearchResultContextProvider";
 
 const MapListSwitchButton = ({ showResultMap, showResultList }) => {
-  const { visiblePane, hasSearch } = useSelector((state) => state.trainings);
+  const { visiblePane } = useSelector((state) => state.trainings);
+  const { hasSearch } = React.useContext(SearchResultContext);
 
   if (visiblePane === "resultList") {
     if (hasSearch)

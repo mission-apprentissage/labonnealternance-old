@@ -183,66 +183,6 @@ export const setIsFormVisible = (isFormVisible = true) => {
 */
 
 /*
-export const setResults = (trainings = [], jobs = []) => {
-  return {
-    type: types.SET_RESULTS,
-    trainings,
-    jobs,
-  };
-};
-
-export const setTrainings = (trainings = []) => {
-  return {
-    type: types.SET_TRAININGS,
-    trainings,
-  };
-};
-
-export const setJobs = (jobs = []) => {
-  return {
-    type: types.SET_JOBS,
-    jobs,
-  };
-};
-
-export const setSelectedItem = (selectedItem = null) => {
-  return {
-    type: types.SET_SELECTED_ITEM,
-    selectedItem,
-  };
-};
-
-export const setSelectedMapPopupItem = (selectedMapPopupItem = null) => {
-  return {
-    type: types.SET_SELECTED_MAP_POPUP_ITEM,
-    selectedMapPopupItem,
-  };
-};
-
-export const setTrainingsAndSelectedItem = (trainings = [], selectedItem = null) => {
-  return {
-    type: types.SET_TRAININGS_AND_SELECTED_ITEM,
-    selectedItem,
-    trainings,
-  };
-};
-
-export const setItemToScrollTo = (itemToScrollTo = null) => {
-  return {
-    type: types.SET_ITEM_TO_SCROLL_TO,
-    itemToScrollTo,
-  };
-};
-
-
-export const setExtendedSearch = (extendedSearch = false) => {
-  return {
-    type: types.SET_EXTENDED_SEARCH,
-    extendedSearch,
-  };
-};
-
-
 
 export const setHasSearch = (hasSearch = false) => {
   return {

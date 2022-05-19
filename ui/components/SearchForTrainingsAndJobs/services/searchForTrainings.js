@@ -59,7 +59,7 @@ export const searchForTrainingsFunction = async ({
 
     setTrainings(response.data.results);
     storeTrainingsInSession({ trainings: response.data.results, searchTimestamp });
-    dispatch(setHasSearch(true));
+    setHasSearch(true);
     dispatch(setIsFormVisible(false));
 
     if (response.data.results.length) {

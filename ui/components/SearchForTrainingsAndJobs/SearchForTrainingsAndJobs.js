@@ -12,8 +12,7 @@ import {
   setIsFormVisible,
   setVisiblePane,
   setShouldMapBeVisible,
-  setFormValues,
-  setHasSearch,
+  setFormValues,  
 } from "store/actions";
 
 import {
@@ -45,11 +44,11 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useContext(ScopeContext);
   
-  const { hasSearch, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
+  const { widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
     (state) => state.trainings
   );
 
-  const { trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch } = useContext(SearchResultContext);
+  const { hasSearch, trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch, setHasSearch } = useContext(SearchResultContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
@@ -151,7 +150,7 @@ const SearchForTrainingsAndJobs = () => {
     const searchTimestamp = new Date().getTime();
     setShouldShowWelcomeMessage(false);
 
-    dispatch(setHasSearch(false));
+    setHasSearch(false);
     setSearchRadius(values.radius || 30);
     setExtendedSearch(false);
 
@@ -176,7 +175,7 @@ const SearchForTrainingsAndJobs = () => {
   const handleItemLoad = async (item) => {
     setShouldShowWelcomeMessage(false);
 
-    dispatch(setHasSearch(false));
+    setHasSearch(false);
     setExtendedSearch(true);
 
     loadItem({

@@ -34,7 +34,7 @@ export const loadItem = async ({
   factorJobsForMap,
 }) => {
   try {
-    dispatch(setHasSearch(true));
+    setHasSearch(true);
     dispatch(setIsFormVisible(false));
 
     let itemMarker = null;
@@ -157,7 +157,7 @@ export const loadItem = async ({
       if (!errorMessage) {
         setJobs(results);
 
-        dispatch(setHasSearch(true));
+        setHasSearch(true);
 
         setJobMarkers(factorJobsForMap(results), null);
 

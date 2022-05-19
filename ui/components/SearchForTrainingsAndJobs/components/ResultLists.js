@@ -21,8 +21,8 @@ const ResultLists = (props) => {
       props.stubbedIsFormVisible,
     ];
   } else {
-    ({ hasSearch, isFormVisible } = useSelector((state) => state.trainings));
-    ({ extendedSearch } = useContext(SearchResultContext));
+    ({ isFormVisible } = useSelector((state) => state.trainings));
+    ({ extendedSearch, hasSearch } = useContext(SearchResultContext));
   }
 
   const filterButtonClicked = (filterButton) => {

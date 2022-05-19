@@ -101,12 +101,12 @@ export const setCurrentPage = (currentPage = "") => {
   };
 };
 
-export const setHasSearch = (hasSearch = false) => {
+/*export const setHasSearch = (hasSearch = false) => {
   return {
     type: types.SET_HAS_SEARCH,
     hasSearch,
   };
-};
+};*/
 
 export const setIsFormVisible = (isFormVisible = true) => {
   return {

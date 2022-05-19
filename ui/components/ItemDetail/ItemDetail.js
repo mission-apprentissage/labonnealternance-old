@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useSelector } from "react-redux";
 import PeJobDetail from "./PeJobDetail";
 import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { findIndex, concat, pick, get, defaultTo, round } from "lodash";
+import { findIndex, concat, pick, get, defaultTo } from "lodash";
 import { amongst } from "../../utils/arrayutils";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
-import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
+import { capitalizeFirstLetter } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
 import ExternalLink from "../externalLink";
