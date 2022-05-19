@@ -1,7 +1,7 @@
 <mjml>
     <mj-head>
         <mj-title>Candidature de <%= data.applicant_email %></mj-title>
-        <mj-font name="OpenSans" href="https://fonts.googleapis.com/css2?family=Open%20Sans" />
+        <mj-font name="Inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" />
         <mj-style inline="inline">
             a:link,a:visited, a:hover, a:active {color: #206BC4;}, a {color: #3A55D1;}, body{background: #F9F8F6;}
             a.purple {color: #3A55D1; text-decoration: none}
@@ -23,7 +23,7 @@
 
         </mj-style>
         <mj-attributes>
-            <mj-text padding="0px" font-family="OpenSans,sans-serif" color="#232E3C" font-size="14px" line-height="23px" />
+            <mj-text padding="0px" font-family="Inter,sans-serif" color="#232E3C" font-size="14px" line-height="23px" />
             <mj-divider padding="0px" />
         </mj-attributes>
     </mj-head>
@@ -85,15 +85,15 @@
                     <mj-button
                         href="<%= data.publicUrl %>/formulaire-intention?intention=entretien&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat"
                         css-class="intention-link" width="250px" border-color="#000091" color="#000091"
-                        font-family="OpenSans" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;Rencontrer le candidat</mj-button>
+                        font-family="Inter" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;Rencontrer le candidat</mj-button>
                     <mj-button
                         href="<%= data.publicUrl %>/formulaire-intention?intention=ne_sais_pas&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat"
                         css-class="intention-link" width="250px" border-color="#000091" color="#000091"
-                        font-family="OpenSans" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;En attente de décision</mj-button>
+                        font-family="Inter" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;En attente de décision</mj-button>
                     <mj-button
                         href="<%= data.publicUrl %>/formulaire-intention?intention=refus&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat"
                         css-class="intention-link" width="250px" border-color="#000091" color="#000091"
-                        font-family="OpenSans" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;Refuser la candidature</mj-button>
+                        font-family="Inter" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;Refuser la candidature</mj-button>
                 </mj-column>
             </mj-section>
         </mj-wrapper>
@@ -105,7 +105,7 @@
                     <mj-table line-height="100%">
                         <tr>
                             <td valign="top" style="padding-top:5px;"><img style="width:120px; height:48px;" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" /></td>
-                            <td valign="top" style="font-family: OpenSans; font-size:14px;line-height: 22px; padding-left: 40px; padding-top:0;">
+                            <td valign="top" style="font-family: Inter,sans-serif; font-size:14px;line-height: 22px; padding-left: 40px; padding-top:0;">
                             <% if (data.company_type == "matcha" ) { %>
                                 Vous recevez cette candidature car vous avez déposé une offre sur le service 
                                 <a style="font-weight:bold; color:black" 
