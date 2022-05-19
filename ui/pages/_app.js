@@ -14,7 +14,7 @@ if (process.env.uiSentryDsn) {
   SentryReact.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
 }
 
-class ExampleApp extends App {
+class LaBonneAlternance extends App {
   static async getInitialProps(context) {
     // récupération du hostname pour initialiser les fonts en preload
     const { req } = context.ctx;
@@ -53,4 +53,4 @@ class ExampleApp extends App {
   }
 }
 
-export default wrapper.withRedux(ExampleApp);
+export default wrapper.withRedux(LaBonneAlternance);
