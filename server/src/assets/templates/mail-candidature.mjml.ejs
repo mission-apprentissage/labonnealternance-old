@@ -38,14 +38,9 @@
             <mj-section padding="15px">
                 <mj-column>
                     <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
-                        Vous avez reçu une nouvelle candidature !
+                        Vous avez reçu une nouvelle candidature ! <%= data.company_type %>
                     </mj-text>
                     <mj-text font-size="16px" line-height="24px">
-                        
-                        <% if (data.company_type === "lba" || data.company_type === "lbb" ) { %>
-                            Bonjour, <br/><br/>
-                            Voici les informations d’un candidat qui aimerait réaliser son alternance dans votre entreprise <span class="nom-societe"><%= data.company_name %></span> :
-                        <% } %>
                         
                         <% if (data.company_type == "matcha") { %>
                             Bonjour, 
@@ -58,6 +53,18 @@
                                 Matcha
                             </a>
                             sur le métier <%= data.job_title %>.
+                        <% } else { %>
+                            Bonjour, <br /><br />
+                            <%= data.applicant_first_name %> <%= data.applicant_last_name %>
+                            s'intéresse à votre entreprise et a postulé spontanément à partir du site 
+                            <a style="font-weight:bold; color:black" href="<%= data.urlOfDetail %>">
+                                La Bonne Alternance
+                            </a>.
+                            <br /><br />
+                            Votre entreprise <span class="nom-societe">
+                                <%= data.company_name %>
+                            </span> a été identifiée par notre algorithme comme entreprise recrutant régulièrement
+                            des alternants.
                         <% } %>
 
                     </mj-text>
@@ -122,7 +129,13 @@
                                         Nos sites partenaires, afin d'étendre la portée de votre recrutement là où les candidats se trouvent.
                                     </li>
                                 </ul>
+                            <% } else { %>
+                                Bonjour, <br /><br />
+                                Vous recevez cette candidature car votre entreprise est visible sur La Bonne Alternance, un site web conçu par Pôle
+                                emploi et porté par le Ministère de l’éducation nationale, de l’enseignement supérieur, du travail et de la
+                                transformation publique.
                             <% } %>
+
                             </td>
                         </tr>
                     </mj-table>
@@ -138,7 +151,7 @@
                         <span style="font-weight: bold">Une question ?</span>
                     </mj-text>
 
-                        <% if (data.company_type=="matcha" ) { %>
+                        <% if (data.company_type == "matcha" ) { %>
                             <mj-text font-size="16px" line-height="28px" padding-bottom="15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a class="link-black" href="mailto:matcha@apprentissage.beta.gouv.fr">
                                     📝 Je souhaite suspendre ou modifier mon offre</a>
@@ -148,18 +161,16 @@
                                     💌 Je souhaite contacter l’équipe support de La Bonne Alternance</a>
                             </mj-text>
                         <% } else { %>
-                            <mj-text font-size="16px" line-height="28px" padding-bottom="15px">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="margin-bottom: -5px; margin-right:3px" src="<%= data.images.enveloppe %>" alt="" />&nbsp;&nbsp;<a class="link-black" href="https://labonnealternance.pole-emploi.fr/contact?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat">Je souhaite contacter l’équipe support de La Bonne Alternance</a>                                        
-                            </mj-text>
-                            <mj-text font-size="16px" line-height="28px" padding-bottom="15px">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="margin-bottom: -5px; margin-right:3px;" src="<%= data.images.edit %>" alt="" />&nbsp;&nbsp;<a class="link-black" href="https://labonnealternance.pole-emploi.fr/acces-recruteur?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat">Je souhaite modifier les informations de mon entreprise</a>                                        
-                            </mj-text>
-                            <mj-text font-size="16px" line-height="28px" padding-bottom="15px">
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="margin-bottom: -5px; margin-right:3px" src="<%= data.images.bin %>" alt="" />&nbsp;&nbsp;<a class="link-black" href="https://labonnealternance.pole-emploi.fr/acces-recruteur?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat">Je ne souhaite plus être visible sur La Bonne Alternance</a>                                        
-                            </mj-text>
+                            Rendez-vous sur <a href="https://labonnealternance.pole-emploi.fr/acces-recruteur">La Bonne Alternance</a> pour :
+                            <ul>
+                                <li>Savoir comment votre entreprise a été détectée comme étant susceptible de recruter en alternance</li>
+                                <li>Demander la modification de vos coordonnées de contact pour que les candidatures vous parviennent à un endroit plus
+                                adapté</li>
+                                <li>Demander la suppression de votre entreprise du site (et ne plus recevoir de candidature)</li>
+                                <li>Enregistrer une offre d’emploi en alternance en moins de 5 minutes</li>
+                                <li>Nous contacter</li>
+                            </ul>
                         <% } %>
-
-
                 </mj-column>
             </mj-section>
         </mj-wrapper>
@@ -173,10 +184,14 @@
                     <td valign="top" style="line-height: 22px; padding-left: 40px; padding-top:0;">
                         Cet e-mail a été envoyé à <%= data.company_email %>
                         <br />
-                        Vous avez reçu ce mail car vous avez déposé une offre sur le formulaire Matcha.
+                        <% if (data.company_type == "matcha" ) { %>
+                            Vous avez reçu ce mail car vous avez déposé une offre sur le formulaire Matcha.
+q                         <% } else { %>
+                            Vous avez reçu ce mail car votre entreprise a été identifiée comme étant susceptible de recruter en alternance
+                        <% } %>
                         <br />
                         Merci de ne pas répondre à cet e-mail. Pour toute question ou besoin d’aide, vous pouvez écrire à labonnealternance@apprentissage.beta.gouv.fr
-                        <br />
+                         <br />
                         Pour vous désinscrire, <a style="font-weight:bold; text-decoration: underline; color:black" href="https://labonnealternance.pole-emploi.fr/acces-recruteur?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur">cliquez ici</a>
                         <br />
                         Voir cet email dans votre navigateur
