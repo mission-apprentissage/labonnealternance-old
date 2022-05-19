@@ -149,7 +149,6 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       const fileContent = query.applicant_file_content;
 
       const urlOfDetail = `${publicUrl}/recherche-apprentissage?display=list&page=fiche&type=${query.company_type}&itemId=${query.job_id}`;
-      console.log('urlOfDetail', urlOfDetail);
 
       // Sends acknowledge email to "candidate" and application email to "company"
       const [emailCandidat, emailCompany] = await Promise.all([
