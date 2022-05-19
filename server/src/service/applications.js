@@ -41,7 +41,7 @@ const images = {
 };
 
 const initApplication = (query, companyEmail) => {
-  return new Application({
+  let res = new Application({
     applicant_file_name: query.applicant_file_name,
     applicant_email: query.applicant_email.toLowerCase(),
     applicant_first_name: query.applicant_first_name,
@@ -58,6 +58,8 @@ const initApplication = (query, companyEmail) => {
     job_id: query.job_id,
     interet_offres_mandataire: query.interet_offres_mandataire,
   });
+
+  return res;
 };
 
 const getApplications = async (qs) => {
@@ -146,6 +148,9 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
 
       const fileContent = query.applicant_file_content;
 
+      const urlOfDetail = `${publicUrl}/recherche-apprentissage?display=list&page=fiche&type=${query.company_type}&itemId=${query.job_id}`;
+      console.log('urlOfDetail', urlOfDetail);
+
       // Sends acknowledge email to "candidate" and application email to "company"
       const [emailCandidat, emailCompany] = await Promise.all([
         mailer.sendEmail(
@@ -164,7 +169,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
           application.company_email,
           `Candidature en alternance - ${application.job_title}`,
           getEmailTemplate(emailTemplates.entreprise),
-          { ...application._doc, ...images, ...encryptedId, publicUrl },
+          { ...application._doc, ...images, ...encryptedId, publicUrl, urlOfDetail },
           [
             {
               filename: application.applicant_file_name,
