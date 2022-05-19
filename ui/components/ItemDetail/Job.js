@@ -10,9 +10,12 @@ import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
 import TagFormationAssociee from "./TagFormationAssociee";
+import { SearchResultContext } from "context/SearchResultContextProvider";
 
 const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
-  const { formValues, selectedMapPopupItem } = useSelector((state) => state.trainings);
+  const { formValues } = useSelector((state) => state.trainings);
+
+  const { selectedMapPopupItem } = React.useContext(SearchResultContext);
 
   const currentSearchRadius = formValues?.radius || 30;
 

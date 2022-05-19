@@ -49,13 +49,6 @@ export const setSelectedItem = (selectedItem = null) => {
   };
 };
 
-export const setSelectedMapPopupItem = (selectedMapPopupItem = null) => {
-  return {
-    type: types.SET_SELECTED_MAP_POPUP_ITEM,
-    selectedMapPopupItem,
-  };
-};
-
 export const setTrainingsAndSelectedItem = (trainings = [], selectedItem = null) => {
   return {
     type: types.SET_TRAININGS_AND_SELECTED_ITEM,
