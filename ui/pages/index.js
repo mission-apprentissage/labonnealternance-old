@@ -15,6 +15,7 @@ import howtocircle5 from "public/images/howtocircle5.svg";
 import axios from "axios";
 import csvToArray from "utils/csvToArray.js";
 import { some } from "lodash";
+import SearchResultContextProvider from "context/SearchResultContextProvider";
 
 const Home = (props) => {
   const dispatch = useDispatch();
@@ -24,23 +25,25 @@ const Home = (props) => {
   }, []);
 
   return (
-    <div>
-      <ScrollToTop />
-      <Navigation />
-      <div className="c-homebg">
-        <img src={howtocircle1} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle1" alt="Cercle" />
-        <img src={howtocircle2} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle2" alt="Cercle" />
-        <img src={howtocircle3} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle3" alt="Cercle" />
-        <img src={howtocircle4} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle4" alt="Cercle" />
-        <img src={howtocircle5} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle5" alt="Cercle" />
-        <HomeHero />
-        <HowTo />
+    <SearchResultContextProvider>
+      <div>
+        <ScrollToTop />
+        <Navigation />
+        <div className="c-homebg">
+          <img src={howtocircle1} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle1" alt="Cercle" />
+          <img src={howtocircle2} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle2" alt="Cercle" />
+          <img src={howtocircle3} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle3" alt="Cercle" />
+          <img src={howtocircle4} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle4" alt="Cercle" />
+          <img src={howtocircle5} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle5" alt="Cercle" />
+          <HomeHero />
+          <HowTo />
+        </div>
+
+        <HomeReview reviews={props.reviews} />
+
+        <Footer />
       </div>
-
-      <HomeReview reviews={props.reviews} />
-
-      <Footer />
-    </div>
+    </SearchResultContextProvider>
   );
 };
 

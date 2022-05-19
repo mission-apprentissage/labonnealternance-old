@@ -9,6 +9,7 @@ import { SearchResultContext } from "context/SearchResultContextProvider";
 
 const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
   const router = useRouter();
+
   const { selectedItem } = useContext(SearchResultContext);
 
   let additionalClassName = selectedItem && includes(router.asPath, "page=fiche") ? "detail" : "global";
