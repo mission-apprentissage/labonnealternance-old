@@ -6,6 +6,7 @@ import ExtendedSearchButton from "./ExtendedSearchButton";
 import ResultListsCounter from "./ResultListsCounter";
 import NoJobResult from "./NoJobResult";
 import { ScopeContext } from "../../../context/ScopeContext";
+import { SearchResultContext } from "../../../context/SearchResultContextProvider";
 import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
 import { renderJob, renderTraining, renderLbb } from "../services/renderOneResult";
 
@@ -20,7 +21,8 @@ const ResultLists = (props) => {
       props.stubbedIsFormVisible,
     ];
   } else {
-    ({ extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings));
+    ({ hasSearch, isFormVisible } = useSelector((state) => state.trainings));
+    ({ extendedSearch } = useContext(SearchResultContext));
   }
 
   const filterButtonClicked = (filterButton) => {

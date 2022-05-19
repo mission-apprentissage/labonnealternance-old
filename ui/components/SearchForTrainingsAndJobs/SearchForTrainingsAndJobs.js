@@ -13,7 +13,6 @@ import {
   setVisiblePane,
   setShouldMapBeVisible,
   setFormValues,
-  setExtendedSearch,
   setHasSearch,
 } from "store/actions";
 
@@ -50,7 +49,7 @@ const SearchForTrainingsAndJobs = () => {
     (state) => state.trainings
   );
 
-  const { trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo } = useContext(SearchResultContext);
+  const { trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch } = useContext(SearchResultContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
@@ -154,7 +153,7 @@ const SearchForTrainingsAndJobs = () => {
 
     dispatch(setHasSearch(false));
     setSearchRadius(values.radius || 30);
-    dispatch(setExtendedSearch(false));
+    setExtendedSearch(false);
 
     if(searchCenter) { flyToLocation({ center: searchCenter, zoom: 10 }); }
     else { flyToLocation({ center: coordinatesOfFrance, zoom: 4 }); }
@@ -178,7 +177,7 @@ const SearchForTrainingsAndJobs = () => {
     setShouldShowWelcomeMessage(false);
 
     dispatch(setHasSearch(false));
-    dispatch(setExtendedSearch(true));
+    setExtendedSearch(true);
 
     loadItem({
       item,

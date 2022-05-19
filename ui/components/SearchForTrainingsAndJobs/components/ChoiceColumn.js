@@ -14,7 +14,7 @@ import pushHistory from "../../../utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
 import whispers from "../services/whispers.js";
 
-import { setFormValues, setExtendedSearch } from "../../../store/actions";
+import { setFormValues } from "../../../store/actions";
 import { flyToMarker, flyToLocation, closeMapPopups, setSelectedMarker } from "../../../utils/mapTools";
 
 const ChoiceColumn = ({
@@ -47,6 +47,7 @@ const ChoiceColumn = ({
     selectedItem,
     itemToScrollTo,
     setItemToScrollTo,
+    setExtendedSearch,
   } = useContext(SearchResultContext);
   const { formValues /*, currentPage*/ } = useSelector((state) => state.trainings);
 
@@ -110,7 +111,7 @@ const ChoiceColumn = ({
   };
 
   const searchForJobsWithLooseRadius = async () => {
-    dispatch(setExtendedSearch(true));
+    setExtendedSearch(true);
     scrollToTop("choiceColumn");
 
     setJobs([]);
@@ -127,7 +128,7 @@ const ChoiceColumn = ({
   };
 
   const searchOnNewCenter = async (newCenter, isTrainingSearch, isJobSearch) => {
-    dispatch(setExtendedSearch(false));
+    setExtendedSearch(false);
 
     scrollToTop("choiceColumn");
 

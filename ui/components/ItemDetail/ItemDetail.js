@@ -98,9 +98,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   let actualTitle = getActualTitle({ kind, selectedItem });
 
-  const { extendedSearch, formValues } = useSelector((state) => state.trainings);
-
-  const { trainings, jobs } = useContext(SearchResultContext);
+  const { trainings, jobs, extendedSearch } = useContext(SearchResultContext);
   const currentList = getCurrentList({ trainings, jobs }, activeFilter, extendedSearch);
 
   // See https://www.npmjs.com/package/react-swipeable

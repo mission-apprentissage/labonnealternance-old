@@ -78,12 +78,14 @@ export const setFormValues = (formValues = null) => {
   };
 };
 
+/*
 export const setExtendedSearch = (extendedSearch = false) => {
   return {
     type: types.SET_EXTENDED_SEARCH,
     extendedSearch,
   };
 };
+*/
 
 export const setVisiblePane = (visiblePane = "resultList") => {
   return {
