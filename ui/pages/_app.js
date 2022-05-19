@@ -4,6 +4,8 @@ import { ConnectedRouter } from "connected-next-router";
 import { wrapper } from "store/configure-store";
 import HeadLaBonneAlternance from "components/head";
 
+import SearchResultContextProvider from "context/SearchResultContextProvider";
+
 import "public/styles/application.scss";
 
 import * as Sentry from "@sentry/node";
@@ -38,7 +40,7 @@ class LaBonneAlternance extends App {
     const { Component, pageProps, host, shouldLoadAnalytics } = this.props;
 
     return (
-      <>
+      <SearchResultContextProvider>
         <main className="c-app">
           <HeadLaBonneAlternance
             shouldLoadAnalytics={shouldLoadAnalytics}
@@ -48,7 +50,7 @@ class LaBonneAlternance extends App {
             <Component {...pageProps} />
           </ConnectedRouter>
         </main>
-      </>
+      </SearchResultContextProvider>
     );
   }
 }
