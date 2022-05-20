@@ -42,11 +42,6 @@
                     </mj-text>
                     <mj-text font-size="16px" line-height="24px">
                         
-                        <% if (data.company_type === "lba" || data.company_type === "lbb" ) { %>
-                            Bonjour, <br /><br />
-                            Voici les informations d’un candidat qui aimerait réaliser son alternance dans votre entreprise <span class="nom-societe"><%= data.company_name %></span> :
-                        <% } %>
-                        
                         <% if (data.company_type == "matcha") { %>
                             Bonjour, 
                             <br /><br />
@@ -58,6 +53,17 @@
                                 Matcha
                             </a>
                             sur le métier <%= data.job_title %>.
+                        <% } else { %>
+                            Bonjour, 
+                            <br /><br />
+                            <%= data.applicant_first_name %>
+                            <%= data.applicant_last_name %>
+                            s'intéresse à votre entreprise et a postulé spontanément à partir du site
+                            <a style="font-weight:bold; color:black" href="<%= data.urlOfDetail %>">
+                            La Bonne Alternance</a>.
+                            <br /><br />
+                            Votre entreprise <span class="nom-societe"><%= data.company_name %></span> 
+                            a été identifiée par notre algorithme comme entreprise recrutant régulièrement des alternants.
                         <% } %>
 
                     </mj-text>

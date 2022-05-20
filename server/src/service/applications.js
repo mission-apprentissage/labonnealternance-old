@@ -159,9 +159,11 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       const urlOfDetail = buildUrlOfDetail(publicUrl, query.company_type, query.job_id);
 
       const buildTopic = (aCompanyType, aJobTitle) => {
-        let res = "contact";
+        let res = "Candidature";
         if (aCompanyType === "matcha") {
           res = `Candidature en alternance - ${aJobTitle}`;
+        } else {
+          res = `Candidature spontanée en alternance - ${aJobTitle}`;
         }
         return res;
       };
