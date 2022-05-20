@@ -4,6 +4,7 @@
 [LBA6-132] Corrections en-têtes des fiches détails
 [LBA6-131] Scrolling vers les offres cassé
 [LBA6-135] Restauration info métier Matcha
+[LBA6-11] MAJ email envoyé au recruteur lors d'une candidature Matcha
 
 ## 1.18.11 [11/05/2022]
 [LBA6-32] Contrôle des emails des candidats : pas d'email temporaire
