@@ -23,7 +23,7 @@
 
         </mj-style>
         <mj-attributes>
-            <mj-text padding="0px" font-family="Roboto,sans-serif" color="#232E3C" font-size="16px" line-height="23px" />
+            <mj-text padding="0px" font-family="Roboto,Arial,sans-serif" color="#232E3C" font-size="16px" line-height="23px" />
             <mj-divider padding="0px" />
         </mj-attributes>
     </mj-head>
@@ -85,15 +85,15 @@
                     <mj-button
                         href="<%= data.publicUrl %>/formulaire-intention?intention=entretien&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat"
                         css-class="intention-link" width="250px" border-color="#000091" color="#000091"
-                        font-family="Roboto" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;Rencontrer le candidat</mj-button>
+                        font-family="Roboto,Arial,sans-serif" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;Rencontrer le candidat</mj-button>
                     <mj-button
                         href="<%= data.publicUrl %>/formulaire-intention?intention=ne_sais_pas&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat"
                         css-class="intention-link" width="250px" border-color="#000091" color="#000091"
-                        font-family="Roboto" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;En attente de décision</mj-button>
+                        font-family="Roboto,Arial,sans-serif" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;En attente de décision</mj-button>
                     <mj-button
                         href="<%= data.publicUrl %>/formulaire-intention?intention=refus&id=<%= data.id %>&iv=<%= data.iv %>&fn=<%= data.applicant_first_name %>&ln=<%= data.applicant_last_name %>&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat"
                         css-class="intention-link" width="250px" border-color="#000091" color="#000091"
-                        font-family="Roboto" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;Refuser la candidature</mj-button>
+                        font-family="Roboto,Arial,sans-serif" font-size="14px" background-color="#FFFFFF" padding-left="0px" align="left" border="1px solid #000091">&nbsp;Refuser la candidature</mj-button>
                 </mj-column>
             </mj-section>
         </mj-wrapper>
@@ -105,7 +105,7 @@
                     <mj-table line-height="100%">
                         <tr>
                             <td valign="top" style="padding-top:5px;"><img style="width:120px; height:48px;" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" /></td>
-                            <td valign="top" style="font-family: Roboto,sans-serif; font-size:16px;line-height: 22px; padding-left: 40px; padding-top:0;">
+                            <td valign="top" style="font-family: Roboto,Arial,sans-serif; font-size:16px;line-height: 22px; padding-left: 40px; padding-top:0;">
                             <% if (data.company_type == "matcha" ) { %>
                                 Vous recevez cette candidature car vous avez déposé une offre sur le service 
                                 <a style="font-weight:bold; color:black" 
