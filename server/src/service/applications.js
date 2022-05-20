@@ -40,12 +40,19 @@ const images = {
   },
 };
 
-const buildUrlOfDetail = (aPublicUrl, aCompanyType, aJobId) => {
-  let res = "";
-  if (aCompanyType === "matcha") {
-    res = `${aPublicUrl}/recherche-apprentissage?display=list&page=fiche&type=${aCompanyType}&itemId=${aJobId}`;
-  }
-  return res;
+const buildUrlOfDetail = (aPublicUrl, aQuery) => {
+  let itemId = ((aCompanyType) => {
+    if (aCompanyType === "peJob") {
+      return aQuery.job_id;
+    } else if (aCompanyType === "matcha") {
+      return aQuery.job_id;
+    } else if (aCompanyType !== "formation") {
+      return aQuery.company_siret || "siret";
+    }
+  })(aQuery.company_type);
+  let kind = aQuery.company_type;
+
+  return `${aPublicUrl}/recherche-apprentissage?display=list&page=fiche&type=${kind}&itemId=${itemId}`;
 };
 
 const initApplication = (query, companyEmail) => {
@@ -156,7 +163,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
 
       const fileContent = query.applicant_file_content;
 
-      const urlOfDetail = buildUrlOfDetail(publicUrl, query.company_type, query.job_id);
+      const urlOfDetail = buildUrlOfDetail(publicUrl, query);
 
       const buildTopic = (aCompanyType, aJobTitle) => {
         let res = "Candidature";
