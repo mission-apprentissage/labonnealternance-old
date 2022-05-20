@@ -41,8 +41,8 @@ const images = {
 };
 
 const buildUrlOfDetail = (aPublicUrl, aCompanyType, aJobId) => {
-  let res = ""
-  if (aCompanyType === 'matcha') {
+  let res = "";
+  if (aCompanyType === "matcha") {
     res = `${aPublicUrl}/recherche-apprentissage?display=list&page=fiche&type=${aCompanyType}&itemId=${aJobId}`;
   }
   return res;
@@ -156,7 +156,15 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
 
       const fileContent = query.applicant_file_content;
 
-      const urlOfDetail = buildUrlOfDetail(publicUrl, query.company_type, query.job_id)
+      const urlOfDetail = buildUrlOfDetail(publicUrl, query.company_type, query.job_id);
+
+      const buildTopic = (aCompanyType, aJobTitle) => {
+        let res = "contact";
+        if (aCompanyType === "matcha") {
+          res = `Candidature en alternance - ${aJobTitle}`;
+        }
+        return res;
+      };
 
       // Sends acknowledge email to "candidate" and application email to "company"
       const [emailCandidat, emailCompany] = await Promise.all([
@@ -174,7 +182,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         ),
         mailer.sendEmail(
           application.company_email,
-          `Candidature en alternance - ${application.job_title}`,
+          buildTopic(application.company_type, application.job_title),
           getEmailTemplate(emailTemplates.entreprise),
           { ...application._doc, ...images, ...encryptedId, publicUrl, urlOfDetail },
           [
