@@ -3,7 +3,6 @@ import distance from "@turf/distance";
 import { MapPopup } from "../components/SearchForTrainingsAndJobs/components";
 import ReactDOM from "react-dom";
 import * as mapboxgl from "mapbox-gl";
-import { Provider } from "react-redux";
 import { fetchAddresses } from "../services/baseAdresse";
 import { scrollToElementInContainer, getItemElement } from "./tools";
 import { isArea } from "./isArea";
@@ -337,15 +336,13 @@ const buildPopup = ({ item, type, store, selectItemOnMap, setSelectedItem, setSe
   const popupNode = document.createElement("div");
 
   ReactDOM.render(
-    <Provider store={store}>
-      <MapPopup
-        handleSelectItem={selectItemOnMap}
-        setSelectedItem={setSelectedItem}
-        setSelectedMapPopupItem={setSelectedMapPopupItem}
-        type={type}
-        item={item}
-      />
-    </Provider>,
+    <MapPopup
+      handleSelectItem={selectItemOnMap}
+      setSelectedItem={setSelectedItem}
+      setSelectedMapPopupItem={setSelectedMapPopupItem}
+      type={type}
+      item={item}
+    />,
     popupNode
   );
 
