@@ -43,13 +43,13 @@
                     <mj-text font-size="16px" line-height="24px">
                         
                         <% if (data.company_type === "lba" || data.company_type === "lbb" ) { %>
-                            Bonjour, <br/><br/>
+                            Bonjour, <br /><br />
                             Voici les informations d’un candidat qui aimerait réaliser son alternance dans votre entreprise <span class="nom-societe"><%= data.company_name %></span> :
                         <% } %>
                         
                         <% if (data.company_type == "matcha") { %>
                             Bonjour, 
-                            <br/><br/>
+                            <br /><br />
 
                             <%= data.applicant_first_name %> <%= data.applicant_last_name %> 
                             s'intéresse à votre entreprise et a postulé à votre offre 
@@ -112,7 +112,7 @@
                                     href="https://matcha.apprentissage.beta.gouv.fr/">
                                     Matcha
                                 </a>.
-                                <br/><br/>
+                                <br /><br />
                                 Votre offre est donc visible sur :
                                 <ul>
                                     <li>
@@ -172,13 +172,13 @@
                     <td valign="top" style="padding-top:5px;"><img width="89" height="auto" src="<%= data.images.logoRF %>" alt="Logo République française" /></td>
                     <td valign="top" style="line-height: 22px; padding-left: 40px; padding-top:0;">
                         Cet e-mail a été envoyé à <%= data.company_email %>
-                        <br />
+                        <br  />
                         Vous avez reçu ce mail car vous avez déposé une offre sur le formulaire Matcha.
-                        <br />
+                        <br  />
                         Merci de ne pas répondre à cet e-mail. Pour toute question ou besoin d’aide, vous pouvez écrire à labonnealternance@apprentissage.beta.gouv.fr
-                        <br />
+                        <br  />
                         Pour vous désinscrire, <a style="font-weight:bold; text-decoration: underline; color:black" href="https://labonnealternance.pole-emploi.fr/acces-recruteur?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur">cliquez ici</a>
-                        <br />
+                        <br  />
                         Voir cet email dans votre navigateur
                     </td>
                     </tr>
