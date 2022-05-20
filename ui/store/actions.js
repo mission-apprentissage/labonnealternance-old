@@ -66,10 +66,3 @@ export const setItemParameters = (itemParameters = true) => {
     itemParameters,
   };
 };
-
-export const setOpcoFilter = (opcoFilter = null) => {
-  return {
-    type: types.SET_OPCO_FILTER,
-    opcoFilter,
-  };
-};

@@ -5,12 +5,15 @@ import { initParametersFromQuery } from "services/config";
 import { ScopeContextProvider } from "context/ScopeContext.js";
 import { NextSeo } from "next-seo";
 import Head from "next/head";
+import { ParameterContext } from "../context/ParameterContextProvider";
 
 const RechercheApprentissageFormation = () => {
   const dispatch = useDispatch();
 
+  const parameterContext = React.useContext(ParameterContext);
+
   useEffect(() => {
-    initParametersFromQuery({ dispatch });
+    initParametersFromQuery({ dispatch, parameterContext });
   }, []);
 
   return (

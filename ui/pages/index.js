@@ -15,12 +15,15 @@ import howtocircle5 from "public/images/howtocircle5.svg";
 import axios from "axios";
 import csvToArray from "utils/csvToArray.js";
 import { some } from "lodash";
+import { ParameterContext } from "../context/ParameterContextProvider";
 
 const Home = (props) => {
   const dispatch = useDispatch();
 
+  const parameterContext = React.useContext(ParameterContext);
+
   useEffect(() => {
-    initParametersFromQuery({ dispatch, shouldPush: "shouldPushPathname" });
+    initParametersFromQuery({ dispatch, shouldPush: "shouldPushPathname", parameterContext });
   }, []);
 
   return (

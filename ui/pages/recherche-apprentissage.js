@@ -4,14 +4,17 @@ import { useDispatch } from "react-redux";
 import { initParametersFromQuery } from "services/config";
 import { ScopeContextProvider } from "context/ScopeContext.js";
 import { NextSeo } from "next-seo";
+import { ParameterContext } from "../context/ParameterContextProvider";
 
 import Head from "next/head";
 
 const RechercheApprentissage = () => {
   const dispatch = useDispatch();
 
+  const parameterContext = React.useContext(ParameterContext);
+
   useEffect(() => {
-    initParametersFromQuery({ dispatch });
+    initParametersFromQuery({ dispatch, parameterContext });
   }, []);
 
   return (

@@ -82,11 +82,10 @@ export const getItemParameters = () => {
   return itemParameters;
 };
 
-export const getOpcoFilter = ({ dispatch }) => {
+export const getOpcoFilter = ({ parameterContext }) => {
   let opcoFilter = getValueFromPath("opco");
-
   if (opcoFilter) {
-    dispatch(setOpcoFilter(opcoFilter));
+    parameterContext.setOpcoFilter(opcoFilter);
   }
 };
 
@@ -151,7 +150,7 @@ const buildFormValuesFromParameters = (params) => {
   return formValues;
 };
 
-export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
+export const initParametersFromQuery = ({ dispatch, shouldPush, parameterContext }) => {
   let hasParameters = false;
 
   const widgetParameters = getWidgetParameters();
@@ -162,7 +161,7 @@ export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
     dispatch(setWidgetParameters(widgetParameters));
   }
 
-  getOpcoFilter({ dispatch });
+  getOpcoFilter({ parameterContext });
 
   const itemParameters = getItemParameters();
   if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {

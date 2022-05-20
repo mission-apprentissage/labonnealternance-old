@@ -9,7 +9,6 @@ const initialState = {
   shouldMapBeVisible: false,
   widgetParameters: null,
   itemParameters: null,
-  opcoFilter: null,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -63,11 +62,6 @@ const mainReducer = (state = initialState, action) => {
     res = {
       ...state_copy,
       itemParameters: action.itemParameters,
-    };
-  } else if (action.type === actionsTypes.SET_OPCO_FILTER) {
-    res = {
-      ...state_copy,
-      opcoFilter: action.opcoFilter,
     };
   } else {
     res = state_copy;

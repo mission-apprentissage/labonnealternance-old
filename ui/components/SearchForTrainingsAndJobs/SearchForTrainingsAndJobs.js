@@ -32,6 +32,7 @@ import {
 
 import { ScopeContext } from "context/ScopeContext";
 import { SearchResultContext } from "context/SearchResultContextProvider";
+import { ParameterContext } from "context/ParameterContextProvider";
 
 import Map from "components/Map";
 import { Row, Col } from "reactstrap";
@@ -44,11 +45,13 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useContext(ScopeContext);
   
-  const { widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
+  const { widgetParameters, visiblePane, isFormVisible, formValues } = useSelector(
     (state) => state.trainings
   );
 
   const { hasSearch, trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch, setHasSearch } = useContext(SearchResultContext);
+
+  const { opcoFilter } = useContext(ParameterContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
