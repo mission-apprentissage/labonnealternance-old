@@ -2,16 +2,17 @@ import React, { useEffect } from "react";
 
 import { fetchAddressFromCoordinates } from "services/baseAdresse";
 
-import { setWidgetParameters, setItemParameters } from "store/actions";
-
 import { logError } from "utils/tools";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { ParameterContext } from "../../context/ParameterContextProvider";
 
 const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleItemLoad }) => {
-  const dispatch = useDispatch();
+  const { shouldExecuteSearch, formValues } = useSelector((state) => state.trainings);
 
-  const { widgetParameters, itemParameters, shouldExecuteSearch, formValues } = useSelector((state) => state.trainings);
+  const { widgetParameters, itemParameters, setWidgetParameters, setItemParameters } = React.useContext(
+    ParameterContext
+  );
 
   useEffect(() => {
     // initialisation par les query params
@@ -23,16 +24,16 @@ const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleIt
     ) {
       // launchWidget AND item
       launchWidgetSearch({ selectItem: true });
-      dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
-      dispatch(setItemParameters({ ...itemParameters, applyItemParameters: false })); // action one shot
+      setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false }); // action one shot
+      setItemParameters({ ...itemParameters, applyItemParameters: false }); // action one shot
     } else if (widgetParameters && widgetParameters.applyWidgetParameters) {
       // launchWidget only
       launchWidgetSearch({ selectItem: false });
-      dispatch(setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false })); // action one shot
+      setWidgetParameters({ ...widgetParameters, applyWidgetParameters: false }); // action one shot
     } else if (itemParameters && itemParameters.applyItemParameters) {
       // launchItem only
       launchItemFetch();
-      dispatch(setItemParameters({ ...itemParameters, applyItemParameters: false })); // action one shot
+      setItemParameters({ ...itemParameters, applyItemParameters: false }); // action one shot
     } else {
       setIsLoading(false);
     }

@@ -45,13 +45,13 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useContext(ScopeContext);
   
-  const { widgetParameters, visiblePane, isFormVisible, formValues } = useSelector(
+  const { visiblePane, isFormVisible, formValues } = useSelector(
     (state) => state.trainings
   );
 
   const { hasSearch, trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch, setHasSearch } = useContext(SearchResultContext);
 
-  const { opcoFilter } = useContext(ParameterContext);
+  const { opcoFilter, widgetParameters } = useContext(ParameterContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);

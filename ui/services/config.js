@@ -1,7 +1,6 @@
 import { getValueFromPath } from "utils/tools";
 import { campaignParameters } from "utils/campaignParameters";
 import { testingParameters } from "../utils/testingParameters";
-import { setWidgetParameters, setItemParameters, setOpcoFilter } from "store/actions";
 import { push } from "connected-next-router";
 
 export const getWidgetParameters = () => {
@@ -158,14 +157,14 @@ export const initParametersFromQuery = ({ dispatch, shouldPush, parameterContext
     if (widgetParameters.applyFormValues) {
       widgetParameters.formValues = buildFormValuesFromParameters(widgetParameters.parameters);
     }
-    dispatch(setWidgetParameters(widgetParameters));
+    parameterContext.setWidgetParameters(widgetParameters);
   }
 
   getOpcoFilter({ parameterContext });
 
   const itemParameters = getItemParameters();
   if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {
-    dispatch(setItemParameters(itemParameters));
+    parameterContext.setItemParameters(itemParameters);
     hasParameters = true;
   }
 

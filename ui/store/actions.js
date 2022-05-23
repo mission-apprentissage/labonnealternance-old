@@ -5,8 +5,6 @@ export const types = {
   SET_IS_FORM_VISIBLE: "trainings/SET_IS_FORM_VISIBLE",
   SET_SHOULD_EXECUTE_SEARCH: "trainings/SET_SHOULD_EXECUTE_SEARCH",
   SET_SHOULD_MAP_BE_VISIBLE: "trainings/SET_SHOULD_MAP_BE_VISIBLE",
-  SET_WIDGET_PARAMETERS: "trainings/SET_WIDGET_PARAMETERS",
-  SET_ITEM_PARAMETERS: "trainings/SET_ITEM_PARAMETERS",
   SET_TRAININGS_AND_SELECTED_ITEM: "trainings/SET_TRAININGS_AND_SELECTED_ITEM",
   SET_OPCO_FILTER: "trainings/SET_OPCO_FILTER",
 };
@@ -50,19 +48,5 @@ export const setShouldMapBeVisible = (shouldMapBeVisible = false) => {
   return {
     type: types.SET_SHOULD_MAP_BE_VISIBLE,
     shouldMapBeVisible,
-  };
-};
-
-export const setWidgetParameters = (widgetParameters = true) => {
-  return {
-    type: types.SET_WIDGET_PARAMETERS,
-    widgetParameters,
-  };
-};
-
-export const setItemParameters = (itemParameters = true) => {
-  return {
-    type: types.SET_ITEM_PARAMETERS,
-    itemParameters,
   };
 };

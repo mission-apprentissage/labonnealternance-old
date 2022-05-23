@@ -9,11 +9,13 @@ import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
-import { SearchResultContext } from "context/SearchResultContextProvider";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
+import { ParameterContext } from "../../context/ParameterContextProvider";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
-  const { formValues, itemParameters } = useSelector((state) => state.trainings);
+  const { formValues } = useSelector((state) => state.trainings);
   const { selectedMapPopupItem } = React.useContext(SearchResultContext);
+  const { itemParameters } = React.useContext(ParameterContext);
   const scopeContext = useContext(ScopeContext);
 
   const currentSearchRadius = formValues?.radius || 30;

@@ -1,12 +1,13 @@
 import React from "react";
 import logoLBA from "../../public/images/logo-noir-seul.svg";
 import { push } from "connected-next-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { ParameterContext } from "../../context/ParameterContextProvider";
 
 const LogoIdea = () => {
   const dispatch = useDispatch();
 
-  const { widgetParameters } = useSelector((state) => state.trainings);
+  const { widgetParameters } = React.useContext(ParameterContext);
 
   const goToLbaHome = (e) => {
     if (widgetParameters) {
