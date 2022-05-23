@@ -16,13 +16,6 @@ export const setFormValues = (formValues = null) => {
   };
 };
 
-export const setVisiblePane = (visiblePane = "resultList") => {
-  return {
-    type: types.SET_VISIBLE_PANE,
-    visiblePane,
-  };
-};
-
 export const setCurrentPage = (currentPage = "") => {
   return {
     type: types.SET_CURRENT_PAGE,

@@ -2,7 +2,6 @@ import { types as actionsTypes } from "./actions";
 
 const initialState = {
   formValues: null,
-  visiblePane: "resultList",
   currentPage: "",
   isFormVisible: true,
   shouldExecuteSearch: false,
@@ -21,11 +20,6 @@ const mainReducer = (state = initialState, action) => {
     res = {
       ...state_copy,
       formValues: action.formValues,
-    };
-  } else if (action.type === actionsTypes.SET_VISIBLE_PANE) {
-    res = {
-      ...state_copy,
-      visiblePane: action.visiblePane,
     };
   } else if (action.type === actionsTypes.SET_CURRENT_PAGE) {
     res = {

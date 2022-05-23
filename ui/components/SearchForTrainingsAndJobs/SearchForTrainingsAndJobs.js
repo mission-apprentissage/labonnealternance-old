@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import pushHistory from "utils/pushHistory";
 import {
   setIsFormVisible,
-  setVisiblePane,
   setShouldMapBeVisible,
   setFormValues,  
 } from "store/actions";
@@ -45,13 +44,13 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useContext(ScopeContext);
   
-  const { visiblePane, isFormVisible, formValues } = useSelector(
+  const { isFormVisible, formValues } = useSelector(
     (state) => state.trainings
   );
 
   const { hasSearch, trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch, setHasSearch } = useContext(SearchResultContext);
 
-  const { opcoFilter, widgetParameters } = useContext(ParameterContext);
+  const { opcoFilter, widgetParameters, visiblePane, setVisiblePane } = useContext(ParameterContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
@@ -254,7 +253,7 @@ const SearchForTrainingsAndJobs = () => {
     if (e) {
       e.stopPropagation();
     }
-    dispatch(setVisiblePane("resultList")); // affichage de la colonne resultList / searchForm
+    setVisiblePane("resultList"); // affichage de la colonne resultList / searchForm
     dispatch(setIsFormVisible(true));
 
     if (!doNotSaveToHistory) {
@@ -271,7 +270,7 @@ const SearchForTrainingsAndJobs = () => {
     if (!isMapInitialized) {
       dispatch(setShouldMapBeVisible(true));
     }
-    dispatch(setVisiblePane("resultMap"));
+    setVisiblePane("resultMap");
 
     if (!doNotSaveToHistory) {
       pushHistory({ router, scopeContext, display: "map", searchParameters:formValues, searchTimestamp: currentSearch });
@@ -287,7 +286,7 @@ const SearchForTrainingsAndJobs = () => {
     if (e) {
       e.stopPropagation();
     }
-    dispatch(setVisiblePane("resultList"));
+    setVisiblePane("resultList");
     dispatch(setIsFormVisible(false));
 
     if (!doNotSaveToHistory) {

@@ -71,7 +71,7 @@ const ParameterContextProvider = ({ children }) => {
     setFormValues: (formValues = null) => {
       dispatch({ type: actions.SET_FORM_VALUES, formValues });
     },
-    setVisiblePan: (visiblePane = "resultList") => {
+    setVisiblePane: (visiblePane = "resultList") => {
       dispatch({ type: actions.SET_VISIBLE_PANE, visiblePane });
     },
     setCurrentPage: (currentPage = "") => {

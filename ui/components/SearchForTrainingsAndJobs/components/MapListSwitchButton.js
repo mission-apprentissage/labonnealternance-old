@@ -1,12 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import toggleList from "public/images/icons/toggleList.svg";
 import toggleCard from "public/images/icons/toggleCard.svg";
-import { SearchResultContext } from "context/SearchResultContextProvider";
+import { SearchResultContext } from "../../../context/SearchResultContextProvider";
+import { ParameterContext } from "../../../context/ParameterContextProvider";
 
 const MapListSwitchButton = ({ showResultMap, showResultList }) => {
-  const { visiblePane } = useSelector((state) => state.trainings);
   const { hasSearch } = React.useContext(SearchResultContext);
+  const { visiblePane } = React.useContext(ParameterContext);
 
   if (visiblePane === "resultList") {
     if (hasSearch)
