@@ -4,16 +4,17 @@ import { fetchAddressFromCoordinates } from "services/baseAdresse";
 
 import { logError } from "utils/tools";
 
-import { useSelector } from "react-redux";
 import { ParameterContext } from "../../context/ParameterContextProvider";
 import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleItemLoad }) => {
-  const { shouldExecuteSearch } = useSelector((state) => state.trainings);
-
-  const { widgetParameters, itemParameters, setWidgetParameters, setItemParameters } = React.useContext(
-    ParameterContext
-  );
+  const {
+    widgetParameters,
+    itemParameters,
+    setWidgetParameters,
+    setItemParameters,
+    shouldExecuteSearch,
+  } = React.useContext(ParameterContext);
   const { formValues } = React.useContext(DisplayContext);
 
   useEffect(() => {
