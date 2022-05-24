@@ -1,7 +1,6 @@
 import { types as actionsTypes } from "./actions";
 
 const initialState = {
-  formValues: null,
   currentPage: "",
   isFormVisible: true,
   shouldExecuteSearch: false,
@@ -16,12 +15,7 @@ const mainReducer = (state = initialState, action) => {
   let state_copy = JSON.parse(JSON.stringify(state));
   let res = {};
 
-  if (action.type === actionsTypes.SET_FORM_VALUES) {
-    res = {
-      ...state_copy,
-      formValues: action.formValues,
-    };
-  } else if (action.type === actionsTypes.SET_CURRENT_PAGE) {
+  if (action.type === actionsTypes.SET_CURRENT_PAGE) {
     res = {
       ...state_copy,
       currentPage: action.currentPage,

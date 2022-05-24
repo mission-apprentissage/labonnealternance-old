@@ -11,7 +11,6 @@ import pushHistory from "utils/pushHistory";
 import {
   setIsFormVisible,
   setShouldMapBeVisible,
-  setFormValues,  
 } from "store/actions";
 
 import {
@@ -31,7 +30,7 @@ import {
 
 import { ScopeContext } from "context/ScopeContext";
 import { SearchResultContext } from "context/SearchResultContextProvider";
-import { ParameterContext } from "context/ParameterContextProvider";
+import { ParameterContext } from "../../context/ParameterContextProvider";
 
 import Map from "components/Map";
 import { Row, Col } from "reactstrap";
@@ -44,13 +43,13 @@ const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useContext(ScopeContext);
   
-  const { isFormVisible, formValues } = useSelector(
+  const { isFormVisible } = useSelector(
     (state) => state.trainings
   );
 
   const { hasSearch, trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch, setHasSearch } = useContext(SearchResultContext);
 
-  const { opcoFilter, widgetParameters, visiblePane, setVisiblePane } = useContext(ParameterContext);
+  const { formValues, setFormValues, opcoFilter, widgetParameters, visiblePane, setVisiblePane } = useContext(ParameterContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
@@ -159,7 +158,7 @@ const SearchForTrainingsAndJobs = () => {
     if(searchCenter) { flyToLocation({ center: searchCenter, zoom: 10 }); }
     else { flyToLocation({ center: coordinatesOfFrance, zoom: 4 }); }
   
-    dispatch(setFormValues({ ...values }));
+    setFormValues({ ...values });
 
     if (scopeContext.isTraining) {
       searchForTrainings({values,searchTimestamp,followUpItem,selectFollowUpItem});

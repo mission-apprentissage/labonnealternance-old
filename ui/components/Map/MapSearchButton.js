@@ -1,11 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+
 import refreshSearchOnMap from "public/images/icons/refreshSearchOnMap.svg";
 import lookingGlassOnMap from "public/images/glass.svg";
-import { SearchResultContext } from "context/SearchResultContextProvider";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
+import { ParameterContext } from "../../context/ParameterContextProvider";
 
 const MapSearchButton = ({ handleSearchClick }) => {
-  const { formValues } = useSelector((state) => state.trainings);
+  const { formValues } = React.useContext(ParameterContext);
   const { hasSearch } = React.useContext(SearchResultContext);
 
   return hasSearch ? (

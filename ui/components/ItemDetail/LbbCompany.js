@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import jobIcon from "../../public/images/icons/job.svg";
 import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
-import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
@@ -10,10 +9,11 @@ import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
 import { SearchResultContext } from "context/SearchResultContextProvider";
+import { ParameterContext } from "../../context/ParameterContextProvider";
 
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
-  const { formValues } = useSelector((state) => state.trainings);
   const { selectedMapPopupItem } = React.useContext(SearchResultContext);
+  const { formValues } = React.useContext(ParameterContext);
 
   const currentSearchRadius = formValues?.radius || 30;
 

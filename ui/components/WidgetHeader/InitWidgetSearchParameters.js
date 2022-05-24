@@ -8,9 +8,9 @@ import { useSelector } from "react-redux";
 import { ParameterContext } from "../../context/ParameterContextProvider";
 
 const InitWidgetSearchParameters = ({ setIsLoading, handleSearchSubmit, handleItemLoad }) => {
-  const { shouldExecuteSearch, formValues } = useSelector((state) => state.trainings);
+  const { shouldExecuteSearch } = useSelector((state) => state.trainings);
 
-  const { widgetParameters, itemParameters, setWidgetParameters, setItemParameters } = React.useContext(
+  const { widgetParameters, itemParameters, setWidgetParameters, setItemParameters, formValues } = React.useContext(
     ParameterContext
   );
 

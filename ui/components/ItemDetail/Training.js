@@ -13,9 +13,8 @@ import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { ParameterContext } from "../../context/ParameterContextProvider";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
-  const { formValues } = useSelector((state) => state.trainings);
   const { selectedMapPopupItem } = React.useContext(SearchResultContext);
-  const { itemParameters } = React.useContext(ParameterContext);
+  const { itemParameters, formValues } = React.useContext(ParameterContext);
   const scopeContext = useContext(ScopeContext);
 
   const currentSearchRadius = formValues?.radius || 30;

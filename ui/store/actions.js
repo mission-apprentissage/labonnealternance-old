@@ -1,5 +1,4 @@
 export const types = {
-  SET_FORM_VALUES: "trainings/SET_FORM_VALUES",
   SET_VISIBLE_PANE: "trainings/SET_VISIBLE_PANE",
   SET_CURRENT_PAGE: "trainings/SET_CURRENT_PAGE",
   SET_IS_FORM_VISIBLE: "trainings/SET_IS_FORM_VISIBLE",
@@ -7,13 +6,6 @@ export const types = {
   SET_SHOULD_MAP_BE_VISIBLE: "trainings/SET_SHOULD_MAP_BE_VISIBLE",
   SET_TRAININGS_AND_SELECTED_ITEM: "trainings/SET_TRAININGS_AND_SELECTED_ITEM",
   SET_OPCO_FILTER: "trainings/SET_OPCO_FILTER",
-};
-
-export const setFormValues = (formValues = null) => {
-  return {
-    type: types.SET_FORM_VALUES,
-    formValues,
-  };
 };
 
 export const setCurrentPage = (currentPage = "") => {

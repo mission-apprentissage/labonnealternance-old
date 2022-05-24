@@ -6,8 +6,9 @@ import { ScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
 import MapSearchButton from "./MapSearchButton";
 import { map, initializeMap, isMapInitialized, setSelectedMarker } from "utils/mapTools";
-import { fetchAddressFromCoordinates } from "services/baseAdresse";
-import { SearchResultContext } from "context/SearchResultContextProvider";
+import { fetchAddressFromCoordinates } from "../../services/baseAdresse";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
+import { ParameterContext } from "../../context/ParameterContextProvider";
 
 let mapPosition = {
   lat: null,
@@ -19,9 +20,11 @@ let shouldHandleMapSearch = true;
 
 const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   const store = useStore();
-  const { formValues, shouldMapBeVisible } = useSelector((state) => {
+  const { shouldMapBeVisible } = useSelector((state) => {
     return state.trainings;
   });
+
+  const { formValues } = useContext(ParameterContext);
 
   const { trainings, jobs, setSelectedItem, setSelectedMapPopupItem } = useContext(SearchResultContext);
 

@@ -19,9 +19,9 @@ import { SearchResultContext } from "../../../context/SearchResultContextProvide
 import { ParameterContext } from "../../../context/ParameterContextProvider";
 
 const SearchForm = (props) => {
-  const { isFormVisible, formValues } = useSelector((state) => state.trainings);
+  const { isFormVisible } = useSelector((state) => state.trainings);
   const { hasSearch } = useContext(SearchResultContext);
-  const { widgetParameters } = React.useContext(ParameterContext);
+  const { widgetParameters, formValues } = React.useContext(ParameterContext);
 
   useEffect(() => {
     setLocationRadius(contextFormValues?.radius ?? 30);

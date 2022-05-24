@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { ScopeContext } from "../../../context/ScopeContext";
 import { SearchResultContext } from "../../../context/SearchResultContextProvider";
-import { useDispatch, useSelector } from "react-redux";
+import { ParameterContext } from "../../../context/ParameterContextProvider";
 import distance from "@turf/distance";
 import { scrollToTop, scrollToElementInContainer, getItemElement } from "../../../utils/tools";
 import ItemDetail from "../../../components/ItemDetail/ItemDetail";
@@ -14,7 +14,6 @@ import pushHistory from "../../../utils/pushHistory";
 import dosearchImage from "public/images/dosearch.svg";
 import whispers from "../services/whispers.js";
 
-import { setFormValues } from "../../../store/actions";
 import { flyToMarker, flyToLocation, closeMapPopups, setSelectedMarker } from "../../../utils/mapTools";
 
 const ChoiceColumn = ({
@@ -35,7 +34,6 @@ const ChoiceColumn = ({
   activeFilter,
   setActiveFilter,
 }) => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const scopeContext = useContext(ScopeContext);
   const {
@@ -49,7 +47,7 @@ const ChoiceColumn = ({
     setItemToScrollTo,
     setExtendedSearch,
   } = useContext(SearchResultContext);
-  const { formValues /*, currentPage*/ } = useSelector((state) => state.trainings);
+  const { formValues, setFormValues } = useContext(ParameterContext);
 
   useEffect(() => {
     if (itemToScrollTo) {
@@ -134,7 +132,7 @@ const ChoiceColumn = ({
 
     formValues.location = newCenter;
 
-    dispatch(setFormValues(formValues));
+    setFormValues(formValues);
 
     // mise à jour des infos de distance des formations par rapport au nouveau centre de recherche
     if (isJobSearch) {
