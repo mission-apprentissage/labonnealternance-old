@@ -79,7 +79,6 @@ const SearchForTrainingsAndJobs = () => {
         showResultMap,
         showResultList,
         showSearchForm,
-        dispatch,
         setTrainings,
         setJobs,
         setActiveFilter,
@@ -179,7 +178,6 @@ const SearchForTrainingsAndJobs = () => {
 
     loadItem({
       item,
-      dispatch,
       setTrainings,
       setHasSearch,
       setIsFormVisible,
@@ -204,7 +202,6 @@ const SearchForTrainingsAndJobs = () => {
     searchForTrainingsFunction({
       values,
       searchTimestamp,
-      dispatch,
       setIsTrainingSearchLoading,
       setTrainingSearchError,
       clearTrainings,
@@ -224,7 +221,6 @@ const SearchForTrainingsAndJobs = () => {
       values,
       searchTimestamp,
       setIsJobSearchLoading,
-      dispatch,
       setHasSearch,
       setJobSearchError,
       setAllJobSearchError,

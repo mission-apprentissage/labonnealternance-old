@@ -16,7 +16,6 @@ import { storeTrainingsInSession } from "./handleSessionStorage";
 
 export const loadItem = async ({
   item,
-  dispatch,
   setTrainings,
   setHasSearch,
   setIsFormVisible,
@@ -79,7 +78,6 @@ export const loadItem = async ({
         values,
         searchTimestamp,
         setIsJobSearchLoading,
-        dispatch,
         setHasSearch,
         setJobSearchError,
         computeMissingPositionAndDistance,
