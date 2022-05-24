@@ -13,7 +13,6 @@ let isMapInitialized = false;
 
 const initializeMap = ({
   mapContainer,
-  store,
   unselectItem,
   trainings,
   jobs,
@@ -99,7 +98,6 @@ const initializeMap = ({
             onLayerClick(
               e,
               "job",
-              store,
               selectItemOnMap,
               unselectItem,
               unselectMapPopupItem,
@@ -184,7 +182,6 @@ const initializeMap = ({
             onLayerClick(
               e,
               "training",
-              store,
               selectItemOnMap,
               unselectItem,
               unselectMapPopupItem,
@@ -271,7 +268,6 @@ const initializeMap = ({
 const onLayerClick = (
   e,
   layer,
-  store,
   selectItemOnMap,
   unselectItem,
   unselectMapPopupItem,
@@ -305,7 +301,7 @@ const onLayerClick = (
     currentPopup = new mapboxgl.Popup()
       .setLngLat(coordinates)
       .setDOMContent(
-        buildPopup({ item, type: item.ideaType, store, selectItemOnMap, setSelectedItem, setSelectedMapPopupItem })
+        buildPopup({ item, type: item.ideaType, selectItemOnMap, setSelectedItem, setSelectedMapPopupItem })
       )
       .addTo(map);
 
@@ -332,7 +328,7 @@ const flyToLocation = (location) => {
   }
 };
 
-const buildPopup = ({ item, type, store, selectItemOnMap, setSelectedItem, setSelectedMapPopupItem }) => {
+const buildPopup = ({ item, type, selectItemOnMap, setSelectedItem, setSelectedMapPopupItem }) => {
   const popupNode = document.createElement("div");
 
   ReactDOM.render(

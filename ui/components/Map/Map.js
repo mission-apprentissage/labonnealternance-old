@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { useRouter } from "next/router";
-import { useStore, useSelector } from "react-redux";
 import { currentPage, setCurrentPage, currentSearch } from "utils/currentPage.js";
 import { ScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
@@ -19,12 +18,7 @@ let mapPosition = {
 let shouldHandleMapSearch = true;
 
 const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
-  const store = useStore();
-  const { shouldMapBeVisible } = useSelector((state) => {
-    return state.trainings;
-  });
-
-  const { formValues } = useContext(DisplayContext);
+  const { formValues, shouldMapBeVisible } = useContext(DisplayContext);
 
   const { trainings, jobs, setSelectedItem, setSelectedMapPopupItem } = useContext(SearchResultContext);
 
@@ -121,7 +115,6 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
       setMapInitialized(true);
       initializeMap({
         mapContainer,
-        store,
         unselectItem,
         trainings,
         jobs,
@@ -141,7 +134,6 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
       setTimeout(() => {
         initializeMap({
           mapContainer,
-          store,
           unselectItem,
           trainings,
           jobs,
