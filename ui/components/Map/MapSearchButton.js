@@ -3,10 +3,10 @@ import React from "react";
 import refreshSearchOnMap from "public/images/icons/refreshSearchOnMap.svg";
 import lookingGlassOnMap from "public/images/glass.svg";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
-import { ParameterContext } from "../../context/ParameterContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const MapSearchButton = ({ handleSearchClick }) => {
-  const { formValues } = React.useContext(ParameterContext);
+  const { formValues } = React.useContext(DisplayContext);
   const { hasSearch } = React.useContext(SearchResultContext);
 
   return hasSearch ? (

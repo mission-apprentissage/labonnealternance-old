@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { push } from "connected-next-router";
 import { setShouldExecuteSearch } from "../../store/actions";
 
-import { ParameterContext } from "../../context/ParameterContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 import { pick } from "lodash";
 import SearchForm from "../../components/SearchForTrainingsAndJobs/components/SearchForm";
@@ -13,7 +13,7 @@ import WidgetHeader from "../../components/WidgetHeader/WidgetHeader";
 const StartForm = (props) => {
   const dispatch = useDispatch();
 
-  const { setFormValues } = React.useContext(ParameterContext);
+  const { setFormValues } = React.useContext(DisplayContext);
 
   const handleSearchSubmit = ({ values }) => {
     setFormValues(pick(values, ["job", "location", "radius", "diploma"]));

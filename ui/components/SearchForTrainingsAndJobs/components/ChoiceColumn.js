@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { ScopeContext } from "../../../context/ScopeContext";
 import { SearchResultContext } from "../../../context/SearchResultContextProvider";
-import { ParameterContext } from "../../../context/ParameterContextProvider";
+import { DisplayContext } from "../../../context/DisplayContextProvider";
 import distance from "@turf/distance";
 import { scrollToTop, scrollToElementInContainer, getItemElement } from "../../../utils/tools";
 import ItemDetail from "../../../components/ItemDetail/ItemDetail";
@@ -47,7 +47,7 @@ const ChoiceColumn = ({
     setItemToScrollTo,
     setExtendedSearch,
   } = useContext(SearchResultContext);
-  const { formValues, setFormValues } = useContext(ParameterContext);
+  const { formValues, setFormValues } = useContext(DisplayContext);
 
   useEffect(() => {
     if (itemToScrollTo) {

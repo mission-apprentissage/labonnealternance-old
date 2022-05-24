@@ -17,11 +17,13 @@ import buildAvailableDiplomas from "../../../services/buildAvailableDiplomas";
 import validateFormik from "../../../services/validateFormik";
 import { SearchResultContext } from "../../../context/SearchResultContextProvider";
 import { ParameterContext } from "../../../context/ParameterContextProvider";
+import { DisplayContext } from "../../../context/DisplayContextProvider";
 
 const SearchForm = (props) => {
   const { isFormVisible } = useSelector((state) => state.trainings);
   const { hasSearch } = useContext(SearchResultContext);
-  const { widgetParameters, formValues } = React.useContext(ParameterContext);
+  const { widgetParameters } = React.useContext(ParameterContext);
+  const { formValues } = React.useContext(DisplayContext);
 
   useEffect(() => {
     setLocationRadius(contextFormValues?.radius ?? 30);

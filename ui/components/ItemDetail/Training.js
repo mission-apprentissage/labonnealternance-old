@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import trainingIcon from "../../public/images/icons/book.svg";
-import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
 import { ScopeContext } from "../../context/ScopeContext";
@@ -11,10 +10,12 @@ import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { ParameterContext } from "../../context/ParameterContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
   const { selectedMapPopupItem } = React.useContext(SearchResultContext);
-  const { itemParameters, formValues } = React.useContext(ParameterContext);
+  const { itemParameters } = React.useContext(ParameterContext);
+  const { formValues } = React.useContext(DisplayContext);
   const scopeContext = useContext(ScopeContext);
 
   const currentSearchRadius = formValues?.radius || 30;

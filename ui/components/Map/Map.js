@@ -8,7 +8,7 @@ import MapSearchButton from "./MapSearchButton";
 import { map, initializeMap, isMapInitialized, setSelectedMarker } from "utils/mapTools";
 import { fetchAddressFromCoordinates } from "../../services/baseAdresse";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
-import { ParameterContext } from "../../context/ParameterContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 let mapPosition = {
   lat: null,
@@ -24,7 +24,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
     return state.trainings;
   });
 
-  const { formValues } = useContext(ParameterContext);
+  const { formValues } = useContext(DisplayContext);
 
   const { trainings, jobs, setSelectedItem, setSelectedMapPopupItem } = useContext(SearchResultContext);
 

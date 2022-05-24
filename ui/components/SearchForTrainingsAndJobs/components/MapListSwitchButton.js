@@ -2,11 +2,11 @@ import React from "react";
 import toggleList from "public/images/icons/toggleList.svg";
 import toggleCard from "public/images/icons/toggleCard.svg";
 import { SearchResultContext } from "../../../context/SearchResultContextProvider";
-import { ParameterContext } from "../../../context/ParameterContextProvider";
+import { DisplayContext } from "../../../context/DisplayContextProvider";
 
 const MapListSwitchButton = ({ showResultMap, showResultList }) => {
   const { hasSearch } = React.useContext(SearchResultContext);
-  const { visiblePane } = React.useContext(ParameterContext);
+  const { visiblePane } = React.useContext(DisplayContext);
 
   if (visiblePane === "resultList") {
     if (hasSearch)

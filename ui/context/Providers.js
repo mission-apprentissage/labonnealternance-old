@@ -1,11 +1,14 @@
 import React from "react";
 import SearchResultContextProvider from "./SearchResultContextProvider";
 import ParameterContextProvider from "./ParameterContextProvider";
+import DisplayContextProvider from "./DisplayContextProvider";
 
 const Providers = ({ children }) => {
   return (
     <SearchResultContextProvider>
-      <ParameterContextProvider>{children}</ParameterContextProvider>
+      <ParameterContextProvider>
+        <DisplayContextProvider>{children}</DisplayContextProvider>
+      </ParameterContextProvider>
     </SearchResultContextProvider>
   );
 };

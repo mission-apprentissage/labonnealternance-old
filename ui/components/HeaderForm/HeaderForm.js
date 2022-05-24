@@ -16,9 +16,11 @@ import { fetchAddresses } from "../../services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../services/autoCompleteUtilities";
 import validateFormik from "../../services/validateFormik";
 import { ParameterContext } from "../../context/ParameterContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const HeaderForm = ({ handleSearchSubmit, isHome }) => {
-  const { widgetParameters, formValues } = React.useContext(ParameterContext);
+  const { widgetParameters } = React.useContext(ParameterContext);
+  const { formValues } = React.useContext(DisplayContext);
 
   useEffect(() => {
     setLocationRadius(contextFormValues?.radius ?? 30);

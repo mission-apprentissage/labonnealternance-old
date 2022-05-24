@@ -9,11 +9,11 @@ import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
 import { SearchResultContext } from "context/SearchResultContextProvider";
-import { ParameterContext } from "../../context/ParameterContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
   const { selectedMapPopupItem } = React.useContext(SearchResultContext);
-  const { formValues } = React.useContext(ParameterContext);
+  const { formValues } = React.useContext(DisplayContext);
 
   const currentSearchRadius = formValues?.radius || 30;
 
