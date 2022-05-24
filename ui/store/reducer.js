@@ -2,7 +2,6 @@ import { types as actionsTypes } from "./actions";
 
 const initialState = {
   shouldExecuteSearch: false,
-  shouldMapBeVisible: false,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -16,11 +15,6 @@ const mainReducer = (state = initialState, action) => {
     res = {
       ...state_copy,
       hasSearch: action.hasSearch,
-    };
-  } else if (action.type === actionsTypes.SET_SHOULD_MAP_BE_VISIBLE) {
-    res = {
-      ...state_copy,
-      shouldMapBeVisible: action.shouldMapBeVisible,
     };
   } else {
     res = state_copy;

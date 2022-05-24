@@ -6,11 +6,7 @@ import { useRouter } from "next/router";
 import { loadItem } from "components/SearchForTrainingsAndJobs/services/loadItem";
 import { searchForTrainingsFunction } from "components/SearchForTrainingsAndJobs/services/searchForTrainings";
 import { searchForJobsFunction } from "components/SearchForTrainingsAndJobs/services/searchForJobs";
-import { useDispatch } from "react-redux";
 import pushHistory from "utils/pushHistory";
-import {
-  setShouldMapBeVisible,
-} from "store/actions";
 
 import {
   flyToMarker,
@@ -40,14 +36,13 @@ import { currentPage, setCurrentPage, currentSearch, setCurrentSearch } from "ut
 import updateUiFromHistory from "services/updateUiFromHistory";
 
 const SearchForTrainingsAndJobs = () => {
-  const dispatch = useDispatch();
   const scopeContext = useContext(ScopeContext);
 
   const { hasSearch, trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch, setHasSearch } = useContext(SearchResultContext);
 
   const { opcoFilter, widgetParameters } = useContext(ParameterContext);
 
-  const { formValues, setFormValues, visiblePane, setVisiblePane, isFormVisible, setIsFormVisible } = useContext(DisplayContext);
+  const { formValues, setFormValues, visiblePane, setVisiblePane, isFormVisible, setIsFormVisible, setShouldMapBeVisible } = useContext(DisplayContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
@@ -261,7 +256,7 @@ const SearchForTrainingsAndJobs = () => {
     }
 
     if (!isMapInitialized) {
-      dispatch(setShouldMapBeVisible(true));
+      setShouldMapBeVisible(true);
     }
     setVisiblePane("resultMap");
 
