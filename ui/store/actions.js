@@ -5,13 +5,6 @@ export const types = {
   SET_SHOULD_MAP_BE_VISIBLE: "trainings/SET_SHOULD_MAP_BE_VISIBLE",
 };
 
-export const setCurrentPage = (currentPage = "") => {
-  return {
-    type: types.SET_CURRENT_PAGE,
-    currentPage,
-  };
-};
-
 export const setIsFormVisible = (isFormVisible = true) => {
   return {
     type: types.SET_IS_FORM_VISIBLE,

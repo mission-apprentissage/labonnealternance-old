@@ -3,7 +3,6 @@ import React, { createContext, useReducer } from "react";
 const initialState = {
   formValues: null,
   visiblePane: "resultList",
-  currentPage: "",
   isFormVisible: true,
   shouldMapBeVisible: false,
 };
@@ -11,7 +10,6 @@ const initialState = {
 const actions = {
   SET_FORM_VALUES: "SET_FORM_VALUES",
   SET_VISIBLE_PANE: "SET_VISIBLE_PANE",
-  SET_CURRENT_PAGE: "SET_CURRENT_PAGE",
   SET_IS_FORM_VISIBLE: "SET_IS_FORM_VISIBLE",
   SET_SHOULD_MAP_BE_VISIBLE: "SET_SHOULD_MAP_BE_VISIBLE",
 };
@@ -25,9 +23,6 @@ const reducer = (state, action) => {
     }
     case actions.SET_VISIBLE_PANE: {
       return { ...state_copy, visiblePane: action.visiblePane };
-    }
-    case actions.SET_CURRENT_PAGE: {
-      return { ...state_copy, currentPage: action.currentPage };
     }
     case actions.SET_IS_FORM_VISIBLE: {
       return { ...state_copy, isFormVisible: action.isFormVisible };
@@ -52,9 +47,6 @@ const DisplayContextProvider = ({ children }) => {
     },
     setVisiblePane: (visiblePane = "resultList") => {
       dispatch({ type: actions.SET_VISIBLE_PANE, visiblePane });
-    },
-    setCurrentPage: (currentPage = "") => {
-      dispatch({ type: actions.SET_CURRENT_PAGE, currentPage });
     },
     setIsFormVisible: (isFormVisible = true) => {
       dispatch({ type: actions.SET_IS_FORM_VISIBLE, isFormVisible });
