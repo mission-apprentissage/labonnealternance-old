@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import { ErrorMessage } from "../../../components";
 import { filterLayers } from "../../../utils/mapTools";
-import { useSelector } from "react-redux";
 import ExtendedSearchButton from "./ExtendedSearchButton";
 import ResultListsCounter from "./ResultListsCounter";
 import NoJobResult from "./NoJobResult";
 import { ScopeContext } from "../../../context/ScopeContext";
 import { SearchResultContext } from "../../../context/SearchResultContextProvider";
+import { DisplayContext } from "../../../context/DisplayContextProvider";
 import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
 import { renderJob, renderTraining, renderLbb } from "../services/renderOneResult";
 
@@ -21,7 +21,7 @@ const ResultLists = (props) => {
       props.stubbedIsFormVisible,
     ];
   } else {
-    ({ isFormVisible } = useSelector((state) => state.trainings));
+    ({ isFormVisible } = useContext(DisplayContext));
     ({ extendedSearch, hasSearch } = useContext(SearchResultContext));
   }
 

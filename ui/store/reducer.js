@@ -1,11 +1,8 @@
 import { types as actionsTypes } from "./actions";
 
 const initialState = {
-  currentPage: "",
-  isFormVisible: true,
   shouldExecuteSearch: false,
   shouldMapBeVisible: false,
-  widgetParameters: null,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -15,25 +12,10 @@ const mainReducer = (state = initialState, action) => {
   let state_copy = JSON.parse(JSON.stringify(state));
   let res = {};
 
-  if (action.type === actionsTypes.SET_CURRENT_PAGE) {
-    res = {
-      ...state_copy,
-      currentPage: action.currentPage,
-    };
-  } else if (action.type === actionsTypes.SET_HAS_SEARCH) {
+  if (action.type === actionsTypes.SET_HAS_SEARCH) {
     res = {
       ...state_copy,
       hasSearch: action.hasSearch,
-    };
-  } else if (action.type === actionsTypes.SET_IS_FORM_VISIBLE) {
-    res = {
-      ...state_copy,
-      isFormVisible: action.isFormVisible,
-    };
-  } else if (action.type === actionsTypes.SET_SHOULD_EXECUTE_SEARCH) {
-    res = {
-      ...state_copy,
-      shouldExecuteSearch: action.shouldExecuteSearch,
     };
   } else if (action.type === actionsTypes.SET_SHOULD_MAP_BE_VISIBLE) {
     res = {

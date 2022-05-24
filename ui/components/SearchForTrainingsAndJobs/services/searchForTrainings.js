@@ -60,7 +60,7 @@ export const searchForTrainingsFunction = async ({
     setTrainings(response.data.results);
     storeTrainingsInSession({ trainings: response.data.results, searchTimestamp });
     setHasSearch(true);
-    dispatch(setIsFormVisible(false));
+    setIsFormVisible(false);
 
     if (response.data.results.length) {
       setTrainingMarkers(factorTrainingsForMap(response.data.results), {

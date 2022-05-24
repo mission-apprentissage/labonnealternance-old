@@ -35,7 +35,7 @@ export const loadItem = async ({
 }) => {
   try {
     setHasSearch(true);
-    dispatch(setIsFormVisible(false));
+    setIsFormVisible(false);
 
     let itemMarker = null;
 

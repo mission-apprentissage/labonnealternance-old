@@ -6,10 +6,9 @@ import { useRouter } from "next/router";
 import { loadItem } from "components/SearchForTrainingsAndJobs/services/loadItem";
 import { searchForTrainingsFunction } from "components/SearchForTrainingsAndJobs/services/searchForTrainings";
 import { searchForJobsFunction } from "components/SearchForTrainingsAndJobs/services/searchForJobs";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import pushHistory from "utils/pushHistory";
 import {
-  setIsFormVisible,
   setShouldMapBeVisible,
 } from "store/actions";
 
@@ -43,16 +42,12 @@ import updateUiFromHistory from "services/updateUiFromHistory";
 const SearchForTrainingsAndJobs = () => {
   const dispatch = useDispatch();
   const scopeContext = useContext(ScopeContext);
-  
-  const { isFormVisible } = useSelector(
-    (state) => state.trainings
-  );
 
   const { hasSearch, trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch, setHasSearch } = useContext(SearchResultContext);
 
   const { opcoFilter, widgetParameters } = useContext(ParameterContext);
 
-  const { formValues, setFormValues, visiblePane, setVisiblePane } = useContext(DisplayContext);
+  const { formValues, setFormValues, visiblePane, setVisiblePane, isFormVisible, setIsFormVisible } = useContext(DisplayContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
@@ -170,7 +165,7 @@ const SearchForTrainingsAndJobs = () => {
     if (scopeContext.isJob) {
       searchForJobs({values,searchTimestamp,followUpItem,selectFollowUpItem});
     }
-    dispatch(setIsFormVisible(false));
+    setIsFormVisible(false);
 
     pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp });
     setCurrentSearch(searchTimestamp);
@@ -202,7 +197,7 @@ const SearchForTrainingsAndJobs = () => {
       factorJobsForMap,
     });
 
-    dispatch(setIsFormVisible(false));
+    setIsFormVisible(false);
   };
 
   const searchForTrainings = async ({values, searchTimestamp, followUpItem, selectFollowUpItem}) => {
@@ -256,7 +251,7 @@ const SearchForTrainingsAndJobs = () => {
       e.stopPropagation();
     }
     setVisiblePane("resultList"); // affichage de la colonne resultList / searchForm
-    dispatch(setIsFormVisible(true));
+    setIsFormVisible(true);
 
     if (!doNotSaveToHistory) {
       unSelectItem("doNotSaveToHistory");
@@ -289,7 +284,7 @@ const SearchForTrainingsAndJobs = () => {
       e.stopPropagation();
     }
     setVisiblePane("resultList");
-    dispatch(setIsFormVisible(false));
+    setIsFormVisible(false);
 
     if (!doNotSaveToHistory) {
       pushHistory({ router, scopeContext, display: "list", searchParameters:formValues, searchTimestamp: currentSearch });
