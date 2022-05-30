@@ -3,10 +3,6 @@ import { Row, Col, Container } from "reactstrap";
 import ExternalLink from "./externalLink";
 import { useRouter } from "next/router";
 
-/*
- Different kind of navigation are available here :
- https://raw.githubusercontent.com/danielr18/connected-next-router/master/examples/basic/components/navigation.js
-*/
 const Footer = (props) => {
   const router = useRouter();
 

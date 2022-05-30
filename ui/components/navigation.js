@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from "reactstrap";
 import { useRouter } from "next/router";
 
-/*
- Different kind of navigation are available here :
- https://raw.githubusercontent.com/danielr18/connected-next-router/master/examples/basic/components/navigation.js
-*/
 const Navigation = (props) => {
   const router = useRouter();
 
