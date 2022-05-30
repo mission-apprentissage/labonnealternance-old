@@ -1,7 +1,7 @@
 import { getValueFromPath } from "utils/tools";
 import { campaignParameters } from "utils/campaignParameters";
 import { testingParameters } from "../utils/testingParameters";
-import { push } from "connected-next-router";
+//import { push } from "connected-next-router";
 
 export const getWidgetParameters = () => {
   let widgetParameters = { parameters: null, applyWidgetParameters: false };
@@ -149,7 +149,7 @@ const buildFormValuesFromParameters = (params) => {
   return formValues;
 };
 
-export const initParametersFromQuery = ({ dispatch, shouldPush, parameterContext }) => {
+export const initParametersFromQuery = ({ /*dispatch,*/ router, shouldPush, parameterContext }) => {
   let hasParameters = false;
 
   const widgetParameters = getWidgetParameters();
@@ -171,6 +171,7 @@ export const initParametersFromQuery = ({ dispatch, shouldPush, parameterContext
   initTestingParameters();
 
   if (hasParameters && shouldPush) {
-    dispatch(push({ pathname: "/recherche-apprentissage" }));
+    //dispatch(push({ pathname: "/recherche-apprentissage" }));
+    router.push("/recherche-apprentissage");
   }
 };

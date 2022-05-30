@@ -5,7 +5,9 @@ import HowTo from "components/HowTo";
 import HomeReview from "components/HomeReview";
 import { initParametersFromQuery } from "services/config";
 import Footer from "components/footer";
-import { useDispatch } from "react-redux";
+//import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+
 import ScrollToTop from "components/ScrollToTop";
 import howtocircle1 from "public/images/howtocircle1.svg";
 import howtocircle2 from "public/images/howtocircle2.svg";
@@ -18,12 +20,13 @@ import { some } from "lodash";
 import { ParameterContext } from "../context/ParameterContextProvider";
 
 const Home = (props) => {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
+  const router = useRouter();
 
   const parameterContext = React.useContext(ParameterContext);
 
   useEffect(() => {
-    initParametersFromQuery({ dispatch, shouldPush: "shouldPushPathname", parameterContext });
+    initParametersFromQuery({ /*dispatch,*/ router, shouldPush: "shouldPushPathname", parameterContext });
   }, []);
 
   return (

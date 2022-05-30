@@ -13,7 +13,6 @@ import { SendTrackEvent } from "utils/gtm";
 export const searchForTrainingsFunction = async ({
   values,
   searchTimestamp,
-  dispatch,
   setIsTrainingSearchLoading,
   setTrainingSearchError,
   clearTrainings,

@@ -1,7 +1,7 @@
 import App from "next/app";
 import React from "react";
-import { ConnectedRouter } from "connected-next-router";
-import { wrapper } from "store/configure-store";
+//import { ConnectedRouter } from "connected-next-router";
+//import { wrapper } from "store/configure-store";
 import HeadLaBonneAlternance from "components/head";
 
 import Providers from "../context/Providers";
@@ -46,13 +46,13 @@ class LaBonneAlternance extends App {
             shouldLoadAnalytics={shouldLoadAnalytics}
             publicUrl={host && process.env.publicUrl ? host : ""}
           />
-          <ConnectedRouter>
+          {/*<ConnectedRouter>*/}
             <Component {...pageProps} />
-          </ConnectedRouter>
+          {/*</ConnectedRouter>*/}
         </main>
       </Providers>
     );
   }
 }
-
-export default wrapper.withRedux(LaBonneAlternance);
+export default LaBonneAlternance;
+//export default wrapper.withRedux(LaBonneAlternance);

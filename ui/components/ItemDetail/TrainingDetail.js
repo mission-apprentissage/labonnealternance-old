@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
-import { useDispatch, useSelector } from "react-redux";
 import fetchTrainingDetails from "../../services/fetchTrainingDetails";
 import fetchPrdv from "../../services/fetchPrdv";
 import sendTrainingOpenedEventToCatalogue from "../../services/sendTrainingOpenedEventToCatalogue";
@@ -15,8 +14,6 @@ import { Spinner } from "reactstrap";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
 
 const TrainingDetail = ({ training, isCfa }) => {
-  const dispatch = useDispatch();
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
