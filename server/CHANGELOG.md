@@ -2,6 +2,7 @@
 
 ## 1.19.0 [22/05/2022]
 [LBA6-68] Remplacement redux par API context
+[LBA6-36] Fix effect de rechargement sur lien Organisme de formation
 
 ## 1.18.12 [17/05/2022]
 [LBA6-132] Corrections en-têtes des fiches détails
