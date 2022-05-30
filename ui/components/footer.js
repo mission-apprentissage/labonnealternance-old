@@ -59,7 +59,6 @@ const Footer = (props) => {
                     className="c-footer-links__link c-footer-smallword pr-3"
                     onClick={(e) => {
                       e.preventDefault();
-                      //dispatch(push({ pathname: "/mentions-legales" }));
                       router.push("/mentions-legales");
                     }}
                     href="/mentions-legales"
@@ -73,7 +72,6 @@ const Footer = (props) => {
                     className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
-                      //dispatch(push({ pathname: "/cgu" }));
                       router.push("/cgu");
                     }}
                     href="/cgu"
@@ -87,7 +85,6 @@ const Footer = (props) => {
                     className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
-                      //dispatch(push({ pathname: "/cookies" }));
                       router.push("/cookies");
                     }}
                     href="/cookies"
@@ -101,7 +98,6 @@ const Footer = (props) => {
                     className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
-                      //dispatch(push({ pathname: "/stats" }));
                       router.push("/stats");
                     }}
                     href="/stats"
@@ -115,7 +111,6 @@ const Footer = (props) => {
                     className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
-                      //dispatch(push({ pathname: "/faq" }));
                       router.push("/faq");
                     }}
                     href="/faq"
@@ -129,7 +124,6 @@ const Footer = (props) => {
                     className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
-                      //dispatch(push({ pathname: "/contact" }));
                       router.push("/contact");
                     }}
                     href="/contact"
@@ -143,7 +137,6 @@ const Footer = (props) => {
                     className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
-                      //dispatch(push({ pathname: "/metiers" }));
                       router.push("/metiers");
                     }}
                     href="/metiers"
@@ -157,7 +150,6 @@ const Footer = (props) => {
                     className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
-                      //dispatch(push({ pathname: "/a-propos" }));
                       router.push("/a-propos");
                     }}
                     href="/a-propos"
@@ -171,7 +163,6 @@ const Footer = (props) => {
                     className="c-footer-links__link c-footer-smallword"
                     onClick={(e) => {
                       e.preventDefault();
-                      //dispatch(push({ pathname: "/developpeurs" }));
                       router.push("/developpeurs");
                     }}
                     href="/developpeurs"

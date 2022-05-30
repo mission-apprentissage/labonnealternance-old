@@ -1,12 +1,9 @@
 import React from "react";
 import logoLBA from "../../public/images/logo-noir-seul.svg";
-//import { push } from "connected-next-router";
-//import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { ParameterContext } from "../../context/ParameterContextProvider";
 
 const LogoIdea = () => {
-  //const dispatch = useDispatch();
   const router = useRouter();
 
   const { widgetParameters } = React.useContext(ParameterContext);
@@ -22,7 +19,6 @@ const LogoIdea = () => {
       }
     } else {
       e.preventDefault();
-      //dispatch(push({ pathname: "/" }));
       router.push("/");
     }
   };

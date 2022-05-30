@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
-
-//import { push } from "connected-next-router";
-//import { useDispatch } from "react-redux";
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from "reactstrap";
 import { useRouter } from "next/router";
 
 /*
@@ -10,7 +7,6 @@ import { useRouter } from "next/router";
  https://raw.githubusercontent.com/danielr18/connected-next-router/master/examples/basic/components/navigation.js
 */
 const Navigation = (props) => {
-  //const dispatch = useDispatch();
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +38,6 @@ const Navigation = (props) => {
                   className="nav-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    //dispatch(push({ pathname: "/acces-recruteur" }));
                     router.push("/acces-recruteur");
                   }}
                   href="/acces-recruteur"
@@ -51,9 +46,16 @@ const Navigation = (props) => {
                 </a>
               </NavItem>
               <NavItem className="ml-lg-5">
-                <NavLink href="/organisme-de-formation" className="ml-1">
-                  Organisme de formation
-                </NavLink>
+                <a
+                  className="nav-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/organisme-de-formation");
+                  }}
+                  href="/organisme-de-formation"
+                >
+                  <span className="ml-1">Organisme de formation</span>
+                </a>
               </NavItem>
             </Nav>
           </Collapse>

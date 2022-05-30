@@ -1,6 +1,4 @@
 import React from "react";
-//import { useDispatch } from "react-redux";
-//import { push } from "connected-next-router";
 import { useRouter } from "next/router";
 
 import { DisplayContext } from "../../context/DisplayContextProvider";
@@ -11,7 +9,6 @@ import SearchForm from "../../components/SearchForTrainingsAndJobs/components/Se
 import WidgetHeader from "../../components/WidgetHeader/WidgetHeader";
 
 const StartForm = (props) => {
-  //const dispatch = useDispatch();
   const router = useRouter();
 
   const { setFormValues } = React.useContext(DisplayContext);
@@ -21,7 +18,6 @@ const StartForm = (props) => {
     setFormValues(pick(values, ["job", "location", "radius", "diploma"]));
     setShouldExecuteSearch(true);
     router.push("/recherche-apprentissage");
-    //dispatch(push({ pathname: "/recherche-apprentissage" }));
   };
 
   const handleSearchSubmitFunction = (values) => {
