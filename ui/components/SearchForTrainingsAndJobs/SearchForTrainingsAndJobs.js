@@ -24,7 +24,7 @@ import {
 } from "utils/mapTools";
 
 import { ScopeContext } from "context/ScopeContext";
-import { SearchResultContext } from "context/SearchResultContextProvider";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { ParameterContext } from "../../context/ParameterContextProvider";
 import { DisplayContext } from "../../context/DisplayContextProvider";
 

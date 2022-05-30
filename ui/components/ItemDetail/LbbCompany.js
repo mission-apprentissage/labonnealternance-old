@@ -8,7 +8,7 @@ import { get } from "lodash";
 import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
-import { SearchResultContext } from "context/SearchResultContextProvider";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const LbbCompany = ({ company, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {

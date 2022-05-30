@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { includes } from "lodash";
 
 import { Row } from "reactstrap";
-import { SearchResultContext } from "context/SearchResultContextProvider";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
 
 const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
   const router = useRouter();
