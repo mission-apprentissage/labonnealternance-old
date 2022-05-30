@@ -18,7 +18,7 @@ let mapPosition = {
 let shouldHandleMapSearch = true;
 
 const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
-  const { formValues, shouldMapBeVisible } = useContext(DisplayContext);
+  const { formValues, shouldMapBeVisible } = useContext(DisplayContext);
 
   const { trainings, jobs, setSelectedItem, setSelectedMapPopupItem } = useContext(SearchResultContext);
 
