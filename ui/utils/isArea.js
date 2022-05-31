@@ -744,8 +744,6 @@ const areas = {
 };
 
 const isArea = (area) => {
-  //console.log("isArea : ", area, areas[area]);
-
   return areas[area];
 };
 
