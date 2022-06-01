@@ -19,11 +19,10 @@ export const updateUiFromHistory = ({
   showResultMap,
   showResultList,
   showSearchForm,
-  dispatch,
   setTrainings,
   setJobs,
   setActiveFilter,
-  activeFilter
+  activeFilter,
 }) => {
   // récupération des query parameters donnant des indications sur l'état de l'interface
   let urlParams;
@@ -50,7 +49,7 @@ export const updateUiFromHistory = ({
   // réconciliation entre le store et l'état des résultats de recherche
   if (searchTimestamp && searchTimestamp !== currentSearch) {
     setCurrentSearch(searchTimestamp);
-    restoreSearchFromSession({ searchTimestamp, dispatch, setTrainings, setJobs });
+    restoreSearchFromSession({ searchTimestamp, setTrainings, setJobs });
   }
 
   // réconciliation entre le store et l'état des formulaires de recherche

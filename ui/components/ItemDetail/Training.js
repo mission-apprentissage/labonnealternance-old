@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import trainingIcon from "../../public/images/icons/book.svg";
-import { useSelector } from "react-redux";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
-import { useScopeContext } from "../../context/ScopeContext";
+import { ScopeContext } from "../../context/ScopeContext";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
 import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
+import { ParameterContext } from "../../context/ParameterContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
-  const { formValues, itemParameters, selectedMapPopupItem } = useSelector((state) => state.trainings);
-  const scopeContext = useScopeContext();
+  const { selectedMapPopupItem } = React.useContext(SearchResultContext);
+  const { itemParameters } = React.useContext(ParameterContext);
+  const { formValues } = React.useContext(DisplayContext);
+  const scopeContext = useContext(ScopeContext);
 
   const currentSearchRadius = formValues?.radius || 30;
 
