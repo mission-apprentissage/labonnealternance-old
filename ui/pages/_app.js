@@ -8,6 +8,7 @@ import "public/styles/application.scss";
 
 import * as Sentry from "@sentry/node";
 import * as SentryReact from "@sentry/react";
+import PageTracker from "@/components/pageTracker";
 
 if (process.env.uiSentryDsn) {
   Sentry.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
@@ -39,13 +40,15 @@ class LaBonneAlternance extends App {
 
     return (
       <Providers>
-        <main className="c-app">
-          <HeadLaBonneAlternance
-            shouldLoadAnalytics={shouldLoadAnalytics}
-            publicUrl={host && process.env.publicUrl ? host : ""}
-          />
-          <Component {...pageProps} />
-        </main>
+        <PageTracker>
+          <main className="c-app">
+            <HeadLaBonneAlternance
+              shouldLoadAnalytics={shouldLoadAnalytics}
+              publicUrl={host && process.env.publicUrl ? host : ""}
+            />
+            <Component {...pageProps} />
+          </main>
+        </PageTracker>
       </Providers>
     );
   }

@@ -37,7 +37,7 @@ const trimSessionStorage = () => {
   }
 };
 
-export const restoreSearchFromSession = ({ searchTimestamp, dispatch, setTrainings, setJobs }) => {
+export const restoreSearchFromSession = ({ searchTimestamp, setTrainings, setJobs }) => {
   let search = JSON.parse(sessionStorage.getItem(searchTimestamp));
 
   if (search?.jobs) {
