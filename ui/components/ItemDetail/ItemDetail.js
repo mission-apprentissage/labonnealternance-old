@@ -13,6 +13,7 @@ import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
 import ExternalLink from "../externalLink";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
+
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
 
