@@ -74,8 +74,7 @@ const getCurrentList = (store, activeFilter, extendedSearch) => {
     }
   }
   let fullList = concat([], trainingsArray, jobList, companyList);
-  let listWithoutEmptyValues = fullList.filter((el) => !!el);
-  return listWithoutEmptyValues;
+return  fullList.filter((el) => !!el);
 };
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
