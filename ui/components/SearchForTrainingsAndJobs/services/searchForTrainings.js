@@ -13,7 +13,6 @@ import { SendTrackEvent } from "utils/gtm";
 export const searchForTrainingsFunction = async ({
   values,
   searchTimestamp,
-  dispatch,
   setIsTrainingSearchLoading,
   setTrainingSearchError,
   clearTrainings,
@@ -57,10 +56,10 @@ export const searchForTrainingsFunction = async ({
       }
     }
 
-    dispatch(setTrainings(response.data.results));
+    setTrainings(response.data.results);
     storeTrainingsInSession({ trainings: response.data.results, searchTimestamp });
-    dispatch(setHasSearch(true));
-    dispatch(setIsFormVisible(false));
+    setHasSearch(true);
+    setIsFormVisible(false);
 
     if (response.data.results.length) {
       setTrainingMarkers(factorTrainingsForMap(response.data.results), {

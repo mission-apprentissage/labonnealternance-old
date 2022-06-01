@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import SearchForTrainingsAndJobs from "../components/SearchForTrainingsAndJobs";
-import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { initParametersFromQuery } from "services/config";
 import { ScopeContextProvider } from "context/ScopeContext.js";
 import { NextSeo } from "next-seo";
-
 import Head from "next/head";
+import { ParameterContext } from "../context/ParameterContextProvider";
 
 const RechercheApprentissageFormation = () => {
-  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const parameterContext = React.useContext(ParameterContext);
 
   useEffect(() => {
-    initParametersFromQuery({ dispatch });
+    initParametersFromQuery({ router, parameterContext });
   }, []);
 
   return (
@@ -28,6 +30,7 @@ const RechercheApprentissageFormation = () => {
           onLoad="this.media='all'"
         />
       </Head>
+
       <ScopeContextProvider value={{ isJob: false, isTraining: true, path: "/recherche-apprentissage-formation" }}>
         <SearchForTrainingsAndJobs />
       </ScopeContextProvider>

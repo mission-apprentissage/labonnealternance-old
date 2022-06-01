@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
 import SearchForTrainingsAndJobs from "../components/SearchForTrainingsAndJobs";
-import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { initParametersFromQuery } from "services/config";
 import { ScopeContextProvider } from "context/ScopeContext.js";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
+import { ParameterContext } from "../context/ParameterContextProvider";
 
 const RechercheEmploi = () => {
-  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const parameterContext = React.useContext(ParameterContext);
 
   useEffect(() => {
-    initParametersFromQuery({ dispatch });
+    initParametersFromQuery({ router, parameterContext });
   }, []);
 
   return (

@@ -1,3 +1,4 @@
+import React from "react";
 import NextErrorComponent from "next/error";
 import * as Sentry from "@sentry/node";
 

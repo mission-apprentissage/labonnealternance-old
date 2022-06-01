@@ -3,7 +3,6 @@ import distance from "@turf/distance";
 import { MapPopup } from "../components/SearchForTrainingsAndJobs/components";
 import ReactDOM from "react-dom";
 import * as mapboxgl from "mapbox-gl";
-import { Provider } from "react-redux";
 import { fetchAddresses } from "../services/baseAdresse";
 import { scrollToElementInContainer, getItemElement } from "./tools";
 import { isArea } from "./isArea";
@@ -14,13 +13,14 @@ let isMapInitialized = false;
 
 const initializeMap = ({
   mapContainer,
-  store,
   unselectItem,
   trainings,
   jobs,
   selectItemOnMap,
   onMapHasMoved,
   unselectMapPopupItem,
+  setSelectedItem,
+  setSelectedMapPopupItem,
 }) => {
   isMapInitialized = true;
 
@@ -95,7 +95,15 @@ const initializeMap = ({
         if (e?.originalEvent) {
           if (!e.originalEvent.STOP) {
             e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
-            onLayerClick(e, "job", store, selectItemOnMap, unselectItem, unselectMapPopupItem);
+            onLayerClick(
+              e,
+              "job",
+              selectItemOnMap,
+              unselectItem,
+              unselectMapPopupItem,
+              setSelectedItem,
+              setSelectedMapPopupItem
+            );
           }
         }
       }, 5);
@@ -171,7 +179,15 @@ const initializeMap = ({
         if (e?.originalEvent) {
           if (!e.originalEvent.STOP_SOURCE) {
             e.features = features; // on réinsert les features de l'event qui sinon sont perdues en raison du setTimeout
-            onLayerClick(e, "training", store, selectItemOnMap, unselectItem, unselectMapPopupItem);
+            onLayerClick(
+              e,
+              "training",
+              selectItemOnMap,
+              unselectItem,
+              unselectMapPopupItem,
+              setSelectedItem,
+              setSelectedMapPopupItem
+            );
           }
         }
       }, 5);
@@ -249,7 +265,15 @@ const initializeMap = ({
   map.addControl(nav, "bottom-right");
 };
 
-const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem, unselectMapPopupItem) => {
+const onLayerClick = (
+  e,
+  layer,
+  selectItemOnMap,
+  unselectItem,
+  unselectMapPopupItem,
+  setSelectedItem,
+  setSelectedMapPopupItem
+) => {
   let coordinates = e.features[0].geometry.coordinates.slice();
 
   // si cluster on a properties: {cluster: true, cluster_id: 125, point_count: 3, point_count_abbreviated: 3}
@@ -276,7 +300,9 @@ const onLayerClick = (e, layer, store, selectItemOnMap, unselectItem, unselectMa
 
     currentPopup = new mapboxgl.Popup()
       .setLngLat(coordinates)
-      .setDOMContent(buildPopup(item, item.ideaType, store, selectItemOnMap))
+      .setDOMContent(
+        buildPopup({ item, type: item.ideaType, selectItemOnMap, setSelectedItem, setSelectedMapPopupItem })
+      )
       .addTo(map);
 
     currentPopup.on("close", function (e) {
@@ -302,13 +328,17 @@ const flyToLocation = (location) => {
   }
 };
 
-const buildPopup = (item, type, store, selectItemOnMap) => {
+const buildPopup = ({ item, type, selectItemOnMap, setSelectedItem, setSelectedMapPopupItem }) => {
   const popupNode = document.createElement("div");
 
   ReactDOM.render(
-    <Provider store={store}>
-      <MapPopup handleSelectItem={selectItemOnMap} type={type} item={item} />
-    </Provider>,
+    <MapPopup
+      handleSelectItem={selectItemOnMap}
+      setSelectedItem={setSelectedItem}
+      setSelectedMapPopupItem={setSelectedMapPopupItem}
+      type={type}
+      item={item}
+    />,
     popupNode
   );
 
@@ -459,8 +489,6 @@ const computeMissingPositionAndDistance = async (searchCenter, jobs) => {
         } else {
           addresses = await fetchAddresses(job.place.address, "municipality"); // on force à Municipality pour ne pas avoir des rues dans de mauvaise localités
         }
-
-        console.log("PLACE : ", job.place, "adresses", addresses[0]);
 
         if (addresses.length) {
           job.place.longitude = addresses[0].value.coordinates[0];

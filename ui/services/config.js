@@ -1,8 +1,6 @@
 import { getValueFromPath } from "utils/tools";
 import { campaignParameters } from "utils/campaignParameters";
 import { testingParameters } from "../utils/testingParameters";
-import { setWidgetParameters, setItemParameters, setOpcoFilter } from "store/actions";
-import { push } from "connected-next-router";
 
 export const getWidgetParameters = () => {
   let widgetParameters = { parameters: null, applyWidgetParameters: false };
@@ -82,11 +80,10 @@ export const getItemParameters = () => {
   return itemParameters;
 };
 
-export const getOpcoFilter = ({ dispatch }) => {
+export const getOpcoFilter = ({ parameterContext }) => {
   let opcoFilter = getValueFromPath("opco");
-
   if (opcoFilter) {
-    dispatch(setOpcoFilter(opcoFilter));
+    parameterContext.setOpcoFilter(opcoFilter);
   }
 };
 
@@ -151,7 +148,7 @@ const buildFormValuesFromParameters = (params) => {
   return formValues;
 };
 
-export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
+export const initParametersFromQuery = ({ router, shouldPush, parameterContext }) => {
   let hasParameters = false;
 
   const widgetParameters = getWidgetParameters();
@@ -159,20 +156,20 @@ export const initParametersFromQuery = ({ dispatch, shouldPush }) => {
     if (widgetParameters.applyFormValues) {
       widgetParameters.formValues = buildFormValuesFromParameters(widgetParameters.parameters);
     }
-    dispatch(setWidgetParameters(widgetParameters));
+    parameterContext.setWidgetParameters(widgetParameters);
   }
 
-  getOpcoFilter({ dispatch });
+  getOpcoFilter({ parameterContext });
 
   const itemParameters = getItemParameters();
   if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {
-    dispatch(setItemParameters(itemParameters));
+    parameterContext.setItemParameters(itemParameters);
     hasParameters = true;
   }
 
   initTestingParameters();
 
   if (hasParameters && shouldPush) {
-    dispatch(push({ pathname: "/recherche-apprentissage" }));
+    router.push("/recherche-apprentissage");
   }
 };

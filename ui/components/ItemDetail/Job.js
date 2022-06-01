@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import jobIcon from "../../public/images/icons/job.svg";
 import TagOffreEmploi from "./TagOffreEmploi";
 import { isDepartmentJob } from "../../utils/itemListUtils";
-import { useSelector } from "react-redux";
 import extendedSearchPin from "../../public/images/icons/trainingPin.svg";
 import ReactHtmlParser from "react-html-parser";
 import { fetchAddresses } from "../../services/baseAdresse";
@@ -10,9 +9,12 @@ import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
 import TagFormationAssociee from "./TagFormationAssociee";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCenter }) => {
-  const { formValues, selectedMapPopupItem } = useSelector((state) => state.trainings);
+  const { selectedMapPopupItem } = React.useContext(SearchResultContext);
+  const { formValues } = React.useContext(DisplayContext);
 
   const currentSearchRadius = formValues?.radius || 30;
 

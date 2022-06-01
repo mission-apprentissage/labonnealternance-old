@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect, useContext } from "react";
 import { Row, Col, Input } from "reactstrap";
 import { Formik, Form, ErrorMessage } from "formik";
 import { AutoCompleteField } from "../../../components/AutoCompleteField/AutoCompleteField";
@@ -15,9 +14,14 @@ import updateValuesFromJobAutoComplete from "../../../services/updateValuesFromJ
 import formikUpdateValue from "../../../services/formikUpdateValue";
 import buildAvailableDiplomas from "../../../services/buildAvailableDiplomas";
 import validateFormik from "../../../services/validateFormik";
+import { SearchResultContext } from "../../../context/SearchResultContextProvider";
+import { ParameterContext } from "../../../context/ParameterContextProvider";
+import { DisplayContext } from "../../../context/DisplayContextProvider";
 
 const SearchForm = (props) => {
-  const { isFormVisible, hasSearch, formValues, widgetParameters } = useSelector((state) => state.trainings);
+  const { hasSearch } = useContext(SearchResultContext);
+  const { widgetParameters } = React.useContext(ParameterContext);
+  const { formValues, isFormVisible } = React.useContext(DisplayContext);
 
   useEffect(() => {
     setLocationRadius(contextFormValues?.radius ?? 30);

@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ErrorMessage } from "../../../components";
 import { filterLayers } from "../../../utils/mapTools";
-import { useSelector } from "react-redux";
 import ExtendedSearchButton from "./ExtendedSearchButton";
 import ResultListsCounter from "./ResultListsCounter";
 import NoJobResult from "./NoJobResult";
-import { useScopeContext } from "../../../context/ScopeContext";
+import { ScopeContext } from "../../../context/ScopeContext";
+import { SearchResultContext } from "../../../context/SearchResultContextProvider";
+import { DisplayContext } from "../../../context/DisplayContextProvider";
 import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
 import { renderJob, renderTraining, renderLbb } from "../services/renderOneResult";
 
 const ResultLists = (props) => {
-  const scopeContext = useScopeContext();
+  const scopeContext = useContext(ScopeContext);
 
   let [extendedSearch, hasSearch, isFormVisible] = [false, false, false];
   if (props.isTestMode) {
@@ -20,7 +21,8 @@ const ResultLists = (props) => {
       props.stubbedIsFormVisible,
     ];
   } else {
-    ({ extendedSearch, hasSearch, isFormVisible } = useSelector((state) => state.trainings));
+    ({ isFormVisible } = useContext(DisplayContext));
+    ({ extendedSearch, hasSearch } = useContext(SearchResultContext));
   }
 
   const filterButtonClicked = (filterButton) => {

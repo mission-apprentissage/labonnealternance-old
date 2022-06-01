@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import glassImage from "public/images/glass_white.svg";
 import { Formik, Form, Field } from "formik";
 import { AutoCompleteField } from "..";
@@ -16,11 +15,12 @@ import handleSelectChange from "../../services/handleSelectChange";
 import { fetchAddresses } from "../../services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../services/autoCompleteUtilities";
 import validateFormik from "../../services/validateFormik";
+import { ParameterContext } from "../../context/ParameterContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const HeaderForm = ({ handleSearchSubmit, isHome }) => {
-  const { formValues, widgetParameters } = useSelector((state) => {
-    return state.trainings;
-  });
+  const { widgetParameters } = React.useContext(ParameterContext);
+  const { formValues } = React.useContext(DisplayContext);
 
   useEffect(() => {
     setLocationRadius(contextFormValues?.radius ?? 30);
