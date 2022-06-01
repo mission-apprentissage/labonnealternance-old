@@ -59,7 +59,7 @@ const TrainingDetail = ({ training, isCfa }) => {
           v.lbfLoaded = true;
 
           try {
-            let trainingDetail = await fetchTrainingDetails(training);
+            const trainingDetail = await fetchTrainingDetails(training);
 
             updateTrainingFromLbf(v, trainingDetail);
             setTrainingsAndSelectedItem(updatedTrainings, v);
