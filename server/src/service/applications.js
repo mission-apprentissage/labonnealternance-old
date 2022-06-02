@@ -170,7 +170,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         if (aCompanyType === "matcha") {
           res = `Candidature en alternance - ${aJobTitle}`;
         } else {
-          res = `Candidature spontanée en alternance - ${aJobTitle}`;
+          res = `Candidature spontanée en alternance`;
         }
         return res;
       };
