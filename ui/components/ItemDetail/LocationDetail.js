@@ -17,7 +17,7 @@ const LocationDetail = ({ item }) => {
   if (!companySize) {
     companySize = "non renseigné";
   } else if (companySize.startsWith("0")) {
-    companySize = "petite entreprise";
+    companySize = "0 à 9 salariés";
   }
   if (endsWithNumber(companySize)) {
     companySize += " salariés";
