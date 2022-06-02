@@ -15,7 +15,6 @@ export const searchForJobsFunction = async ({
   values,
   searchTimestamp,
   setIsJobSearchLoading,
-  dispatch,
   setHasSearch,
   setJobSearchError,
   setAllJobSearchError,
@@ -126,8 +125,8 @@ export const searchForJobsFunction = async ({
     }
 
     sendJobSearchTrackEvent(values, results);
-    dispatch(setJobs(results));
-    dispatch(setHasSearch(true));
+    setJobs(results);
+    setHasSearch(true);
     storeJobsInSession({ jobs: results, searchTimestamp });
 
     setJobMarkers(factorJobsForMap(results), scopeContext.isTraining ? null : searchCenter);

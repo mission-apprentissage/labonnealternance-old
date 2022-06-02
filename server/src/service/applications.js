@@ -40,8 +40,30 @@ const images = {
   },
 };
 
+const buildUrlOfDetail = (aPublicUrl, aQuery) => {
+  let itemId = ((aCompanyType) => {
+    if (aCompanyType === "peJob") {
+      return aQuery.job_id;
+    } else if (aCompanyType === "matcha") {
+      return aQuery.job_id;
+    } else if (aCompanyType !== "formation") {
+      return aQuery.company_siret || "siret";
+    }
+  })(aQuery.company_type);
+  let moreParams = ((aCompanyType) => {
+    let res = "";
+    if (aCompanyType === "matcha") {
+      res = "&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur";
+    }
+    return res;
+  })(aQuery.company_type);
+  let kind = aQuery.company_type;
+
+  return `${aPublicUrl}/recherche-apprentissage?display=list&page=fiche&type=${kind}&itemId=${itemId}${moreParams}`;
+};
+
 const initApplication = (query, companyEmail) => {
-  return new Application({
+  let res = new Application({
     applicant_file_name: query.applicant_file_name,
     applicant_email: query.applicant_email.toLowerCase(),
     applicant_first_name: query.applicant_first_name,
@@ -58,6 +80,8 @@ const initApplication = (query, companyEmail) => {
     job_id: query.job_id,
     interet_offres_mandataire: query.interet_offres_mandataire,
   });
+
+  return res;
 };
 
 const getApplications = async (qs) => {
@@ -146,6 +170,18 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
 
       const fileContent = query.applicant_file_content;
 
+      const urlOfDetail = buildUrlOfDetail(publicUrl, query);
+
+      const buildTopic = (aCompanyType, aJobTitle) => {
+        let res = "Candidature";
+        if (aCompanyType === "matcha") {
+          res = `Candidature en alternance - ${aJobTitle}`;
+        } else {
+          res = `Candidature spontanée en alternance`;
+        }
+        return res;
+      };
+
       // Sends acknowledge email to "candidate" and application email to "company"
       const [emailCandidat, emailCompany] = await Promise.all([
         mailer.sendEmail(
@@ -162,9 +198,9 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
         ),
         mailer.sendEmail(
           application.company_email,
-          `Candidature spontanée pour un poste en alternance`,
+          buildTopic(application.company_type, application.job_title),
           getEmailTemplate(emailTemplates.entreprise),
-          { ...application._doc, ...images, ...encryptedId, publicUrl },
+          { ...application._doc, ...images, ...encryptedId, publicUrl, urlOfDetail },
           [
             {
               filename: application.applicant_file_name,

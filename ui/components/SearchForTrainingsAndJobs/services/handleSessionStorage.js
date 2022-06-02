@@ -37,16 +37,16 @@ const trimSessionStorage = () => {
   }
 };
 
-export const restoreSearchFromSession = ({ searchTimestamp, dispatch, setTrainings, setJobs }) => {
+export const restoreSearchFromSession = ({ searchTimestamp, setTrainings, setJobs }) => {
   let search = JSON.parse(sessionStorage.getItem(searchTimestamp));
 
   if (search?.jobs) {
-    dispatch(setJobs(search.jobs));
+    setJobs(search.jobs);
     setJobMarkers(factorJobsForMap(search.jobs));
   }
 
   if (search?.trainings) {
-    dispatch(setTrainings(search.trainings));
+    setTrainings(search.trainings);
     setTrainingMarkers(factorTrainingsForMap(search.trainings));
   }
 };

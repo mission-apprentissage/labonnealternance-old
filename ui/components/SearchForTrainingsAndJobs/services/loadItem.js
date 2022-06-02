@@ -16,7 +16,6 @@ import { storeTrainingsInSession } from "./handleSessionStorage";
 
 export const loadItem = async ({
   item,
-  dispatch,
   setTrainings,
   setHasSearch,
   setIsFormVisible,
@@ -34,8 +33,8 @@ export const loadItem = async ({
   factorJobsForMap,
 }) => {
   try {
-    dispatch(setHasSearch(true));
-    dispatch(setIsFormVisible(false));
+    setHasSearch(true);
+    setIsFormVisible(false);
 
     let itemMarker = null;
 
@@ -49,13 +48,13 @@ export const loadItem = async ({
 
       const searchTimestamp = new Date().getTime();
 
-      dispatch(setTrainings(response.data.results));
+      setTrainings(response.data.results);
       storeTrainingsInSession({ trainings: response.data.results, searchTimestamp });
 
       if (response.data.results.length) {
         setTrainingMarkers(factorTrainingsForMap(response.data.results));
       }
-      dispatch(setSelectedItem(response.data.results[0]));
+      setSelectedItem(response.data.results[0]);
       setSelectedMarker(response.data.results[0]);
       itemMarker = response.data.results[0];
 
@@ -79,7 +78,6 @@ export const loadItem = async ({
         values,
         searchTimestamp,
         setIsJobSearchLoading,
-        dispatch,
         setHasSearch,
         setJobSearchError,
         computeMissingPositionAndDistance,
@@ -155,13 +153,13 @@ export const loadItem = async ({
       }
 
       if (!errorMessage) {
-        dispatch(setJobs(results));
+        setJobs(results);
 
-        dispatch(setHasSearch(true));
+        setHasSearch(true);
 
         setJobMarkers(factorJobsForMap(results), null);
 
-        dispatch(setSelectedItem(loadedItem));
+        setSelectedItem(loadedItem);
         setSelectedMarker(loadedItem);
         itemMarker = loadedItem;
       } else {

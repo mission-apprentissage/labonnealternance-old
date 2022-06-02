@@ -20,7 +20,7 @@ const LocationDetail = ({ item }) => {
     companySize = "petite entreprise";
   }
   if (endsWithNumber(companySize)) {
-    companySize += " salariés"
+    companySize += " salariés";
   }
 
   const getTitle = (oneItem) => {

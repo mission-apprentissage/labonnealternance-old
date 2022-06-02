@@ -18,15 +18,15 @@ const PeJobDetail = ({ job }) => {
     });
   }, [job?.job?.id]);
 
-  const description = job?.job?.description
-  const contractDuration = job?.job?.contractDescription
-  const contractRythm = job?.job?.duration || "Non défini"
-  const creationDate = formatDate(job?.job?.creationDate)
+  const description = job?.job?.description;
+  const contractDuration = job?.job?.contractDescription;
+  const contractRythm = job?.job?.duration || "Non défini";
+  const creationDate = formatDate(job?.job?.creationDate);
 
   const kind = job?.ideaType;
 
   return (
-    <>
+    <div className="c-detail-body mt-4">
       <h2 className="c-locationdetail-title mt-2">Description de l'offre</h2>
       <div className="c-matcha-detail-container">
         <div>
@@ -49,7 +49,7 @@ const PeJobDetail = ({ job }) => {
       ) : (
         ""
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect, useContext } from "react";
 import PeJobDetail from "./PeJobDetail";
 import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { findIndex, concat, pick, get, defaultTo, round } from "lodash";
+import { findIndex, concat, pick, get, defaultTo } from "lodash";
 import { amongst } from "../../utils/arrayutils";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
-import { capitalizeFirstLetter, isNonEmptyString } from "../../utils/strutils";
+import { capitalizeFirstLetter } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
 import ExternalLink from "../externalLink";
-
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { useSwipeable } from "react-swipeable";
 import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
 
@@ -29,13 +28,60 @@ import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatur
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
 
+const getTags = ({ kind, isCfa, isMandataire }) => {
+  return (
+    <div className="mr-auto c-tagcfa-container text-left">
+      {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
+      {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
+      {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
+      {amongst(kind, ["matcha"]) && isMandataire ? <TagFormationAssociee isMandataire /> : ""}
+    </div>
+  );
+};
+
+const getH1 = ({ kind, actualTitle }) => {
+  return <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>;
+};
+
+const getActualTitle = ({ selectedItem, kind }) => {
+  let title = "";
+
+  if (kind === "formation") {
+    title = selectedItem?.title || selectedItem?.longTitle;
+  } else if (kind === "matcha") {
+    title = selectedItem?.title;
+  } else if (kind === "peJob") {
+    title = selectedItem?.title;
+  } else {
+    // lba / lbb
+    title = selectedItem?.nafs[0]?.label;
+  }
+
+  return title;
+};
+
+const getCurrentList = (store, activeFilter, extendedSearch) => {
+  let picked = pick(store, ["trainings", "jobs"]);
+  let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
+
+  let jobList = [];
+  let companyList = [];
+  if (amongst(activeFilter, ["all", "jobs"])) {
+    if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
+    else {
+      jobList = mergeJobs(get(picked, "jobs"));
+      companyList = mergeOpportunities(get(picked, "jobs"), "onlyLbbLba");
+    }
+  }
+  let fullList = concat([], trainingsArray, jobList, companyList);
+return  fullList.filter((el) => !!el);
+};
+
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
   const isMandataire = selectedItem?.company?.mandataire;
-
-  const distance = selectedItem?.place?.distance;
 
   const [seeInfo, setSeeInfo] = useState(false);
 
@@ -48,31 +94,10 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     }
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
 
-  let actualTitle =
-    kind === "formation"
-      ? selectedItem?.title || selectedItem?.longTitle
-      : selectedItem?.company?.name || selectedItem?.title || selectedItem?.longTitle;
+  let actualTitle = getActualTitle({ kind, selectedItem });
 
-  const { extendedSearch, formValues } = useSelector((state) => state.trainings);
-  const hasLocation = formValues?.location?.value ? true : false;
-
-  const currentList = useSelector((store) => {
-    let picked = pick(store.trainings, ["trainings", "jobs"]);
-    let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
-
-    let jobList = [];
-    let companyList = [];
-    if (amongst(activeFilter, ["all", "jobs"])) {
-      if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
-      else {
-        jobList = mergeJobs(get(picked, "jobs"));
-        companyList = mergeOpportunities(get(picked, "jobs"), "onlyLbbLba");
-      }
-    }
-    let fullList = concat([], trainingsArray, jobList, companyList);
-    let listWithoutEmptyValues = fullList.filter((el) => !!el);
-    return listWithoutEmptyValues;
-  });
+  const { trainings, jobs, extendedSearch } = useContext(SearchResultContext);
+  const currentList = getCurrentList({ trainings, jobs }, activeFilter, extendedSearch);
 
   // See https://www.npmjs.com/package/react-swipeable
   const swipeHandlers = useSwipeable({
@@ -121,8 +146,92 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   };
 
   const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
-    return oneKind === "peJob" && oneItem?.url
-  }
+    return oneKind === "peJob" && oneItem?.url;
+  };
+
+  const getNavigationButtons = () => {
+    return (
+      <>
+        <div>
+          <button
+            className="c-tiny-btn"
+            onClick={() => {
+              goPrev();
+            }}
+          >
+            <img className="c-tiny-btn__image" src={chevronLeft} alt="Résultat précédent" />
+          </button>
+        </div>
+        <div className="ml-2">
+          <button
+            className="c-tiny-btn"
+            onClick={() => {
+              goNext();
+            }}
+          >
+            <img className="c-tiny-btn__image" src={chevronRight} alt="Résultat suivant" />
+          </button>
+        </div>
+        <div className="ml-2">
+          <button
+            className="c-tiny-btn"
+            onClick={() => {
+              setSeeInfo(false);
+              handleClose();
+            }}
+          >
+            <img className="c-tiny-btn__image" src={chevronClose} alt="Fermer la fenêtre" />
+          </button>
+        </div>
+      </>
+    );
+  };
+
+  const getSurtitre = ({ selectedItem, kind }) => {
+    let res = "";
+
+    if (kind === "matcha") {
+      res = (
+        <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
+          <span>{`${get(selectedItem, "company.name", "")}`}</span>
+          <span className="c-detail-activity__proposal">
+            &nbsp;propose actuellement cette offre dans le domaine suivant
+          </span>
+        </p>
+      );
+    }
+
+    if (kind === "peJob") {
+      res = (
+        <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
+          <span>{`${get(selectedItem, "company.name", "Une société ayant souhaité garder l'anonymat")}`}</span>
+          <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre</span>
+        </p>
+      );
+    }
+
+    if (amongst(kind, ["lba", "lbb"])) {
+      res = (
+        <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
+          <span>{`${get(selectedItem, "company.name", "")}`}</span>
+          <span className="c-detail-activity__proposal">
+            &nbsp;a des salariés qui exercent le métier auquel vous vous destinez. Envoyez votre candidature spontanée !
+          </span>
+        </p>
+      );
+    }
+
+    if (kind === "formation") {
+      res = (
+        <p className={`c-detail-activity c-detail-title--formation`}>
+          <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
+          <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
+        </p>
+      );
+    }
+
+    return res;
+  };
 
   return (
     <>
@@ -149,72 +258,13 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         <header className={`c-detail-header c-detail--collapse-header-${collapseHeader}`}>
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
-              <div className="mr-auto c-tagcfa-container text-left">
-
-                {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
-                {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
-                {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
-                {amongst(kind, ["matcha"]) && isMandataire ? <TagFormationAssociee isMandataire /> : ""}
-              </div>
-              <div>
-                <button
-                  className="c-tiny-btn"
-                  onClick={() => {
-                    goPrev();
-                  }}
-                >
-                  <img className="c-tiny-btn__image" src={chevronLeft} alt="Résultat précédent" />
-                </button>
-              </div>
-              <div className="ml-2">
-                <button
-                  className="c-tiny-btn"
-                  onClick={() => {
-                    goNext();
-                  }}
-                >
-                  <img className="c-tiny-btn__image" src={chevronRight} alt="Résultat suivant" />
-                </button>
-              </div>
-              <div className="ml-2">
-                <button
-                  className="c-tiny-btn"
-                  onClick={() => {
-                    setSeeInfo(false);
-                    handleClose();
-                  }}
-                >
-                  <img className="c-tiny-btn__image" src={chevronClose} alt="Fermer la fenêtre" />
-                </button>
-              </div>
+              {getTags({ kind, isCfa, isMandataire })}
+              {getNavigationButtons()}
             </div>
 
-            {amongst(kind, ["lba", "lbb", "matcha"]) ? (
-              <>
-                <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
-                  <span>{`${get(selectedItem, "company.name", "")}`}</span>
-                  <span className="c-detail-activity__proposal">
-                    &nbsp;propose actuellement cette offre dans le domaine suivant
-                  </span>
-                </p>
-              </>
-            ) : (
-              ""
-            )}
-            {amongst(kind, ["formation"]) ? (
-              <p className={`c-detail-activity c-detail-title--formation`}>
-                <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
-                <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
-              </p>
-            ) : (
-              ""
-            )}
+            {getSurtitre({ selectedItem, kind })}
 
-            {kind === "matcha" ? (
-              <h1 className="c-detail-title c-detail-title--matcha">{selectedItem.title}</h1>
-            ) : (
-              <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
-            )}
+            {getH1({ kind, actualTitle })}
 
             <p className="mt-4 c-detail-address-section">
               <span className="d-block">
@@ -245,7 +295,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             {isCandidatureSpontanee(selectedItem) ? (
               <>
-                <hr class="c-detail-header-separator mt-0" />
+                <hr className="c-detail-header-separator mt-0" />
                 <CandidatureSpontanee item={selectedItem} />
               </>
             ) : (
@@ -263,17 +313,15 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           </div>
         </header>
 
-        <div className="c-detail-body mt-4">
-          {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
-          {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
-          {amongst(kind, ["lbb", "lba"]) ? (
-            <LbbCompanyDetail lbb={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
-          ) : (
-            ""
-          )}
+        {kind === "peJob" ? <PeJobDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
+        {kind === "matcha" ? <MatchaDetail job={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} /> : ""}
+        {amongst(kind, ["lbb", "lba"]) ? (
+          <LbbCompanyDetail lbb={selectedItem} seeInfo={seeInfo} setSeeInfo={setSeeInfo} />
+        ) : (
+          ""
+        )}
 
-          {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
-        </div>
+        {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
 
         {amongst(kind, ["lbb", "lba"]) ? (
           <div className="c-needHelp">
@@ -311,19 +359,19 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
         <LocationDetail item={selectedItem}></LocationDetail>
 
-        {amongst(kind, ["peJob"]) ? (
+        {kind === "peJob" ? (
           <>
             <DidYouKnow item={selectedItem}></DidYouKnow>
 
-            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ?
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               ""
-              : 
+            ) : (
               <GoingToContactQuestion
                 kind={kind}
                 uniqId={getGoingtoId(kind, selectedItem)}
                 key={getGoingtoId(kind, selectedItem)}
               />
-             }
+            )}
           </>
         ) : (
           <></>

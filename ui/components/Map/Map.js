@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useRouter } from "next/router";
-import { useStore, useDispatch, useSelector } from "react-redux";
-import { setSelectedItem, setSelectedMapPopupItem } from "store/actions";
 import { currentPage, setCurrentPage, currentSearch } from "utils/currentPage.js";
-import { useScopeContext } from "context/ScopeContext";
+import { ScopeContext } from "context/ScopeContext";
 import pushHistory from "utils/pushHistory";
 import MapSearchButton from "./MapSearchButton";
 import { map, initializeMap, isMapInitialized, setSelectedMarker } from "utils/mapTools";
-import { fetchAddressFromCoordinates } from "services/baseAdresse";
+import { fetchAddressFromCoordinates } from "../../services/baseAdresse";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 let mapPosition = {
   lat: null,
@@ -18,20 +18,19 @@ let mapPosition = {
 let shouldHandleMapSearch = true;
 
 const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
-  const store = useStore();
-  const { trainings, jobs, formValues, shouldMapBeVisible } = useSelector((state) => {
-    return state.trainings;
-  });
+  const { formValues, shouldMapBeVisible } = useContext(DisplayContext);
+
+  const { trainings, jobs, setSelectedItem, setSelectedMapPopupItem } = useContext(SearchResultContext);
+
   const router = useRouter();
 
-  const scopeContext = useScopeContext();
+  const scopeContext = useContext(ScopeContext);
 
   const [mapInitialized, setMapInitialized] = useState(false);
   const mapContainer = useRef(null);
-  const dispatch = useDispatch();
 
   const unselectItem = () => {
-    dispatch(setSelectedItem(null));
+    setSelectedItem(null);
     setSelectedMarker(null);
     if (currentPage === "fiche") {
       setCurrentPage("");
@@ -40,7 +39,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
   };
 
   const unselectMapPopupItem = () => {
-    dispatch(setSelectedMapPopupItem(null));
+    setSelectedMapPopupItem(null);
   };
 
   const handleSearchClick = async () => {
@@ -116,13 +115,14 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
       setMapInitialized(true);
       initializeMap({
         mapContainer,
-        store,
         unselectItem,
         trainings,
         jobs,
         selectItemOnMap,
         onMapHasMoved,
         unselectMapPopupItem,
+        setSelectedItem,
+        setSelectedMapPopupItem,
       });
     }
   }, [trainings, jobs]);
@@ -134,13 +134,14 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
       setTimeout(() => {
         initializeMap({
           mapContainer,
-          store,
           unselectItem,
           trainings,
           jobs,
           selectItemOnMap,
           onMapHasMoved,
           unselectMapPopupItem,
+          setSelectedItem,
+          setSelectedMapPopupItem,
         });
       }, 0);
     }

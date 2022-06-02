@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import gotoIcon from "../../public/images/icons/goto.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { setTrainingsAndSelectedItem } from "../../store/actions";
 import fetchTrainingDetails from "../../services/fetchTrainingDetails";
 import fetchPrdv from "../../services/fetchPrdv";
 import sendTrainingOpenedEventToCatalogue from "../../services/sendTrainingOpenedEventToCatalogue";
@@ -13,10 +11,9 @@ import { SendTrackEvent } from "../../utils/gtm";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "../../utils/strutils";
 import { Spinner } from "reactstrap";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
 
 const TrainingDetail = ({ training, isCfa }) => {
-  const dispatch = useDispatch();
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,7 +25,7 @@ const TrainingDetail = ({ training, isCfa }) => {
     setLoading(true);
   }, [training.id]);
 
-  const { trainings } = useSelector((state) => state.trainings);
+  const { trainings, setTrainingsAndSelectedItem } = useContext(SearchResultContext);
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
@@ -62,10 +59,10 @@ const TrainingDetail = ({ training, isCfa }) => {
           v.lbfLoaded = true;
 
           try {
-            let trainingDetail = await fetchTrainingDetails(training);
+            const trainingDetail = await fetchTrainingDetails(training);
 
             updateTrainingFromLbf(v, trainingDetail);
-            dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
+            setTrainingsAndSelectedItem(updatedTrainings, v);
           } catch (err) {}
         }
         setLoading(false);
@@ -82,7 +79,7 @@ const TrainingDetail = ({ training, isCfa }) => {
 
           try {
             v.prdvUrl = url;
-            dispatch(setTrainingsAndSelectedItem(updatedTrainings, v));
+            setTrainingsAndSelectedItem(updatedTrainings, v);
           } catch (err) {}
         }
         setLoading(false);
@@ -104,14 +101,16 @@ const TrainingDetail = ({ training, isCfa }) => {
   };
 
   return (
-    <>
+    <div className="c-detail-body mt-4">
       {getLoading()}
       {getTrainingDetails(training.training)}
       {training.onisepUrl ? (
         <div className="c-detail-newadvice mt-4 pl-4">
           <div className="pt-1 pb-2">
             <img src={questionmarkIcon} alt="point d'interrogation" />
-            <span className="c-detail-newadvice-title ml-3">{training.title ? training.title : training.longTitle}</span>
+            <span className="c-detail-newadvice-title ml-3">
+              {training.title ? training.title : training.longTitle}
+            </span>
           </div>
           <div>
             <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
@@ -123,13 +122,14 @@ const TrainingDetail = ({ training, isCfa }) => {
             </span>
           </div>
           <div className="mt-2 mb-2">
-            Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ? Préparez votre premier contact avec un CFA
+            Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ? Préparez votre premier
+            contact avec un CFA
           </div>
         </div>
       ) : (
         ""
       )}
-    </>
+    </div>
   );
 };
 

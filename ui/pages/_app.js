@@ -1,20 +1,21 @@
 import App from "next/app";
 import React from "react";
-import { ConnectedRouter } from "connected-next-router";
-import { wrapper } from "store/configure-store";
 import HeadLaBonneAlternance from "components/head";
+
+import Providers from "../context/Providers";
 
 import "public/styles/application.scss";
 
 import * as Sentry from "@sentry/node";
 import * as SentryReact from "@sentry/react";
+import PageTracker from "@/components/pageTracker";
 
 if (process.env.uiSentryDsn) {
   Sentry.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
   SentryReact.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
 }
 
-class ExampleApp extends App {
+class LaBonneAlternance extends App {
   static async getInitialProps(context) {
     // récupération du hostname pour initialiser les fonts en preload
     const { req } = context.ctx;
@@ -38,19 +39,18 @@ class ExampleApp extends App {
     const { Component, pageProps, host, shouldLoadAnalytics } = this.props;
 
     return (
-      <>
-        <main className="c-app">
-          <HeadLaBonneAlternance
-            shouldLoadAnalytics={shouldLoadAnalytics}
-            publicUrl={host && process.env.publicUrl ? host : ""}
-          />
-          <ConnectedRouter>
+      <Providers>
+        <PageTracker>
+          <main className="c-app">
+            <HeadLaBonneAlternance
+              shouldLoadAnalytics={shouldLoadAnalytics}
+              publicUrl={host && process.env.publicUrl ? host : ""}
+            />
             <Component {...pageProps} />
-          </ConnectedRouter>
-        </main>
-      </>
+          </main>
+        </PageTracker>
+      </Providers>
     );
   }
 }
-
-export default wrapper.withRedux(ExampleApp);
+export default LaBonneAlternance;

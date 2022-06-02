@@ -1,17 +1,17 @@
 import React from "react";
-import { getStaticMetiers, getStaticVilles, extractFromFile } from "utils/getStaticData";
+import { getStaticMetiers, getStaticVilles } from "utils/getStaticData";
 import Navigation from "components/navigation";
-import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import Footer from "components/footer";
 import { NextSeo } from "next-seo";
 import Breadcrumb from "components/breadcrumb";
 
 export default function ForJob(props) {
-  const routerState = useSelector((state) => state.router);
+  const router = useRouter();
+
   const find = require("lodash").find;
-  const last = require("lodash").last;
   const sortBy = require("lodash").sortBy;
-  const currentSlug = last(routerState.location.href.split("/"));
+  const currentSlug = router.query.forJob;
   const currentJob = find(props.dataJobs, (e) => e.slug === currentSlug);
   const sortedTowns = sortBy(props.dataTowns, (e) => e.slug);
 
@@ -31,19 +31,29 @@ export default function ForJob(props) {
       <div className="c-about c-page-container container my-0 mb-sm-5 p-5">
         <h1 className="mt-0">
           <span className="d-block c-page-title is-color-1">Tous les emplois et formations</span>
-          <span className="d-block c-page-title is-color-2">en alternance en <i>{currentJob.name}</i></span>
+          <span className="d-block c-page-title is-color-2">
+            en alternance en <i>{currentJob.name}</i>
+          </span>
         </h1>
         <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
 
         <p>
-          Vous êtes à seulement 2 clics d'obtenir toutes les informations pour trouver une alternance rapidement sur La Bonne Alternance :
+          Vous êtes à seulement 2 clics d'obtenir toutes les informations pour trouver une alternance rapidement sur La
+          Bonne Alternance :
           <ul className="mt-2">
-            <li>Offres d'emploi en contrat d'apprentissage ou en contrat de professionnalisation en <i>{currentJob.name}</i></li>
-            <li>Liste d’entreprises qui recrutent en alternance en <i>{currentJob.name}</i></li>
-            <li>Formations en apprentissage en CAP, Bac pro, Mention complémentaire, BTS, BUT, DEUST, Licence, Master en <i>{currentJob.name}</i></li>
+            <li>
+              Offres d'emploi en contrat d'apprentissage ou en contrat de professionnalisation en{" "}
+              <i>{currentJob.name}</i>
+            </li>
+            <li>
+              Liste d’entreprises qui recrutent en alternance en <i>{currentJob.name}</i>
+            </li>
+            <li>
+              Formations en apprentissage en CAP, Bac pro, Mention complémentaire, BTS, BUT, DEUST, Licence, Master en{" "}
+              <i>{currentJob.name}</i>
+            </li>
           </ul>
         </p>
-
 
         {sortedTowns.map((currentTown, index) => {
           return (

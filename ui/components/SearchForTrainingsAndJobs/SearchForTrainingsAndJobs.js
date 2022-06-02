@@ -1,25 +1,12 @@
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { useRouter } from "next/router";
 
 import { loadItem } from "components/SearchForTrainingsAndJobs/services/loadItem";
 import { searchForTrainingsFunction } from "components/SearchForTrainingsAndJobs/services/searchForTrainings";
 import { searchForJobsFunction } from "components/SearchForTrainingsAndJobs/services/searchForJobs";
-import { useDispatch, useSelector } from "react-redux";
 import pushHistory from "utils/pushHistory";
-import {
-  setSelectedItem,
-  setItemToScrollTo,
-  setIsFormVisible,
-  setVisiblePane,
-  setShouldMapBeVisible,
-  setTrainings,
-  setJobs,
-  setFormValues,
-  setExtendedSearch,
-  setHasSearch,
-} from "store/actions";
 
 import {
   flyToMarker,
@@ -36,7 +23,10 @@ import {
   coordinatesOfFrance,
 } from "utils/mapTools";
 
-import { useScopeContext } from "context/ScopeContext";
+import { ScopeContext } from "context/ScopeContext";
+import { SearchResultContext } from "../../context/SearchResultContextProvider";
+import { ParameterContext } from "../../context/ParameterContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 import Map from "components/Map";
 import { Row, Col } from "reactstrap";
@@ -46,12 +36,13 @@ import { currentPage, setCurrentPage, currentSearch, setCurrentSearch } from "ut
 import updateUiFromHistory from "services/updateUiFromHistory";
 
 const SearchForTrainingsAndJobs = () => {
-  const dispatch = useDispatch();
-  const scopeContext = useScopeContext();
+  const scopeContext = useContext(ScopeContext);
 
-  const { trainings, jobs, hasSearch, selectedItem, widgetParameters, visiblePane, isFormVisible, formValues, opcoFilter } = useSelector(
-    (state) => state.trainings
-  );
+  const { hasSearch, trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch, setHasSearch } = useContext(SearchResultContext);
+
+  const { opcoFilter, widgetParameters } = useContext(ParameterContext);
+
+  const { formValues, setFormValues, visiblePane, setVisiblePane, isFormVisible, setIsFormVisible, setShouldMapBeVisible } = useContext(DisplayContext);
 
   const [searchRadius, setSearchRadius] = useState(30);
   const [isTrainingSearchLoading, setIsTrainingSearchLoading] = useState(hasSearch ? false : true);
@@ -83,7 +74,6 @@ const SearchForTrainingsAndJobs = () => {
         showResultMap,
         showResultList,
         showSearchForm,
-        dispatch,
         setTrainings,
         setJobs,
         setActiveFilter,
@@ -110,7 +100,7 @@ const SearchForTrainingsAndJobs = () => {
     closeMapPopups();
     if (item) {
       flyToMarker(item, 12);
-      dispatch(setSelectedItem(item));
+      setSelectedItem(item);
       setSelectedMarker(item);
     }
   }
@@ -153,14 +143,14 @@ const SearchForTrainingsAndJobs = () => {
     const searchTimestamp = new Date().getTime();
     setShouldShowWelcomeMessage(false);
 
-    dispatch(setHasSearch(false));
+    setHasSearch(false);
     setSearchRadius(values.radius || 30);
-    dispatch(setExtendedSearch(false));
+    setExtendedSearch(false);
 
     if(searchCenter) { flyToLocation({ center: searchCenter, zoom: 10 }); }
     else { flyToLocation({ center: coordinatesOfFrance, zoom: 4 }); }
   
-    dispatch(setFormValues({ ...values }));
+    setFormValues({ ...values });
 
     if (scopeContext.isTraining) {
       searchForTrainings({values,searchTimestamp,followUpItem,selectFollowUpItem});
@@ -169,7 +159,7 @@ const SearchForTrainingsAndJobs = () => {
     if (scopeContext.isJob) {
       searchForJobs({values,searchTimestamp,followUpItem,selectFollowUpItem});
     }
-    dispatch(setIsFormVisible(false));
+    setIsFormVisible(false);
 
     pushHistory({ router, scopeContext, display: "list", searchParameters:values, searchTimestamp });
     setCurrentSearch(searchTimestamp);
@@ -178,12 +168,11 @@ const SearchForTrainingsAndJobs = () => {
   const handleItemLoad = async (item) => {
     setShouldShowWelcomeMessage(false);
 
-    dispatch(setHasSearch(false));
-    dispatch(setExtendedSearch(true));
+    setHasSearch(false);
+    setExtendedSearch(true);
 
     loadItem({
       item,
-      dispatch,
       setTrainings,
       setHasSearch,
       setIsFormVisible,
@@ -201,14 +190,13 @@ const SearchForTrainingsAndJobs = () => {
       factorJobsForMap,
     });
 
-    dispatch(setIsFormVisible(false));
+    setIsFormVisible(false);
   };
 
   const searchForTrainings = async ({values, searchTimestamp, followUpItem, selectFollowUpItem}) => {
     searchForTrainingsFunction({
       values,
       searchTimestamp,
-      dispatch,
       setIsTrainingSearchLoading,
       setTrainingSearchError,
       clearTrainings,
@@ -228,7 +216,6 @@ const SearchForTrainingsAndJobs = () => {
       values,
       searchTimestamp,
       setIsJobSearchLoading,
-      dispatch,
       setHasSearch,
       setJobSearchError,
       setAllJobSearchError,
@@ -245,7 +232,7 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   const clearTrainings = () => {
-    dispatch(setTrainings([]));
+    setTrainings([]);
     setTrainingMarkers(null);
     closeMapPopups();
   };
@@ -254,8 +241,8 @@ const SearchForTrainingsAndJobs = () => {
     if (e) {
       e.stopPropagation();
     }
-    dispatch(setVisiblePane("resultList")); // affichage de la colonne resultList / searchForm
-    dispatch(setIsFormVisible(true));
+    setVisiblePane("resultList"); // affichage de la colonne resultList / searchForm
+    setIsFormVisible(true);
 
     if (!doNotSaveToHistory) {
       unSelectItem("doNotSaveToHistory");
@@ -269,9 +256,9 @@ const SearchForTrainingsAndJobs = () => {
     }
 
     if (!isMapInitialized) {
-      dispatch(setShouldMapBeVisible(true));
+      setShouldMapBeVisible(true);
     }
-    dispatch(setVisiblePane("resultMap"));
+    setVisiblePane("resultMap");
 
     if (!doNotSaveToHistory) {
       pushHistory({ router, scopeContext, display: "map", searchParameters:formValues, searchTimestamp: currentSearch });
@@ -287,8 +274,8 @@ const SearchForTrainingsAndJobs = () => {
     if (e) {
       e.stopPropagation();
     }
-    dispatch(setVisiblePane("resultList"));
-    dispatch(setIsFormVisible(false));
+    setVisiblePane("resultList");
+    setIsFormVisible(false);
 
     if (!doNotSaveToHistory) {
       pushHistory({ router, scopeContext, display: "list", searchParameters:formValues, searchTimestamp: currentSearch });
@@ -302,10 +289,10 @@ const SearchForTrainingsAndJobs = () => {
   };
 
   const unSelectItem = (doNotSaveToHistory) => {
-    dispatch(setSelectedItem(null));
+    setSelectedItem(null);
     setSelectedMarker(null);
     if (selectedItem) {
-      dispatch(setItemToScrollTo(selectedItem));
+      setItemToScrollTo(selectedItem);
     }
 
     if (!doNotSaveToHistory) {
