@@ -50,9 +50,16 @@ const buildUrlOfDetail = (aPublicUrl, aQuery) => {
       return aQuery.company_siret || "siret";
     }
   })(aQuery.company_type);
+  let moreParams = ((aCompanyType) => {
+    let res = "";
+    if (aCompanyType === "matcha") {
+      res = "&utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur";
+    }
+    return res;
+  })(aQuery.company_type);
   let kind = aQuery.company_type;
 
-  return `${aPublicUrl}/recherche-apprentissage?display=list&page=fiche&type=${kind}&itemId=${itemId}`;
+  return `${aPublicUrl}/recherche-apprentissage?display=list&page=fiche&type=${kind}&itemId=${itemId}${moreParams}`;
 };
 
 const initApplication = (query, companyEmail) => {
