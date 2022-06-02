@@ -161,8 +161,16 @@ const getFormations = async ({
 
 const getFormation = async ({ id, caller }) => {
   try {
-    const Formation = await getCurrentFormationsSourceCollection();
-    const responseFormation = await Formation.findOne({ cle_ministere_educatif: id });
+    let responseFormation = null;
+    if (id === "id-formation-test") {
+      responseFormation = formationMock;
+    } else {
+      const Formation = await getCurrentFormationsSourceCollection();
+      responseFormation = await Formation.findOne({ cle_ministere_educatif: id });
+    }
+
+    console.log(id, caller);
+    console.log("responseFormation ", responseFormation);
 
     //throw new Error("BOOM");
     let formations = [];
@@ -728,6 +736,7 @@ const getFormationEsQueryIndexFragment = (limit) => {
 };
 
 const { regionCodeToDepartmentList } = require("../common/utils/regionInseeCodes");
+const { formationMock } = require("../../tests/mocks/formations-mock");
 const getEsRegionTermFragment = (region) => {
   let departements = [];
 
