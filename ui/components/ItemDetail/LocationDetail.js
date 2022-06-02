@@ -126,7 +126,7 @@ const LocationDetail = ({ item }) => {
 
         {item?.contact?.phone ? (
           <div className="c-locationdetail-line mt-1">
-            <span className="c-locationdetail-imgcontainer">
+            <span className="c-locationdetail-imgcontainer c-locationdetail-imgcontainer--smallphone">
               <img className="" src="/images/icons/small_phone.svg" alt="téléphone" />
             </span>
             <span className="c-detail-sizetext">{item.contact.phone}</span>
