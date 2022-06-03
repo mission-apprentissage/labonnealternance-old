@@ -1,11 +1,13 @@
 # CHANGELOG
 
+## 1.19.1 [3/06/2022]
+[LBA6-128] Refonte fiche détaillée, reliquats
+
 ## 1.19.0 [22/05/2022]
 [LBA6-68] Remplacement redux par API context
 [LBA6-36] Fix effect de rechargement sur lien Organisme de formation
 [LBA6-12b] MAJ email envoyé au recruteur lors d'une candidature spontanée, reliquats
 [LBA6-11b] MAJ email envoyé au recruteur lors d'une candidature Matcha, reliquats
-[LBA6-128] Refonte fiche détaillée, reliquats
 
 ## 1.18.12 [17/05/2022]
 [LBA6-132] Corrections en-têtes des fiches détails
