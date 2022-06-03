@@ -25,6 +25,7 @@ const images = {
     //logo: `${config.publicUrl}/images/emails/logo_lba.png`,
     logo: `${imagePath}logo_lba.png`,
     logoRF: `${imagePath}logo_rf.png`,
+    logoMemo: `${imagePath}logo_memo.png`,
     icoInfo: `${imagePath}icone_info.png`,
     icoCandidat: `${imagePath}icone_candidat.png`,
     nspp: `${imagePath}nspp.png`,
