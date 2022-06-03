@@ -123,7 +123,7 @@ const TrainingDetail = ({ training, isCfa }) => {
           </div>
           <div className="mt-2 mb-2">
             Vous vous posez des questions sur votre orientation ou votre recherche d'emploi ? 
-            <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="c-nice-link">
+            <a href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987" target="_blank" rel="noopener noreferrer" className="c-nice-link">
               &nbsp;Préparez votre premier contact avec un CFA&nbsp;
                 <img src={gotoIcon} alt="Lien" />
               </a>
