@@ -115,15 +115,18 @@ const TrainingDetail = ({ training, isCfa }) => {
           <div>
             <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
             <span className="c-detail-traininglink">
-              <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="">
+              <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="c-nice-link">
                 le site Onisep&nbsp;
                 <img src={gotoIcon} alt="Lien" />
               </a>
             </span>
           </div>
           <div className="mt-2 mb-2">
-            Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ? Préparez votre premier
-            contact avec un CFA
+            Vous vous posez des questions sur votre orientation ou votre recherche d'emploi ? 
+            <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="c-nice-link">
+              &nbsp;Préparez votre premier contact avec un CFA&nbsp;
+                <img src={gotoIcon} alt="Lien" />
+              </a>
           </div>
         </div>
       ) : (

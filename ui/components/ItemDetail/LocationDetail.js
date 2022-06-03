@@ -85,7 +85,7 @@ const LocationDetail = ({ item }) => {
           </span>
           <span className="c-detail-sizetext">
             <ExternalLink
-              className={`c-detail-googledir-link gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
+              className={`c-nice-link font-weight-normal gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
               url={getPathLink(item)}
               title="Obtenir l'itinéraire"
               withPic={<img className="mt-n1" src="/images/square_link.svg" alt="" />}
@@ -102,7 +102,7 @@ const LocationDetail = ({ item }) => {
               <span className="c-detail-sizetext">
                 <span className="">En savoir plus sur &nbsp;</span>
                 <ExternalLink
-                  className="c-detail-training-link gtmTrainingLink"
+                  className="c-nice-link gtmTrainingLink"
                   url={item.company.url}
                   title={item.company.url}
                 />
