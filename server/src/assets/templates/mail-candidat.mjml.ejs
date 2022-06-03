@@ -1,7 +1,9 @@
 <mjml>
     <mj-head>
-        <mj-title>Votre candidature chez <%= data.company_name %></mj-title>
-        <mj-font name="Inter" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'" />
+        <mj-title>Votre candidature chez <%= data.company_name %>
+        </mj-title>
+        <mj-font name="Roboto"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap" />
         <mj-style inline="inline">
             a:link,a:visited, a:hover, a:active {color: #206BC4;}, a {color: #3A55D1;}, body{background: #EDF0F2;}
             a.purple {color: #3A55D1; text-decoration: none}
@@ -9,52 +11,140 @@
             .link-nostyle:hover { color: inherit; text-decoration: none }
         </mj-style>
         <mj-attributes>
-            <mj-text padding="0px" color="#232E3C" font-family="Inter,sans-serif" font-size="14px" line-height="23px" />
+            <mj-text padding="0px" color="#232E3C" font-family="Roboto,Arial,sans-serif" font-size="16px"
+                line-height="23px" />
             <mj-divider padding="0px" />
         </mj-attributes>
     </mj-head>
     <mj-body background-color="#EDF0F2">
         <mj-section padding-bottom="10px">
             <mj-column padding="0px" vertical-align="middle">
-                <mj-image padding="0px" width="150px" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" />
+                <mj-image padding="0px" width="150px" src="<%= data.images.logo %>"
+                    alt="Logo du site La Bonne Alternance" />
             </mj-column>
         </mj-section>
-        <mj-wrapper background-color="#ffffff" padding="0px" border-radius="10px">
+        <mj-wrapper background-color="#ffffff" padding="0px" border-radius="10px" padding-bottom="50px">
             <mj-section padding="15px">
                 <mj-column>
-                    <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
+                    <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px"
+                        text-decoration="none" color="#383838">
                         Votre candidature a bien été envoyée à
                     </mj-text>
                     <mj-text font-size="22px" line-height="24px" font-weight="700" color="#F07F87">
                         <%= data.company_name %>
                     </mj-text>
                     <mj-text font-size="14px" line-height="24px">
-                        <%= data.company_naf %><br /><%= data.company_address %>
+                        <%= data.job_title %><br />
+                            <%= data.company_address %>
                     </mj-text>
                 </mj-column>
             </mj-section>
 
-            <mj-divider border-width="0.5px" border-style="solid" border-color="#D0C9C4" padding-top="0px" width="95%" max-width="630px" padding-bottom="16px" />
+            <mj-divider border-width="0.5px" border-style="solid" border-color="#D0C9C4" padding-top="0px" width="95%"
+                max-width="630px" padding-bottom="16px" />
+
+            <mj-section padding="15px">
+                <mj-column background-color="#F5F5FE" border-radius="8px" padding-top="45px" padding-bottom="45px">
+                    <mj-text padding-left="25px" padding-bottom="32px" font-size="18px" padding="0px" line-height="24px"
+                        text-decoration="none" color="#383838">
+                        Organisez et suivez la progression de vos candidatures sur Mémo.
+                    </mj-text>
+                    <mj-button align="left" margin-left="25px" font-family="Roboto,Arial,sans-serif" font-size="18px"
+                        background-color="#000091;" color="#F5F5FE;"
+                        href="https://labonnealternance.pole-emploi.fr/?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat">
+                        J'ajoute cette candidature à Memo
+                    </mj-button>
+                    <mj-text padding-left="25px" padding-bottom="32px" font-size="18px" padding="0px" line-height="24px"
+                        text-decoration="none" color="#383838">
+                        <img width="89" height="auto" src="<%= data.images.logoMemo %>" alt="Logo Memo" /> Mémo est un
+                        espace en ligne pour organiser toutes vos candidatures et simplifier le suivi de vos démarches.
+                        Créez votre
+                        compte simplement avec vos identifiants Pôle Emploi ou à partir de votre email.
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-divider border-width="0.5px" border-style="solid" border-color="#D0C9C4" padding-top="0px" width="95%"
+                max-width="630px" padding-bottom="16px" />
 
             <mj-section padding="15px">
                 <mj-column>
                     <mj-text font-size="16px" line-height="20px">
-                        Continuez à envoyer des <span style="color:#F07F87; font-weight:bold" >candidatures spontanées</span> à d'autres entreprises qui n'ont pas diffusé d'offre.
+                        Continuez à envoyer des candidatures à d’autres entreprises. En moyenne, il faut envoyer 30
+                        candidatures pour décrocher
+                        un contrat en alternance. Vous pouvez continuer à explorer les offres d'autres établissements
+                        pour faire de nouvelles candidatures.
                     </mj-text>
                 </mj-column>
             </mj-section>
 
-            <mj-section padding="5px 15px 15px 15px">
-                <mj-column >
-                    <mj-button align="left" border-radius="10px" background-color="#000" color="#fff" href="https://labonnealternance.pole-emploi.fr/?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat">
-                        Je postule sur La Bonne Alternance
+            <mj-section padding="">
+                <mj-column>
+                    <mj-button align="left" font-family="Roboto,Arial,sans-serif" font-size="16px" font-weight="700"
+                        border-radius="10px" background-color="#000" color="#fff"
+                        href="https://labonnealternance.pole-emploi.fr/?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat">
+                        J'envoie d'autres candidatures
                     </mj-button>
                 </mj-column>
             </mj-section>
+
+            <mj-divider border-width="0.5px" border-style="solid" border-color="#D0C9C4" padding-top="0px" width="95%"
+                max-width="630px" padding-top="40px" padding-bottom="16px" />
+
+            <mj-section padding="15px">
+                <mj-column>
+                    <mj-text font-size="16px" line-height="20px">
+                        Si l’entreprise ne vous a pas répondu dans 10 jours, vous pouvez la relancer en quelques clics
+                        grâce au bouton
+                        ci-dessous.
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-section padding="">
+                <mj-column>
+                    <mj-button align="left" font-family="Roboto,Arial,sans-serif" font-size="16px" font-weight="700"
+                        border-radius="10px" background-color="#000" color="#fff"
+                        href="https://labonnealternance.pole-emploi.fr/?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidatecandidat">
+                        Je relance l’entreprise
+                    </mj-button>
+                </mj-column>
+            </mj-section>
+
+            <mj-divider border-width="0.5px" border-style="solid" border-color="#D0C9C4" padding-top="0px" width="95%"
+                max-width="630px" padding-top="40px" padding-bottom="16px" />
+
+            <mj-section padding="15px">
+                <mj-column>
+                    <mj-text font-size="16px" line-height="20px">
+                        A bientôt,
+                    </mj-text>
+                    <mj-text font-size="16px" line-height="20px">
+                        L'équipe La Bonne Alternance.
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+
         </mj-wrapper>
 
-        <mj-section padding-top="50px">
-            <mj-column ></mj-column>
-        </mj-section>
+        <mj-wrapper padding="0px" border-radius="10px" padding-bottom="50px">
+            <mj-section>
+                <mj-column>
+                    <mj-table line-height="100%">
+                        <tr>
+                            <td valign="top" style="padding-top:5px;"><img width="89" height="auto"
+                                    src="<%= data.images.logoRF %>" alt="Logo République française" /></td>
+                            <td valign="top" style="line-height: 22px; padding-left: 40px; padding-top:0;">
+                                Cet e-mail a été envoyé à
+                                <br />
+                                Vous avez reçu ce mail car vous avez utilisé le service La Bonne Alternance.
+                                <br />
+                                Voir cet email dans votre navigateur
+                            </td>
+                        </tr>
+                    </mj-table>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
     </mj-body>
 </mjml>
