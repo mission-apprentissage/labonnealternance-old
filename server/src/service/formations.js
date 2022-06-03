@@ -10,6 +10,8 @@ const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const crypto = require("crypto");
 const { manageApiError } = require("../common/utils/errorManager");
 //const logger = require("../common/logger");
+const { regionCodeToDepartmentList } = require("../common/utils/regionInseeCodes");
+const { formationMock, lbfFormationMock } = require("../../tests/mocks/formations-mock");
 
 const formationResultLimit = 150;
 
@@ -162,15 +164,13 @@ const getFormations = async ({
 const getFormation = async ({ id, caller }) => {
   try {
     let responseFormation = null;
+
     if (id === "id-formation-test") {
       responseFormation = formationMock;
     } else {
       const Formation = await getCurrentFormationsSourceCollection();
       responseFormation = await Formation.findOne({ cle_ministere_educatif: id });
     }
-
-    console.log(id, caller);
-    console.log("responseFormation ", responseFormation);
 
     //throw new Error("BOOM");
     let formations = [];
@@ -615,7 +615,13 @@ const getLbfQueryParams = (params) => {
 
 const getFormationDescriptionQuery = async (params) => {
   try {
-    const formationDescription = await axios.get(`${lbfDescriptionUrl}?${getLbfQueryParams(params)}`);
+    let formationDescription = null;
+
+    if (params.id === "id-formation-test") {
+      formationDescription = lbfFormationMock;
+    } else {
+      formationDescription = await axios.get(`${lbfDescriptionUrl}?${getLbfQueryParams(params)}`);
+    }
 
     return formationDescription.data;
   } catch (error) {
@@ -735,8 +741,6 @@ const getFormationEsQueryIndexFragment = (limit) => {
   };
 };
 
-const { regionCodeToDepartmentList } = require("../common/utils/regionInseeCodes");
-const { formationMock } = require("../../tests/mocks/formations-mock");
 const getEsRegionTermFragment = (region) => {
   let departements = [];
 
