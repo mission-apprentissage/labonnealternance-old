@@ -43,7 +43,6 @@ module.exports = async (components) => {
   });
 
   app.set("trust proxy", 1);
-  app.get("/api/ip", (request, response) => response.send(request.ip));
 
   // RequestHandler creates a separate execution context using domains, so that every
   // transaction/span/breadcrumb is attached to its own Hub instance
@@ -60,11 +59,6 @@ module.exports = async (components) => {
     windowMs: 1000, // 1 second
     max: 3, // limit each IP to 3 requests per windowMs
   });
-
-  /*const limiter1Per5Second = rateLimit({
-    windowMs: 5000, // 5 seconds
-    max: 1, // limit each IP to 1 request per windowMs
-  });*/
 
   const limiter1Per20Second = rateLimit({
     windowMs: 20000, // 20 seconds
