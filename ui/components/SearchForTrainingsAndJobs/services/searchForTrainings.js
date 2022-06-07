@@ -30,9 +30,6 @@ export const searchForTrainingsFunction = async ({
   setTrainingSearchError("");
   clearTrainings();
   try {
-
-    console.log("et là ",useMock);
-
     const hasLocation = values?.location?.value ? true : false;
     const response = await axios.get(trainingsApi, {
       params: {
