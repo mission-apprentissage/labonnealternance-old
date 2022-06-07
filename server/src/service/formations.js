@@ -11,7 +11,7 @@ const crypto = require("crypto");
 const { manageApiError } = require("../common/utils/errorManager");
 //const logger = require("../common/logger");
 const { regionCodeToDepartmentList } = require("../common/utils/regionInseeCodes");
-const { formationMock, lbfFormationMock } = require("../../tests/mocks/formations-mock");
+const { formationMock, formationsMock, lbfFormationMock } = require("../../tests/mocks/formations-mock");
 
 const formationResultLimit = 150;
 
@@ -51,8 +51,15 @@ const getFormations = async ({
   limit,
   caller,
   api = "formationV1",
+  useMock,
 }) => {
   try {
+    console.log("useMock  ----- ", useMock);
+
+    if (useMock) {
+      return formationsMock;
+    }
+
     const distance = radius || 30;
 
     const useGeoLocation = coords ? true : false;
@@ -304,6 +311,7 @@ const getAtLeastSomeFormations = async ({
   diploma,
   maxOutLimitFormation,
   caller,
+  useMock,
 }) => {
   try {
     let formations = [];
@@ -319,6 +327,7 @@ const getAtLeastSomeFormations = async ({
       diploma,
       limit: formationLimit,
       caller,
+      useMock,
     });
 
     // si pas de résultat on étend le rayon de recherche et on réduit le nombre de résultats autorisés
@@ -334,6 +343,7 @@ const getAtLeastSomeFormations = async ({
         diploma,
         limit: formationLimit,
         caller,
+        useMock,
       });
     }
 
@@ -392,6 +402,7 @@ const deduplicateFormations = (formations) => {
 };
 
 const transformFormationsForIdea = (formations) => {
+  console.log("formations , ", formations);
   let resultFormations = {
     results: [],
   };
@@ -543,6 +554,7 @@ const getFormationsQuery = async (query) => {
       maxOutLimitFormation: 5,
       romeDomain: query.romeDomain,
       caller: query.caller,
+      useMock: query.useMock,
     });
 
     if (formations?.result === "error") {

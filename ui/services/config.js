@@ -91,6 +91,7 @@ export const setUseMock = ({ parameterContext }) => {
   let useMock = getValueFromPath("useMock");
   if (useMock) {
     parameterContext.setUseMock(true);
+    console.log("useMock : ",useMock);
   }
 };
 

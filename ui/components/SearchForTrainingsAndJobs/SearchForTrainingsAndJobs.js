@@ -209,6 +209,7 @@ const SearchForTrainingsAndJobs = () => {
       widgetParameters,
       followUpItem,
       selectFollowUpItem,
+      useMock,
     });
   };
 

@@ -48,7 +48,10 @@ const formationMock = {
   rome_codes: ["D1102"],
 };
 
-const formationsMock = [formationMock, formationMock];
+const formationsMock = [
+  { source: formationMock, id: formationMock.id, sort: [10] },
+  { source: formationMock, id: formationMock.id, sort: [5] },
+];
 
 const lbfFormationMock = {
   data: {
