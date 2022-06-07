@@ -54,7 +54,7 @@ const getFormations = async ({
   useMock,
 }) => {
   try {
-    if (useMock) {
+    if (useMock && useMock !== "false") {
       return formationsMock;
     }
 
