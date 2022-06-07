@@ -42,6 +42,28 @@ const CandidatureSpontaneeFailed = ({ sendingState }) => {
       );
     }
 
+    if (sendingState === "Too Many Requests") {
+      res = (
+        <>
+          <div className="c-candidature-worked-header d-flex my-5">
+            <div>
+              <img src={error2} alt="erreur" />
+            </div>
+            <div className="ml-3 pl-3">
+              <h2 className="c-candidature-worked-title" data-testid="CandidatureSpontaneeFailedTempEmailTitle">
+                Trop de candidatures envoyées en peu de temps.
+              </h2>
+            </div>
+          </div>
+          <div className="c-candidature-worked-text mt-3 mb-5">
+            Trop de candidatures envoyées en peu de temps.
+            <br />
+            Veuillez patienter quelques instants et réessayer.
+          </div>
+        </>
+      );
+    }
+
     if (sendingState === "max candidatures atteint") {
       res = (
         <>

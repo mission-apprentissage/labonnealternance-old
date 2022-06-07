@@ -14,11 +14,6 @@ const {
 const rateLimit = require("express-rate-limit");
 const apiKeyAuthMiddleware = require("../middlewares/apiKeyAuthMiddleware");
 
-const limiter1Per20Second = rateLimit({
-  windowMs: 20000, // 20 seconds
-  max: 1, // limit each IP to 1 request per windowMs
-});
-
 const limiter1Per5Second = rateLimit({
   windowMs: 5000, // 5 seconds
   max: 1, // limit each IP to 1 request per windowMs
@@ -32,7 +27,7 @@ module.exports = (components) => {
 
   router.get(
     "/",
-    limiter1Per20Second,
+    limiter1Per5Second,
     tryCatch(async (req, res) => {
       const result = await sendApplication({ shouldCheckSecret: true, query: req.query, ...components });
 
@@ -50,7 +45,7 @@ module.exports = (components) => {
 
   router.post(
     "/",
-    limiter1Per20Second,
+    limiter1Per5Second,
     tryCatch(async (req, res) => {
       const result = await sendApplication({
         shouldCheckSecret: req.body.secret ? true : false,
@@ -84,7 +79,7 @@ module.exports = (components) => {
 
   router.post(
     "/feedbackComment",
-    limiter1Per20Second,
+    limiter1Per5Second,
     tryCatch(async (req, res) => {
       const result = await saveApplicationFeedbackComment({
         query: req.body,
@@ -108,7 +103,7 @@ module.exports = (components) => {
 
   router.post(
     "/intentionComment",
-    limiter1Per20Second,
+    limiter1Per5Second,
     tryCatch(async (req, res) => {
       const result = await saveApplicationIntentionComment({
         query: req.body,

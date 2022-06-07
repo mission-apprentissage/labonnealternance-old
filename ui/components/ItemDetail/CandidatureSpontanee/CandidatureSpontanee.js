@@ -109,6 +109,7 @@ const CandidatureSpontanee = (props) => {
                     "not_sent_because_of_errors",
                     "email temporaire non autorisé",
                     "max candidatures atteint",
+                    "Too Many Requests",
                   ]) ? (
                     <CandidatureSpontaneeFailed sendingState={sendingState} />
                   ) : (
