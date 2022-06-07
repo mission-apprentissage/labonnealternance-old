@@ -71,11 +71,13 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
               activement à la recherche d'un.e candidat.e.
             </p>
             <p>Vous avez donc tout intérêt à le contacter rapidement, avant que l'offre ne soit pourvue !</p>
-            <p>
+              <p className="mb-0">
               Trouver et convaincre une entreprise de vous embaucher ?
-              <span className="c-detail-traininglink ml-1">
+            </p>
+            <p>
+              <span className="c-detail-traininglink">
                 <ExternalLink
-                  className="gtmDidask1"
+                  className="gtmDidask1 font-weight-bold"
                   url="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
                   title="On vous donne des conseils ici pour vous aider !"
                   withPic={<img src="../../images/icons/goto.svg" alt="Lien" />}

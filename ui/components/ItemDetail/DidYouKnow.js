@@ -22,7 +22,7 @@ const DidYouKnow = ({ item }) => {
                 <ExternalLink
                   className="gtmDidask2  c-needHelp-link"
                   url="https://dinum-beta.didask.com/courses/demonstration/60d1adbb877dae00003f0eac"
-                  title="On vous donne des conseils pour vous aider à le preparer."
+                  title="On vous donne des conseils pour vous aider à le préparer."
                   withPic={<img src={gotoIcon} alt="Lien" />}
                 />
               </span>

@@ -17,7 +17,7 @@ const LocationDetail = ({ item }) => {
   if (!companySize) {
     companySize = "non renseigné";
   } else if (companySize.startsWith("0")) {
-    companySize = "petite entreprise";
+    companySize = "0 à 9 salariés";
   }
   if (endsWithNumber(companySize)) {
     companySize += " salariés";
@@ -85,7 +85,7 @@ const LocationDetail = ({ item }) => {
           </span>
           <span className="c-detail-sizetext">
             <ExternalLink
-              className={`c-detail-googledir-link gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
+              className={`c-nice-link font-weight-normal gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
               url={getPathLink(item)}
               title="Obtenir l'itinéraire"
               withPic={<img className="mt-n1" src="/images/square_link.svg" alt="" />}
@@ -102,7 +102,7 @@ const LocationDetail = ({ item }) => {
               <span className="c-detail-sizetext">
                 <span className="">En savoir plus sur &nbsp;</span>
                 <ExternalLink
-                  className="c-detail-training-link gtmTrainingLink"
+                  className="c-nice-link gtmTrainingLink"
                   url={item.company.url}
                   title={item.company.url}
                 />
@@ -126,7 +126,7 @@ const LocationDetail = ({ item }) => {
 
         {item?.contact?.phone ? (
           <div className="c-locationdetail-line mt-1">
-            <span className="c-locationdetail-imgcontainer">
+            <span className="c-locationdetail-imgcontainer c-locationdetail-imgcontainer--smallphone">
               <img className="" src="/images/icons/small_phone.svg" alt="téléphone" />
             </span>
             <span className="c-detail-sizetext">{item.contact.phone}</span>

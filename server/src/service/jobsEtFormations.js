@@ -25,6 +25,7 @@ const getJobsEtFormationsQuery = async (query) => {
             romeDomain: query.romeDomain,
             caller: query.caller,
             api: "jobEtFormationV1",
+            useMock: query.useMock,
           })
         : null,
       sources.indexOf("lba") >= 0 ||
