@@ -54,8 +54,6 @@ const getFormations = async ({
   useMock,
 }) => {
   try {
-    console.log("useMock  ----- ", useMock);
-
     if (useMock) {
       return formationsMock;
     }
@@ -346,7 +344,6 @@ const getAtLeastSomeFormations = async ({
         useMock,
       });
     }
-
     if (formations?.result !== "error") {
       formations = deduplicateFormations(formations);
 
@@ -402,7 +399,7 @@ const deduplicateFormations = (formations) => {
 };
 
 const transformFormationsForIdea = (formations) => {
-  console.log("formations , ", formations);
+  //console.log("formations , ", formations);
   let resultFormations = {
     results: [],
   };

@@ -49,8 +49,9 @@ const formationMock = {
 };
 
 const formationsMock = [
-  { source: formationMock, id: formationMock.id, sort: [10] },
   { source: formationMock, id: formationMock.id, sort: [5] },
+  { source: formationMock, id: formationMock.id, sort: [10] },
+  { source: { ...formationMock, intitule_long: "PATISSIER (CAP)" }, id: formationMock.id, sort: [15] },
 ];
 
 const lbfFormationMock = {
