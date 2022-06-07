@@ -334,7 +334,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               <li>
                 <span className="c-detail-traininglink ml-1">
                   <ExternalLink
-                    className="gtmDidask1 c-needHelp-link"
+                    className="gtmDidask1 c-nice-link"
                     url="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
                     title="Chercher un employeur"
                     withPic={<img src={gotoIcon} alt="Lien" />}
@@ -344,7 +344,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               <li>
                 <span className="c-detail-traininglink ml-1">
                   <ExternalLink
-                    className="gtmDidask2  c-needHelp-link"
+                    className="gtmDidask2 c-nice-link"
                     url="https://dinum-beta.didask.com/courses/demonstration/60d1adbb877dae00003f0eac"
                     title="Préparer un entretien avec un employeur"
                     withPic={<img src={gotoIcon} alt="Lien" />}
