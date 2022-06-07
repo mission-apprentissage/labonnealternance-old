@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.19.1 [07/06/2022]
+[LBA6-126] Gestion des erreurs 429 pour les candidatures
+
 ## 1.19.0 [22/05/2022]
 [LBA6-68] Remplacement redux par API context
 [LBA6-36] Fix effect de rechargement sur lien Organisme de formation
