@@ -3,7 +3,7 @@ import baseUrl from "../utils/baseUrl";
 import _ from "lodash";
 import { logError } from "../utils/tools";
 import extractCandidatureParams from "./extractCandidatureParams";
-import { SendPlausibleEvent } from "utils/gtm";
+import { SendPlausibleEvent } from "../utils/gtm";
 
 export default async function postCandidature(
   applicant_h,
