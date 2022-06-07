@@ -42,7 +42,7 @@ module.exports = async (components) => {
     tracesSampleRate: 1.0,
   });
 
-  //app.set('trust proxy', 1)
+  app.set("trust proxy", 1);
   app.get("/api/ip", (request, response) => response.send(request.ip));
 
   // RequestHandler creates a separate execution context using domains, so that every
