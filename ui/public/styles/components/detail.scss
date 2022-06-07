@@ -37,6 +37,11 @@
   word-break: break-word;
 }
 
+.c-detail--collapse-header-true .c-detail-title {
+  font-size: 20px;
+  line-height: 28px;
+}
+
 .c-detail-body.c-detail-body--inside {
   padding-left: 0;
   padding-right: 0;
