@@ -87,6 +87,14 @@ export const getOpcoFilter = ({ parameterContext }) => {
   }
 };
 
+export const setUseMock = ({ parameterContext }) => {
+  let useMock = getValueFromPath("useMock");
+  if (useMock) {
+    parameterContext.setUseMock(true);
+    console.log("useMock : ",useMock);
+  }
+};
+
 export const initTestingParameters = () => {
   if (!testingParameters?.secret) {
     let p = getValueFromPath("secret");
@@ -160,6 +168,7 @@ export const initParametersFromQuery = ({ router, shouldPush, parameterContext }
   }
 
   getOpcoFilter({ parameterContext });
+  setUseMock({ parameterContext });
 
   const itemParameters = getItemParameters();
   if (itemParameters && (itemParameters.applyItemParameters || itemParameters.mode)) {

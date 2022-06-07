@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## 1.19.1 [3/06/2022]
+## 1.19.1 [07/06/2022]
+[LBA6-45] Bouchons appels vers apis formations
 [LBA6-128] Refonte fiche détaillée, reliquats
 
 ## 1.19.0 [22/05/2022]

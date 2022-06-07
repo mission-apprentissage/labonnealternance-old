@@ -24,11 +24,15 @@ export const searchForTrainingsFunction = async ({
   widgetParameters,
   followUpItem,
   selectFollowUpItem,
+  useMock,
 }) => {
   setIsTrainingSearchLoading(true);
   setTrainingSearchError("");
   clearTrainings();
   try {
+
+    console.log("et là ",useMock);
+
     const hasLocation = values?.location?.value ? true : false;
     const response = await axios.get(trainingsApi, {
       params: {
@@ -38,6 +42,7 @@ export const searchForTrainingsFunction = async ({
         latitude: hasLocation ? values.location.value.coordinates[1] : null,
         radius: values.radius || 30,
         diploma: values.diploma,
+        useMock,
       },
     });
 
