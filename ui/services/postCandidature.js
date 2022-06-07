@@ -3,6 +3,7 @@ import baseUrl from "../utils/baseUrl";
 import _ from "lodash";
 import { logError } from "../utils/tools";
 import extractCandidatureParams from "./extractCandidatureParams";
+import { SendPlausibleEvent } from "../utils/gtm";
 
 export default async function postCandidature(
   applicant_h,
@@ -23,6 +24,11 @@ export default async function postCandidature(
     response = await _axios.post(candidatureApi, extractCandidatureParams(applicant_h, company_h));
   } catch (error) {
     response = error.response;
+
+    if (response.status == "429") {
+      SendPlausibleEvent("429 Candidature");
+    }
+
     isAxiosError = true; // les tests retournent un résultat correct avec une 500;
   }
 
@@ -33,8 +39,7 @@ export default async function postCandidature(
   if (isError) {
     if (isAxiosError) {
       _logError("Candidature API error", `Candidature API error ${response.data.error}`);
-      console.log("response", response);
-      res = response.data.error;
+      res = response.statusText;
     } else if (isSimulatedError) {
       _logError("Candidature API error simulated");
       res = "simulated_error";

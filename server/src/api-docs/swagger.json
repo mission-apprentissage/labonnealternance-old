@@ -169,7 +169,7 @@
                 "responses": {
                     "200": 
                     {
-                        "description": "tableau contenant la liste des formations correspondants aux critères transmis en paramètre de la requête. Le tableau peut être vide si aucune formation ne correspond.",
+                        "description": "tableau contenant la liste des opportunités d'emploi correspondants aux critères transmis en paramètre de la requête. Le tableau peut être vide si aucune opportunité d'emploi ne correspond.",
                         "content":
                         {
                             "application/json":
