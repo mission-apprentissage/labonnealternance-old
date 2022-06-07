@@ -10,6 +10,8 @@ const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const crypto = require("crypto");
 const { manageApiError } = require("../common/utils/errorManager");
 //const logger = require("../common/logger");
+const { regionCodeToDepartmentList } = require("../common/utils/regionInseeCodes");
+const { formationMock, formationsMock, lbfFormationMock } = require("../../tests/mocks/formations-mock");
 
 const formationResultLimit = 150;
 
@@ -49,8 +51,13 @@ const getFormations = async ({
   limit,
   caller,
   api = "formationV1",
+  useMock,
 }) => {
   try {
+    if (useMock && useMock !== "false") {
+      return formationsMock;
+    }
+
     const distance = radius || 30;
 
     const useGeoLocation = coords ? true : false;
@@ -161,8 +168,14 @@ const getFormations = async ({
 
 const getFormation = async ({ id, caller }) => {
   try {
-    const Formation = await getCurrentFormationsSourceCollection();
-    const responseFormation = await Formation.findOne({ cle_ministere_educatif: id });
+    let responseFormation = null;
+
+    if (id === "id-formation-test") {
+      responseFormation = formationMock;
+    } else {
+      const Formation = await getCurrentFormationsSourceCollection();
+      responseFormation = await Formation.findOne({ cle_ministere_educatif: id });
+    }
 
     //throw new Error("BOOM");
     let formations = [];
@@ -296,6 +309,7 @@ const getAtLeastSomeFormations = async ({
   diploma,
   maxOutLimitFormation,
   caller,
+  useMock,
 }) => {
   try {
     let formations = [];
@@ -311,6 +325,7 @@ const getAtLeastSomeFormations = async ({
       diploma,
       limit: formationLimit,
       caller,
+      useMock,
     });
 
     // si pas de résultat on étend le rayon de recherche et on réduit le nombre de résultats autorisés
@@ -326,9 +341,9 @@ const getAtLeastSomeFormations = async ({
         diploma,
         limit: formationLimit,
         caller,
+        useMock,
       });
     }
-
     if (formations?.result !== "error") {
       formations = deduplicateFormations(formations);
 
@@ -384,6 +399,7 @@ const deduplicateFormations = (formations) => {
 };
 
 const transformFormationsForIdea = (formations) => {
+  //console.log("formations , ", formations);
   let resultFormations = {
     results: [],
   };
@@ -535,6 +551,7 @@ const getFormationsQuery = async (query) => {
       maxOutLimitFormation: 5,
       romeDomain: query.romeDomain,
       caller: query.caller,
+      useMock: query.useMock,
     });
 
     if (formations?.result === "error") {
@@ -607,7 +624,13 @@ const getLbfQueryParams = (params) => {
 
 const getFormationDescriptionQuery = async (params) => {
   try {
-    const formationDescription = await axios.get(`${lbfDescriptionUrl}?${getLbfQueryParams(params)}`);
+    let formationDescription = null;
+
+    if (params.id === "id-formation-test") {
+      formationDescription = lbfFormationMock;
+    } else {
+      formationDescription = await axios.get(`${lbfDescriptionUrl}?${getLbfQueryParams(params)}`);
+    }
 
     return formationDescription.data;
   } catch (error) {
@@ -727,7 +750,6 @@ const getFormationEsQueryIndexFragment = (limit) => {
   };
 };
 
-const { regionCodeToDepartmentList } = require("../common/utils/regionInseeCodes");
 const getEsRegionTermFragment = (region) => {
   let departements = [];
 

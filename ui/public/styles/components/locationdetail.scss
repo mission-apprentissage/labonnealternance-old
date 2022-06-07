@@ -27,10 +27,12 @@
 }
 
 .c-locationdetail-imgcontainer {
-  display: flex;
-  width: 10%;
-  align-items: flex-start;
-  justify-content: center;
+  margin-right: .25rem;
+  width: 30px;
+  &--smallphone {
+    padding-left: .1rem;
+    margin-top: -.2rem;
+  }
 }
 
 .c-locationdetail-line {

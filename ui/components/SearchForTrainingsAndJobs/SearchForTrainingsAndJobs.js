@@ -40,7 +40,7 @@ const SearchForTrainingsAndJobs = () => {
 
   const { hasSearch, trainings, jobs, setTrainings, setJobs, selectedItem, setSelectedItem, setItemToScrollTo, setExtendedSearch, setHasSearch } = useContext(SearchResultContext);
 
-  const { opcoFilter, widgetParameters } = useContext(ParameterContext);
+  const { opcoFilter, widgetParameters, useMock } = useContext(ParameterContext);
 
   const { formValues, setFormValues, visiblePane, setVisiblePane, isFormVisible, setIsFormVisible, setShouldMapBeVisible } = useContext(DisplayContext);
 
@@ -188,6 +188,7 @@ const SearchForTrainingsAndJobs = () => {
       setJobs,
       setJobMarkers,
       factorJobsForMap,
+      useMock,
     });
 
     setIsFormVisible(false);
@@ -208,6 +209,7 @@ const SearchForTrainingsAndJobs = () => {
       widgetParameters,
       followUpItem,
       selectFollowUpItem,
+      useMock,
     });
   };
 
