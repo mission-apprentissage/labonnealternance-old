@@ -5,6 +5,7 @@ const initialState = {
   widgetParameters: null,
   itemParameters: null,
   opcoFilter: null,
+  useMock: false,
 };
 
 const actions = {
@@ -12,6 +13,7 @@ const actions = {
   SET_WIDGET_PARAMETERS: "SET_WIDGET_PARAMETERS",
   SET_ITEM_PARAMETERS: "SET_ITEM_PARAMETERS",
   SET_OPCO_FILTER: "SET_OPCO_FILTER",
+  SET_USE_MOCK: "SET_USE_MOCK",
 };
 
 const reducer = (state, action) => {
@@ -29,6 +31,9 @@ const reducer = (state, action) => {
     }
     case actions.SET_OPCO_FILTER: {
       return { ...state_copy, opcoFilter: action.opcoFilter };
+    }
+    case actions.SET_USE_MOCK: {
+      return { ...state_copy, useMock: action.useMock };
     }
 
     default:
@@ -54,6 +59,9 @@ const ParameterContextProvider = ({ children }) => {
     },
     setOpcoFilter: (opcoFilter = null) => {
       dispatch({ type: actions.SET_OPCO_FILTER, opcoFilter });
+    },
+    setUseMock: (useMock = null) => {
+      dispatch({ type: actions.SET_USE_MOCK, useMock });
     },
   };
 

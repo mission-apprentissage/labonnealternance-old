@@ -74,7 +74,7 @@ const CandidatureSpontanee = (props) => {
             <>
               <Button
                 onClick={toggle}
-                  className={`btn btn-blue ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
+                className={`btn btn-blue ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
                 aria-label="jenvoie-une-candidature-spontanee"
               >
                 J'envoie ma candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}
@@ -109,6 +109,7 @@ const CandidatureSpontanee = (props) => {
                     "not_sent_because_of_errors",
                     "email temporaire non autorisé",
                     "max candidatures atteint",
+                    "Too Many Requests",
                   ]) ? (
                     <CandidatureSpontaneeFailed sendingState={sendingState} />
                   ) : (
@@ -119,21 +120,23 @@ const CandidatureSpontanee = (props) => {
             </>
           )}
         </div>
-        {
-          props?.item?.company?.mandataire ?
+        {props?.item?.company?.mandataire ? (
           <>
             <div className="c-mandataire-hint d-flex-center my-3">
               <span className="c-mandataire-hintimg">
-                <img className="" src="/images/icons/small_info.svg" alt="point info"/>
+                <img className="" src="/images/icons/small_info.svg" alt="point info" />
               </span>
-                <span className="c-mandataire-hinttext ml-2">
-                <span className="">Votre candidature sera envoyée au centre de formation en charge du recrutement pour le compte de l’entreprise.    </span>
+              <span className="c-mandataire-hinttext ml-2">
+                <span className="">
+                  Votre candidature sera envoyée au centre de formation en charge du recrutement pour le compte de
+                  l’entreprise.{" "}
+                </span>
               </span>
             </div>
           </>
-          :
+        ) : (
           ""
-        }
+        )}
       </div>
     </div>
   );

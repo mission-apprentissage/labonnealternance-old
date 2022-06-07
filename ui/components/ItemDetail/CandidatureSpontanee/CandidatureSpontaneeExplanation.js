@@ -58,7 +58,6 @@ const CandidatureSpontaneeExplanation = (props) => {
               title="https://www.canva.com/fr_fr/creer/cv/"
             />
           </p>
-          <p className="c-detail-lbb-paragraph">Conseil : Allez voir le site de l'entreprise si elle en a un.</p>
         </>
       );
     }

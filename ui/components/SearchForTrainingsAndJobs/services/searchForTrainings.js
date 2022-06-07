@@ -24,6 +24,7 @@ export const searchForTrainingsFunction = async ({
   widgetParameters,
   followUpItem,
   selectFollowUpItem,
+  useMock,
 }) => {
   setIsTrainingSearchLoading(true);
   setTrainingSearchError("");
@@ -38,6 +39,7 @@ export const searchForTrainingsFunction = async ({
         latitude: hasLocation ? values.location.value.coordinates[1] : null,
         radius: values.radius || 30,
         diploma: values.diploma,
+        useMock,
       },
     });
 
