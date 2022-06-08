@@ -39,7 +39,7 @@ const Navigation = ({ currentPage, bgcolor }) => {
                   }}
                   href="/"
                 >
-                  <span className="m-1">Candidat</span>
+                  <span className="mx-1">Candidat</span>
                 </a>
               </NavItem>
 
@@ -54,7 +54,7 @@ const Navigation = ({ currentPage, bgcolor }) => {
                   }}
                   href="/acces-recruteur"
                 >
-                  <span className="m-1">Recruteur</span>
+                  <span className="mx-1">Recruteur</span>
                 </a>
               </NavItem>
 
@@ -69,7 +69,7 @@ const Navigation = ({ currentPage, bgcolor }) => {
                   }}
                   href="/organisme-de-formation"
                 >
-                  <span className="m-1">Organisme de formation</span>
+                  <span className="mx-1">Organisme de formation</span>
                 </a>
               </NavItem>
 
