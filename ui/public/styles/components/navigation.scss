@@ -52,5 +52,10 @@
     height: 16px;
     margin-top: 11px;
   }
+
+  .nav-item.selected
+  {
+    background: rgba(0,0,0,0.08);
+  }
 }
 
