@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.19.2 [08/06/2022]
+[LBA6-136] Intégration nouvelle page accès recruteur
+
 ## 1.19.1 [07/06/2022]
 [LBA6-126] Gestion des erreurs 429 pour les candidatures
 [LBA6-45] Bouchons appels vers apis formations
