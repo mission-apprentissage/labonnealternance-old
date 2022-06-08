@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from "reactstrap";
 import { useRouter } from "next/router";
 
-const Navigation = (props) => {
+const Navigation = ({ currentPage, bgcolor }) => {
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ const Navigation = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   let main_class_name = "c-navigation ";
-  main_class_name += props.bgcolor ?? "is-filled";
+  main_class_name += bgcolor ?? "is-filled";
 
   return (
     <div className={main_class_name}>
@@ -29,8 +29,7 @@ const Navigation = (props) => {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="c-navbar-links ml-auto" navbar>
-
-              <NavItem className="ml-lg-5">
+              <NavItem className="ml-lg-5 mr-2">
                 <a
                   className="nav-link"
                   onClick={(e) => {
@@ -45,7 +44,7 @@ const Navigation = (props) => {
 
               <div className="c-navigation__separator"></div>
 
-              <NavItem>
+              <NavItem className="mr-2 ml-2">
                 <a
                   className="nav-link"
                   onClick={(e) => {
@@ -60,7 +59,7 @@ const Navigation = (props) => {
 
               <div className="c-navigation__separator"></div>
 
-              <NavItem>
+              <NavItem className="ml-2">
                 <a
                   className="nav-link"
                   onClick={(e) => {
