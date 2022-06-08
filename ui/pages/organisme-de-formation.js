@@ -14,7 +14,7 @@ const Organisme = (props) => {
         description="Comment référencer ma formation ? Nous sommes là pour vous aider."
       />
 
-      <Navigation bgcolor="is-white" />
+      <Navigation bgcolor="is-white" currentPage="organisme-de-formation" />
 
       <Breadcrumb forPage="organisme-de-formation" label="Organisme de formation" />
 

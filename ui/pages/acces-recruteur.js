@@ -16,7 +16,7 @@ const AccesRecruteur = () => (
     />
 
     <ScrollToTop />
-    <Navigation />
+    <Navigation currentPage="acces-recruteur" />
     <Breadcrumb forPage="acces-recruteur" label="Accès recruteur" />
 
     <div className="c-page-container container my-0 mb-sm-5 p-5">
