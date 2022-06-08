@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from "reactstrap";
 import { useRouter } from "next/router";
+import ExternalLink from "./externalLink";
 
 const Navigation = ({ currentPage, bgcolor }) => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const Navigation = ({ currentPage, bgcolor }) => {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="c-navbar-links ml-auto" navbar>
-              <NavItem className="ml-lg-5 mr-2">
+              <NavItem className={`ml-lg-5 mr-2 ${!currentPage ? "selected" : ""}`}>
                 <a
                   className="nav-link"
                   onClick={(e) => {
@@ -38,13 +39,13 @@ const Navigation = ({ currentPage, bgcolor }) => {
                   }}
                   href="/"
                 >
-                  <span className="ml-1">Candidat</span>
+                  <span className="m-1">Candidat</span>
                 </a>
               </NavItem>
 
               <div className="c-navigation__separator"></div>
 
-              <NavItem className="mr-2 ml-2">
+              <NavItem className={`mr-2 ml-2 ${currentPage === "acces-recruteur" ? "selected" : ""}`}>
                 <a
                   className="nav-link"
                   onClick={(e) => {
@@ -53,13 +54,13 @@ const Navigation = ({ currentPage, bgcolor }) => {
                   }}
                   href="/acces-recruteur"
                 >
-                  <span className="ml-1">Recruteur</span>
+                  <span className="m-1">Recruteur</span>
                 </a>
               </NavItem>
 
               <div className="c-navigation__separator"></div>
 
-              <NavItem className="ml-2">
+              <NavItem className={`ml-2 ${currentPage === "organisme-de-formation" ? "selected" : ""}`}>
                 <a
                   className="nav-link"
                   onClick={(e) => {
@@ -68,9 +69,24 @@ const Navigation = ({ currentPage, bgcolor }) => {
                   }}
                   href="/organisme-de-formation"
                 >
-                  <span className="ml-1">Organisme de formation</span>
+                  <span className="m-1">Organisme de formation</span>
                 </a>
               </NavItem>
+
+              {currentPage === "acces-recruteur" ? (
+                <>
+                  <div className="ml-2 c-navigation__separator"></div>
+                  <NavItem className="ml-2">
+                    <ExternalLink
+                      className="nav-link"
+                      url="https://matcha.apprentissage.beta.gouv.fr/authentification"
+                      title="Connexion"
+                    />
+                  </NavItem>
+                </>
+              ) : (
+                ""
+              )}
             </Nav>
           </Collapse>
         </div>
