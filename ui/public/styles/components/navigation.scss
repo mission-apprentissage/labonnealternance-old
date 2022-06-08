@@ -45,5 +45,12 @@
   .navbar-light .navbar-toggler {
     border: none;
   }
+  
+  &__separator {
+    border-left: 1px solid #E5E5E5;
+    width: 0px;
+    height: 16px;
+    margin-top: 11px;
+  }
 }
 

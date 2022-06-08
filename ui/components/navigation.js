@@ -29,6 +29,22 @@ const Navigation = (props) => {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="c-navbar-links ml-auto" navbar>
+
+              <NavItem className="ml-lg-5">
+                <a
+                  className="nav-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/");
+                  }}
+                  href="/"
+                >
+                  <span className="ml-1">Candidat</span>
+                </a>
+              </NavItem>
+
+              <div className="c-navigation__separator"></div>
+
               <NavItem>
                 <a
                   className="nav-link"
@@ -41,7 +57,10 @@ const Navigation = (props) => {
                   <span className="ml-1">Recruteur</span>
                 </a>
               </NavItem>
-              <NavItem className="ml-lg-5">
+
+              <div className="c-navigation__separator"></div>
+
+              <NavItem>
                 <a
                   className="nav-link"
                   onClick={(e) => {
