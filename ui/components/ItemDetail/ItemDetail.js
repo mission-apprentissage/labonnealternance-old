@@ -395,6 +395,21 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         ) : (
           <></>
         )}
+        {kind === "lbb" || kind === "lba" ? (
+          <>
+            {isCandidatureSpontanee(selectedItem) ? (
+              ""
+            ) : (
+              <GoingToContactQuestion
+                kind={kind}
+                uniqId={getGoingtoId(kind, selectedItem)}
+                key={getGoingtoId(kind, selectedItem)}
+              />
+            )}
+          </>
+        ) : (
+          <></>
+        )}
       </section>
     </>
   );
