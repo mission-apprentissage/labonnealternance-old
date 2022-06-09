@@ -13,6 +13,7 @@ import PartenairesDeConfiance from "components/HomeComponents/PartenairesDeConfi
 import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
+import ExternalLink from "@/components/externalLink";
 
 const AccesRecruteur = () => (
   <div>
@@ -28,17 +29,23 @@ const AccesRecruteur = () => (
     <div className="container my-0 px-0">
       <Entreprise />
 
-      <section className="c-section__beige">
+      <section className="c-homecomponent__beige">
         <PostezVotreOffre />
         <OffresGratuites />
         <OrganismesMandataires />
       </section>
 
-      <section className="c-section__beige">
+      <section className="c-homecomponent__beige">
         <GerezOffres />
       </section>
 
-      <section>Vous souhaitez recruter un alternant ?</section>
+      <section className="text-center mb-5">
+        <h2 className="c-homecomponent-title mb-5">Vous souhaitez recruter un alternant pour votre entreprise ?</h2>
+        <div className="my-4 mx-auto">
+          <ExternalLink className="c-homecomponent-link c-homecomponent-link mr-5" url="" title="Déposer une offre" />
+          <ExternalLink className="c-homecomponent-link c-homecomponent-link__clear" url="" title="Me connecter" />
+        </div>
+      </section>
 
       <AmeliorerLBA />
 
