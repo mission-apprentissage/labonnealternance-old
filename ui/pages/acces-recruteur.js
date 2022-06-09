@@ -25,24 +25,24 @@ const AccesRecruteur = () => (
     <Navigation currentPage="acces-recruteur" />
     <Breadcrumb forPage="acces-recruteur" label="Accès recruteur" />
 
-    <div className="c-page-container container my-0 mb-sm-5 p-5">
-        <Entreprise />
+    <div className="container my-0 mb-sm-5 px-0">
+      <Entreprise />
 
-        <section className="c-section__beige">
-          <PostezVotreOffre />
-          <OffresGratuites />
-          <OrganismesMandataires />
-        </section>
+      <section className="c-section__beige">
+        <PostezVotreOffre />
+        <OffresGratuites />
+        <OrganismesMandataires />
+      </section>
 
-        <section className="c-section__beige">
-          <GerezOffres />
-        </section>
+      <section className="c-section__beige">
+        <GerezOffres />
+      </section>
 
-        <section>Vous souhaitez recruter un alternant ?</section>
+      <section>Vous souhaitez recruter un alternant ?</section>
 
-        <AmeliorerLBA />
+      <AmeliorerLBA />
 
-        <PartenairesDeConfiance />
+      <PartenairesDeConfiance />
     </div>
     <div className="mb-3">&nbsp;</div>
     <Footer />

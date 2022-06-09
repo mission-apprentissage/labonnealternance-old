@@ -16,10 +16,10 @@ const Navigation = ({ currentPage, bgcolor }) => {
   return (
     <div className={main_class_name}>
       <Navbar expand="lg" className="navbar-light">
-        <div className="container">
+        <div className="container px-0">
           <NavbarBrand href="/">
             <img
-              src="/images/marianne.svg"
+              src="/images/marianne.svg#svgView(viewBox(12 0 162 78))"
               alt="Logo république française"
               width="162"
               height="78"
