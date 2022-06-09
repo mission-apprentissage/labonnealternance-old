@@ -382,7 +382,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         )}
         {kind === "formation" ? (
           <>
-            {buttonPRDVShouldBeDisplayed(kind, selectedItem) ? (
+            {buttonPRDVShouldBeDisplayed(selectedItem) ? (
               ""
             ) : (
               <GoingToContactQuestion
