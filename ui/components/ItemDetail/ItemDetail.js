@@ -149,6 +149,10 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     return oneKind === "peJob" && oneItem?.url;
   };
 
+  const buttonPRDVShouldBeDisplayed = (oneItem) => {
+    return oneItem?.prdvUrl;
+  };
+
   const getNavigationButtons = () => {
     return (
       <>
@@ -302,7 +306,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
 
-            {kind === "formation" && selectedItem?.prdvUrl ? (
+            {kind === "formation" && buttonPRDVShouldBeDisplayed(selectedItem) ? (
               <>
                 <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
                 <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
@@ -364,6 +368,36 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <DidYouKnow item={selectedItem}></DidYouKnow>
 
             {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
+              ""
+            ) : (
+              <GoingToContactQuestion
+                kind={kind}
+                uniqId={getGoingtoId(kind, selectedItem)}
+                key={getGoingtoId(kind, selectedItem)}
+              />
+            )}
+          </>
+        ) : (
+          <></>
+        )}
+        {kind === "formation" ? (
+          <>
+            {buttonPRDVShouldBeDisplayed(selectedItem) ? (
+              ""
+            ) : (
+              <GoingToContactQuestion
+                kind={kind}
+                uniqId={getGoingtoId(kind, selectedItem)}
+                key={getGoingtoId(kind, selectedItem)}
+              />
+            )}
+          </>
+        ) : (
+          <></>
+        )}
+        {kind === "lbb" || kind === "lba" ? (
+          <>
+            {isCandidatureSpontanee(selectedItem) ? (
               ""
             ) : (
               <GoingToContactQuestion
