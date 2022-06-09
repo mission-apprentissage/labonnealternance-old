@@ -9,11 +9,11 @@ import OrganismesMandataires from "components/HomeComponents/OrganismesMandatair
 import GerezOffres from "components/HomeComponents/GerezOffres";
 import AmeliorerLBA from "components/HomeComponents/AmeliorerLBA";
 import PartenairesDeConfiance from "components/HomeComponents/PartenairesDeConfiance";
+import ConnectionActions from "components/HomeComponents/ConnectionActions";
 
 import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
-import ExternalLink from "@/components/externalLink";
 
 const AccesRecruteur = () => (
   <div>
@@ -41,10 +41,7 @@ const AccesRecruteur = () => (
 
       <section className="text-center mb-5">
         <h2 className="c-homecomponent-title mb-5">Vous souhaitez recruter un alternant pour votre entreprise ?</h2>
-        <div className="my-4 mx-auto">
-          <ExternalLink className="c-homecomponent-link c-homecomponent-link mr-5" url="" title="Déposer une offre" />
-          <ExternalLink className="c-homecomponent-link c-homecomponent-link__clear" url="" title="Me connecter" />
-        </div>
+        <ConnectionActions />
       </section>
 
       <AmeliorerLBA />
