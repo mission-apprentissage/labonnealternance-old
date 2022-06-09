@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.19.2 [09/06/2022]
+[LBA6-17] Mail envoyé au candidat (matcha ou candidature spontanée)
+
 ## 1.19.1 [07/06/2022]
 [LBA6-126] Gestion des erreurs 429 pour les candidatures
 [LBA6-45] Bouchons appels vers apis formations
