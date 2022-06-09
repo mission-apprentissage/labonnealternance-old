@@ -51,6 +51,11 @@
     width: 0px;
     height: 16px;
     margin-top: 11px;
+
+    @include media-breakpoint-down(md)
+    {
+        display: none;
+    }
   }
 
   .nav-item.selected

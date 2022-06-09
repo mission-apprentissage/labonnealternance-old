@@ -45,7 +45,7 @@ const Navigation = ({ currentPage, bgcolor }) => {
 
               <div className="c-navigation__separator"></div>
 
-              <NavItem className={`mr-2 ml-2 ${currentPage === "acces-recruteur" ? "selected" : ""}`}>
+              <NavItem className={`mr-2 ml-lg-2 ${currentPage === "acces-recruteur" ? "selected" : ""}`}>
                 <a
                   className="nav-link"
                   onClick={(e) => {
@@ -60,7 +60,7 @@ const Navigation = ({ currentPage, bgcolor }) => {
 
               <div className="c-navigation__separator"></div>
 
-              <NavItem className={`ml-2 ${currentPage === "organisme-de-formation" ? "selected" : ""}`}>
+              <NavItem className={`ml-lg-2 ${currentPage === "organisme-de-formation" ? "selected" : ""}`}>
                 <a
                   className="nav-link"
                   onClick={(e) => {
@@ -76,9 +76,9 @@ const Navigation = ({ currentPage, bgcolor }) => {
               {currentPage === "acces-recruteur" ? (
                 <>
                   <div className="ml-2 c-navigation__separator"></div>
-                  <NavItem className="ml-2">
+                  <NavItem className="ml-lg-2">
                     <ExternalLink
-                      className="nav-link"
+                      className="nav-link mx-1"
                       url="https://matcha.apprentissage.beta.gouv.fr/authentification"
                       title="Connexion"
                     />
