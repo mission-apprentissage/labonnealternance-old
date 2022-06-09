@@ -10,9 +10,16 @@
     margin: 2px;
     width: 100%;
     max-width: 128px;
+    border: 2px solid #E5E5E5;
+    border-radius: 6px;
 }
 
 .c-homecomponent-title__confiance
 {
-
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Marianne';
+    line-height: 40px;
+    color: #3a3a3a;
 }
