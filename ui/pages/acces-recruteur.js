@@ -29,7 +29,7 @@ const AccesRecruteur = () => (
     <div className="container my-0 px-0">
       <Entreprise />
 
-      <section className="c-homecomponent__beige">
+      <section className="c-homecomponent__beige mb-5">
         <PostezVotreOffre />
         <OffresGratuites />
         <OrganismesMandataires />
