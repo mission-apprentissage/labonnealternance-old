@@ -2,7 +2,18 @@
 
 .c-homecomponent
 {
+    border-radius: 10px;
 
+    &__blue {
+        background: #F5F5FE;
+    }
+}
+
+.c-homecomponent-illustration
+{
+    width: 100%;
+    max-width: 492px;
+    margin:auto;
 }
 
 .c-homecomponent-logopartenaire
@@ -14,12 +25,45 @@
     border-radius: 6px;
 }
 
-.c-homecomponent-title__confiance
+.c-homecomponent-title
 {
     font-size: 32px;
     font-weight: 700;
-    text-align: center;
     font-family: 'Marianne';
     line-height: 40px;
     color: #3a3a3a;
+
+    &__confiance {
+        text-align: center;
+    }
+
+    &__blue {
+        color: #000091
+    }
+
+    &__small {
+        font-size: 28px;
+        line-height: 36px;
+
+        &_darker {
+            color: #2a2a2a;
+        }
+    }
+}
+
+.c-homecomponent-link {
+ 
+    background: #000091;
+    color: #F5F5FE;
+    font-size: 18px;
+    border: 1px solid #000091;
+    padding: 10px 24px;
+    cursor: pointer;
+
+    &__clear {
+        color:#000091;    
+        background: none;
+    }
+
+
 }
