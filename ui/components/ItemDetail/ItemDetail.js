@@ -149,8 +149,8 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     return oneKind === "peJob" && oneItem?.url;
   };
 
-  const buttonPRDVShouldBeDisplayed = (oneKind, oneItem) => {
-    return oneKind === "formation" && oneItem?.prdvUrl;
+  const buttonPRDVShouldBeDisplayed = (oneItem) => {
+    return oneItem?.prdvUrl;
   };
 
   const getNavigationButtons = () => {
@@ -306,7 +306,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
 
-            {buttonPRDVShouldBeDisplayed(kind, selectedItem) ? (
+            {kind === "formation" && buttonPRDVShouldBeDisplayed(selectedItem) ? (
               <>
                 <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
                 <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
