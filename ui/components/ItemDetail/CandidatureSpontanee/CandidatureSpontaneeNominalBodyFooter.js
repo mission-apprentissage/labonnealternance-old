@@ -4,7 +4,6 @@ import { ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
 import CandidatureSpontaneeMessage from "./CandidatureSpontaneeMessage";
 import CandidatureSpontaneeMandataireMessage from "./CandidatureSpontaneeMandataireMessage";
-import CandidatureSpontaneeMandataireKnowMoreCheckbox from "./CandidatureSpontaneeMandataireKnowMoreCheckbox";
 import { testingParameters } from "../../../utils/testingParameters";
 import emailMisspelled, { top100 } from "email-misspelled";
 
@@ -162,7 +161,6 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
 
         <div className="c-candidature-message mt-3">
           <CandidatureSpontaneeMandataireMessage item={item} />
-          <CandidatureSpontaneeMandataireKnowMoreCheckbox item={item} formik={formik} />
         </div>
 
         <fieldset data-testid="fieldset-terms" className="c-candidature-terms mt-3">
