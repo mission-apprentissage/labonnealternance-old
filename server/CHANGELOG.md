@@ -1,12 +1,8 @@
 # CHANGELOG
 
-<<<<<<< HEAD
 ## 1.19.2 [09/06/2022]
 [LBA6-17] Mail envoyé au candidat (matcha ou candidature spontanée)
 [LBA6-161] Reste à faire sur les fiches détaillées
-=======
-## 1.19.2 [08/06/2022]
->>>>>>> new_header
 [LBA6-136] Intégration nouvelle page accès recruteur
 
 ## 1.19.1 [07/06/2022]

@@ -73,10 +73,21 @@
     border: 1px solid #000091;
     padding: 10px 24px;
     cursor: pointer;
+    white-space: nowrap;
+
+    &:hover {
+        text-decoration: none;
+        color: #F5F5FE;
+    }
 
     &__clear {
         color:#000091;    
         background: none;
+
+        &:hover {
+            text-decoration: none;
+            color: #000091;
+        }
     }
 
     @include media-breakpoint-up(md)
