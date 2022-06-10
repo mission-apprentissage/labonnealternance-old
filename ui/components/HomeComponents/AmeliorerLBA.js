@@ -6,7 +6,7 @@ const AmeliorerLBA = () => {
     <section className="c-homecomponent__blue p-3 mb-5">
       <div className="row">
         <div className="col-12 col-md-6">
-          <img className="c-homecomponent-illustration mr-3 my-3" src="/images/home_pics/illu-support@2x.png" alt="" />
+          <img className="c-homecomponent-illustration mr-3 my-3" src="/images/home_pics/illu-support.svg" alt="" />
         </div>
         <div className="col-12 col-md-6 mb-5">
           <div className="font-weight-bold mb-2">Donnez votre avis</div>

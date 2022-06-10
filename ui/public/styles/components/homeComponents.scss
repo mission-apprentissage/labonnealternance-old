@@ -20,6 +20,14 @@
     margin:auto;
 }
 
+.c-homecomponent-xxsbr{
+    display:none;
+    @media (max-width: 410px)
+    {
+        display: block;
+    }
+}
+
 .c-homecomponent-logopartenaire
 {
     margin: 2px;
@@ -75,6 +83,12 @@
     cursor: pointer;
     white-space: nowrap;
 
+    @media (max-width: 410px)
+    {
+        display: inline-block;
+        float: left;
+    }
+
     &:hover {
         text-decoration: none;
         color: #F5F5FE;
@@ -87,6 +101,13 @@
         &:hover {
             text-decoration: none;
             color: #000091;
+        }
+    }
+
+    &__first {
+        @media (max-width: 410px)
+        {
+            margin-bottom: 10px;
         }
     }
 
