@@ -361,7 +361,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ""
         )}
 
-        <LocationDetail item={selectedItem}></LocationDetail>
+        <LocationDetail item={selectedItem} isCfa={isCfa}></LocationDetail>
 
         {kind === "peJob" ? (
           <>
