@@ -141,6 +141,15 @@ const LocationDetail = ({ item, isCfa }) => {
           <>
           <div className="pb-3">
             <div className="c-detail-newadvice">
+              <div className="pt-1 mb-2">
+                <img
+                  src="/images/info.svg"
+                  alt="information pratique"
+                  width="24"
+                  height="24"
+                />
+                <span class="c-detail-newadvice-title ml-2">Cet établissement est un CFA d'entreprise</span>
+              </div>
               <p>
                 La particularité ? Il s'agit d'une formule complète Emploi + Formation ! Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :
               </p>

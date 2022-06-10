@@ -107,7 +107,7 @@ const TrainingDetail = ({ training, isCfa }) => {
         <div className="c-detail-newadvice mt-4 pl-4">
           <div className="pt-1 pb-2">
             <img src={questionmarkIcon} alt="point d'interrogation" />
-            <span className="c-detail-newadvice-title ml-3">
+            <span className="c-detail-newadvice-title">
               {training.title ? training.title : training.longTitle}
             </span>
           </div>
