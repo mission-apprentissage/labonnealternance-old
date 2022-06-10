@@ -25,7 +25,13 @@ const Navigation = ({ currentPage, bgcolor }) => {
               height="78"
               className="c-marianne-header"
             />
-            <img src="/images/logo_lba.svg" alt="Logo LBA" className="c-navbar-brand-img" width="110" height="76" />
+            <img
+              src={`/images/${currentPage === "acces-recruteur" ? "logo_LBA_recruteur ex matcha.svg" : "logo_lba.svg"}`}
+              alt="Logo LBA"
+              className="c-navbar-brand-img"
+              width="110"
+              height="76"
+            />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
@@ -81,6 +87,8 @@ const Navigation = ({ currentPage, bgcolor }) => {
                       className="nav-link mx-1"
                       url="https://matcha.apprentissage.beta.gouv.fr/authentification"
                       title="Connexion"
+                      picPosition="left"
+                      withPic={<img className="c-homecomponent-bluelock" src="/images/icons/blue_lock.svg" alt="" />}
                     />
                   </NavItem>
                 </>

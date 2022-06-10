@@ -162,11 +162,7 @@ const Footer = (props) => {
                   </a>
                 </li>
                 <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link c-footer-smallword"
-                  >
-                    Accessibilité : non conforme
-                  </a>
+                  <a className="c-footer-links__link c-footer-smallword">Accessibilité : non conforme</a>
                 </li>
               </ul>
             </Col>

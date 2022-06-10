@@ -71,9 +71,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
               activement à la recherche d'un.e candidat.e.
             </p>
             <p>Vous avez donc tout intérêt à le contacter rapidement, avant que l'offre ne soit pourvue !</p>
-              <p className="mb-0">
-              Trouver et convaincre une entreprise de vous embaucher ?
-            </p>
+            <p className="mb-0">Trouver et convaincre une entreprise de vous embaucher ?</p>
             <p>
               <span className="c-detail-traininglink">
                 <ExternalLink
