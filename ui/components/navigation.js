@@ -85,7 +85,7 @@ const Navigation = ({ currentPage, bgcolor }) => {
                 </a>
               </NavItem>
 
-              {currentPage === "acces-recruteur" ? (
+              {currentPage === "acces-recruteur" || currentPage === "organisme-de-formation" ? (
                 <>
                   <div className="ml-2 c-navigation__separator"></div>
                   <NavItem className="ml-lg-2">
