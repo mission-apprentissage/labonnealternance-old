@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.19.2 [09/06/2022]
+[LBA6-10] France-relance dans le footer
 [LBA6-17] Mail envoyé au candidat (matcha ou candidature spontanée)
 [LBA6-161] Reste à faire sur les fiches détaillées
 
