@@ -13,6 +13,18 @@ const Navigation = ({ currentPage, bgcolor }) => {
   let main_class_name = "c-navigation ";
   main_class_name += bgcolor ?? "is-filled";
 
+  const getLogo = () => {
+    let logo = "logo_LBA_candidat.svg";
+
+    if (currentPage === "acces-recruteur") {
+      logo = "logo_LBA_recruteur ex matcha.svg";
+    } else if (currentPage === "organisme-de-formation") {
+      logo = "logo_LBA_cfa ex matcha.svg";
+    }
+
+    return logo;
+  };
+
   return (
     <div className={main_class_name}>
       <Navbar expand="lg" className="navbar-light">
@@ -25,13 +37,7 @@ const Navigation = ({ currentPage, bgcolor }) => {
               height="78"
               className="c-marianne-header"
             />
-            <img
-              src={`/images/${currentPage === "acces-recruteur" ? "logo_LBA_recruteur ex matcha.svg" : "logo_lba.svg"}`}
-              alt="Logo LBA"
-              className="c-navbar-brand-img"
-              width="110"
-              height="76"
-            />
+            <img src={`/images/${getLogo()}`} alt="Logo LBA" className="c-navbar-brand-img" width="110" height="76" />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
