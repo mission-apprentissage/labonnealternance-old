@@ -11,13 +11,23 @@ const Footer = (props) => {
       <nav className="c-footer c-footer--one py-4 border-bottom">
         <Container>
           <Row>
-            <Col className="col-12 col-md-6">
+            <Col className="col-12 col-md-3">
               <img
                 src="/images/marianne.svg#svgView(viewBox(19 0 162 78))"
                 alt="Logo république française"
                 width="290"
                 height="130"
               />
+            </Col>
+            <Col className="col-12 col-md-3">
+              <div className="d-flex-center h-100">
+                <img
+                  src="/images/france_relance.svg"
+                  alt="France relance"
+                  width="81"
+                  height="81"
+                />
+              </div>
             </Col>
             <Col className="col-12 col-md-6 c-footer-text">
               <div>La bonne alternance. Trouvez votre alternance.</div>
