@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.19.2 [09/06/2022]
+[LBA6-17] Mail envoyé au candidat (matcha ou candidature spontanée)
+[LBA6-161] Reste à faire sur les fiches détaillées
+[LBA6-176] Fix non chargement map sur mobile
+
 ## 1.19.1 [07/06/2022]
 [LBA6-126] Gestion des erreurs 429 pour les candidatures
 [LBA6-45] Bouchons appels vers apis formations

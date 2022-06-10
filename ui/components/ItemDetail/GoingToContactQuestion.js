@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import thumbup from "public/images/thumbup.svg";
-import thumbdown from "public/images/thumbdown.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 
 import { useSessionStorage } from "../../utils/useSessionStorage";
@@ -13,9 +11,11 @@ const GoingToContactQuestion = ({ kind, uniqId }) => {
 
   const [thanks, setThanks] = useSessionStorage(uniqId, false);
 
+  const workplace = kind === 'formation' ? 'cet établissement' : 'cette entreprise'
+
   return (
     <div className="c-detail-body c-goingto mt-4" data-testid="GoingToContactQuestion">
-      <div className="c-goingto-title">Allez-vous contacter cette entreprise ?</div>
+      <div className="c-goingto-title">Allez-vous contacter {workplace} ?</div>
       <div className="">
         {thanks ? (
           <>
