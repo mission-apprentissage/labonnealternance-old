@@ -12,7 +12,8 @@ import PostezVotreOffreAlternance from "@/components/HomeComponents/PostezVotreO
 import OffresGratuites from "@/components/HomeComponents/OffresGratuites";
 import ReseauEntreprise from "@/components/HomeComponents/ReseauEntreprise";
 import GerezEntreprise from "@/components/HomeComponents/GerezEntreprise";
-import GerezOffres from "@/components/HomeComponents/GerezOffres";
+import BientotCFA from "@/components/HomeComponents/BientotCFA";
+import GerezOffresCFA from "@/components/HomeComponents/GerezOffresCFA";
 
 const Organisme = (props) => {
   return (
@@ -31,12 +32,13 @@ const Organisme = (props) => {
         <section className="c-homecomponent__beige mb-5">
           <PostezVotreOffreAlternance />
           <GerezEntreprise />
-          <OffresGratuites />
+          <OffresGratuites service="cfa" />
           <ReseauEntreprise />
         </section>
 
         <section className="c-homecomponent__beige">
-          <GerezOffres />
+          <BientotCFA />
+          <GerezOffresCFA />
         </section>
 
         <section className="text-center mb-5">

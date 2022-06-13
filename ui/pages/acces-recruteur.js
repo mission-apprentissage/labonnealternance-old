@@ -31,7 +31,7 @@ const AccesRecruteur = () => (
 
       <section className="c-homecomponent__beige mb-5">
         <PostezVotreOffre />
-        <OffresGratuites />
+        <OffresGratuites service="entreprise" />
         <OrganismesMandataires />
       </section>
 

@@ -7,18 +7,16 @@ const ReseauEntreprise = () => {
         <div className="col-12 col-md-6">
           <img
             className="c-homecomponent-illustration mr-3 my-3"
-            src="/images/home_pics/illu-solliciterCFA.svg"
+            src="/images/home_pics/illu-miseenrelation.svg"
             alt=""
           />
         </div>
         <div className="col-12 col-md-6 pt-md-5">
           <h2 className="c-homecomponent-title__small mb-3">
-            Identifiez facilement les organismes de formation en lien avec votre offre d’emploi
+            Développez votre réseau d’entreprises partenaires pour accompagner au mieux vos candidats en recherche de
+            contrat
           </h2>
-          <div>
-            Vous pouvez choisir d’être accompagné par les centres de formation et votre OPCO de rattachement, afin
-            d’accélérer vos recrutements.
-          </div>
+          <div>Recevez des demandes de contact d’entreprises en recherche d’alternants.</div>
         </div>
       </div>
     </section>

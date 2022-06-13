@@ -1,6 +1,6 @@
 import React from "react";
 
-const OffresGratuites = () => {
+const OffresGratuites = ({ service }) => {
   return (
     <section className="p-3 mb-2 mb-md-5">
       <div className="row">
@@ -15,10 +15,22 @@ const OffresGratuites = () => {
           <h2 className="c-homecomponent-title__small mb-3">
             Vos offres sont diffusées gratuitement au plus près des candidats
           </h2>
-          <div>
-            Exprimez votre besoin en quelques clics, nous générons votre offre instantanément. Retrouvez vos offres dans
-            votre compte en vous connectant avec votre email uniquement.
-          </div>
+          {service === "entreprise" ? (
+            <div>
+              Exprimez votre besoin en quelques clics, nous générons votre offre instantanément. Retrouvez vos offres
+              dans votre compte en vous connectant avec votre email uniquement.
+            </div>
+          ) : (
+            ""
+          )}
+          {service === "cfa" ? (
+            <div>
+              Elles sont mises en ligne sur les sites les plus visités par les candidats en recherche d’alternance : la
+              Bonne Alternance, 1jeune1solution, Parcoursup et bien d’autres.
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </section>
