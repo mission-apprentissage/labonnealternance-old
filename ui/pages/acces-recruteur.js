@@ -42,7 +42,7 @@ const AccesRecruteur = () => (
       <section className="text-center mb-5">
         <h2 className="c-homecomponent-title mb-5">Vous souhaitez recruter un alternant pour votre entreprise ?</h2>
         <div className="ml-4">
-          <ConnectionActions />
+          <ConnectionActions service="entreprise" />
         </div>
         <div className="clearfix" />
       </section>

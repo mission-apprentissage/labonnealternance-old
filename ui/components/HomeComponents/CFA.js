@@ -17,7 +17,7 @@ const CFA = () => {
             Exprimez vos besoins en alternance afin d’être visible auprès des jeunes en recherche de contrat, et des
             centres de formation pouvant vous accompagner.
           </div>
-          <ConnectionActions />
+          <ConnectionActions service="cfa" />
         </div>
       </div>
     </section>

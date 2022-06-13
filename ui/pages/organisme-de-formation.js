@@ -14,8 +14,6 @@ import ReseauEntreprise from "@/components/HomeComponents/ReseauEntreprise";
 import GerezEntreprise from "@/components/HomeComponents/GerezEntreprise";
 import GerezOffres from "@/components/HomeComponents/GerezOffres";
 
-
-
 const Organisme = (props) => {
   return (
     <div>
@@ -42,9 +40,9 @@ const Organisme = (props) => {
         </section>
 
         <section className="text-center mb-5">
-          <h2 className="c-homecomponent-title mb-5">Vous souhaitez recruter un alternant pour votre entreprise ? </h2>
+          <h2 className="c-homecomponent-title mb-5">Vous souhaitez attirer de nouveaux candidats?</h2>
           <div className="ml-4">
-            <ConnectionActions />
+            <ConnectionActions service="cfa" />
           </div>
           <div className="clearfix" />
         </section>
