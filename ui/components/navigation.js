@@ -25,11 +25,26 @@ const Navigation = ({ currentPage, bgcolor }) => {
     return logo;
   };
 
+  const getLogoTargetUrl = () => {
+    let url = "/";
+    if (currentPage === "acces-recruteur" || currentPage === "organisme-de-formation") {
+      url += currentPage;
+    }
+
+    return url;
+  };
+
   return (
     <div className={main_class_name}>
       <Navbar expand="lg" className="navbar-light">
         <div className="container px-0">
-          <NavbarBrand href="/">
+          <NavbarBrand
+            href={getLogoTargetUrl()}
+            onClick={(e) => {
+              e.preventDefault();
+              router.push(getLogoTargetUrl());
+            }}
+          >
             <img
               src="/images/marianne.svg#svgView(viewBox(12 0 162 78))"
               alt="Logo république française"
