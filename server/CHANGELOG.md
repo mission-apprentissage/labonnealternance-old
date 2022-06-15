@@ -5,6 +5,7 @@
 [LBA6-17] Mail envoyé au candidat (matcha ou candidature spontanée)
 [LBA6-161] Reste à faire sur les fiches détaillées
 [LBA6-176] Fix non chargement map sur mobile
+[LBA6-105] Réintégrer le bloc explicatif des CFA d'entreprise
 
 ## 1.19.1 [07/06/2022]
 [LBA6-126] Gestion des erreurs 429 pour les candidatures
