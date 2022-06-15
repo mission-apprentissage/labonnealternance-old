@@ -1,4 +1,5 @@
 import React from "react";
+import ExternalLink from "../externalLink";
 
 const OffresGratuites = () => {
   return (
@@ -16,8 +17,22 @@ const OffresGratuites = () => {
             Vos offres sont diffusées gratuitement au plus près des candidats
           </h2>
           <div>
-            Elles sont mises en ligne sur les sites les plus visités par les candidats en recherche d’alternance : la
-            Bonne Alternance, 1jeune1solution, Parcoursup et bien d’autres.
+            Elles sont mises en ligne sur les sites les plus visités par les candidats en recherche d’alternance :{" "}
+            <ExternalLink
+              className="c-homecomponent-link__inline"
+              url="https://labonnealternance.pole-emploi.fr"
+              title="la
+            Bonne Alternance"
+            />
+            ,{" "}
+            <ExternalLink
+              className="c-homecomponent-link__inline"
+              url="https://www.1jeune1solution.gouv.fr"
+              title="1jeune1solution"
+            />
+            ,{" "}
+            <ExternalLink className="c-homecomponent-link__inline" url="https://www.parcoursup.fr" title="Parcoursup" />{" "}
+            et bien d’autres.
           </div>
         </div>
       </div>
