@@ -40,11 +40,7 @@ const Footer = (props) => {
               <div>La bonne alternance. Trouvez votre alternance.</div>
               <div className="mt-4">La bonne alternance est proposée par les services suivants :</div>
               <div className="mt-4 c-footer-official-links">
-                <ExternalLink 
-                  className="c-footer-official-link" 
-                  url="https://pole-emploi.fr" 
-                  title="pole-emploi.fr" 
-                />
+                <ExternalLink className="c-footer-official-link" url="https://pole-emploi.fr" title="pole-emploi.fr" />
                 <ExternalLink
                   className="c-footer-official-link"
                   url="https://gouvernement.fr"
@@ -55,11 +51,7 @@ const Footer = (props) => {
                   url="https://service-public.fr"
                   title="service-public.fr"
                 />
-                <ExternalLink 
-                  className="c-footer-official-link" 
-                  url="https://data.gouv.fr" 
-                  title="data.gouv.fr" 
-                />
+                <ExternalLink className="c-footer-official-link" url="https://data.gouv.fr" title="data.gouv.fr" />
               </div>
             </Col>
           </Row>
@@ -187,11 +179,7 @@ const Footer = (props) => {
                   </a>
                 </li>
                 <li className="c-footer-links__line">
-                  <a
-                    className="c-footer-links__link c-footer-smallword"
-                  >
-                    Accessibilité : non conforme
-                  </a>
+                  <a className="c-footer-links__link c-footer-smallword">Accessibilité : non conforme</a>
                 </li>
               </ul>
             </Col>
