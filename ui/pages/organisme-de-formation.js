@@ -49,7 +49,9 @@ const Organisme = (props) => {
           <div className="clearfix" />
         </section>
 
+        {/*
         <AmeliorerLBA />
+        */}
 
         <PartenairesDeConfiance />
       </div>
