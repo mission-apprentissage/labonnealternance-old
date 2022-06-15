@@ -4,7 +4,16 @@ import Breadcrumb from "components/breadcrumb";
 import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
-import ExternalLink from "@/components/externalLink";
+import CFA from "@/components/HomeComponents/CFA";
+import PartenairesDeConfiance from "@/components/HomeComponents/PartenairesDeConfiance";
+import AmeliorerLBA from "@/components/HomeComponents/AmeliorerLBA";
+import ConnectionActions from "@/components/HomeComponents/ConnectionActions";
+import PostezVotreOffreAlternance from "@/components/HomeComponents/PostezVotreOffreAlternance";
+import OffresGratuites from "@/components/HomeComponents/OffresGratuites";
+import ReseauEntreprise from "@/components/HomeComponents/ReseauEntreprise";
+import GerezEntreprise from "@/components/HomeComponents/GerezEntreprise";
+import BientotCFA from "@/components/HomeComponents/BientotCFA";
+import GerezOffresCFA from "@/components/HomeComponents/GerezOffresCFA";
 
 const Organisme = (props) => {
   return (
@@ -14,44 +23,37 @@ const Organisme = (props) => {
         description="Comment référencer ma formation ? Nous sommes là pour vous aider."
       />
 
-      <Navigation bgcolor="is-white" />
-
+      <Navigation bgcolor="is-white" currentPage="organisme-de-formation" />
       <Breadcrumb forPage="organisme-de-formation" label="Organisme de formation" />
 
-      <div className="c-page-container container my-0 mb-sm-5 p-5">
-        <div className="row">
-          <div className="col-12 col-md-5">
-            <h1>
-              <span className="d-block c-page-title is-color-1">Comment</span>
-              <span className="d-block c-page-title is-color-1">
-                référencer <span className="c-page-title is-color-2">ma </span>
-              </span>
-              <span className="d-block c-page-title is-color-2">formation ?</span>
-            </h1>
-            <hr className="c-page-title-separator" align="left" />
+      <div className="container my-0 px-0">
+        <CFA />
+
+        <section className="c-homecomponent__beige mb-5">
+          <PostezVotreOffreAlternance />
+          <GerezEntreprise />
+          <OffresGratuites />
+          <ReseauEntreprise />
+        </section>
+
+        <section className="c-homecomponent__beige">
+          <BientotCFA />
+          <GerezOffresCFA />
+        </section>
+
+        <section className="text-center mb-5">
+          <h2 className="c-homecomponent-title mb-5">Vous souhaitez attirer de nouveaux candidats?</h2>
+          <div className="ml-4">
+            <ConnectionActions service="cfa" />
           </div>
-          <div className="col-12 col-md-7">
-            <p>La Bonne Alternance expose des données provenant du réseau Carif-oref.</p>
-            <p>Pour référencer votre formation, rendez-vous sur le site du Carif-Oref :</p>
-            <p className="c-organisme-link">
-              <img className="mt-n1 mr-2" src="/images/square_link.svg" alt="Lien relancer son offre de formation" />
-              <ExternalLink
-                url="https://reseau.intercariforef.org/referencer-son-offre-de-formation"
-                title="https://reseau.intercariforef.org/referencer-son-offre-de-formation."
-              />
-            </p>
-            <p>
-              Veuillez noter que pour le moment, seules les formations en apprentissage sont référencées sur La Bonne
-              Alternance.
-            </p>
-            <div className="text-center">
-              <p className="c-organisme-help">Vous êtes perdu(e) ? Nous sommes là pour vous aider.</p>
-              <a className="c-organisme-contact-link" href="mailto:labonnealternance@apprentissage.beta.gouv.fr">
-                Contacter notre service support
-              </a>
-            </div>
-          </div>
-        </div>
+          <div className="clearfix" />
+        </section>
+
+        {/*
+        <AmeliorerLBA />
+        */}
+
+        <PartenairesDeConfiance />
       </div>
       <div className="mb-3">&nbsp;</div>
       <Footer />
