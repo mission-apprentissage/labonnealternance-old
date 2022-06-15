@@ -32,7 +32,7 @@ const Organisme = (props) => {
         <section className="c-homecomponent__beige mb-5">
           <PostezVotreOffreAlternance />
           <GerezEntreprise />
-          <OffresGratuites service="cfa" />
+          <OffresGratuites />
           <ReseauEntreprise />
         </section>
 
