@@ -5,8 +5,9 @@ import { round } from "lodash";
 import { string_wrapper as with_str } from "../../utils/wrapper_utils";
 import ExternalLink from "../externalLink";
 import { endsWithNumber } from "../../utils/strutils";
+import gotoIcon from "public/images/icons/goto.svg";
 
-const LocationDetail = ({ item }) => {
+const LocationDetail = ({ item, isCfa }) => {
   const kind = item?.ideaType;
 
   const getGoogleSearchParameters = () => {
@@ -101,11 +102,7 @@ const LocationDetail = ({ item }) => {
               </span>
               <span className="c-detail-sizetext">
                 <span className="">En savoir plus sur &nbsp;</span>
-                <ExternalLink
-                  className="c-nice-link gtmTrainingLink"
-                  url={item.company.url}
-                  title={item.company.url}
-                />
+                <ExternalLink className="c-nice-link gtmTrainingLink" url={item.company.url} title={item.company.url} />
               </span>
             </div>
           </>
@@ -134,6 +131,53 @@ const LocationDetail = ({ item }) => {
         ) : (
           ""
         )}
+
+        {
+          isCfa ? 
+          <>
+            <div className="pb-3">
+              <div className="c-detail-newadvice">
+                <div className="pt-1 mb-2">
+                  <img
+                    src="/images/info.svg"
+                    alt="information pratique"
+                    width="24"
+                    height="24"
+                  />
+                  <span class="c-detail-newadvice-title ml-2">Cet établissement est un CFA d'entreprise</span>
+                </div>
+                <p>
+                  La particularité ? Il s'agit d'une formule complète Emploi + Formation ! Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :
+                </p>
+                <ul>
+                  <li>
+                    Commencez par vous inscrire à la formation pour accéder ensuite au contrat,
+                  </li>
+                  <li>
+                    Ou commencez par postuler à une offre d'emploi pour être ensuite inscrit en formation.
+                  </li>
+                </ul>
+                <p>
+                  Prenez contact avec cet établissement ou consultez son site web pour en savoir + !
+                </p>
+                <p>
+                    Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ?
+                    <span className="ml-1">
+                      <ExternalLink
+                        className="c-nice-link"
+                        url="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
+                        title="Préparez votre premier contact avec un CFA"
+                        withPic={<img src={gotoIcon} alt="Lien" />}
+                      />
+                    </span>
+                </p>
+              </div>
+            </div>
+          </>
+          :
+          <>
+          </>
+        }
 
         {kind === "matcha" || kind === "lbb" || kind === "lba" ? (
           <>

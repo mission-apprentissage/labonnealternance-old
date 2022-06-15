@@ -11,7 +11,7 @@ const Footer = (props) => {
       <nav className="c-footer c-footer--one py-4 border-bottom">
         <Container>
           <Row>
-            <Col className="col-12 col-md-6">
+            <Col className="col-12 col-lg-3">
               <img
                 src="/images/marianne.svg#svgView(viewBox(19 0 162 78))"
                 alt="Logo république française"
@@ -19,15 +19,28 @@ const Footer = (props) => {
                 height="130"
               />
             </Col>
-            <Col className="col-12 col-md-6 c-footer-text">
+            <Col className="col-12 col-lg-3">
+              <div className="c-footer-francerelance">
+                <img
+                  src="/images/france_relance.svg"
+                  alt="France relance"
+                  width="81"
+                  height="81"
+                />
+                <img
+                  src="/images/financement_ue.png"
+                  alt="Financement UE"
+                  width="162"
+                  height="41"
+                  className="ml-3"
+                />
+              </div>
+            </Col>
+            <Col className="col-12 col-lg-6 c-footer-text">
               <div>La bonne alternance. Trouvez votre alternance.</div>
               <div className="mt-4">La bonne alternance est proposée par les services suivants :</div>
               <div className="mt-4 c-footer-official-links">
-                <ExternalLink 
-                  className="c-footer-official-link" 
-                  url="https://pole-emploi.fr" 
-                  title="pole-emploi.fr" 
-                />
+                <ExternalLink className="c-footer-official-link" url="https://pole-emploi.fr" title="pole-emploi.fr" />
                 <ExternalLink
                   className="c-footer-official-link"
                   url="https://gouvernement.fr"
@@ -38,11 +51,7 @@ const Footer = (props) => {
                   url="https://service-public.fr"
                   title="service-public.fr"
                 />
-                <ExternalLink 
-                  className="c-footer-official-link" 
-                  url="https://data.gouv.fr" 
-                  title="data.gouv.fr" 
-                />
+                <ExternalLink className="c-footer-official-link" url="https://data.gouv.fr" title="data.gouv.fr" />
               </div>
             </Col>
           </Row>
@@ -168,6 +177,9 @@ const Footer = (props) => {
                   >
                     Développeurs
                   </a>
+                </li>
+                <li className="c-footer-links__line">
+                  <a className="c-footer-links__link c-footer-smallword">Accessibilité : non conforme</a>
                 </li>
               </ul>
             </Col>

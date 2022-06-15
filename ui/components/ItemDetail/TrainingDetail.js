@@ -104,23 +104,26 @@ const TrainingDetail = ({ training, isCfa }) => {
     <div className="c-detail-body mt-4">
       {getLoading()}
       {getTrainingDetails(training.training)}
-      {training.onisepUrl ? (
         <div className="c-detail-newadvice mt-4 pl-4">
           <div className="pt-1 pb-2">
             <img src={questionmarkIcon} alt="point d'interrogation" />
-            <span className="c-detail-newadvice-title ml-3">
+            <span className="c-detail-newadvice-title ml-2">
               {training.title ? training.title : training.longTitle}
             </span>
           </div>
-          <div>
-            <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
-            <span className="c-detail-traininglink">
-              <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="c-nice-link">
-                le site Onisep&nbsp;
-                <img src={gotoIcon} alt="Lien" />
-              </a>
-            </span>
-          </div>
+          {training.onisepUrl ? (
+            <div>
+              <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
+              <span className="c-detail-traininglink">
+                <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="c-nice-link">
+                  le site Onisep&nbsp;
+                  <img src={gotoIcon} alt="Lien" />
+                </a>
+              </span>
+            </div>
+          ) : (
+            ""
+          )}
           <div className="mt-2 mb-2">
             Vous vous posez des questions sur votre orientation ou votre recherche d'emploi ? 
             <a href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987" target="_blank" rel="noopener noreferrer" className="c-nice-link">
@@ -129,9 +132,6 @@ const TrainingDetail = ({ training, isCfa }) => {
               </a>
           </div>
         </div>
-      ) : (
-        ""
-      )}
     </div>
   );
 };
