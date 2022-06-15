@@ -6,7 +6,7 @@ const PartenairesDeConfiance = () => {
       <h2 className="c-homecomponent-title__confiance mb-4">Ils nous font confiance</h2>
 
       <div className="row">
-        <div className="col-4 col-md-2">
+        <div className="col-4 col-md-2 mb-3">
           <img
             className="c-homecomponent-logopartenaire"
             src="/images/logos_partenaires/logo-opcoocapiat@2x.png"
@@ -27,7 +27,7 @@ const PartenairesDeConfiance = () => {
             alt="Logo partenaire Opco EP"
           />
         </div>
-        <div className="col-4 col-md-2">
+        <div className="col-4 col-md-2 mb-3">
           <img
             className="c-homecomponent-logopartenaire"
             src="/images/logos_partenaires/logo-opcosante@2x.png"
@@ -50,7 +50,7 @@ const PartenairesDeConfiance = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-4 col-md-2">
+        <div className="col-4 col-md-2 mb-3">
           <img
             className="c-homecomponent-logopartenaire"
             src="/images/logos_partenaires/logo-excellencepro@2x.png"
@@ -71,7 +71,7 @@ const PartenairesDeConfiance = () => {
             alt="Logo partenaire Medef 93 94"
           />
         </div>
-        <div className="col-4 col-md-2">
+        <div className="col-4 col-md-2 mb-3">
           <img
             className="c-homecomponent-logopartenaire"
             src="/images/logos_partenaires/logo-medef@2x.png"
@@ -94,7 +94,7 @@ const PartenairesDeConfiance = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-4 col-md-2">
+        <div className="col-4 col-md-2 mb-3">
           <img
             className="c-homecomponent-logopartenaire"
             src="/images/logos_partenaires/logo-dreets@2x.png"
@@ -115,7 +115,7 @@ const PartenairesDeConfiance = () => {
             alt="Logo partenaire Bretagne Alternance"
           />
         </div>
-        <div className="col-4 col-md-2">
+        <div className="col-4 col-md-2 mb-3">
           <img
             className="c-homecomponent-logopartenaire"
             src="/images/logos_partenaires/logo-auvergnerhonealpes@2x.png"
