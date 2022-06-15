@@ -147,7 +147,7 @@ const LocationDetail = ({ item, isCfa }) => {
                   <span class="c-detail-newadvice-title ml-2">Cet établissement est un CFA d'entreprise</span>
                 </div>
                 <p>
-                  La particularité ? Il s'agit d'une formule complète Emploi + Formation ! Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :
+                  La particularité ? Il s'agit d'une formule complète <b>Emploi + Formation</b> ! Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :
                 </p>
                 <ul>
                   <li>
