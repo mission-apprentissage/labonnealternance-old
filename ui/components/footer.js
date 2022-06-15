@@ -11,7 +11,7 @@ const Footer = (props) => {
       <nav className="c-footer c-footer--one py-4 border-bottom">
         <Container>
           <Row>
-            <Col className="col-12 col-md-6">
+            <Col className="col-12 col-lg-3">
               <img
                 src="/images/marianne.svg#svgView(viewBox(19 0 162 78))"
                 alt="Logo république française"
@@ -19,7 +19,24 @@ const Footer = (props) => {
                 height="130"
               />
             </Col>
-            <Col className="col-12 col-md-6 c-footer-text">
+            <Col className="col-12 col-lg-3">
+              <div className="c-footer-francerelance">
+                <img
+                  src="/images/france_relance.svg"
+                  alt="France relance"
+                  width="81"
+                  height="81"
+                />
+                <img
+                  src="/images/financement_ue.png"
+                  alt="Financement UE"
+                  width="162"
+                  height="41"
+                  className="ml-3"
+                />
+              </div>
+            </Col>
+            <Col className="col-12 col-lg-6 c-footer-text">
               <div>La bonne alternance. Trouvez votre alternance.</div>
               <div className="mt-4">La bonne alternance est proposée par les services suivants :</div>
               <div className="mt-4 c-footer-official-links">
