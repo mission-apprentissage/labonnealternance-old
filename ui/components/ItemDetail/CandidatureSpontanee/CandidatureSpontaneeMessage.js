@@ -16,7 +16,7 @@ const CandidatureSpontaneeMessage = ({ formik, kind }) => {
     return (
       <>
         Votre message au responsable du recrutement{" "}
-        {kind !== "matcha" ? <span className="c-candidature-message-title-optional">(Facultatif)</span> : "*"}
+        <span className="c-candidature-message-title-optional">(Facultatif)</span>
       </>
     );
   };
