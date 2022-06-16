@@ -11,9 +11,9 @@ const emailChecker = emailMisspelled({ maxMisspelled: 3, domains: top100 });
 
 const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind }) => {
 
-  useEffect(() => {
+  /*useEffect(() => {
     formik.values.interetOffresMandataire = false;
-  }, [company]);
+  }, [company]);*/
 
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
