@@ -125,7 +125,7 @@ const Map = ({ handleSearchSubmit, showSearchForm, selectItemOnMap }) => {
         setSelectedMapPopupItem,
       });
     }
-  }, [trainings, jobs]);
+  }, [trainings, jobs, shouldMapBeVisible]);
 
   useEffect(() => {
     //hack pour recharger la map après navigation back / forward navigateur
