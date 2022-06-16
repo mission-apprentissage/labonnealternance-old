@@ -3,7 +3,7 @@ import PeJobDetail from "./PeJobDetail";
 import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { findIndex, concat, pick, get, defaultTo } from "lodash";
+import { findIndex, get, defaultTo } from "lodash";
 import { amongst } from "../../utils/arrayutils";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
@@ -14,7 +14,6 @@ import { filterLayers } from "../../utils/mapTools";
 import ExternalLink from "../externalLink";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { useSwipeable } from "react-swipeable";
-import { mergeJobs, mergeOpportunities } from "../../utils/itemListUtils";
 
 import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
 import TagOffreEmploi from "./TagOffreEmploi";
@@ -26,6 +25,7 @@ import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
 import getSurtitre from "./services/getSurtitre";
 import getActualTitle from "./services/getActualTitle";
+import getCurrentList from "./services/getCurrentList";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
@@ -39,27 +39,6 @@ const getTags = ({ kind, isCfa, isMandataire }) => {
       {amongst(kind, ["matcha"]) && isMandataire ? <TagFormationAssociee isMandataire /> : ""}
     </div>
   );
-};
-
-const getH1 = ({ kind, actualTitle }) => {
-  return <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>;
-};
-
-const getCurrentList = (store, activeFilter, extendedSearch) => {
-  let picked = pick(store, ["trainings", "jobs"]);
-  let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
-
-  let jobList = [];
-  let companyList = [];
-  if (amongst(activeFilter, ["all", "jobs"])) {
-    if (extendedSearch) jobList = mergeOpportunities(get(picked, "jobs"));
-    else {
-      jobList = mergeJobs(get(picked, "jobs"));
-      companyList = mergeOpportunities(get(picked, "jobs"), "onlyLbbLba");
-    }
-  }
-  let fullList = concat([], trainingsArray, jobList, companyList);
-  return  fullList.filter((el) => !!el);
 };
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
@@ -208,7 +187,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             {getSurtitre({ selectedItem, kind })}
 
-            {getH1({ kind, actualTitle })}
+            <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
 
             <p className="mt-4 c-detail-address-section">
               <span className="d-block">
