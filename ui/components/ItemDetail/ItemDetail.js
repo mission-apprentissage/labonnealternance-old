@@ -15,10 +15,6 @@ import ExternalLink from "../externalLink";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { useSwipeable } from "react-swipeable";
 
-import TagCandidatureSpontanee from "./TagCandidatureSpontanee";
-import TagOffreEmploi from "./TagOffreEmploi";
-import TagCfaDEntreprise from "./TagCfaDEntreprise";
-import TagFormationAssociee from "./TagFormationAssociee";
 import LocationDetail from "./LocationDetail";
 import DidYouKnow from "./DidYouKnow";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
@@ -26,20 +22,10 @@ import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatur
 import getSurtitre from "./services/getSurtitre";
 import getActualTitle from "./services/getActualTitle";
 import getCurrentList from "./services/getCurrentList";
+import getTags from "./services/getTags";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
-
-const getTags = ({ kind, isCfa, isMandataire }) => {
-  return (
-    <div className="mr-auto c-tagcfa-container text-left">
-      {kind === "formation" ? <TagCfaDEntreprise isCfa={isCfa} /> : ""}
-      {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
-      {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}
-      {amongst(kind, ["matcha"]) && isMandataire ? <TagFormationAssociee isMandataire /> : ""}
-    </div>
-  );
-};
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   console.log('selectedItem', selectedItem);
