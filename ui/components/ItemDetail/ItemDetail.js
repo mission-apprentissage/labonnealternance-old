@@ -15,6 +15,7 @@ import ExternalLink from "../externalLink";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { useSwipeable } from "react-swipeable";
 
+
 import LocationDetail from "./LocationDetail";
 import DidYouKnow from "./DidYouKnow";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
@@ -23,6 +24,7 @@ import getSurtitre from "./services/getSurtitre";
 import getActualTitle from "./services/getActualTitle";
 import getCurrentList from "./services/getCurrentList";
 import getTags from "./services/getTags";
+import { buttonJePostuleShouldBeDisplayed, buttonPRDVShouldBeDisplayed, buildPrdvButton } from "./services/getButtons"
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
@@ -75,33 +77,12 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     handleSelectItem(currentList[prevIndex]);
   };
 
-  const buildPrdvButton = (training) => {
-    return (
-      <div
-        className="widget-prdv gtmPrdv"
-        data-referrer="lba"
-        data-id-cle-ministere-educatif={training.cleMinistereEducatif}
-        data-id-rco-formation={training.idRcoFormation}
-      >
-        <ExternalLink className="gtmPrdv" url={training.prdvUrl} title="Prendre rendez-vous" />
-      </div>
-    );
-  };
-
   const [collapseHeader, setCollapseHeader] = useState(false);
   const maxScroll = 100;
   const handleScroll = () => {
     let currentScroll = document.querySelector(".c-detail").scrollTop;
     currentScroll += collapseHeader ? 100 : -100;
     setCollapseHeader(currentScroll > maxScroll);
-  };
-
-  const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
-    return oneKind === "peJob" && oneItem?.url;
-  };
-
-  const buttonPRDVShouldBeDisplayed = (oneItem) => {
-    return oneItem?.prdvUrl;
   };
 
   const getNavigationButtons = () => {
