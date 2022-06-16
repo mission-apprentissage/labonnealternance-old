@@ -78,6 +78,7 @@ return  fullList.filter((el) => !!el);
 };
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
+  console.log('selectedItem', selectedItem);
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
@@ -197,6 +198,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     if (kind === "matcha") {
       res = (
         <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
+          <span className="c-detail-activity__proposal">Le centre de formation&nbsp;</span>
           <span>{`${get(selectedItem, "company.name", "")}`}</span>
           <span className="c-detail-activity__proposal">
             &nbsp;propose actuellement cette offre dans le domaine suivant
