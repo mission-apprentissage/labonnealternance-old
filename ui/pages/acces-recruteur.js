@@ -49,9 +49,8 @@ const AccesRecruteur = () => (
 
       {/*
       <AmeliorerLBA />
-      */}
-
-      <PartenairesDeConfiance />
+      
+      <PartenairesDeConfiance />*/}
     </div>
     <div className="mb-3">&nbsp;</div>
     <Footer />
