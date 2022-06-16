@@ -24,6 +24,8 @@ import LocationDetail from "./LocationDetail";
 import DidYouKnow from "./DidYouKnow";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
+import getSurtitre from "./services/getSurtitre";
+import getActualTitle from "./services/getActualTitle";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
@@ -43,23 +45,6 @@ const getH1 = ({ kind, actualTitle }) => {
   return <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>;
 };
 
-const getActualTitle = ({ selectedItem, kind }) => {
-  let title = "";
-
-  if (kind === "formation") {
-    title = selectedItem?.title || selectedItem?.longTitle;
-  } else if (kind === "matcha") {
-    title = selectedItem?.title;
-  } else if (kind === "peJob") {
-    title = selectedItem?.title;
-  } else {
-    // lba / lbb
-    title = selectedItem?.nafs[0]?.label;
-  }
-
-  return title;
-};
-
 const getCurrentList = (store, activeFilter, extendedSearch) => {
   let picked = pick(store, ["trainings", "jobs"]);
   let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
@@ -74,7 +59,7 @@ const getCurrentList = (store, activeFilter, extendedSearch) => {
     }
   }
   let fullList = concat([], trainingsArray, jobList, companyList);
-return  fullList.filter((el) => !!el);
+  return  fullList.filter((el) => !!el);
 };
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
@@ -190,53 +175,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         </div>
       </>
     );
-  };
-
-  const getSurtitre = ({ selectedItem, kind }) => {
-    let res = "";
-
-    if (kind === "matcha") {
-      res = (
-        <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
-          <span className="c-detail-activity__proposal">Le centre de formation&nbsp;</span>
-          <span>{`${get(selectedItem, "company.name", "")}`}</span>
-          <span className="c-detail-activity__proposal">
-            &nbsp;propose actuellement cette offre dans le domaine suivant
-          </span>
-        </p>
-      );
-    }
-
-    if (kind === "peJob") {
-      res = (
-        <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
-          <span>{`${get(selectedItem, "company.name", "Une société ayant souhaité garder l'anonymat")}`}</span>
-          <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre</span>
-        </p>
-      );
-    }
-
-    if (amongst(kind, ["lba", "lbb"])) {
-      res = (
-        <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
-          <span>{`${get(selectedItem, "company.name", "")}`}</span>
-          <span className="c-detail-activity__proposal">
-            &nbsp;a des salariés qui exercent le métier auquel vous vous destinez. Envoyez votre candidature spontanée !
-          </span>
-        </p>
-      );
-    }
-
-    if (kind === "formation") {
-      res = (
-        <p className={`c-detail-activity c-detail-title--formation`}>
-          <span>{`${get(selectedItem, "company.name", "")} (${selectedItem.company.place.city})`}</span>
-          <span className="c-detail-activity__proposal">&nbsp;propose cette formation</span>
-        </p>
-      );
-    }
-
-    return res;
   };
 
   return (
