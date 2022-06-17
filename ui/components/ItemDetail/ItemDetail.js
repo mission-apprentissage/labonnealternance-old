@@ -3,15 +3,13 @@ import PeJobDetail from "./PeJobDetail";
 import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { findIndex, get, defaultTo } from "lodash";
+import { get, defaultTo } from "lodash";
 import { amongst } from "../../utils/arrayutils";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
 import ExternalLink from "../externalLink";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
-import { useSwipeable } from "react-swipeable";
-
 
 import LocationDetail from "./LocationDetail";
 import DidYouKnow from "./DidYouKnow";
@@ -21,7 +19,7 @@ import getSurtitre from "./services/getSurtitre";
 import getActualTitle from "./services/getActualTitle";
 import getCurrentList from "./services/getCurrentList";
 import getTags from "./services/getTags";
-import { buttonJePostuleShouldBeDisplayed, buttonPRDVShouldBeDisplayed, buildPrdvButton, getNavigationButtons } from "./services/getButtons"
+import { buttonJePostuleShouldBeDisplayed, buttonPRDVShouldBeDisplayed, buildPrdvButton, getNavigationButtons, buildSwipe } from "./services/getButtons"
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
@@ -49,30 +47,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const { trainings, jobs, extendedSearch } = useContext(SearchResultContext);
   const currentList = getCurrentList({ trainings, jobs }, activeFilter, extendedSearch);
 
-  // See https://www.npmjs.com/package/react-swipeable
-  const swipeHandlers = useSwipeable({
-    onSwiped: (event_data) => {
-      if (event_data.dir === "Right") {
-        if (currentList.length > 1) {
-          goPrev();
-        }
-      } else if (event_data.dir === "Left") {
-        if (currentList.length > 1) {
-          goNext();
-        }
-      }
-    },
-  });
-  const goNext = () => {
-    let currentIndex = findIndex(currentList, selectedItem);
-    let nextIndex = currentIndex == currentList.length - 1 ? 0 : currentIndex + 1;
-    handleSelectItem(currentList[nextIndex]);
-  };
-  const goPrev = () => {
-    let currentIndex = findIndex(currentList, selectedItem);
-    let prevIndex = currentIndex == 0 ? currentList.length - 1 : currentIndex - 1;
-    handleSelectItem(currentList[prevIndex]);
-  };
+  const { swipeHandlers, goNext, goPrev } = buildSwipe(currentList, handleSelectItem, selectedItem)
 
   const [collapseHeader, setCollapseHeader] = useState(false);
   const maxScroll = 100;
