@@ -3,7 +3,7 @@ import PeJobDetail from "./PeJobDetail";
 import MatchaDetail from "./MatchaDetail";
 import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
-import { get, defaultTo } from "lodash";
+import { defaultTo } from "lodash";
 import { amongst } from "../../utils/arrayutils";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
