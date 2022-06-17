@@ -16,6 +16,7 @@ import DidYouKnow from "./DidYouKnow";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
 import getSurtitre from "./ItemDetailServices/getSurtitre";
+import hasAlsoEmploi from "./ItemDetailServices/hasAlsoEmploi";
 import getSoustitre from "./ItemDetailServices/getSoustitre";
 import getActualTitle from "./ItemDetailServices/getActualTitle";
 import getCurrentList from "./ItemDetailServices/getCurrentList";
@@ -118,6 +119,37 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               </>
             ) : (
               <div className="c-detail-emptyspace">&nbsp;</div>
+              )}
+
+            {kind === "formation" ? (
+              <>
+                {buttonPRDVShouldBeDisplayed({ selectedItem }) ? (
+                  <>
+                    <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
+                    <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton({ selectedItem })}</div>
+                  </>
+                ) : (
+                  <>
+                    <div className="c-detail-emptyspace">&nbsp;</div>
+                  </>
+                )}
+                {hasAlsoEmploi({ selectedItem }) ? (
+                  <>
+                    <span className="c-locationdetail-imgcontainer">
+                      <img className="" src="/images/info.svg" alt="info" />
+                    </span>
+                    <span className="c-detail-sizetext mb-0">
+                      Le centre de formation propose également des offres d'emploi.
+                    </span>
+                  </>
+                ) : (
+                  <>
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+              </>
             )}
           </div>
         </header>
