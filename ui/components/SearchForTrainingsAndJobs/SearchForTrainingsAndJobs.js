@@ -137,9 +137,16 @@ const SearchForTrainingsAndJobs = () => {
     return item;
   };
 
+  const flyToCenter = (values) => {
+
+    const searchCenter = values?.location?.value?[values.location.value.coordinates[0], values.location.value.coordinates[1]]:null;
+
+    if(searchCenter) { flyToLocation({ center: searchCenter, zoom: 10 }); }
+    else { flyToLocation({ center: coordinatesOfFrance, zoom: 4 }); }
+  }
+
   const handleSearchSubmit = async ({values,followUpItem=null}) => {
     // centrage de la carte sur le lieu de recherche
-    const searchCenter = values.location?.value?[values.location.value.coordinates[0], values.location.value.coordinates[1]]:null;
     const searchTimestamp = new Date().getTime();
     setShouldShowWelcomeMessage(false);
 
@@ -147,8 +154,7 @@ const SearchForTrainingsAndJobs = () => {
     setSearchRadius(values.radius || 30);
     setExtendedSearch(false);
 
-    if(searchCenter) { flyToLocation({ center: searchCenter, zoom: 10 }); }
-    else { flyToLocation({ center: coordinatesOfFrance, zoom: 4 }); }
+    flyToCenter(values);
   
     setFormValues({ ...values });
 
@@ -269,6 +275,14 @@ const SearchForTrainingsAndJobs = () => {
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
     setTimeout(() => {
       resizeMap();
+      if(selectedItem)
+      {
+        flyToMarker(selectedItem);
+      }
+      else
+      {
+        flyToCenter(formValues)
+      }
     }, 50);
   };
 
