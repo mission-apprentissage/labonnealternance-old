@@ -7,15 +7,15 @@ import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
 
 
-export const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
+export const buttonJePostuleShouldBeDisplayed = ({oneKind, oneItem}) => {
   return oneKind === "peJob" && oneItem?.url;
 };
 
-export const buttonPRDVShouldBeDisplayed = (oneItem) => {
+export const buttonPRDVShouldBeDisplayed = ({oneItem}) => {
   return oneItem?.prdvUrl;
 };
 
-export const buildPrdvButton = (training) => {
+export const buildPrdvButton = ({training}) => {
   return (
     <div
       className="widget-prdv gtmPrdv"
@@ -28,7 +28,7 @@ export const buildPrdvButton = (training) => {
   );
 };
 
-export const buildSwipe = (currentList, handleSelectItem, selectedItem) => {
+export const buildSwipe = ({currentList, handleSelectItem, selectedItem}) => {
   // See https://www.npmjs.com/package/react-swipeable
   const swipeHandlers = useSwipeable({
     onSwiped: (event_data) => {
@@ -58,7 +58,7 @@ export const buildSwipe = (currentList, handleSelectItem, selectedItem) => {
   }
 };
 
-export const getNavigationButtons = (goPrev, goNext, setSeeInfo, handleClose) => {
+export const getNavigationButtons = ({goPrev, goNext, setSeeInfo, handleClose}) => {
   return (
     <>
       <div>

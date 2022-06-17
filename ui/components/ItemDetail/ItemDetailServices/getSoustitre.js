@@ -1,5 +1,5 @@
 
-export default function getSoustitre({ selectedItem, kind }) {
+export default function getSoustitre({ selectedItem }) {
   let res = "";
 
   {

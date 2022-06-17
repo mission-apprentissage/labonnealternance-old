@@ -45,7 +45,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   let actualTitle = getActualTitle({ kind, selectedItem });
 
   const { trainings, jobs, extendedSearch } = useContext(SearchResultContext);
-  const currentList = getCurrentList({ trainings, jobs }, activeFilter, extendedSearch);
+  const currentList = getCurrentList({store:{ trainings, jobs }, activeFilter, extendedSearch});
 
   const { swipeHandlers, goNext, goPrev } = buildSwipe(currentList, handleSelectItem, selectedItem)
 
@@ -83,14 +83,14 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
               {getTags({ kind, isCfa, isMandataire })}
-              {getNavigationButtons(goPrev, goNext, setSeeInfo, handleClose)}
+              {getNavigationButtons({goPrev, goNext, setSeeInfo, handleClose})}
             </div>
 
             {getSurtitre({ selectedItem, kind })}
             <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
             {getSoustitre({ selectedItem, kind })}
 
-            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
+            {buttonJePostuleShouldBeDisplayed({kind, selectedItem}) ? (
               <div className="c-detail-description-me">
                 <div className="c-detail-pelink my-3">
                   <a className="btn btn-blue ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
@@ -111,10 +111,10 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
 
-            {kind === "formation" && buttonPRDVShouldBeDisplayed(selectedItem) ? (
+            {kind === "formation" && buttonPRDVShouldBeDisplayed({selectedItem}) ? (
               <>
                 <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
-                <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
+                <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton({selectedItem})}</div>
               </>
             ) : (
               <div className="c-detail-emptyspace">&nbsp;</div>
@@ -172,7 +172,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <>
             <DidYouKnow item={selectedItem}></DidYouKnow>
 
-            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
+            {buttonJePostuleShouldBeDisplayed({kind, selectedItem}) ? (
               ""
             ) : (
               <GoingToContactQuestion
@@ -187,7 +187,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         )}
         {kind === "formation" ? (
           <>
-            {buttonPRDVShouldBeDisplayed(selectedItem) ? (
+            {buttonPRDVShouldBeDisplayed({selectedItem}) ? (
               ""
             ) : (
               <GoingToContactQuestion

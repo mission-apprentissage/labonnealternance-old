@@ -2,7 +2,7 @@ import { concat, pick, get } from "lodash";
 import { amongst } from "../../../utils/arrayutils";
 import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
 
-export default function getCurrentList(store, activeFilter, extendedSearch) {
+export default function getCurrentList({store, activeFilter, extendedSearch}) {
   let picked = pick(store, ["trainings", "jobs"]);
   let trainingsArray = amongst(activeFilter, ["all", "trainings"]) ? get(picked, "trainings", []) : [];
 
