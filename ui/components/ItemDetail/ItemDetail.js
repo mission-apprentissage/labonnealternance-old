@@ -15,12 +15,12 @@ import LocationDetail from "./LocationDetail";
 import DidYouKnow from "./DidYouKnow";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
-import getSurtitre from "./services/getSurtitre";
-import getSoustitre from "./services/getSoustitre";
-import getActualTitle from "./services/getActualTitle";
-import getCurrentList from "./services/getCurrentList";
-import getTags from "./services/getTags";
-import { buttonJePostuleShouldBeDisplayed, buttonPRDVShouldBeDisplayed, buildPrdvButton, getNavigationButtons, buildSwipe } from "./services/getButtons"
+import getSurtitre from "./ItemDetailServices/getSurtitre";
+import getSoustitre from "./ItemDetailServices/getSoustitre";
+import getActualTitle from "./ItemDetailServices/getActualTitle";
+import getCurrentList from "./ItemDetailServices/getCurrentList";
+import getTags from "./ItemDetailServices/getTags";
+import { buttonJePostuleShouldBeDisplayed, buttonPRDVShouldBeDisplayed, buildPrdvButton, getNavigationButtons, buildSwipe } from "./ItemDetailServices/getButtons"
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
