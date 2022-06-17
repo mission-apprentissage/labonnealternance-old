@@ -141,8 +141,11 @@ const SearchForTrainingsAndJobs = () => {
 
     const searchCenter = values?.location?.value?[values.location.value.coordinates[0], values.location.value.coordinates[1]]:null;
 
-    if(searchCenter) { flyToLocation({ center: searchCenter, zoom: 10 }); }
-    else { flyToLocation({ center: coordinatesOfFrance, zoom: 4 }); }
+    if (searchCenter) { 
+      flyToLocation({ center: searchCenter, zoom: 10 }); 
+    } else { 
+      flyToLocation({ center: coordinatesOfFrance, zoom: 4 }); 
+    }
   }
 
   const handleSearchSubmit = async ({values,followUpItem=null}) => {
@@ -275,12 +278,9 @@ const SearchForTrainingsAndJobs = () => {
     // hack : force le redimensionnement de la carte qui peut n'occuper qu'une fraction de l'écran en mode mobile
     setTimeout(() => {
       resizeMap();
-      if(selectedItem)
-      {
+      if(selectedItem) {
         flyToMarker(selectedItem);
-      }
-      else
-      {
+      } else {
         flyToCenter(formValues)
       }
     }, 50);
