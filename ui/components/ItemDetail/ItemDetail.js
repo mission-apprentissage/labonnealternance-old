@@ -5,9 +5,6 @@ import LbbCompanyDetail from "./LbbCompanyDetail";
 import TrainingDetail from "./TrainingDetail";
 import { findIndex, get, defaultTo } from "lodash";
 import { amongst } from "../../utils/arrayutils";
-import chevronLeft from "public/images/chevronleft.svg";
-import chevronRight from "public/images/chevronright.svg";
-import chevronClose from "public/images/close.svg";
 import { capitalizeFirstLetter } from "../../utils/strutils";
 import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import { filterLayers } from "../../utils/mapTools";
@@ -24,7 +21,7 @@ import getSurtitre from "./services/getSurtitre";
 import getActualTitle from "./services/getActualTitle";
 import getCurrentList from "./services/getCurrentList";
 import getTags from "./services/getTags";
-import { buttonJePostuleShouldBeDisplayed, buttonPRDVShouldBeDisplayed, buildPrdvButton } from "./services/getButtons"
+import { buttonJePostuleShouldBeDisplayed, buttonPRDVShouldBeDisplayed, buildPrdvButton, getNavigationButtons } from "./services/getButtons"
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
@@ -85,44 +82,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     setCollapseHeader(currentScroll > maxScroll);
   };
 
-  const getNavigationButtons = () => {
-    return (
-      <>
-        <div>
-          <button
-            className="c-tiny-btn"
-            onClick={() => {
-              goPrev();
-            }}
-          >
-            <img className="c-tiny-btn__image" src={chevronLeft} alt="Résultat précédent" />
-          </button>
-        </div>
-        <div className="ml-2">
-          <button
-            className="c-tiny-btn"
-            onClick={() => {
-              goNext();
-            }}
-          >
-            <img className="c-tiny-btn__image" src={chevronRight} alt="Résultat suivant" />
-          </button>
-        </div>
-        <div className="ml-2">
-          <button
-            className="c-tiny-btn"
-            onClick={() => {
-              setSeeInfo(false);
-              handleClose();
-            }}
-          >
-            <img className="c-tiny-btn__image" src={chevronClose} alt="Fermer la fenêtre" />
-          </button>
-        </div>
-      </>
-    );
-  };
-
   return (
     <>
       <section
@@ -149,7 +108,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
               {getTags({ kind, isCfa, isMandataire })}
-              {getNavigationButtons()}
+              {getNavigationButtons(goPrev, goNext, setSeeInfo, handleClose)}
             </div>
 
             {getSurtitre({ selectedItem, kind })}
