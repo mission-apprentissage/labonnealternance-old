@@ -1,4 +1,4 @@
 
-export default function hasAlsoEmploi(item) {
+export default function hasAlsoEmploi({item}) {
   return true
 }

@@ -135,12 +135,14 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 )}
                 {hasAlsoEmploi({ selectedItem }) ? (
                   <>
+                  <div className="text-left pb-2">
                     <span className="c-locationdetail-imgcontainer">
                       <img className="" src="/images/info.svg" alt="info" />
                     </span>
-                    <span className="c-detail-sizetext mb-0">
+                    <span className="c-detail-also mb-0">
                       Le centre de formation propose également des offres d'emploi.
                     </span>
+                  </div>
                   </>
                 ) : (
                   <>
