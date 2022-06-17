@@ -133,7 +133,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                     <div className="c-detail-emptyspace">&nbsp;</div>
                   </>
                 )}
-                {hasAlsoEmploi({ selectedItem }) ? (
+                {hasAlsoEmploi({ isCfa }) ? (
                   <>
                   <div className="text-left pb-2">
                     <span className="c-locationdetail-imgcontainer">
