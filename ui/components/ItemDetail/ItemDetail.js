@@ -47,7 +47,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const { trainings, jobs, extendedSearch } = useContext(SearchResultContext);
   const currentList = getCurrentList({store:{ trainings, jobs }, activeFilter, extendedSearch});
 
-  const { swipeHandlers, goNext, goPrev } = buildSwipe(currentList, handleSelectItem, selectedItem)
+  const { swipeHandlers, goNext, goPrev } = buildSwipe({currentList, handleSelectItem, selectedItem})
 
   const [collapseHeader, setCollapseHeader] = useState(false);
   const maxScroll = 100;
