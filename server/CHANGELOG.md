@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.2 [21/06/2022]
+[LBA6-177] Fix centrage sur éléments sur mobile
+
 ## 1.20.1 [16/06/2022]
 [LBA6-175] Désactivation mesure d'intérêt offre mandataire
 [LBA6-182] Ajustements textes et masquage bloc partenaires
