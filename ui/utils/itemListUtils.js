@@ -1,5 +1,5 @@
-// retourne les offres matcha triées par ordre croissant de distance au centre de recherche suivi des offres
-// pe triées par ordre croissant de distance au centre de recherche.
+// retourne les offres issues du dépôt d'offre simplifié (ex Matcha) triées par ordre croissant de distance au centre de recherche 
+// suivi des offres pe triées par ordre croissant de distance au centre de recherche.
 export const mergeJobs = (jobs) => {
   let mergedArray = [];
 
