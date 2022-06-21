@@ -4,7 +4,7 @@ import { simplifiedItems } from "./arrondissements";
 
 let cancelToken;
 
-export const fetchAddresses = memoize((value, type) => {
+export const fetchAddresses = memoize(async (value, type) => {
   //Check if there are any previous pending requests
   if (typeof cancelToken != typeof undefined) {
     cancelToken.cancel("Operation canceled due to new request.");
@@ -32,9 +32,8 @@ export const fetchAddresses = memoize((value, type) => {
     //Save the cancel token for the current request
     cancelToken = axios.CancelToken.source();
 
-    try
-    {
-      return axios.get(addressURL, { cancelToken: cancelToken.token }).then((response) => {
+    try {
+      return await axios.get(addressURL, { cancelToken: cancelToken.token }).then((response) => {
         response.data.features.sort((a, b) => {
           // tri des résultats avec mise en avant des villes de plus grande taille en premier
           if (a.properties.population && b.properties.population)
@@ -56,11 +55,10 @@ export const fetchAddresses = memoize((value, type) => {
           };
         });
 
-        let simplifiedReturnedItems = simplifiedItems(returnedItems)
+        let simplifiedReturnedItems = simplifiedItems(returnedItems);
         return simplifiedReturnedItems;
       });
-    }
-    catch (err) {
+    } catch (err) {
       console.log("Fetch addresses cancelled : ", err);
       return [];
     }
