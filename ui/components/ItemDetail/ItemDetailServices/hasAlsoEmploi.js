@@ -13,6 +13,6 @@ export default function hasAlsoEmploi({ isCfa = false, company = {}, searchedMat
   if (nonEmptyMatchaSirets.length > 0 && isNonEmptyString(company?.headquarter?.siret)) {
     hasEtablissementGestionnaireSiret = nonEmptyMatchaSirets.includes(company?.headquarter?.siret)
   }
-  
+
   return isCfa || hasEtablissementFormateurSiret || hasEtablissementGestionnaireSiret
 }

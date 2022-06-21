@@ -135,7 +135,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 )}
                 {hasAlsoEmploi({ isCfa, company: selectedItem?.company, searchedMatchaJobs: jobs?.matchas}) ? (
                   <>
-                  <div className="text-left pb-2">
+                  <div className="text-left pb-3">
                     <span className="c-locationdetail-imgcontainer">
                       <img className="" src="/images/info.svg" alt="info" />
                     </span>
