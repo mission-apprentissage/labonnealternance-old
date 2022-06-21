@@ -4,6 +4,8 @@ import _ from "lodash";
 import { isNonEmptyString } from "../utils/strutils";
 import { logError } from "../utils/tools";
 
+let cancelToken;
+
 export default async function fetchRomes(
   value,
   errorCallbackFn = _.noop,
@@ -14,10 +16,18 @@ export default async function fetchRomes(
 ) {
   let res = [];
 
+  //Check if there are any previous pending requests
+  if (typeof cancelToken != typeof undefined) {
+    cancelToken.cancel("Operation canceled due to new request.");
+  }
+
+  //Save the cancel token for the current request
+  cancelToken = axios.CancelToken.source();
+
   if (!isNonEmptyString(value)) return res;
 
   const romeLabelsApi = _baseUrl + "/api/romelabels";
-  const response = await _axios.get(romeLabelsApi, { params: { title: value } });
+  const response = await _axios.get(romeLabelsApi, { params: { title: value }, cancelToken: cancelToken.token });
 
   const isAxiosError = !!_.get(response, "data.error");
   const hasNoLabelsAndRomes =

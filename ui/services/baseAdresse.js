@@ -2,7 +2,14 @@ import axios from "axios";
 import memoize from "../utils/memoize";
 import { simplifiedItems } from "./arrondissements";
 
+let cancelToken;
+
 export const fetchAddresses = memoize((value, type) => {
+  //Check if there are any previous pending requests
+  if (typeof cancelToken != typeof undefined) {
+    cancelToken.cancel("Operation canceled due to new request.");
+  }
+
   if (value) {
     let term = value;
     const limit = 10;
@@ -22,7 +29,10 @@ export const fetchAddresses = memoize((value, type) => {
 
     let addressURL = `https://api-adresse.data.gouv.fr/search/?limit=${limit}&q=${term}${filter}`;
 
-    return axios.get(addressURL).then((response) => {
+    //Save the cancel token for the current request
+    cancelToken = axios.CancelToken.source();
+
+    return axios.get(addressURL, { cancelToken: cancelToken.token }).then((response) => {
       response.data.features.sort((a, b) => {
         // tri des résultats avec mise en avant des villes de plus grande taille en premier
         if (a.properties.population && b.properties.population)

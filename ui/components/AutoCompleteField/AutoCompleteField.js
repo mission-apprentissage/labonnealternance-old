@@ -178,7 +178,6 @@ export const AutoCompleteField = ({
         selectItem,
         onInputValueChangeFunction,
         compareItemFunction,
-        setInputTextValue,
         setFieldValue,
       });
     },
@@ -228,12 +227,14 @@ export const AutoCompleteField = ({
                 </li>
               );
             } else if (inputValue.length > 0 && inputItems?.length === 0) {
-              let message = 'Pas de résultat, veuillez modifier votre recherche'
-              if (name === 'jobField') {
-                message = 'Nous ne parvenons pas à identifier le métier que vous cherchez, veuillez reformuler votre recherche'
+              let message = "Pas de résultat, veuillez modifier votre recherche";
+              if (name === "jobField") {
+                message =
+                  "Nous ne parvenons pas à identifier le métier que vous cherchez, veuillez reformuler votre recherche";
               }
-              if (name === 'placeField') {
-                message = 'Nous ne parvenons pas à identifier le lieu que vous cherchez, veuillez reformuler votre recherche'
+              if (name === "placeField") {
+                message =
+                  "Nous ne parvenons pas à identifier le lieu que vous cherchez, veuillez reformuler votre recherche";
               }
               return (
                 <li key={`noresult`} className="c-autocomplete-neutral">
