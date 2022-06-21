@@ -42,7 +42,7 @@ export default async function onInputValueChangeService({
     selectItem(null);
   }
 
-  // appel uniquement via un useEffect pour fixer de force la valuer de l'input text
+  // impacté uniquement via un useEffect pour fixer de force la valeur de l'input text à l'initialisation du formulaire
   if (setInputTextValue) {
     setInputTextValue(inputValue);
   }
