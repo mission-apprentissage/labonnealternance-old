@@ -6,7 +6,7 @@ export default function hasAlsoEmploi({ isCfa = false, company = {}, searchedMat
   let hasEtablissementGestionnaireSiret = false
   let matchaSirets = searchedMatchaJobs.map((matcha) => matcha?.company?.siret)
   let nonEmptyMatchaSirets = matchaSirets.filter(isNonEmptyString)
-
+  
   if (nonEmptyMatchaSirets.length > 0 && isNonEmptyString(company?.siret)) {
     hasEtablissementFormateurSiret = nonEmptyMatchaSirets.includes(company?.siret)
   }
