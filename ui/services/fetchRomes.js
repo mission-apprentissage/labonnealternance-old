@@ -27,47 +27,52 @@ export default async function fetchRomes(
   if (!isNonEmptyString(value)) return res;
 
   const romeLabelsApi = _baseUrl + "/api/romelabels";
-  const response = await _axios.get(romeLabelsApi, { params: { title: value }, cancelToken: cancelToken.token });
 
-  const isAxiosError = !!_.get(response, "data.error");
-  const hasNoLabelsAndRomes =
-    !_.get(response, "data.labelsAndRomes") && !_.get(response, "data.labelsAndRomesForDiplomas");
-  const isSimulatedError = _.includes(_.get(_window, "location.href", ""), "romeError=true");
+  try {
+    const response = await _axios.get(romeLabelsApi, { params: { title: value }, cancelToken: cancelToken.token });
 
-  const isError = isAxiosError || hasNoLabelsAndRomes || isSimulatedError;
+    const isAxiosError = !!_.get(response, "data.error");
+    const hasNoLabelsAndRomes =
+      !_.get(response, "data.labelsAndRomes") && !_.get(response, "data.labelsAndRomesForDiplomas");
+    const isSimulatedError = _.includes(_.get(_window, "location.href", ""), "romeError=true");
 
-  if (isError) {
-    errorCallbackFn();
-    if (isAxiosError) {
-      _logError("Rome API error", `Rome API error ${response.data.error}`);
-    } else if (hasNoLabelsAndRomes) {
-      _logError("Rome API error : API call worked, but returned unexpected data");
-    } else if (isSimulatedError) {
-      _logError("Rome API error simulated with a query param :)");
-    }
-  } else {
-    // transformation des textes des diplômes
-    let diplomas = [];
+    const isError = isAxiosError || hasNoLabelsAndRomes || isSimulatedError;
 
-    if (response?.data?.labelsAndRomesForDiplomas?.length) {
-      diplomas = response.data.labelsAndRomesForDiplomas.map(
-        (diploma) => (diploma = { ...diploma, label: _.capitalize(diploma.label) })
-      );
-    }
+    if (isError) {
+      errorCallbackFn();
+      if (isAxiosError) {
+        _logError("Rome API error", `Rome API error ${response.data.error}`);
+      } else if (hasNoLabelsAndRomes) {
+        _logError("Rome API error : API call worked, but returned unexpected data");
+      } else if (isSimulatedError) {
+        _logError("Rome API error simulated with a query param :)");
+      }
+    } else {
+      // transformation des textes des diplômes
+      let diplomas = [];
 
-    // on affiche d'abord jusqu'à 4 métiers puis jusqu'à 4 diplômes puis le reste s'il y a
-    if (response?.data?.labelsAndRomes?.length) {
-      res = res.concat(response.data.labelsAndRomes.slice(0, 4));
+      if (response?.data?.labelsAndRomesForDiplomas?.length) {
+        diplomas = response.data.labelsAndRomesForDiplomas.map(
+          (diploma) => (diploma = { ...diploma, label: _.capitalize(diploma.label) })
+        );
+      }
+
+      // on affiche d'abord jusqu'à 4 métiers puis jusqu'à 4 diplômes puis le reste s'il y a
+      if (response?.data?.labelsAndRomes?.length) {
+        res = res.concat(response.data.labelsAndRomes.slice(0, 4));
+      }
+      if (diplomas.length) {
+        res = res.concat(diplomas.slice(0, 4));
+      }
+      if (response?.data?.labelsAndRomes?.length) {
+        res = res.concat(response.data.labelsAndRomes.slice(4));
+      }
+      if (diplomas.length) {
+        res = res.concat(diplomas.slice(4));
+      }
     }
-    if (diplomas.length) {
-      res = res.concat(diplomas.slice(0, 4));
-    }
-    if (response?.data?.labelsAndRomes?.length) {
-      res = res.concat(response.data.labelsAndRomes.slice(4));
-    }
-    if (diplomas.length) {
-      res = res.concat(diplomas.slice(4));
-    }
+  } catch (err) {
+    console.log("Fetch romes cancelled : ", err);
   }
 
   return res;
