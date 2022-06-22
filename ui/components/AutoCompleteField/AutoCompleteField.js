@@ -118,7 +118,7 @@ export const AutoCompleteField = ({
   // hack pour scroller un champ autocomplete dont les valeurs pourraient être cachées par le clavier du mobile
   const onFocusTriggered = (e) => {
     if (typeof window !== "undefined") {
-      if (window.innerHeight < 650) {
+      if (window.innerHeight < 750) {
         let target = e.currentTarget;
         setTimeout(() => {
           if (scrollParentId) {
