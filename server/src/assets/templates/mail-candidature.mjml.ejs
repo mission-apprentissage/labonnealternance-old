@@ -47,10 +47,10 @@
                             <br /><br />
 
                             <%= data.applicant_first_name %> <%= data.applicant_last_name %> 
-                            s'intéresse à votre entreprise et a postulé à votre offre 
+                            s'intéresse à votre entreprise et a postulé à  
                             <a style="font-weight:bold; color:black"
                                 href="<%= data.urlOfDetail %>">
-                                Matcha
+                                votre offre
                             </a>
                             sur le métier <%= data.job_title %>.
                         <% } else { %>
@@ -113,11 +113,12 @@
                             <td valign="top" style="padding-top:5px;"><img style="width:120px; height:48px;" src="<%= data.images.logo %>" alt="Logo du site La Bonne Alternance" /></td>
                             <td valign="top" style="font-family: Roboto,Arial,sans-serif; font-size:16px;line-height: 22px; padding-left: 40px; padding-top:0;">
                                 <% if (data.company_type == "matcha" ) { %>
-                                    Vous recevez cette candidature car vous avez déposé une offre sur le service 
+                                    Vous recevez cette candidature car vous avez déposé une offre sur le  
                                     <a style="font-weight:bold; color:black" 
                                         href="https://matcha.apprentissage.beta.gouv.fr/">
-                                        Matcha
-                                    </a>.
+                                        service de dépôt d'offre simplifié
+                                    </a>
+                                    de La Bonne Alternance.
                                     <br /><br />
                                     Votre offre est donc visible sur :
                                     <ul>
