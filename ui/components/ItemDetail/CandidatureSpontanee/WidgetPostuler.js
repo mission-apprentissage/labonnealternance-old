@@ -3,7 +3,7 @@ import axios from "axios";
 import { initPostulerParametersFromQuery } from "services/config";
 import WidgetPostulerError from "./WidgetPostulerError";
 import { matchaApi, companyApi } from "components/SearchForTrainingsAndJobs/services/utils";
-import CandidatureSpontanee from "./CandidatureSpontanee";
+import WidgetCandidatureSpontanee from "./WidgetCandidatureSpontanee";
 
 const WidgetPostuler = () => {
   useEffect(() => {
@@ -50,9 +50,12 @@ const WidgetPostuler = () => {
   const [item, setItem] = useState(null);
 
   /*
-        récupéer les paramètres pour postuler
-        charger les éléments de l'offre / société pour postuler
-        checker un token d'autorisation
+        afficher correctement le formulaire et pas seulement le bouton
+
+        réadaptation des fichiers pour éviter la notion de modale
+
+
+        checker infos d'email / iv
 
         afficher un message d'erreur le cas échéant
 
@@ -72,7 +75,7 @@ const WidgetPostuler = () => {
   ) : isLoading ? (
     "ca charge"
   ) : (
-    <CandidatureSpontanee item={item} />
+    <WidgetCandidatureSpontanee item={item} />
   );
 };
 

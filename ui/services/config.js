@@ -184,6 +184,9 @@ export const initParametersFromQuery = ({ router, shouldPush, parameterContext }
 };
 
 export const initPostulerParametersFromQuery = () => {
+
+  initTestingParameters();
+
   const source = getValueFromPath("source"); // ex : diagoriente
   const itemId = getValueFromPath("itemId");
   const type = getValueFromPath("type"); // matcha | lba | lbb
@@ -197,7 +200,7 @@ export const initPostulerParametersFromQuery = () => {
   if (!type) {
     throw new Error("missing_type_parameter");
   }
-  
+
   return {
     source,
     itemId,
