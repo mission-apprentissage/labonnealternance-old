@@ -17,7 +17,7 @@ export const renderJob = (isTestMode, idx, job, handleSelectItem, searchForJobsO
     );
   }
 };
-export const renderTraining = (isTestMode, idx, training, handleSelectItem, searchForJobsOnNewCenter) => {
+export const renderTraining = (isTestMode, idx, training, handleSelectItem, searchForJobsOnNewCenter, hasAlsoJob, isCfa) => {
   if (isTestMode) {
     return <div key={idx} data-testid={`Training-${training?.id}`}></div>;
   } else {
@@ -27,6 +27,8 @@ export const renderTraining = (isTestMode, idx, training, handleSelectItem, sear
         training={training}
         handleSelectItem={handleSelectItem}
         searchForJobsOnNewCenter={searchForJobsOnNewCenter}
+        hasAlsoJob={hasAlsoJob}
+        isCfa={isCfa}
       />
     );
   }

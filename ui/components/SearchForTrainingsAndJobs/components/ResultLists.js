@@ -8,7 +8,10 @@ import { ScopeContext } from "../../../context/ScopeContext";
 import { SearchResultContext } from "../../../context/SearchResultContextProvider";
 import { DisplayContext } from "../../../context/DisplayContextProvider";
 import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
+import { isCfaEntreprise } from "../../../services/cfaEntreprise";
+
 import { renderJob, renderTraining, renderLbb } from "../services/renderOneResult";
+import hasAlsoEmploi from "../../ItemDetail/ItemDetailServices/hasAlsoEmploi";
 
 const ResultLists = (props) => {
   const scopeContext = useContext(ScopeContext);
@@ -22,8 +25,9 @@ const ResultLists = (props) => {
     ];
   } else {
     ({ isFormVisible } = useContext(DisplayContext));
-    ({ extendedSearch, hasSearch } = useContext(SearchResultContext));
+    ({ extendedSearch, hasSearch, jobs } = useContext(SearchResultContext));
   }
+
 
   const filterButtonClicked = (filterButton) => {
     props.setActiveFilter(filterButton);
@@ -56,12 +60,17 @@ const ResultLists = (props) => {
             ""
           )}
           {props.trainings.map((training, idx) => {
+            const isCfa = isCfaEntreprise(training?.siret, training?.headquarter?.siret);
+            const hasAlsoJob = hasAlsoEmploi({ isCfa, searchedMatchaJobs: jobs?.matchas, company: training })
+
             return renderTraining(
               props.isTestMode,
               idx,
               training,
               props.handleSelectItem,
-              props.searchForJobsOnNewCenter
+              props.searchForJobsOnNewCenter,
+              hasAlsoJob,
+              isCfa
             );
           })}
         </>
