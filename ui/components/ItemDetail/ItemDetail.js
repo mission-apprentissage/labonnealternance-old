@@ -27,7 +27,6 @@ import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
-  console.log('selectedItem', selectedItem);
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
@@ -47,7 +46,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   let actualTitle = getActualTitle({ kind, selectedItem });
   
   const { trainings, jobs, extendedSearch } = useContext(SearchResultContext);
-  console.log('jobs', jobs);
   const hasAlsoJob = hasAlsoEmploi({ isCfa, company: selectedItem?.company, searchedMatchaJobs: jobs?.matchas })
   const currentList = getCurrentList({store:{ trainings, jobs }, activeFilter, extendedSearch});
 
