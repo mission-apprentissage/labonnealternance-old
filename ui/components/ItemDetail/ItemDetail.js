@@ -31,6 +31,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
+  const hasAlsoJob = hasAlsoEmploi({ isCfa, company: selectedItem?.company, searchedMatchaJobs: jobs?.matchas })
   const isMandataire = selectedItem?.company?.mandataire;
 
   const [seeInfo, setSeeInfo] = useState(false);
@@ -84,7 +85,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         <header className={`c-detail-header c-detail--collapse-header-${collapseHeader}`}>
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
-              {getTags({ kind, isCfa, isMandataire })}
+              {getTags({ kind, isCfa, isMandataire, hasAlsoJob })}
               {getNavigationButtons({goPrev, goNext, setSeeInfo, handleClose})}
             </div>
 
@@ -125,7 +126,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                     <div className="c-detail-emptyspace">&nbsp;</div>
                   </>
                 )}
-                {hasAlsoEmploi({ isCfa, company: selectedItem?.company, searchedMatchaJobs: jobs?.matchas}) ? (
+                {hasAlsoJob ? (
                   <>
                   <div className="text-left pb-3">
                     <span className="c-locationdetail-imgcontainer">
