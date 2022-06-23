@@ -129,7 +129,9 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
                 isCfa ? 
                   <>
                     <TagCfaDEntreprise />
-                    <TagOffreAssociee />
+                    <span>
+                      <TagOffreAssociee />
+                    </span>
                   </> 
                   :
                   <>
