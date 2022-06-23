@@ -16,7 +16,7 @@ export const buttonPRDVShouldBeDisplayed = ( oneItem ) => {
   return res;
 };
 
-export const buildPrdvButton = ({training}) => {
+export const buildPrdvButton = (training) => {
   return (
     <div
       className="widget-prdv gtmPrdv"

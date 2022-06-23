@@ -113,21 +113,12 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
 
-            {kind === "formation" && buttonPRDVShouldBeDisplayed(selectedItem) ? (
-              <>
-                <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
-                <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton({selectedItem})}</div>
-              </>
-            ) : (
-              <div className="c-detail-emptyspace">&nbsp;</div>
-              )}
-
             {kind === "formation" ? (
               <>
                 {buttonPRDVShouldBeDisplayed(selectedItem) ? (
                   <>
                     <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
-                    <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton({ selectedItem })}</div>
+                    <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
                   </>
                 ) : (
                   <>
