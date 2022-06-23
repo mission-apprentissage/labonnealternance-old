@@ -17,7 +17,6 @@ const ResultLists = (props) => {
   const scopeContext = useContext(ScopeContext);
 
   const { jobs } = useContext(SearchResultContext);
-  console.log('jobs', jobs);
 
 
   let [extendedSearch, hasSearch, isFormVisible] = [false, false, false];
@@ -66,14 +65,6 @@ const ResultLists = (props) => {
           {props.trainings.map((training, idx) => {
             const isCfa = isCfaEntreprise(training?.company?.siret, training?.company?.headquarter?.siret)
             const hasAlsoJob = hasAlsoEmploi({ isCfa, searchedMatchaJobs: jobs?.matchas, company: training?.company })
-            if (idx === 1) {
-              console.log(training?.company?.name)
-              console.log(isCfa)
-              console.log(hasAlsoJob)
-              console.log(jobs?.matchas)
-              console.log(training)
-              hasAlsoEmploi({ isCfa, searchedMatchaJobs: jobs?.matchas, company: training?.company, printall: true })
-            }
 
             return renderTraining(
               props.isTestMode,
