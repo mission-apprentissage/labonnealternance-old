@@ -9,7 +9,7 @@ export default function getTags({ kind, isCfa, isMandataire, hasAlsoJob }) {
     <div className="mr-auto c-tagcfa-container text-left">
       {kind === "formation" ? 
         <>
-          <TagCfaDEntreprise isCfa={isCfa} /> 
+          {isCfa ? <TagCfaDEntreprise /> : <></> }
           {hasAlsoJob ? 
             <span className="ml-2">
               <TagOffreEmploi hasAlsoJob/> 
@@ -19,7 +19,7 @@ export default function getTags({ kind, isCfa, isMandataire, hasAlsoJob }) {
           }
         </>
         : 
-        ""
+        <></> 
       }
       {amongst(kind, ["lbb", "lba"]) ? <TagCandidatureSpontanee /> : ""}
       {amongst(kind, ["peJob", "matcha"]) ? <TagOffreEmploi /> : ""}

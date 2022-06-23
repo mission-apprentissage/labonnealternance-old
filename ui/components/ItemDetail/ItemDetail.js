@@ -27,7 +27,6 @@ import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
-  console.log('selectedItem', selectedItem);
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
