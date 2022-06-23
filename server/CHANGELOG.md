@@ -36,6 +36,7 @@
 [LBA6-135] Restauration info métier Matcha
 [LBA6-11] MAJ email envoyé au recruteur lors d'une candidature Matcha
 [LBA6-12] MAJ email envoyé au recruteur lors d'une candidature spontanée
+[LBA-99] MVP appariement offre emploi - formation
 
 ## 1.18.11 [11/05/2022]
 [LBA6-32] Contrôle des emails des candidats : pas d'email temporaire
