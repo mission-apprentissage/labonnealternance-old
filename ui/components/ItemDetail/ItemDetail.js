@@ -27,14 +27,14 @@ import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
+  console.log('selectedItem', selectedItem);
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
-  const hasAlsoJob = hasAlsoEmploi({ isCfa, company: selectedItem?.company, searchedMatchaJobs: jobs?.matchas })
   const isMandataire = selectedItem?.company?.mandataire;
-
+  
   const [seeInfo, setSeeInfo] = useState(false);
-
+  
   useEffect(() => {
     setSeeInfo(false);
     try {
@@ -43,10 +43,12 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
       //notice: gère des erreurs qui se présentent à l'initialisation de la page quand mapbox n'est pas prêt.
     }
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
-
+  
   let actualTitle = getActualTitle({ kind, selectedItem });
-
+  
   const { trainings, jobs, extendedSearch } = useContext(SearchResultContext);
+  console.log('jobs', jobs);
+  const hasAlsoJob = hasAlsoEmploi({ isCfa, company: selectedItem?.company, searchedMatchaJobs: jobs?.matchas })
   const currentList = getCurrentList({store:{ trainings, jobs }, activeFilter, extendedSearch});
 
   const { swipeHandlers, goNext, goPrev } = buildSwipe({currentList, handleSelectItem, selectedItem})
