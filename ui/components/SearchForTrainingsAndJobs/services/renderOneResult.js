@@ -18,7 +18,6 @@ export const renderJob = (isTestMode, idx, job, handleSelectItem, searchForJobsO
   }
 };
 export const renderTraining = (isTestMode, idx, training, handleSelectItem, searchForJobsOnNewCenter, hasAlsoJob, isCfa) => {
-  console.log('idx', idx);
   if (isTestMode) {
     return <div key={idx} data-testid={`Training-${training?.id}`}></div>;
   } else {

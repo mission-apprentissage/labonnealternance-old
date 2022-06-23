@@ -13,8 +13,6 @@ import { ParameterContext } from "../../context/ParameterContextProvider";
 import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter, hasAlsoJob, isCfa }) => {
-  console.log('isCfa', isCfa);
-  console.log('hasAlsoJob', hasAlsoJob);
   const { selectedMapPopupItem } = React.useContext(SearchResultContext);
   const { itemParameters } = React.useContext(ParameterContext);
   const { formValues } = React.useContext(DisplayContext);
