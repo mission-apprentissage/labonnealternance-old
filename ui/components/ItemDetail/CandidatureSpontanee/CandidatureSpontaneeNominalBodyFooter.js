@@ -50,7 +50,7 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
         <h1 className="c-candidature-title" data-testid="CandidatureSpontaneeTitle">
           {kind === "matcha" ? (
             <>
-              Postuler à l'offre {fromWidget ? `${item.name} ` : ""}de {company}
+              Postuler à l'offre {fromWidget ? `${item.title} ` : ""}de {company}
             </>
           ) : (
             <>Candidature spontanée{fromWidget ? ` auprès de ${company}` : ""}</>
@@ -106,10 +106,10 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
         </div>
 
         {testingParameters?.simulatedRecipient ? (
-              <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
-            ) : (
-              ""
-            )}
+          <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
+        ) : (
+          ""
+        )}
 
         <div className="d-flex flex-column flex-md-row mt-0 mt-md-3">
           <fieldset

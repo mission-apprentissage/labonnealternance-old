@@ -184,7 +184,6 @@ export const initParametersFromQuery = ({ router, shouldPush, parameterContext }
 };
 
 export const initPostulerParametersFromQuery = () => {
-
   initTestingParameters();
 
   const source = getValueFromPath("source"); // ex : diagoriente

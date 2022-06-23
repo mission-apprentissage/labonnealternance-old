@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
+import { Container } from "reactstrap";
 import CandidatureSpontaneeNominalBodyFooter from "./CandidatureSpontaneeNominalBodyFooter";
 import CandidatureSpontaneeWorked from "./CandidatureSpontaneeWorked";
 import CandidatureSpontaneeFailed from "./CandidatureSpontaneeFailed";
@@ -22,15 +23,28 @@ const WidgetCandidatureSpontanee = (props) => {
 
   const [applied, setApplied] = useLocalStorage(uniqId(kind, props.item), null, actualLocalStorage);
 
+  const getAPostuleMessage = () => {
+    return `
+    Vous avez déjà postulé ${kind === "matcha" ? "à cette offre" : "auprès de cette entreprise"} le ${new Date(
+      parseInt(applied, 10)
+    ).toLocaleDateString("fr-FR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })}`;
+  };
+
   useEffect(() => {
     // HACK HERE : reapply setApplied to currentUniqId to re-detect
     // if user already applied each time the user swap to another item.
-    let currentUniqId = actualLocalStorage.getItem(uniqId(kind, props.item));
-    if (currentUniqId) {
-      setApplied(currentUniqId);
-    } else {
-      // setApplied(null) is MANDATORY to avoid "already-applied message" when user swaps.
-      setApplied(null);
+    if (props.item) {
+      let currentUniqId = actualLocalStorage.getItem(uniqId(kind, props.item));
+      if (currentUniqId) {
+        setApplied(currentUniqId);
+      } else {
+        // setApplied(null) is MANDATORY to avoid "already-applied message" when user swaps.
+        setApplied(null);
+      }
     }
   }, [props?.item]);
 
@@ -48,17 +62,10 @@ const WidgetCandidatureSpontanee = (props) => {
   return (
     <div className="c-candidature c-candidature__widget" data-testid="CandidatureSpontanee">
       <div>
-        <div className="c-detail-pelink my-3">
+        <div className="my-3">
           {!with_str(sendingState).amongst(["ok_sent"]) && hasAlreadySubmittedCandidature({ applied }) ? (
             <>
-              <div data-testid="already-applied">
-                Vous avez déjà postulé le{" "}
-                {new Date(parseInt(applied, 10)).toLocaleDateString("fr-FR", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </div>
+              <Container>{getAPostuleMessage()}</Container>
             </>
           ) : (
             <form onSubmit={formik.handleSubmit} className="c-candidature-form">

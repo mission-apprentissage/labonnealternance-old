@@ -21,6 +21,8 @@ const WidgetPostuler = () => {
       case "matcha": {
         const response = await axios.get(matchaApi + "/" + parameters.itemId);
 
+        console.log("response matcha : ", response);
+
         // gestion des erreurs
         if (!response?.data?.message) {
           setItem(response.data.matchas[0]);
@@ -36,6 +38,8 @@ const WidgetPostuler = () => {
         if (!response?.data?.message) {
           let companies = parameters.type === "lbb" ? response.data.lbbCompanies : response.data.lbaCompanies;
 
+          console.log("response lbb : ", response);
+
           setItem(companies[0]);
         }
         break;
@@ -50,23 +54,12 @@ const WidgetPostuler = () => {
   const [item, setItem] = useState(null);
 
   /*
-        afficher correctement le formulaire et pas seulement le bouton
-
-        réadaptation des fichiers pour éviter la notion de modale
-
-
+    
         checker infos d'email / iv
 
+        gérer tous les cas d'erreur
+
         afficher un message d'erreur le cas échéant
-
-        vérifier a déjà postulé à cette offre
-
-        afficher un message informatif le cas échéant
-
-        afficher le formulaire
-
-        onsubmit afficher 
-
 
     */
 
