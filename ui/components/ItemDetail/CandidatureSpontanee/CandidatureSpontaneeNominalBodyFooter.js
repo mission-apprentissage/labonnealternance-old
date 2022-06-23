@@ -9,8 +9,7 @@ import emailMisspelled, { top100 } from "email-misspelled";
 
 const emailChecker = emailMisspelled({ maxMisspelled: 3, domains: top100 });
 
-const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind }) => {
-
+const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind, fromWidget = false }) => {
   /*useEffect(() => {
     formik.values.interetOffresMandataire = false;
   }, [company]);*/
@@ -37,7 +36,13 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
     <>
       <ModalBody data-testid="modalbody-nominal">
         <h1 className="c-candidature-title" data-testid="CandidatureSpontaneeTitle">
-          {kind === "matcha" ? <>Postuler à l'offre de {company}</> : <>Candidature spontanée</>}
+          {kind === "matcha" ? (
+            <>
+              Postuler à l'offre {fromWidget ? `${item.name} ` : ""}de {company}
+            </>
+          ) : (
+            <>Candidature spontanée{fromWidget ? ` auprès de ${company.name}` : ""}</>
+          )}
         </h1>
 
         <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4">
