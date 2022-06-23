@@ -11,7 +11,7 @@ export const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
   return oneKind === "peJob" && oneItem?.url;
 };
 
-export const buttonPRDVShouldBeDisplayed = ( oneItem ) => {
+export const buttonPRDVShouldBeDisplayed = (oneItem) => {
   let res = !!oneItem?.prdvUrl
   return res;
 };
