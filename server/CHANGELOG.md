@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ## 1.20.2 [21/06/2022]
 [LBA6-20] Fix conflit d'autocomplétion
 [LBA6-177] Fix centrage sur éléments sur mobile
