@@ -16,6 +16,9 @@ import hasAlsoEmploi from "../../ItemDetail/ItemDetailServices/hasAlsoEmploi";
 const ResultLists = (props) => {
   const scopeContext = useContext(ScopeContext);
 
+  const { jobs } = useContext(SearchResultContext);
+
+
   let [extendedSearch, hasSearch, isFormVisible] = [false, false, false];
   if (props.isTestMode) {
     [extendedSearch, hasSearch, isFormVisible] = [
@@ -25,7 +28,7 @@ const ResultLists = (props) => {
     ];
   } else {
     ({ isFormVisible } = useContext(DisplayContext));
-    ({ extendedSearch, hasSearch, jobs } = useContext(SearchResultContext));
+    ({ extendedSearch, hasSearch } = useContext(SearchResultContext));
   }
 
 
@@ -60,7 +63,7 @@ const ResultLists = (props) => {
             ""
           )}
           {props.trainings.map((training, idx) => {
-            const isCfa = isCfaEntreprise(training?.siret, training?.headquarter?.siret);
+            const isCfa = isCfaEntreprise(training?.company?.siret, training?.company?.headquarter?.siret)
             const hasAlsoJob = hasAlsoEmploi({ isCfa, searchedMatchaJobs: jobs?.matchas, company: training })
 
             return renderTraining(
