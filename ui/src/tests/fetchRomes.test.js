@@ -30,7 +30,10 @@ describe("fetchRomes", () => {
       console.log
     );
     // then
-    expect(axiosMockGet).toHaveBeenCalledWith("urlMock/api/romelabels", { params: { title: "plomberie" } });
+    expect(axiosMockGet).toHaveBeenCalledWith(
+      "urlMock/api/romelabels",
+      expect.objectContaining({ params: { title: "plomberie" } })
+    );
     expect(mockedErrorFn).not.toHaveBeenCalled();
     expect(res).toEqual([{ label: "remotely_returned_array" }, { label: "Remotely_returned_array_capitalized" }]);
   });
