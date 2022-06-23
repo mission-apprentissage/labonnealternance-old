@@ -47,7 +47,7 @@ const WidgetCandidatureSpontanee = (props) => {
 
   return (
     <div className="c-candidature c-candidature__widget" data-testid="CandidatureSpontanee">
-      <div className="c-detail-description-me">
+      <div>
         <div className="c-detail-pelink my-3">
           {!with_str(sendingState).amongst(["ok_sent"]) && hasAlreadySubmittedCandidature({ applied }) ? (
             <>
