@@ -7,12 +7,13 @@ import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
 
 
-export const buttonJePostuleShouldBeDisplayed = ({oneKind, oneItem}) => {
+export const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
   return oneKind === "peJob" && oneItem?.url;
 };
 
-export const buttonPRDVShouldBeDisplayed = ({oneItem}) => {
-  return oneItem?.prdvUrl;
+export const buttonPRDVShouldBeDisplayed = ( oneItem ) => {
+  let res = !!oneItem?.prdvUrl
+  return res;
 };
 
 export const buildPrdvButton = ({training}) => {

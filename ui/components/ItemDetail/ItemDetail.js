@@ -27,6 +27,7 @@ import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
+  console.log('selectedItem', selectedItem);
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
@@ -91,7 +92,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
             {getSoustitre({ selectedItem, kind })}
 
-            {buttonJePostuleShouldBeDisplayed({kind, selectedItem}) ? (
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               <div className="c-detail-description-me">
                 <div className="c-detail-pelink my-3">
                   <a className="btn btn-blue ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
@@ -112,7 +113,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
 
-            {kind === "formation" && buttonPRDVShouldBeDisplayed({selectedItem}) ? (
+            {kind === "formation" && buttonPRDVShouldBeDisplayed(selectedItem) ? (
               <>
                 <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
                 <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton({selectedItem})}</div>
@@ -123,7 +124,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
             {kind === "formation" ? (
               <>
-                {buttonPRDVShouldBeDisplayed({ selectedItem }) ? (
+                {buttonPRDVShouldBeDisplayed(selectedItem) ? (
                   <>
                     <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
                     <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton({ selectedItem })}</div>
@@ -206,7 +207,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <>
             <DidYouKnow item={selectedItem}></DidYouKnow>
 
-            {buttonJePostuleShouldBeDisplayed({kind, selectedItem}) ? (
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               ""
             ) : (
               <GoingToContactQuestion
@@ -221,7 +222,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         )}
         {kind === "formation" ? (
           <>
-            {buttonPRDVShouldBeDisplayed({selectedItem}) ? (
+            {buttonPRDVShouldBeDisplayed(selectedItem) ? (
               ""
             ) : (
               <GoingToContactQuestion
