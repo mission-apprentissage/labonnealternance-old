@@ -52,7 +52,12 @@ const WidgetCandidatureSpontanee = (props) => {
     initialValues: getInitialSchemaValues(),
     validationSchema: getValidationSchema(kind),
     onSubmit: async (applicantValues) => {
-      let success = await submitCandidature(applicantValues, setSendingState, props.item);
+      let success = await submitCandidature({
+        applicantValues,
+        setSendingState,
+        item: props.item,
+        caller: props.caller,
+      });
       if (success) {
         setApplied(Date.now().toString());
       }

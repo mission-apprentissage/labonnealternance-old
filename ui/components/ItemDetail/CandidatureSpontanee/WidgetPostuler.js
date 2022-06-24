@@ -44,6 +44,7 @@ const WidgetPostuler = () => {
       if (!item?.contact?.email || !item?.contact?.iv) {
         setHasError("missing_email");
       } else {
+        setCaller(parameters.caller);
         setItem(item);
       }
     } else {
@@ -56,6 +57,7 @@ const WidgetPostuler = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(null);
   const [item, setItem] = useState(null);
+  const [caller, setCaller] = useState(null);
 
   return hasError ? (
     <WidgetPostulerError hasError={hasError} />
@@ -65,7 +67,7 @@ const WidgetPostuler = () => {
       Veuillez patienter
     </div>
   ) : (
-    <WidgetCandidatureSpontanee item={item} />
+    <WidgetCandidatureSpontanee item={item} caller={caller} />
   );
 };
 
