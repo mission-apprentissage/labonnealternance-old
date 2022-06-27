@@ -127,10 +127,12 @@ const validateApiSources = (
 const { isOriginLocal } = require("../common/utils/isOriginLocal");
 
 // contrôle sur la présence d'un appelant valide
-const validateCaller = ({ caller, referer }, error_messages) => {
+const validateCaller = ({ caller, referer }, error_messages = []) => {
+  console.log("validateCaller : ", caller, referer);
   if (!isOriginLocal(referer) && !caller) {
     error_messages.push("caller : caller is missing.");
-  }
+    return false;
+  } else return true;
 };
 
 module.exports = {
