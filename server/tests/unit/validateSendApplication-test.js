@@ -31,6 +31,7 @@ describe(__filename, () => {
     expect(
       await validateSendApplication({
         firstName: "jane",
+        fileContent: "0",
         lastName: "doe",
         fileName: "any.pdf",
         email: "jane.doe@example.com",

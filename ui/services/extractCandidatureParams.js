@@ -1,6 +1,6 @@
 import { testingParameters } from "../utils/testingParameters";
 
-export default function extractCandidatureParams(applicant_h, company_h) {
+export default function extractCandidatureParams(applicant_h, company_h, caller) {
   let res = {};
 
   // 8 mandatory fields
@@ -31,6 +31,9 @@ export default function extractCandidatureParams(applicant_h, company_h) {
     res["applicant_email"] = testingParameters.simulatedRecipient;
     res["secret"] = testingParameters.secret;
   }
+
+  // appelant (widget)
+  res["caller"] = caller;
 
   return res;
 }

@@ -6,6 +6,7 @@ const { Application } = require("../common/model");
 const validateSendApplication = async (validable) => {
   let schema = Yup.object().shape({
     fileName: Yup.string().nullable().required("⚠ La pièce jointe est requise"),
+    fileContent: Yup.string().nullable().required("⚠ La pièce jointe est requise"),
     firstName: Yup.string().max(50, "⚠ Doit avoir 50 caractères ou moins").required("⚠ Le prénom est requis."),
     lastName: Yup.string().max(50, "⚠ Doit avoir 50 caractères ou moins").required("⚠ Le nom est requis."),
     email: Yup.string().email("⚠ Adresse e-mail invalide.").required("⚠ L'adresse e-mail est requise."),

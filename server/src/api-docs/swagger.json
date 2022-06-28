@@ -417,6 +417,111 @@
                     }
                 }            
             }
+        },
+
+        "/api/V1/application": 
+        {
+            "post": 
+            {
+                "description": "Envoi d'un email de candidature à une offre postée sur La Bonne Alternance recruteur ou une candidature spontanée à une Bonne Boîte / Bonne Alternance.\nL'email est envoyé depuis l'adresse générique \"Ne pas répondre\" de La Bonne Alternance.\n",
+
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/applicantEmail"
+                    },
+                    {
+                        "$ref": "#/parameters/applicantFirstName"
+                    },
+                    {
+                        "$ref": "#/parameters/applicantPhone"
+                    },
+                    {
+                        "$ref": "#/parameters/applicantFileName"
+                    },
+                    {
+                        "$ref": "#/parameters/applicantFileContent"
+                    },
+                    {
+                        "$ref": "#/parameters/companyAddress"
+                    },
+                    {
+                        "$ref": "#/parameters/companyNaf"
+                    },
+                    {
+                        "$ref": "#/parameters/companyName"
+                    },
+                    {
+                        "$ref": "#/parameters/companySiret"
+                    },
+                    {
+                        "$ref": "#/parameters/companyType"
+                    },
+                    {
+                        "$ref": "#/parameters/cryptedCompanyEmail"
+                    },
+                    {
+                        "$ref": "#/parameters/iv"
+                    },
+                    {
+                        "$ref": "#/parameters/jobId"
+                    },
+                    {
+                        "$ref": "#/parameters/jobTitle"
+                    },
+                    {
+                        "$ref": "#/parameters/message"
+                    },
+                    {
+                        "$ref": "#/parameters/caller"
+                    }
+                ],
+
+                "responses": {
+                    "200": 
+                    {
+                        "description": "L'accusé de réception d'un envoi de candidature ",
+                        "content":
+                        {
+                            "application/json":
+                            {
+                                "schema":
+                                {
+                                    "type": "object",
+                                    "properties":
+                                    {
+                                        "result": 
+                                        { 
+                                            "type": "string",
+                                            "description": "Indique le succès ou l'échec de l'opération",
+                                            "example": "ok"
+                                        },
+                                        "message":
+                                        {
+                                            "type": "string",
+                                            "description": "message sent"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    
+                    "400": 
+                    {
+                        "$ref": "#/responses/WrongParameters"
+                    },
+
+                    "429": 
+                    {
+                        "$ref": "#/responses/TooManyRequests"
+                    }
+                }            
+            }
         }
     },
  
@@ -435,6 +540,10 @@
                     }
                 }
             }
+        },
+        "TooManyRequests" : 
+        {
+            "description": "Trop d'appels consécutifs. Les en-têtes de la réponse indiquent le temps d'attente nécessaire entre deux requêtes. Ré-émettez la requête après ce temps d'attente."
         }
     },
     
@@ -667,8 +776,167 @@
             },
             "description": "Les sources de données dans lesquelles la recherche aura lieu. Ces sources doivent être séparées par des virgules", 
             "example": "offres"
-        }
+        },
 
+        "applicantEmail":
+        {
+            "name": "applicant_email",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "L'adresse email du candidat à laquelle l'entreprise contactée pourra répondre. Les adresses emails temporaires ne sont pas acceptées.",
+            "example": "john.smith@mail.com"
+        },
+
+        "applicantFirstName":
+        {
+            "name": "applicant_first_name",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "Le prénom du candidat.",
+            "example": "Jean"
+        },
+
+        "applicantLastName":
+        {
+            "name": "applicant_last_name",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "Le nom du candidat.",
+            "example": "Dupont"
+        },
+
+        "applicantPhone":
+        {
+            "name": "applicant_phone",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "Le numéro de téléphone du candidat.",
+            "example": "0101010101"
+        },
+
+        "applicantFileName":
+        {
+            "name": "applicant_file_name",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "Le nom du fichier du CV du candidat. Seuls les .docx et .pdf sont autorisés.",
+            "example": "cv.pdf"
+        },
+
+        "applicantFileContent":
+        {
+            "name": "applicant_file_content",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "Le contenu du fichier du CV du candidat. La taille maximale autorisée est de 3 Mo.",
+            "example": "data:application/pdf;base64,JVBERi0xLjQKJ..."
+        },
+
+        "message":
+        {
+            "name": "message",
+            "in": "body",
+            "required": false,
+            "type": "string",
+            "description": "Un message du candidat vers le recruteur. Ce champ peut contenir la lettre de motivation du candidat.",
+            "example": "Madame, monsieur..."
+        },
+
+        "cryptedCompanyEmail":
+        {
+            "name": "crypted_company_email",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "L'adresse email de la société pour postuler. Vous devez impérativement utiliser les valeurs émises par l'API LBA avec le vecteur d'initialisation correspondant à l'adresse.",
+            "example": "...f936e4352b5ae5..."
+        },
+
+        "iv":
+        {
+            "name": "iv",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "Le vecteur d'initialisation permettant de déchiffrer l'adresse email de la société. Cette valeur est fournie par les apis de LBA.",
+            "example": "...59c24c059b..."
+        },
+
+        "jobId":
+        {
+            "name": "job_id",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "L'identifiant de l'offre La Bonne Alternance Recruteur pour laquelle la candidature est envoyée. Seulement si le type de la société (company_type) est \"matcha\" . La valeur est fournie par La Bonne Alternance. ",
+            "example": "...59c24c059b..."
+        },
+
+        "jobTitle":
+        {
+            "name": "job_title",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "Le titre de l'offre La Bonne Alternance Recruteur pour laquelle la candidature est envoyée. Seulement si le type de la société (company_type) est \"matcha\" . La valeur est fournie par La Bonne Alternance. ",
+            "example": "Téléconseil, vente à distance"
+        },
+
+        "companyAddress":
+        {
+            "name": "company_address",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "L'adresse postale de la société. Fournie par La Bonne Alternance. ",
+            "example": "38 RUE DES HAMECONS, 75021 PARIS-21"
+        },
+
+        "companyNaf":
+        {
+            "name": "company_naf",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "La valeur associée au code NAF de l'entreprise. Fournie par La Bonne Alternance. ",
+            "example": "Boulangerie et boulangerie-pâtisserie"
+        },
+
+        "companyName":
+        {
+            "name": "company_name",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "Le nom de la société. Fourni par La Bonne Alternance. ",
+            "example": "Au bon pain d'antan"
+        },
+
+        "companySiret":
+        {
+            "name": "company_siret",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "Le siret de l'entreprise. Fourni par La Bonne Alternance. ",
+            "example": "00004993900000"
+        },
+
+        "companyType":
+        {
+            "name": "company_type",
+            "in": "body",
+            "required": true,
+            "type": "string",
+            "description": "Le type de société selon la nomenclature La Bonne Alternance. Fourni par La Bonne Alternance.",
+            "example": "lba|lbb|matcha"
+        }
     },
 
     "definitions":
