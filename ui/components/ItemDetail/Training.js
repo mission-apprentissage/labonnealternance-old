@@ -3,8 +3,8 @@ import trainingIcon from "../../public/images/icons/book.svg";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
 import { ScopeContext } from "../../context/ScopeContext";
-import { isCfaEntreprise } from "../../services/cfaEntreprise";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
+import TagOffreAssociee from "./TagOffreAssociee";
 import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
 import { getSearchQueryParameters } from "../../utils/getSearchParameters";
@@ -12,7 +12,7 @@ import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { ParameterContext } from "../../context/ParameterContextProvider";
 import { DisplayContext } from "../../context/DisplayContextProvider";
 
-const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter }) => {
+const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNewCenter, hasAlsoJob, isCfa }) => {
   const { selectedMapPopupItem } = React.useContext(SearchResultContext);
   const { itemParameters } = React.useContext(ParameterContext);
   const { formValues } = React.useContext(DisplayContext);
@@ -123,11 +123,26 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
               <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
             </div>
             <div className="col-12 col-lg-6  d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
-              {isCfaEntreprise(training?.company?.siret, training?.company?.headquarter?.siret) ?
-                <TagCfaDEntreprise/>
-                :
-                <></>
+              {
+                isCfa ? 
+                  <>
+                    <TagCfaDEntreprise />
+                    <span>
+                      <TagOffreAssociee />
+                    </span>
+                  </> 
+                  :
+                  <>
+                    {hasAlsoJob ?
+                      <>
+                        <TagOffreAssociee />
+                      </>
+                      :
+                      <></>
+                    }
+                  </> 
               }
+
             </div>
           </div>
 

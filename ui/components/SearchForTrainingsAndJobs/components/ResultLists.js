@@ -8,7 +8,10 @@ import { ScopeContext } from "../../../context/ScopeContext";
 import { SearchResultContext } from "../../../context/SearchResultContextProvider";
 import { DisplayContext } from "../../../context/DisplayContextProvider";
 import { mergeJobs, mergeOpportunities } from "../../../utils/itemListUtils";
+import { isCfaEntreprise } from "../../../services/cfaEntreprise";
+
 import { renderJob, renderTraining, renderLbb } from "../services/renderOneResult";
+import hasAlsoEmploi from "../../ItemDetail/ItemDetailServices/hasAlsoEmploi";
 
 const ResultLists = (props) => {
   const scopeContext = useContext(ScopeContext);
@@ -56,12 +59,21 @@ const ResultLists = (props) => {
             ""
           )}
           {props.trainings.map((training, idx) => {
+            const isCfa = isCfaEntreprise(training?.company?.siret, training?.company?.headquarter?.siret);
+            const hasAlsoJob = hasAlsoEmploi({
+              isCfa,
+              searchedMatchaJobs: props.jobs?.matchas,
+              company: training?.company,
+            });
+
             return renderTraining(
               props.isTestMode,
               idx,
               training,
               props.handleSelectItem,
-              props.searchForJobsOnNewCenter
+              props.searchForJobsOnNewCenter,
+              hasAlsoJob,
+              isCfa
             );
           })}
         </>
