@@ -184,15 +184,14 @@ export const initParametersFromQuery = ({ router, shouldPush, parameterContext }
 };
 
 export const initPostulerParametersFromQuery = () => {
-
   initTestingParameters();
 
-  const source = getValueFromPath("source"); // ex : diagoriente
+  const caller = getValueFromPath("caller"); // ex : diagoriente
   const itemId = getValueFromPath("itemId");
   const type = getValueFromPath("type"); // matcha | lba | lbb
 
-  if (!source) {
-    throw new Error("missing_source_parameter");
+  if (!caller) {
+    throw new Error("missing_caller_parameter");
   }
   if (!itemId) {
     throw new Error("missing_item_id_parameter");
@@ -202,7 +201,7 @@ export const initPostulerParametersFromQuery = () => {
   }
 
   return {
-    source,
+    caller,
     itemId,
     type,
   };

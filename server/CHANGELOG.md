@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## 1.20.2 [21/06/2022]
-[LBA6-20] Fix conflit d'autocomplétion
+## 1.20.2 [28/06/2022]
 [LBA6-177] Fix centrage sur éléments sur mobile
-[LBA6-104] Appariement offre formation-emploi, avec flag sur liste
+[LBA6-104] Appariement offre formation-emploi
+[LBA6-21] Ouverture API envoi de candidature
+[LBA6-20] Fix conflit d'autocomplétion
 
 ## 1.20.1 [16/06/2022]
 [LBA6-175] Désactivation mesure d'intérêt offre mandataire
@@ -38,6 +39,7 @@
 [LBA6-135] Restauration info métier Matcha
 [LBA6-11] MAJ email envoyé au recruteur lors d'une candidature Matcha
 [LBA6-12] MAJ email envoyé au recruteur lors d'une candidature spontanée
+[LBA-99] MVP appariement offre emploi - formation
 
 ## 1.18.11 [11/05/2022]
 [LBA6-32] Contrôle des emails des candidats : pas d'email temporaire

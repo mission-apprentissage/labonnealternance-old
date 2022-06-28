@@ -21,7 +21,13 @@ import getSoustitre from "./ItemDetailServices/getSoustitre";
 import getActualTitle from "./ItemDetailServices/getActualTitle";
 import getCurrentList from "./ItemDetailServices/getCurrentList";
 import getTags from "./ItemDetailServices/getTags";
-import { buttonJePostuleShouldBeDisplayed, buttonPRDVShouldBeDisplayed, buildPrdvButton, getNavigationButtons, buildSwipe } from "./ItemDetailServices/getButtons"
+import {
+  buttonJePostuleShouldBeDisplayed,
+  buttonPRDVShouldBeDisplayed,
+  buildPrdvButton,
+  getNavigationButtons,
+  buildSwipe,
+} from "./ItemDetailServices/getButtons";
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
@@ -31,9 +37,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
   const isMandataire = selectedItem?.company?.mandataire;
-  
+
   const [seeInfo, setSeeInfo] = useState(false);
-  
+
   useEffect(() => {
     setSeeInfo(false);
     try {
@@ -42,14 +48,14 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
       //notice: gère des erreurs qui se présentent à l'initialisation de la page quand mapbox n'est pas prêt.
     }
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
-  
-  let actualTitle = getActualTitle({ kind, selectedItem });
-  
-  const { trainings, jobs, extendedSearch } = useContext(SearchResultContext);
-  const hasAlsoJob = hasAlsoEmploi({ isCfa, company: selectedItem?.company, searchedMatchaJobs: jobs?.matchas })
-  const currentList = getCurrentList({store:{ trainings, jobs }, activeFilter, extendedSearch});
 
-  const { swipeHandlers, goNext, goPrev } = buildSwipe({currentList, handleSelectItem, selectedItem})
+  let actualTitle = getActualTitle({ kind, selectedItem });
+
+  const { trainings, jobs, extendedSearch } = useContext(SearchResultContext);
+  const hasAlsoJob = hasAlsoEmploi({ isCfa, company: selectedItem?.company, searchedMatchaJobs: jobs?.matchas });
+  const currentList = getCurrentList({ store: { trainings, jobs }, activeFilter, extendedSearch });
+
+  const { swipeHandlers, goNext, goPrev } = buildSwipe({ currentList, handleSelectItem, selectedItem });
 
   const [collapseHeader, setCollapseHeader] = useState(false);
   const maxScroll = 100;
@@ -85,7 +91,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
               {getTags({ kind, isCfa, isMandataire, hasAlsoJob })}
-              {getNavigationButtons({goPrev, goNext, setSeeInfo, handleClose})}
+              {getNavigationButtons({ goPrev, goNext, setSeeInfo, handleClose })}
             </div>
 
             {getSurtitre({ selectedItem, kind })}
@@ -127,23 +133,21 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 )}
                 {hasAlsoJob ? (
                   <>
-                  <div className="text-left pb-3">
-                    <span className="c-locationdetail-imgcontainer">
-                      <img className="" src="/images/info.svg" alt="info" />
-                    </span>
-                    <span className="c-detail-also mb-0">
-                      Le centre de formation propose également des offres d'emploi.
-                    </span>
-                  </div>
+                    <div className="text-left pb-3">
+                      <span className="c-locationdetail-imgcontainer">
+                        <img className="" src="/images/info.svg" alt="info" />
+                      </span>
+                      <span className="c-detail-also mb-0">
+                        Le centre de formation propose également des offres d'emploi.
+                      </span>
+                    </div>
                   </>
                 ) : (
-                  <>
-                  </>
+                  <></>
                 )}
               </>
             ) : (
-              <>
-              </>
+              <></>
             )}
           </div>
         </header>

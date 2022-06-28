@@ -2,9 +2,7 @@ import postCandidature from "../../../../services/postCandidature.js";
 import extractCompanyValues from "../../../../services/extractCompanyValues.js";
 
 export default async function submitCandidature(
-  applicantValues,
-  setSendingState = () => {},
-  item = {},
+  { applicantValues, setSendingState = () => {}, item = {}, caller = null },
   _postCandidature = postCandidature,
   _extractCompanyValues = extractCompanyValues
 ) {
@@ -12,7 +10,7 @@ export default async function submitCandidature(
   let success = true;
   let result = null;
   try {
-    result = await _postCandidature(applicantValues, _extractCompanyValues(item));
+    result = await _postCandidature(applicantValues, _extractCompanyValues(item), caller);
     if (result !== "ok") {
       success = false;
     }

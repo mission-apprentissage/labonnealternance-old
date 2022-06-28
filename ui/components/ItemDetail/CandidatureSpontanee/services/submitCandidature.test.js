@@ -12,14 +12,12 @@ describe("submitCandidature", () => {
     };
     // when
     await submitCandidature(
-      { applicants: "values" },
-      mockedSetSendingState,
-      { items: "some" },
+      { applicantValues: { applicants: "values" }, setSendingState: mockedSetSendingState, item: { items: "some" } },
       mockedPostCandidature,
       repeatFunc
     );
     // then
-    expect(mockedPostCandidature).toHaveBeenCalledWith({ applicants: "values" }, { items: "some" });
+    expect(mockedPostCandidature).toHaveBeenCalledWith({ applicants: "values" }, { items: "some" }, null);
     expect(mockedSetSendingState).toHaveBeenCalledWith("currently_sending");
     expect(mockedSetSendingState).toHaveBeenCalledWith("ok_sent");
   });
@@ -32,7 +30,11 @@ describe("submitCandidature", () => {
       throw "Custom error";
     });
     // when
-    await submitCandidature(null, mockedSetSendingState, {}, mockedPostCandidature, emptyFunc);
+    await submitCandidature(
+      { applicantValues: null, setSendingState: mockedSetSendingState, item: {} },
+      mockedPostCandidature,
+      emptyFunc
+    );
     // then
     expect(mockedSetSendingState).toHaveBeenCalledWith("currently_sending");
     expect(mockedSetSendingState).toHaveBeenCalledWith("not_sent_because_of_errors");
@@ -49,14 +51,12 @@ describe("submitCandidature", () => {
     };
     // when
     await submitCandidature(
-      { applicants: "values" },
-      mockedSetSendingState,
-      { items: "some" },
+      { applicantValues: { applicants: "values" }, setSendingState: mockedSetSendingState, item: { items: "some" } },
       mockedPostCandidature,
       repeatFunc
     );
     // then
-    expect(mockedPostCandidature).toHaveBeenCalledWith({ applicants: "values" }, { items: "some" });
+    expect(mockedPostCandidature).toHaveBeenCalledWith({ applicants: "values" }, { items: "some" }, null);
     expect(mockedSetSendingState).toHaveBeenCalledWith("currently_sending");
     expect(mockedSetSendingState).toHaveBeenCalledWith("error");
   });

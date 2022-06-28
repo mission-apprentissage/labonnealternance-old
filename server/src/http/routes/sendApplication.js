@@ -25,24 +25,6 @@ const limiter1Per5Second = rateLimit({
 module.exports = (components) => {
   const router = express.Router();
 
-  router.get(
-    "/",
-    limiter1Per5Second,
-    tryCatch(async (req, res) => {
-      const result = await sendApplication({ shouldCheckSecret: true, query: req.query, ...components });
-
-      if (result.error) {
-        if (result.error === "error_sending_application") {
-          res.status(500);
-        } else {
-          res.status(400);
-        }
-      }
-
-      return res.json(result);
-    })
-  );
-
   router.post(
     "/",
     limiter1Per5Second,
@@ -50,6 +32,7 @@ module.exports = (components) => {
       const result = await sendApplication({
         shouldCheckSecret: req.body.secret ? true : false,
         query: req.body,
+        referer: req.headers.referer,
         ...components,
       });
 
