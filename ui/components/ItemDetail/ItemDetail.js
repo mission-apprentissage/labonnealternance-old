@@ -16,6 +16,7 @@ import DidYouKnow from "./DidYouKnow";
 import CandidatureSpontanee from "./CandidatureSpontanee/CandidatureSpontanee";
 import isCandidatureSpontanee from "./CandidatureSpontanee/services/isCandidatureSpontanee";
 import getSurtitre from "./ItemDetailServices/getSurtitre";
+import hasAlsoEmploi from "./ItemDetailServices/hasAlsoEmploi";
 import getSoustitre from "./ItemDetailServices/getSoustitre";
 import getActualTitle from "./ItemDetailServices/getActualTitle";
 import getCurrentList from "./ItemDetailServices/getCurrentList";
@@ -30,9 +31,9 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
   const isMandataire = selectedItem?.company?.mandataire;
-
+  
   const [seeInfo, setSeeInfo] = useState(false);
-
+  
   useEffect(() => {
     setSeeInfo(false);
     try {
@@ -41,10 +42,11 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
       //notice: gère des erreurs qui se présentent à l'initialisation de la page quand mapbox n'est pas prêt.
     }
   }, [selectedItem?.id, selectedItem?.company?.siret, selectedItem?.job?.id]);
-
+  
   let actualTitle = getActualTitle({ kind, selectedItem });
-
+  
   const { trainings, jobs, extendedSearch } = useContext(SearchResultContext);
+  const hasAlsoJob = hasAlsoEmploi({ isCfa, company: selectedItem?.company, searchedMatchaJobs: jobs?.matchas })
   const currentList = getCurrentList({store:{ trainings, jobs }, activeFilter, extendedSearch});
 
   const { swipeHandlers, goNext, goPrev } = buildSwipe({currentList, handleSelectItem, selectedItem})
@@ -82,7 +84,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         <header className={`c-detail-header c-detail--collapse-header-${collapseHeader}`}>
           <div className="w-100">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
-              {getTags({ kind, isCfa, isMandataire })}
+              {getTags({ kind, isCfa, isMandataire, hasAlsoJob })}
               {getNavigationButtons({goPrev, goNext, setSeeInfo, handleClose})}
             </div>
 
@@ -90,7 +92,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
             {getSoustitre({ selectedItem, kind })}
 
-            {buttonJePostuleShouldBeDisplayed({kind, selectedItem}) ? (
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               <div className="c-detail-description-me">
                 <div className="c-detail-pelink my-3">
                   <a className="btn btn-blue ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
@@ -111,13 +113,37 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               ""
             )}
 
-            {kind === "formation" && buttonPRDVShouldBeDisplayed({selectedItem}) ? (
+            {kind === "formation" ? (
               <>
-                <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
-                <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton({selectedItem})}</div>
+                {buttonPRDVShouldBeDisplayed(selectedItem) ? (
+                  <>
+                    <hr className={"c-detail-header-separator c-detail-header-separator--upperformation"} />
+                    <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
+                  </>
+                ) : (
+                  <>
+                    <div className="c-detail-emptyspace">&nbsp;</div>
+                  </>
+                )}
+                {hasAlsoJob ? (
+                  <>
+                  <div className="text-left pb-3">
+                    <span className="c-locationdetail-imgcontainer">
+                      <img className="" src="/images/info.svg" alt="info" />
+                    </span>
+                    <span className="c-detail-also mb-0">
+                      Le centre de formation propose également des offres d'emploi.
+                    </span>
+                  </div>
+                  </>
+                ) : (
+                  <>
+                  </>
+                )}
               </>
             ) : (
-              <div className="c-detail-emptyspace">&nbsp;</div>
+              <>
+              </>
             )}
           </div>
         </header>
@@ -172,7 +198,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           <>
             <DidYouKnow item={selectedItem}></DidYouKnow>
 
-            {buttonJePostuleShouldBeDisplayed({kind, selectedItem}) ? (
+            {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               ""
             ) : (
               <GoingToContactQuestion
@@ -187,7 +213,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
         )}
         {kind === "formation" ? (
           <>
-            {buttonPRDVShouldBeDisplayed({selectedItem}) ? (
+            {buttonPRDVShouldBeDisplayed(selectedItem) ? (
               ""
             ) : (
               <GoingToContactQuestion

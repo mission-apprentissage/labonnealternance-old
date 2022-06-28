@@ -4,7 +4,7 @@ export default function getSoustitre({ selectedItem }) {
 
   {
     selectedItem?.company?.mandataire ? (
-      res = <div className="my-4 c-detail-address-section">
+      res = <div className="mt-4 c-detail-address-section">
               <div>
                 <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -30,7 +30,7 @@ export default function getSoustitre({ selectedItem }) {
               </div>
             </div>
     ) : (
-      res = <p className="my-4 c-detail-address-section">
+      res = <p className="mt-4 c-detail-address-section">
               <span className="d-block">
                 <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
