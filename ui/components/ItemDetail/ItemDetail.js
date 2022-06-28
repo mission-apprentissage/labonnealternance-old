@@ -127,9 +127,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                     <div className="c-detail-prdv mt-3 pb-4 w-75">{buildPrdvButton(selectedItem)}</div>
                   </>
                 ) : (
-                  <>
-                    <div className="c-detail-emptyspace">&nbsp;</div>
-                  </>
+                  ""
                 )}
                 {hasAlsoJob ? (
                   <>
@@ -149,6 +147,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             ) : (
               <></>
             )}
+            <div className="c-detail-emptyspace">&nbsp;</div>
           </div>
         </header>
 
