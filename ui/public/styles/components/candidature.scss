@@ -280,7 +280,7 @@ button.c-candidature-filedropzone-removefile
 .c-candidature-link,
 .c-candidature-link:hover
 {
-  color: #1E1E1E;
+  color: #1E1E1E !important;
   text-decoration: underline;
 }
 
@@ -291,4 +291,9 @@ button.c-candidature-filedropzone-removefile
 }
 .btn.btn-blue:hover {
   background-color: #0000d1;
+}
+
+.c-candidature__widget {
+  width: 100%;
+  max-width: 420px;
 }

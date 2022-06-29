@@ -2,18 +2,12 @@ import React from "react";
 
 import smileyIcon from "public/images/smiley.svg";
 
-const TagCfaDEntreprise = ({ isCfa }) => {
+const TagCfaDEntreprise = () => {
   return (
-    <>
-      {isCfa === true ? (
-        <span className="c-media-tag c-media-tag--smiley">
-          <img src={smileyIcon} alt="sourire" />
-          <span className="ml-1">CFA d'entreprise</span>
-        </span>
-      ) : (
-        ""
-      )}
-    </>
+    <span className="c-media-tag c-media-tag--smiley">
+      <img src={smileyIcon} alt="sourire" />
+      <span className="ml-1">CFA d'entreprise</span>
+    </span>
   );
 };
 

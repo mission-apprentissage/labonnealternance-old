@@ -79,7 +79,7 @@ const itemModel = (type) => {
         {
             description,           // pe -> description | matcha -> description
             creationDate,          // pe -> dateCreation | matcha -> createdAt
-            id,                    // pe -> id
+            id,                    // pe -> id | matcha -> id mongo offre
             contractType,          // pe -> typeContrat | matcha -> offres.type
             contractDescription,   // pe -> typeContratLibelle
             duration,              // pe -> dureeTravailLibelle

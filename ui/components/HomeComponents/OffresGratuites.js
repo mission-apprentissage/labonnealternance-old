@@ -14,14 +14,14 @@ const OffresGratuites = () => {
         </div>
         <div className="col-12 col-md-6 pt-md-5 order-md-first">
           <h2 className="c-homecomponent-title__small mb-3">
-            Vos offres sont diffusées gratuitement au plus près des candidats
+            Diffusez gratuitement vos offres au plus près des candidats
           </h2>
           <div>
             Elles sont mises en ligne sur les sites les plus visités par les candidats en recherche d’alternance :{" "}
             <ExternalLink
               className="c-homecomponent-link__inline"
               url="https://labonnealternance.pole-emploi.fr"
-              title="la
+              title="La
             Bonne Alternance"
             />
             ,{" "}

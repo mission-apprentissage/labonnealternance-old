@@ -136,10 +136,15 @@ const applicationSchema = {
     default: null,
     description: "Statut du mail envoyé au candidat suite à réponse de l'entreprise",
   },
-  interet_offres_mandataire: {
+  /*interet_offres_mandataire: {
     type: Boolean,
     default: false,
     description: "Le candidat est il intéressé par les offres du CFA mandataire",
+  },*/
+  caller: {
+    type: String,
+    default: null,
+    description: "L'identification de la source d'émission de la candidature (pour widget et api)",
   },
   created_at: {
     type: Date,

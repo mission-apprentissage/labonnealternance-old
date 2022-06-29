@@ -95,7 +95,7 @@ describe("CandidatureSpontanee", () => {
     fireEvent.click(submit);
     // Then
     await waitFor(() => {
-      expect(screen.getByTestId("fieldset-message")).toHaveClass("is-valid-false");
+      expect(screen.getByTestId("fieldset-message")).not.toHaveClass("is-valid-false");
       expect(screen.getByTestId("fieldset-firstname")).toHaveClass("is-valid-false");
       expect(screen.getByTestId("fieldset-lastname")).toHaveClass("is-valid-false");
       expect(screen.getByTestId("fieldset-email")).toHaveClass("is-valid-false");
