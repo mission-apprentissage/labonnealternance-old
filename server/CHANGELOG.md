@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.3 [30/06/2022]
+[LBA6-21] Augmentation quota api candidature
+
 ## 1.20.2 [28/06/2022]
 [LBA6-177] Fix centrage sur éléments sur mobile
 [LBA6-104] Appariement offre formation-emploi
