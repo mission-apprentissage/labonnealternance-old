@@ -91,7 +91,7 @@ export const setUseMock = ({ parameterContext }) => {
   let useMock = getValueFromPath("useMock");
   if (useMock) {
     parameterContext.setUseMock(true);
-    console.log("useMock : ",useMock);
+    console.log("useMock : ", useMock);
   }
 };
 
@@ -181,4 +181,28 @@ export const initParametersFromQuery = ({ router, shouldPush, parameterContext }
   if (hasParameters && shouldPush) {
     router.push("/recherche-apprentissage");
   }
+};
+
+export const initPostulerParametersFromQuery = () => {
+  initTestingParameters();
+
+  const caller = getValueFromPath("caller"); // ex : diagoriente
+  const itemId = getValueFromPath("itemId");
+  const type = getValueFromPath("type"); // matcha | lba | lbb
+
+  if (!caller) {
+    throw new Error("missing_caller_parameter");
+  }
+  if (!itemId) {
+    throw new Error("missing_item_id_parameter");
+  }
+  if (!type) {
+    throw new Error("missing_type_parameter");
+  }
+
+  return {
+    caller,
+    itemId,
+    type,
+  };
 };

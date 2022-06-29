@@ -14,6 +14,7 @@ const {
   validatePermanentEmail,
   checkUserApplicationCount,
 } = require("./validateSendApplication");
+const { validateCaller } = require("./queryValidators");
 const logger = require("../common/logger");
 const publicUrl = config.publicUrl;
 const { oleoduc, writeData } = require("oleoduc");
@@ -78,7 +79,8 @@ const initApplication = (query, companyEmail) => {
     company_type: query.company_type,
     job_title: query.job_title,
     job_id: query.job_id,
-    interet_offres_mandataire: query.interet_offres_mandataire,
+    caller: query.caller,
+    //interet_offres_mandataire: query.interet_offres_mandataire,
   });
 
   return res;
@@ -119,11 +121,13 @@ const getEmailTemplates = (applicationType) => {
   }
 };
 
-const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
+const sendApplication = async ({ mailer, query, referer, shouldCheckSecret }) => {
   if (shouldCheckSecret && !query.secret) {
     return { error: "secret_missing" };
   } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
     return { error: "wrong_secret" };
+  } else if (!validateCaller({ caller: query.caller, referer })) {
+    return { error: "missing_caller" };
   } else {
     let validationResult = await validateSendApplication({
       fileName: query.applicant_file_name,
@@ -131,6 +135,7 @@ const sendApplication = async ({ mailer, query, shouldCheckSecret }) => {
       firstName: query.applicant_first_name,
       lastName: query.applicant_last_name,
       phone: query.applicant_phone,
+      fileContent: query.applicant_file_content,
     });
 
     if (validationResult !== "ok") {

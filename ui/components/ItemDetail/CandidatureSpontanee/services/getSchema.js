@@ -9,7 +9,7 @@ export function getInitialSchemaValues() {
     fileName: "",
     fileContent: null,
     message: "",
-    interetOffresMandataire: false,
+    //interetOffresMandataire: false,
   };
 }
 
@@ -24,14 +24,7 @@ const commonControls = {
 };
 
 export function getValidationSchema(actualKind) {
-  if (actualKind === "matcha") {
-    return Yup.object({
-      message: Yup.string().nullable().required("⚠ La lettre de motivation est obligatoire"),
-      ...commonControls,
-    });
-  } else {
     return Yup.object({
       ...commonControls,
     });
-  }
 }

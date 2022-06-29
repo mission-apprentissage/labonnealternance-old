@@ -124,6 +124,7 @@ module.exports = async (components) => {
   app.use("/api/mail", limiter1Per20Second, sendMail(components));
 
   app.use("/api/application", sendApplication(components));
+  app.use("/api/V1/application", sendApplication(components));
 
   app.get(
     "/api",

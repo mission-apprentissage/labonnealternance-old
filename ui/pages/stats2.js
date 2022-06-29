@@ -34,7 +34,7 @@ const stats2 = () => (
       <div>
         <iframe
           className="c-stats-iframe"
-          title="stats_matcha"
+          title="stats_lba_recruteur"
           src="https://matcha.apprentissage.beta.gouv.fr/metabase/public/dashboard/404744cc-61aa-41df-983c-bdee1e992543"
           loading="lazy"
         />

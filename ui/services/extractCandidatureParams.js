@@ -1,6 +1,6 @@
 import { testingParameters } from "../utils/testingParameters";
 
-export default function extractCandidatureParams(applicant_h, company_h) {
+export default function extractCandidatureParams(applicant_h, company_h, caller) {
   let res = {};
 
   // 8 mandatory fields
@@ -14,7 +14,7 @@ export default function extractCandidatureParams(applicant_h, company_h) {
   res["applicant_file_name"] = applicant_h?.fileName || "dummy.pdf";
   res["applicant_file_content"] = applicant_h?.fileContent || null;
   res["company_type"] = company_h?.type || null;
-  res["interet_offres_mandataire"] = applicant_h?.interetOffresMandataire || false;
+  //res["interet_offres_mandataire"] = applicant_h?.interetOffresMandataire || false;
 
   // Optional fields
   res["company_siret"] = company_h?.siret || null;
@@ -31,6 +31,9 @@ export default function extractCandidatureParams(applicant_h, company_h) {
     res["applicant_email"] = testingParameters.simulatedRecipient;
     res["secret"] = testingParameters.secret;
   }
+
+  // appelant (widget)
+  res["caller"] = caller;
 
   return res;
 }

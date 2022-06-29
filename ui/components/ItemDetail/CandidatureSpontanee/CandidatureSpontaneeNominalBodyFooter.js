@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from "react";
 import CandidatureSpontaneeSubmit from "./CandidatureSpontaneeSubmit";
-import { ModalBody, ModalFooter } from "reactstrap";
+import { Container, ModalBody, ModalFooter } from "reactstrap";
 import CandidatureSpontaneeFileDropzone from "./CandidatureSpontaneeFileDropzone";
 import CandidatureSpontaneeMessage from "./CandidatureSpontaneeMessage";
 import CandidatureSpontaneeMandataireMessage from "./CandidatureSpontaneeMandataireMessage";
-import CandidatureSpontaneeMandataireKnowMoreCheckbox from "./CandidatureSpontaneeMandataireKnowMoreCheckbox";
 import { testingParameters } from "../../../utils/testingParameters";
 import emailMisspelled, { top100 } from "email-misspelled";
 
 const emailChecker = emailMisspelled({ maxMisspelled: 3, domains: top100 });
 
-const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind }) => {
+const PostulerBody = (props) => {
+  return props.fromWidget ? (
+    <Container>{props.children}</Container>
+  ) : (
+    <ModalBody data-testid="modalbody-nominal">{props.children}</ModalBody>
+  );
+};
 
-  useEffect(() => {
+const PostulerFooter = (props) => {
+  return props.fromWidget ? <Container>{props.children}</Container> : <ModalFooter>{props.children}</ModalFooter>;
+};
+
+const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, item, kind, fromWidget = false }) => {
+  /*useEffect(() => {
     formik.values.interetOffresMandataire = false;
-  }, [company]);
+  }, [company]);*/
 
   const setFileValue = (fileValue) => {
     formik.values.fileName = fileValue?.fileName || null;
@@ -36,9 +46,15 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
 
   return (
     <>
-      <ModalBody data-testid="modalbody-nominal">
+      <PostulerBody fromWidget={fromWidget}>
         <h1 className="c-candidature-title" data-testid="CandidatureSpontaneeTitle">
-          {kind === "matcha" ? <>Postuler à l'offre de {company}</> : <>Candidature spontanée</>}
+          {kind === "matcha" ? (
+            <>
+              Postuler à l'offre {fromWidget ? `${item.title} ` : ""}de {company}
+            </>
+          ) : (
+            <>Candidature spontanée{fromWidget ? ` auprès de ${company}` : ""}</>
+          )}
         </h1>
 
         <div className="c-candidature-personaldata d-flex flex-column flex-md-row mt-4">
@@ -89,6 +105,12 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
           </fieldset>
         </div>
 
+        {testingParameters?.simulatedRecipient ? (
+          <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
+        ) : (
+          ""
+        )}
+
         <div className="d-flex flex-column flex-md-row mt-0 mt-md-3">
           <fieldset
             data-testid="fieldset-email"
@@ -122,11 +144,6 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
               <div className="c-candidature-erreur visible">{formik.errors.email}</div>
             ) : (
               <div className="c-candidature-erreur invisible">{"pas d'erreur"}</div>
-            )}
-            {testingParameters?.simulatedRecipient ? (
-              <div>Les emails seront envoyés à {testingParameters.simulatedRecipient}</div>
-            ) : (
-              ""
             )}
           </fieldset>
 
@@ -162,7 +179,6 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
 
         <div className="c-candidature-message mt-3">
           <CandidatureSpontaneeMandataireMessage item={item} />
-          <CandidatureSpontaneeMandataireKnowMoreCheckbox item={item} formik={formik} />
         </div>
 
         <fieldset data-testid="fieldset-terms" className="c-candidature-terms mt-3">
@@ -176,10 +192,10 @@ const CandidatureSpontaneeNominalBodyFooter = ({ formik, sendingState, company, 
             </div>
           </label>
         </fieldset>
-      </ModalBody>
-      <ModalFooter>
+      </PostulerBody>
+      <PostulerFooter fromWidget={fromWidget}>
         <CandidatureSpontaneeSubmit item={item} sendingState={sendingState} />
-      </ModalFooter>
+      </PostulerFooter>
     </>
   );
 };

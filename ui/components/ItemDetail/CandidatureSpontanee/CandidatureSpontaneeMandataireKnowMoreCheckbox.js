@@ -1,5 +1,8 @@
 import React from "react";
 
+/**
+ * TODO: plus utilisé pour le moment. 16/06/2022
+ */
 const CandidatureSpontaneeMandataireKnowMoreCheckbox = ({ formik, item }) => {
   return item?.company?.mandataire ? (
     <fieldset

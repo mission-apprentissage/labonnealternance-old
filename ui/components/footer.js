@@ -27,13 +27,6 @@ const Footer = (props) => {
                   width="81"
                   height="81"
                 />
-                <img
-                  src="/images/financement_ue.png"
-                  alt="Financement UE"
-                  width="162"
-                  height="41"
-                  className="ml-3"
-                />
               </div>
             </Col>
             <Col className="col-12 col-lg-6 c-footer-text">

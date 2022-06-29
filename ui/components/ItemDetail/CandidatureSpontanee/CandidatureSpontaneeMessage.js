@@ -16,7 +16,7 @@ const CandidatureSpontaneeMessage = ({ formik, kind }) => {
     return (
       <>
         Votre message au responsable du recrutement{" "}
-        {kind !== "matcha" ? <span className="c-candidature-message-title-optional">(Facultatif)</span> : "*"}
+        <span className="c-candidature-message-title-optional">(Facultatif)</span>
       </>
     );
   };
@@ -39,7 +39,8 @@ const CandidatureSpontaneeMessage = ({ formik, kind }) => {
         <h2 className="c-candidature-message-title mb-0">{getFieldTitle()}</h2>
         <div className="c-candidature-message-subtitle mb-2">
           Indiquez pourquoi vous souhaitez réaliser votre alternance dans son établissement. <br />
-          Un message personnalisé augmente vos chances d'obtenir un contact avec le recruteur
+          Un message personnalisé augmente vos chances d'obtenir un contact avec le recruteur. <br />
+          La taille du champ n'est pas limitée.
         </div>
         <textarea
           id="message"
