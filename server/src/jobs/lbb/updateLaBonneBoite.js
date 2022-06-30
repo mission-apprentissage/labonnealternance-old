@@ -293,7 +293,12 @@ const processBonnesBoitesFile = async () => {
       readLineByLine(),
       transformData((line) => parseLine(line), { parallel: 8 }),
       writeData(async (bonneBoite) => {
-        db.collections["bonnesboites"].save(bonneBoite);
+        try {
+          const res = await db.collections["bonnesboites"].save(bonneBoite);
+          logMessage("info", `insert : ${res.nInserted} ${bonneBoite.siret}`);
+        } catch (err) {
+          logMessage("error", err);
+        }
       })
     );
   } catch (err2) {
