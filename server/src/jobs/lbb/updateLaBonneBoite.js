@@ -294,8 +294,7 @@ const processBonnesBoitesFile = async () => {
       transformData((line) => parseLine(line), { parallel: 8 }),
       writeData(async (bonneBoite) => {
         try {
-          const res = await db.collections["bonnesboites"].save(bonneBoite);
-          logMessage("info", `insert : ${res.nInserted} ${bonneBoite.siret}`);
+          await db.collections["bonnesboites"].save(bonneBoite);
         } catch (err) {
           logMessage("error", err);
         }
