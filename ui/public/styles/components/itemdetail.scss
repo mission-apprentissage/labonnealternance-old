@@ -89,8 +89,32 @@ a.resultCard:hover {
 .resultCard {
   background-color: white;
   text-align: left;
-  padding: 20px 25px;
-  margin: 8px 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  @include media-breakpoint-up(sm) {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+  @include media-breakpoint-up(md) {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  @include media-breakpoint-up(lg) {
+    margin-right: 25px;
+    margin-left: 25px;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
   color: #4A4A4A;
   cursor: pointer;
 }
@@ -121,11 +145,6 @@ a.resultCard:hover {
 }
 .itemDetail .resultCard {
   box-shadow: none;
-}
-@media only screen and (max-width: 767px) {
-  .resultCard {
-    padding: 15px 10px 10px 20px;
-  }
 }
 
 .resultCard.debugRemoved {

@@ -8,6 +8,7 @@
 [LBA6-104] Appariement offre formation-emploi
 [LBA6-21] Ouverture API envoi de candidature
 [LBA6-20] Fix conflit d'autocomplétion
+[LBA6-130] Ecarts Figma-prod
 
 ## 1.20.1 [16/06/2022]
 [LBA6-175] Désactivation mesure d'intérêt offre mandataire
