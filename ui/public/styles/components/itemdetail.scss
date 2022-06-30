@@ -3,7 +3,7 @@
 }
 .itemDetail header {
   background: #fff !important;
-  padding: 10px 20px 0px 30px !important;
+  padding: 10px 20px 0px 10px !important;
 }
 .itemDetail .ellipsisLink {
   overflow: hidden;
@@ -252,13 +252,3 @@ a.resultCard:hover {
   }
 }
 
-.c-detail-google-search,
-.c-detail-google-search:hover
-{
-  text-decoration: underline;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-  letter-spacing: 0em;
-  color: $gray-700;
-}

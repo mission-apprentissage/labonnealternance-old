@@ -101,7 +101,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               <div className="c-detail-description-me">
                 <div className="c-detail-pelink my-3">
-                  <a className="btn btn-blue ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
+                  <a className="btn btn-blue gtmContactPE" target="poleemploi" href={selectedItem.url}>
                     Je postule sur Pôle emploi
                   </a>
                 </div>
