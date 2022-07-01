@@ -190,6 +190,13 @@ const parseAddLine = (line) => {
       score,
     };
 
+    company.enseigne = company.enseigne || company.raisonsociale;
+
+    if (!company.enseigne) {
+      logMessage("error", `Error adding company. Company ${company.siret} has no name`);
+      return null;
+    }
+
     return company;
   } else {
     return null;

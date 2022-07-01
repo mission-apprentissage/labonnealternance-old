@@ -13,6 +13,8 @@ const updateSAVECompanies = async ({ updateMap }) => {
       // remplacement pour une bonneBoite trouvée par les données modifiées dans la table update SAVE
       if (company.raisonsociale) {
         bonneBoite.raisonsociale = company.raisonsociale;
+      }
+      if (company.enseigne) {
         bonneBoite.enseigne = company.enseigne;
       }
 
@@ -44,7 +46,11 @@ const updateSAVECompanies = async ({ updateMap }) => {
         bonneBoite.romes = bonneBoite.romes.filter((el) => !company.removedRomes.includes(el));
         if (bonneBoite.romes.length === 0) {
           logMessage("info", "suppression bb car pas de romes " + bonneBoite.siret);
-          await bonneBoite.remove();
+          try {
+            await bonneBoite.remove();
+          } catch (err) {
+            //console.log("not found when removing ",bonneBoite.siret);
+          }
           shouldSave = false;
         }
       }

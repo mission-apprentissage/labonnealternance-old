@@ -201,6 +201,11 @@ const parseLine = async (line) => {
 
   let company = initCompanyFromLine(line);
 
+  if (!company.enseigne) {
+    logMessage("error", `Error processing company. Company ${company.siret} has no name`);
+    return null;
+  }
+
   if (isCompanyRemoved(company.siret)) {
     await BonnesBoites.remove({ siret: company.siret });
     return null;
