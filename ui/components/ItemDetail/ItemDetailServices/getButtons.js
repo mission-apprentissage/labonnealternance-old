@@ -24,7 +24,7 @@ export const buildPrdvButton = (training) => {
       data-id-cle-ministere-educatif={training.cleMinistereEducatif}
       data-id-rco-formation={training.idRcoFormation}
     >
-      <ExternalLink className="gtmPrdv" url={training.prdvUrl} title="Prendre rendez-vous" />
+      <ExternalLink className="gtmPrdv" url={training.prdvUrl} title="Je prends rendez-vous" />
     </div>
   );
 };
