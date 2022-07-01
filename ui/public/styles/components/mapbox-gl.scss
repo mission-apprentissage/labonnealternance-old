@@ -1,6 +1,7 @@
 canvas.mapboxgl-canvas:focus {
   outline: none;
 }
+
 .mapboxgl-popup {
   width: 300px !important;
   max-width: 300px !important;
@@ -10,6 +11,7 @@ canvas.mapboxgl-canvas:focus {
   }
   z-index: 2;
 }
+
 .mapboxgl-popup-content {
   border-radius: 11px;
   font-size: 14px;
