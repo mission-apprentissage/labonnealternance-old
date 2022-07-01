@@ -1,4 +1,3 @@
-import { get } from "lodash";
 
 export default function getSurtitre({ selectedItem, kind, isMandataire }) {
   let res = "";
