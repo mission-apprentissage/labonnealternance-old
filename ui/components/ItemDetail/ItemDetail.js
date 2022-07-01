@@ -94,7 +94,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               {getNavigationButtons({ goPrev, goNext, setSeeInfo, handleClose })}
             </div>
 
-            {getSurtitre({ selectedItem, kind })}
+            {getSurtitre({ selectedItem, kind, isMandataire })}
             <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
             {getSoustitre({ selectedItem, kind })}
 

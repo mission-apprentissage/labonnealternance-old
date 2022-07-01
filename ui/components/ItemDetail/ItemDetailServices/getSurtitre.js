@@ -1,9 +1,9 @@
 import { get } from "lodash";
 
-export default function getSurtitre ({ selectedItem, kind }) {
+export default function getSurtitre({ selectedItem, kind, isMandataire }) {
   let res = "";
 
-  if (kind === "matcha") {
+  if (kind === "matcha" && isMandataire) {
     res = (
       <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
         <span className="c-detail-activity__proposal">Le centre de formation&nbsp;</span>
@@ -15,7 +15,7 @@ export default function getSurtitre ({ selectedItem, kind }) {
     );
   }
 
-  if (kind === "peJob") {
+  if (kind === "peJob" || (kind === "matcha" && !isMandataire)) {
     res = (
       <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
         <span>{`${get(selectedItem, "company.name", "Une société ayant souhaité garder l'anonymat")}`}</span>
