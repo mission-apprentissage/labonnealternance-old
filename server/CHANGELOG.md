@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.3 [01/07/2022]
+[LBA6-179] CFA mandates
+
 ## 1.20.2 [28/06/2022]
 [LBA6-177] Fix centrage sur éléments sur mobile
 [LBA6-104] Appariement offre formation-emploi
