@@ -18,7 +18,7 @@ export default function getSurtitre({ selectedItem, kind, isMandataire }) {
   if (kind === "peJob" || (kind === "matcha" && !isMandataire)) {
     res = (
       <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
-        <span>{companyName || 'Une société ayant souhaité garder l\'anonymat'}</span>
+        <span>{companyName || "Une société ayant souhaité garder l'anonymat"}</span>
         <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre</span>
       </p>
     );
