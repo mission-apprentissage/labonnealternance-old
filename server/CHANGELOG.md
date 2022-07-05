@@ -2,6 +2,7 @@
 
 ## 1.20.3 [01/07/2022]
 [LBA6-179] CFA mandates
+[LBA6-197] appariement
 
 ## 1.20.2 [28/06/2022]
 [LBA6-177] Fix centrage sur éléments sur mobile
