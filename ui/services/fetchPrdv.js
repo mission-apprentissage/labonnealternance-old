@@ -16,7 +16,7 @@ export default async function fetchPrdv(training, hasAlsoJob, _axios = axios, _w
 
   const response = await _axios.post(
     prdvEndpoint,
-    { referrer: "lba", idCleMinistereEducatif: training.id, idRcoFormation: training.idRcoFormation, trainingHasJob: hasAlsoJob },
+    { referrer: "lba", idCleMinistereEducatif: training.id, idRcoFormation: training.idRcoFormation, trainingHasJob: !!hasAlsoJob },
     { headers: { "content-type": "application/json" } }
   );
 
