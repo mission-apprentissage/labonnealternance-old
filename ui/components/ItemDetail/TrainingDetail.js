@@ -13,7 +13,7 @@ import { formatDate } from "../../utils/strutils";
 import { Spinner } from "reactstrap";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
 
-const TrainingDetail = ({ training, isCfa }) => {
+const TrainingDetail = ({ training, hasAlsoJob }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const TrainingDetail = ({ training, isCfa }) => {
 
   useEffect(() => {
     if (!training.prdvLoaded) {
-      fetchPrdv(training).then((result) => {
+      fetchPrdv(training, hasAlsoJob).then((result) => {
         if (result) {
           applyDataFromPrdv(result.error === "indisponible" ? "" : result.form_url);
         }

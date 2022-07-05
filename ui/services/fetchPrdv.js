@@ -3,7 +3,7 @@ import env from "../utils/env";
 import _ from "lodash";
 import { logError } from "../utils/tools";
 
-export default async function fetchPrdv(training, _axios = axios, _window = window, _logError = logError) {
+export default async function fetchPrdv(training, hasAlsoJob, _axios = axios, _window = window, _logError = logError) {
   let res = null;
 
   const prdvEndpoint = `https://rdv-cfa${
@@ -16,7 +16,7 @@ export default async function fetchPrdv(training, _axios = axios, _window = wind
 
   const response = await _axios.post(
     prdvEndpoint,
-    { referrer: "lba", idCleMinistereEducatif: training.id, idRcoFormation: training.idRcoFormation },
+    { referrer: "lba", idCleMinistereEducatif: training.id, idRcoFormation: training.idRcoFormation, trainingHasJob: hasAlsoJob },
     { headers: { "content-type": "application/json" } }
   );
 
