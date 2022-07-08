@@ -5,7 +5,7 @@ import ScrollToTop from "components/ScrollToTop";
 import { NextSeo } from "next-seo";
 import baseUrl from "utils/baseUrl";
 import axios from "axios";
-
+import { NotionRenderer } from "react-notion-x";
 import Footer from "components/footer";
 
 const FAQ = (props) => {
@@ -13,15 +13,16 @@ const FAQ = (props) => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [recordMapNotion, setRecordMapNotion] = useState(null);
-  
+
   useEffect(() => {
-    const run = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
-      const tmp = await axios.get(baseUrl + '/api/faq');
-      setRecordMapNotion(tmp);
+      const notionFAQ = await axios.get(baseUrl + '/api/faq');
+      console.log('notionFAQ', notionFAQ);
+      setRecordMapNotion(notionFAQ.data);
       setIsLoading(false);
     };
-    run();
+    fetchData();
   }, []);
 
   return (
@@ -53,7 +54,14 @@ const FAQ = (props) => {
             </>
             :
             <>
-                <div>Done !!!</div>
+                <NotionRenderer
+                  recordMap={recordMapNotion}
+                  fullPage={true}
+                  darkMode={false}
+                  disableHeader={true}
+                  rootDomain={process.env.REACT_APP_BASE_URL}
+                  bodyClassName="notion-body"
+                />
             </>
             }
           </div>
