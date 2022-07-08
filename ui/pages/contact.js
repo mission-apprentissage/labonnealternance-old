@@ -10,7 +10,7 @@ import Footer from "components/footer";
 const contact = () => (
   <div>
     <NextSeo
-      title="Contact | La Bonne Alternance | Trouvez votre alternance"
+      title="Contact | La bonne alternance | Trouvez votre alternance"
       description="Une remarque, un avis, une suggestion d’amélioration ? Contactez-nous !"
     />
     <ScrollToTop />
