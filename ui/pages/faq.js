@@ -1,12 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "components/navigation";
 import Breadcrumb from "components/breadcrumb";
 import ScrollToTop from "components/ScrollToTop";
 import { NextSeo } from "next-seo";
+import baseUrl from "utils/baseUrl";
+import axios from "axios";
 
 import Footer from "components/footer";
 
 const FAQ = (props) => {
+
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [recordMapNotion, setRecordMapNotion] = useState(null);
+  
+  useEffect(() => {
+    const run = async () => {
+      setIsLoading(true);
+      const tmp = await axios.get(baseUrl + '/api/faq');
+      setRecordMapNotion(tmp);
+      setIsLoading(false);
+    };
+    run();
+  }, []);
+
   return (
     <div>
       <NextSeo
@@ -30,7 +47,15 @@ const FAQ = (props) => {
             <hr className="c-page-title-separator" align="left" />
           </div>
           <div className="col-12 col-md-7">
-            
+            {isLoading ? 
+            <>
+                <div>Loading...</div> 
+            </>
+            :
+            <>
+                <div>Done !!!</div>
+            </>
+            }
           </div>
         </div>
       </div>
