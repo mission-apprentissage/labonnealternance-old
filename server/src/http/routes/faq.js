@@ -9,6 +9,7 @@ module.exports = () => {
 
   router.get(
     "/",
+    // eslint-disable-next-line no-empty-pattern
     tryCatch(async ({}, res) => {
       const recordMap = await notion.getPage("b1804fe13330409c8baf775c683821b0");
 
