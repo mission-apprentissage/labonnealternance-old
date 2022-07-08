@@ -18,7 +18,6 @@ const FAQ = (props) => {
     const fetchData = async () => {
       setIsLoading(true);
       const notionFAQ = await axios.get(baseUrl + '/api/faq');
-      console.log('notionFAQ', notionFAQ);
       setRecordMapNotion(notionFAQ.data);
       setIsLoading(false);
     };
@@ -50,7 +49,7 @@ const FAQ = (props) => {
           <div className="col-12 col-md-7">
             {isLoading ? 
             <>
-                <div>Loading...</div> 
+                <div>Chargement en cours...</div> 
             </>
             :
             <>
