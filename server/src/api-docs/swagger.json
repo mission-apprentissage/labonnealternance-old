@@ -3,10 +3,10 @@
     
     "info": 
     {
-      "title": "La Bonne Alternance",
+      "title": "La bonne alternance",
       "description": "Cherchez des formations et des emplois en alternance",
       "version": "V1.0",
-      "contact": "equipelba@pole-emploi.fr"
+      "contact": "labonnealternance@apprentissage.beta.gouv.fr"
     },
 
     "servers": [
@@ -314,7 +314,7 @@
         {
             "get": 
             {
-                "description": "Récupérer la liste des noms des métiers du référentiel de La Bonne Alternance",
+                "description": "Récupérer la liste des noms des métiers du référentiel de La bonne alternance",
 
                 "produces": [
                     "application/xml",
@@ -345,7 +345,7 @@
         {
             "get": 
             {
-                "description": "Récupérer la liste des noms des métiers du référentiel de La Bonne Alternance pour une formation donnée",
+                "description": "Récupérer la liste des noms des métiers du référentiel de La bonne alternance pour une formation donnée",
 
                 "parameters": [{
                     "name": "cfd",
@@ -384,7 +384,7 @@
         {
             "get": 
             {
-                "description": "Récupérer la liste des noms des métiers du référentiel de La Bonne Alternance pour un établissement de formation",
+                "description": "Récupérer la liste des noms des métiers du référentiel de La bonne alternance pour un établissement de formation",
 
                 "parameters": [{
                     "name": "siret",
@@ -423,7 +423,7 @@
         {
             "post": 
             {
-                "description": "Envoi d'un email de candidature à une offre postée sur La Bonne Alternance recruteur ou une candidature spontanée à une Bonne Boîte / Bonne Alternance.\nL'email est envoyé depuis l'adresse générique \"Ne pas répondre\" de La Bonne Alternance.\n",
+                "description": "Envoi d'un email de candidature à une offre postée sur La bonne alternance recruteur ou une candidature spontanée à une Bonne Boîte / Bonne Alternance.\nL'email est envoyé depuis l'adresse générique \"Ne pas répondre\" de La bonne alternance.\n",
 
                 "produces": [
                     "application/xml",
@@ -874,7 +874,7 @@
             "in": "body",
             "required": true,
             "type": "string",
-            "description": "L'identifiant de l'offre La Bonne Alternance Recruteur pour laquelle la candidature est envoyée. Seulement si le type de la société (company_type) est \"matcha\" . La valeur est fournie par La Bonne Alternance. ",
+            "description": "L'identifiant de l'offre La bonne alternance Recruteur pour laquelle la candidature est envoyée. Seulement si le type de la société (company_type) est \"matcha\" . La valeur est fournie par La bonne alternance. ",
             "example": "...59c24c059b..."
         },
 
@@ -884,7 +884,7 @@
             "in": "body",
             "required": true,
             "type": "string",
-            "description": "Le titre de l'offre La Bonne Alternance Recruteur pour laquelle la candidature est envoyée. Seulement si le type de la société (company_type) est \"matcha\" . La valeur est fournie par La Bonne Alternance. ",
+            "description": "Le titre de l'offre La bonne alternance Recruteur pour laquelle la candidature est envoyée. Seulement si le type de la société (company_type) est \"matcha\" . La valeur est fournie par La bonne alternance. ",
             "example": "Téléconseil, vente à distance"
         },
 
@@ -894,7 +894,7 @@
             "in": "body",
             "required": true,
             "type": "string",
-            "description": "L'adresse postale de la société. Fournie par La Bonne Alternance. ",
+            "description": "L'adresse postale de la société. Fournie par La bonne alternance. ",
             "example": "38 RUE DES HAMECONS, 75021 PARIS-21"
         },
 
@@ -904,7 +904,7 @@
             "in": "body",
             "required": true,
             "type": "string",
-            "description": "La valeur associée au code NAF de l'entreprise. Fournie par La Bonne Alternance. ",
+            "description": "La valeur associée au code NAF de l'entreprise. Fournie par La bonne alternance. ",
             "example": "Boulangerie et boulangerie-pâtisserie"
         },
 
@@ -914,7 +914,7 @@
             "in": "body",
             "required": true,
             "type": "string",
-            "description": "Le nom de la société. Fourni par La Bonne Alternance. ",
+            "description": "Le nom de la société. Fourni par La bonne alternance. ",
             "example": "Au bon pain d'antan"
         },
 
@@ -924,7 +924,7 @@
             "in": "body",
             "required": true,
             "type": "string",
-            "description": "Le siret de l'entreprise. Fourni par La Bonne Alternance. ",
+            "description": "Le siret de l'entreprise. Fourni par La bonne alternance. ",
             "example": "00004993900000"
         },
 
@@ -934,7 +934,7 @@
             "in": "body",
             "required": true,
             "type": "string",
-            "description": "Le type de société selon la nomenclature La Bonne Alternance. Fourni par La Bonne Alternance.",
+            "description": "Le type de société selon la nomenclature La bonne alternance. Fourni par La bonne alternance.",
             "example": "lba|lbb|matcha"
         }
     },
@@ -1663,7 +1663,7 @@
                     {
                         "type": "string",
                         "example": "Accueil touristique",
-                        "description": "Un nom de métier du référentiel La Bonne Alternance"
+                        "description": "Un nom de métier du référentiel La bonne alternance"
                     },
                     "description": "Un tableau des noms des métiers triés par ordre alphabétique"
                 }
