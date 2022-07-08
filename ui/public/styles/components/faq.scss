@@ -19,3 +19,12 @@
 .c-faq-answer {
   @extend .m-0;
 }
+
+.c-faq {
+  .notion-text {
+    margin-top: 1rem;
+  }
+  .notion-toggle {
+    margin-top: 1rem;
+  }
+}
