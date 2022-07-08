@@ -26,7 +26,7 @@ const FAQ = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className="c-faq">
       <NextSeo
         title="F.A.Q | La Bonne Alternance | Trouvez votre alternance"
         description="Questions fréquemment posées. Résultats entreprises, résultats formations, etc."
@@ -56,7 +56,7 @@ const FAQ = (props) => {
             <>
                 <NotionRenderer
                   recordMap={recordMapNotion}
-                  fullPage={true}
+                  fullPage={false}
                   darkMode={false}
                   disableHeader={true}
                   rootDomain={process.env.REACT_APP_BASE_URL}
