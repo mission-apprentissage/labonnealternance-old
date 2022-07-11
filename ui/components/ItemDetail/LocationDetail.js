@@ -122,11 +122,16 @@ const LocationDetail = ({ item, isCfa }) => {
         )}
 
         {item?.contact?.phone ? (
-          <div className="c-locationdetail-line mt-1">
+          <div className="c-locationdetail-line mt-1 mb-3">
             <span className="c-locationdetail-imgcontainer c-locationdetail-imgcontainer--smallphone">
               <img className="" src="/images/icons/small_phone.svg" alt="téléphone" />
             </span>
-            <span className="c-detail-sizetext">{item.contact.phone}</span>
+            <ExternalLink
+              className="c-nice-link"
+              url={`tel:${item.contact.phone}`}
+              title={item.contact.phone}
+              withPic={<img src={gotoIcon} alt={`Lien cliquable vers le numéro ${item.contact.phone}`} />}
+            />
           </div>
         ) : (
           ""
