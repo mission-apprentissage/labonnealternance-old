@@ -19,8 +19,8 @@ import ExternalLink from "@/components/externalLink";
 const APROPOS = () => (
   <div>
     <NextSeo
-      title="A propos | La Bonne Alternance | Trouvez votre alternance"
-      description="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance."
+      title="A propos | La bonne alternance | Trouvez votre alternance"
+      description="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La bonne alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance."
     />
 
     <ScrollToTop />
@@ -33,7 +33,7 @@ const APROPOS = () => (
         <div className="col-12 col-md-5">
           <h1>
             <span className="d-block c-page-title is-color-1">A propos de</span>
-            <span className="d-block c-page-title is-color-2">La Bonne Alternance</span>
+            <span className="d-block c-page-title is-color-2">La bonne alternance</span>
           </h1>
           <hr className="c-page-title-separator" align="left" />
         </div>
@@ -46,12 +46,12 @@ const APROPOS = () => (
             déposé d’offre d’emploi en alternance.
           </p>
           <p>
-            Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 6 dernières années pour vous
+            Notre algorithme La bonne alternance analyse les offres et les recrutements des 6 dernières années pour vous
             proposer les entreprises qui recrutent régulièrement en alternance (contrat d'apprentissage ou contrat de
             professionnalisation).
           </p>
 
-          <p>En complément, le service La Bonne Alternance expose les formations disponibles en apprentissage.</p>
+          <p>En complément, le service La bonne alternance expose les formations disponibles en apprentissage.</p>
 
           <p>
             Pour une meilleure lisibilité, les résultats sont affichés sur une carte et en liste.
@@ -63,7 +63,7 @@ const APROPOS = () => (
           <h2 className="c-about-title">Qui sommes-nous ?</h2>
 
           <p>
-            La Bonne Alternance est d’abord une start-up interne de Pôle emploi créée et développée par des conseillers.{" "}
+            La bonne alternance est d’abord une start-up interne de Pôle emploi créée et développée par des conseillers.{" "}
             <br />
             Reprise par la{" "}
             <ExternalLink url="https://mission-apprentissage.gitbook.io/general/" title="Mission apprentissage" /> en
@@ -71,7 +71,7 @@ const APROPOS = () => (
             en alternance.
           </p>
 
-          <h2 className="c-about-title">Les services de La Bonne Alternance</h2>
+          <h2 className="c-about-title">Les services de La bonne alternance</h2>
 
           <div className="card c-about-card c-about-card--flat mt-4">
             <div className="c-about-card__img">
