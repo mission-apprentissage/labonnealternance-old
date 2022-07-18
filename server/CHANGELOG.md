@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## 1.20.3 [01/07/2022]
+## 1.20.3 [19/07/2022]
+[LBA6-21] Augmentation quota api candidature
 [LBA6-179] CFA mandates
 
 ## 1.20.2 [28/06/2022]
