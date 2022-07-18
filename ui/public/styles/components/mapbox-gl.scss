@@ -3,13 +3,24 @@ canvas.mapboxgl-canvas:focus {
 }
 
 .mapboxgl-popup {
-  width: 300px !important;
-  max-width: 300px !important;
-  @include media-breakpoint-up(lg) {
-    width: 450px !important;
-    max-width: 450px !important;
-  }
   z-index: 2;
+
+  min-width: 200px !important;
+  max-width: 200px !important;
+  
+  @include media-breakpoint-up(sm) {
+    min-width: 300px !important;
+    max-width: 300px !important;
+  }
+  @include media-breakpoint-up(md) {
+    min-width: 400px !important;
+    max-width: 400px !important;
+  }
+  
+  @include media-breakpoint-up(lg) {
+    min-width: 600px !important;
+    max-width: 600px !important;
+  }
 }
 
 .mapboxgl-popup-content {
