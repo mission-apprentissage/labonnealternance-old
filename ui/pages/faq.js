@@ -50,7 +50,7 @@ const FAQ = (props) => {
           <div className="col-12 col-md-7">
             {isLoading ?
               <>
-                <div><Spinner />Chargement en cours...</div>
+                <div><Spinner /><span className="ml-2">Chargement en cours...</span></div>
               </>
               :
               <>
