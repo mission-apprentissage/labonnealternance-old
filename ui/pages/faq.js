@@ -27,7 +27,7 @@ const FAQ = (props) => {
   return (
     <div className="c-faq">
       <NextSeo
-        title="F.A.Q | La Bonne Alternance | Trouvez votre alternance"
+        title="F.A.Q | La bonne alternance | Trouvez votre alternance"
         description="Questions fréquemment posées. Résultats entreprises, résultats formations, etc."
       />
 

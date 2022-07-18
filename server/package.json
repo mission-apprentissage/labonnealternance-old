@@ -1,7 +1,7 @@
 {
   "name": "mna-labonnealternance-server",
   "version": "0.0.1",
-  "description": "[MNA] La Bonne Alternance",
+  "description": "[MNA] La bonne alternance",
   "repository": "https://github.com/mission-apprentissage/labonnealternance.git",
   "private": false,
   "author": "MNA",

@@ -6,7 +6,7 @@ const FormulaireIntention = () => {
   return (
     <>
       <NextSeo
-        title="Formulaire d'intention | La Bonne Alternance | Trouvez votre alternance"
+        title="Formulaire d'intention | La bonne alternance | Trouvez votre alternance"
         description="Formulaire d'intention."
       />
       <SatisfactionForm formType="intention" />
