@@ -1,14 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "components/navigation";
 import Breadcrumb from "components/breadcrumb";
 import ScrollToTop from "components/ScrollToTop";
 import { NextSeo } from "next-seo";
-
+import baseUrl from "utils/baseUrl";
+import axios from "axios";
+import { NotionRenderer } from "react-notion-x";
 import Footer from "components/footer";
+import { Spinner } from "reactstrap";
 
 const FAQ = (props) => {
+
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [recordMapNotion, setRecordMapNotion] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const notionFAQ = await axios.get(baseUrl + '/api/faq');
+      setRecordMapNotion(notionFAQ.data);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
   return (
-    <div>
+    <div className="c-faq">
       <NextSeo
         title="F.A.Q | La bonne alternance | Trouvez votre alternance"
         description="Questions fréquemment posées. Résultats entreprises, résultats formations, etc."
@@ -30,166 +48,22 @@ const FAQ = (props) => {
             <hr className="c-page-title-separator" align="left" />
           </div>
           <div className="col-12 col-md-7">
-            <h3 className="mb-3">Résultats Entreprises</h3>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question is-first">Pourquoi toutes les entreprises ne sont pas dans la liste ?</h2>
-              <p className="c-faq-answer">
-                La bonne alternance est bien plus qu'un simple annuaire. La bonne alternance effectue un ciblage
-                spécifique des entreprises à fort potentiel d'embauche afin de vous faire gagner du temps dans la
-                sélection des entreprises à démarcher. Toutes les entreprises ne sont donc pas indiquées.
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">Pourquoi certains métiers ne sont pas proposés ?</h2>
-              <p className="c-faq-answer">
-                Tout d'abord, certains métiers ne sont pas accessibles en alternance, c'est pourquoi ils ne sont pas
-                proposés. Néanmoins, la sélection d'un domaine d'activité permet d'obtenir des résultats sur des métiers
-                connexes.
-                <br />
-                Ensuite, La bonne alternance vous indique uniquement les entreprises en cours d'embauche ou à fort
-                potentiel d'embauche en fonction du métier sélectionné ; parfois (mais cela reste rare) l'algorithme ne
-                détecte malheureusement pas d'entreprise à fort potentiel d'embauche et il n'y a pas non plus d'offre
-                d'emploi en cours de diffusion pour le métier concerné.
-                <br />
-                Enfin, La bonne alternance utilise le Répertoire Opérationnel des Métiers et des Emplois (ROME). Seuls
-                les métiers et appellations présents dans ce répertoire sont disponibles.
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">Si je candidate auprès d’une entreprise affichée sur La bonne alternance, suis-je obligé de suivre une formation dans un organisme proposé par La bonne alternance ?</h2>
-              <p className="c-faq-answer">
-                Non, il n’y a pas d’obligation : vous pouvez indépendamment postuler dans une des entreprises affichées par La bonne alternance et suivre une formation dans l’organisme de votre choix, même s’il n’est pas affiché sur La bonne alternance.
-                <br />
-                En effet, même si la plupart le font, certains organismes de formations choisissent de ne pas se référencer dans la base nationale des formations en apprentissage.
-                <br />
-                Précision utile : certains Centres de Formation des Apprentis (CFA) sont des CFA d’entreprise : postuler auprès d’une entreprise liée à ce type de CFA implique obligatoirement de suivre la formation dans ce CFA.
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">Comment est calculée la distance indiquée ?</h2>
-              <p className="c-faq-answer">
-                Les distances indiquées sont les distances à vol d'oiseau. Si vous constatez tout de même une erreur,
-                vous pouvez nous la signaler grâce au lien <a href="/contact">"contact"</a>  en bas de l'écran.
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">
-                Pourquoi il n'y a pas toujours de précisions sur les profils recherchés ?
-              </h2>
-              <p className="c-faq-answer">
-                La bonne alternance centralise deux types de résultats :<br />
-                <ul>
-                  <li>
-                    les offres d'emploi en apprentissage (les offres en contrat de professionnalisation ne sont pour le
-                    moment pas disponibles)
-                  </li>
-                  <li>
-                    les entreprises à fort potentiel d'embauche qui n'ont pas d'offre d'emploi en cours de diffusion. Il
-                    s'agit d'entreprises ciblées auprès desquelles vous pouvez envoyer des candidatures spontanées. Ces
-                    dernières ne présentent pas d'information spécifiques sur les profils recherchés.
-                  </li>
-                </ul>
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">Pourquoi manque-t-il parfois le bouton d'envoi d'une candidature ?</h2>
-              <p className="c-faq-answer">
-                La bonne alternance vous propose la fonctionnalité d'envoi de candidature uniquement lorsque nous disposons de l'email de contact de l'entreprise.
-                <br />
-                Si ce bouton n'est pas présent, nous vous invitons à prendre contact avec l'entreprise par un autre moyen (téléphone, visite sur place ou prise de contact sur le site web de l'entreprise).
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">
-                J'ai une suggestion d'amélioration de La bonne alternance, comment puis-je vous la transmettre ?
-              </h2>
-              <p className="c-faq-answer">
-                Merci de nous aider à améliorer le service ! Vous pouvez nous transmettre vos suggestions grâce au lien <a href="/contact">"contact"</a> situé en bas de cet écran.
-              </p>
-            </div>
-            <h3 className="mt-5 mb-3">Résultats Formations</h3>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">Pourquoi toutes les formations ne sont pas dans la liste ?</h2>
-              <p className="c-faq-answer">
-                La bonne alternance répertorie uniquement les formations en apprentissage. <br />
-                Les formations présentes dans La bonne alternance sont celles que les organismes ont référencées.
-                <br />
-                Si vous êtes un organisme de formation et que vous souhaitez référencer une formation en apprentissage
-                sur La bonne alternance, rendez-vous sur votre espace "Organisme de Formation" en haut de page.
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">
-                Pourquoi le bouton pour prendre rendez-vous avec l'organisme de formation n'est pas toujours présent ?
-              </h2>
-              <p className="c-faq-answer">
-                Le bouton "Prendre rendez-vous" est présent uniquement sur les organismes de formation pour lesquels nous disposons d'une adresse email. 
-                <br />
-                Lorsque ce bouton n'est pas présent, vous pouvez entrer en contact avec l'établissement par un autre moyen (téléphone, visite sur place, ou prise de contact sur le site web de l'établissement).
-                <br />
-                Si vous êtes un organisme de formation et que vous souhaitez la mise en place du bouton de prise de rendez-vous sur tout ou partie de vos formations et sur tout ou partie des plateformes qui le proposent, <a href="mailto:rdv_apprentissage@apprentissage.beta.gouv.fr">contactez-nous</a>.
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">
-                Toutes les formations disponibles dans La bonne alternance sont-elles aussi référencées sur Parcoursup et/ou Affelnet ?
-              </h2>
-              <p className="c-faq-answer">
-                Pour figurer sur La bonne alternance, les organismes doivent référencer leurs formations auprès du Carif-Oref. Les conditions d'inscription sur Parcoursup ou Affelnet sont propres à ces plateformes et consultables <a href="https://catalogue.apprentissage.beta.gouv.fr/guide-reglementaire">ici</a>
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">
-                Pourquoi les formations proposées ne correspondent pas au lieu de ma recherche ?
-              </h2>
-              <p className="c-faq-answer">
-                Quand il n'y a pas de formation existante par rapport au domaine et à la zone géographique sélectionnée,
-                nous vous affichons la formation correspondant au domaine sélectionné la plus proche de la localisation.
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">
-                Pourquoi je ne retrouve pas le métier recherché dans la liste proposée ?
-              </h2>
-              <p className="c-faq-answer">
-                Lorsque vous renseignez un mot clé, un métier, un domaine ou même un endroit (par exemple : crèche), La
-                Bonne Alternance vous propose des domaines derrière lesquels se trouvent le mot-clé, le métier que vous
-                avez renseigné (ainsi, si vous renseignez le mot "bébé", nous vous proposons de sélectionner le domaine
-                "assistance auprès d'enfants, puériculture", qui correspond aux métiers qui sont en lien avec les
-                bébés).
-                <br />
-                Nous analysons régulièrement les termes de recherche qui n'ont pas permis d'afficher un domaine à
-                sélectionner afin d'enrichir la liste de mots-clés.
-                <br />
-                Un domaine peut regrouper un ou plusieurs métiers.
-                <br />
-                Nous essayons d'améliorer cette liste de domaines avec des intitulés compréhensibles des utilisateurs :
-                si vous avez une suggestion d'amélioration, vous pouvez nous la transmettre grâce au lien <a href="/contact">"contact"</a>                situé en bas de l'écran.
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">Pourquoi il y a parfois plusieurs fois le même intitulé de formation ?</h2>
-              <p className="c-faq-answer">
-                Dans la base de données des formations en apprentissage, il manque parfois une information sur le code
-                postal exact des lieux de formation pour un même établissement. Dans ce cas, nous affichons la localité
-                de l'établissement qui gère l'ensemble des lieux : cela peut conduire à des doublons que nous corrigeons
-                au fur et à mesure.
-                <br />
-                De la même manière, il existe parfois deux résultats en apparence identiques mais qui correspondent en
-                fait à la 1ère année et la 2ème année du même diplôme. Nous corrigeons également ces cas de figure au
-                fur et à mesure.
-              </p>
-            </div>
-            <div className="c-faq-question-block">
-              <h2 className="c-faq-question">
-                Pourquoi le détail des formations ne mentionne pas certaines informations (rythme de la formation,
-                descriptif, …) ?
-              </h2>
-              <p className="c-faq-answer">
-                Le site La bonne alternance évolue en continu. Nous travaillons à alimenter les informations au fur et à
-                mesure de leur disponibilité. Le contenu est donc susceptible d'évoluer et de s'enrichir par la suite.
-              </p>
-            </div>
+            {isLoading ?
+              <>
+                <div><Spinner />Chargement en cours...</div>
+              </>
+              :
+              <>
+                <NotionRenderer
+                  recordMap={recordMapNotion}
+                  fullPage={false}
+                  darkMode={false}
+                  disableHeader={true}
+                  rootDomain={process.env.REACT_APP_BASE_URL}
+                  bodyClassName="notion-body"
+                />
+              </>
+            }
           </div>
         </div>
       </div>
