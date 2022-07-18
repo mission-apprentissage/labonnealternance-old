@@ -3,6 +3,7 @@ const Sentry = require("@sentry/node");
 const path = require("path");
 const { ObjectId } = require("mongodb");
 const { prepareMessageForMail } = require("../common/utils/fileUtils");
+const { manageApiError } = require("../common/utils/errorManager");
 const { encryptIdWithIV, decryptWithIV } = require("../common/utils/encryptString");
 const { Application, EmailBlacklist, BonnesBoites } = require("../common/model");
 const updateSendinblueBlockedEmails = require("../jobs/updateSendinblueBlockedEmails/updateSendinblueBlockedEmails");
@@ -233,6 +234,14 @@ const sendApplication = async ({ mailer, query, referer, shouldCheckSecret }) =>
     } catch (err) {
       logger.error(`Error sending application. Reason : ${err}`);
       Sentry.captureException(err);
+      if (query?.caller) {
+        manageApiError({
+          error: err,
+          api: "applicationV1",
+          caller: query.caller,
+          errorTitle: "error_sending_application",
+        });
+      }
       return { error: "error_sending_application" };
     }
   }
