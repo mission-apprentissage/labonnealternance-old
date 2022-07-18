@@ -20,8 +20,8 @@ const handleTagCo = (e) => {
 const Cookies = () => (
   <div>
     <NextSeo
-      title="Cookies | La Bonne Alternance | Trouvez votre alternance"
-      description="Politique de confidentialité, traitement des données à caractère personnel sur le site de La Bonne Alternance."
+      title="Cookies | La bonne alternance | Trouvez votre alternance"
+      description="Politique de confidentialité, traitement des données à caractère personnel sur le site de La bonne alternance."
     />
 
     <ScrollToTop />
@@ -65,7 +65,7 @@ const Cookies = () => (
           <p className="mt-3">
             <span className="d-block">
               Des cookies sont utilisés sur le site{" "}
-              <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La Bonne Alternance" /> permettre le
+              <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La bonne alternance" /> permettre le
               bon fonctionnement du site internet et l’utilisation des principales fonctionnalités du site.
             </span>
           </p>
@@ -87,7 +87,7 @@ const Cookies = () => (
           <p>
             <span className="d-block">
               Des cookies sont utilisés sur le site{" "}
-              <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La Bonne Alternance" /> afin
+              <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La bonne alternance" /> afin
               d’effectuer de la mesure d’audience, des analyses statistiques dans le but d'améliorer l'expérience
               utilisateur et la performance du site internet. Ces cookies sont déposés par des tiers pour le compte de
               Pôle emploi.
@@ -129,7 +129,7 @@ const Cookies = () => (
               gestion diffèrent selon que le cookie est soumis ou non à consentement préalable. L’utilisateur peut
               modifier ses choix à tout moment. Pour information, le paramétrage des cookies est susceptible de modifier
               les conditions de navigation sur le site internet{" "}
-              <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La Bonne Alternance" />, ainsi que
+              <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La bonne alternance" />, ainsi que
               les conditions d’accès à certains services et d’entrainer des dysfonctionnements de certaines
               fonctionnalités.
             </span>

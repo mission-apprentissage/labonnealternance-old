@@ -12,8 +12,8 @@ const CGU = (props) => {
   return (
     <div>
       <NextSeo
-        title="Conditions générales d'utilisation | La Bonne Alternance | Trouvez votre alternance"
-        description="Conditions générales d’utilisation de La Bonne Alternance."
+        title="Conditions générales d'utilisation | La bonne alternance | Trouvez votre alternance"
+        description="Conditions générales d’utilisation de La bonne alternance."
       />
 
       <ScrollToTop />
@@ -33,10 +33,10 @@ const CGU = (props) => {
           </div>
           <div className="col-12 col-md-7">
             <p className="mb-3">Dernière mise à jour le : 12/04/2021</p>
-            <h3 className="mb-3">Conditions générales d’utilisation de La Bonne Alternance</h3>
+            <h3 className="mb-3">Conditions générales d’utilisation de La bonne alternance</h3>
             <p>
-              Les présentes conditions générales d’utilisation (dites « CGU ») fixent le cadre juridique de La Bonne
-              Alternance et définissent les conditions d’accès et d’utilisation des services par l’Utilisateur.
+              Les présentes conditions générales d’utilisation (dites « CGU ») fixent le cadre juridique de La bonne
+              alternance et définissent les conditions d’accès et d’utilisation des services par l’Utilisateur.
             </p>
             <section>
               <h2 className="c-faq-question mt-2">Article 1 - Champ d’application</h2>
@@ -63,7 +63,7 @@ const CGU = (props) => {
             <section>
               <h2 className="c-faq-question mt-2">Article 3 – Définitions</h2>
               <p>L’Utilisateur est toute personne qui utilise le site.</p>
-              <p>Les services sont l’ensemble des services proposés par La Bonne Alternance.</p>
+              <p>Les services sont l’ensemble des services proposés par La bonne alternance.</p>
               <p>
                 Le responsable de traitement : est la personne qui, au sens de l’article du règlement (UE) n°2016/679 du
                 Parlement européen et du Conseil du 27 avril 2016 relatif à la protection des personnes physiques à du
@@ -98,7 +98,7 @@ const CGU = (props) => {
               </p>
               <p>
                 Elle peut également demander la modification/suppression des informations communiquées (ex. coordonnées)
-                sur le site La Bonne Alternance en remplissant le{" "}
+                sur le site La bonne alternance en remplissant le{" "}
                 <ExternalLink
                   url="https://labonneboite.pole-emploi.fr/informations-entreprise/action"
                   title="formulaire recruteur"
@@ -109,7 +109,7 @@ const CGU = (props) => {
                 <strong>Envoi de candidature</strong>
               </p>
               <p>
-                Le service La Bonne Alternance permet à des personnes à la recherche d’une alternance d’envoyer des
+                Le service La bonne alternance permet à des personnes à la recherche d’une alternance d’envoyer des
                 candidatures directement à partir du site internet{" "}
                 <ExternalLink
                   url="https://labonnealternance.pole-emploi.fr/"
@@ -121,7 +121,7 @@ const CGU = (props) => {
               <p>
                 Pour envoyer sa candidature, l’utilisateur complète un formulaire (nom, prénom, coordonnées, CV, lettre
                 de motivation). La candidature est envoyée à l’entreprise. Hormis les pièces jointes, le détail de
-                chaque candidature est stocké par La Bonne Alternance pendant 12 mois. En outre, les recruteurs peuvent
+                chaque candidature est stocké par La bonne alternance pendant 12 mois. En outre, les recruteurs peuvent
                 télécharger les pièces jointes à la candidature, comme le CV, et les conserver au sein de leur système
                 d’information.
               </p>
@@ -132,7 +132,7 @@ const CGU = (props) => {
                 <strong>5.1 L’éditeur du Site</strong>
               </p>
               <p>
-                Les sources des informations diffusées sur le site sont réputées fiables mais La Bonne Alternance ne
+                Les sources des informations diffusées sur le site sont réputées fiables mais La bonne alternance ne
                 garantit pas qu’il soit exempt de défauts, d’erreurs ou d’omissions.
               </p>
               <p>
@@ -178,7 +178,7 @@ const CGU = (props) => {
               <h2 className="c-faq-question mt-2">Article 6 - Protection des données à caractère personnel</h2>
               <p>
                 L’utilisation du moteur de recherche disponible sur le site internet{" "}
-                <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La Bonne Alternance" /> nécessite
+                <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La bonne alternance" /> nécessite
                 d’indiquer le(s) métier(s) recherché(s), le périmètre géographique souhaité et de manière facultative le
                 niveau d’études. Ces données sont collectées et traitées par Pôle emploi dans le but de fournir, à la
                 requête de l’utilisateur, la liste des entreprises ou organismes ayant un potentiel d’embauche dans un
@@ -189,7 +189,7 @@ const CGU = (props) => {
               <p>
                 Les données à caractère personnel de l’utilisateur mentionnées ci-dessus sont destinées aux agents de
                 Pôle emploi en charge du service de{" "}
-                <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La Bonne Alternance" />.
+                <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La bonne alternance" />.
               </p>
               <p>
                 Pôle emploi traite également des données relatives aux entreprises qui peuvent concerner directement des
@@ -199,7 +199,7 @@ const CGU = (props) => {
               <p>
                 Les coordonnées de contact mentionnées ci-dessus sont destinées aux agents de Pôle emploi en charge du
                 service et aux utilisateurs du service de{" "}
-                <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La Bonne Alternance" />.
+                <ExternalLink url="https://labonnealternance.pole-emploi.fr/" title="La bonne alternance" />.
               </p>
               <p>Les données traitées sont conservées pour une durée de 13 mois.</p>
               <p>
@@ -231,9 +231,9 @@ const CGU = (props) => {
             <section>
               <h2 className="c-faq-question mt-2">Article 8 - Propriété intellectuelle</h2>
               <p>
-                Les marques Pôle emploi et La Bonne Alternance sont protégées au titre des articles L.712-1 et suivants
+                Les marques Pôle emploi et La bonne alternance sont protégées au titre des articles L.712-1 et suivants
                 du code de la propriété intellectuelle. Toute représentation, reproduction ou diffusion, intégrale ou
-                partielle de la marque Pôle emploi et/ou de la marque La Bonne Alternance, sur quelque support que ce
+                partielle de la marque Pôle emploi et/ou de la marque La bonne alternance, sur quelque support que ce
                 soit, sans l'autorisation expresse et préalable de Pôle emploi constitue un acte de contrefaçon,
                 sanctionné en application de l’article L.716-1 du même code.
                 <br />

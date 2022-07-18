@@ -9,7 +9,7 @@ import ExternalLink from "@/components/externalLink";
 const MentionsLegales = () => (
   <div>
     <NextSeo
-      title="Mentions Légales | La Bonne Alternance | Trouvez votre alternance"
+      title="Mentions Légales | La bonne alternance | Trouvez votre alternance"
       description="Mentions légales du site."
     />
     <ScrollToTop />
@@ -29,7 +29,7 @@ const MentionsLegales = () => (
           <p className="mb-3">Dernière mise à jour le : 06/04/2021</p>
           <h3>Éditeur du site</h3>
           <p>
-            Le site La Bonne Alternance est édité par Pôle Emploi, situé :<br />
+            Le site La bonne alternance est édité par Pôle Emploi, situé :<br />
             15 avenue du Docteur Gley
             <br />
             75987 Paris cedex 20
@@ -75,7 +75,7 @@ const MentionsLegales = () => (
             l'ensemble des informations fournies par ces services.
           </p>
           <p>
-            Le site La Bonne Alternance est en cours d'optimisation afin de le rendre conforme au{" "}
+            Le site La bonne alternance est en cours d'optimisation afin de le rendre conforme au{" "}
             <ExternalLink url="https://www.numerique.gouv.fr/publications/rgaa-accessibilite" title="RGAA v3" />. La
             déclaration de conformité sera publiée ultérieurement.
           </p>
@@ -98,7 +98,7 @@ const MentionsLegales = () => (
 
           <h3>Améliorations et contact</h3>
           <p>
-            L'équipe de La Bonne Alternance reste à votre écoute et entière disposition, si vous souhaitez nous signaler
+            L'équipe de La bonne alternance reste à votre écoute et entière disposition, si vous souhaitez nous signaler
             le moindre défaut de conception.
           </p>
 
