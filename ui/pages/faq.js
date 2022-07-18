@@ -153,7 +153,7 @@ const FAQ = (props) => {
               </h2>
               <p className="c-faq-answer">
                 Lorsque vous renseignez un mot clé, un métier, un domaine ou même un endroit (par exemple : crèche), La
-                Bonne Alternance vous propose des domaines derrière lesquels se trouvent le mot-clé, le métier que vous
+                bonne alternance vous propose des domaines derrière lesquels se trouvent le mot-clé, le métier que vous
                 avez renseigné (ainsi, si vous renseignez le mot "bébé", nous vous proposons de sélectionner le domaine
                 "assistance auprès d'enfants, puériculture", qui correspond aux métiers qui sont en lien avec les
                 bébés).
