@@ -8,6 +8,7 @@ const tryCatch = require("./middlewares/tryCatchMiddleware");
 const corsMiddleware = require("./middlewares/corsMiddleware");
 const packageJson = require("../../package.json");
 const rome = require("./routes/rome");
+const faq = require("./routes/faq");
 const updateRomesMetiers = require("./routes/updateRomesMetiers");
 const updateFormations = require("./routes/updateFormations");
 const updateDiplomesMetiers = require("./routes/updateDiplomesMetiers");
@@ -95,6 +96,8 @@ module.exports = async (components) => {
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   app.use("/api/version", limiter3PerSecond, version());
+
+  app.use("/api/faq", limiter5PerSecond, faq());
 
   app.use("/api/error500", limiter3PerSecond, error500());
 

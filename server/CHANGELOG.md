@@ -7,6 +7,7 @@
 [LBA6-197] appariement
 [LBA6-225] Téléphone cliquable
 [LBA6-252] Normalisation nom La bonne alternance
+[LBA6-194] FAQ sur Notion
 
 ## 1.20.2 [28/06/2022]
 [LBA6-177] Fix centrage sur éléments sur mobile
