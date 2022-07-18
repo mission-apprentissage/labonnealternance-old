@@ -159,7 +159,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ""
         )}
 
-        {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
+        {kind === "formation" ? <TrainingDetail training={selectedItem} hasAlsoJob={hasAlsoJob} /> : ""}
 
         {amongst(kind, ["lbb", "lba"]) ? (
           <div className="c-needHelp">
