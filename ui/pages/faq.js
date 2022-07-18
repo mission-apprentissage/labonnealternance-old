@@ -10,7 +10,7 @@ const FAQ = (props) => {
   return (
     <div>
       <NextSeo
-        title="F.A.Q | La Bonne Alternance | Trouvez votre alternance"
+        title="F.A.Q | La bonne alternance | Trouvez votre alternance"
         description="Questions fréquemment posées. Résultats entreprises, résultats formations, etc."
       />
 
@@ -34,7 +34,7 @@ const FAQ = (props) => {
             <div className="c-faq-question-block">
               <h2 className="c-faq-question is-first">Pourquoi toutes les entreprises ne sont pas dans la liste ?</h2>
               <p className="c-faq-answer">
-                La Bonne Alternance est bien plus qu'un simple annuaire. La Bonne Alternance effectue un ciblage
+                La bonne alternance est bien plus qu'un simple annuaire. La bonne alternance effectue un ciblage
                 spécifique des entreprises à fort potentiel d'embauche afin de vous faire gagner du temps dans la
                 sélection des entreprises à démarcher. Toutes les entreprises ne sont donc pas indiquées.
               </p>
@@ -46,19 +46,19 @@ const FAQ = (props) => {
                 proposés. Néanmoins, la sélection d'un domaine d'activité permet d'obtenir des résultats sur des métiers
                 connexes.
                 <br />
-                Ensuite, La Bonne Alternance vous indique uniquement les entreprises en cours d'embauche ou à fort
+                Ensuite, La bonne alternance vous indique uniquement les entreprises en cours d'embauche ou à fort
                 potentiel d'embauche en fonction du métier sélectionné ; parfois (mais cela reste rare) l'algorithme ne
                 détecte malheureusement pas d'entreprise à fort potentiel d'embauche et il n'y a pas non plus d'offre
                 d'emploi en cours de diffusion pour le métier concerné.
                 <br />
-                Enfin, La Bonne Alternance utilise le Répertoire Opérationnel des Métiers et des Emplois (ROME). Seuls
+                Enfin, La bonne alternance utilise le Répertoire Opérationnel des Métiers et des Emplois (ROME). Seuls
                 les métiers et appellations présents dans ce répertoire sont disponibles.
               </p>
             </div>
             <div className="c-faq-question-block">
-              <h2 className="c-faq-question">Si je candidate auprès d’une entreprise affichée sur La Bonne Alternance, suis-je obligé de suivre une formation dans un organisme proposé par La Bonne Alternance ?</h2>
+              <h2 className="c-faq-question">Si je candidate auprès d’une entreprise affichée sur La bonne alternance, suis-je obligé de suivre une formation dans un organisme proposé par La bonne alternance ?</h2>
               <p className="c-faq-answer">
-                Non, il n’y a pas d’obligation : vous pouvez indépendamment postuler dans une des entreprises affichées par La Bonne Alternance et suivre une formation dans l’organisme de votre choix, même s’il n’est pas affiché sur La Bonne Alternance.
+                Non, il n’y a pas d’obligation : vous pouvez indépendamment postuler dans une des entreprises affichées par La bonne alternance et suivre une formation dans l’organisme de votre choix, même s’il n’est pas affiché sur La bonne alternance.
                 <br />
                 En effet, même si la plupart le font, certains organismes de formations choisissent de ne pas se référencer dans la base nationale des formations en apprentissage.
                 <br />
@@ -77,7 +77,7 @@ const FAQ = (props) => {
                 Pourquoi il n'y a pas toujours de précisions sur les profils recherchés ?
               </h2>
               <p className="c-faq-answer">
-                La Bonne Alternance centralise deux types de résultats :<br />
+                La bonne alternance centralise deux types de résultats :<br />
                 <ul>
                   <li>
                     les offres d'emploi en apprentissage (les offres en contrat de professionnalisation ne sont pour le
@@ -94,14 +94,14 @@ const FAQ = (props) => {
             <div className="c-faq-question-block">
               <h2 className="c-faq-question">Pourquoi manque-t-il parfois le bouton d'envoi d'une candidature ?</h2>
               <p className="c-faq-answer">
-                La Bonne Alternance vous propose la fonctionnalité d'envoi de candidature uniquement lorsque nous disposons de l'email de contact de l'entreprise.
+                La bonne alternance vous propose la fonctionnalité d'envoi de candidature uniquement lorsque nous disposons de l'email de contact de l'entreprise.
                 <br />
                 Si ce bouton n'est pas présent, nous vous invitons à prendre contact avec l'entreprise par un autre moyen (téléphone, visite sur place ou prise de contact sur le site web de l'entreprise).
               </p>
             </div>
             <div className="c-faq-question-block">
               <h2 className="c-faq-question">
-                J'ai une suggestion d'amélioration de La Bonne Alternance, comment puis-je vous la transmettre ?
+                J'ai une suggestion d'amélioration de La bonne alternance, comment puis-je vous la transmettre ?
               </h2>
               <p className="c-faq-answer">
                 Merci de nous aider à améliorer le service ! Vous pouvez nous transmettre vos suggestions grâce au lien <a href="/contact">"contact"</a> situé en bas de cet écran.
@@ -111,11 +111,11 @@ const FAQ = (props) => {
             <div className="c-faq-question-block">
               <h2 className="c-faq-question">Pourquoi toutes les formations ne sont pas dans la liste ?</h2>
               <p className="c-faq-answer">
-                La Bonne Alternance répertorie uniquement les formations en apprentissage. <br />
-                Les formations présentes dans La Bonne Alternance sont celles que les organismes ont référencées.
+                La bonne alternance répertorie uniquement les formations en apprentissage. <br />
+                Les formations présentes dans La bonne alternance sont celles que les organismes ont référencées.
                 <br />
                 Si vous êtes un organisme de formation et que vous souhaitez référencer une formation en apprentissage
-                sur La Bonne Alternance, rendez-vous sur votre espace "Organisme de Formation" en haut de page.
+                sur La bonne alternance, rendez-vous sur votre espace "Organisme de Formation" en haut de page.
               </p>
             </div>
             <div className="c-faq-question-block">
@@ -132,10 +132,10 @@ const FAQ = (props) => {
             </div>
             <div className="c-faq-question-block">
               <h2 className="c-faq-question">
-                Toutes les formations disponibles dans La Bonne Alternance sont-elles aussi référencées sur Parcoursup et/ou Affelnet ?
+                Toutes les formations disponibles dans La bonne alternance sont-elles aussi référencées sur Parcoursup et/ou Affelnet ?
               </h2>
               <p className="c-faq-answer">
-                Pour figurer sur La Bonne Alternance, les organismes doivent référencer leurs formations auprès du Carif-Oref. Les conditions d'inscription sur Parcoursup ou Affelnet sont propres à ces plateformes et consultables <a href="https://catalogue.apprentissage.beta.gouv.fr/guide-reglementaire">ici</a>
+                Pour figurer sur La bonne alternance, les organismes doivent référencer leurs formations auprès du Carif-Oref. Les conditions d'inscription sur Parcoursup ou Affelnet sont propres à ces plateformes et consultables <a href="https://catalogue.apprentissage.beta.gouv.fr/guide-reglementaire">ici</a>
               </p>
             </div>
             <div className="c-faq-question-block">
@@ -186,7 +186,7 @@ const FAQ = (props) => {
                 descriptif, …) ?
               </h2>
               <p className="c-faq-answer">
-                Le site La Bonne Alternance évolue en continu. Nous travaillons à alimenter les informations au fur et à
+                Le site La bonne alternance évolue en continu. Nous travaillons à alimenter les informations au fur et à
                 mesure de leur disponibilité. Le contenu est donc susceptible d'évoluer et de s'enrichir par la suite.
               </p>
             </div>

@@ -24,7 +24,7 @@ export default function ForTown(props) {
   return (
     <div>
       <NextSeo
-        title={`Tous les emplois et formations en alternance en ${currentJob.name} à ${currentTown.name} | La Bonne Alternance | Trouvez votre alternance`}
+        title={`Tous les emplois et formations en alternance en ${currentJob.name} à ${currentTown.name} | La bonne alternance | Trouvez votre alternance`}
         description={`Chercher des emplois et formations en alternance pour le métier ${currentJob.name} dans la ville de ${currentTown.name}`}
       />
       <Navigation />
@@ -49,7 +49,7 @@ export default function ForTown(props) {
           <i>{currentTown.name}</i> ?
         </p>
         <p>
-          Cliquez sur "lancer cette recherche" pour accéder aux résultats que La Bonne Alternance a trouvés pour vous !
+          Cliquez sur "lancer cette recherche" pour accéder aux résultats que La bonne alternance a trouvés pour vous !
         </p>
 
         <a href={buildLinkForTownAndJob(currentTown, currentJob)} className="btn btn-primary mt-3">
