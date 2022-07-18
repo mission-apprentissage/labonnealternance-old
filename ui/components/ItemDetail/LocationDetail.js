@@ -193,7 +193,7 @@ const LocationDetail = ({ item, isCfa }) => {
               <span className="c-detail-sizetext mb-0">
                 En savoir plus sur&nbsp;
                 <ExternalLink
-                  className="c-detail-google-search gtmGoogleLink"
+                  className="c-nice-link gtmGoogleLink"
                   url={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
                   title={item.company.name}
                   withPic={<img className="mt-n1" src="/images/square_link.svg" alt="lien" />}
