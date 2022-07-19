@@ -20,8 +20,8 @@ const RechercheApprentissage = () => {
   return (
     <>
       <NextSeo
-        title="Recherche d'apprentissage | La Bonne Alternance | Trouvez votre alternance"
-        description="Recherche d'apprentissage sur le site de La Bonne Alternance"
+        title="Recherche d'apprentissage | La bonne alternance | Trouvez votre alternance"
+        description="Recherche d'apprentissage sur le site de La bonne alternance"
       />
       <Head>
         <link

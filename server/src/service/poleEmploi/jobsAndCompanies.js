@@ -131,7 +131,6 @@ const getJobsFromApi = async ({ query, api }) => {
             longitude: query.longitude,
             radius: parseInt(query.radius),
             api,
-            referer: query.referer,
             caller: query.caller,
             opco: query.opco,
           })

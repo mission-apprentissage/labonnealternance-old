@@ -122,11 +122,16 @@ const LocationDetail = ({ item, isCfa }) => {
         )}
 
         {item?.contact?.phone ? (
-          <div className="c-locationdetail-line mt-1">
+          <div className="c-locationdetail-line mt-1 mb-3">
             <span className="c-locationdetail-imgcontainer c-locationdetail-imgcontainer--smallphone">
               <img className="" src="/images/icons/small_phone.svg" alt="téléphone" />
             </span>
-            <span className="c-detail-sizetext">{item.contact.phone}</span>
+            <ExternalLink
+              className="c-nice-link"
+              url={`tel:${item.contact.phone}`}
+              title={item.contact.phone}
+              withPic={<img src={gotoIcon} alt={`Lien cliquable vers le numéro ${item.contact.phone}`} />}
+            />
           </div>
         ) : (
           ""
@@ -188,7 +193,7 @@ const LocationDetail = ({ item, isCfa }) => {
               <span className="c-detail-sizetext mb-0">
                 En savoir plus sur&nbsp;
                 <ExternalLink
-                  className="c-detail-google-search gtmGoogleLink"
+                  className="c-nice-link gtmGoogleLink"
                   url={`https://www.google.fr/search?q=${getGoogleSearchParameters()}`}
                   title={item.company.name}
                   withPic={<img className="mt-n1" src="/images/square_link.svg" alt="lien" />}

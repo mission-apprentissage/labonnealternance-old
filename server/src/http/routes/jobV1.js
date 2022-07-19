@@ -50,7 +50,6 @@ module.exports = () => {
     tryCatch(async (req, res) => {
       const result = await matchaApi.getMatchaJobById({
         id: req.params.id,
-        referer: req.headers.referer,
         caller: req.query.caller,
       });
 

@@ -19,7 +19,7 @@ const Organisme = (props) => {
   return (
     <div>
       <NextSeo
-        title="Organisme de formation | La Bonne Alternance | Trouvez votre alternance"
+        title="Organisme de formation | La bonne alternance | Trouvez votre alternance"
         description="Comment référencer ma formation ? Nous sommes là pour vous aider."
       />
 

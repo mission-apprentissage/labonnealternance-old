@@ -37,6 +37,11 @@
   display: block;
 }
 .demoPage .floatingButtons {
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
+}
+.demoPage .floatingButtons.is-hidden-true {
   display: none;
 }
 
@@ -73,9 +78,14 @@
     display: none;
   }
   .demoPage .floatingButtons {
-    display: block;
+    &.is-hidden-true {
+      display: none;
+    }
+    &.is-hidden-false {
+      display: block;
+    }
     position: fixed;
-    bottom: 72px;
+    bottom: 22px;
     left: 50%;
     transform: translateX(-40%);
   }

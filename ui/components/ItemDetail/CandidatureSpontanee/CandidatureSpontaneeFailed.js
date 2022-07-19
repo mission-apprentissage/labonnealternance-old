@@ -34,7 +34,7 @@ const CandidatureSpontaneeFailed = ({ sendingState }) => {
             </div>
           </div>
           <div className="c-candidature-worked-text mt-3 mb-5">
-            Les adresses emails temporaires ne sont pas acceptées pour envoyer des candidatures via La Bonne Alternance.
+            Les adresses emails temporaires ne sont pas acceptées pour envoyer des candidatures via La bonne alternance.
             <br />
             Merci d'utiliser une adresse email permanente
           </div>

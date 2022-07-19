@@ -4,7 +4,6 @@ const config = require("config");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const { manageApiError } = require("../common/utils/errorManager");
 const { encryptMailWithIV } = require("../common/utils/encryptString");
-const { isAllowedSource } = require("../common/utils/isAllowedSource");
 const filterJobsByOpco = require("./filterJobsByOpco");
 const matchaApiEndpoint = `https://matcha${
   config.env === "production" ? "" : "-recette"
@@ -14,7 +13,7 @@ const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
 const coordinatesOfFrance = [2.213749, 46.227638];
 
-const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, caller, referer }) => {
+const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, caller }) => {
   try {
     const hasLocation = latitude === undefined ? false : true;
 
@@ -29,7 +28,7 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, ca
 
     const jobs = await axios.post(`${matchaSearchEndPoint}`, params);
 
-    let matchas = transformMatchaJobsForIdea({ jobs: jobs.data, caller, referer });
+    let matchas = transformMatchaJobsForIdea({ jobs: jobs.data, caller });
 
     // filtrage sur l'opco
     if (opco) {
@@ -47,19 +46,16 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, ca
 };
 
 // update du contenu avec des résultats pertinents par rapport au rayon
-const transformMatchaJobsForIdea = ({ jobs, caller, referer }) => {
+const transformMatchaJobsForIdea = ({ jobs, caller }) => {
   let resultJobs = {
     results: [],
   };
 
   if (jobs && jobs.length) {
-    const contactAllowedOrigin = isAllowedSource({ referer, caller });
-
     for (let i = 0; i < jobs.length; ++i) {
       let companyJobs = transformMatchaJobForIdea({
         job: jobs[i]._source,
         distance: jobs[i].sort[0],
-        contactAllowedOrigin,
         caller,
       });
       companyJobs.map((job) => resultJobs.results.push(job));
@@ -69,12 +65,11 @@ const transformMatchaJobsForIdea = ({ jobs, caller, referer }) => {
   return resultJobs;
 };
 
-const getMatchaJobById = async ({ id, referer, caller }) => {
+const getMatchaJobById = async ({ id, caller }) => {
   try {
     const jobs = await axios.get(`${matchaJobEndPoint}/${id}`);
     const job = transformMatchaJobForIdea({
       job: jobs.data,
-      contactAllowedOrigin: isAllowedSource({ referer, caller }),
       caller,
     });
 
@@ -89,7 +84,7 @@ const getMatchaJobById = async ({ id, referer, caller }) => {
 };
 
 // Adaptation au modèle Idea et conservation des seules infos utilisées des offres
-const transformMatchaJobForIdea = ({ job, distance, caller, contactAllowedOrigin }) => {
+const transformMatchaJobForIdea = ({ job, distance, caller }) => {
   let resultJobs = [];
 
   job.offres.map((offre, idx) => {
@@ -97,9 +92,7 @@ const transformMatchaJobForIdea = ({ job, distance, caller, contactAllowedOrigin
 
     let email = {};
 
-    if (contactAllowedOrigin) {
-      email = encryptMailWithIV({ value: job.email, caller });
-    }
+    email = encryptMailWithIV({ value: job.email, caller });
 
     resultJob.id = `${job.id_form}-${idx}`;
     resultJob.title = offre.libelle;

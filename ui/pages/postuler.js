@@ -7,8 +7,8 @@ const Postuler = () => {
   return (
     <>
       <NextSeo
-        title="Recherche d'emploi | La Bonne Alternance | Trouvez votre alternance"
-        description="Recherche d'emploi sur le site de La Bonne Alternance."
+        title="Recherche d'emploi | La bonne alternance | Trouvez votre alternance"
+        description="Recherche d'emploi sur le site de La bonne alternance."
       />
       <Head />
       <WidgetPostuler />

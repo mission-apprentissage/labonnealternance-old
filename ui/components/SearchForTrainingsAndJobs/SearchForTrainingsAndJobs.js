@@ -363,6 +363,7 @@ const SearchForTrainingsAndJobs = () => {
         showSearchForm={showSearchForm}
         showResultMap={showResultMap}
         showResultList={showResultList}
+        isFormVisible={isFormVisible}
       />
     </div>
   );
