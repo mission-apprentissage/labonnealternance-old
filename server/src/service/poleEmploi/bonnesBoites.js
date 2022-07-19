@@ -70,11 +70,12 @@ const transformLbbCompanyForIdea = ({ company, type, caller, contactAllowedOrigi
   resultCompany.title = company.enseigne;
   let email = encryptMailWithIV({ value: company.email !== "null" ? company.email : "", caller });
 
+  resultCompany.contact = {
+    ...email,
+  };
+
   if (contactAllowedOrigin) {
-    resultCompany.contact = {
-      ...email,
-      phone: company.telephone,
-    };
+    resultCompany.contact.phone = company.telephone;
   }
 
   // format différent selon accès aux bonnes boîtes par recherche ou par siret
