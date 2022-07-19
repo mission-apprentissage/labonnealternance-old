@@ -201,6 +201,11 @@ const parseLine = async (line) => {
 
   let company = initCompanyFromLine(line);
 
+  if (!company.enseigne) {
+    logMessage("error", `Error processing company. Company ${company.siret} has no name`);
+    return null;
+  }
+
   if (isCompanyRemoved(company.siret)) {
     await BonnesBoites.remove({ siret: company.siret });
     return null;
@@ -293,7 +298,11 @@ const processBonnesBoitesFile = async () => {
       readLineByLine(),
       transformData((line) => parseLine(line), { parallel: 8 }),
       writeData(async (bonneBoite) => {
-        db.collections["bonnesboites"].save(bonneBoite);
+        try {
+          await db.collections["bonnesboites"].save(bonneBoite);
+        } catch (err) {
+          logMessage("error", err);
+        }
       })
     );
   } catch (err2) {

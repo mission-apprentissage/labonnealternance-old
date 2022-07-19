@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.20.3 [19/07/2022]
+[LBA6-122] Fix import fichier SAVE
 [LBA6-21] Augmentation quota api candidature
 [LBA6-179] CFA mandates
 [LBA6-130] Ecarts Figma-prod
