@@ -83,7 +83,7 @@ Pour bénéficier du bouton de retour vous devez ajouter un listener pour l'API 
 ### **Notice d’intégration du widget Labonnealternance**
 
 Vous devez intégrer ce widget dans une Iframe :   
-**&lt;iframe src="https://labonnealternance.apprentissage.beta.gouv.fr/postuler?caller=/&lt;site_exposant_le_widget/&gt;&itemId=/&lt;identifiant_societe_ou_offre/&gt;&type=/&lt;lba|lbb|matcha/&gt;" /&gt;**  
+**&lt;iframe src="https://labonnealternance.apprentissage.beta.gouv.fr/postuler?caller=<site_exposant_le_widget>&itemId=<identifiant_societe_ou_offre>&type=<lba|lbb|matcha>" /&gt;**  
 
 Les paramètres d'appel caller, itemId et type sont obligatoires :
 
