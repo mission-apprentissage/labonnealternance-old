@@ -94,14 +94,14 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               {getNavigationButtons({ goPrev, goNext, setSeeInfo, handleClose })}
             </div>
 
-            {getSurtitre({ selectedItem, kind })}
+            {getSurtitre({ selectedItem, kind, isMandataire })}
             <h1 className={"c-detail-title c-detail-title--" + kind}>{defaultTo(actualTitle, "")}</h1>
             {getSoustitre({ selectedItem, kind })}
 
             {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               <div className="c-detail-description-me">
                 <div className="c-detail-pelink my-3">
-                  <a className="btn btn-blue ml-1 gtmContactPE" target="poleemploi" href={selectedItem.url}>
+                  <a className="btn btn-blue gtmContactPE" target="poleemploi" href={selectedItem.url}>
                     Je postule sur Pôle emploi
                   </a>
                 </div>
@@ -159,7 +159,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ""
         )}
 
-        {kind === "formation" ? <TrainingDetail training={selectedItem} isCfa={isCfa} /> : ""}
+        {kind === "formation" ? <TrainingDetail training={selectedItem} hasAlsoJob={hasAlsoJob} /> : ""}
 
         {amongst(kind, ["lbb", "lba"]) ? (
           <div className="c-needHelp">

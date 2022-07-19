@@ -8,6 +8,7 @@ const tryCatch = require("./middlewares/tryCatchMiddleware");
 const corsMiddleware = require("./middlewares/corsMiddleware");
 const packageJson = require("../../package.json");
 const rome = require("./routes/rome");
+const faq = require("./routes/faq");
 const updateRomesMetiers = require("./routes/updateRomesMetiers");
 const updateFormations = require("./routes/updateFormations");
 const updateDiplomesMetiers = require("./routes/updateDiplomesMetiers");
@@ -23,6 +24,7 @@ const esSearch = require("./routes/esSearch");
 const jobEtFormationV1 = require("./routes/jobEtFormationV1");
 const sendMail = require("./routes/sendMail");
 const sendApplication = require("./routes/sendApplication");
+const sendApplicationAPI = require("./routes/sendApplicationAPI");
 const rateLimit = require("express-rate-limit");
 const { initWebhook } = require("../service/sendinblue/webhookSendinBlue");
 var path = require("path");
@@ -95,6 +97,8 @@ module.exports = async (components) => {
 
   app.use("/api/version", limiter3PerSecond, version());
 
+  app.use("/api/faq", limiter5PerSecond, faq());
+
   app.use("/api/error500", limiter3PerSecond, error500());
 
   app.use("/api/v1/formations", limiter7PerSecond, formationV1());
@@ -124,7 +128,7 @@ module.exports = async (components) => {
   app.use("/api/mail", limiter1Per20Second, sendMail(components));
 
   app.use("/api/application", sendApplication(components));
-  app.use("/api/V1/application", sendApplication(components));
+  app.use("/api/V1/application", limiter5PerSecond, sendApplicationAPI(components));
 
   app.get(
     "/api",

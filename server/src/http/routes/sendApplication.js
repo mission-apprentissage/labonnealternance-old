@@ -19,9 +19,6 @@ const limiter1Per5Second = rateLimit({
   max: 1, // limit each IP to 1 request per windowMs
 });
 
-/**
- * API romes
- */
 module.exports = (components) => {
   const router = express.Router();
 

@@ -20,7 +20,7 @@ const HeadLaBonneAlternance = (props) => {
 
   return (
     <Head>
-      <title>La Bonne Alternance | Trouvez votre alternance</title>
+      <title>La bonne alternance | Trouvez votre alternance</title>
       <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
       <link rel="canonical" href="http://labonnealternance.pole-emploi.fr" />
       <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
@@ -37,16 +37,16 @@ const HeadLaBonneAlternance = (props) => {
       <meta name="keywords" content="contrat offres alternance emploi formation apprentissage" />
       <meta
         name="description"
-        content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
+        content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La bonne alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
       />
       <meta name="google-site-verification" content="neOTrE-YKZ9LbgLlaX8UkYN6MJTPlWpeotPQqbrJ19Q" />
-      <meta property="og:site_name" content="La Bonne Alternance" />
-      <meta property="og:title" content="La Bonne Alternance - Trouvez votre alternance" />
+      <meta property="og:site_name" content="La bonne alternance" />
+      <meta property="og:title" content="La bonne alternance - Trouvez votre alternance" />
       <meta property="og:type" content="site" />
       <meta property="og:url" content="https://labonnealternance.pole-emploi.fr" />
       <meta
         property="og:description"
-        content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
+        content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La bonne alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
       />
 
       {getEnvFromProps().env !== "local" && getEnvFromProps().shoudLoadAnalytics ? (

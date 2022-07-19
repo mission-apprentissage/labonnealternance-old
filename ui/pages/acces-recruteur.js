@@ -18,7 +18,7 @@ import Footer from "components/footer";
 const AccesRecruteur = () => (
   <div>
     <NextSeo
-      title="Acces recruteur | La Bonne Alternance | Trouvez votre alternance"
+      title="Acces recruteur | La bonne alternance | Trouvez votre alternance"
       description="Exprimez votre besoin en alternance. Aucune inscription ne vous sera demandée."
     />
 
