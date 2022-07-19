@@ -7,7 +7,7 @@ description: >-
 
 # Widget : tester et consulter la documentation
 
-### **Tester le widget Labonnealternance**
+### **Tester le widget de recherche Labonnealternance**
 
 Pour voir comment le widget peut s'intégrer sur votre site, testez dès à présent les différentes versions possibles : [https://labonnealternance.apprentissage.beta.gouv.fr/test-widget](https://labonnealternance.apprentissage.beta.gouv.fr/test-widget)
 
@@ -78,3 +78,17 @@ Pour bénéficier du bouton de retour vous devez ajouter un listener pour l'API 
 
 **`});`**
 
+### **Tester le widget de candidature Labonnealternance**
+
+### **Notice d’intégration du widget Labonnealternance**
+
+Vous devez intégrer ce widget dans une Iframe :   
+**&lt;iframe src="https://labonnealternance.apprentissage.beta.gouv.fr/postuler?caller=&lt;site_exposant_le_widget&gt;&itemId=&lt;identifiant_societe_ou_offre&gt;&type=&lt;lba|lbb|matcha&gt;" /&gt;**  
+
+Les paramètres d'appel caller, itemId et type sont obligatoires :
+
+**caller :** Un identifiant de votre choix pour nous signaler qui vous êtes.
+
+**itemId :** l'identifiant de l'offre pour postuler à une offre publiée via La bonne alternance recruteur ou l'identifiant de la société (SIRET) pour une candidature spontanée vers une société identifiée comme susceptible de recruter en alternance.
+
+**type :** le type de candidature. **lba** ou **lbb** pour une candidature spontanée. **matcha** pour une offre publiée sur La bonne alternance recruteur. 
