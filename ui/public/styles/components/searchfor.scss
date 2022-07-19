@@ -36,6 +36,14 @@
 .demoPage .inactiveXSPane {
   display: block;
 }
+.demoPage .floatingButtons {
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
+}
+.demoPage .floatingButtons.is-hidden-true {
+  display: none;
+}
 
 .demoPage .floatingButtons button {
   cursor: pointer;
