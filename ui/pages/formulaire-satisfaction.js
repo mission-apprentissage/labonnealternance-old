@@ -6,7 +6,7 @@ const FormulaireSatisfaction = () => {
   return (
     <>
       <NextSeo
-        title="Formulaire de satisfaction | La Bonne Alternance | Trouvez votre alternance"
+        title="Formulaire de satisfaction | La bonne alternance | Trouvez votre alternance"
         description="Formulaire de satisfaction."
       />
       <SatisfactionForm formType="avis" />

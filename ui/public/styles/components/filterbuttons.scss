@@ -53,6 +53,9 @@
 .c-filterbuttons-hint {
   text-align: left;
   font-size: 14px;
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
 }
 
 .c-filterbutton.is-active {

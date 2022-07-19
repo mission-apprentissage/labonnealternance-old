@@ -175,8 +175,8 @@ const parseAddLine = (line) => {
 
     let company = {
       siret: terms[0].replace(/"/g, "").padStart(14, "0"),
-      raisonsociale: terms[1],
-      enseigne: terms[2],
+      raisonsociale: terms[1].replace(/"/g, ""),
+      enseigne: terms[2].replace(/"/g, ""),
       code_naf: terms[3].replace(/"/g, ""),
       numero_rue: terms[4].replace(/"/g, ""),
       libelle_rue: terms[5],
@@ -189,6 +189,13 @@ const parseAddLine = (line) => {
       type: lbaScore !== "0" ? "lba" : "lbb",
       score,
     };
+
+    company.enseigne = company.enseigne || company.raisonsociale;
+
+    if (!company.enseigne) {
+      logMessage("error", `Error adding company. Company ${company.siret} has no name`);
+      return null;
+    }
 
     return company;
   } else {

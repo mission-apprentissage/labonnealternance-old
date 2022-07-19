@@ -1,6 +1,6 @@
 ---
 description: >-
-  La Bonne Alternance est un service qui expose les deux composantes de
+  La bonne alternance est un service qui expose les deux composantes de
   l'apprentissage : la formation et l'emploi. Ce service expose également les
   entreprises sur l'ensemble du périmètre Alternance.
 ---
@@ -35,7 +35,8 @@ En tant que CFA, vous pourrez choisir de n'afficher que les entreprises de votre
 
 **Les APIs**
 
-  
+
+  
 4 APIs vous permettent d'exposer tout ou partie de nos données : 
 
 -          /api/V1/formations, permettant de rechercher des formations en apprentissage pour un métier, un ensemble de métiers, un domaine professionnel, un ensemble de domaines professionnels autour d'un point géographique

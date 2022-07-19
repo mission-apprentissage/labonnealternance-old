@@ -1,7 +1,7 @@
 {
   "name": "mna-labonnealternance-server",
   "version": "0.0.1",
-  "description": "[MNA] La Bonne Alternance",
+  "description": "[MNA] La bonne alternance",
   "repository": "https://github.com/mission-apprentissage/labonnealternance.git",
   "private": false,
   "author": "MNA",
@@ -62,6 +62,7 @@
     "nock": "13.0.4",
     "nodemailer": "6.6.3",
     "nodemailer-html-to-text": "3.2.0",
+    "notion-client": "4.12.0",
     "oleoduc": "0.6.0",
     "passport": "0.4.1",
     "passport-http": "0.3.0",

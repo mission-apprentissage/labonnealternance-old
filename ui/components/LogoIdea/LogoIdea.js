@@ -1,5 +1,5 @@
 import React from "react";
-import logoLBA from "../../public/images/logo-noir-seul.svg";
+import logoLBA from "../../public/images/logo-violet-seul.svg";
 import { useRouter } from "next/router";
 import { ParameterContext } from "../../context/ParameterContextProvider";
 

@@ -12,7 +12,7 @@ export default function Catalog(props) {
   return (
     <div>
       <NextSeo
-        title={`Tous les emplois et formations en alternance | La Bonne Alternance | Trouvez votre alternance`}
+        title={`Tous les emplois et formations en alternance | La bonne alternance | Trouvez votre alternance`}
         description={`Liste de métiers où trouver une formation ou un emploi en alternance`}
       />
       <ScrollToTop />
@@ -27,7 +27,7 @@ export default function Catalog(props) {
         <hr className="c-catalog-title-separator mt-4 mb-5" align="left" />
 
         <p>
-          Vous voulez travailler en alternance ? Vous voulez obtenir un diplôme en alternance ? Toutes les informations pour trouver une alternance rapidement sont sur La Bonne Alternance :
+          Vous voulez travailler en alternance ? Vous voulez obtenir un diplôme en alternance ? Toutes les informations pour trouver une alternance rapidement sont sur La bonne alternance :
           <ul className="mt-2">
             <li>Offres d'emploi en contrat d'apprentissage ou en contrat de professionnalisation</li>
             <li>Liste d’entreprises qui recrutent en alternance</li>

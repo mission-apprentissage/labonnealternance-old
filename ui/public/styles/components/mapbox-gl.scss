@@ -1,22 +1,28 @@
 canvas.mapboxgl-canvas:focus {
   outline: none;
 }
+
 .mapboxgl-popup {
-  width: 80%;
-  min-width: 300px !important;
-  max-width: 300px !important;
   z-index: 2;
 
-  @include media-breakpoint-up(md) { 
-    width: 40%;
+  min-width: 200px !important;
+  max-width: 200px !important;
+  
+  @include media-breakpoint-up(sm) {
+    min-width: 300px !important;
+    max-width: 300px !important;
+  }
+  @include media-breakpoint-up(md) {
+    min-width: 400px !important;
     max-width: 400px !important;
   }
-
-  @include media-breakpoint-up(lg) { 
-    width: 50%;
+  
+  @include media-breakpoint-up(lg) {
+    min-width: 600px !important;
     max-width: 600px !important;
   }
 }
+
 .mapboxgl-popup-content {
   border-radius: 11px;
   font-size: 14px;
@@ -116,6 +122,7 @@ canvas.mapboxgl-canvas:focus {
   margin-bottom: 0;
   list-style-position: inside;
   list-style-type: disc;
+  white-space: pre-wrap;
 }
 .mapboxgl-popup-content li {
   font-weight: bold;
@@ -192,11 +199,7 @@ canvas.mapboxgl-canvas:focus {
   margin: 0 auto;
   left: 0;
   right: 0;
-  top: 4rem;
-
-  @include media-breakpoint-up(md) { 
-    top: 2rem;
-  }
+  top: 2rem;
 }
 
 .c-map-searchButton button {

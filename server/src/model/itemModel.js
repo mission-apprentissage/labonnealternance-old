@@ -2,7 +2,7 @@ const itemModel = (type) => {
   return {
     ideaType: type, // type de l'item :  formation | lbb | lba | peJob | matcha
 
-    title: null, // pe -> intitule | lbb/lba -> name | formation -> nom | matcha -> offres.libelle
+    title: null, // pe -> intitule | lbb/lba -> enseigne | formation -> nom | matcha -> offres.libelle
     longTitle: null, // formation -> intitule_long,
     id: null, // formation -> id | matcha -> id_form
 
