@@ -14,7 +14,7 @@ Pour voir comment le widget peut s'intégrer sur votre site, testez dès à pré
 ### **Notice d’intégration du widget Labonnealternance**
 
 Vous devez intégrer Labonnealternance dans une Iframe :   
-**&lt;iframe src="https://labonnealternance.apprentissage.beta.gouv.fr/<chemin><parametres>" /&gt;**  
+**&lt;iframe src="https://labonnealternance.apprentissage.beta.gouv.fr/chemin?parametres" /&gt;**  
 
 
 Ex de valeur pour le paramètre src :   
