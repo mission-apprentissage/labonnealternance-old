@@ -106,6 +106,6 @@ Les sociétés compatibles avec le widget pour postuler sont celles comportant l
 
 Le type peut être trouvé grâce à l'attribut ideaType du JSON.
 
-L'itemId (SIRET) pour les **lba** et **lbb** se trouve ici : **"company": { "siret": "<id>"...**
+L'itemId (SIRET) pour les **lba** et **lbb** se trouve ici : **"company": { "siret": itemId...**
 
-L'itemId pour les **matcha** se trouve ici : **"job": { "id": "<id>"...** 
+L'itemId pour les **matcha** se trouve ici : **"job": { "id": itemId...** 
