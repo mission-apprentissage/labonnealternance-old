@@ -5,6 +5,7 @@
 [LBA6-21] Augmentation quota api candidature
 [LBA6-179] CFA mandates
 [LBA6-130] Ecarts Figma-prod
+[LBA6-130] Bouton retour à la liste
 [LBA6-197] appariement
 [LBA6-225] Téléphone cliquable
 [LBA6-252] Normalisation nom La bonne alternance
