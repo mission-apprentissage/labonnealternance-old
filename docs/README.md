@@ -11,11 +11,13 @@ L'objectif de ce service est de permettre à ses utilisateurs de trouver plus fa
 
 Le service, en cours d'amélioration, est disponible ici : [https://labonnealternance.pole-emploi.fr/](https://labonnealternance.pole-emploi.fr/)
 
-**EXPOSEZ NOS DONNÉES sur votre site grâce au widget et aux Apis !** 
+**EXPOSEZ NOS DONNÉES sur votre site grâce aux widgets et aux Apis !** 
 
-**Le Widget**
+**Les Widgets**
 
-Ce service est également disponible sous forme de Widget, directement exposable sur tout site. Les données exposées sur le widget peuvent être filtrées :
+Ce service est également disponible sous forme de Widgets, directement exposable sur tout site. 
+
+Les données exposées sur le widget peuvent être filtrées :
 
 * sur un domaine \(disponible dès à présent\) ou un ensemble de domaines \(disponible prochainement\),
 * et/ou sur une zone géographique donnée : localité \(disponible dès à présent\), département \(disponible prochainement\), région \(disponible prochainement\), 
@@ -31,10 +33,13 @@ En tant que Région, vous pouvez choisir d'y afficher les formations et/ou les e
 
 En tant que CFA, vous pourrez choisir de n'afficher que les entreprises de votre zone géographique.
 
+Le module pour postuler aux offres de La bonne alternance recruteur ou pour envoyer une candidature spontanée à une société susceptible de recruter peut également être affiché sous forme de widget à part entière.
+
 **Les APIs**
 
-  
-4 APIs vous permettent d'exposer tout ou partie de nos données : 
+
+  
+Des APIs vous permettent d'exposer tout ou partie de nos données : 
 
 -          /api/V1/formations, permettant de rechercher des formations en apprentissage pour un métier, un ensemble de métiers, un domaine professionnel, un ensemble de domaines professionnels autour d'un point géographique
 
@@ -43,6 +48,8 @@ En tant que CFA, vous pourrez choisir de n'afficher que les entreprises de votre
 -          ​/api​/V1​/jobs, pour rechercher les entreprises recrutant ou susceptibles de recruter en apprentissage référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique
 
 -          /api/V1/jobsEtFormations, pour rechercher des formations en apprentissage et des entreprises recrutant ou susceptibles de recruter en apprentissage référencées par les APIs de Pôle emploi, pour un métier ou un ensemble de métiers, autour d'un point géographique
+
+-          /api/V1/application, pour émettre un email de candidature auprès d'une société avec ou sans offre.
 
 Retrouvez la documentation technique dans les sections suivantes ou sur [API.gouv.fr.](https://api.gouv.fr/les-api/api-la-bonne-alternance)
 
