@@ -109,3 +109,5 @@ Le type peut être trouvé grâce à l'attribut ideaType du JSON.
 L'itemId (SIRET) pour les **lba** et **lbb** se trouve ici : **"company": { "siret": itemId...**
 
 L'itemId pour les **matcha** se trouve ici : **"job": { "id": itemId...** 
+
+NOTE : pour postuler aux offres de Pôe emploi il faut passer par leur site.
