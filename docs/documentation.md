@@ -92,3 +92,9 @@ Les paramètres d'appel caller, itemId et type sont obligatoires :
 **itemId :** l'identifiant de l'offre pour postuler à une offre publiée via La bonne alternance recruteur ou l'identifiant de la société (SIRET) pour une candidature spontanée vers une société identifiée comme susceptible de recruter en alternance.
 
 **type :** le type de candidature. **lba** ou **lbb** pour une candidature spontanée. **matcha** pour une offre publiée sur La bonne alternance recruteur. 
+
+A noter qu'itemId et type doivent être cohérents et correspondre à des sociétés/offres pour lesquelles nous disposons des informations nécessaires pour postuler. Vous pouvez récupérer ces informations en utilisant les apis de la La bonne alternance. Les sociétés compatibles avec le widget pour postuler sont celles comportant le fragment JSON suivant renseigné : 
+**"contact": {
+    "email": "----",
+    "iv": "----"
+}**
