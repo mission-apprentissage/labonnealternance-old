@@ -21,8 +21,7 @@ const OffresGratuites = () => {
             <ExternalLink
               className="c-homecomponent-link__inline"
               url="https://labonnealternance.pole-emploi.fr"
-              title="La
-            bonne alternance"
+              title="La bonne alternance"
             />
             ,{" "}
             <ExternalLink
