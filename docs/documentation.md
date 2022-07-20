@@ -7,14 +7,14 @@ description: >-
 
 # Widget : tester et consulter la documentation
 
-### **Tester le widget Labonnealternance**
+### **Tester le widget de recherche Labonnealternance**
 
 Pour voir comment le widget peut s'intégrer sur votre site, testez dès à présent les différentes versions possibles : [https://labonnealternance.apprentissage.beta.gouv.fr/test-widget](https://labonnealternance.apprentissage.beta.gouv.fr/test-widget)
 
 ### **Notice d’intégration du widget Labonnealternance**
 
 Vous devez intégrer Labonnealternance dans une Iframe :   
-**&lt;iframe src="https://labonnealternance.apprentissage.beta.gouv.fr/&lt;chemin&gt;&lt;parametres&gt;" /&gt;**  
+**&lt;iframe src="https://labonnealternance.apprentissage.beta.gouv.fr/chemin?parametres" /&gt;**  
 
 
 Ex de valeur pour le paramètre src :   
@@ -78,3 +78,36 @@ Pour bénéficier du bouton de retour vous devez ajouter un listener pour l'API 
 
 **`});`**
 
+### **Tester le widget de candidature Labonnealternance**
+
+### **Notice d’intégration du widget Labonnealternance**
+
+Vous devez intégrer ce widget dans une Iframe :   
+**&lt;iframe src="https://labonnealternance.apprentissage.beta.gouv.fr/postuler?caller=site_exposant_le_widget&itemId=identifiant_societe_ou_offre&type=lba|lbb|matcha" /&gt;**  
+
+Les paramètres d'appel caller, itemId et type sont obligatoires :
+
+**caller :** Un identifiant de votre choix pour nous signaler qui vous êtes.
+
+**itemId :** l'identifiant de l'offre pour postuler à une offre publiée via La bonne alternance recruteur ou l'identifiant de la société (SIRET) pour une candidature spontanée vers une société identifiée comme susceptible de recruter en alternance.
+
+**type :** le type de candidature. **lba** ou **lbb** pour une candidature spontanée. **matcha** pour une offre publiée sur La bonne alternance recruteur. 
+
+A noter qu'itemId et type doivent être cohérents et correspondre à des sociétés/offres pour lesquelles nous disposons des informations nécessaires pour postuler. 
+
+Vous pouvez récupérer ces informations en utilisant les apis de la La bonne alternance. 
+
+Les sociétés compatibles avec le widget pour postuler sont celles comportant le fragment JSON suivant renseigné : 
+
+**"contact": {
+    "email": "----",
+    "iv": "----"
+}**
+
+Le type peut être trouvé grâce à l'attribut ideaType du JSON.
+
+L'itemId (SIRET) pour les **lba** et **lbb** se trouve ici : **"company": { "siret": itemId...**
+
+L'itemId pour les **matcha** se trouve ici : **"job": { "id": itemId...** 
+
+NOTE : pour postuler aux offres de Pôe emploi il faut passer par leur site.
