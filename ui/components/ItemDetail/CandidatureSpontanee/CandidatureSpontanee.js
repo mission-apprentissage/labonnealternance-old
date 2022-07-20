@@ -8,10 +8,10 @@ import submitCandidature from "./services/submitCandidature";
 import toggleCandidature from "./services/toggleCandidature";
 import { getValidationSchema, getInitialSchemaValues } from "./services/getSchema";
 import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
-import { capitalizeFirstLetter } from "../../../utils/strutils";
 import useLocalStorage from "./services/useLocalStorage";
 import hasAlreadySubmittedCandidature from "./services/hasAlreadySubmittedCandidature";
 import { getItemId } from "../../../utils/getItemId";
+import { SendPlausibleEvent } from "../../../utils/gtm";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
@@ -26,6 +26,17 @@ const CandidatureSpontanee = (props) => {
 
   const toggle = () => {
     toggleCandidature({ modal, setSendingState, setModal });
+  };
+
+  const openApplicationForm = () => {
+    toggle();
+    SendPlausibleEvent("Emploi", {
+      action:
+        props.item.ideaType === "matcha"
+          ? "Clic Postuler - Fiche entreprise Offre LBA"
+          : "Clic Postuler - Fiche entreprise Algo",
+      info_fiche: getItemId(props.item),
+    });
   };
 
   const [applied, setApplied] = useLocalStorage(uniqId(kind, props.item), null, actualLocalStorage);
@@ -73,8 +84,8 @@ const CandidatureSpontanee = (props) => {
           ) : (
             <>
               <Button
-                onClick={toggle}
-                className={`btn btn-blue ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
+                onClick={openApplicationForm}
+                className={`btn btn-blue ml-1`}
                 aria-label="jenvoie-une-candidature-spontanee"
               >
                 J'envoie ma candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}
