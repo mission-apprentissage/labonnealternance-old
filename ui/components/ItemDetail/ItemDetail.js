@@ -221,6 +221,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 kind={kind}
                 uniqId={getGoingtoId(kind, selectedItem)}
                 key={getGoingtoId(kind, selectedItem)}
+                item={selectedItem}
               />
             )}
           </>
@@ -236,6 +237,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 kind={kind}
                 uniqId={getGoingtoId(kind, selectedItem)}
                 key={getGoingtoId(kind, selectedItem)}
+                item={selectedItem}
               />
             )}
           </>
@@ -251,6 +253,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
                 kind={kind}
                 uniqId={getGoingtoId(kind, selectedItem)}
                 key={getGoingtoId(kind, selectedItem)}
+                item={selectedItem}
               />
             )}
           </>
