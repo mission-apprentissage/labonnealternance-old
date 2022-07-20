@@ -67,8 +67,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
   };
 
   const postuleSurPoleEmploi = () => {
-    SendPlausibleEvent("Emploi", {
-      action: "Clic Postuler - Fiche entreprise Offre PE",
+    SendPlausibleEvent("Clic Postuler - Fiche entreprise Offre PE", {
       info_fiche: selectedItem.job.id,
     });
   };

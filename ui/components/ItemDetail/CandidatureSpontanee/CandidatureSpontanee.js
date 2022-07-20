@@ -30,13 +30,14 @@ const CandidatureSpontanee = (props) => {
 
   const openApplicationForm = () => {
     toggle();
-    SendPlausibleEvent("Emploi", {
-      action:
-        props.item.ideaType === "matcha"
-          ? "Clic Postuler - Fiche entreprise Offre LBA"
-          : "Clic Postuler - Fiche entreprise Algo",
-      info_fiche: getItemId(props.item),
-    });
+    SendPlausibleEvent(
+      props.item.ideaType === "matcha"
+        ? "Clic Postuler - Fiche entreprise Offre LBA"
+        : "Clic Postuler - Fiche entreprise Algo",
+      {
+        info_fiche: getItemId(props.item),
+      }
+    );
   };
 
   const [applied, setApplied] = useLocalStorage(uniqId(kind, props.item), null, actualLocalStorage);
