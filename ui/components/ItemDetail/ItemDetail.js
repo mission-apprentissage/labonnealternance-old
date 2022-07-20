@@ -31,6 +31,7 @@ import {
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
+import { SendPlausibleEvent } from "utils/gtm";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
@@ -63,6 +64,13 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
     let currentScroll = document.querySelector(".c-detail").scrollTop;
     currentScroll += collapseHeader ? 100 : -100;
     setCollapseHeader(currentScroll > maxScroll);
+  };
+
+  const postuleSurPoleEmploi = () => {
+    SendPlausibleEvent("Emploi", {
+      action: "Clic Postuler - Fiche entreprise Offre PE",
+      info_fiche: selectedItem.job.id,
+    });
   };
 
   return (
@@ -101,7 +109,12 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
             {buttonJePostuleShouldBeDisplayed(kind, selectedItem) ? (
               <div className="c-detail-description-me">
                 <div className="c-detail-pelink my-3">
-                  <a className="btn btn-blue gtmContactPE" target="poleemploi" href={selectedItem.url}>
+                  <a
+                    className="btn btn-blue"
+                    onClick={postuleSurPoleEmploi}
+                    target="poleemploi"
+                    href={selectedItem.url}
+                  >
                     Je postule sur Pôle emploi
                   </a>
                 </div>
