@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { formatDate } from "../../utils/strutils";
-import { SendTrackEvent } from "../../utils/gtm";
+import { SendPlausibleEvent } from "../../utils/gtm";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -12,9 +12,9 @@ const PeJobDetail = ({ job }) => {
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   useEffect(() => {
-    SendTrackEvent({
-      event: `Résultats Affichage Offre PE - Consulter fiche entreprise`,
-      itemId: job?.job?.id,
+    SendPlausibleEvent("Emploi", {
+      action: "Affichage - Fiche entreprise Offre PE",
+      info_fiche: job?.job?.id,
     });
   }, [job?.job?.id]);
 
