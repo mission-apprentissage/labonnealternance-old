@@ -12,8 +12,7 @@ const PeJobDetail = ({ job }) => {
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   useEffect(() => {
-    SendPlausibleEvent("Emploi", {
-      action: "Affichage - Fiche entreprise Offre PE",
+    SendPlausibleEvent("Affichage - Fiche entreprise Offre PE", {
       info_fiche: job?.job?.id,
     });
   }, [job?.job?.id]);

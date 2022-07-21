@@ -4,8 +4,7 @@ import CandidatureSpontaneeExplanation from "./CandidatureSpontanee/CandidatureS
 
 const LbbCompanyDetail = ({ lbb }) => {
   useEffect(() => {
-    SendPlausibleEvent("Emploi", {
-      action: "Affichage - Fiche entreprise Algo",
+    SendPlausibleEvent("Affichage - Fiche entreprise Algo", {
       info_fiche: lbb?.company?.siret,
     });
   }, [lbb?.company?.siret]);

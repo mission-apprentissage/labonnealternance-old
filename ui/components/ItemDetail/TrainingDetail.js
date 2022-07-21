@@ -17,8 +17,7 @@ const TrainingDetail = ({ training, hasAlsoJob }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    SendPlausibleEvent("Formation", {
-      action: "Affichage - Fiche formation",
+    SendPlausibleEvent("Affichage - Fiche formation", {
       info_fiche: training.cleMinistereEducatif,
     });
 
