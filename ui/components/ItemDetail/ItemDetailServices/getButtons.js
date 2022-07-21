@@ -6,7 +6,7 @@ import ExternalLink from "../../externalLink";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
-import { SendPlausibleEvent } from "utils/gtm";
+import { SendPlausibleEvent } from "utils/plausible";
 
 export const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
   return oneKind === "peJob" && oneItem?.url;

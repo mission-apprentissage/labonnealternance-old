@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import fetchRomes from "../services/fetchRomes";
-import { SendPlausibleEvent } from "../utils/gtm";
+import { SendPlausibleEvent } from "../utils/plausible";
 
 export default async function domainChanged(val, setDomainErrorFunc) {
   const res = await fetchRomes(val, () => {

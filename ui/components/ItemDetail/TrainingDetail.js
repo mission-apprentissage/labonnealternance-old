@@ -7,7 +7,7 @@ import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
 import sablierIcon from "public/images/icons/training-sablier.svg";
 import questionmarkIcon from "public/images/icons/training-questionmark.svg";
-import { SendPlausibleEvent } from "../../utils/gtm";
+import { SendPlausibleEvent } from "../../utils/plausible";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "../../utils/strutils";
 import { Spinner } from "reactstrap";

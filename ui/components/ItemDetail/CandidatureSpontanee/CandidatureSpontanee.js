@@ -11,7 +11,7 @@ import { string_wrapper as with_str } from "../../../utils/wrapper_utils";
 import useLocalStorage from "./services/useLocalStorage";
 import hasAlreadySubmittedCandidature from "./services/hasAlreadySubmittedCandidature";
 import { getItemId } from "../../../utils/getItemId";
-import { SendPlausibleEvent } from "../../../utils/gtm";
+import { SendPlausibleEvent } from "../../../utils/plausible";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SendPlausibleEvent } from "../../utils/gtm";
+import { SendPlausibleEvent } from "../../utils/plausible";
 import { formatDate } from "../../utils/strutils";
 import ExternalLink from "../externalLink";
 import MatchaCompetences from "./MatchaComponents/MatchaCompetences";

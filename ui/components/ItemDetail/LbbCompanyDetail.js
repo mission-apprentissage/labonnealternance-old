@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SendPlausibleEvent } from "../../utils/gtm";
+import { SendPlausibleEvent } from "../../utils/plausible";
 import CandidatureSpontaneeExplanation from "./CandidatureSpontanee/CandidatureSpontaneeExplanation";
 
 const LbbCompanyDetail = ({ lbb }) => {

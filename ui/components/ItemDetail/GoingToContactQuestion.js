@@ -2,7 +2,7 @@ import React from "react";
 
 import { useSessionStorage } from "../../utils/useSessionStorage";
 import { getItemId } from "../../utils/getItemId";
-import { SendPlausibleEvent } from "../../utils/gtm.js";
+import { SendPlausibleEvent } from "../../utils/plausible";
 
 const GoingToContactQuestion = ({ kind, uniqId, item }) => {
   const [thanks, setThanks] = useSessionStorage(uniqId, false);

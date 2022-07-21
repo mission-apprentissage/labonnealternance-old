@@ -31,7 +31,7 @@ import {
 
 import GoingToContactQuestion, { getGoingtoId } from "./GoingToContactQuestion";
 import gotoIcon from "public/images/icons/goto.svg";
-import { SendPlausibleEvent } from "../../utils/gtm";
+import { SendPlausibleEvent } from "../../utils/plausible";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
   const kind = selectedItem?.ideaType;
