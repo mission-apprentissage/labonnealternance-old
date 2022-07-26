@@ -22,7 +22,7 @@ const stats2 = () => (
         <div className="col-12 col-md-7">
           <h3>Statistiques</h3>
           <p>
-            La Bonne Alternance est une startup d’Etat incubée par beta.gouv. Nous développons un service à destination
+            La bonne alternance est une startup d’Etat incubée par beta.gouv. Nous développons un service à destination
             des publics selon les principes du{" "}
             <a href="https://beta.gouv.fr/approche/manifeste">Manifeste de beta.gouv</a>
           </p>
@@ -32,30 +32,44 @@ const stats2 = () => (
     </div>
     <div className="c-page-container container my-0 mb-sm-5 p-5">
       <div>
+        <h3>Visitorat</h3>
         <iframe
-          className="c-stats-iframe"
-          title="stats_lba_recruteur"
-          src="https://matcha.apprentissage.beta.gouv.fr/metabase/public/dashboard/404744cc-61aa-41df-983c-bdee1e992543"
-          loading="lazy"
-        />
-      </div>
-      <div>
-        <iframe
-          title="stats_lba"
-          className="c-stats-iframe c-stats-iframe__lba"
-          src="https://labonnealternance.apprentissage.beta.gouv.fr/metabase/public/dashboard/fead16ad-b526-4e30-861b-f8967eb17f93"
-          loading="lazy"
-        />
-      </div>
-
-      <div>
-        <iframe
-          title="stats_lba_plausible"
-          className="c-stats-iframe c-stats-iframe__lba"
-          plausible-embed
-          src="https://plausible.io/share/labonnealternance.apprentissage.beta.gouv.fr?auth=Ck7r5NwNNf9IveZVA5U0O&embed=true&theme=light&background=transparent"
-          loading="lazy"
+        title="stats_plausible"
+        className="c-stats-iframe c-stats-iframe__lba"
+        plausible-embed
+        src="https://plausible.io/share/labonnealternance.apprentissage.beta.gouv.fr?auth=Ck7r5NwNNf9IveZVA5U0O&embed=true&theme=light&background=transparent"
+        loading="lazy"
         ></iframe>
+      </div>
+      <div>
+        <h3>Offres La bonne alternance</h3>
+      </div>
+      <div>
+        <h3>Part des formations présentant la prise de RDV</h3>
+      </div>
+      <div>
+        <h3>Candidatures aux offres La bonne alternance</h3>
+        <iframe
+          title="stats_candidatures_offres_lba"
+          className="c-stats-iframe c-stats-iframe__lba"
+          src="https://labonnealternance.pole-emploi.fr/metabase/public/dashboard/9b0132ca-2629-4fa7-9be8-9183f2f7d98d"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <h3>Demandes de RDV</h3>
+      </div>
+      <div>
+        <h3>Taux de réponse aux candidatures (offres La bonne alternance, offres Pôle emploi et candidatures spontanées)</h3>
+        <iframe
+          title="stats_taux_reponse_candidatures"
+          className="c-stats-iframe c-stats-iframe__lba"
+          src="https://labonnealternance.pole-emploi.fr/metabase/public/dashboard/7f66e10d-0f1a-4839-b905-09aac03750dc"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <h3>Taux de réponse aux demandes de RDV</h3>
       </div>
     </div>
     <div className="mb-3">&nbsp;</div>
