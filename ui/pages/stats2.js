@@ -43,9 +43,23 @@ const stats2 = () => (
       </div>
       <div>
         <h3>Offres La bonne alternance</h3>
+        <iframe
+        title="stats_recueil_offres_lba"
+        className="c-stats-iframe c-stats-iframe__lba"
+        plausible-embed
+        src="https://matcha.apprentissage.beta.gouv.fr/metabase/public/dashboard/44c21e1d-7a7a-4ddb-b02b-e6ed184bd930"
+        loading="lazy"
+        ></iframe>
       </div>
       <div>
-        <h3>Part des formations présentant la prise de RDV</h3>
+        <h3>Formations présentant la prise de RDV</h3>
+        <iframe
+        title="stats_affichage_rdva_lba"
+        className="c-stats-iframe c-stats-iframe__lba"
+        plausible-embed
+        src="https://rdv-cfa.apprentissage.beta.gouv.fr/metabase/public/dashboard/37610a2e-bc39-4803-80ae-03ca1c514f9a"
+        loading="lazy"
+        ></iframe>
       </div>
       <div>
         <h3>Candidatures aux offres La bonne alternance</h3>
@@ -58,6 +72,12 @@ const stats2 = () => (
       </div>
       <div>
         <h3>Demandes de RDV</h3>
+        <iframe
+          title="stats_demandes_rdva_lba"
+          className="c-stats-iframe c-stats-iframe__lba"
+          src="https://rdv-cfa.apprentissage.beta.gouv.fr/metabase/public/dashboard/2db04ee6-6bd3-41e7-9b74-12b43bd4b4b7"
+          loading="lazy"
+        />
       </div>
       <div>
         <h3>Taux de réponse aux candidatures (offres La bonne alternance, offres Pôle emploi et candidatures spontanées)</h3>
@@ -70,6 +90,12 @@ const stats2 = () => (
       </div>
       <div>
         <h3>Taux de réponse aux demandes de RDV</h3>
+        <iframe
+          title="stats_taux_reponse_rdva"
+          className="c-stats-iframe c-stats-iframe__lba"
+          src="https://rdv-cfa.apprentissage.beta.gouv.fr/metabase/public/dashboard/63db63a5-26a2-4db7-8f26-f33dc6ce4491"
+          loading="lazy"
+        />   
       </div>
     </div>
     <div className="mb-3">&nbsp;</div>
