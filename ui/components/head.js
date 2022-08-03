@@ -1,23 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import Fonts from "./fonts";
-import env from "utils/env";
 
 const HeadLaBonneAlternance = (props) => {
-  const getEnvFromProps = () => {
-    let host = props.publicUrl || env;
-
-    let envrnt = "production";
-    if (host?.indexOf("recette") >= 0) {
-      envrnt = "recette";
-    }
-    if (host?.indexOf("local") >= 0) {
-      envrnt = "local";
-    }
-
-    return { env: envrnt, shoudLoadAnalytics: props.shouldLoadAnalytics };
-  };
-
   return (
     <Head>
       <title>La bonne alternance | Trouvez votre alternance</title>
@@ -48,24 +33,6 @@ const HeadLaBonneAlternance = (props) => {
         property="og:description"
         content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La bonne alternance ! Trouvez ici les formations en alternance et les entreprises qui recrutent régulièrement en alternance"
       />
-
-      {getEnvFromProps().env !== "local" && getEnvFromProps().shoudLoadAnalytics ? (
-        <script
-          async
-          src={`https://cdn.tagcommander.com/5234/${getEnvFromProps().env !== "production" ? "uat/" : ""}tc_lba_31.js`}
-        ></script>
-      ) : (
-        ""
-      )}
-      <script
-        defer
-        data-domain={
-          getEnvFromProps().env !== "production"
-            ? "labonnealternance-recette2.apprentissage.beta.gouv.fr"
-            : "labonnealternance.apprentissage.beta.gouv.fr"
-        }
-        src="https://plausible.io/js/script.local.hash.outbound-links.js"
-      ></script>
     </Head>
   );
 };

@@ -1,15 +1,23 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { SendPlausibleEvent } from "utils/plausible";
+import { getEnvFromProps } from "utils/env";
+import { usePlausible } from "next-plausible";
 
-const PageTracker = ({ children }) => {
+const PageTracker = (props) => {
   const router = useRouter();
+
+  const env = getEnvFromProps(props).env;
+
+  const plausible = usePlausible();
 
   React.useEffect(() => {
     const handleRouteChange = (url) => {
-      if (url.indexOf("?") < 0) {
-        SendPlausibleEvent("pageview", { url });
-      }
+      try {
+        if (url.indexOf("?") < 0) {
+          plausible("pageview", { url });
+        }
+      } catch (err) {}
     };
 
     router.events.on("routeChangeStart", handleRouteChange);
@@ -19,7 +27,7 @@ const PageTracker = ({ children }) => {
     };
   }, []);
 
-  return <>{children}</>;
+  return <>{props.children}</>;
 };
 
 export default PageTracker;
