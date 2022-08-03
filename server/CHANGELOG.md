@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.20.4 [21/07/2022]
+## 1.20.4 [03/08/2022]
 [LBA6-109] Tracking événements pour plausible
 [LBA6-207] Next 12 et React 18
 
