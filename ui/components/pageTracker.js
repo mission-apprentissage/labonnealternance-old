@@ -1,13 +1,9 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { SendPlausibleEvent } from "utils/plausible";
-import { getEnvFromProps } from "utils/env";
 import { usePlausible } from "next-plausible";
 
 const PageTracker = (props) => {
   const router = useRouter();
-
-  const env = getEnvFromProps(props).env;
 
   const plausible = usePlausible();
 
