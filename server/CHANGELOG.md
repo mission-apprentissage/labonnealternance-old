@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.4 [03/08/2022]
+[LBA6-208] MAJ page stats
+
 ## 1.20.3 [19/07/2022]
 [LBA6-241] Affichage email crypté pour tous les appelants
 [LBA6-122] Fix import fichier SAVE
