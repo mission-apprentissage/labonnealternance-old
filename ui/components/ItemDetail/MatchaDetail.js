@@ -38,7 +38,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             <strong>Nature du contrat : </strong> {getContractTypes(job?.job?.contractType)}
           </div>
           <div>
-            <strong>Niveau requis :</strong>{" "}
+            <strong>Niveau visé en fin d'études :</strong>{" "}
             {job?.diplomaLevel ? (
               <>
                 <div className="c-required-levels">
