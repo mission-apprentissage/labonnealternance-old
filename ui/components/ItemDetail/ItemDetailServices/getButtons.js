@@ -1,3 +1,4 @@
+import React from "react";
 import { findIndex } from "lodash";
 import { useSwipeable } from "react-swipeable";
 
@@ -5,31 +6,36 @@ import ExternalLink from "../../externalLink";
 import chevronLeft from "public/images/chevronleft.svg";
 import chevronRight from "public/images/chevronright.svg";
 import chevronClose from "public/images/close.svg";
-
+import { SendPlausibleEvent } from "utils/plausible";
 
 export const buttonJePostuleShouldBeDisplayed = (oneKind, oneItem) => {
   return oneKind === "peJob" && oneItem?.url;
 };
 
 export const buttonPRDVShouldBeDisplayed = (oneItem) => {
-  let res = !!oneItem?.prdvUrl
+  let res = !!oneItem?.prdvUrl;
   return res;
 };
 
 export const buildPrdvButton = (training) => {
+  const onClickPrdv = () => {
+    SendPlausibleEvent("Clic Prendre RDV - Fiche formation", { info_fiche: training.cleMinistereEducatif });
+  };
+
   return (
     <div
-      className="widget-prdv gtmPrdv"
+      className="widget-prdv"
       data-referrer="lba"
       data-id-cle-ministere-educatif={training.cleMinistereEducatif}
       data-id-rco-formation={training.idRcoFormation}
+      onClick={onClickPrdv}
     >
-      <ExternalLink className="gtmPrdv" url={training.prdvUrl} title="Je prends rendez-vous" />
+      <ExternalLink url={training.prdvUrl} title="Je prends rendez-vous" />
     </div>
   );
 };
 
-export const buildSwipe = ({currentList, handleSelectItem, selectedItem}) => {
+export const buildSwipe = ({ currentList, handleSelectItem, selectedItem }) => {
   // See https://www.npmjs.com/package/react-swipeable
   const swipeHandlers = useSwipeable({
     onSwiped: (event_data) => {
@@ -55,11 +61,13 @@ export const buildSwipe = ({currentList, handleSelectItem, selectedItem}) => {
     handleSelectItem(currentList[prevIndex]);
   };
   return {
-    swipeHandlers, goNext, goPrev
-  }
+    swipeHandlers,
+    goNext,
+    goPrev,
+  };
 };
 
-export const getNavigationButtons = ({goPrev, goNext, setSeeInfo, handleClose}) => {
+export const getNavigationButtons = ({ goPrev, goNext, setSeeInfo, handleClose }) => {
   return (
     <>
       <div>

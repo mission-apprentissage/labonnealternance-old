@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import { SendTrackEvent } from "../../utils/gtm";
+import { SendPlausibleEvent } from "../../utils/plausible";
 import CandidatureSpontaneeExplanation from "./CandidatureSpontanee/CandidatureSpontaneeExplanation";
 
 const LbbCompanyDetail = ({ lbb }) => {
-
   useEffect(() => {
-    SendTrackEvent({
-      event: `Résultats Affichage ${lbb?.ideaType.toUpperCase()} - Consulter fiche entreprise`,
-      itemId: lbb?.company?.siret,
+    SendPlausibleEvent("Affichage - Fiche entreprise Algo", {
+      info_fiche: lbb?.company?.siret,
     });
   }, [lbb?.company?.siret]);
 

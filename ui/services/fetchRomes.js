@@ -73,6 +73,7 @@ export default async function fetchRomes(
     }
   } catch (err) {
     console.log("Fetch romes cancelled : ", err);
+    return "cancelled";
   }
 
   return res;
