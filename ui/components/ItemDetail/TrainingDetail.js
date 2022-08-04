@@ -12,7 +12,7 @@ import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "../../utils/strutils";
 import { Spinner } from "reactstrap";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
-import { DisplayContext } from "context/DisplayContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const TrainingDetail = ({ training, hasAlsoJob }) => {
   const [loading, setLoading] = useState(true);
