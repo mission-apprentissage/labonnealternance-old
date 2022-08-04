@@ -4,6 +4,7 @@
 [LBA6-109] Tracking événements pour plausible
 [LBA6-207] Next 12 et React 18
 [LBA6-208] MAJ page stats
+[LBA6-258] Promotion de la FAQ
 
 ## 1.20.3 [19/07/2022]
 [LBA6-241] Affichage email crypté pour tous les appelants
