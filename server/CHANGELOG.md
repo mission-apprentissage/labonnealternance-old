@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.20.4 [03/08/2022]
+[LBAC-109] Tracking événements pour plausible
+[LBAC-207] Next 12 et React 18
+[LBAC-208] MAJ page stats
+[LBAC-258] Promotion de la FAQ
+[LBAC-245] Ajout domaine recherché dans consultation de fiche
+
 ## 1.20.3 [19/07/2022]
 [LBA6-241] Affichage email crypté pour tous les appelants
 [LBA6-122] Fix import fichier SAVE

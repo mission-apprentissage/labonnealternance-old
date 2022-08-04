@@ -1,13 +1,12 @@
+import { DisplayContext } from "../../context/DisplayContextProvider";
 import React, { useEffect } from "react";
-import { SendTrackEvent } from "../../utils/gtm";
+import { SendPlausibleEvent } from "../../utils/plausible";
 import CandidatureSpontaneeExplanation from "./CandidatureSpontanee/CandidatureSpontaneeExplanation";
 
 const LbbCompanyDetail = ({ lbb }) => {
-
   useEffect(() => {
-    SendTrackEvent({
-      event: `Résultats Affichage ${lbb?.ideaType.toUpperCase()} - Consulter fiche entreprise`,
-      itemId: lbb?.company?.siret,
+    SendPlausibleEvent("Affichage - Fiche entreprise Algo", {
+      info_fiche: `${lbb?.company?.siret}${formValues?.job?.label ? ` - ${formValues.job.label}` : ""}`,
     });
   }, [lbb?.company?.siret]);
 
@@ -15,6 +14,8 @@ const LbbCompanyDetail = ({ lbb }) => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
     document.getElementsByClassName("choiceCol")[0]?.scrollTo(0, 0);
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
+
+  const { formValues } = React.useContext(DisplayContext);
 
   return (
     <div className="c-detail-body mt-4">

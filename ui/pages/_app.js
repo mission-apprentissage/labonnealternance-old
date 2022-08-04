@@ -9,6 +9,7 @@ import "public/styles/application.scss";
 import * as Sentry from "@sentry/node";
 import * as SentryReact from "@sentry/react";
 import PageTracker from "@/components/pageTracker";
+import { getEnvFromProps } from "utils/env";
 
 if (process.env.uiSentryDsn) {
   Sentry.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
@@ -38,8 +39,10 @@ class LaBonneAlternance extends App {
   render() {
     const { Component, pageProps, host, shouldLoadAnalytics } = this.props;
 
+    const env = getEnvFromProps(this.props).env;
+
     return (
-      <Providers>
+      <Providers env={env}>
         <PageTracker>
           <main className="c-app">
             <HeadLaBonneAlternance

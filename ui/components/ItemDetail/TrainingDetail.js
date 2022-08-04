@@ -7,25 +7,26 @@ import clipboardListIcon from "public/images/icons/traning-clipboard-list.svg";
 import targetIcon from "public/images/icons/training-target.svg";
 import sablierIcon from "public/images/icons/training-sablier.svg";
 import questionmarkIcon from "public/images/icons/training-questionmark.svg";
-import { SendTrackEvent } from "../../utils/gtm";
+import { SendPlausibleEvent } from "../../utils/plausible";
 import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "../../utils/strutils";
 import { Spinner } from "reactstrap";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const TrainingDetail = ({ training, hasAlsoJob }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    SendTrackEvent({
-      event: `Résultats Affichage formation - Consulter fiche formation`,
-      itemId: training.cleMinistereEducatif,
+    SendPlausibleEvent("Affichage - Fiche formation", {
+      info_fiche: `${training.cleMinistereEducatif}${formValues?.job?.label ? ` - ${formValues.job.label}` : ""}`,
     });
 
     setLoading(true);
   }, [training.id]);
 
   const { trainings, setTrainingsAndSelectedItem } = useContext(SearchResultContext);
+  const { formValues } = React.useContext(DisplayContext);
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ
@@ -104,34 +105,37 @@ const TrainingDetail = ({ training, hasAlsoJob }) => {
     <div className="c-detail-body mt-4">
       {getLoading()}
       {getTrainingDetails(training.training)}
-        <div className="c-detail-newadvice mt-4 pl-4">
-          <div className="pt-1 pb-2">
-            <img src={questionmarkIcon} alt="point d'interrogation" />
-            <span className="c-detail-newadvice-title ml-2">
-              {training.title ? training.title : training.longTitle}
-            </span>
-          </div>
-          {training.onisepUrl ? (
-            <div>
-              <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
-              <span className="c-detail-traininglink">
-                <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="c-nice-link">
-                  le site Onisep&nbsp;
-                  <img src={gotoIcon} alt="Lien" />
-                </a>
-              </span>
-            </div>
-          ) : (
-            ""
-          )}
-          <div className="mt-2 mb-2">
-            Vous vous posez des questions sur votre orientation ou votre recherche d'emploi ? 
-            <a href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987" target="_blank" rel="noopener noreferrer" className="c-nice-link">
-              &nbsp;Préparez votre premier contact avec un CFA&nbsp;
+      <div className="c-detail-newadvice mt-4 pl-4">
+        <div className="pt-1 pb-2">
+          <img src={questionmarkIcon} alt="point d'interrogation" />
+          <span className="c-detail-newadvice-title ml-2">{training.title ? training.title : training.longTitle}</span>
+        </div>
+        {training.onisepUrl ? (
+          <div>
+            <span>Descriptif du {training.title ? training.title : training.longTitle} sur&nbsp;</span>
+            <span className="c-detail-traininglink">
+              <a href={training.onisepUrl} target="_blank" rel="noopener noreferrer" className="c-nice-link">
+                le site Onisep&nbsp;
                 <img src={gotoIcon} alt="Lien" />
               </a>
+            </span>
           </div>
+        ) : (
+          ""
+        )}
+        <div className="mt-2 mb-2">
+          Vous vous posez des questions sur votre orientation ou votre recherche d'emploi ?
+          <a
+            href="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="c-nice-link"
+          >
+            &nbsp;Préparez votre premier contact avec un CFA&nbsp;
+            <img src={gotoIcon} alt="Lien" />
+          </a>
         </div>
+      </div>
     </div>
   );
 };
