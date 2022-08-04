@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { formatDate } from "../../utils/strutils";
-import { SendTrackEvent } from "../../utils/gtm";
+import { SendPlausibleEvent } from "../../utils/plausible";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -12,18 +13,17 @@ const PeJobDetail = ({ job }) => {
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   useEffect(() => {
-    SendTrackEvent({
-      event: `Résultats Affichage Offre PE - Consulter fiche entreprise`,
-      itemId: job?.job?.id,
+    SendPlausibleEvent("Affichage - Fiche entreprise Offre PE", {
+      info_fiche: `${job?.job?.id}${formValues?.job?.label ? ` - ${formValues.job.label}` : ""}`,
     });
   }, [job?.job?.id]);
+
+  const { formValues } = React.useContext(DisplayContext);
 
   const description = job?.job?.description;
   const contractDuration = job?.job?.contractDescription;
   const contractRythm = job?.job?.duration || "Non défini";
   const creationDate = formatDate(job?.job?.creationDate);
-
-  const kind = job?.ideaType;
 
   return (
     <div className="c-detail-body mt-4">
