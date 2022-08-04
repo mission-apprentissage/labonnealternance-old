@@ -1,4 +1,4 @@
-import { DisplayContext } from "context/DisplayContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 import React, { useEffect } from "react";
 import { SendPlausibleEvent } from "../../utils/plausible";
 import { formatDate } from "../../utils/strutils";

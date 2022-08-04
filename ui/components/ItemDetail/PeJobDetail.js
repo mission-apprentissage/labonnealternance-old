@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { formatDate } from "../../utils/strutils";
 import { SendPlausibleEvent } from "../../utils/plausible";
-import { DisplayContext } from "context/DisplayContextProvider";
+import { DisplayContext } from "../../context/DisplayContextProvider";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
