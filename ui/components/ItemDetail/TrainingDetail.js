@@ -12,19 +12,21 @@ import academicCapIcon from "public/images/icons/training-academic-cap.svg";
 import { formatDate } from "../../utils/strutils";
 import { Spinner } from "reactstrap";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
+import { DisplayContext } from "context/DisplayContextProvider";
 
 const TrainingDetail = ({ training, hasAlsoJob }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     SendPlausibleEvent("Affichage - Fiche formation", {
-      info_fiche: training.cleMinistereEducatif,
+      info_fiche: `${training.cleMinistereEducatif}${formValues?.job?.label ? ` - ${formValues.job.label}` : ""}`,
     });
 
     setLoading(true);
   }, [training.id]);
 
   const { trainings, setTrainingsAndSelectedItem } = useContext(SearchResultContext);
+  const { formValues } = React.useContext(DisplayContext);
 
   useEffect(() => {
     // S'assurer que l'utilisateur voit bien le haut de la fiche au départ

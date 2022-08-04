@@ -1,3 +1,4 @@
+import { DisplayContext } from "context/DisplayContextProvider";
 import React, { useEffect } from "react";
 import { SendPlausibleEvent } from "../../utils/plausible";
 import { formatDate } from "../../utils/strutils";
@@ -17,11 +18,13 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
 
   useEffect(() => {
     SendPlausibleEvent("Affichage - Fiche entreprise Offre LBA", {
-      info_fiche: job?.job?.id,
+      info_fiche: `${job?.job?.id}${formValues?.job?.label ? ` - ${formValues.job.label}` : ""}`,
     });
   }, [job?.job?.id]);
 
   const jobStartDate = job?.job?.jobStartDate ? formatDate(job.job.jobStartDate) : undefined;
+
+  const { formValues } = React.useContext(DisplayContext);
 
   return (
     <>
