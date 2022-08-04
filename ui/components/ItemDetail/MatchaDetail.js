@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import { SendTrackEvent } from "../../utils/gtm";
+import { SendPlausibleEvent } from "../../utils/plausible";
 import { formatDate } from "../../utils/strutils";
 import ExternalLink from "../externalLink";
 import MatchaCompetences from "./MatchaComponents/MatchaCompetences";
 import MatchaDescription from "./MatchaComponents/MatchaDescription";
-
-let md = require("markdown-it")().disable(["link", "image"]);
 
 const getContractTypes = (contractTypes) => {
   return contractTypes instanceof Array ? contractTypes.join(", ") : contractTypes;
@@ -18,9 +16,8 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   }, []); // Utiliser le useEffect une seule fois : https://css-tricks.com/run-useeffect-only-once/
 
   useEffect(() => {
-    SendTrackEvent({
-      event: `Résultats Affichage Offre Matcha - Consulter fiche entreprise`,
-      itemId: job?.job?.id,
+    SendPlausibleEvent("Affichage - Fiche entreprise Offre LBA", {
+      info_fiche: job?.job?.id,
     });
   }, [job?.job?.id]);
 
@@ -66,8 +63,9 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         ) : (
           <>
             <p>
-              <span className="c-detail-bolded">{job.company.name}</span> recrute dans le domaine suivant <span className="c-detail-bolded">{job.title}</span>. Cela signifie que l'établissement est
-              activement à la recherche d'un.e candidat.e.
+              <span className="c-detail-bolded">{job.company.name}</span> recrute dans le domaine suivant{" "}
+              <span className="c-detail-bolded">{job.title}</span>. Cela signifie que l'établissement est activement à
+              la recherche d'un.e candidat.e.
             </p>
             <p>Vous avez donc tout intérêt à le contacter rapidement, avant que l'offre ne soit pourvue !</p>
             <p className="mb-0">Trouver et convaincre une entreprise de vous embaucher ?</p>

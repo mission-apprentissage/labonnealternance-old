@@ -10,7 +10,6 @@ import { NextSeo } from "next-seo";
 import logoLbb from "public/images/logo-lbb.svg";
 import logoLbf from "public/images/logo-labonneformation.svg";
 import logoMaintenant from "public/images/logo-maintenant.svg";
-import logoMemo from "public/images/logo-memo.png";
 import logoAvril from "public/images/logo-avril.svg";
 import logoClara from "public/images/logo-clara.svg";
 
@@ -162,7 +161,7 @@ const APROPOS = () => (
           <div className="card-deck">
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
               <div className="c-about-card__img2">
-                <img src={logoMemo} width="114" className={"c-about-card__img--memo"} alt={"Logo"} />
+                <img src="/images/logo-memo.png" width="114" className={"c-about-card__img--memo"} alt={"Logo"} />
               </div>
               <div className="c-about-card__content">
                 <ExternalLink
