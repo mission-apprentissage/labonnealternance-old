@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { formatDate } from "../../utils/strutils";
 import { SendPlausibleEvent } from "../../utils/plausible";
+import { DisplayContext } from "context/DisplayContextProvider";
 
 let md = require("markdown-it")().disable(["link", "image"]);
 
@@ -13,16 +14,16 @@ const PeJobDetail = ({ job }) => {
 
   useEffect(() => {
     SendPlausibleEvent("Affichage - Fiche entreprise Offre PE", {
-      info_fiche: job?.job?.id,
+      info_fiche: `${job?.job?.id}${formValues?.job?.label ? ` - ${formValues.job.label}` : ""}`,
     });
   }, [job?.job?.id]);
+
+  const { formValues } = React.useContext(DisplayContext);
 
   const description = job?.job?.description;
   const contractDuration = job?.job?.contractDescription;
   const contractRythm = job?.job?.duration || "Non défini";
   const creationDate = formatDate(job?.job?.creationDate);
-
-  const kind = job?.ideaType;
 
   return (
     <div className="c-detail-body mt-4">
