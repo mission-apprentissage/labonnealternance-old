@@ -4,7 +4,7 @@ import _ from "lodash";
 import { isNonEmptyString } from "../utils/strutils";
 import { logError } from "../utils/tools";
 import memoize from "../utils/memoize";
-
+import { SendPlausibleEvent } from "../utils/plausible";
 let cancelToken;
 
 export const fetchRomes = memoize(
@@ -71,6 +71,15 @@ export const fetchRomes = memoize(
         }
         if (diplomas.length) {
           res = res.concat(diplomas.slice(4));
+        }
+
+        // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caractères
+        if (value.length > 2) {
+          if (res.length) {
+            SendPlausibleEvent("Mots clefs les plus recherchés", { terme: `${value.toLowerCase()} - ${res.length}` });
+          } else {
+            SendPlausibleEvent("Mots clefs ne retournant aucun résultat", { terme: value.toLowerCase() });
+          }
         }
       }
     } catch (err) {
