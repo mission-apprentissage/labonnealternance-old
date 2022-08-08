@@ -1,4 +1,4 @@
-import fetchRomes from "../services/fetchRomes";
+import { fetchRomes } from "../services/fetchRomes";
 import { SendPlausibleEvent } from "../utils/plausible";
 
 export default async function domainChanged(val, setDomainErrorFunc) {

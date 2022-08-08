@@ -1,4 +1,4 @@
-import fetchRomes from "../../services/fetchRomes";
+import { fetchRomes } from "../../services/fetchRomes";
 
 describe("fetchRomes", () => {
   it("skip : Should return an empty array if there is any wrong input", async () => {
