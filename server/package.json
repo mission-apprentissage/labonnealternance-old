@@ -63,7 +63,7 @@
     "nodemailer": "6.6.3",
     "nodemailer-html-to-text": "3.2.0",
     "notion-client": "4.12.0",
-    "oleoduc": "0.6.0",
+    "oleoduc": "0.7.0",
     "passport": "0.4.1",
     "passport-http": "0.3.0",
     "passport-jwt": "4.0.0",

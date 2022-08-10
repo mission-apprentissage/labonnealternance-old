@@ -203,7 +203,11 @@ const parseAddLine = (line) => {
   }
 };
 
-const computeLine = async ({ saveMap, etablissement }) => {
+const computeLine = async ({ saveMap, etablissement, titi }) => {
+  if (titi) {
+    console.log("titi : ", etablissement.siret);
+  }
+
   saveMap[etablissement.siret] = etablissement;
 };
 
@@ -215,7 +219,7 @@ const initSAVERemoveMap = async () => {
       fs.createReadStream(removeFilePath),
       readLineByLine(),
       transformData((line) => parseRemoveLine(line)),
-      writeData(async (etablissement) => computeLine({ saveMap: removeMap, etablissement }))
+      writeData(async (etablissement) => computeLine({ saveMap: removeMap, etablissement, titi: "a" }))
     );
 
     logMessage("info", `End init SAVE Remove map (${removeCount} companies)`);
