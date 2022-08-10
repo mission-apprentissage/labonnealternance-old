@@ -9,4 +9,4 @@ export default async function updateDiplomaSelectionFromJobChange(job, setDiplom
   setTimeout(() => {
     setDiplomasFunc(diplomas);
   }, 0);
-};
+}
