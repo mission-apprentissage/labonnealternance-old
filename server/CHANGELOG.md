@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.5 [11/08/2022]
+[LBAC-199] Affichage messages 0 formation
+
 ## 1.20.4 [03/08/2022]
 [LBAC-109] Tracking événements pour plausible
 [LBAC-207] Next 12 et React 18
