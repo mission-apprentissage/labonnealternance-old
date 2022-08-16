@@ -1,5 +1,4 @@
-import fetchRomes from "../services/fetchRomes";
-import { SendPlausibleEvent } from "../utils/plausible";
+import { fetchRomes } from "../services/fetchRomes";
 
 export default async function domainChanged(val, setDomainErrorFunc) {
   const res = await fetchRomes(val, () => {
@@ -8,15 +7,6 @@ export default async function domainChanged(val, setDomainErrorFunc) {
 
   if (res === "cancelled") {
     return [];
-  }
-
-  // tracking des recherches sur table domaines métier que lorsque le mot recherché fait au moins trois caractères
-  if (val && val.length > 2) {
-    if (res.length) {
-      SendPlausibleEvent("Mots clefs les plus recherchés", { terme: `${val.toLowerCase()} - ${res.length}` });
-    } else {
-      SendPlausibleEvent("Mots clefs ne retournant aucun résultat", { terme: val.toLowerCase() });
-    }
   }
 
   return res;

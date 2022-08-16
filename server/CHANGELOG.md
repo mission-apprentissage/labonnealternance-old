@@ -2,6 +2,8 @@
 
 ## 1.20.5 [11/08/2022]
 [LBAC-199] Affichage messages 0 formation
+[LBAC-89] Fix erreur diplômes
+[LBAC-259] Fix via memoization requêtes romes
 
 ## 1.20.4 [03/08/2022]
 [LBAC-109] Tracking événements pour plausible
