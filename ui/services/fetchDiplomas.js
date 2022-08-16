@@ -14,14 +14,7 @@ const filteredInput = (input) => {
 };
 
 const fetchDiplomas = memoize(
-  async (
-    arrayOfRome,
-    arrayOfRncp,
-    _baseUrl = baseUrl,
-    _axios = axios,
-    _window = window,
-    _logError = logError
-  ) => {
+  async (arrayOfRome, arrayOfRncp, _baseUrl = baseUrl, _axios = axios, _window = window, _logError = logError) => {
     let res = [];
 
     let cleanedArrayOfRome = filteredInput(arrayOfRome);
