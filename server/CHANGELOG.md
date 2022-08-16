@@ -11,6 +11,7 @@
 [LBAC-208] MAJ page stats
 [LBAC-258] Promotion de la FAQ
 [LBAC-245] Ajout domaine recherché dans consultation de fiche
+[LBA6-179] CFA mandates dont adresse
 
 ## 1.20.3 [19/07/2022]
 [LBA6-241] Affichage email crypté pour tous les appelants
