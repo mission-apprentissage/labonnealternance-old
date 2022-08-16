@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.5 [11/08/2022]
+[LBAC-259] Fix via memoization requêtes romes
+
 ## 1.20.4 [03/08/2022]
 [LBAC-109] Tracking événements pour plausible
 [LBAC-207] Next 12 et React 18
