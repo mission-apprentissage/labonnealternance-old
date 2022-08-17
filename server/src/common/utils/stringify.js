@@ -1,6 +1,6 @@
 // See https://stackoverflow.com/a/57193068/2595513
 // This is the same function as JSON.stringify, but it will works for deeply nested props
-// example: console.log(stringify(value, 1, null, 2));
+// example: console.log(stringify(value, 4, null, 2));
 function stringify(val, depth, replacer, space) {
   depth = isNaN(+depth) ? 1 : depth;
   // (JSON.stringify() has it's own rules, which we respect here by using it for property iteration)
