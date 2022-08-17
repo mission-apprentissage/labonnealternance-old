@@ -25,6 +25,15 @@ const validateSendApplication = async (validable) => {
   }
 };
 
+const validateFileContent = async (validable) => {
+  let schema = Yup.object().shape({
+    fileName: Yup.string()
+      .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
+      .required("⚠ Le téléphone est requis"),
+  });
+  console.log(validable, schema);
+};
+
 const validateCompanyEmail = async (validable) => {
   let schema = Yup.object().shape({
     companyEmail: Yup.string()
@@ -116,4 +125,5 @@ module.exports = {
   validateIntentionApplication,
   validatePermanentEmail,
   checkUserApplicationCount,
+  validateFileContent,
 };

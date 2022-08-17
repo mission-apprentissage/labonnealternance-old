@@ -13,6 +13,7 @@ const {
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
   validatePermanentEmail,
+  validateFileContent,
   checkUserApplicationCount,
 } = require("./validateSendApplication");
 const { validateCaller } = require("./queryValidators");
@@ -144,6 +145,15 @@ const sendApplication = async ({ mailer, query, referer, shouldCheckSecret }) =>
     }
 
     validationResult = await validatePermanentEmail({ email: query.applicant_email });
+
+    if (validationResult !== "ok") {
+      return { error: validationResult };
+    }
+
+    validationResult = await validateFileContent({
+      fileName: query.applicant_file_name,
+      fileContent: query.applicant_file_content,
+    });
 
     if (validationResult !== "ok") {
       return { error: validationResult };
