@@ -27,14 +27,10 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, ca
       lon: hasLocation ? longitude : coordinatesOfFrance[0],
     };
 
-    console.log("useMock", useMock);
-
     const jobs = useMock === "true" ? { data: matchasMock } : await axios.post(`${matchaSearchEndPoint}`, params);
 
-    console.log("jobs............" + jobs.data.length);
-
     let matchas = transformMatchaJobsForIdea({ jobs: jobs.data, caller });
-    // console.log(util.inspect(jobs.data, { showHidden: true, depth: 3 }));
+    console.log("matchas", matchas);
 
     // filtrage sur l'opco
     if (opco) {
