@@ -27,10 +27,21 @@ const validateSendApplication = async (validable) => {
 
 const validateFileContent = async (validable) => {
   let schema = Yup.object().shape({
-    fileName: Yup.string()
-      .matches(/^[0-9]{10}$/, "⚠ Le numéro de téléphone doit avoir exactement 10 chiffres")
-      .required("⚠ Le téléphone est requis"),
+    fileName: Yup.string().matches(
+      /([a-zA-Z0-9\s_\\.\-():])+(.docx|.pdf)$/i,
+      "⚠ Seuls les fichiers docx et pdf sont autorisés"
+    ),
+    fileContent: Yup.string().max(4215276, "⚠ La taille maximale de la pièce jointe est 3 Mo"),
   });
+
+  let validation = await schema.validate(validable).catch(function () {
+    return "erreur";
+  });
+
+  if (validation === "erreur") {
+    return "pièce jointe invalide";
+  }
+
   console.log(validable, schema);
 };
 
