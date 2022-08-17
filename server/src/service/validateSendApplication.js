@@ -38,11 +38,14 @@ const validateFileContent = async (validable) => {
     return "erreur";
   });
 
+  console.log(validable.fileName, validable.fileContent.length);
+
   if (validation === "erreur") {
+    console.log("validation erreur : ", validation);
     return "pièce jointe invalide";
   }
 
-  console.log(validable, schema);
+  // test scan av
 };
 
 const validateCompanyEmail = async (validable) => {
