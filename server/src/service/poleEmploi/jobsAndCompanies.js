@@ -84,6 +84,8 @@ const getCompanyQuery = async (query) => {
 const getJobsFromApi = async ({ query, api }) => {
   try {
     const sources = !query.sources ? ["lba", "lbb", "offres", "matcha"] : query.sources.split(",");
+    console.log("query", query);
+    console.log("sources", sources);
 
     let [peJobs, lbaCompanies, lbbCompanies, matchas] = await Promise.all([
       sources.indexOf("offres") >= 0
@@ -133,6 +135,7 @@ const getJobsFromApi = async ({ query, api }) => {
             api,
             caller: query.caller,
             opco: query.opco,
+            useMock: query.useMock,
           })
         : null,
     ]);
