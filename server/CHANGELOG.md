@@ -36,7 +36,6 @@
 [LBA6-175] Désactivation mesure d'intérêt offre mandataire
 [LBA6-182] Ajustements textes et masquage bloc partenaires
 [LBA6-179] Amélioration de la géolocalisation
-[LBAC-47] Bouchonner Matcha
 
 ## 1.20.0 [14/06/2022]
 [LBA6-137] Intégration nouvelle page accès recruteur
