@@ -123,7 +123,8 @@ export const loadItem = async ({
           break;
         }
         case "matcha": {
-          const response = await axios.get(matchaApi + "/" + item.itemId);
+          
+          const response = await axios.get(matchaApi + "/" + !useMock ? item.itemId : "id-matcha-test");
 
           // gestion des erreurs
           if (!response?.data?.message) {

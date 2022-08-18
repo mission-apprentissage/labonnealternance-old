@@ -69,7 +69,7 @@ const transformMatchaJobsForIdea = ({ jobs, caller }) => {
 
 const getMatchaJobById = async ({ id, caller }) => {
   try {
-    const jobs = id === "test-id" ? { data: matchaMock._source } : await axios.get(`${matchaJobEndPoint}/${id}`);
+    const jobs = id === "id-matcha-test" ? { data: matchaMock._source } : await axios.get(`${matchaJobEndPoint}/${id}`);
     const job = transformMatchaJobForIdea({
       job: jobs.data,
       caller,
