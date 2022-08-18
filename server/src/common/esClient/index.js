@@ -5,7 +5,7 @@ const mongoosastic = require("./mongoosastic");
 const config = require("config");
 
 const getClientOptions = (envName) => {
-  let node = { node: envName === "local" ? "http://localhost:9200" : "http://elasticsearch:9200" };
+  let node = { node: envName === "local" ? "http://127.0.0.1:9200" : "http://elasticsearch:9200" };
 
   return node;
 };
