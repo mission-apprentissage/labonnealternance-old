@@ -25,7 +25,7 @@ const validateSendApplication = async (validable) => {
   }
 };
 
-const validateFileContent = async (validable) => {
+const validateFileContent = async (validable, clamscan) => {
   let schema = Yup.object().shape({
     fileName: Yup.string().matches(
       /([a-zA-Z0-9\s_\\.\-():])+(.docx|.pdf)$/i,
@@ -38,14 +38,27 @@ const validateFileContent = async (validable) => {
     return "erreur";
   });
 
+  if (validation === "erreur") {
+    return "pièce jointe invalide";
+  }
+
   console.log(validable.fileName, validable.fileContent.length);
+
+  console.log(await clamscan.getVersion());
+
+  const isInfected = await clamscan.scanString(validable.fileContent);
+
+  if (isInfected) {
+    validation = "erreur";
+  }
+  console.log("isInfected : ", isInfected);
 
   if (validation === "erreur") {
     console.log("validation erreur : ", validation);
     return "pièce jointe invalide";
+  } else {
+    return "ok";
   }
-
-  // test scan av
 };
 
 const validateCompanyEmail = async (validable) => {

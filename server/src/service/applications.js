@@ -123,7 +123,7 @@ const getEmailTemplates = (applicationType) => {
   }
 };
 
-const sendApplication = async ({ mailer, query, referer, shouldCheckSecret }) => {
+const sendApplication = async ({ clamscan, mailer, query, referer, shouldCheckSecret }) => {
   if (shouldCheckSecret && !query.secret) {
     return { error: "secret_missing" };
   } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
@@ -150,10 +150,13 @@ const sendApplication = async ({ mailer, query, referer, shouldCheckSecret }) =>
       return { error: validationResult };
     }
 
-    validationResult = await validateFileContent({
-      fileName: query.applicant_file_name,
-      fileContent: query.applicant_file_content,
-    });
+    validationResult = await validateFileContent(
+      {
+        fileName: query.applicant_file_name,
+        fileContent: query.applicant_file_content,
+      },
+      clamscan
+    );
 
     if (validationResult !== "ok") {
       return { error: validationResult };
@@ -161,6 +164,8 @@ const sendApplication = async ({ mailer, query, referer, shouldCheckSecret }) =>
 
     let companyEmail = shouldCheckSecret ? query.company_email : decryptWithIV(query.company_email, query.iv); // utilisation email de test ou decrypt vrai mail crypté
     let cryptedEmail = shouldCheckSecret ? decryptWithIV(query.crypted_company_email, query.iv) : ""; // présent uniquement pour les tests utilisateurs
+
+    console.log("aaaa ", shouldCheckSecret, companyEmail, cryptedEmail);
 
     validationResult = await validateCompanyEmail({
       companyEmail,

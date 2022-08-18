@@ -1090,6 +1090,11 @@ ci-info@^2.0.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
 
+clamscan@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/clamscan/-/clamscan-2.1.2.tgz#ed58ef77b9095e3b28a3e7855b2c2acf6a2088ef"
+  integrity sha512-pcovgLHcrg3l/mI51Kuk0kN++07pSZdBTskISw0UFvsm8UXda8oNCm0eLeODxFg85Mz+k+TtSS9+XPlriJ8/Fg==
+
 clean-css@^4.2.1:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.3.tgz#507b5de7d97b48ee53d84adb0160ff6216380f78"
