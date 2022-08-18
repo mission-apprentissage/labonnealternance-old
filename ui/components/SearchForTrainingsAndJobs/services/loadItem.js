@@ -106,7 +106,6 @@ export const loadItem = async ({
       let errorMessage = null;
       let responseResult = null;
 
-      console.log('item.type', item.type);
       switch (item.type) {
         case "peJob": {
           const response = await axios.get(offreApi + "/" + item.itemId);
