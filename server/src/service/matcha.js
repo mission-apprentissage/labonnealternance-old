@@ -29,7 +29,6 @@ const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, ca
     };
 
     const jobs = useMock === "true" ? { data: matchasMock } : await axios.post(`${matchaSearchEndPoint}`, params);
-    console.log("jobs.data", jobs.data);
 
     let matchas = transformMatchaJobsForIdea({ jobs: jobs.data, caller });
 
