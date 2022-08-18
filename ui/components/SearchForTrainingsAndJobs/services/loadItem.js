@@ -106,6 +106,7 @@ export const loadItem = async ({
       let errorMessage = null;
       let responseResult = null;
 
+      console.log('item.type', item.type);
       switch (item.type) {
         case "peJob": {
           const response = await axios.get(offreApi + "/" + item.itemId);
@@ -124,7 +125,8 @@ export const loadItem = async ({
         }
         case "matcha": {
           
-          const response = await axios.get(matchaApi + "/" + !useMock ? item.itemId : "id-matcha-test");
+          let matchaUrl = `${matchaApi}/${!useMock ? item.itemId : "id-matcha-test"}`          
+          const response = await axios.get(matchaUrl);
 
           // gestion des erreurs
           if (!response?.data?.message) {
