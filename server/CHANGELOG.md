@@ -5,6 +5,7 @@
 [LBAC-89] Fix erreur diplômes
 [LBAC-259] Fix via memoization requêtes romes
 [TECH] Amélioration docker
+[LBAC-47] Bouchonner Matcha
 
 ## 1.20.4 [03/08/2022]
 [LBAC-109] Tracking événements pour plausible

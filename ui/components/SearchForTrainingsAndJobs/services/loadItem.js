@@ -123,7 +123,9 @@ export const loadItem = async ({
           break;
         }
         case "matcha": {
-          const response = await axios.get(matchaApi + "/" + item.itemId);
+          
+          let matchaUrl = `${matchaApi}/${!useMock ? item.itemId : "id-matcha-test"}`          
+          const response = await axios.get(matchaUrl);
 
           // gestion des erreurs
           if (!response?.data?.message) {
