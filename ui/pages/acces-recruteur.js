@@ -37,7 +37,7 @@ const AccesRecruteur = () => (
       <section className="c-homecomponent__beige">
         <GerezOffres />
       </section>
-      <section className="c-homecomponent__beige">
+      <section className="c-homecomponent">
         <FollowLinkedIn />
       </section>
 
