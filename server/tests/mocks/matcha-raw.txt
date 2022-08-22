@@ -1,0 +1,1012 @@
+{
+  raison_sociale: "PYRAT",
+  siret: "79823410000013",
+  adresse: "MOULIN DE LA JAURY 24160 SAINT MEDARD D'EXCIDEUIL",
+  geo_coordonnees: "45.325591,1.092823",
+  mandataire: false,
+  nom: "Pyrat",
+  prenom: "Jacques",
+  telephone: "0682582736",
+  email: "labonnealternance@pyrat.net",
+  origine: "matcha",
+  statut: "Actif",
+  _id: "62c9cfbdd2f6710027073485",
+  opco: "ATLAS",
+  idcc: "1486",
+  code_naf: "6201Z",
+  libelle_naf: "Programmation informatique",
+  tranche_effectif: "1 ou 2 salariés",
+  date_creation_etablissement: "1970-01-17T00:14:20.400Z",
+  id_form: "jMUtLDjmUCD6wiiJ7N0oM",
+  offres: [
+    {
+      libelle: "Etudes et développement informatique",
+      niveau: "Licence, autres formations niveau (Bac+3)",
+      date_debut_apprentissage: "2022-09-01T00:00:00.000Z",
+      romes: [
+        "M1805"
+      ],
+      date_creation: "2022-07-09T00:00:00.000Z",
+      date_expiration: "2022-08-09T00:00:00.000Z",
+      nombre_prolongation: 0,
+      relance_mail_sent: false,
+      statut: "Active",
+      type: [
+        "Apprentissage"
+      ],
+      multi_diffuser: null,
+      date_mise_a_jour: "2022-07-09T19:08:13.911Z",
+      _id: "62c9d21dd2f67100270734d1",
+      rome_detail: {
+        code: "M1805",
+        libelle: "Études et développement informatique",
+        definition: "Conçoit, développe et met au point un projet d'application informatique, de la phase d'étude à son intégration, pour un client ou une entreprise selon des besoins fonctionnels et un cahier des charges.\\nPeut conduire des projets de développement.\\nPeut coordonner une équipe.",
+        acces: "Cet emploi/métier est accessible avec un diplôme de niveau Bac+2 (BTS, DUT) à Master (MIAGE, diplôme d'ingénieur, Master professionnel, ...) en informatique.\\nIl est également accessible avec une expérience professionnelle en informatique, système d'exploitation ou dans un domaine applicatif.\\nLa pratique de l'anglais (vocabulaire technique) est requise.",
+        condition: "L'activité de cet emploi/métier s'exerce au sein de sociétés de services, d'entreprises, ..., en relation avec les clients.\\nElle varie selon la taille de la structure (polyvalence, spécialisation en gestion du projet, programmation, recettes, ...), la responsabilité (développement, projet, ...) et peut impliquer un détachement auprès d'autres entreprises.\\nElle peut s'exercer les fins de semaine, jours fériés et être soumise à des astreintes lors de la mise au point, d'installation, ...",
+        riasecMajeur: "I",
+        riasecMineur: "R",
+        codeIsco: "2519",
+        particulier: false,
+        domaineProfessionnel: {
+          code: "M18",
+          libelle: "Systèmes d'information et de télécommunication",
+          grandDomaine: {}
+        },
+        appellations: [
+          {
+            code: "10933",
+            libelle: "Analyste cogniticien / cogniticienne informatique",
+            libelleCourt: "Analyste cogniticien / cogniticienne informatique",
+            particulier: false
+          },
+          {
+            code: "10934",
+            libelle: "Analyste concepteur / conceptrice informatique",
+            libelleCourt: "Analyste concepteur / conceptrice informatique",
+            particulier: false
+          },
+          {
+            code: "10935",
+            libelle: "Analyste d'application",
+            libelleCourt: "Analyste d'application",
+            particulier: false
+          },
+          {
+            code: "10938",
+            libelle: "Analyste de gestion informatique",
+            libelleCourt: "Analyste de gestion informatique",
+            particulier: false
+          },
+          {
+            code: "10943",
+            libelle: "Analyste d'étude informatique",
+            libelleCourt: "Analyste d'étude informatique",
+            particulier: false
+          },
+          {
+            code: "10944",
+            libelle: "Analyste développeur / développeuse",
+            libelleCourt: "Analyste développeur / développeuse",
+            particulier: false
+          },
+          {
+            code: "10950",
+            libelle: "Analyste fonctionnel / fonctionnelle informatique",
+            libelleCourt: "Analyste fonctionnel / fonctionnelle informatique",
+            particulier: false
+          },
+          {
+            code: "10952",
+            libelle: "Analyste organique informatique",
+            libelleCourt: "Analyste organique informatique",
+            particulier: false
+          },
+          {
+            code: "10956",
+            libelle: "Analyste réseau informatique",
+            libelleCourt: "Analyste réseau informatique",
+            particulier: false
+          },
+          {
+            code: "10957",
+            libelle: "Analyste responsable d'application informatique",
+            libelleCourt: "Analyste responsable d'application informatique",
+            particulier: false
+          },
+          {
+            code: "10959",
+            libelle: "Analyste télématique",
+            libelleCourt: "Analyste télématique",
+            particulier: false
+          },
+          {
+            code: "10960",
+            libelle: "Analyste-programmeur / Analyste-programmeuse de micro-informatique",
+            libelleCourt: "Analyste-programmeur(se) de micro-informatique",
+            particulier: false
+          },
+          {
+            code: "10961",
+            libelle: "Analyste-programmeur / Analyste-programmeuse d'étude informatique",
+            libelleCourt: "Analyste-programmeur(se) d'étude informatique",
+            particulier: false
+          },
+          {
+            code: "10962",
+            libelle: "Analyste-programmeur / Analyste-programmeuse en informatique industrielle",
+            libelleCourt: "Analyste-programmeur(se) en informatique industrielle",
+            particulier: false
+          },
+          {
+            code: "10963",
+            libelle: "Analyste-programmeur / Analyste-programmeuse gestion informatique",
+            libelleCourt: "Analyste-programmeur(se) gestion informatique",
+            particulier: false
+          },
+          {
+            code: "10964",
+            libelle: "Analyste-programmeur / Analyste-programmeuse informatique",
+            libelleCourt: "Analyste-programmeur / Analyste-programmeuse informatique",
+            particulier: false
+          },
+          {
+            code: "10965",
+            libelle: "Analyste-programmeur / Analyste-programmeuse scientifique informatique",
+            libelleCourt: "Analyste-programmeur(se) scientifique informatique",
+            particulier: false
+          },
+          {
+            code: "11205",
+            libelle: "Assistant / Assistante chef de projet informatique",
+            libelleCourt: "Assistant / Assistante chef de projet informatique",
+            particulier: false
+          },
+          {
+            code: "12168",
+            libelle: "Chef de groupe logicien informaticien",
+            libelleCourt: "Chef de groupe logicien informaticien",
+            particulier: false
+          },
+          {
+            code: "12243",
+            libelle: "Chef de projet étude et développement informatique",
+            libelleCourt: "Chef de projet étude et développement informatique",
+            particulier: false
+          },
+          {
+            code: "12250",
+            libelle: "Chef de projet maîtrise d'oeuvre informatique",
+            libelleCourt: "Chef de projet maîtrise d'oeuvre informatique",
+            particulier: false
+          },
+          {
+            code: "12814",
+            libelle: "Concepteur / Conceptrice d'application informatique",
+            libelleCourt: "Concepteur / Conceptrice d'application informatique",
+            particulier: false
+          },
+          {
+            code: "12828",
+            libelle: "Concepteur / Conceptrice informatique",
+            libelleCourt: "Concepteur / Conceptrice informatique",
+            particulier: false
+          },
+          {
+            code: "12829",
+            libelle: "Concepteur / Conceptrice logiciel informatique",
+            libelleCourt: "Concepteur / Conceptrice logiciel informatique",
+            particulier: false
+          },
+          {
+            code: "14148",
+            libelle: "Développeur / Développeuse d'application",
+            libelleCourt: "Développeur / Développeuse d'application",
+            particulier: false
+          },
+          {
+            code: "14153",
+            libelle: "Développeur / Développeuse informatique",
+            libelleCourt: "Développeur / Développeuse informatique",
+            particulier: false
+          },
+          {
+            code: "14155",
+            libelle: "Développeur / Développeuse multimédia",
+            libelleCourt: "Développeur / Développeuse multimédia",
+            particulier: false
+          },
+          {
+            code: "14156",
+            libelle: "Développeur / Développeuse web",
+            libelleCourt: "Développeur / Développeuse web",
+            particulier: false
+          },
+          {
+            code: "14167",
+            libelle: "Didacticien / Didacticienne informatique",
+            libelleCourt: "Didacticien / Didacticienne informatique",
+            particulier: false
+          },
+          {
+            code: "15567",
+            libelle: "Informaticien chargé / Informaticienne chargée d'étude",
+            libelleCourt: "Informaticien chargé / Informaticienne chargée d'étude",
+            particulier: false
+          },
+          {
+            code: "15568",
+            libelle: "Informaticien / Informaticienne d'application",
+            libelleCourt: "Informaticien / Informaticienne d'application",
+            particulier: false
+          },
+          {
+            code: "15569",
+            libelle: "Informaticien / Informaticienne de développement",
+            libelleCourt: "Informaticien / Informaticienne de développement",
+            particulier: false
+          },
+          {
+            code: "15580",
+            libelle: "Ingénieur / Ingénieure analyste en système d'information",
+            libelleCourt: "Ingénieur / Ingénieure analyste en système d'information",
+            particulier: false
+          },
+          {
+            code: "15581",
+            libelle: "Ingénieur / Ingénieure analyste informatique",
+            libelleCourt: "Ingénieur / Ingénieure analyste informatique",
+            particulier: false
+          },
+          {
+            code: "15582",
+            libelle: "Ingénieur analyste-programmeur / Ingénieure analyste-programmeuse",
+            libelleCourt: "Ingénieur(e) analyste-programmeur(se)",
+            particulier: false
+          },
+          {
+            code: "15616",
+            libelle: "Ingénieur concepteur / Ingénieure conceptrice informatique",
+            libelleCourt: "Ingénieur concepteur / Ingénieure conceptrice informatique",
+            particulier: false
+          },
+          {
+            code: "15624",
+            libelle: "Ingénieur / Ingénieure d'analyse et de programmation en informatique de gestion",
+            libelleCourt: "Ingénieur(e) analyse programmation en informatique gestion",
+            particulier: false
+          },
+          {
+            code: "15627",
+            libelle: "Ingénieur / Ingénieure d'application informatique",
+            libelleCourt: "Ingénieur / Ingénieure d'application informatique",
+            particulier: false
+          },
+          {
+            code: "15631",
+            libelle: "Ingénieur / Ingénieure de conception informatique",
+            libelleCourt: "Ingénieur / Ingénieure de conception informatique",
+            particulier: false
+          },
+          {
+            code: "15635",
+            libelle: "Ingénieur / Ingénieure de développement informatique",
+            libelleCourt: "Ingénieur / Ingénieure de développement informatique",
+            particulier: false
+          },
+          {
+            code: "15665",
+            libelle: "Ingénieur / Ingénieure de réalisation informatique",
+            libelleCourt: "Ingénieur / Ingénieure de réalisation informatique",
+            particulier: false
+          },
+          {
+            code: "15823",
+            libelle: "Ingénieur informaticien / Ingénieure informaticienne",
+            libelleCourt: "Ingénieur informaticien / Ingénieure informaticienne",
+            particulier: false
+          },
+          {
+            code: "15824",
+            libelle: "Ingénieur / Ingénieure informatique développement en temps réel",
+            libelleCourt: "Ingénieur(e) informatique développement en temps réel",
+            particulier: false
+          },
+          {
+            code: "15826",
+            libelle: "Ingénieur / Ingénieure logiciel informatique",
+            libelleCourt: "Ingénieur / Ingénieure logiciel informatique",
+            particulier: false
+          },
+          {
+            code: "15867",
+            libelle: "Ingénieur / Ingénieure programme informatique",
+            libelleCourt: "Ingénieur / Ingénieure programme informatique",
+            particulier: false
+          },
+          {
+            code: "15696",
+            libelle: "Ingénieur / Ingénieure d'étude en applications scientifiques informatiques",
+            libelleCourt: "Ingénieur(e) étude en application scientifique informatique",
+            particulier: false
+          },
+          {
+            code: "15697",
+            libelle: "Ingénieur / Ingénieure d'étude en informatique de gestion",
+            libelleCourt: "Ingénieur / Ingénieure d'étude en informatique de gestion",
+            particulier: false
+          },
+          {
+            code: "15698",
+            libelle: "Ingénieur / Ingénieure d'étude et développement informatique",
+            libelleCourt: "Ingénieur / Ingénieure d'étude et développement informatique",
+            particulier: false
+          },
+          {
+            code: "15699",
+            libelle: "Ingénieur / Ingénieure d'étude informatique",
+            libelleCourt: "Ingénieur / Ingénieure d'étude informatique",
+            particulier: false
+          },
+          {
+            code: "15700",
+            libelle: "Ingénieur / Ingénieure d'étude logiciel informatique",
+            libelleCourt: "Ingénieur / Ingénieure d'étude logiciel informatique",
+            particulier: false
+          },
+          {
+            code: "15714",
+            libelle: "Ingénieur / Ingénieure développement logiciel informatique",
+            libelleCourt: "Ingénieur / Ingénieure développement logiciel informatique",
+            particulier: false
+          },
+          {
+            code: "15721",
+            libelle: "Ingénieur / Ingénieure d'intégration applicative",
+            libelleCourt: "Ingénieur / Ingénieure d'intégration applicative",
+            particulier: false
+          },
+          {
+            code: "15753",
+            libelle: "Ingénieur / Ingénieure en développement d'applications",
+            libelleCourt: "Ingénieur / Ingénieure en développement d'applications",
+            particulier: false
+          },
+          {
+            code: "15565",
+            libelle: "Informaticien / Informaticienne analyste",
+            libelleCourt: "Informaticien / Informaticienne analyste",
+            particulier: false
+          },
+          {
+            code: "16027",
+            libelle: "Intégrateur / Intégratrice d'application informatique",
+            libelleCourt: "Intégrateur / Intégratrice d'application informatique",
+            particulier: false
+          },
+          {
+            code: "17558",
+            libelle: "Paramétreur / Paramétreuse logiciel ERP",
+            libelleCourt: "Paramétreur / Paramétreuse logiciel ERP",
+            particulier: false
+          },
+          {
+            code: "20226",
+            libelle: "Technicien / Technicienne programmation",
+            libelleCourt: "Technicien / Technicienne programmation",
+            particulier: false
+          },
+          {
+            code: "20314",
+            libelle: "Testeur / Testeuse informatique",
+            libelleCourt: "Testeur / Testeuse informatique",
+            particulier: false
+          },
+          {
+            code: "20728",
+            libelle: "Webmaster développeur / développeuse",
+            libelleCourt: "Webmaster développeur / développeuse",
+            particulier: false
+          },
+          {
+            code: "38061",
+            libelle: "Chef de projet TMA - Tierce Maintenance Applicative",
+            libelleCourt: "Chef de projet TMA - Tierce Maintenance Applicative",
+            particulier: false
+          },
+          {
+            code: "38062",
+            libelle: "Homologateur / Homologatrice logiciel",
+            libelleCourt: "Homologateur / Homologatrice logiciel",
+            particulier: false
+          },
+          {
+            code: "38095",
+            libelle: "Analyste décisionnel - Business Intelligence",
+            libelleCourt: "Analyste décisionnel - Business Intelligence",
+            particulier: false
+          },
+          {
+            code: "140952",
+            libelle: "Développeur / Développeuse de logiciel de simulation optique et réalité virtuelle",
+            libelleCourt: "Développeur(se) logiciel simulation optique réalité virtuel.",
+            particulier: false
+          },
+          {
+            code: "140953",
+            libelle: "Développeur / Développeuse logiciel de réalité augmentée",
+            libelleCourt: "Développeur / Développeuse logiciel de réalité augmentée",
+            particulier: false
+          },
+          {
+            code: "200027",
+            libelle: "Scrum Master",
+            libelleCourt: "Scrum Master",
+            particulier: false
+          },
+          {
+            code: "200150",
+            libelle: "Développeur / Développeuse front-end",
+            libelleCourt: "Développeur / Développeuse front-end",
+            particulier: false
+          },
+          {
+            code: "200151",
+            libelle: "Développeur / Développeuse back-end",
+            libelleCourt: "Développeur / Développeuse back-end",
+            particulier: false
+          },
+          {
+            code: "38661",
+            libelle: "Développeur / Développeuse décisionnel - Business Intelligence",
+            libelleCourt: "Développeur(se) décisionnel - Business Intelligence",
+            particulier: false
+          },
+          {
+            code: "38715",
+            libelle: "Lead programmeur / programmeuse - jeux vidéo",
+            libelleCourt: "Lead programmeur / programmeuse - jeux vidéo",
+            particulier: false
+          },
+          {
+            code: "38716",
+            libelle: "Programmeur / Programmeuse - jeux vidéo",
+            libelleCourt: "Programmeur / Programmeuse - jeux vidéo",
+            particulier: false
+          },
+          {
+            code: "38717",
+            libelle: "Développeur / Développeuse - jeux vidéo",
+            libelleCourt: "Développeur / Développeuse - jeux vidéo",
+            particulier: false
+          },
+          {
+            code: "38745",
+            libelle: "Développeur / Développeuse web mobile",
+            libelleCourt: "Développeur / Développeuse web mobile",
+            particulier: false
+          },
+          {
+            code: "38915",
+            libelle: "Analyste en cybersécurité",
+            libelleCourt: "Analyste en cybersécurité",
+            particulier: false
+          },
+          {
+            code: "38916",
+            libelle: "Développeur / Développeuse de sécurité des systèmes d'information",
+            libelleCourt: "Développeur(euse) de sécurité des systèmes d'information",
+            particulier: false
+          },
+          {
+            code: "38976",
+            libelle: "Développeur / Développeuse full-stack",
+            libelleCourt: "Développeur / Développeuse full-stack",
+            particulier: false
+          },
+          {
+            code: "38977",
+            libelle: "Développeur / Développeuse Big Data",
+            libelleCourt: "Développeur / Développeuse Big Data",
+            particulier: false
+          },
+          {
+            code: "18625",
+            libelle: "Responsable d'application informatique",
+            libelleCourt: "Responsable d'application informatique",
+            particulier: false
+          },
+          {
+            code: "18637",
+            libelle: "Responsable d'atelier de génie logiciel",
+            libelleCourt: "Responsable d'atelier de génie logiciel",
+            particulier: false
+          },
+          {
+            code: "18719",
+            libelle: "Responsable de gestion de configuration",
+            libelleCourt: "Responsable de gestion de configuration",
+            particulier: false
+          },
+          {
+            code: "18187",
+            libelle: "Programmeur / Programmeuse d'applications",
+            libelleCourt: "Programmeur / Programmeuse d'applications",
+            particulier: false
+          },
+          {
+            code: "18188",
+            libelle: "Programmeur / Programmeuse de maintenance informatique",
+            libelleCourt: "Programmeur / Programmeuse de maintenance informatique",
+            particulier: false
+          },
+          {
+            code: "18189",
+            libelle: "Programmeur / Programmeuse d'études",
+            libelleCourt: "Programmeur / Programmeuse d'études",
+            particulier: false
+          },
+          {
+            code: "18191",
+            libelle: "Programmeur industriel / Programmeuse industrielle",
+            libelleCourt: "Programmeur industriel / Programmeuse industrielle",
+            particulier: false
+          },
+          {
+            code: "18192",
+            libelle: "Programmeur / Programmeuse informatique",
+            libelleCourt: "Programmeur / Programmeuse informatique",
+            particulier: false
+          },
+          {
+            code: "18193",
+            libelle: "Programmeur / Programmeuse logiciel de base informatique",
+            libelleCourt: "Programmeur / Programmeuse logiciel de base informatique",
+            particulier: false
+          },
+          {
+            code: "18832",
+            libelle: "Responsable de projet informatique",
+            libelleCourt: "Responsable de projet informatique",
+            particulier: false
+          },
+          {
+            code: "18927",
+            libelle: "Responsable des développements informatiques",
+            libelleCourt: "Responsable des développements informatiques",
+            particulier: false
+          },
+          {
+            code: "18961",
+            libelle: "Responsable d'étude informatique",
+            libelleCourt: "Responsable d'étude informatique",
+            particulier: false
+          }
+        ],
+        competencesDeBase: [
+          {
+            code: "118637",
+            libelle: "Analyser les besoins du client",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "S",
+            riasecMajeur: "E"
+          },
+          {
+            code: "117309",
+            libelle: "Établir un cahier des charges",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "E",
+            riasecMajeur: "C"
+          },
+          {
+            code: "124517",
+            libelle: "Rédiger une Spécification Technique de Besoin (STB)",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "R",
+            riasecMajeur: "I"
+          },
+          {
+            code: "109845",
+            libelle: "Réaliser un prototype de la solution technique pour validation par le donneur d'ordres (configuration type, ...)",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "R",
+            riasecMajeur: "I"
+          },
+          {
+            code: "109846",
+            libelle: "Concevoir et développer les programmes et applications informatiques",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "R",
+            riasecMajeur: "I"
+          },
+          {
+            code: "120370",
+            libelle: "Déterminer les phases et procédures de tests techniques et fonctionnels de programmes et applications informatiques",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "R",
+            riasecMajeur: "I"
+          },
+          {
+            code: "121398",
+            libelle: "Analyser des problèmes techniques",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "I",
+            riasecMajeur: "R"
+          },
+          {
+            code: "121055",
+            libelle: "Déterminer des mesures correctives",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "R",
+            riasecMajeur: "R"
+          },
+          {
+            code: "120672",
+            libelle: "Réaliser des supports techniques",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "R",
+            riasecMajeur: "C"
+          },
+          {
+            code: "119114",
+            libelle: "Traiter l'information (collecter, classer et mettre à jour)",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "I",
+            riasecMajeur: "C"
+          },
+          {
+            code: "123182",
+            libelle: "Animer une réunion",
+            noeudCompetence: {},
+            typeCompetence: "SavoirFaire",
+            riasecMineur: "E",
+            riasecMajeur: "S"
+          },
+          {
+            code: "109531",
+            libelle: "Algorithmique",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "102532",
+            libelle: "Technologies de l'accessibilité numérique",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "106767",
+            libelle: "Protocoles et normes télécoms",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "102732",
+            libelle: "Langages de programmation informatique",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "109854",
+            libelle: "Systèmes d'exploitation informatique",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "106844",
+            libelle: "Règles de sécurité Informatique et Télécoms",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "109851",
+            libelle: "Gestion de configuration",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "109779",
+            libelle: "Modélisation informatique",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "109852",
+            libelle: "Architecture d'applications",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "120254",
+            libelle: "Architecture des systèmes d'information",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "109850",
+            libelle: "Programmation informatique",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "120803",
+            libelle: "Programmation logicielle",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          },
+          {
+            code: "113277",
+            libelle: "Méthode AGILE",
+            noeudCompetence: {},
+            typeCompetence: "Savoir"
+          }
+        ],
+        groupesCompetencesSpecifiques: [
+          {
+            competences: [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          },
+          {
+            competences: [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          },
+          {
+            competences: [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          },
+          {
+            competences: [
+              {}
+            ]
+          },
+          {
+            competences: [
+              {},
+              {},
+              {}
+            ]
+          },
+          {
+            competences: [
+              {}
+            ]
+          },
+          {
+            competences: [
+              {}
+            ]
+          },
+          {
+            competences: [
+              {},
+              {}
+            ]
+          },
+          {
+            competences: [
+              {},
+              {}
+            ]
+          },
+          {
+            competences: [
+              {}
+            ]
+          },
+          {
+            competences: [
+              {},
+              {}
+            ]
+          },
+          {
+            competences: [
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          },
+          {
+            competences: [
+              {},
+              {},
+              {},
+              {}
+            ]
+          },
+          {
+            competences: [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          }
+        ],
+        environnementsTravail: [
+          {
+            code: "23388",
+            libelle: "Administration / Services de l'État",
+            typeEnvironnementTravail: "Secteur"
+          },
+          {
+            code: "23401",
+            libelle: "Armée",
+            typeEnvironnementTravail: "Secteur"
+          },
+          {
+            code: "23452",
+            libelle: "Constructeur de matériel informatique",
+            typeEnvironnementTravail: "Secteur"
+          },
+          {
+            code: "23470",
+            libelle: "Éditeur multimédia",
+            typeEnvironnementTravail: "Secteur"
+          },
+          {
+            code: "23535",
+            libelle: "Informatique et télécommunications",
+            typeEnvironnementTravail: "Secteur"
+          },
+          {
+            code: "23808",
+            libelle: "Collectivité territoriale",
+            typeEnvironnementTravail: "Structure"
+          },
+          {
+            code: "23867",
+            libelle: "Entreprise",
+            typeEnvironnementTravail: "Structure"
+          },
+          {
+            code: "23912",
+            libelle: "Entreprise publique/établissement public",
+            typeEnvironnementTravail: "Structure"
+          },
+          {
+            code: "24081",
+            libelle: "Société de conseil",
+            typeEnvironnementTravail: "Structure"
+          },
+          {
+            code: "24095",
+            libelle: "Entreprise de Services Numériques - ESN",
+            typeEnvironnementTravail: "Structure"
+          },
+          {
+            code: "38679",
+            libelle: "Studio de développement de jeux vidéo",
+            typeEnvironnementTravail: "Structure"
+          }
+        ],
+        themes: [
+          {
+            code: "16",
+            libelle: "Métiers de l'ingénierie"
+          },
+          {
+            code: "9",
+            libelle: "Métiers du multimédia"
+          },
+          {
+            code: "7",
+            libelle: "Métiers de l'aéronautique"
+          },
+          {
+            code: "4",
+            libelle: "Métiers de l'intelligence économique"
+          }
+        ],
+        mobilitesProchesVersMetiers: [
+          {
+            metierCible: {}
+          },
+          {
+            metierCible: {}
+          }
+        ],
+        mobilitesEvolutionsVersMetiers: [
+          {
+            metierCible: {}
+          },
+          {
+            metierCible: {}
+          },
+          {
+            metierCible: {}
+          },
+          {
+            metierCible: {}
+          },
+          {
+            metierCible: {}
+          }
+        ],
+        mobilitesProchesVersAppellations: [],
+        mobilitesEvolutionsVersAppellations: [],
+        mobilitesProchesAppellationsVersMetiers: [],
+        mobilitesEvolutionsAppellationsVersMetiers: [],
+        mobilitesProchesAppellationsVersAppellations: [
+          {
+            appellationOrigine: {},
+            appellationCible: {}
+          },
+          {
+            appellationOrigine: {},
+            appellationCible: {}
+          }
+        ],
+        mobilitesEvolutionsAppellationsVersAppellations: []
+      },
+      elligible_handicap: false,
+      quantite: 1,
+      duree_contrat: 1
+    }
+  ],
+  createdAt: "2022-07-09T18:58:05.497Z",
+  updatedAt: "2022-07-09T19:12:50.593Z",
+  __v: 0
+}
