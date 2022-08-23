@@ -6,7 +6,7 @@ import TagOffreEmploi from "../../components/ItemDetail/TagOffreEmploi.js";
 
 const AlgoHome = () => {
   return (
-    <section className="c-algo container py-5">
+    <section className="c-algo container">
       <div className="">
         <h2 className="c-algo-title">
           <span className="d-block c-algo-title__top">Vous révéler</span>

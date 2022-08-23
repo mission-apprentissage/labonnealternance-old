@@ -11,8 +11,12 @@
 
 .c-algo-title {
   font-weight: 700;
-  font-size: 40px;
-  line-height: 48px;
+  font-size: 32px;
+  line-height: 40px;
+  @include media-breakpoint-up(md) {
+    font-size: 40px;
+    line-height: 48px;
+  }
   &__top {
     color: #2A2A2A;
   }
