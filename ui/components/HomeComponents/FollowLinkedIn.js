@@ -13,9 +13,9 @@ const FollowLinkedIn = () => {
       </div>
       <div className="c-follow-linkedin-cta d-flex-center">
         <ExternalLink 
-          className="c-follow-linkedin-button px-3 py-2 mx-3" 
+          className="c-follow-linkedin-button px-3 py-2 mx-3 d-flex" 
           url="https://www.linkedin.com/company/mission-apprentissage" 
-          title="Voir notre page"
+          title="Voir notre page &nbsp;"
           withPic={<img src={linkedIn} alt="Lien" />} />
       </div>
     </section>

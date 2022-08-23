@@ -34,12 +34,9 @@ const AccesRecruteur = () => (
         <OrganismesMandataires />
       </section>
 
-      <section className="c-homecomponent__beige">
-        <GerezOffres />
-      </section>
-      <section className="c-homecomponent">
-        <FollowLinkedIn />
-      </section>
+      <GerezOffres />
+      
+      <FollowLinkedIn />
 
       <section className="text-center mb-5">
         <h2 className="c-homecomponent-title mb-5">Vous souhaitez recruter un alternant pour votre entreprise ?</h2>

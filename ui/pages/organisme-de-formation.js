@@ -41,10 +41,8 @@ const Organisme = (props) => {
           <GerezOffresCFA />
         </section>
 
-        <section className="c-homecomponent">
-          <FollowLinkedIn />
-        </section>
-
+        <FollowLinkedIn />
+        
         <section className="text-center mb-5">
           <h2 className="c-homecomponent-title mb-5">Vous souhaitez attirer de nouveaux candidats?</h2>
           <div className="ml-4">
