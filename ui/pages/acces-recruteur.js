@@ -38,7 +38,9 @@ const AccesRecruteur = () => (
       <GerezOffres />
       
       <FollowLinkedIn />
-      <AlgoRecruiter />
+      <section className="c-homecomponent__blue">
+        <AlgoRecruiter />
+      </section>
 
       <section className="text-center mb-5">
         <h2 className="c-homecomponent-title mb-5">Vous souhaitez recruter un alternant pour votre entreprise ?</h2>

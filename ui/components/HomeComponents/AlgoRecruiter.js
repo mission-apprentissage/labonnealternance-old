@@ -1,12 +1,10 @@
 import React from "react";
-import TagCandidatureSpontanee from "../../components/ItemDetail/TagCandidatureSpontanee.js";
-import TagOffreEmploi from "../../components/ItemDetail/TagOffreEmploi.js";
 
 
 
 const AlgoRecruiter = () => {
   return (
-    <section className="c-algo container">
+    <section className="c-algo container pl-5 py-4 mb-4">
       <div className="">
         <h2 className="c-algo-title">
           <span className="d-block c-algo-title__top">La bonne alternance révèle</span>
@@ -24,7 +22,7 @@ const AlgoRecruiter = () => {
       <div className="c-algo-img d-flex-center">
         <img
           className=""
-          src="/images/icons/algo_home.svg"
+          src="/images/icons/algo_recruiter.svg"
           alt="Recherche Internet"
         />
       </div>
