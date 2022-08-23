@@ -1,10 +1,28 @@
 .c-algo {
   display: flex;
   flex-direction: column;
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     flex-direction: row;
   }
   @include media-breakpoint-up(lg) {
     max-width: 1310px;
   }
+}
+
+.c-algo-title {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  &__top {
+    color: #2A2A2A;
+  }
+  &__down {
+    color: #3A55D1;
+  }
+}
+
+.c-algo-text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
 }
