@@ -1,0 +1,10 @@
+.c-algo {
+  display: flex;
+  flex-direction: column;
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
+  @include media-breakpoint-up(lg) {
+    max-width: 1310px;
+  }
+}
