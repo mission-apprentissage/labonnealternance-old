@@ -4,7 +4,7 @@
   @include media-breakpoint-up(lg) {
     flex-direction: row;
   }
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(xl) {
     max-width: 1310px;
   }
 }
@@ -26,4 +26,11 @@
   font-size: 18px;
   line-height: 28px;
   padding-right: 4rem;
+}
+
+.c-algo-img {
+  margin-top: 2rem;
+  @include media-breakpoint-up(lg) {
+    margin-top: 0;
+  }
 }

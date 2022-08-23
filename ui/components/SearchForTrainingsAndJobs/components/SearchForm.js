@@ -161,7 +161,6 @@ const SearchForm = (props) => {
                 C'est parti
               </button>
             </div>
-            <div style={{ height: "300px" }} />
           </Form>
         )}
       </Formik>
