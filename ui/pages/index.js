@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Navigation from "components/navigation";
 import HomeHero from "components/HomeHero";
 import HowTo from "components/HowTo";
+import AlgoExplainedHome from "components/HomeComponents/AlgoExplainedHome";
 import HomeReview from "components/HomeReview";
 import { initParametersFromQuery } from "services/config";
 import Footer from "components/footer";
@@ -38,7 +39,8 @@ const Home = (props) => {
         <img src={howtocircle4} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle4" alt="Cercle" />
         <img src={howtocircle5} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle5" alt="Cercle" />
         <HomeHero />
-        <HowTo />
+        <AlgoExplainedHome />
+        
       </div>
 
       <HomeReview reviews={props.reviews} />
