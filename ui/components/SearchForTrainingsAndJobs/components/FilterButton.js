@@ -12,11 +12,11 @@ const FilterButton = ({ type, count, isActive, handleFilterButtonClicked }) => {
   const getText = () => {
     let res = "";
     if (type === "trainings") {
-      res = "Les formations";
+      res = `Formations (${count})`;
     } else if (type === "jobs") {
-      res = "Les entreprises";
+      res = `Entreprises (${count})`;
     } else if (type === "all") {
-      res = "";
+      res = `Tout (${count})`;
     }
     return res;
   };
