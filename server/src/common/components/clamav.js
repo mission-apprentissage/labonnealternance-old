@@ -1,5 +1,6 @@
 const NodeClam = require("clamscan");
 const config = require("config");
+const logger = require("./common/logger");
 
 module.exports = async () => {
   async function createClamscan() {
@@ -49,6 +50,7 @@ module.exports = async () => {
       };
     } catch (err) {
       console.log("error init clamav ", err);
+      logger.error("Error initializing clamav connexion", err);
       return {};
     }
   }
