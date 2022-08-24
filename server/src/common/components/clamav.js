@@ -4,11 +4,13 @@ const logger = require("../logger");
 
 module.exports = async () => {
   async function createClamscan() {
+    logger.error(`env ? ${config.env}`);
+
     try {
       const clamscan = await new NodeClam().init({
         debugMode: config.env === "local" ? true : false, // This will put some debug info in your js console
         clamdscan: {
-          host: config.env === "local" ? "localhost" : "clamav",
+          host: `${config.env === "local" ? "localhost" : "clamav"}`,
           port: 3310,
           bypassTest: false,
         },
