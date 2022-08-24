@@ -1,15 +1,12 @@
 const NodeClam = require("clamscan");
-
-//"clamav:3310"
-//"127.0.0.1:3310"
+const config = require("config");
 
 module.exports = async () => {
   async function createClamscan() {
-    // You'll need to specify your socket or TCP connection info
     const clamscan = await new NodeClam().init({
-      debugMode: true, // This will put some debug info in your js console
+      debugMode: config.env === "local" ? true : false, // This will put some debug info in your js console
       clamdscan: {
-        host: "127.0.0.1",
+        host: config.env === "local" ? "localhost" : "clamav",
         port: 3310,
         bypassTest: false,
       },
@@ -17,36 +14,27 @@ module.exports = async () => {
 
     const scanString = async (fileContent) => {
       const Readable = require("stream").Readable;
-      const rs = Readable();
 
-      console.log("fileContent: ", fileContent.length);
-      //rs.push("X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*");
-      rs.push(fileContent);
-      rs.push(null);
+      /*
+      const eicarStr = "X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*";
+      const utf8Encode = new TextEncoder();
+      const eicarByteArray = utf8Encode.encode(eicarStr);
+      const eicarBuffer = Buffer.from(eicarByteArray);
+      const rs = Readable.from(eicarBuffer);
+      let { isInfected, viruses } = await clamscan.scanStream(rs);
+      console.log("scan result EICAR String : ", isInfected, viruses);
+      */
 
-      /*const result = await clamscan.scanStream(rs, (err, result) => {
-        console.log(err, result, result.isInfected);
-        if (err) {
-          console.log("scan error ", err);
-          return "scan_error";
-        }
-        console.log("ICI");
-        if (result.isInfected) {
-          return "infected";
-        }
-        console.log("LA");
-        return "clean";
-      });*/
-      let { file, isInfected, viruses } = await clamscan.scanStream(rs);
+      // le fichier est encodé en base 64 à la suite d'un en-tête.
+      const decodedAscii = Readable.from(
+        Buffer.from(fileContent.substring(fileContent.indexOf(";base64,") + 8), "base64").toString("ascii")
+      );
+      const rs = Readable.from(decodedAscii);
+      const { isInfected, viruses } = await clamscan.scanStream(rs);
 
-      console.log("scan result : ", isInfected, viruses);
-
-      var path = require("path");
-
-      console.log(path.resolve("./src/assets/test_eicar.pdf"));
-      ({ file, isInfected, viruses } = await clamscan.isInfected(path.resolve("./src/assets/test_eicar.pdf")));
-
-      console.log("scan result with path : ", file, isInfected, viruses);
+      if (isInfected) {
+        console.log("VIRUS : ", isInfected, viruses);
+      }
 
       return isInfected;
     };
@@ -62,50 +50,3 @@ module.exports = async () => {
 
   return { ...(await createClamscan()) };
 };
-
-/*
-var tcpPortUsed = require("tcp-port-used");
-
-let promise;
-async function getClamscan(uri) {
-  if (promise) {
-    return promise;
-  }
-
-  return new Promise((resolve, reject) => {
-    let [host, port] = uri.split(":");
-    tcpPortUsed
-      .waitUntilUsedOnHost(parseInt(port), host, 500, 30000)
-      .then(() => {
-        let clamscan = new NodeClam().init({
-          clamdscan: {
-            host,
-            port,
-          },
-        });
-        resolve(clamscan);
-      })
-      .catch(reject);
-  });
-}
-
-
-module.exports = async (uri) => {
-  async function getScanner() {
-    let clamscan = await getClamscan(uri);
-    let scanStream = clamscan.passthrough();
-    let scanResults = new Promise((resolve) => {
-      scanStream.on("scan-complete", (res) => {
-        resolve(res);
-      });
-    });
-
-    return {
-      scanStream,
-      getScanResults: () => scanResults,
-    };
-  }
-
-  return { getScanner };
-};
-*/
