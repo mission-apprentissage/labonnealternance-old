@@ -7,14 +7,18 @@ module.exports = async () => {
     logger.error(`env ? ${config.env}`);
 
     try {
-      const clamscan = await new NodeClam().init({
+      const params = {
         debugMode: config.env === "local" ? true : false, // This will put some debug info in your js console
         clamdscan: {
           host: `${config.env === "local" ? "localhost" : "clamav"}`,
           port: 3310,
           bypassTest: false,
         },
-      });
+      };
+
+      logger.error("Clamav init : " + JSON.stringify(params));
+
+      const clamscan = await new NodeClam().init(params);
 
       const scanString = async (fileContent) => {
         const Readable = require("stream").Readable;
