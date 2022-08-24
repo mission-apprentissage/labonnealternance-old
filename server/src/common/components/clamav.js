@@ -1,6 +1,6 @@
 const NodeClam = require("clamscan");
 const config = require("config");
-const logger = require("./common/logger");
+const logger = require("../logger");
 
 module.exports = async () => {
   async function createClamscan() {
