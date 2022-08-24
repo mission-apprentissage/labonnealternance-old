@@ -40,6 +40,7 @@ services:
       - labonnealternance_network
     depends_on:
       - mongodb
+      - clamav
     environment:
       - LABONNEALTERNANCE_MONGODB_URI=mongodb://mongodb:27017/labonnealternance?retryWrites=true&w=majority
 
@@ -99,8 +100,6 @@ services:
       interval: 60s
       retries: 3
       start_period: 120s
-    depends_on:
-      - server
 
 networks:
   labonnealternance_network:
