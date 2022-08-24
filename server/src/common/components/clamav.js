@@ -1,24 +1,41 @@
 const NodeClam = require("clamscan");
 const config = require("config");
+var tcpPortUsed = require("tcp-port-used");
 const logger = require("../logger");
+
+async function getClamscan() {
+  const port = 3310;
+  const host = config.env === "local" ? "localhost" : "clamav";
+
+  return new Promise((resolve, reject) => {
+    tcpPortUsed
+      .waitUntilUsedOnHost(parseInt(port), host, 500, 30000)
+      .then(() => {
+        console.log("le port clamav est en écoute");
+        const params = {
+          debugMode: config.env === "local" ? true : false, // This will put some debug info in your js console
+          clamdscan: {
+            host,
+            port,
+            bypassTest: false,
+          },
+        };
+
+        let clamscan = new NodeClam().init(params);
+        resolve(clamscan);
+      })
+      .catch(reject);
+  });
+}
 
 module.exports = async () => {
   async function createClamscan() {
     logger.error(`env ? ${config.env}`);
 
     try {
-      const params = {
-        debugMode: config.env === "local" ? true : false, // This will put some debug info in your js console
-        clamdscan: {
-          host: `${config.env === "local" ? "localhost" : "clamav"}`,
-          port: 3310,
-          bypassTest: false,
-        },
-      };
+      //logger.error("Clamav init : " + JSON.stringify(params));
 
-      logger.error("Clamav init : " + JSON.stringify(params));
-
-      const clamscan = await new NodeClam().init(params);
+      const clamscan = await getClamscan(); //await new NodeClam().init(params);
 
       const scanString = async (fileContent) => {
         const Readable = require("stream").Readable;
