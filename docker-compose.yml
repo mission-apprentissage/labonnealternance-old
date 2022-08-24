@@ -99,6 +99,8 @@ services:
       interval: 60s
       retries: 3
       start_period: 120s
+    depends_on:
+      - server
 
 networks:
   labonnealternance_network:
