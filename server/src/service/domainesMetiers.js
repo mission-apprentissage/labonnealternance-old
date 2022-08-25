@@ -23,6 +23,10 @@ const manageError = ({ error, msgToLog }) => {
   Sentry.captureException(error);
   let error_msg = _.get(error, "meta.body") ?? error.message;
 
+  if (typeof error_msg === "object") {
+    error_msg = JSON.stringify(error_msg, null, 2);
+  }
+
   if (error?.meta?.meta?.connection?.status === "dead") {
     logger.error(`Elastic search is down or unreachable. error_message=${error_msg}`);
   } else {

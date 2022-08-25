@@ -5,8 +5,6 @@ import { NextSeo } from "next-seo";
 
 import Footer from "components/footer";
 import CFA from "@/components/HomeComponents/CFA";
-import PartenairesDeConfiance from "@/components/HomeComponents/PartenairesDeConfiance";
-import AmeliorerLBA from "@/components/HomeComponents/AmeliorerLBA";
 import ConnectionActions from "@/components/HomeComponents/ConnectionActions";
 import PostezVotreOffreAlternance from "@/components/HomeComponents/PostezVotreOffreAlternance";
 import OffresGratuites from "@/components/HomeComponents/OffresGratuites";
@@ -14,6 +12,8 @@ import ReseauEntreprise from "@/components/HomeComponents/ReseauEntreprise";
 import GerezEntreprise from "@/components/HomeComponents/GerezEntreprise";
 import BientotCFA from "@/components/HomeComponents/BientotCFA";
 import GerezOffresCFA from "@/components/HomeComponents/GerezOffresCFA";
+import FollowLinkedIn from "components/HomeComponents/FollowLinkedIn";
+
 
 const Organisme = (props) => {
   return (
@@ -41,6 +41,8 @@ const Organisme = (props) => {
           <GerezOffresCFA />
         </section>
 
+        <FollowLinkedIn />
+        
         <section className="text-center mb-5">
           <h2 className="c-homecomponent-title mb-5">Vous souhaitez attirer de nouveaux candidats?</h2>
           <div className="ml-4">

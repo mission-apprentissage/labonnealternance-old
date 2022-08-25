@@ -239,6 +239,7 @@ const SearchForTrainingsAndJobs = () => {
       followUpItem,
       selectFollowUpItem,      
       opcoFilter,
+      useMock,
     });
   };
 
