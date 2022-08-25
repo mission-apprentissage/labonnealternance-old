@@ -25,7 +25,7 @@ const validateSendApplication = async (validable) => {
   }
 };
 
-const validateFileContent = async (validable, clamscan) => {
+const validateFileContent = async (validable, scan) => {
   let schema = Yup.object().shape({
     fileName: Yup.string().matches(
       /([a-zA-Z0-9\s_\\.\-():])+(.docx|.pdf)$/i,
@@ -44,9 +44,7 @@ const validateFileContent = async (validable, clamscan) => {
 
   console.log(validable.fileName, validable.fileContent.length);
 
-  console.log(await clamscan.getVersion());
-
-  const isInfected = await clamscan.scanString(validable.fileContent);
+  const isInfected = await scan(validable.fileContent);
 
   if (isInfected) {
     validation = "erreur";
