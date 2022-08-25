@@ -56,7 +56,7 @@ const CandidatureSpontaneeFileDropzone = ({ setFileValue, formik }) => {
   const getFileDropzone = () => {
     return (
       <>
-        <input {...getInputProps()} data-testid='fileDropzone'/>
+        <input {...getInputProps()} data-testid="fileDropzone" />
         {isDragActive ? (
           <p>Déposez le fichier ici</p>
         ) : (
