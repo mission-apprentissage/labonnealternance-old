@@ -8,6 +8,7 @@
 [LBAC-47] Bouchonner Matcha
 [LBAC-261] Lien LinkedIn
 [LBAC-260] Compteurs dans la liste des résultats
+[LBAC-234] Expliquer l'algorithme
 
 ## 1.20.4 [03/08/2022]
 [LBAC-109] Tracking événements pour plausible
