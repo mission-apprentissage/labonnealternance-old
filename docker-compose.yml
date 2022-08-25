@@ -40,7 +40,6 @@ services:
       - labonnealternance_network
     depends_on:
       - mongodb
-      - clamav
     environment:
       - LABONNEALTERNANCE_MONGODB_URI=mongodb://mongodb:27017/labonnealternance?retryWrites=true&w=majority
 
