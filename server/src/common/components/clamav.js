@@ -2,6 +2,7 @@ const NodeClam = require("clamscan");
 const config = require("config");
 var tcpPortUsed = require("tcp-port-used");
 const logger = require("../logger");
+const { notifyToSlack } = require("../utils/slackUtils");
 
 let scanner = null;
 
@@ -58,6 +59,7 @@ console.log("scan result EICAR String : ", isInfected, viruses);
 
   if (isInfected) {
     logger.error(`Virus detected ${viruses.toString()}`);
+    notifyToSlack(`Virus detected ${viruses.toString()}`);
   }
 
   //console.log("resultat ", isInfected, viruses);

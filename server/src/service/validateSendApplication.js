@@ -42,17 +42,13 @@ const validateFileContent = async (validable, scan) => {
     return "pièce jointe invalide";
   }
 
-  console.log(validable.fileName, validable.fileContent.length);
-
   const isInfected = await scan(validable.fileContent);
 
   if (isInfected) {
     validation = "erreur";
   }
-  console.log("isInfected : ", isInfected);
 
   if (validation === "erreur") {
-    console.log("validation erreur : ", validation);
     return "pièce jointe invalide";
   } else {
     return "ok";
