@@ -62,6 +62,7 @@ const contact = () => (
         </div>
       </div>
     </div>
+    <div className="mb-3">&nbsp;</div>
     <Footer />
   </div>
 );
