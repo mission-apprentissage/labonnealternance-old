@@ -4,9 +4,6 @@
   @include media-breakpoint-up(lg) {
     flex-direction: row;
   }
-  @include media-breakpoint-up(xl) {
-    max-width: 1310px;
-  }
 }
 
 .c-algo-title {
