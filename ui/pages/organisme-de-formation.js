@@ -14,7 +14,6 @@ import BientotCFA from "@/components/HomeComponents/BientotCFA";
 import GerezOffresCFA from "@/components/HomeComponents/GerezOffresCFA";
 import FollowLinkedIn from "components/HomeComponents/FollowLinkedIn";
 
-
 const Organisme = (props) => {
   return (
     <div>
@@ -41,8 +40,6 @@ const Organisme = (props) => {
           <GerezOffresCFA />
         </section>
 
-        <FollowLinkedIn />
-        
         <section className="text-center mb-5">
           <h2 className="c-homecomponent-title mb-5">Vous souhaitez attirer de nouveaux candidats?</h2>
           <div className="ml-4">
@@ -51,6 +48,7 @@ const Organisme = (props) => {
           <div className="clearfix" />
         </section>
 
+        <FollowLinkedIn />
         {/*
         <AmeliorerLBA />
         
