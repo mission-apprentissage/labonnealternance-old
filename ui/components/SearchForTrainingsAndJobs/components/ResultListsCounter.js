@@ -82,16 +82,6 @@ const ResultListsCounter = (props) => {
   return (
     <div className="pt-0">
       <div className="resultTitle mt-0 mt-md-2">
-        {(scopeContext.isTraining && !trainingLoading) || (scopeContext.isJob && !jobLoading) ? (
-          <div className={`c-resultlist-correspond-display-${displayCount}`}>
-            <span className="c-resultlist-correspond c-resultlist-correspond--bold">
-              {trainingPart} {trainingPart && jobPart ? " et " : ""} {jobPart}{" "}
-            </span>
-            <span className="c-resultlist-correspond c-resultlist-correspond--light">{correspondText}</span>
-          </div>
-        ) : (
-          ""
-        )}
         {trainingLoading ? (
           <>
             <br />
@@ -119,6 +109,7 @@ const ResultListsCounter = (props) => {
             <div className="c-filterbuttons">
               <FilterButton
                 type="all"
+                count={jobCount + trainingCount}
                 isActive={activeFilter === "all"}
                 handleFilterButtonClicked={filterButtonClicked}
               />

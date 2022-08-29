@@ -25,6 +25,36 @@ const validateSendApplication = async (validable) => {
   }
 };
 
+const validateFileContent = async (validable, scan) => {
+  let schema = Yup.object().shape({
+    fileName: Yup.string().matches(
+      /([a-zA-Z0-9\s_\\.\-():])+(.docx|.pdf)$/i,
+      "⚠ Seuls les fichiers docx et pdf sont autorisés"
+    ),
+    fileContent: Yup.string().max(4215276, "⚠ La taille maximale de la pièce jointe est 3 Mo"),
+  });
+
+  let validation = await schema.validate(validable).catch(function () {
+    return "erreur";
+  });
+
+  if (validation === "erreur") {
+    return "pièce jointe invalide";
+  }
+
+  const isInfected = await scan(validable.fileContent);
+
+  if (isInfected) {
+    validation = "erreur";
+  }
+
+  if (validation === "erreur") {
+    return "pièce jointe invalide";
+  } else {
+    return "ok";
+  }
+};
+
 const validateCompanyEmail = async (validable) => {
   let schema = Yup.object().shape({
     companyEmail: Yup.string()
@@ -116,4 +146,5 @@ module.exports = {
   validateIntentionApplication,
   validatePermanentEmail,
   checkUserApplicationCount,
+  validateFileContent,
 };

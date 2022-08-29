@@ -37,6 +37,10 @@ services:
       - labonnealternance_data_elasticsearch:/usr/share/elasticsearch/data
       - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
 
+  clamav:
+    ports:
+      - "127.0.0.1:3310:3310"
+
   kibana:
     ports:
       - "127.0.0.1:5601:5601"

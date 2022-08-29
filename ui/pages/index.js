@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Navigation from "components/navigation";
 import HomeHero from "components/HomeHero";
 import HowTo from "components/HowTo";
+import AlgoHome from "@/components/HomeComponents/AlgoHome";
 import HomeReview from "components/HomeReview";
 import { initParametersFromQuery } from "services/config";
 import Footer from "components/footer";
@@ -31,7 +32,7 @@ const Home = (props) => {
     <div>
       <ScrollToTop />
       <Navigation />
-      <div className="c-homebg">
+      <div className="c-homebg c-homebg--light">
         <img src={howtocircle1} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle1" alt="Cercle" />
         <img src={howtocircle2} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle2" alt="Cercle" />
         <img src={howtocircle3} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle3" alt="Cercle" />
@@ -39,6 +40,9 @@ const Home = (props) => {
         <img src={howtocircle5} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle5" alt="Cercle" />
         <HomeHero />
         <HowTo />
+      </div>
+      <div className="c-homebg py-5">
+        <AlgoHome />
       </div>
 
       <HomeReview reviews={props.reviews} />

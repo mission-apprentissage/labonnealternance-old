@@ -1,7 +1,7 @@
 .c-page-container {
   background-color: $gray-100;
   border-radius: 0px;
-  @include media-breakpoint-up(md) { 
+  @include media-breakpoint-up(md) {
     border-radius: 10px;
   }
 }
@@ -33,7 +33,7 @@
   border: 0;
   height: 780px;
 
-  @include media-breakpoint-up(lg) { 
+  @include media-breakpoint-up(lg) {
     height: 500px;
   }
 }
@@ -41,7 +41,7 @@
 .c-stats-iframe.c-stats-iframe__lba {
   height: 1200px;
 
-  @include media-breakpoint-up(lg) { 
+  @include media-breakpoint-up(lg) {
     height: 800px;
   }
 }

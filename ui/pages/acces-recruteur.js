@@ -7,8 +7,8 @@ import PostezVotreOffre from "components/HomeComponents/PostezVotreOffre";
 import OffresGratuites from "components/HomeComponents/OffresGratuites";
 import OrganismesMandataires from "components/HomeComponents/OrganismesMandataires";
 import GerezOffres from "components/HomeComponents/GerezOffres";
-import AmeliorerLBA from "components/HomeComponents/AmeliorerLBA";
-import PartenairesDeConfiance from "components/HomeComponents/PartenairesDeConfiance";
+import FollowLinkedIn from "components/HomeComponents/FollowLinkedIn";
+import AlgoRecruiter from "components/HomeComponents/AlgoRecruiter";
 import ConnectionActions from "components/HomeComponents/ConnectionActions";
 
 import { NextSeo } from "next-seo";
@@ -35,8 +35,10 @@ const AccesRecruteur = () => (
         <OrganismesMandataires />
       </section>
 
-      <section className="c-homecomponent__beige">
-        <GerezOffres />
+      <GerezOffres />
+
+      <section className="c-homecomponent__blue">
+        <AlgoRecruiter />
       </section>
 
       <section className="text-center mb-5">
@@ -47,6 +49,7 @@ const AccesRecruteur = () => (
         <div className="clearfix" />
       </section>
 
+      <FollowLinkedIn />
       {/*
       <AmeliorerLBA />
       
