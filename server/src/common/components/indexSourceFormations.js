@@ -5,7 +5,7 @@ const logger = require("../logger");
 const Sentry = require("@sentry/node");
 const config = require("config");
 
-const esClient = new Client({ node: config.env === "local" ? "http://localhost:9200" : "http://elasticsearch:9200" });
+const esClient = new Client({ node: config.env === "local" ? "http://127.0.0.1:9200" : "http://elasticsearch:9200" });
 
 const getCurrentFormationsSourceIndex = async () => {
   try {
@@ -62,6 +62,10 @@ const updateFormationsIndexAlias = async ({ masterIndex, indexToUnAlias }) => {
   } catch (err) {
     Sentry.captureException(err);
     let error_msg = _.get(err, "meta.body") ?? err.message;
+
+    if (typeof error_msg === "object") {
+      error_msg = JSON.stringify(error_msg, null, 2);
+    }
 
     if (_.get(err, "meta.meta.connection.status") === "dead") {
       logger.error(

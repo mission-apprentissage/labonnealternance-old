@@ -13,6 +13,7 @@ const {
   validateFeedbackApplication,
   validateFeedbackApplicationComment,
   validatePermanentEmail,
+  validateFileContent,
   checkUserApplicationCount,
 } = require("./validateSendApplication");
 const { validateCaller } = require("./queryValidators");
@@ -122,7 +123,7 @@ const getEmailTemplates = (applicationType) => {
   }
 };
 
-const sendApplication = async ({ mailer, query, referer, shouldCheckSecret }) => {
+const sendApplication = async ({ scan, mailer, query, referer, shouldCheckSecret }) => {
   if (shouldCheckSecret && !query.secret) {
     return { error: "secret_missing" };
   } else if (shouldCheckSecret && query.secret !== config.private.secretUpdateRomesMetiers) {
@@ -144,6 +145,18 @@ const sendApplication = async ({ mailer, query, referer, shouldCheckSecret }) =>
     }
 
     validationResult = await validatePermanentEmail({ email: query.applicant_email });
+
+    if (validationResult !== "ok") {
+      return { error: validationResult };
+    }
+
+    validationResult = await validateFileContent(
+      {
+        fileName: query.applicant_file_name,
+        fileContent: query.applicant_file_content,
+      },
+      scan
+    );
 
     if (validationResult !== "ok") {
       return { error: validationResult };

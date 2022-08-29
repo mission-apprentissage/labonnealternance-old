@@ -242,7 +242,7 @@ const ChoiceColumn = ({
         <>
           {getInitialDesktopText()}
           {getSearchForm()}
-          {trainings.length === 0 && isJobSearchLoading ? <div></div> : getResultLists()}
+          {getResultLists()}
           {getSelectedItemDetail()}
         </>
       )}

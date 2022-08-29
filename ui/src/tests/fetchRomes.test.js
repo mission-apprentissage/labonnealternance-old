@@ -1,4 +1,4 @@
-import fetchRomes from "../../services/fetchRomes";
+import { fetchRomes } from "../../services/fetchRomes";
 
 describe("fetchRomes", () => {
   it("skip : Should return an empty array if there is any wrong input", async () => {
@@ -45,7 +45,7 @@ describe("fetchRomes", () => {
     const axiosStub = { get: jest.fn().mockReturnValue({ data: { error: "remote_error_message" } }) };
     // when
     const res = await fetchRomes(
-      "plomberie",
+      "boulangerie",
       mockedErrorFn,
       "urlMock",
       axiosStub,
@@ -65,7 +65,7 @@ describe("fetchRomes", () => {
     const axiosStub = { get: jest.fn().mockReturnValue({ data: { unexpected_prop: "unexpected_val" } }) };
     // when
     const res = await fetchRomes(
-      "plomberie",
+      "patisserie",
       mockedErrorFn,
       "urlMock",
       axiosStub,

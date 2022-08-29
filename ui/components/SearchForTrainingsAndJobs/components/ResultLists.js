@@ -78,10 +78,8 @@ const ResultLists = (props) => {
           })}
         </>
       );
-    } else if (props.isTrainingSearchLoading) {
-      return "Nous recherchons les formations, merci de patienter...";
-    } else {
-      return <div className="bold bg-white">Aucune formation trouvée pour votre recherche</div>;
+    } else if (!props.isTrainingSearchLoading) {
+      return <div className="bold px-3 py-3 mt-3 bg-white">Aucune formation trouvée pour votre recherche</div>;
     }
   };
 
@@ -253,6 +251,7 @@ const ResultLists = (props) => {
           allJobSearchError={props.allJobSearchError}
           trainingSearchError={props.trainingSearchError}
           isJobSearchLoading={props.isJobSearchLoading}
+          isTrainingSearchLoading={props.isTrainingSearchLoading}
           displayCount={displayCount}
           getJobCount={getJobCount}
           jobs={props.jobs}

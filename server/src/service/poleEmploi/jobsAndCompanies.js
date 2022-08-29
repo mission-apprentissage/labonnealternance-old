@@ -133,6 +133,7 @@ const getJobsFromApi = async ({ query, api }) => {
             api,
             caller: query.caller,
             opco: query.opco,
+            useMock: query.useMock,
           })
         : null,
     ]);
