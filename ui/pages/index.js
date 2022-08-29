@@ -39,6 +39,7 @@ const Home = (props) => {
         <img src={howtocircle4} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle4" alt="Cercle" />
         <img src={howtocircle5} className="c-homebg-img c-homebg-img--circle c-homebg-img--circle5" alt="Cercle" />
         <HomeHero />
+        <HowTo />
       </div>
       <div className="c-homebg py-5">
         <AlgoHome />

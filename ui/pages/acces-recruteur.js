@@ -36,8 +36,7 @@ const AccesRecruteur = () => (
       </section>
 
       <GerezOffres />
-      
-      <FollowLinkedIn />
+
       <section className="c-homecomponent__blue">
         <AlgoRecruiter />
       </section>
@@ -50,6 +49,7 @@ const AccesRecruteur = () => (
         <div className="clearfix" />
       </section>
 
+      <FollowLinkedIn />
       {/*
       <AmeliorerLBA />
       
