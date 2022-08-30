@@ -1,11 +1,37 @@
-const withPlugins = require("next-compose-plugins");
+const path = require("path");
+const withImages = require("next-images");
+
+module.exports = async (phase, { defaultConfig }) => withImages({
+    /* config options here */
+
+    sassOptions: {
+      includePaths: [path.join(__dirname, "/public/styles")],
+    },
+    async headers() {
+      return [
+        {
+          source: "/a-propos",
+          headers: [
+            {
+              key: "x-custom-header",
+              value: "my custom header value",
+            },
+            {
+              key: "x-another-custom-header",
+              value: "my other custom header value",
+            },
+          ],
+        },
+      ];
+    },
+});
+
+
+/*const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
 const path = require("path");
 const config = require("config");
 
-/*
- * BEGIN OF SENTRY---------------------------
- */
 
 // Use the hidden-source-map option when you don't want the source maps to be
 // publicly available on the servers, only to the error reporting
@@ -25,16 +51,11 @@ process.env.sentryAuthToken = sentryProject;
 process.env.env = env;
 process.env.publicUrl = config.publicUrl;
 
-/*
- * END OF SENTRY---------------------------
- */
-
 module.exports = withPlugins(
   [
     [
       withImages,
       {
-        /* plugin config here ... */
       },
     ],
 
@@ -97,9 +118,26 @@ module.exports = withPlugins(
     ], // end of withSourceMaps
   ],
   {
-    /* global config here ... */
     sassOptions: {
       includePaths: [path.join(__dirname, "/public/styles")],
     },
+    async headers() {
+      return [
+        {
+          source: "/a-propos",
+          headers: [
+            {
+              key: "x-custom-header",
+              value: "my custom header value",
+            },
+            {
+              key: "x-another-custom-header",
+              value: "my other custom header value",
+            },
+          ],
+        },
+      ];
+    },
   }
 );
+*/
