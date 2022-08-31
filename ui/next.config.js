@@ -1,7 +1,8 @@
 const path = require("path");
 const withImages = require("next-images");
 
-module.exports = async (phase, { defaultConfig }) => withImages({
+module.exports = async (phase, { defaultConfig }) =>
+  withImages({
     /* config options here */
 
     sassOptions: {
@@ -10,22 +11,34 @@ module.exports = async (phase, { defaultConfig }) => withImages({
     async headers() {
       return [
         {
-          source: "/a-propos",
+          source: "/:path*",
           headers: [
             {
-              key: "x-custom-header",
-              value: "my custom header value",
+              key: "Content-Security-Policy",
+              value: "",
             },
             {
-              key: "x-another-custom-header",
-              value: "my other custom header value",
+              key: "X-Frame-Options",
+              value: "DENY",
+            },
+          ],
+        },
+        {
+          source: "/:slug(recherche-apprentissage|recherche-emploi|recherche-apprentissage-formation|postuler)",
+          headers: [
+            {
+              key: "X-Frame-Options",
+              value: "",
+            },
+            {
+              key: "Content-Security-Policy",
+              value: ":slug",
             },
           ],
         },
       ];
     },
-});
-
+  });
 
 /*const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
