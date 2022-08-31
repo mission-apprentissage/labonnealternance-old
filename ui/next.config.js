@@ -14,12 +14,28 @@ module.exports = async (phase, { defaultConfig }) =>
           source: "/:path*",
           headers: [
             {
+              key: "X-Content-Type-Options",
+              value: "nosniff",
+            },
+            {
               key: "Content-Security-Policy",
-              value: "",
+              value: "default-src 'self'; frame-ancestors 'none'; script-src 'self'; img-src 'self' data:; font-src: *;",
             },
             {
               key: "X-Frame-Options",
               value: "DENY",
+            },
+            {
+              key: "Referrer-Policy",
+              value: "unsafe-url",
+            },
+            {
+              key: "Strict-Transport-Security",
+              value: "max-age=31536000; includeSubDomains",
+            },
+            {
+              key: "X-XSS-Protection",
+              value: "1",
             },
           ],
         },
@@ -32,7 +48,7 @@ module.exports = async (phase, { defaultConfig }) =>
             },
             {
               key: "Content-Security-Policy",
-              value: ":slug",
+              value: "",
             },
           ],
         },
