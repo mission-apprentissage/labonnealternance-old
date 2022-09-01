@@ -2,6 +2,7 @@ const path = require("path");
 const withImages = require("next-images");
 
 function inline(value) {
+  // supprime les espacements inutiles pour remettre la séquence sur une seule ligne
   return value.replace(/\s{2,}/g, " ").trim();
 }
 
@@ -48,7 +49,7 @@ module.exports = async (phase, { defaultConfig }) =>
             },
             {
               key: "Content-Security-Policy",
-              value: inline(contentSecurityPolicy+" frame-ancestors 'none';"),
+              value: inline(contentSecurityPolicy + " frame-ancestors 'none';"),
             },
             {
               key: "Referrer-Policy",
