@@ -1,6 +1,35 @@
 const path = require("path");
 const withImages = require("next-images");
 
+function inline(value) {
+  return value.replace(/\s{2,}/g, " ").trim();
+}
+
+const contentSecurityPolicy = `
+  default-src 'self'; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io http://localhost:3000 blob:; 
+  connect-src 'self' 
+              https://rdv-cfa.apprentissage.beta.gouv.fr 
+              https://rdv-cfa-recette.apprentissage.beta.gouv.fr 
+              https://catalogue.apprentissage.beta.gouv.fr 
+              https://catalogue-recette.apprentissage.beta.gouv.fr 
+              https://api-adresse.data.gouv.fr 
+              https://api.mapbox.com 
+              https://events.mapbox.com 
+              https://raw.githubusercontent.com 
+              https://plausible.io 
+              http://localhost:5000; 
+  img-src 'self' data:; 
+  font-src 'self' https://labonnealternance-recette.apprentissage.beta.gouv.fr; 
+  style-src 'unsafe-inline' https://api.mapbox.com; 
+  frame-src https://rdv-cfa.apprentissage.beta.gouv.fr 
+            https://matcha.apprentissage.beta.gouv.fr 
+            https://plausible.io 
+            https://labonnealternance.pole-emploi.fr;
+  block-all-mixed-content;
+  upgrade-insecure-requests;
+`;
+
 module.exports = async (phase, { defaultConfig }) =>
   withImages({
     /* config options here */
@@ -19,11 +48,7 @@ module.exports = async (phase, { defaultConfig }) =>
             },
             {
               key: "Content-Security-Policy",
-              value: "default-src 'self'; frame-ancestors 'none'; script-src 'self'; img-src 'self' data:; font-src: *; style-src: *;",
-            },
-            {
-              key: "X-Frame-Options",
-              value: "DENY",
+              value: inline(contentSecurityPolicy+" frame-ancestors 'none';"),
             },
             {
               key: "Referrer-Policy",
@@ -43,12 +68,8 @@ module.exports = async (phase, { defaultConfig }) =>
           source: "/:slug(recherche-apprentissage|recherche-emploi|recherche-apprentissage-formation|postuler)",
           headers: [
             {
-              key: "X-Frame-Options",
-              value: "",
-            },
-            {
               key: "Content-Security-Policy",
-              value: "default-src 'self'; script-src 'self'; img-src 'self' data:; font-src: *; style-src: *;",
+              value: inline(contentSecurityPolicy),
             },
           ],
         },
