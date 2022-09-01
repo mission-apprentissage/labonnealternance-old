@@ -22,7 +22,7 @@ const contentSecurityPolicy = `
               http://localhost:5000; 
   img-src 'self' data:; 
   font-src 'self' https://labonnealternance-recette.apprentissage.beta.gouv.fr; 
-  style-src 'unsafe-inline' https://api.mapbox.com; 
+  style-src 'self' 'unsafe-inline' https://api.mapbox.com; 
   frame-src https://rdv-cfa.apprentissage.beta.gouv.fr 
             https://matcha.apprentissage.beta.gouv.fr 
             https://plausible.io 
