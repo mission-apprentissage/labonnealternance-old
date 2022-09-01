@@ -19,7 +19,7 @@ module.exports = async (phase, { defaultConfig }) =>
             },
             {
               key: "Content-Security-Policy",
-              value: "default-src 'self'; frame-ancestors 'none'; script-src 'self'; img-src 'self' data:; font-src: *;",
+              value: "default-src 'self'; frame-ancestors 'none'; script-src 'self'; img-src 'self' data:; font-src: *; style-src: *;",
             },
             {
               key: "X-Frame-Options",
@@ -48,7 +48,7 @@ module.exports = async (phase, { defaultConfig }) =>
             },
             {
               key: "Content-Security-Policy",
-              value: "",
+              value: "default-src 'self'; script-src 'self'; img-src 'self' data:; font-src: *; style-src: *;",
             },
           ],
         },
