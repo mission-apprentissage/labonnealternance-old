@@ -13,7 +13,7 @@ const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
 const coordinatesOfFrance = [2.213749, 46.227638];
 
-const { matchaMock, matchasMock } = require("../../tests/mocks/matchas-mock");
+const { matchaMock, matchaMockMandataire, matchasMock } = require("../../tests/mocks/matchas-mock");
 
 const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, caller, useMock }) => {
   try {
@@ -69,7 +69,14 @@ const transformMatchaJobsForIdea = ({ jobs, caller }) => {
 
 const getMatchaJobById = async ({ id, caller }) => {
   try {
-    const jobs = id === "id-matcha-test" ? { data: matchaMock._source } : await axios.get(`${matchaJobEndPoint}/${id}`);
+    let jobs = null;
+    if (id === "id-matcha-test") {
+      jobs = { data: matchaMock._source };
+    } else if (id === "id-matcha-test2") {
+      jobs = { data: matchaMockMandataire._source };
+    } else {
+      jobs = await axios.get(`${matchaJobEndPoint}/${id}`);
+    }
     const job = transformMatchaJobForIdea({
       job: jobs.data,
       caller,
