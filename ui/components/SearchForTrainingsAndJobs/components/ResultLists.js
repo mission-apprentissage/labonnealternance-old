@@ -79,7 +79,7 @@ const ResultLists = (props) => {
         </>
       );
     } else if (!props.isTrainingSearchLoading) {
-      return <div className="bold px-3 py-3 mt-3 bg-white">Aucune formation trouvée pour votre recherche</div>;
+      return <ErrorMessage message="Problème momentané d'accès aux offres de formation" />;
     }
   };
 
