@@ -204,8 +204,6 @@ const sendApplication = async ({ scan, mailer, query, referer, shouldCheckSecret
       };
 
       // Sends acknowledge email to "candidate" and application email to "company"
-      console.log("---------------------------------------...matchaJobEndPoint", matchaApiEndpoint);
-      console.log({ ...application._doc, ...images, ...encryptedId, publicUrl, urlOfDetail, matchaApiEndpoint });
       const [emailCandidat, emailCompany] = await Promise.all([
         mailer.sendEmail(
           application.applicant_email,
