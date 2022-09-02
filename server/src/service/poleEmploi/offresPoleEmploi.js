@@ -177,6 +177,14 @@ const transformPeJobForIdea = ({ job, lat = null, long = null, caller = null }) 
       },
     ];
   }
+  if (job.secteurActivite) {
+    resultJob.nafs = [
+      {
+        code: job.secteurActivite,
+        label: job.secteurActiviteLibelle,
+      },
+    ];
+  }
 
   return resultJob;
 };
