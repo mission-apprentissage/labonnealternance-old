@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.6 [05/09/2022]
+[LBAC-43] Message catalogue vide
+
 ## 1.20.5 [26/08/2022]
 [LBAC-199] Affichage messages 0 formation
 [LBAC-89] Fix erreur diplômes
