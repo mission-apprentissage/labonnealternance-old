@@ -21,7 +21,7 @@ const logger = require("../common/logger");
 const publicUrl = config.publicUrl;
 const { oleoduc, writeData } = require("oleoduc");
 
-const matchaApiEndpoint = `https://matcha${config.env === "production" ? "" : "-recette"}.apprentissage.beta.gouv.fr/`;
+const matchaApiEndpoint = `https://matcha${config.env === "production" ? "" : "-recette"}.apprentissage.beta.gouv.fr`;
 
 const imagePath = "https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/";
 
