@@ -12,6 +12,7 @@ const { manageApiError } = require("../common/utils/errorManager");
 //const logger = require("../common/logger");
 const { regionCodeToDepartmentList } = require("../common/utils/regionInseeCodes");
 const { formationMock, formationsMock, lbfFormationMock } = require("../../tests/mocks/formations-mock");
+const { notifyToSlack } = require("../common/utils/slackUtils");
 
 const formationResultLimit = 150;
 
@@ -288,6 +289,10 @@ const getRegionFormations = async ({
       formations.push({ source: formation._source, sort: formation.sort, id: formation._id });
     });
 
+    if (formations.length === 0) {
+      notifyToSlack(`Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}`);
+    }
+
     return formations;
   } catch (error) {
     return manageApiError({
@@ -344,6 +349,7 @@ const getAtLeastSomeFormations = async ({
         useMock,
       });
     }
+
     if (formations?.result !== "error") {
       formations = deduplicateFormations(formations);
 
@@ -360,6 +366,10 @@ const getAtLeastSomeFormations = async ({
           result_count: formations?.results.length,
           result: "OK",
         });
+      }
+
+      if (formations.results.length === 0) {
+        notifyToSlack(`Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}`);
       }
     }
 
