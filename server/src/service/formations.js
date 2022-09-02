@@ -290,7 +290,7 @@ const getRegionFormations = async ({
     });
 
     if (formations.length === 0) {
-      notifyToSlack(`Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}`);
+      notifyToSlack(`Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}. caller : ${caller}`);
     }
 
     return formations;
@@ -369,7 +369,9 @@ const getAtLeastSomeFormations = async ({
       }
 
       if (formations.results.length === 0) {
-        notifyToSlack(`Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}`);
+        notifyToSlack(
+          `Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}. caller : ${caller}`
+        );
       }
     }
 
