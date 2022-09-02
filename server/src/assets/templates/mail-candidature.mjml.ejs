@@ -150,16 +150,16 @@
             <mj-section padding="15px">
                 <mj-column>
                     <mj-text padding-bottom="32px" font-size="18px" padding="0px" font-weight="700" line-height="24px" text-decoration="none" color="#383838">
-                        <span style="font-weight: bold">Une question ?</span>
+                        <span style="font-weight: bold">Une question ? <%= data.id %> <%= data.matchaJobEndPoint %></span>
                     </mj-text>
 
                     <% if (data.company_type == "matcha" ) { %>
                         <mj-text font-size="16px" line-height="28px" padding-bottom="15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="link-black" href="https://matcha-recette.apprentissage.beta.gouv.fr/offre/62e24afa1272600028867ce1/provided">
+                            <a class="link-black" href="<%= data.matchaApiEndpoint %>/offre/<%= data.id %>/provided">
                                 ✅ Indiquer que mon offre est pourvue</a>
                         </mj-text>
                         <mj-text font-size="16px" line-height="28px" padding-bottom="15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="link-black" href="https://matcha-recette.apprentissage.beta.gouv.fr/offre/62e24afa1272600028867ce1/cancel">
+                            <a class="link-black" href="<%= data.matchaApiEndpoint %>/offre/<%= data.id %>/cancel">
                                 📝 Supprimer mon offre</a>
                         </mj-text>
                         <mj-text font-size="16px" line-height="28px" padding-bottom="15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
