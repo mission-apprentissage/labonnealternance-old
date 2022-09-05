@@ -7,13 +7,14 @@ import baseUrl from "utils/baseUrl";
 import axios from "axios";
 import { NotionRenderer } from "react-notion-x";
 import Footer from "components/footer";
-import { Spinner } from "reactstrap";
+import { Spinner, Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 
 const FAQ = (props) => {
 
 
   const [isLoading, setIsLoading] = useState(true);
   const [recordMapNotion, setRecordMapNotion] = useState(null);
+  const [activeTab, setActiveTab] = useState('1');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,13 +55,32 @@ const FAQ = (props) => {
               </>
               :
               <>
+
+                <div>
+                  <Nav tabs>
+                    <NavItem>
+                      <NavLink className={activeTab == '1' ? 'active' : ''} onClick={() => setActiveTab('1')}>
+                        Tab 1
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink className={activeTab == '2' ? 'active' : ''} onClick={() => setActiveTab('2')}>
+                        Tab 2
+                      </NavLink>
+                    </NavItem>
+                  </Nav>
+                  <TabContent activeTab={activeTab}>
+                    <TabPane tabId="1">Tab 1 Content</TabPane>
+                    <TabPane tabId="2">Tab 2 Content</TabPane>
+                  </TabContent>
+                </div>
+
                 <NotionRenderer
                   recordMap={recordMapNotion}
                   fullPage={false}
                   darkMode={false}
                   disableHeader={true}
                   rootDomain={process.env.REACT_APP_BASE_URL}
-                  bodyClassName="notion-body"
                 />
               </>
             }
