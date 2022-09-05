@@ -61,7 +61,7 @@ const LocationDetail = ({ item, isCfa }) => {
     <>
       {kind === "matcha" && item?.company?.mandataire ? (
         <div className="c-detail-body c-locationdetail mt-4">
-          <h2 className="c-locationdetail-title mt-2">{getTitle(item)}</h2>
+          <h2 className="c-locationdetail-title mt-2">{getTitle({})}</h2>
 
           <div className="c-locationdetail-line mt-1">
             <span className="c-detail-sizetext">
@@ -75,7 +75,7 @@ const LocationDetail = ({ item, isCfa }) => {
           </div>
           <div className="c-locationdetail-line mt-1">
             <span className="c-detail-sizetext">
-              <strong>Année de création de l'entreprise :&nbsp;</strong> {item?.company?.creationDate}
+              <strong>Année de création de l'entreprise :&nbsp;</strong> {new Date(item?.company?.creationDate).getFullYear()}
             </span>
           </div>
 
