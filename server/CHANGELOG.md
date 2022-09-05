@@ -2,6 +2,7 @@
 
 ## 1.20.6 [01/09/2022]
 [LBAC-255] Ajouter boutons de MAJ de l'offre LBA dans le mail Je candidate recruteur
+[LBAC-248] Découper la FAQ en 3 onglets
 
 ## 1.20.5 [26/08/2022]
 [LBAC-199] Affichage messages 0 formation
