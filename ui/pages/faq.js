@@ -14,13 +14,27 @@ const FAQ = (props) => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [recordMapNotion, setRecordMapNotion] = useState(null);
+  const [recordMapNotionRecruteur, setRecordMapNotionRecruteur] = useState(null);
+  const [recordMapNotionOrganisme, setRecordMapNotionOrganisme] = useState(null);
+  const [recordMapNotionCandidat, setRecordMapNotionCandidat] = useState(null);
   const [activeTab, setActiveTab] = useState('1');
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+
       const notionFAQ = await axios.get(baseUrl + '/api/faq');
       setRecordMapNotion(notionFAQ.data);
+      
+      const notionFAQrecruteur = await axios.get(baseUrl + '/api/faq/recruteur');
+      setRecordMapNotionRecruteur(notionFAQrecruteur.data);
+
+      const notionFAQorganisme = await axios.get(baseUrl + '/api/faq/organisme');
+      setRecordMapNotionOrganisme(notionFAQorganisme.data);
+
+      const notionFAQcandidat = await axios.get(baseUrl + '/api/faq/candidat');
+      setRecordMapNotionCandidat(notionFAQcandidat.data);
+
       setIsLoading(false);
     };
     fetchData();
@@ -60,28 +74,52 @@ const FAQ = (props) => {
                   <Nav tabs>
                     <NavItem>
                       <NavLink className={activeTab == '1' ? 'active' : ''} onClick={() => setActiveTab('1')}>
-                        Tab 1
+                        Recruteur
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink className={activeTab == '2' ? 'active' : ''} onClick={() => setActiveTab('2')}>
-                        Tab 2
+                        Candidat
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink className={activeTab == '3' ? 'active' : ''} onClick={() => setActiveTab('3')}>
+                        Organisme
                       </NavLink>
                     </NavItem>
                   </Nav>
                   <TabContent activeTab={activeTab}>
-                    <TabPane tabId="1">Tab 1 Content</TabPane>
-                    <TabPane tabId="2">Tab 2 Content</TabPane>
+                    <TabPane tabId="1">
+                      <NotionRenderer
+                        recordMap={recordMapNotionRecruteur}
+                        fullPage={false}
+                        darkMode={false}
+                        disableHeader={true}
+                        rootDomain={process.env.REACT_APP_BASE_URL}
+                      />
+                    </TabPane>
+                    <TabPane tabId="2">
+                      <NotionRenderer
+                        recordMap={recordMapNotionCandidat}
+                        fullPage={false}
+                        darkMode={false}
+                        disableHeader={true}
+                        rootDomain={process.env.REACT_APP_BASE_URL}
+                      />
+                    </TabPane>
+                    <TabPane tabId="3">
+                      <NotionRenderer
+                        recordMap={recordMapNotionOrganisme}
+                        fullPage={false}
+                        darkMode={false}
+                        disableHeader={true}
+                        rootDomain={process.env.REACT_APP_BASE_URL}
+                      />
+                    </TabPane>
                   </TabContent>
                 </div>
 
-                <NotionRenderer
-                  recordMap={recordMapNotion}
-                  fullPage={false}
-                  darkMode={false}
-                  disableHeader={true}
-                  rootDomain={process.env.REACT_APP_BASE_URL}
-                />
+
               </>
             }
           </div>
