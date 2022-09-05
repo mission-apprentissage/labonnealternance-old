@@ -75,11 +75,12 @@ const LocationDetail = ({ item, isCfa }) => {
           </div>
           <div className="c-locationdetail-line mt-1">
             <span className="c-detail-sizetext">
-              <strong>Année de création de l'entreprise :&nbsp;</strong> {new Date(item?.company?.creationDate).getFullYear()}
+              <strong>Année de création de l'entreprise :&nbsp;</strong>{" "}
+              {new Date(item?.company?.creationDate).getFullYear()}
             </span>
           </div>
 
-          <div className="c-locationdetail-address mt-4">{item?.company?.place?.city}</div>
+          <div className="c-locationdetail-address mt-2">{item?.company?.place?.city}</div>
 
           <div className="c-locationdetail-line mt-3">
             <span className="c-locationdetail-imgcontainer">
@@ -234,12 +235,16 @@ const LocationDetail = ({ item, isCfa }) => {
                 Renseignez-vous sur l'établissement pour préparer votre candidature
               </span>
             </div>
-            <div className="c-locationdetail-line mt-1">
-              <span className="c-locationdetail-imgcontainer"></span>
-              <span className="c-detail-sizetext">
-                <strong>Taille de l'entreprise :&nbsp;</strong> {companySize}
-              </span>
-            </div>
+            {!item?.company?.mandataire ? (
+              <div className="c-locationdetail-line mt-1">
+                <span className="c-locationdetail-imgcontainer"></span>
+                <span className="c-detail-sizetext">
+                  <strong>Taille de l'entreprise :&nbsp;</strong> {companySize}
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
           </>
         ) : (
           <></>
