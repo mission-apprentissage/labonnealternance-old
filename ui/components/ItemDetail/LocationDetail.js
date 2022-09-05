@@ -1,6 +1,6 @@
 import React from "react";
 import { capitalizeFirstLetter } from "../../utils/strutils";
-import { getPathLink } from "../../utils/tools";
+import { getPathLink, getCompanyPathLink } from "../../utils/tools";
 import { round } from "lodash";
 import { string_wrapper as with_str } from "../../utils/wrapper_utils";
 import ExternalLink from "../externalLink";
@@ -59,6 +59,46 @@ const LocationDetail = ({ item, isCfa }) => {
 
   return (
     <>
+      {kind === "matcha" && item?.company?.mandataire ? (
+        <div className="c-detail-body c-locationdetail mt-4">
+          <h2 className="c-locationdetail-title mt-2">{getTitle(item)}</h2>
+
+          <div className="c-locationdetail-line mt-1">
+            <span className="c-detail-sizetext">
+              <strong>Taille de l'entreprise :&nbsp;</strong> {companySize}
+            </span>
+          </div>
+          <div className="c-locationdetail-line mt-1">
+            <span className="c-detail-sizetext">
+              <strong>Secteur d'activité :&nbsp;</strong> {item?.nafs[0]?.label}
+            </span>
+          </div>
+          <div className="c-locationdetail-line mt-1">
+            <span className="c-detail-sizetext">
+              <strong>Année de création de l'entreprise :&nbsp;</strong> {item?.company?.creationDate}
+            </span>
+          </div>
+
+          <div className="c-locationdetail-address mt-4">{item?.company?.place?.city}</div>
+
+          <div className="c-locationdetail-line mt-3">
+            <span className="c-locationdetail-imgcontainer">
+              <img className="" src="/images/icons/small_map_point.svg" alt="point de localisation" />
+            </span>
+            <span className="c-detail-sizetext">
+              <ExternalLink
+                className={`c-nice-link font-weight-normal gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
+                url={getCompanyPathLink(item)}
+                title="Obtenir l'itinéraire"
+                withPic={<img className="mt-n1" src="/images/square_link.svg" alt="" />}
+              />
+            </span>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+
       <div className="c-detail-body c-locationdetail mt-4">
         <h2 className="c-locationdetail-title mt-2">{getTitle(item)}</h2>
 
