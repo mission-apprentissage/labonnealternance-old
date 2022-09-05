@@ -96,6 +96,7 @@ const FAQ = (props) => {
                         darkMode={false}
                         disableHeader={true}
                         rootDomain={process.env.REACT_APP_BASE_URL}
+                        bodyClassName="notion-body"
                       />
                     </TabPane>
                     <TabPane tabId="2">
@@ -105,6 +106,7 @@ const FAQ = (props) => {
                         darkMode={false}
                         disableHeader={true}
                         rootDomain={process.env.REACT_APP_BASE_URL}
+                        bodyClassName="notion-body"
                       />
                     </TabPane>
                     <TabPane tabId="3">
@@ -114,6 +116,7 @@ const FAQ = (props) => {
                         darkMode={false}
                         disableHeader={true}
                         rootDomain={process.env.REACT_APP_BASE_URL}
+                        bodyClassName="notion-body"
                       />
                     </TabPane>
                   </TabContent>
