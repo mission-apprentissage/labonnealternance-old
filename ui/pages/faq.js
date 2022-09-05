@@ -13,7 +13,6 @@ const FAQ = (props) => {
 
 
   const [isLoading, setIsLoading] = useState(true);
-  const [recordMapNotion, setRecordMapNotion] = useState(null);
   const [recordMapNotionRecruteur, setRecordMapNotionRecruteur] = useState(null);
   const [recordMapNotionOrganisme, setRecordMapNotionOrganisme] = useState(null);
   const [recordMapNotionCandidat, setRecordMapNotionCandidat] = useState(null);
@@ -22,9 +21,6 @@ const FAQ = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-
-      const notionFAQ = await axios.get(baseUrl + '/api/faq');
-      setRecordMapNotion(notionFAQ.data);
       
       const notionFAQrecruteur = await axios.get(baseUrl + '/api/faq/recruteur');
       setRecordMapNotionRecruteur(notionFAQrecruteur.data);
@@ -69,7 +65,6 @@ const FAQ = (props) => {
               </>
               :
               <>
-
                 <div>
                   <Nav tabs>
                     <NavItem>
@@ -121,8 +116,6 @@ const FAQ = (props) => {
                     </TabPane>
                   </TabContent>
                 </div>
-
-
               </>
             }
           </div>
