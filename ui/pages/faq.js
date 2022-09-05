@@ -69,12 +69,12 @@ const FAQ = (props) => {
                   <Nav tabs>
                     <NavItem>
                       <NavLink className={activeTab == '1' ? 'active' : ''} onClick={() => setActiveTab('1')}>
-                        Recruteur
+                        Candidat
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink className={activeTab == '2' ? 'active' : ''} onClick={() => setActiveTab('2')}>
-                        Candidat
+                        Recruteur
                       </NavLink>
                     </NavItem>
                     <NavItem>
@@ -86,7 +86,7 @@ const FAQ = (props) => {
                   <TabContent activeTab={activeTab}>
                     <TabPane tabId="1">
                       <NotionRenderer
-                        recordMap={recordMapNotionRecruteur}
+                        recordMap={recordMapNotionCandidat}
                         fullPage={false}
                         darkMode={false}
                         disableHeader={true}
@@ -96,7 +96,7 @@ const FAQ = (props) => {
                     </TabPane>
                     <TabPane tabId="2">
                       <NotionRenderer
-                        recordMap={recordMapNotionCandidat}
+                        recordMap={recordMapNotionRecruteur}
                         fullPage={false}
                         darkMode={false}
                         disableHeader={true}
