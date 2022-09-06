@@ -77,7 +77,7 @@ const LocationDetail = ({ item, isCfa }) => {
             <div className="c-locationdetail-line mt-1">
               <span className="c-detail-sizetext">
                 <strong>Année de création de l'entreprise :&nbsp;</strong>{" "}
-                {new Date(item?.company?.creationDate).getFullYear()}
+                {new Date(item.company.creationDate).getFullYear()}
               </span>
             </div>
           ) : (
