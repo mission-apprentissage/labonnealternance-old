@@ -1,6 +1,6 @@
 import React from "react";
 import { capitalizeFirstLetter } from "../../utils/strutils";
-import { getPathLink } from "../../utils/tools";
+import { getPathLink, getCompanyPathLink } from "../../utils/tools";
 import { round } from "lodash";
 import { string_wrapper as with_str } from "../../utils/wrapper_utils";
 import ExternalLink from "../externalLink";
@@ -59,6 +59,56 @@ const LocationDetail = ({ item, isCfa }) => {
 
   return (
     <>
+      {kind === "matcha" && item?.company?.mandataire ? (
+        <div className="c-detail-body c-locationdetail mt-4">
+          <h2 className="c-locationdetail-title mt-2">{getTitle({})}</h2>
+
+          <div className="c-locationdetail-line mt-1">
+            <span className="c-detail-sizetext">
+              <strong>Taille de l'entreprise :&nbsp;</strong> {companySize}
+            </span>
+          </div>
+          <div className="c-locationdetail-line mt-1">
+            <span className="c-detail-sizetext">
+              <strong>Secteur d'activité :&nbsp;</strong> {item?.nafs[0]?.label}
+            </span>
+          </div>
+          {item?.company?.creationDate && !isNaN(new Date(item.company.creationDate)) ? (
+            <div className="c-locationdetail-line mt-1">
+              <span className="c-detail-sizetext">
+                <strong>Année de création de l'entreprise :&nbsp;</strong>{" "}
+                {new Date(item.company.creationDate).getFullYear()}
+              </span>
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="c-locationdetail-address mt-2">{item?.company?.place?.city}</div>
+          {item?.place?.distance ? (
+            <div className="c-locationdetail-distance">
+              {`${round(item.place.distance, 1)} km(s) du lieu de recherche`}
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="c-locationdetail-line mt-3">
+            <span className="c-locationdetail-imgcontainer">
+              <img className="" src="/images/icons/small_map_point.svg" alt="point de localisation" />
+            </span>
+            <span className="c-detail-sizetext">
+              <ExternalLink
+                className={`c-nice-link font-weight-normal gtm${capitalizeFirstLetter(kind)} gtmPathLink`}
+                url={getCompanyPathLink(item)}
+                title="Obtenir l'itinéraire"
+                withPic={<img className="mt-n1" src="/images/square_link.svg" alt="" />}
+              />
+            </span>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+
       <div className="c-detail-body c-locationdetail mt-4">
         <h2 className="c-locationdetail-title mt-2">{getTitle(item)}</h2>
 
@@ -72,7 +122,7 @@ const LocationDetail = ({ item, isCfa }) => {
 
         <div className="c-locationdetail-address mt-4">{item?.place?.fullAddress}</div>
 
-        {item?.place?.distance ? (
+        {item?.place?.distance && !item?.company?.mandataire ? (
           <div className="c-locationdetail-distance">
             {`${round(item.place.distance, 1)} km(s) du lieu de recherche`}
           </div>
@@ -137,52 +187,40 @@ const LocationDetail = ({ item, isCfa }) => {
           ""
         )}
 
-        {
-          isCfa ? 
+        {isCfa ? (
           <>
             <div className="pb-3">
               <div className="c-detail-newadvice">
                 <div className="pt-1 mb-2">
-                  <img
-                    src="/images/info.svg"
-                    alt="information pratique"
-                    width="24"
-                    height="24"
-                  />
+                  <img src="/images/info.svg" alt="information pratique" width="24" height="24" />
                   <span class="c-detail-newadvice-title ml-2">Cet établissement est un CFA d'entreprise</span>
                 </div>
                 <p>
-                  La particularité ? Il s'agit d'une formule complète <strong>Emploi + Formation</strong> ! Cette formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :
+                  La particularité ? Il s'agit d'une formule complète <strong>Emploi + Formation</strong> ! Cette
+                  formation vous intéresse ? La marche à suivre diffère selon le CFA d'entreprise concerné :
                 </p>
                 <ul>
-                  <li>
-                    Commencez par vous inscrire à la formation pour accéder ensuite au contrat,
-                  </li>
-                  <li>
-                    Ou commencez par postuler à une offre d'emploi pour être ensuite inscrit en formation.
-                  </li>
+                  <li>Commencez par vous inscrire à la formation pour accéder ensuite au contrat,</li>
+                  <li>Ou commencez par postuler à une offre d'emploi pour être ensuite inscrit en formation.</li>
                 </ul>
+                <p>Prenez contact avec cet établissement ou consultez son site web pour en savoir + !</p>
                 <p>
-                  Prenez contact avec cet établissement ou consultez son site web pour en savoir + !
-                </p>
-                <p>
-                    Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ?
-                    <span className="ml-1">
-                      <ExternalLink
-                        className="c-nice-link"
-                        url="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
-                        title="Préparez votre premier contact avec un CFA"
-                        withPic={<img src={gotoIcon} alt="Lien" />}
-                      />
-                    </span>
+                  Vous vous posez des questions sur votre orientation ou votre recherche d’emploi ?
+                  <span className="ml-1">
+                    <ExternalLink
+                      className="c-nice-link"
+                      url="https://dinum-beta.didask.com/courses/demonstration/60abc18c075edf000065c987"
+                      title="Préparez votre premier contact avec un CFA"
+                      withPic={<img src={gotoIcon} alt="Lien" />}
+                    />
+                  </span>
                 </p>
               </div>
             </div>
           </>
-          :
-          <>
-          </>
-        }
+        ) : (
+          <></>
+        )}
 
         {kind === "matcha" || kind === "lbb" || kind === "lba" ? (
           <>
@@ -206,12 +244,16 @@ const LocationDetail = ({ item, isCfa }) => {
                 Renseignez-vous sur l'établissement pour préparer votre candidature
               </span>
             </div>
-            <div className="c-locationdetail-line mt-1">
-              <span className="c-locationdetail-imgcontainer"></span>
-              <span className="c-detail-sizetext">
-                <strong>Taille de l'entreprise :&nbsp;</strong> {companySize}
-              </span>
-            </div>
+            {!item?.company?.mandataire ? (
+              <div className="c-locationdetail-line mt-1">
+                <span className="c-locationdetail-imgcontainer"></span>
+                <span className="c-detail-sizetext">
+                  <strong>Taille de l'entreprise :&nbsp;</strong> {companySize}
+                </span>
+              </div>
+            ) : (
+              ""
+            )}
           </>
         ) : (
           <></>

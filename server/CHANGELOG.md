@@ -1,8 +1,13 @@
 # CHANGELOG
 
-## 1.20.6 [01/09/2022]
+## 1.20.6 [07/09/2022]
+[LBAC-294] Enrichissement description offres mandatées
+[LBAC-277] Headers CSP
+[LBAC-278] Paramétrage fin du côté frammable du site
 [LBAC-255] Ajouter boutons de MAJ de l'offre LBA dans le mail Je candidate recruteur
 [LBAC-248] Découper la FAQ en 3 onglets
+[LBAC-267] Enseigne Matcha 
+[LBAC-43] Message catalogue vide
 
 ## 1.20.5 [26/08/2022]
 [LBAC-199] Affichage messages 0 formation

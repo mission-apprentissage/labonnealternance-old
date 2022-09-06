@@ -111,10 +111,12 @@ const transformMatchaJobForIdea = ({ job, distance, caller }) => {
     resultJob.place.longitude = job.geo_coordonnees.split(",")[1];
 
     resultJob.company.siret = job.siret;
-    resultJob.company.name = job.raison_sociale;
+    resultJob.company.name = job.enseigne || job.raison_sociale || "Enseigne inconnue";
     resultJob.company.size = job.tranche_effectif;
 
     resultJob.company.mandataire = job.mandataire;
+    resultJob.company.place = { city: job.entreprise_localite };
+
     resultJob.nafs = [{ label: job.libelle_naf }];
     resultJob.company.mandataire = job.mandataire;
     resultJob.company.creationDate = job.date_creation_etablissement;
