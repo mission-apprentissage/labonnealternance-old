@@ -9,6 +9,7 @@
 [LBAC-267] Enseigne Matcha 
 [LBAC-43] Message catalogue vide
 [LBAC-179] Clarifier l'adresse des CFA mandatés
+[LBAC-289] Bouchonner Matcha Mandatée
 
 ## 1.20.5 [26/08/2022]
 [LBAC-199] Affichage messages 0 formation
