@@ -22,13 +22,14 @@ const FAQ = (props) => {
     const fetchData = async () => {
       setIsLoading(true);
       
-      const notionFAQrecruteur = await axios.get(baseUrl + '/api/faq/recruteur');
+      const [notionFAQrecruteur, notionFAQorganisme, notionFAQcandidat] = await Promise.all([
+        await axios.get(baseUrl + '/api/faq/recruteur'),
+        await axios.get(baseUrl + '/api/faq/organisme'),
+        await axios.get(baseUrl + '/api/faq/candidat')
+      ])
+
       setRecordMapNotionRecruteur(notionFAQrecruteur.data);
-
-      const notionFAQorganisme = await axios.get(baseUrl + '/api/faq/organisme');
       setRecordMapNotionOrganisme(notionFAQorganisme.data);
-
-      const notionFAQcandidat = await axios.get(baseUrl + '/api/faq/candidat');
       setRecordMapNotionCandidat(notionFAQcandidat.data);
 
       setIsLoading(false);
