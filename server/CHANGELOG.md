@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.7 [15/09/2022]
+[LBAC-259] Bug autocomplete pas fixé
+
 ## 1.20.6 [07/09/2022]
 [LBAC-294] Enrichissement description offres mandatées
 [LBAC-277] Headers CSP
