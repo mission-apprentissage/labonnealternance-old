@@ -8,6 +8,7 @@
 [LBAC-248] Découper la FAQ en 3 onglets
 [LBAC-267] Enseigne Matcha 
 [LBAC-43] Message catalogue vide
+[LBAC-179] Clarifier l'adresse des CFA mandatés
 
 ## 1.20.5 [26/08/2022]
 [LBAC-199] Affichage messages 0 formation
