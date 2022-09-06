@@ -73,15 +73,24 @@ const LocationDetail = ({ item, isCfa }) => {
               <strong>Secteur d'activité :&nbsp;</strong> {item?.nafs[0]?.label}
             </span>
           </div>
-          <div className="c-locationdetail-line mt-1">
-            <span className="c-detail-sizetext">
-              <strong>Année de création de l'entreprise :&nbsp;</strong>{" "}
-              {new Date(item?.company?.creationDate).getFullYear()}
-            </span>
-          </div>
-
+          {item?.company?.creationDate && !isNaN(new Date(item.company.creationDate)) ? (
+            <div className="c-locationdetail-line mt-1">
+              <span className="c-detail-sizetext">
+                <strong>Année de création de l'entreprise :&nbsp;</strong>{" "}
+                {new Date(item?.company?.creationDate).getFullYear()}
+              </span>
+            </div>
+          ) : (
+            ""
+          )}
           <div className="c-locationdetail-address mt-2">{item?.company?.place?.city}</div>
-
+          {item?.place?.distance ? (
+            <div className="c-locationdetail-distance">
+              {`${round(item.place.distance, 1)} km(s) du lieu de recherche`}
+            </div>
+          ) : (
+            ""
+          )}
           <div className="c-locationdetail-line mt-3">
             <span className="c-locationdetail-imgcontainer">
               <img className="" src="/images/icons/small_map_point.svg" alt="point de localisation" />
@@ -113,7 +122,7 @@ const LocationDetail = ({ item, isCfa }) => {
 
         <div className="c-locationdetail-address mt-4">{item?.place?.fullAddress}</div>
 
-        {item?.place?.distance ? (
+        {item?.place?.distance && !item?.company?.mandataire ? (
           <div className="c-locationdetail-distance">
             {`${round(item.place.distance, 1)} km(s) du lieu de recherche`}
           </div>
