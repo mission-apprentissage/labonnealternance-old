@@ -41,7 +41,7 @@ const itemModel = (type) => {
       id: null, // formation -> etablissement_formateur_id
       uai: null, // formation -> etablissement_formateur_uai
       place: null /*{
-            city,   // formation -> etablissement_formateur_localite
+            city,   // formation -> etablissement_formateur_localite | matcha -> entreprise_localite
       }*/,
       mandataire: null, // matcha -> mandataire
       creationDate: null, // matcha -> date_creation_etablissement

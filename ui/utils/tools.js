@@ -1,8 +1,8 @@
+import { rawPostalAddress } from "./addressUtils";
 //import * as Sentry from "@sentry/react";
-import { rawPostalAddress } from './addressUtils';
 
 const getPathLink = (anyItem) => {
-  let res = ''
+  let res = "";
   if (anyItem?.place) {
     res = `https://www.google.fr/maps/dir//
             ${encodeURIComponent(rawPostalAddress(anyItem.place.fullAddress))}/@
@@ -10,17 +10,25 @@ const getPathLink = (anyItem) => {
             ${anyItem.place.longitude},
             14z/`;
   }
-  return res
+  return res;
+};
+
+const getCompanyPathLink = (anyItem) => {
+  let res = "";
+  if (anyItem?.company?.place?.city) {
+    res = `https://www.google.fr/maps/dir//${encodeURIComponent(anyItem.company.place.city)}`;
+  }
+  return res;
 };
 
 const getValueFromPath = (key) => {
-  let res = ""
-  if (typeof window !== 'undefined') {
+  let res = "";
+  if (typeof window !== "undefined") {
     const url = new URL(window.location);
-  
+
     // WARNING: URLSearchParams not supported by IE
     const searchParams = new URLSearchParams(url.search);
-  
+
     res = searchParams.get(key);
   }
 
@@ -87,4 +95,12 @@ const logError = (title, error) => {
   console.log(`Error ${title} sent to Sentry`);
 };
 
-export { getPathLink, getValueFromPath, scrollToTop, scrollToElementInContainer, getItemElement, logError };
+export {
+  getPathLink,
+  getCompanyPathLink,
+  getValueFromPath,
+  scrollToTop,
+  scrollToElementInContainer,
+  getItemElement,
+  logError,
+};
