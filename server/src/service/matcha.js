@@ -3,7 +3,6 @@ const { itemModel } = require("../model/itemModel");
 const config = require("config");
 const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const { manageApiError } = require("../common/utils/errorManager");
-const { stringify } = require("../common/utils/stringify");
 const { encryptMailWithIV } = require("../common/utils/encryptString");
 const filterJobsByOpco = require("./filterJobsByOpco");
 const matchaApiEndpoint = `https://matcha${
@@ -71,8 +70,6 @@ const transformMatchaJobsForIdea = ({ jobs, caller }) => {
 const getMatchaJobById = async ({ id, caller }) => {
   try {
     const jobs = id === "id-matcha-test" ? { data: matchaMock._source } : await axios.get(`${matchaJobEndPoint}/${id}`);
-    console.log("jobs +++...+++");
-    console.log(stringify(jobs.data, 4, null, 2));
     const job = transformMatchaJobForIdea({
       job: jobs.data,
       caller,
