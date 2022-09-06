@@ -1,5 +1,5 @@
-import * as Sentry from "@sentry/react";
 import { rawPostalAddress } from "./addressUtils";
+//import * as Sentry from "@sentry/react";
 
 const getPathLink = (anyItem) => {
   let res = "";
@@ -91,7 +91,7 @@ const getItemElement = (item) => {
 const logError = (title, error) => {
   let err = error instanceof Error ? error : new Error(error);
   err.name = title;
-  Sentry.captureException(err);
+  //Sentry.captureException(err);
   console.log(`Error ${title} sent to Sentry`);
 };
 

@@ -31,7 +31,7 @@ const itemModel = (type) => {
     },
 
     company: {
-      name: null, // pe -> entreprise.nom | formation -> etablissement_formateur_entreprise_raison_sociale | lbb/lba -> name | matcha -> raison_sociale
+      name: null, // pe -> entreprise.nom | formation -> etablissement_formateur_entreprise_raison_sociale | lbb/lba -> name | matcha -> enseigne > raison_sociale
       siret: null, // lbb/lba -> siret | formation -> etablissement_formateur_siret | matcha -> siret | pe -> entreprise.siret réservé à notre front
       size: null, // lbb/lba -> headcount_text | matcha -> tranche_effectif
       logo: null, // pe -> entreprise.logo
