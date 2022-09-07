@@ -1,7 +1,7 @@
 
 export default function getSoustitre({ selectedItem }) {
   let res = "";
-
+  
   {
     selectedItem?.company?.mandataire ? (
       res = <div className="mt-4 c-detail-address-section">
@@ -13,7 +13,7 @@ export default function getSoustitre({ selectedItem }) {
                   />
                 </svg>
                 <span className="c-detail-address">&nbsp;Entreprise : </span>
-                <span className="c-detail-address">lieu non déterminé</span>
+                <span className="c-detail-address">{selectedItem?.company?.place?.city || "lieu non déterminé"}</span>
               </div>
               <div className="mt-2">
                 <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">

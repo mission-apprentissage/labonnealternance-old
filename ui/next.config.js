@@ -1,11 +1,88 @@
-const withPlugins = require("next-compose-plugins");
+const path = require("path");
+const withImages = require("next-images");
+
+function inline(value) {
+  // supprime les espacements inutiles pour remettre la séquence sur une seule ligne
+  return value.replace(/\s{2,}/g, " ").trim();
+}
+
+const contentSecurityPolicy = `
+  default-src 'self'; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io http://localhost:3000 blob:; 
+  connect-src 'self' 
+              https://rdv-cfa.apprentissage.beta.gouv.fr 
+              https://rdv-cfa-recette.apprentissage.beta.gouv.fr 
+              https://catalogue.apprentissage.beta.gouv.fr 
+              https://catalogue-recette.apprentissage.beta.gouv.fr 
+              https://api-adresse.data.gouv.fr 
+              https://api.mapbox.com 
+              https://events.mapbox.com 
+              https://raw.githubusercontent.com 
+              https://plausible.io 
+              http://localhost:5000; 
+  img-src 'self' data:; 
+  font-src 'self' https://labonnealternance-recette.apprentissage.beta.gouv.fr; 
+  style-src 'self' 'unsafe-inline' https://api.mapbox.com; 
+  frame-src https://rdv-cfa.apprentissage.beta.gouv.fr 
+            https://matcha.apprentissage.beta.gouv.fr 
+            https://plausible.io 
+            https://labonnealternance.pole-emploi.fr;
+  block-all-mixed-content;
+  upgrade-insecure-requests;
+`;
+
+module.exports = async (phase, { defaultConfig }) =>
+  withImages({
+    /* config options here */
+
+    sassOptions: {
+      includePaths: [path.join(__dirname, "/public/styles")],
+    },
+    async headers() {
+      return [
+        {
+          source: "/:path*",
+          headers: [
+            {
+              key: "X-Content-Type-Options",
+              value: "nosniff",
+            },
+            {
+              key: "Content-Security-Policy",
+              value: inline(contentSecurityPolicy + " frame-ancestors 'none';"),
+            },
+            {
+              key: "Referrer-Policy",
+              value: "unsafe-url",
+            },
+            {
+              key: "Strict-Transport-Security",
+              value: "max-age=31536000; includeSubDomains",
+            },
+            {
+              key: "X-XSS-Protection",
+              value: "1",
+            },
+          ],
+        },
+        {
+          source: "/:slug(recherche-apprentissage|recherche-emploi|recherche-apprentissage-formation|postuler)",
+          headers: [
+            {
+              key: "Content-Security-Policy",
+              value: inline(contentSecurityPolicy),
+            },
+          ],
+        },
+      ];
+    },
+  });
+
+/*const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
 const path = require("path");
 const config = require("config");
 
-/*
- * BEGIN OF SENTRY---------------------------
- */
 
 // Use the hidden-source-map option when you don't want the source maps to be
 // publicly available on the servers, only to the error reporting
@@ -25,16 +102,11 @@ process.env.sentryAuthToken = sentryProject;
 process.env.env = env;
 process.env.publicUrl = config.publicUrl;
 
-/*
- * END OF SENTRY---------------------------
- */
-
 module.exports = withPlugins(
   [
     [
       withImages,
       {
-        /* plugin config here ... */
       },
     ],
 
@@ -97,9 +169,26 @@ module.exports = withPlugins(
     ], // end of withSourceMaps
   ],
   {
-    /* global config here ... */
     sassOptions: {
       includePaths: [path.join(__dirname, "/public/styles")],
     },
+    async headers() {
+      return [
+        {
+          source: "/a-propos",
+          headers: [
+            {
+              key: "x-custom-header",
+              value: "my custom header value",
+            },
+            {
+              key: "x-another-custom-header",
+              value: "my other custom header value",
+            },
+          ],
+        },
+      ];
+    },
   }
 );
+*/

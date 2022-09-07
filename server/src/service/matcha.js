@@ -13,7 +13,7 @@ const matchaJobEndPoint = `${matchaApiEndpoint}/offre`;
 
 const coordinatesOfFrance = [2.213749, 46.227638];
 
-const { matchaMock, matchasMock } = require("../../tests/mocks/matchas-mock");
+const { matchaMock, matchaMockMandataire, matchasMock } = require("../../tests/mocks/matchas-mock");
 
 const getMatchaJobs = async ({ romes, radius, latitude, longitude, api, opco, caller, useMock }) => {
   try {
@@ -69,7 +69,14 @@ const transformMatchaJobsForIdea = ({ jobs, caller }) => {
 
 const getMatchaJobById = async ({ id, caller }) => {
   try {
-    const jobs = id === "id-matcha-test" ? { data: matchaMock._source } : await axios.get(`${matchaJobEndPoint}/${id}`);
+    let jobs = null;
+    if (id === "id-matcha-test") {
+      jobs = { data: matchaMock._source };
+    } else if (id === "id-matcha-test2") {
+      jobs = { data: matchaMockMandataire._source };
+    } else {
+      jobs = await axios.get(`${matchaJobEndPoint}/${id}`);
+    }
     const job = transformMatchaJobForIdea({
       job: jobs.data,
       caller,
@@ -111,10 +118,12 @@ const transformMatchaJobForIdea = ({ job, distance, caller }) => {
     resultJob.place.longitude = job.geo_coordonnees.split(",")[1];
 
     resultJob.company.siret = job.siret;
-    resultJob.company.name = job.raison_sociale;
+    resultJob.company.name = job.enseigne || job.raison_sociale || "Enseigne inconnue";
     resultJob.company.size = job.tranche_effectif;
 
     resultJob.company.mandataire = job.mandataire;
+    resultJob.company.place = { city: job.entreprise_localite };
+
     resultJob.nafs = [{ label: job.libelle_naf }];
     resultJob.company.mandataire = job.mandataire;
     resultJob.company.creationDate = job.date_creation_etablissement;
