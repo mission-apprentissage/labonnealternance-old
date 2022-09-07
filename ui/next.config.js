@@ -20,7 +20,8 @@ const contentSecurityPolicy = `
               https://raw.githubusercontent.com 
               https://plausible.io 
               http://localhost:5000; 
-  img-src 'self' data:; 
+  img-src 'self' data: https://www.notion.so; 
+  object-src 'self' data;
   font-src 'self' https://labonnealternance-recette.apprentissage.beta.gouv.fr; 
   style-src 'self' 'unsafe-inline' https://api.mapbox.com; 
   frame-src https://rdv-cfa.apprentissage.beta.gouv.fr 
