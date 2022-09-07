@@ -464,7 +464,7 @@
                         "$ref": "#/parameters/companyType"
                     },
                     {
-                        "$ref": "#/parameters/cryptedCompanyEmail"
+                        "$ref": "#/parameters/companyEmail"
                     },
                     {
                         "$ref": "#/parameters/iv"
@@ -850,9 +850,9 @@
             "example": "Madame, monsieur..."
         },
 
-        "cryptedCompanyEmail":
+        "companyEmail":
         {
-            "name": "crypted_company_email",
+            "name": "company_email",
             "in": "body",
             "required": true,
             "type": "string",
