@@ -434,6 +434,9 @@
                         "$ref": "#/parameters/applicantEmail"
                     },
                     {
+                        "$ref": "#/parameters/applicantLastName"
+                    },
+                    {
                         "$ref": "#/parameters/applicantFirstName"
                     },
                     {

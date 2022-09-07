@@ -238,14 +238,14 @@ const LocationDetail = ({ item, isCfa }) => {
                 />
               </span>
             </div>
-            <div className="c-locationdetail-line mt-1">
+            <div className="c-locationdetail-line mt-1 mb-1">
               <span className="c-locationdetail-imgcontainer"></span>
-              <span className="c-detail-sizetext c-locationdetail-hint mb-0">
+              <span className="c-detail-sizetext c-locationdetail-hint">
                 Renseignez-vous sur l'établissement pour préparer votre candidature
               </span>
             </div>
             {!item?.company?.mandataire ? (
-              <div className="c-locationdetail-line mt-1">
+              <div className="c-locationdetail-line mb-1">
                 <span className="c-locationdetail-imgcontainer"></span>
                 <span className="c-detail-sizetext">
                   <strong>Taille de l'entreprise :&nbsp;</strong> {companySize}
