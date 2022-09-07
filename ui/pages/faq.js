@@ -10,23 +10,21 @@ import Footer from "components/footer";
 import { Spinner, Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 
 const FAQ = (props) => {
-
-
   const [isLoading, setIsLoading] = useState(true);
   const [recordMapNotionRecruteur, setRecordMapNotionRecruteur] = useState(null);
   const [recordMapNotionOrganisme, setRecordMapNotionOrganisme] = useState(null);
   const [recordMapNotionCandidat, setRecordMapNotionCandidat] = useState(null);
-  const [activeTab, setActiveTab] = useState('1');
+  const [activeTab, setActiveTab] = useState("1");
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      
+
       const [notionFAQrecruteur, notionFAQorganisme, notionFAQcandidat] = await Promise.all([
-        await axios.get(baseUrl + '/api/faq/recruteur'),
-        await axios.get(baseUrl + '/api/faq/organisme'),
-        await axios.get(baseUrl + '/api/faq/candidat')
-      ])
+        await axios.get(baseUrl + "/api/faq/recruteur"),
+        await axios.get(baseUrl + "/api/faq/organisme"),
+        await axios.get(baseUrl + "/api/faq/candidat"),
+      ]);
 
       setRecordMapNotionRecruteur(notionFAQrecruteur.data);
       setRecordMapNotionOrganisme(notionFAQorganisme.data);
@@ -60,27 +58,30 @@ const FAQ = (props) => {
             <hr className="c-page-title-separator" align="left" />
           </div>
           <div className="col-12 col-md-7">
-            {isLoading ?
+            {isLoading ? (
               <>
-                <div><Spinner /><span className="ml-2">Chargement en cours...</span></div>
+                <div>
+                  <Spinner />
+                  <span className="ml-2">Chargement en cours...</span>
+                </div>
               </>
-              :
+            ) : (
               <>
                 <div>
                   <Nav tabs>
                     <NavItem>
-                      <NavLink className={activeTab == '1' ? 'active' : ''} onClick={() => setActiveTab('1')}>
+                      <NavLink className={activeTab == "1" ? "active" : ""} onClick={() => setActiveTab("1")}>
                         Candidat
                       </NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink className={activeTab == '2' ? 'active' : ''} onClick={() => setActiveTab('2')}>
+                      <NavLink className={activeTab == "2" ? "active" : ""} onClick={() => setActiveTab("2")}>
                         Recruteur
                       </NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink className={activeTab == '3' ? 'active' : ''} onClick={() => setActiveTab('3')}>
-                        Organisme
+                      <NavLink className={activeTab == "3" ? "active" : ""} onClick={() => setActiveTab("3")}>
+                        Organisme de formation
                       </NavLink>
                     </NavItem>
                   </Nav>
@@ -118,7 +119,7 @@ const FAQ = (props) => {
                   </TabContent>
                 </div>
               </>
-            }
+            )}
           </div>
         </div>
       </div>
