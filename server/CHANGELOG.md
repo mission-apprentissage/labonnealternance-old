@@ -1,8 +1,5 @@
 # CHANGELOG
 
-## 1.20.7 [15/09/2022]
-[LBAC-259] Bug autocomplete pas fixé
-
 ## 1.20.6 [07/09/2022]
 [LBAC-294] Enrichissement description offres mandatées
 [LBAC-277] Headers CSP
@@ -12,6 +9,7 @@
 [LBAC-267] Enseigne Matcha 
 [LBAC-43] Message catalogue vide
 [LBAC-179] Clarifier l'adresse des CFA mandatés
+[LBAC-259] Bug autocomplete pas fixé
 
 ## 1.20.5 [26/08/2022]
 [LBAC-199] Affichage messages 0 formation
