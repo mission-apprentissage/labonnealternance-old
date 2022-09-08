@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { formatDate } from "../../utils/strutils";
-import { SendPlausibleEvent } from "../../utils/plausible";
+import { SendPlausibleEvent, SendTrackEvent } from "../../utils/plausible";
 import { DisplayContext } from "../../context/DisplayContextProvider";
 
 let md = require("markdown-it")().disable(["link", "image"]);
@@ -15,6 +15,10 @@ const PeJobDetail = ({ job }) => {
   useEffect(() => {
     SendPlausibleEvent("Affichage - Fiche entreprise Offre PE", {
       info_fiche: `${job?.job?.id}${formValues?.job?.label ? ` - ${formValues.job.label}` : ""}`,
+    });
+    SendTrackEvent({
+      event: `Résultats Affichage Offre PE - Consulter fiche entreprise`,
+      itemId: job?.job?.id,
     });
   }, [job?.job?.id]);
 

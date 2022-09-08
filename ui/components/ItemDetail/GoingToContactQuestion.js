@@ -3,6 +3,7 @@ import React from "react";
 import { useSessionStorage } from "../../utils/useSessionStorage";
 import { getItemId } from "../../utils/getItemId";
 import { SendPlausibleEvent } from "../../utils/plausible";
+import { capitalizeFirstLetter } from "../../utils/strutils";
 
 const GoingToContactQuestion = ({ kind, uniqId, item }) => {
   const [thanks, setThanks] = useSessionStorage(uniqId, false);
@@ -36,7 +37,7 @@ const GoingToContactQuestion = ({ kind, uniqId, item }) => {
             <div className="c-goingto-buttons">
               <button
                 type="button"
-                className="c-goingto-thumb"
+                className={`c-goingto-thumb gtmThumbUp gtm${capitalizeFirstLetter(kind)}`}
                 onClick={() => {
                   setThanks(true);
                   SendPlausibleEvent(`Clic Je vais contacter - Fiche ${typeForEventTracking}`, {
@@ -48,7 +49,7 @@ const GoingToContactQuestion = ({ kind, uniqId, item }) => {
               </button>
               <button
                 type="button"
-                className="c-goingto-thumb"
+                className={`c-goingto-thumb gtmThumbDown gtm${capitalizeFirstLetter(kind)}`}
                 onClick={() => {
                   setThanks(true);
                   SendPlausibleEvent(`Clic Je ne vais pas contacter - Fiche ${typeForEventTracking}`, {

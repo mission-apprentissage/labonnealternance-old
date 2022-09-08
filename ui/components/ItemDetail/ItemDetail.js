@@ -109,7 +109,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
               <div className="c-detail-description-me">
                 <div className="c-detail-pelink my-3">
                   <a
-                    className="btn btn-blue"
+                    className="btn btn-blue gtmContactPE"
                     onClick={postuleSurPoleEmploi}
                     target="poleemploi"
                     href={selectedItem.url}
