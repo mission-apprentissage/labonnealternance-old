@@ -33,6 +33,8 @@ const contentSecurityPolicy = `
               https://raw.githubusercontent.com 
               https://privacy.trustcommander.net
               https://privacy.commander1.com
+              https://stats.g.doubleclick.net
+              wss://ws13.hotjar.com
               wss://client.relay.crisp.chat
               https://surveystats.hotjar.io
               https://www.google-analytics.com
@@ -63,6 +65,7 @@ const contentSecurityPolicy = `
   block-all-mixed-content;
   upgrade-insecure-requests;
 `;
+
 
 module.exports = async (phase, { defaultConfig }) =>
   withImages({
