@@ -26,6 +26,7 @@ const contentSecurityPolicy = `
               https://api.mapbox.com 
               https://events.mapbox.com 
               https://raw.githubusercontent.com 
+              https://privacy.trustcommander.net
               https://plausible.io 
               http://localhost:5000; 
   img-src 'self' 
