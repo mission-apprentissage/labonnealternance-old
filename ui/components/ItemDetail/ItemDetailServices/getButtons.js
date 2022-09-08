@@ -24,13 +24,13 @@ export const buildPrdvButton = (training) => {
 
   return (
     <div
-      className="widget-prdv"
+      className="widget-prdv gtmPrdv"
       data-referrer="lba"
       data-id-cle-ministere-educatif={training.cleMinistereEducatif}
       data-id-rco-formation={training.idRcoFormation}
       onClick={onClickPrdv}
     >
-      <ExternalLink url={training.prdvUrl} title="Je prends rendez-vous" />
+      <ExternalLink className="gtmPrdv" url={training.prdvUrl} title="Je prends rendez-vous" />
     </div>
   );
 };

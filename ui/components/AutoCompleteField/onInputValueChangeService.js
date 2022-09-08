@@ -18,6 +18,14 @@ export default async function onInputValueChangeService({
       const newItems = await onInputValueChangeFunction(inputValue, setLoadingState);
       setInputItems(newItems);
 
+      // impacté uniquement via un useEffect pour fixer de force la valeur de l'input text à l'initialisation du formulaire
+      // cf. test sur setInputTextValue qui est présent exclusivement dans ce cas
+      if (setInputTextValue) {
+        setInputTextValue(inputValue);
+        setFieldValue(newItems[0]);
+        selectItem(newItems[0]);
+      }
+
       if (initialSelectedItem) {
         // uniquement appelé lors d'une réinitialisation de l'input après navigation
         setTimeout(() => {
@@ -29,7 +37,8 @@ export default async function onInputValueChangeService({
     }
 
     // sélectionne ou désélectionne l'objet en fonction des modifications au clavier de l'utilisateur
-    if (compareItemFunction) {
+    // pas appelé lors de l'initialisation (cf. test sur setInputTextValue)
+    if (compareItemFunction && !setInputTextValue) {
       const itemIndex = compareItemFunction(inputItems, inputValue);
       if (itemIndex >= 0) {
         selectItem(inputItems[itemIndex]);
@@ -38,12 +47,8 @@ export default async function onInputValueChangeService({
       }
     }
   } else {
+    // reset des valeurs lorsqu'il n'y a pas de valeur dans le champs.
     setInputItems([]);
     selectItem(null);
-  }
-
-  // impacté uniquement via un useEffect pour fixer de force la valeur de l'input text à l'initialisation du formulaire
-  if (setInputTextValue) {
-    setInputTextValue(inputValue);
   }
 }

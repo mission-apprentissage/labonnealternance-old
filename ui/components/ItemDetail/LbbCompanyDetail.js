@@ -1,12 +1,16 @@
 import { DisplayContext } from "../../context/DisplayContextProvider";
 import React, { useEffect } from "react";
-import { SendPlausibleEvent } from "../../utils/plausible";
+import { SendPlausibleEvent, SendTrackEvent } from "../../utils/plausible";
 import CandidatureSpontaneeExplanation from "./CandidatureSpontanee/CandidatureSpontaneeExplanation";
 
 const LbbCompanyDetail = ({ lbb }) => {
   useEffect(() => {
     SendPlausibleEvent("Affichage - Fiche entreprise Algo", {
       info_fiche: `${lbb?.company?.siret}${formValues?.job?.label ? ` - ${formValues.job.label}` : ""}`,
+    });
+    SendTrackEvent({
+      event: `Résultats Affichage ${lbb?.ideaType.toUpperCase()} - Consulter fiche entreprise`,
+      itemId: lbb?.company?.siret,
     });
   }, [lbb?.company?.siret]);
 

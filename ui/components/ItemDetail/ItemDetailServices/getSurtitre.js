@@ -1,8 +1,8 @@
-
+import React from "react";
 export default function getSurtitre({ selectedItem, kind, isMandataire }) {
   let res = "";
-  let companyName = selectedItem?.company?.name || '';
-  
+  let companyName = selectedItem?.company?.name || "";
+
   if (kind === "matcha" && isMandataire) {
     res = (
       <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
@@ -18,8 +18,25 @@ export default function getSurtitre({ selectedItem, kind, isMandataire }) {
   if (kind === "peJob" || (kind === "matcha" && !isMandataire)) {
     res = (
       <p className={`c-detail-activity c-detail-title--entreprise mt-2`}>
-        <span>{companyName || "Une société ayant souhaité garder l'anonymat"}</span>
-        <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre</span>
+        {companyName ? (
+          <>
+            <span>{companyName}</span>
+            <span className="c-detail-activity__proposal">&nbsp;propose actuellement cette offre</span>
+          </>
+        ) : (
+          <>
+            <span className="c-detail-activity__proposal">
+              {selectedItem?.nafs ? (
+                <>
+                  Une société du secteur&nbsp;<bold>${selectedItem.nafs[0].label}</bold>&nbsp;propose actuellement cette
+                  offre
+                </>
+              ) : (
+                "Une société ayant souhaité garder l'anonymat"
+              )}
+            </span>
+          </>
+        )}
       </p>
     );
   }
@@ -45,4 +62,4 @@ export default function getSurtitre({ selectedItem, kind, isMandataire }) {
   }
 
   return res;
-};
+}

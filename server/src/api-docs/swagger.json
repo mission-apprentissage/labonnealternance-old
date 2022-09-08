@@ -434,6 +434,9 @@
                         "$ref": "#/parameters/applicantEmail"
                     },
                     {
+                        "$ref": "#/parameters/applicantLastName"
+                    },
+                    {
                         "$ref": "#/parameters/applicantFirstName"
                     },
                     {
@@ -461,7 +464,7 @@
                         "$ref": "#/parameters/companyType"
                     },
                     {
-                        "$ref": "#/parameters/cryptedCompanyEmail"
+                        "$ref": "#/parameters/companyEmail"
                     },
                     {
                         "$ref": "#/parameters/iv"
@@ -847,9 +850,9 @@
             "example": "Madame, monsieur..."
         },
 
-        "cryptedCompanyEmail":
+        "companyEmail":
         {
-            "name": "crypted_company_email",
+            "name": "company_email",
             "in": "body",
             "required": true,
             "type": "string",
@@ -893,7 +896,7 @@
             "in": "body",
             "required": true,
             "type": "string",
-            "description": "L'adresse postale de la société. Fournie par La bonne alternance. ",
+            "description": "L'adresse postale de la société. Fournie par La bonne alternance. (champs : place.fullAddress)",
             "example": "38 RUE DES HAMECONS, 75021 PARIS-21"
         },
 
