@@ -34,7 +34,8 @@ const contentSecurityPolicy = `
               https://privacy.trustcommander.net
               https://privacy.commander1.com
               https://stats.g.doubleclick.net
-              *.hotjar.com
+              https://*.hotjar.com
+              wss://*.hotjar.com
               wss://client.relay.crisp.chat
               https://surveystats.hotjar.io
               https://www.google-analytics.com
