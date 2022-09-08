@@ -13,9 +13,10 @@ const contentSecurityPolicy = `
               'unsafe-eval' 
               https://cdn.tagcommander.com
               https://cdn.trustcommander.net/
-              https://www.googletagmanager.com
               https://static.hotjar.com
+              https://script.hotjar.com
               https://www.googletagmanager.com
+              https://www.google-analytics.com
               https://client.crisp.chat
               https://plausible.io 
               http://localhost:3000 
@@ -40,17 +41,18 @@ const contentSecurityPolicy = `
               https://manager.tagcommander.com; 
   object-src 'self' data: https://labonnealternance.apprentissage.beta.gouv.fr;
   font-src 'self' https://labonnealternance.apprentissage.beta.gouv.fr https://labonnealternance-recette.apprentissage.beta.gouv.fr; 
-  style-src 'self' 'unsafe-inline' https://api.mapbox.com; 
+  style-src 'self' 'unsafe-inline' 
+              https://client.crisp.chat
+              https://api.mapbox.com; 
   frame-src https://rdv-cfa.apprentissage.beta.gouv.fr 
             https://matcha.apprentissage.beta.gouv.fr 
             https://plausible.io 
+            https://vars.hotjar.com
             https://labonnealternance.pole-emploi.fr
             https://labonnealternance.apprentissage.beta.gouv.fr;
   block-all-mixed-content;
   upgrade-insecure-requests;
 `;
-
-
 
 module.exports = async (phase, { defaultConfig }) =>
   withImages({
