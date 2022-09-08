@@ -44,6 +44,11 @@ const domainesMetiersSchema = {
     default: null,
     description: "Mots clefs tirés des appellations associées à un code ROME",
   },
+  couples_appelations_rome_metier: {
+    type: [Object],
+    default: null,
+    description: "Mots clefs tirés des appellations associées à un code ROME non découpé",
+  },
   codes_fap: {
     type: [String],
     default: null,
