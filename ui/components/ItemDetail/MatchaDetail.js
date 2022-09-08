@@ -1,6 +1,6 @@
 import { DisplayContext } from "../../context/DisplayContextProvider";
 import React, { useEffect } from "react";
-import { SendPlausibleEvent } from "../../utils/plausible";
+import { SendPlausibleEvent, SendTrackEvent } from "../../utils/plausible";
 import { formatDate } from "../../utils/strutils";
 import ExternalLink from "../externalLink";
 import MatchaCompetences from "./MatchaComponents/MatchaCompetences";
@@ -19,6 +19,10 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
   useEffect(() => {
     SendPlausibleEvent("Affichage - Fiche entreprise Offre LBA", {
       info_fiche: `${job?.job?.id}${formValues?.job?.label ? ` - ${formValues.job.label}` : ""}`,
+    });
+    SendTrackEvent({
+      event: `Résultats Affichage Offre Matcha - Consulter fiche entreprise`,
+      itemId: job?.job?.id,
     });
   }, [job?.job?.id]);
 
