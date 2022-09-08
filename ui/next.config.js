@@ -69,7 +69,6 @@ const contentSecurityPolicy = `
   upgrade-insecure-requests;
 `;
 
-
 module.exports = async (phase, { defaultConfig }) =>
   withImages({
     /* config options here */
