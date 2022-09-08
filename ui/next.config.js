@@ -37,7 +37,7 @@ const contentSecurityPolicy = `
               https://*.hotjar.com
               wss://*.hotjar.com
               wss://client.relay.crisp.chat
-              https://surveystats.hotjar.io
+              https://*.hotjar.io
               https://www.google-analytics.com
               https://in.hotjar.com
               https://plausible.io 
