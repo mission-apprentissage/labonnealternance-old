@@ -33,14 +33,24 @@ const contentSecurityPolicy = `
               https://raw.githubusercontent.com 
               https://privacy.trustcommander.net
               https://privacy.commander1.com
+              wss://client.relay.crisp.chat
+              https://surveystats.hotjar.io
+              https://www.google-analytics.com
+              https://in.hotjar.com
               https://plausible.io 
               http://localhost:5000; 
   img-src 'self' 
               data: 
               https://www.notion.so
+              https://www.google-analytics.com
+              https://script.hotjar.com
               https://manager.tagcommander.com; 
   object-src 'self' data: https://labonnealternance.apprentissage.beta.gouv.fr;
-  font-src 'self' https://labonnealternance.apprentissage.beta.gouv.fr https://labonnealternance-recette.apprentissage.beta.gouv.fr; 
+  font-src 'self' 
+            https://client.crisp.chat
+            https://script.hotjar.com
+            https://labonnealternance.apprentissage.beta.gouv.fr 
+            https://labonnealternance-recette.apprentissage.beta.gouv.fr; 
   style-src 'self' 'unsafe-inline' 
               https://client.crisp.chat
               https://api.mapbox.com; 
