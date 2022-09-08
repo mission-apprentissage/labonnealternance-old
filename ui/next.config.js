@@ -8,7 +8,13 @@ function inline(value) {
 
 const contentSecurityPolicy = `
   default-src 'self'; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io http://localhost:3000 blob:; 
+  script-src 'self' 
+              'unsafe-inline' 
+              'unsafe-eval' 
+              https://cdn.tagcommander.com
+              https://plausible.io 
+              http://localhost:3000 
+              blob:; 
   connect-src 'self'
               https://labonnealternance.apprentissage.beta.gouv.fr 
               https://rdv-cfa.apprentissage.beta.gouv.fr 
