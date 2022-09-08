@@ -13,6 +13,10 @@ const contentSecurityPolicy = `
               'unsafe-eval' 
               https://cdn.tagcommander.com
               https://cdn.trustcommander.net/
+              https://www.googletagmanager.com
+              https://static.hotjar.com
+              https://www.googletagmanager.com
+              https://client.crisp.chat
               https://plausible.io 
               http://localhost:3000 
               blob:; 
@@ -27,6 +31,7 @@ const contentSecurityPolicy = `
               https://events.mapbox.com 
               https://raw.githubusercontent.com 
               https://privacy.trustcommander.net
+              https://privacy.commander1.com
               https://plausible.io 
               http://localhost:5000; 
   img-src 'self' 
@@ -44,6 +49,8 @@ const contentSecurityPolicy = `
   block-all-mixed-content;
   upgrade-insecure-requests;
 `;
+
+
 
 module.exports = async (phase, { defaultConfig }) =>
   withImages({
