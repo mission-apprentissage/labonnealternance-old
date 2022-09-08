@@ -34,8 +34,7 @@ const contentSecurityPolicy = `
               https://privacy.trustcommander.net
               https://privacy.commander1.com
               https://stats.g.doubleclick.net
-              https://ws13.hotjar.com
-              wss://ws13.hotjar.com
+              *.hotjar.com
               wss://client.relay.crisp.chat
               https://surveystats.hotjar.io
               https://www.google-analytics.com
@@ -46,6 +45,8 @@ const contentSecurityPolicy = `
               data: 
               https://www.notion.so
               https://www.google-analytics.com
+              https://www.google.com
+              https://www.google.fr
               https://script.hotjar.com
               https://manager.tagcommander.com; 
   object-src 'self' data: https://labonnealternance.apprentissage.beta.gouv.fr;
