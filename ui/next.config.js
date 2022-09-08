@@ -12,6 +12,7 @@ const contentSecurityPolicy = `
               'unsafe-inline' 
               'unsafe-eval' 
               https://cdn.tagcommander.com
+              https://cdn.trustcommander.net/
               https://plausible.io 
               http://localhost:3000 
               blob:; 
@@ -27,7 +28,10 @@ const contentSecurityPolicy = `
               https://raw.githubusercontent.com 
               https://plausible.io 
               http://localhost:5000; 
-  img-src 'self' data: https://www.notion.so; 
+  img-src 'self' 
+              data: 
+              https://www.notion.so
+              https://manager.tagcommander.com; 
   object-src 'self' data: https://labonnealternance.apprentissage.beta.gouv.fr;
   font-src 'self' https://labonnealternance.apprentissage.beta.gouv.fr https://labonnealternance-recette.apprentissage.beta.gouv.fr; 
   style-src 'self' 'unsafe-inline' https://api.mapbox.com; 
