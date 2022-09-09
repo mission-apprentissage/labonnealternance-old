@@ -63,6 +63,7 @@ const contentSecurityPolicy = `
             https://matcha.apprentissage.beta.gouv.fr 
             https://plausible.io 
             https://vars.hotjar.com
+            https://cdn.trustcommander.net
             https://labonnealternance.pole-emploi.fr
             https://labonnealternance.apprentissage.beta.gouv.fr;
   block-all-mixed-content;
