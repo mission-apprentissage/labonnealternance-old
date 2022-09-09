@@ -8,8 +8,21 @@ function inline(value) {
 
 const contentSecurityPolicy = `
   default-src 'self'; 
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io http://localhost:3000 blob:; 
-  connect-src 'self' 
+  script-src 'self' 
+              'unsafe-inline' 
+              'unsafe-eval' 
+              https://cdn.tagcommander.com
+              https://cdn.trustcommander.net/
+              https://static.hotjar.com
+              https://script.hotjar.com
+              https://www.googletagmanager.com
+              https://www.google-analytics.com
+              https://client.crisp.chat
+              https://plausible.io 
+              http://localhost:3000 
+              blob:; 
+  connect-src 'self'
+              https://labonnealternance.apprentissage.beta.gouv.fr 
               https://rdv-cfa.apprentissage.beta.gouv.fr 
               https://rdv-cfa-recette.apprentissage.beta.gouv.fr 
               https://catalogue.apprentissage.beta.gouv.fr 
@@ -18,16 +31,41 @@ const contentSecurityPolicy = `
               https://api.mapbox.com 
               https://events.mapbox.com 
               https://raw.githubusercontent.com 
+              https://privacy.trustcommander.net
+              https://privacy.commander1.com
+              https://stats.g.doubleclick.net
+              https://*.hotjar.com
+              wss://*.hotjar.com
+              wss://client.relay.crisp.chat
+              https://*.hotjar.io
+              https://www.google-analytics.com
+              https://in.hotjar.com
               https://plausible.io 
               http://localhost:5000; 
-  img-src 'self' data: https://www.notion.so; 
-  object-src 'self' data;
-  font-src 'self' https://labonnealternance-recette.apprentissage.beta.gouv.fr; 
-  style-src 'self' 'unsafe-inline' https://api.mapbox.com; 
+  img-src 'self' 
+              data: 
+              https://www.notion.so
+              https://www.google-analytics.com
+              https://www.google.com
+              https://www.google.fr
+              https://script.hotjar.com
+              https://manager.tagcommander.com; 
+  object-src 'self' data: https://labonnealternance.apprentissage.beta.gouv.fr;
+  font-src 'self' 
+            https://client.crisp.chat
+            https://script.hotjar.com
+            https://labonnealternance.apprentissage.beta.gouv.fr 
+            https://labonnealternance-recette.apprentissage.beta.gouv.fr; 
+  style-src 'self' 'unsafe-inline' 
+              https://client.crisp.chat
+              https://api.mapbox.com; 
   frame-src https://rdv-cfa.apprentissage.beta.gouv.fr 
             https://matcha.apprentissage.beta.gouv.fr 
             https://plausible.io 
-            https://labonnealternance.pole-emploi.fr;
+            https://vars.hotjar.com
+            https://cdn.trustcommander.net
+            https://labonnealternance.pole-emploi.fr
+            https://labonnealternance.apprentissage.beta.gouv.fr;
   block-all-mixed-content;
   upgrade-insecure-requests;
 `;
