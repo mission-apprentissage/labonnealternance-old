@@ -63,6 +63,7 @@ const contentSecurityPolicy = `
             https://matcha.apprentissage.beta.gouv.fr 
             https://plausible.io 
             https://vars.hotjar.com
+            https://cdn.trustcommander.net
             https://labonnealternance.pole-emploi.fr
             https://labonnealternance.apprentissage.beta.gouv.fr;
   block-all-mixed-content;
@@ -86,7 +87,7 @@ module.exports = async (phase, { defaultConfig }) =>
               value: "nosniff",
             },
             {
-              key: "Content-Security-Policy",
+              key: "Content-Security-Policy-Report-Only",
               value: inline(contentSecurityPolicy + " frame-ancestors 'none';"),
             },
             {
