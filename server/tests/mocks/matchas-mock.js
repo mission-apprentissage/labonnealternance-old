@@ -38,7 +38,7 @@ const matchaMockMandataire = {
         multi_diffuser: null,
         _id: "62bda757812f6400289afe68",
         rome_detail: {},
-        elligible_handicap: true,
+        elligible_handicap: false,
         quantite: 1,
         duree_contrat: 2,
         rythme_alternance: "2 semaines / 3 semaines",

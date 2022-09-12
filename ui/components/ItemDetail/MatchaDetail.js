@@ -60,7 +60,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             )}
           </div>
 
-          {job.job.elligibleHandicap ? 
+          {job?.job?.elligibleHandicap ? 
             <div className="c-eligible mt-3">
               <div>
                 <img className="" src="/images/info.svg" alt="info" />
@@ -70,7 +70,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
               </div>
             </div>
             :
-            <></>          
+            ""         
           }
         </div>
         {job?.company?.mandataire ? (
