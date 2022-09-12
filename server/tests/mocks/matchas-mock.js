@@ -83,7 +83,7 @@ const matchaMock = {
         statut: "Active",
         type: ["Apprentissage"],
         multi_diffuser: null,
-        elligible_handicap: false,
+        elligible_handicap: true,
         quantite: 1,
         duree_contrat: 1,
         _id: "id-matcha-test",
