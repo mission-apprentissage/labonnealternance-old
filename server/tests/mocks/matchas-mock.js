@@ -5,7 +5,7 @@ const matchaMockMandataire = {
   _score: null,
   sort: [131.72962325921603],
   _source: {
-    _id: "62bda6eb812f6400289afe25",
+    _id: "id-matcha-test2",
     raison_sociale: "OGEC NANTES ERDRE",
     siret: "48792847500010",
     adresse: "27 Rue du Ballet",
@@ -103,7 +103,7 @@ const matchaMock = {
   sort: [132.72962325921603],
 };
 
-const matchasMock = [matchaMock];
+const matchasMock = [matchaMock, matchaMockMandataire];
 
 module.exports = {
   matchasMock,
