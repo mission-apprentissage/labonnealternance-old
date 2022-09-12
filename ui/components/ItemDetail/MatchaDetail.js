@@ -70,7 +70,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         ) : (
           <>
             <p>
-              <span className="c-detail-bolded">{job.company.name}</span> recrute dans le domaine suivant{" "}
+                <span className="c-detail-bolded">{job.company.name} {job.job.elligibleHandicap.toString()}</span> recrute dans le domaine suivant{" "}
               <span className="c-detail-bolded">{job.title}</span>. Cela signifie que l'établissement est activement à
               la recherche d'un.e candidat.e.
             </p>
