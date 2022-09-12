@@ -38,7 +38,6 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
   const isMandataire = selectedItem?.company?.mandataire;
-  console.log('selectedItem', selectedItem);
 
   const [seeInfo, setSeeInfo] = useState(false);
 
