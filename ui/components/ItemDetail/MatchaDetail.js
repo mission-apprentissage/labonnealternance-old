@@ -59,6 +59,19 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
               "non défini"
             )}
           </div>
+
+          {job.job.elligibleHandicap ? 
+            <div className="c-eligible mt-3">
+              <div>
+                <img className="" src="/images/info.svg" alt="info" />
+              </div>
+              <div className="ml-2">
+                À compétences égales, une attention particulière sera apportée aux personnes en situation de handicap.
+              </div>
+            </div>
+            :
+            <></>          
+          }
         </div>
         {job?.company?.mandataire ? (
           <>
@@ -70,7 +83,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
         ) : (
           <>
             <p>
-                <span className="c-detail-bolded">{job.company.name} {job.job.elligibleHandicap.toString()}</span> recrute dans le domaine suivant{" "}
+                <span className="c-detail-bolded">{job.company.name}</span> recrute dans le domaine suivant{" "}
               <span className="c-detail-bolded">{job.title}</span>. Cela signifie que l'établissement est activement à
               la recherche d'un.e candidat.e.
             </p>
