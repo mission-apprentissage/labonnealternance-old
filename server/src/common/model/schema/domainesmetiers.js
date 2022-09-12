@@ -47,7 +47,7 @@ const domainesMetiersSchema = {
   couples_appelations_rome_metier: {
     type: [Object],
     default: null,
-    description: "Mots clefs tirés des appellations associées à un code ROME non découpé",
+    description: "Couple Appelation, code et libelle ROME",
   },
   codes_fap: {
     type: [String],
