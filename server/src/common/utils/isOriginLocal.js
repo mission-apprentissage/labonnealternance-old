@@ -1,3 +1,5 @@
+const logger = require("../logger");
+
 const localOrigin = [
   "https://labonnealternance.beta.pole-emploi.fr",
   "https://labonnealternance.pole-emploi.fr",
@@ -8,6 +10,7 @@ const localOrigin = [
 const localOriginRegexp = /^https:\/\/labonnealternance(.*).apprentissage.beta.gouv.fr(.*)/i;
 
 const isOriginLocal = (origin) => {
+  logger.info("origin : " + origin);
   if (origin) {
     if (
       (localOrigin.findIndex((element) => origin.toLowerCase().includes(element)) >= 0 ||

@@ -1,6 +1,7 @@
 const express = require("express");
 const tryCatch = require("../middlewares/tryCatchMiddleware");
 const formationApi = require("../../service/formations");
+const logger = require("../../common/logger");
 
 /**
  * API romes
@@ -11,8 +12,10 @@ module.exports = () => {
   router.get(
     "/",
     tryCatch(async (req, res) => {
+      logger.info(`referer  ${req.headers.referer}`);
       const result = await formationApi.getFormationsQuery({ ...req.query, referer: req.headers.referer });
 
+      console.log("req : ", req.headers, req.headers.referer);
       if (result.error) {
         if (result.error === "wrong_parameters") res.status(400);
         else res.status(500);
