@@ -44,14 +44,14 @@ const anonymizeApplications = async () => {
 
 let running = false;
 
-module.exports = async ({ query }) => {
+module.exports = async () => {
   if (!running) {
     running = true;
 
     try {
       logMessage("info", " -- Anonymisation des candidatures de plus de un (1) an -- ");
 
-      const nModified = await anonymizeApplications({ query });
+      const nModified = await anonymizeApplications();
 
       logMessage("info", `Fin traitement`);
 
