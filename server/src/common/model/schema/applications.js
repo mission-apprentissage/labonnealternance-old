@@ -146,7 +146,7 @@ const applicationSchema = {
     default: null,
     description: "L'identification de la source d'émission de la candidature (pour widget et api)",
   },
-  anonymized: {
+  is_anonymized: {
     type: Boolean,
     default: false,
     description: "Indique si la candidature a été anonymisée",

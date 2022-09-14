@@ -10,10 +10,10 @@ const anonymizeApplications = async () => {
   lastYear.setFullYear(lastYear.getFullYear() - 1);
 
   const res = await Application.updateMany(
-    { created_at: { $lte: lastYear }, anonymized: { $ne: true } },
+    { created_at: { $lte: lastYear }, is_anonymized: { $ne: true } },
     {
       $set: {
-        anonymized: true,
+        is_anonymized: true,
         last_update_at: new Date(),
         applicant_email: null,
         applicant_first_name: null,
