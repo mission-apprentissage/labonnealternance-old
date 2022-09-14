@@ -28,3 +28,15 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.c-eligible {
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 8px;
+}
