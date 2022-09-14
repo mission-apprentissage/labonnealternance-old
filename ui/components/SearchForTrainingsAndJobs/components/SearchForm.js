@@ -116,7 +116,7 @@ const SearchForm = (props) => {
                 </div>
               </Col>
               <Col xs="12">
-                <div className="c-logobar-formgroup formGroup mt-3">
+                <div className="c-logobar-formgroup formGroup mt-3 d-none d-md-block">
                   <label htmlFor="jobField" className="c-logobar-label">
                     Rayon
                   </label>
@@ -129,6 +129,14 @@ const SearchForm = (props) => {
                     >
                       {buildRayons()}
                     </Input>
+                  </div>
+                </div>
+                <div className="c-logobar-formgroup formGroup mt-3 d-block d-md-none">
+                  <label htmlFor="jobField" className="c-logobar-label">
+                    Rayon
+                  </label>
+                  <div className="c-logobar-field">
+                    button...
                   </div>
                 </div>
               </Col>
