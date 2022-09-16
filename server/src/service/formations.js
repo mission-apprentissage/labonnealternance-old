@@ -370,7 +370,7 @@ const getAtLeastSomeFormations = async ({
 
       if (formations.results.length === 0) {
         notifyToSlack(
-          `Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}. caller : ${caller}`
+          `Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}. caller : ${caller}. diploma : ${diploma}. coords: ${coords}. radius: ${currentRadius}`
         );
       }
     }

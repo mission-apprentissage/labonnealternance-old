@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## 1.20.7 [15/09/2022]
+[LBAC-302] Correction détection tests swagger inter environnements
 [LBAC-298] Fix zoom après première recherche
 [LBAR-617] Modification endpoint "intitule"
 [LBAC-67] Automate d'anonymisation des candidatures
