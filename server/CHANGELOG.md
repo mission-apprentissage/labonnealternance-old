@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.7 [15/09/2022]
+[LBAC-302] Correction détection tests swagger inter environnements
+
 ## 1.20.6 [07/09/2022]
 [LBAC-265] Enrichissement info entreprises anonymes et mandatées
 [LBAC-294] Enrichissement description offres mandatées
