@@ -21,6 +21,8 @@ const logger = require("../common/logger");
 const publicUrl = config.publicUrl;
 const { oleoduc, writeData } = require("oleoduc");
 
+const matchaApiEndpoint = `https://matcha${config.env === "production" ? "" : "-recette"}.apprentissage.beta.gouv.fr`;
+
 const imagePath = "https://labonnealternance-recette.apprentissage.beta.gouv.fr/images/emails/";
 
 const images = {
@@ -219,7 +221,7 @@ const sendApplication = async ({ scan, mailer, query, referer, shouldCheckSecret
           application.company_email,
           buildTopic(application.company_type, application.job_title),
           getEmailTemplate(emailTemplates.entreprise),
-          { ...application._doc, ...images, ...encryptedId, publicUrl, urlOfDetail },
+          { ...application._doc, ...images, ...encryptedId, publicUrl, urlOfDetail, matchaApiEndpoint },
           [
             {
               filename: application.applicant_file_name,

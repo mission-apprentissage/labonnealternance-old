@@ -6,15 +6,15 @@ import Providers from "../context/Providers";
 
 import "public/styles/application.scss";
 
-import * as Sentry from "@sentry/node";
-import * as SentryReact from "@sentry/react";
+//import * as Sentry from "@sentry/node";
+//import * as SentryReact from "@sentry/react";
 import PageTracker from "@/components/pageTracker";
 import { getEnvFromProps } from "utils/env";
 
-if (process.env.uiSentryDsn) {
+/*if (process.env.uiSentryDsn) {
   Sentry.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
   SentryReact.init({ dsn: process.env.uiSentryDsn, enabled: true, environment: process.env.env });
-}
+}*/
 
 class LaBonneAlternance extends App {
   static async getInitialProps(context) {

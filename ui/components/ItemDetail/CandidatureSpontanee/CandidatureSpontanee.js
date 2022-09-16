@@ -12,6 +12,7 @@ import useLocalStorage from "./services/useLocalStorage";
 import hasAlreadySubmittedCandidature from "./services/hasAlreadySubmittedCandidature";
 import { getItemId } from "../../../utils/getItemId";
 import { SendPlausibleEvent } from "../../../utils/plausible";
+import { capitalizeFirstLetter } from "../../../utils/strutils";
 
 const CandidatureSpontanee = (props) => {
   const [modal, setModal] = useState(false);
@@ -86,7 +87,7 @@ const CandidatureSpontanee = (props) => {
             <>
               <Button
                 onClick={openApplicationForm}
-                className={`btn btn-blue ml-1`}
+                className={`btn btn-blue ml-1 gtmFormulaireCandidature gtm${capitalizeFirstLetter(kind)}`}
                 aria-label="jenvoie-une-candidature-spontanee"
               >
                 J'envoie ma candidature{with_str(kind).amongst(["lbb", "lba"]) ? " spontanée" : ""}

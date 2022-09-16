@@ -155,8 +155,12 @@
 
                     <% if (data.company_type == "matcha" ) { %>
                         <mj-text font-size="16px" line-height="28px" padding-bottom="15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="link-black" href="mailto:matcha@apprentissage.beta.gouv.fr">
-                                📝 Suspendre ou modifier mon offre</a>
+                            <a class="link-black" href="<%= data.matchaApiEndpoint %>/offre/<%= data._id %>/provided">
+                                ✅ Indiquer que mon offre est pourvue</a>
+                        </mj-text>
+                        <mj-text font-size="16px" line-height="28px" padding-bottom="15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a class="link-black" href="<%= data.matchaApiEndpoint %>/offre/<%= data._id %>/cancel">
+                                📝 Supprimer mon offre</a>
                         </mj-text>
                         <mj-text font-size="16px" line-height="28px" padding-bottom="15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a class="link-black" href="https://labonnealternance.apprentissage.beta.gouv.fr/faq?utm_source=jecandidate&utm_medium=email&utm_campaign=jecandidaterecruteur">
@@ -192,7 +196,7 @@
                         <br  />
                         Merci de ne pas répondre à cet e-mail. Pour toute question ou besoin d’aide, vous pouvez écrire à labonnealternance@apprentissage.beta.gouv.fr
                         <br  />
-                        Pour vous désinscrire, <a style="font-weight:bold; text-decoration: underline; color:black" href="mailto:labonnealternance@apprentissage.beta.gouv.fr?subject=Désinscription%20entreprise%20-%20Candidature%20spontanée">cliquez ici</a>
+                        Pour vous désinscrire, <a style="font-weight:bold; text-decoration: underline; color:black" href="mailto:labonnealternance@apprentissage.beta.gouv.fr?subject=Désinscription%20entreprise%20-%20Candidature%20en%20ligne">cliquez ici</a>
                     </td>
                     </tr>
                     </mj-table>

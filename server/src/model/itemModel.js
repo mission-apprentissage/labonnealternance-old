@@ -31,7 +31,7 @@ const itemModel = (type) => {
     },
 
     company: {
-      name: null, // pe -> entreprise.nom | formation -> etablissement_formateur_entreprise_raison_sociale | lbb/lba -> name | matcha -> raison_sociale
+      name: null, // pe -> entreprise.nom | formation -> etablissement_formateur_entreprise_raison_sociale | lbb/lba -> name | matcha -> enseigne > raison_sociale
       siret: null, // lbb/lba -> siret | formation -> etablissement_formateur_siret | matcha -> siret | pe -> entreprise.siret réservé à notre front
       size: null, // lbb/lba -> headcount_text | matcha -> tranche_effectif
       logo: null, // pe -> entreprise.logo
@@ -41,7 +41,7 @@ const itemModel = (type) => {
       id: null, // formation -> etablissement_formateur_id
       uai: null, // formation -> etablissement_formateur_uai
       place: null /*{
-            city,   // formation -> etablissement_formateur_localite
+            city,   // formation -> etablissement_formateur_localite | matcha -> entreprise_localite
       }*/,
       mandataire: null, // matcha -> mandataire
       creationDate: null, // matcha -> date_creation_etablissement
@@ -100,8 +100,8 @@ const itemModel = (type) => {
 
     nafs: null /* [
             {
-                code,               // lbb/lba -> naf
-                label,              // lbb/lba -> naf_text | matcha -> libelle_naf
+                code,               // lbb/lba -> naf | pe -> secteurActivite	
+                label,              // lbb/lba -> naf_text | matcha -> libelle_naf | pe -> secteurActiviteLibelle
             }
         ],*/,
     training: null /* alimentation côté client à l'ouverture d'une formation
