@@ -1,4 +1,4 @@
-const _ = require("lodash");
+const { get } = require("lodash");
 const { logMessage } = require("../../common/utils/logMessage");
 const { notifyToSlack } = require("../../common/utils/slackUtils");
 const { Application } = require("../../common/model");
@@ -66,7 +66,7 @@ module.exports = async () => {
       };
     } catch (err) {
       logMessage("error", err);
-      let error_msg = _.get(err, "meta.body") ?? err.message;
+      let error_msg = get(err, "meta.body") ?? err.message;
       running = false;
       notifyToSlack(`ECHEC anonymisation des candidatures ${error_msg}`);
       return { error: error_msg };
