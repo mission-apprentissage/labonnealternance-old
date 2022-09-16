@@ -1,5 +1,3 @@
-const logger = require("../common/logger");
-
 const validateRomes = (romes, error_messages, romeLimit = 15) => {
   // codes ROME : romes
   if (!romes) error_messages.push("romes : Rome codes are missing. At least 1.");
@@ -129,9 +127,7 @@ const validateApiSources = (
 const { isOriginLocal } = require("../common/utils/isOriginLocal");
 
 // contrôle sur la présence d'un appelant valide
-const validateCaller = ({ caller, referer, query }, error_messages = []) => {
-  logger.info(`caller : ${caller}, referer  ${referer}, query: ${query}`);
-
+const validateCaller = ({ caller, referer }, error_messages = []) => {
   if (!isOriginLocal(referer) && !caller) {
     error_messages.push("caller : caller is missing.");
     return false;
