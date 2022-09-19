@@ -49,9 +49,6 @@ export function buildAvailableDiplomasButtons(diploma, diplomas, onClickCallback
     <>
       {
         Object.keys(sortObject(allDiplomas)).map(function (key, indx) {
-          console.log('key', key);
-          console.log('indx', indx);
-          console.log('allDiplomas[key]', allDiplomas[key]);
             return (
               <div key={indx} 
                     value={key} 
