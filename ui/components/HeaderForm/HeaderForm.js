@@ -19,7 +19,7 @@ import validateFormik from "../../services/validateFormik";
 import { ParameterContext } from "../../context/ParameterContextProvider";
 import { DisplayContext } from "../../context/DisplayContextProvider";
 
-const HeaderForm = ({ handleSearchSubmit, isHome }) => {
+const HeaderForm = ({ handleSearchSubmit, isHome, locationRadius, setLocationRadius }) => {
   const { widgetParameters } = React.useContext(ParameterContext);
   const { formValues } = React.useContext(DisplayContext);
 
@@ -31,7 +31,6 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
   const contextFormValues =
     widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
 
-  const [locationRadius, setLocationRadius] = useState(30);
   const [diplomas, setDiplomas] = useState([]);
   const [diploma, setDiploma] = useState("");
   const [domainError, setDomainError] = useState(false);
@@ -101,7 +100,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
             <div className="ml-3">
               <div className="c-logobar-formgroup c-logobar-formgroup--rayon">
                 <label htmlFor="jobField" className="c-logobar-label c-logobar-label--rayon">
-                  Rayon
+                  Rayon {locationRadius}
                 </label>
                 <div className="c-logobar-field">
                   <Input

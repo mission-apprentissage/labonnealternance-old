@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { useRouter } from "next/router";
 
 import { DisplayContext } from "../../context/DisplayContextProvider";
@@ -24,13 +25,23 @@ const StartForm = (props) => {
     return handleSearchSubmit({ values });
   };
 
+  const [locationRadius, setLocationRadius] = useState(30);
+
   return (
     <>
       <div className="d-lg-none">
-        <SearchForm handleSearchSubmit={handleSearchSubmitFunction} isHome={true} showResultList={() => {}} />
+        <SearchForm handleSearchSubmit={handleSearchSubmitFunction} 
+                      isHome={true} 
+                      showResultList={() => {}}
+                      locationRadius={locationRadius}
+                      setLocationRadius={setLocationRadius}       
+                      />
       </div>
       <div className="d-none d-lg-block">
-        <WidgetHeader handleSearchSubmit={handleSearchSubmit} isHome={true} />
+        <WidgetHeader handleSearchSubmit={handleSearchSubmit} 
+          isHome={true} 
+          locationRadius={locationRadius}
+          setLocationRadius={setLocationRadius} />
       </div>
     </>
   );

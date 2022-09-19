@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+
 import HeaderForm from "../../components/HeaderForm/HeaderForm";
 import LogoIdea from "../../components/LogoIdea/LogoIdea";
 import { useRouter } from "next/router";
@@ -7,7 +8,7 @@ import { includes } from "lodash";
 import { Row } from "reactstrap";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
 
-const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
+const WidgetHeader = ({ handleSearchSubmit, isHome, locationRadius, setLocationRadius }) => {
   const router = useRouter();
 
   const { selectedItem } = useContext(SearchResultContext);
@@ -41,7 +42,10 @@ const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
             ) : (
               ""
             )}
-            <HeaderForm handleSearchSubmit={handleSearchSubmitFunction} isHome={isHome} />
+            <HeaderForm handleSearchSubmit={handleSearchSubmitFunction} 
+                        isHome={isHome} 
+                        locationRadius={locationRadius} 
+                        setLocationRadius={setLocationRadius} />
           </div>
         </Row>
       </div>
