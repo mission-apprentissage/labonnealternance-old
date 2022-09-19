@@ -41,10 +41,7 @@ const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
             ) : (
               ""
             )}
-            <HeaderForm handleSearchSubmit={handleSearchSubmitFunction} 
-                        isHome={isHome} 
-                        locationRadius={locationRadius} 
-                        setLocationRadius={setLocationRadius} />
+            <HeaderForm handleSearchSubmit={handleSearchSubmitFunction} isHome={isHome} />
           </div>
         </Row>
       </div>
