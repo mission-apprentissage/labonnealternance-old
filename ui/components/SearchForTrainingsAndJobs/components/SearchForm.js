@@ -6,7 +6,7 @@ import { AutoCompleteField } from "../../../components/AutoCompleteField/AutoCom
 import { fetchAddresses } from "../../../services/baseAdresse";
 import { DomainError } from "../../";
 import { buildRayonsOptions, buildRayonsButtons } from "../../../services/buildRayons";
-import { handleSelectChange } from "../../../services/handleChange";
+import { handleSelectChange } from "../../../services/handleSelectChange";
 import { partialRight } from "lodash";
 import domainChanged from "../../../services/domainChanged";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../../services/autoCompleteUtilities";
