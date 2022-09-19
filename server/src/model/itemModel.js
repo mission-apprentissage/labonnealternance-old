@@ -5,6 +5,8 @@ const itemModel = (type) => {
     title: null, // pe -> intitule | lbb/lba -> enseigne | formation -> nom | matcha -> offres.libelle
     longTitle: null, // formation -> intitule_long,
     id: null, // formation -> id | matcha -> id_form
+    idRco: null, // formation -> id_formation
+    idRcoFormation: null, // formation -> id_rco_formation
 
     contact: null, // informations de contact. optionnel
     /*{
@@ -109,9 +111,7 @@ const itemModel = (type) => {
             description,
             objectif,
             duree-indicative,
-            modalites-alternance,
-            madalites-enseignement,
-            niveau-retour-embauche,
+            sessions,
         }
     */,
   };
