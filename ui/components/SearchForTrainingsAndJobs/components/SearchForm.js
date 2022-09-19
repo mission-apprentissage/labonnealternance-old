@@ -33,7 +33,8 @@ const SearchForm = (props) => {
     widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
 
   const [jobValue, setJobValue] = useState(null);
-  const [locationRadius, setLocationRadius] = useState(30);
+  const locationRadius = props.locationRadius
+  const setLocationRadius = props.setLocationRadius
   const [diplomas, setDiplomas] = useState([]);
   const [diploma, setDiploma] = useState("");
   const [domainError, setDomainError] = useState(false);
@@ -137,7 +138,7 @@ const SearchForm = (props) => {
                     Rayon
                   </h2>
                   <div className="c-logobar-field">
-                    {buildRayonsButtons(locationRadius, (evt, value) => handleSelectChange(evt, setFieldValue, setLocationRadius, "radius"))}
+                    {buildRayonsButtons(locationRadius, (evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, "radius"))}
                   </div>
                 </div>
               </Col>
