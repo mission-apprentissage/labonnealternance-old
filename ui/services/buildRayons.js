@@ -6,7 +6,22 @@ const rayonMap = {
   "100": "100km",
 };
 
-export default function buildRayons() {
+export function buildRayonsOptions() {
+  return (
+    <>
+      {Object.keys(rayonMap).map((key) => {
+        return (
+          <option key={key} value={key}>
+            {rayonMap[key]}
+          </option>
+        );
+        })
+      }
+    </>
+  );
+}
+
+export function buildRayonsButtons() {
   return (
     <>
       {Object.keys(rayonMap).map((key) => {
