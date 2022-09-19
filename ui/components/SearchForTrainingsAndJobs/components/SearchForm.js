@@ -142,7 +142,7 @@ const SearchForm = (props) => {
                 </div>
               </Col>
               <Col xs="12">
-                <div className="formGroup c-logobar-formgroup mt-3">
+                <div className="formGroup c-logobar-formgroup mt-3 d-none d-md-block">
                   <div className="">
                     <label htmlFor="jobField" className="c-logobar-label">
                       Niveau d'études visé
@@ -163,8 +163,8 @@ const SearchForm = (props) => {
                   <h3 className="h6 font-weight-bold">
                     Niveau d'études visé
                   </h3>
-                  <div className="c-logobar-field">
-                    {buildAvailableDiplomasButtons(diplomas, (evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, "diplomas"))}
+                  <div className="c-diplomas-buttons">
+                    {buildAvailableDiplomasButtons(diploma, diplomas, (evt) => handleSelectChange(evt, setFieldValue, setDiploma, "diploma"))}
                   </div>
                 </div>
               </Col>
