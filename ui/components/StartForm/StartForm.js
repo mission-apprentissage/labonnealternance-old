@@ -9,10 +9,10 @@ import { pick } from "lodash";
 import SearchForm from "../../components/SearchForTrainingsAndJobs/components/SearchForm";
 import WidgetHeader from "../../components/WidgetHeader/WidgetHeader";
 
+export const WishContext = createContext()
+
 const StartForm = (props) => {
   const router = useRouter();
-
-  const WishContext = createContext()
 
   const { setFormValues } = useContext(DisplayContext);
   const { setShouldExecuteSearch } = useContext(ParameterContext);
@@ -32,7 +32,7 @@ const StartForm = (props) => {
 
   return (
     <>
-      <WishContext.Provider value={locationRadius}>
+      <WishContext.Provider value={{locationRadius}}>
         <div className="d-lg-none">
           <SearchForm handleSearchSubmit={handleSearchSubmitFunction} 
                         isHome={true} 
