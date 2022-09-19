@@ -550,7 +550,7 @@ const resizeMap = () => {
   }
 };
 
-const setJobMarkers = async (jobList, searchCenter) => {
+const setJobMarkers = async (jobList, searchCenter, tryCount) => {
   if (isMapInitialized) {
     await waitForMapReadiness();
 
@@ -579,6 +579,11 @@ const setJobMarkers = async (jobList, searchCenter) => {
     let results = { type: "FeatureCollection", features };
 
     map.getSource("job-points").setData(results);
+  } else {
+    if (!tryCount || tryCount < 5)
+      setTimeout(() => {
+        setJobMarkers(jobList, searchCenter, tryCount ? tryCount++ : 1);
+      }, 100);
   }
 };
 
@@ -641,7 +646,7 @@ const updateSelectedMarkerCollection = async (item, layer) => {
   }
 };
 
-const setTrainingMarkers = async (trainingList, options) => {
+const setTrainingMarkers = async (trainingList, options, tryCount) => {
   if (isMapInitialized) {
     await waitForMapReadiness();
 
@@ -675,6 +680,11 @@ const setTrainingMarkers = async (trainingList, options) => {
     } else {
       map.getSource("training-points").setData({ type: "FeatureCollection", features: [] });
     }
+  } else {
+    if (!tryCount || tryCount < 5)
+      setTimeout(() => {
+        setTrainingMarkers(trainingList, options, tryCount ? tryCount++ : 1);
+      }, 100);
   }
 };
 
