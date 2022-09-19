@@ -6,7 +6,7 @@ import { AutoCompleteField } from "../../../components/AutoCompleteField/AutoCom
 import { fetchAddresses } from "../../../services/baseAdresse";
 import { DomainError } from "../../";
 import { buildRayonsOptions, buildRayonsButtons } from "../../../services/buildRayons";
-import { handleSelectChange, handleButtonChange } from "../../../services/handleChange";
+import { handleSelectChange } from "../../../services/handleChange";
 import { partialRight } from "lodash";
 import domainChanged from "../../../services/domainChanged";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../../services/autoCompleteUtilities";
@@ -17,6 +17,8 @@ import validateFormik from "../../../services/validateFormik";
 import { SearchResultContext } from "../../../context/SearchResultContextProvider";
 import { ParameterContext } from "../../../context/ParameterContextProvider";
 import { DisplayContext } from "../../../context/DisplayContextProvider";
+
+import { WishContext } from '../../../components/StartForm/StartForm'
 
 const SearchForm = (props) => {
   const { hasSearch } = useContext(SearchResultContext);
