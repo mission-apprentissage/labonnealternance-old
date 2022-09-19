@@ -136,7 +136,7 @@ const SearchForm = (props) => {
                     Rayon
                   </h2>
                   <div className="c-logobar-field">
-                    {buildRayonsButtons(locationRadius, (evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, "radius"))}
+                    {buildRayonsButtons(locationRadius, (evt, value) => handleButtonChange(evt, setFieldValue, setLocationRadius, "radius"))}
                   </div>
                 </div>
               </Col>
