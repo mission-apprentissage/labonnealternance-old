@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import glassImage from "public/images/glass_white.svg";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { AutoCompleteField } from "..";
-import buildAvailableDiplomas from "../../services/buildAvailableDiplomas";
-import {buildRayonsOptions} from "../../services/buildRayons";
+import { buildAvailableDiplomasOptions } from "../../services/buildAvailableDiplomas";
+import { buildRayonsOptions } from "../../services/buildRayons";
 import { Input } from "reactstrap";
 import { partialRight } from "lodash";
 import { DomainError } from "../../components";
@@ -11,7 +11,7 @@ import { DomainError } from "../../components";
 import domainChanged from "../../services/domainChanged";
 import updateValuesFromJobAutoComplete from "../../services/updateValuesFromJobAutoComplete";
 import formikUpdateValue from "../../services/formikUpdateValue";
-import { handleSelectChange, handleButtonChange } from "../../services/handleChange";
+import { handleSelectChange } from "../../services/handleChange";
 
 import { fetchAddresses } from "../../services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../services/autoCompleteUtilities";
@@ -21,7 +21,6 @@ import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const HeaderForm = ({ handleSearchSubmit, isHome }) => {
   const { widgetParameters } = React.useContext(ParameterContext);
-  console.log('widgetParameters', widgetParameters);
   const { formValues } = React.useContext(DisplayContext);
 
   const [locationRadius, setLocationRadius] = useState(30);
@@ -128,7 +127,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                   value={diploma}
                   name="diploma"
                 >
-                  {buildAvailableDiplomas(diplomas)}
+                  {buildAvailableDiplomasOptions(diplomas)}
                 </Input>
               </div>
             </div>
