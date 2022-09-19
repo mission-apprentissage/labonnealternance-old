@@ -30,7 +30,7 @@ export function buildRayonsButtons(locationRadius, onClickCallback) {
                value={key} 
                aaa={locationRadius} 
                className={`c-rayons-button ${locationRadius?.toString() === key ? 'is-selected' : ''}`} 
-              onClick={(evt) => onClickCallback(evt, key)}>
+               onClick={(evt) => {evt.currentTarget.value=key;onClickCallback(evt, key)}}>
             {key}
           </div>
         );
