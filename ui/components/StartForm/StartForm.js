@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, {useContext } from "react";
 
 import { useRouter } from "next/router";
 
@@ -24,9 +24,6 @@ const StartForm = (props) => {
   const handleSearchSubmitFunction = (values) => {
     return handleSearchSubmit({ values });
   };
-
-  const [locationRadius, setLocationRadius] = useState(30);
-
 
   return (
     <>
