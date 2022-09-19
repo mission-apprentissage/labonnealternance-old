@@ -21,16 +21,16 @@ export function buildRayonsOptions() {
   );
 }
 
-export function buildRayonsButtons(locationRadius, setFieldValue, setLocationRadius, handleSelectChange) {
+export function buildRayonsButtons(locationRadius, onClickCallback) {
   return (
     <div className="c-rayons-buttons">
       {Object.keys(rayonMap).map((key) => {
         return (
           <div key={key} 
-                value={key} 
-            aaa={locationRadius} 
-            className={`c-rayons-button ${locationRadius?.toString() === key ? 'is-selected' : ''}`} 
-                onClick={(evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, "radius")}>
+               value={key} 
+               aaa={locationRadius} 
+               className={`c-rayons-button ${locationRadius?.toString() === key ? 'is-selected' : ''}`} 
+              onClick={(evt) => onClickCallback(evt, key)}>
             {key}
           </div>
         );

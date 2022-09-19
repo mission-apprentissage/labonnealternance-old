@@ -6,7 +6,7 @@ import { AutoCompleteField } from "../../../components/AutoCompleteField/AutoCom
 import { fetchAddresses } from "../../../services/baseAdresse";
 import { DomainError } from "../../";
 import { buildRayonsOptions, buildRayonsButtons } from "../../../services/buildRayons";
-import handleSelectChange from "../../../services/handleSelectChange";
+import { handleSelectChange, handleButtonChange } from "../../../services/handleChange";
 import { partialRight } from "lodash";
 import domainChanged from "../../../services/domainChanged";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../../services/autoCompleteUtilities";
@@ -132,11 +132,11 @@ const SearchForm = (props) => {
                   </div>
                 </div>
                 <div className="mt-3 d-block d-md-none">
-                  <h2 class="h6 font-weight-bold">
+                  <h2 className="h6 font-weight-bold">
                     Rayon
                   </h2>
                   <div className="c-logobar-field">
-                    {buildRayonsButtons(locationRadius, setFieldValue, setLocationRadius, handleSelectChange)}
+                    {buildRayonsButtons(locationRadius, (evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, "radius"))}
                   </div>
                 </div>
               </Col>
