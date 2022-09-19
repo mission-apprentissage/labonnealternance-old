@@ -12,13 +12,11 @@ import domainChanged from "../../../services/domainChanged";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../../services/autoCompleteUtilities";
 import updateValuesFromJobAutoComplete from "../../../services/updateValuesFromJobAutoComplete";
 import formikUpdateValue from "../../../services/formikUpdateValue";
-import buildAvailableDiplomas from "../../../services/buildAvailableDiplomas";
+import { buildAvailableDiplomasOptions, buildAvailableDiplomasButtons} from "../../../services/buildAvailableDiplomas";
 import validateFormik from "../../../services/validateFormik";
 import { SearchResultContext } from "../../../context/SearchResultContextProvider";
 import { ParameterContext } from "../../../context/ParameterContextProvider";
 import { DisplayContext } from "../../../context/DisplayContextProvider";
-
-import { WishContext } from '../../../components/StartForm/StartForm'
 
 const SearchForm = (props) => {
   const { hasSearch } = useContext(SearchResultContext);
@@ -156,9 +154,17 @@ const SearchForm = (props) => {
                         type="select"
                         name="diploma"
                       >
-                        {buildAvailableDiplomas(diplomas)}
+                        {buildAvailableDiplomasOptions(diplomas)}
                       </Input>
                     </div>
+                  </div>
+                </div>
+                <div className="mt-3 d-block d-md-none formGroup">
+                  <h3 className="h6 font-weight-bold">
+                    Niveau d'études visé
+                  </h3>
+                  <div className="c-logobar-field">
+                    {buildAvailableDiplomasButtons(diplomas, (evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, "diplomas"))}
                   </div>
                 </div>
               </Col>
