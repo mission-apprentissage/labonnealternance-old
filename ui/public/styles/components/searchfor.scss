@@ -389,7 +389,7 @@
 .c-rayons-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   button {
     background: #FFFFFF;
@@ -402,8 +402,19 @@
   border: 1px solid #CECECE;
   border-radius: 40px;
   cursor: pointer;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2A2A2A;
+  margin-right: .2rem;
+  padding: .3rem 1rem;
+  @include media-breakpoint-up(md) {
+    margin-right: .6rem;
+    padding: .1rem .2rem;
+    font-size: 12px;
+  }
 }
 
 .c-rayons-button.is-selected {
   background-color: blue;
+  color: white;
 }

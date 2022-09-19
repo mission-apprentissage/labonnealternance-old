@@ -117,7 +117,6 @@ const SearchForm = (props) => {
                 </div>
               </Col>
               <Col xs="12">
-                {locationRadius}
                 <div className="c-logobar-formgroup formGroup mt-3 d-none d-md-block">
                   <label htmlFor="jobField" className="c-logobar-label">
                     Rayon
