@@ -3,7 +3,7 @@ import glassImage from "public/images/glass_white.svg";
 import { Formik, Form, Field } from "formik";
 import { AutoCompleteField } from "..";
 import buildAvailableDiplomas from "../../services/buildAvailableDiplomas";
-import buildRayons from "../../services/buildRayons";
+import {buildRayonsOptions} from "../../services/buildRayons";
 import { Input } from "reactstrap";
 import { partialRight } from "lodash";
 import { DomainError } from "../../components";
@@ -109,7 +109,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome }) => {
                     value={locationRadius}
                     name="locationRadius"
                   >
-                    {buildRayons()}
+                    {buildRayonsOptions()}
                   </Input>
                 </div>
               </div>

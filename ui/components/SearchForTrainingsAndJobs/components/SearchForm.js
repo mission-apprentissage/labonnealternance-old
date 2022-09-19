@@ -5,7 +5,7 @@ import { AutoCompleteField } from "../../../components/AutoCompleteField/AutoCom
 
 import { fetchAddresses } from "../../../services/baseAdresse";
 import { DomainError } from "../../";
-import buildRayons from "../../../services/buildRayons";
+import { buildRayonsOptions, buildRayonsButtons } from "../../../services/buildRayons";
 import handleSelectChange from "../../../services/handleSelectChange";
 import { partialRight } from "lodash";
 import domainChanged from "../../../services/domainChanged";
@@ -127,14 +127,11 @@ const SearchForm = (props) => {
                       value={locationRadius}
                       name="locationRadius"
                     >
-                      {buildRayons()}
+                      {buildRayonsOptions()}
                     </Input>
                   </div>
                 </div>
-                <div className="c-logobar-formgroup formGroup mt-3 d-block d-md-none">
-                  <label htmlFor="jobField" className="c-logobar-label">
-                    Rayon
-                  </label>
+                <div className="mt-3 d-block d-md-none">
                   <div className="c-logobar-field">
                     button...
                   </div>
