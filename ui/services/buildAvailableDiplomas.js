@@ -11,6 +11,13 @@ function copyDeep(element) {
   return JSON.parse(JSON.stringify(element))
 }
 
+function sortObject(obj) {
+  return Object.keys(obj).sort().reduce(function (result, key) {
+    result[key] = obj[key];
+    return result;
+  }, {});
+}
+
 export function buildAvailableDiplomasOptions(diplomas) {
   return (
     <>
@@ -37,24 +44,21 @@ export function buildAvailableDiplomasOptions(diplomas) {
 export function buildAvailableDiplomasButtons(diplomas) {
   let allDiplomas = diplomas?.length ? copyDeep(diplomas) : copyDeep(diplomaMap)
   allDiplomas[""] = "Indifférent"
+  console.log('allDiplomas', allDiplomas);
   return (
     <>
-      <option value="">Indifférent</option>
-      {diplomas.length
-        ? diplomas.sort().map((diploma) => {
+      {
+        Object.keys(sortObject(allDiplomas)).forEach(function (key, indx) {
+          console.log('key', key);
+          console.log('indx', indx);
+          console.log('allDiplomas[key]', allDiplomas[key]);
             return (
-              <option key={diploma} value={diploma}>
-                {diplomaMap[diploma]}
-              </option>
+              <div key={indx} value={key}>
+                {allDiplomas[key]}
+              </div>
             );
-          })
-        : Object.keys(diplomaMap).map((key) => {
-            return (
-              <option key={key} value={key}>
-                {diplomaMap[key]}
-              </option>
-            );
-          })}
+        })
+      }
     </>
   );
 }
