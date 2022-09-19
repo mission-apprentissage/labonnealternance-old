@@ -100,7 +100,7 @@ const HeaderForm = ({ handleSearchSubmit, isHome, locationRadius, setLocationRad
             <div className="ml-3">
               <div className="c-logobar-formgroup c-logobar-formgroup--rayon">
                 <label htmlFor="jobField" className="c-logobar-label c-logobar-label--rayon">
-                  Rayon {locationRadius}
+                  Rayon
                 </label>
                 <div className="c-logobar-field">
                   <Input
