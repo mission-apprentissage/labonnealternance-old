@@ -19,10 +19,13 @@ import validateFormik from "../../services/validateFormik";
 import { ParameterContext } from "../../context/ParameterContextProvider";
 import { DisplayContext } from "../../context/DisplayContextProvider";
 
-const HeaderForm = ({ handleSearchSubmit, isHome, locationRadius, setLocationRadius }) => {
+const HeaderForm = ({ handleSearchSubmit, isHome }) => {
   const { widgetParameters } = React.useContext(ParameterContext);
+  console.log('widgetParameters', widgetParameters);
   const { formValues } = React.useContext(DisplayContext);
 
+  const [locationRadius, setLocationRadius] = useState(30);
+  
   useEffect(() => {
     setLocationRadius(contextFormValues?.radius ?? 30);
     setDiploma(contextFormValues?.diploma ?? "");

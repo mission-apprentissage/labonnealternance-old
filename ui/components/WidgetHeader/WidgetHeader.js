@@ -18,7 +18,6 @@ const WidgetHeader = ({ handleSearchSubmit, isHome, locationRadius, setLocationR
   const handleSearchSubmitFunction = (values) => {
     return handleSearchSubmit({ values });
   };
-
   if (isHome) {
     additionalClassName = "home";
   }
