@@ -11,7 +11,7 @@ import { DomainError } from "../../components";
 import domainChanged from "../../services/domainChanged";
 import updateValuesFromJobAutoComplete from "../../services/updateValuesFromJobAutoComplete";
 import formikUpdateValue from "../../services/formikUpdateValue";
-import { handleSelectChange } from "../../services/handleChange";
+import { handleSelectChange } from "../../services/handleSelectChange";
 
 import { fetchAddresses } from "../../services/baseAdresse";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../services/autoCompleteUtilities";
