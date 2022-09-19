@@ -23,6 +23,8 @@ const SearchForm = (props) => {
   const { widgetParameters } = React.useContext(ParameterContext);
   const { formValues, isFormVisible } = React.useContext(DisplayContext);
 
+  const [locationRadius, setLocationRadius] = useState(30);
+
   useEffect(() => {
     setLocationRadius(contextFormValues?.radius ?? 30);
     setDiploma(contextFormValues?.diploma ?? "");
@@ -33,8 +35,6 @@ const SearchForm = (props) => {
     widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
 
   const [jobValue, setJobValue] = useState(null);
-  const locationRadius = props.locationRadius
-  const setLocationRadius = props.setLocationRadius
   const [diplomas, setDiplomas] = useState([]);
   const [diploma, setDiploma] = useState("");
   const [domainError, setDomainError] = useState(false);
@@ -132,10 +132,10 @@ const SearchForm = (props) => {
                     </Input>
                   </div>
                 </div>
-                <div className="mt-3 d-block d-md-none">
-                  <h2 className="h6 font-weight-bold">
+                <div className="mt-3 d-block d-md-none formGroup">
+                  <h3 className="h6 font-weight-bold">
                     Rayon
-                  </h2>
+                  </h3>
                   <div className="c-logobar-field">
                     {buildRayonsButtons(locationRadius, (evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, "radius"))}
                   </div>
