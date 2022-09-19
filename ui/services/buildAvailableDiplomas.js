@@ -41,19 +41,22 @@ export function buildAvailableDiplomasOptions(diplomas) {
   );
 }
 
-export function buildAvailableDiplomasButtons(diplomas) {
+export function buildAvailableDiplomasButtons(diploma, diplomas, onClickCallback) {
   let allDiplomas = diplomas?.length ? copyDeep(diplomas) : copyDeep(diplomaMap)
   allDiplomas[""] = "Indifférent"
   console.log('allDiplomas', allDiplomas);
   return (
     <>
       {
-        Object.keys(sortObject(allDiplomas)).forEach(function (key, indx) {
+        Object.keys(sortObject(allDiplomas)).map(function (key, indx) {
           console.log('key', key);
           console.log('indx', indx);
           console.log('allDiplomas[key]', allDiplomas[key]);
             return (
-              <div key={indx} value={key}>
+              <div key={indx} 
+                    value={key} 
+                    className={`c-diplomas-button ${diploma?.toString() === key ? 'is-selected' : ''}`}
+                    onClick={(evt) => { evt.currentTarget.value = key; onClickCallback(evt, key) }}>
                 {allDiplomas[key]}
               </div>
             );
