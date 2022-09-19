@@ -116,6 +116,7 @@ const SearchForm = (props) => {
                 </div>
               </Col>
               <Col xs="12">
+                {locationRadius}
                 <div className="c-logobar-formgroup formGroup mt-3 d-none d-md-block">
                   <label htmlFor="jobField" className="c-logobar-label">
                     Rayon
@@ -136,7 +137,7 @@ const SearchForm = (props) => {
                     Rayon
                   </h2>
                   <div className="c-logobar-field">
-                    {buildRayonsButtons(locationRadius, (evt, value) => handleButtonChange(evt, setFieldValue, setLocationRadius, "radius"))}
+                    {buildRayonsButtons(locationRadius, (evt, value) => handleSelectChange(evt, setFieldValue, setLocationRadius, "radius"))}
                   </div>
                 </div>
               </Col>
