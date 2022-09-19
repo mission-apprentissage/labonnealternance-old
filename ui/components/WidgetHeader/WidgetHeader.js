@@ -8,7 +8,7 @@ import { includes } from "lodash";
 import { Row } from "reactstrap";
 import { SearchResultContext } from "../../context/SearchResultContextProvider";
 
-const WidgetHeader = ({ handleSearchSubmit, isHome, locationRadius, setLocationRadius }) => {
+const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
   const router = useRouter();
 
   const { selectedItem } = useContext(SearchResultContext);
