@@ -44,7 +44,6 @@ export function buildAvailableDiplomasOptions(diplomas) {
 export function buildAvailableDiplomasButtons(diploma, diplomas, onClickCallback) {
   let allDiplomas = diplomas?.length ? copyDeep(diplomas) : copyDeep(diplomaMap)
   allDiplomas[""] = "Indifférent"
-  console.log('allDiplomas', allDiplomas);
   return (
     <>
       {
