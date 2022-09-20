@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.8 [20/09/2022]
+[LBAC-244] Fiche détaillée emploi
+
 ## 1.20.7 [15/09/2022]
 [LBAC-302] Correction détection tests swagger inter environnements
 [LBAC-298] Fix zoom après première recherche
