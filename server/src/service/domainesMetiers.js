@@ -204,7 +204,7 @@ const getLabelsAndRomes = async (searchKeyword, withRomeLabels) => {
   }
 };
 
-const getCoupleAppelationRomeIntitule = async (searchKeyword) => {
+const getCoupleAppellationRomeIntitule = async (searchKeyword) => {
   if (!searchKeyword) {
     return {
       error: "missing_parameters",
@@ -221,13 +221,13 @@ const getCoupleAppelationRomeIntitule = async (searchKeyword) => {
           must: [
             {
               nested: {
-                path: "couples_appelations_rome_metier",
+                path: "couples_appellations_rome_metier",
                 query: {
                   bool: {
                     should: [
                       {
                         match: {
-                          "couples_appelations_rome_metier.appelation": {
+                          "couples_appellations_rome_metier.appellation": {
                             query: searchKeyword,
                             fuzziness: 4,
                             operator: "and",
@@ -246,20 +246,20 @@ const getCoupleAppelationRomeIntitule = async (searchKeyword) => {
 
     const response = await esClient.search({ index: "domainesmetiers", body });
 
-    let coupleAppelationRomeMetier = [];
+    let coupleAppellationRomeMetier = [];
 
     response.body.hits.hits.map((item) => {
-      coupleAppelationRomeMetier.push([...item._source.couples_appelations_rome_metier]);
+      coupleAppellationRomeMetier.push([...item._source.couples_appellations_rome_metier]);
     });
 
-    let intitulesAndRomesUnique = _.uniqBy(_.flatten(coupleAppelationRomeMetier), "appelation");
+    let intitulesAndRomesUnique = _.uniqBy(_.flatten(coupleAppellationRomeMetier), "appellation");
 
-    coupleAppelationRomeMetier = matchSorter(intitulesAndRomesUnique, searchKeyword, {
-      keys: ["appelation"],
+    coupleAppellationRomeMetier = matchSorter(intitulesAndRomesUnique, searchKeyword, {
+      keys: ["appellation"],
       threshold: matchSorter.rankings.NO_MATCH,
     });
 
-    return { coupleAppelationRomeMetier };
+    return { coupleAppellationRomeMetier };
   } catch (error) {
     return manageError({ error, msgToLog: "getting intitule from title" });
   }
@@ -460,7 +460,7 @@ const getTousLesMetiers = async () => {
 
 module.exports = {
   getRomesAndLabelsFromTitleQuery,
-  getCoupleAppelationRomeIntitule,
+  getCoupleAppellationRomeIntitule,
   updateRomesMetiersQuery,
   getMissingRNCPs,
   getMetiersPourCfd,
