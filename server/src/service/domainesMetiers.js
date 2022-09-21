@@ -76,21 +76,6 @@ const getMultiMatchTermForDiploma = (term) => {
   };
 };
 
-const getMultiMatchTermForIntituleRome = (term) => {
-  return {
-    bool: {
-      must: {
-        multi_match: {
-          query: term,
-          fields: ["intitules_romes"],
-          type: "phrase_prefix",
-          operator: "or",
-        },
-      },
-    },
-  };
-};
-
 const getMetiers = async ({ title = null, romes = null, rncps = null }) => {
   if (!title && !romes && !rncps) {
     return {
@@ -219,7 +204,7 @@ const getLabelsAndRomes = async (searchKeyword, withRomeLabels) => {
   }
 };
 
-const getIntitulesAndRomes = async (searchKeyword) => {
+const getCoupleAppellationRomeIntitule = async (searchKeyword) => {
   if (!searchKeyword) {
     return {
       error: "missing_parameters",
@@ -228,45 +213,53 @@ const getIntitulesAndRomes = async (searchKeyword) => {
   }
 
   try {
-    let terms = [];
-
-    searchKeyword.split(" ").forEach((term, idx) => {
-      if (idx === 0 || term.length > 2) {
-        terms.push(getMultiMatchTermForIntituleRome(term));
-      }
-    });
-
     const esClient = getDomainesMetiersES();
 
-    let sources = ["couples_romes_metiers"];
-
-    const response = await esClient.search({
-      index: "domainesmetiers",
-      size: 20,
-      _sourceIncludes: sources,
-      body: {
-        query: {
-          bool: {
-            should: terms,
-          },
+    let body = {
+      query: {
+        bool: {
+          must: [
+            {
+              nested: {
+                path: "couples_appellations_rome_metier",
+                query: {
+                  bool: {
+                    should: [
+                      {
+                        match: {
+                          "couples_appellations_rome_metier.appellation": {
+                            query: searchKeyword,
+                            fuzziness: 4,
+                            operator: "and",
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+            },
+          ],
         },
       },
-    });
+    };
 
-    let intitulesAndRomes = [];
+    const response = await esClient.search({ index: "domainesmetiers", body });
+
+    let coupleAppellationRomeMetier = [];
 
     response.body.hits.hits.map((item) => {
-      intitulesAndRomes.push([...item._source.couples_romes_metiers]);
+      coupleAppellationRomeMetier.push([...item._source.couples_appellations_rome_metier]);
     });
 
-    let intitulesAndRomesUnique = _.uniqBy(_.flatten(intitulesAndRomes), "codeRome");
+    let intitulesAndRomesUnique = _.uniqBy(_.flatten(coupleAppellationRomeMetier), "appellation");
 
-    let coupleIntituleRome = matchSorter(intitulesAndRomesUnique, searchKeyword, {
-      keys: ["intitule"],
+    coupleAppellationRomeMetier = matchSorter(intitulesAndRomesUnique, searchKeyword, {
+      keys: ["appellation"],
       threshold: matchSorter.rankings.NO_MATCH,
     });
 
-    return { coupleIntituleRome };
+    return { coupleAppellationRomeMetier };
   } catch (error) {
     return manageError({ error, msgToLog: "getting intitule from title" });
   }
@@ -467,7 +460,7 @@ const getTousLesMetiers = async () => {
 
 module.exports = {
   getRomesAndLabelsFromTitleQuery,
-  getIntitulesAndRomes,
+  getCoupleAppellationRomeIntitule,
   updateRomesMetiersQuery,
   getMissingRNCPs,
   getMetiersPourCfd,

@@ -177,6 +177,7 @@ module.exports = async (optionalFileName) => {
       motsClefsDomaine,
       motsClefsSpecifiques,
       appellationsROMEs,
+      coupleAppellationsRomeIntitules,
       codesFAPs,
       libellesFAPs,
       sousDomainesOnisep;
@@ -192,6 +193,7 @@ module.exports = async (optionalFileName) => {
       motsClefsDomaine = [];
       motsClefsSpecifiques = [];
       appellationsROMEs = [];
+      coupleAppellationsRomeIntitules = [];
       codesFAPs = [];
       libellesFAPs = [];
       sousDomainesOnisep = [];
@@ -216,6 +218,7 @@ module.exports = async (optionalFileName) => {
           mots_clefs_specifiques: [...new Set(motsClefsSpecifiques)].join(", "),
           mots_clefs: [...new Set(motsClefsDomaine)].join(", "),
           appellations_romes: [...new Set(appellationsROMEs)].join(", "),
+          couples_appellations_rome_metier: coupleAppellationsRomeIntitules,
           codes_romes: codesROMEs,
           intitules_romes: intitulesROMEs,
           codes_rncps: codesRNCPs,
@@ -252,12 +255,24 @@ module.exports = async (optionalFileName) => {
       } else {
         step = 2;
 
+        let currentAppellationsROMEs = row.appellations_rome;
+
         //couplesROMEsIntitules
         if (row.code_rome && row.libelle_rome) {
           if (codesROMEs.indexOf(row.code_rome.trim()) < 0 || intitulesROMEs.indexOf(row.libelle_rome.trim()) < 0) {
             couplesROMEsIntitules.push({
               codeRome: row.code_rome.trim(),
               intitule: row.libelle_rome.trim(),
+            });
+          }
+
+          if (currentAppellationsROMEs) {
+            currentAppellationsROMEs.split(", ").map((appellation) => {
+              coupleAppellationsRomeIntitules.push({
+                codeRome: row.code_rome.trim(),
+                intitule: row.libelle_rome.trim(),
+                appellation: appellation,
+              });
             });
           }
         }
@@ -331,7 +346,6 @@ module.exports = async (optionalFileName) => {
 
         step = 12;
 
-        let currentAppellationsROMEs = row.appellations_rome;
         if (currentAppellationsROMEs) {
           appellationsROMEs = appellationsROMEs.concat(currentAppellationsROMEs.toLowerCase().split(/[\s,/;]+/));
         }

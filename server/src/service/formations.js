@@ -289,8 +289,8 @@ const getRegionFormations = async ({
       formations.push({ source: formation._source, sort: formation.sort, id: formation._id });
     });
 
-    if (formations.length === 0) {
-      notifyToSlack(`Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}. caller : ${caller}`);
+    if (formations.length === 0 && !caller) {
+      notifyToSlack(`Aucune formation par région trouvée pour les romes ${romes} ou le domaine ${romeDomain}.`);
     }
 
     return formations;
@@ -368,9 +368,9 @@ const getAtLeastSomeFormations = async ({
         });
       }
 
-      if (formations.results.length === 0) {
+      if (formations.results.length === 0 && !caller) {
         notifyToSlack(
-          `Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}. caller : ${caller}`
+          `Aucune formation trouvée pour les romes ${romes} ou le domaine ${romeDomain}. diploma : ${diploma}. coords: ${coords}. radius: ${currentRadius}`
         );
       }
     }
