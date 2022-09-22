@@ -1,7 +1,11 @@
 const _ = require("lodash");
 const { ConvertedFormation_0, ConvertedFormation_1 } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
-const { getConvertedFormations, countFormations } = require("../../common/components/catalogue");
+const {
+  //getConvertedFormations,
+  fetchFormations,
+  countFormations,
+} = require("../../common/components/catalogue");
 const { mongooseInstance } = require("../../common/mongodb");
 const { rebuildIndex } = require("../../common/utils/esUtils");
 const {
@@ -9,8 +13,8 @@ const {
   updateFormationsSourceIndex,
   updateFormationsIndexAlias,
 } = require("../../common/components/indexSourceFormations");
-const { oleoduc, writeData } = require("oleoduc");
-const { Readable } = require("stream");
+const { oleoduc, transformData, writeData } = require("oleoduc");
+//const { Readable } = require("stream");
 const logger = require("../../common/logger");
 const { logMessage } = require("../../common/utils/logMessage");
 const { notifyToSlack } = require("../../common/utils/slackUtils");
@@ -42,7 +46,53 @@ const cleanIndexAndDb = async ({ workIndex, workMongo }) => {
   await createIndex(workMongo);
 };
 
-const importFormations = async ({ workIndex, workMongo }) => {
+const importFormations = async ({ workIndex, workMongo, formationCount }) => {
+  logMessage("info", `Début import`);
+
+  const stats = {
+    total: 0,
+    created: 0,
+    failed: 0,
+  };
+
+  try {
+    const db = mongooseInstance.connection;
+
+    await oleoduc(
+      await fetchFormations({ formationCount }),
+      transformData(async (formation) => {
+        //console.log(formation.cle_ministere_educatif,count++);
+        return formation;
+      }),
+      writeData(async (formation) => {
+        stats.total++;
+        //console.log("save : ",formation.cle_ministere_educatif,count);
+        try {
+          await db.collections[workIndex].save(formation);
+          stats.created++;
+        } catch (e) {
+          stats.failed++;
+          logger.error(e);
+        }
+
+        if (stats.total % 1000 === 0) {
+          logMessage("info", `${stats.total} trainings processed`);
+        }
+      }),
+      { parallel: 8 }
+    );
+
+    await rebuildIndex(workMongo);
+
+    return stats;
+  } catch (e) {
+    // stop here if not able to get trainings (keep existing ones)
+    logger.error(`Error fetching formations from Catalogue ${workIndex}`, e);
+    throw new Error("Error fetching formations from Catalogue");
+  }
+};
+
+/*const importFormationsOldStyle = async ({ workIndex, workMongo }) => {
   logMessage("info", `Début import`);
 
   const stats = {
@@ -64,6 +114,8 @@ const importFormations = async ({ workIndex, workMongo }) => {
             stats.total++;
             try {
               //await workMongo.create(e);
+              //console.log("e : ",e);
+
               await db.collections[workIndex].save(e);
               stats.created++;
             } catch (e) {
@@ -80,12 +132,12 @@ const importFormations = async ({ workIndex, workMongo }) => {
 
     return stats;
   } catch (e) {
-    // stop here if not able to get etablissements (keep existing ones)
+    // stop here if not able to get trainings (keep existing ones)
     logger.error(`Error fetching formations from Catalogue ${workIndex}`, e);
     throw new Error("Error fetching formations from Catalogue");
   }
 };
-
+*/
 let running = false;
 
 module.exports = async (onlyChangeMasterIndex = false) => {
@@ -123,7 +175,7 @@ module.exports = async (onlyChangeMasterIndex = false) => {
         if (!onlyChangeMasterIndex) {
           await cleanIndexAndDb({ workIndex, workMongo });
 
-          stats = await importFormations({ workIndex, workMongo });
+          stats = await importFormations({ workIndex, workMongo, formationCount });
         } else {
           logMessage("info", `Permutation d'index seule`);
         }

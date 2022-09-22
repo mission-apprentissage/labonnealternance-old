@@ -1,10 +1,63 @@
 const axios = require("axios");
 const logger = require("../logger");
 const config = require("config");
+const { compose } = require("oleoduc");
+const queryString = require("query-string");
+const { fetchStream } = require("../utils/httpUtils");
+const { streamJsonArray } = require("../utils/streamUtils");
 
 const API = axios.create({ baseURL: `${config.private.catalogueUrl}` });
 
-const getConvertedFormations = async (options, chunckCallback = null) => {
+const neededFieldsFromCatalogue = {
+  published: 1,
+  catalogue_published: 1,
+  intitule_long: 1,
+  intitule_court: 1,
+  niveau: 1,
+  onisep_url: 1,
+  cle_ministere_educatif: 1,
+  diplome: 1,
+  cfd: 1,
+  rncp_code: 1,
+  rncp_intitule: 1,
+  rncp_eligible_apprentissage: 1,
+  capacite: 1,
+  created_at: 1,
+  last_update_at: 1,
+  id_formation: 1,
+  id_rco_formation: 1,
+  email: 1,
+  lieu_formation_adresse: 1,
+  code_postal: 1,
+  localite: 1,
+  etablissement_formateur_adresse: 1,
+  etablissement_formateur_complement_adresse: 1,
+  etablissement_formateur_localite: 1,
+  etablissement_formateur_code_postal: 1,
+  etablissement_formateur_cedex: 1,
+  etablissement_gestionnaire_adresse: 1,
+  etablissement_gestionnaire_complement_adresse: 1,
+  etablissement_gestionnaire_localite: 1,
+  etablissement_gestionnaire_code_postal: 1,
+  etablissement_gestionnaire_cedex: 1,
+  idea_geo_coordonnees_etablissement: 1,
+  num_departement: 1,
+  region: 1,
+  code_commune_insee: 1,
+  etablissement_formateur_entreprise_raison_sociale: 1,
+  etablissement_gestionnaire_entreprise_raison_sociale: 1,
+  etablissement_formateur_siret: 1,
+  etablissement_formateur_id: 1,
+  etablissement_formateur_uai: 1,
+  etablissement_gestionnaire_id: 1,
+  etablissement_gestionnaire_uai: 1,
+  etablissement_gestionnaire_siret: 1,
+  etablissement_gestionnaire_type: 1,
+  etablissement_gestionnaire_conventionne: 1,
+  rome_codes: 1,
+};
+
+/*const getConvertedFormations = async (options, chunckCallback = null) => {
   let { page, allFormations, limit, query } = { page: 1, allFormations: [], limit: 1050, ...options };
   let params = { page, limit, query };
 
@@ -32,6 +85,7 @@ const getConvertedFormations = async (options, chunckCallback = null) => {
     throw new Error("unable to fetch Formations");
   }
 };
+*/
 
 const countFormations = async () => {
   try {
@@ -42,7 +96,41 @@ const countFormations = async () => {
   }
 };
 
+const fetchFormations = ({ formationCount }) => {
+  const query = { published: true };
+
+  const streamFormations = async (query, options) => {
+    const params = convertQueryIntoParams(query, options);
+    const response = await fetchStream(
+      `https://catalogue.apprentissage.beta.gouv.fr/api/entity/formations.json?${params}`
+    );
+
+    return compose(response, streamJsonArray());
+  };
+
+  return streamFormations(query, {
+    limit: formationCount,
+    select: neededFieldsFromCatalogue,
+  });
+};
+
+const convertQueryIntoParams = (query, options = {}) => {
+  return queryString.stringify(
+    {
+      query: JSON.stringify(query),
+      ...Object.keys(options).reduce((acc, key) => {
+        return {
+          ...acc,
+          [key]: JSON.stringify(options[key]),
+        };
+      }, {}),
+    },
+    { encode: false }
+  );
+};
+
 module.exports = {
-  getConvertedFormations,
+  //getConvertedFormations,
+  fetchFormations,
   countFormations,
 };
