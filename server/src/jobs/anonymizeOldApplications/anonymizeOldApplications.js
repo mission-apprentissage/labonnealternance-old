@@ -56,7 +56,7 @@ module.exports = async () => {
       logMessage("info", `Fin traitement`);
 
       notifyToSlack(
-        `Anonymisation des canidatures de plus de un an terminée. ${nModified} candidature(s) anonymisée(s).`
+        `Anonymisation des candidatures de plus de un an terminée. ${nModified} candidature(s) anonymisée(s).`
       );
 
       running = false;
