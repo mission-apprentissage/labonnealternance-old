@@ -4,6 +4,9 @@
 [LBAC-300] Import Catalogue en utilisant le endpont /formations.json
 [LBAC-324] Import uniquement des champs du catalogue dont nous avons besoin
 
+## 1.20.8 [22/09/2022]
+[LBAC-328] Fix Access-Control-Allow-Origin
+
 ## 1.20.7 [15/09/2022]
 [LBAC-302] Correction détection tests swagger inter environnements
 [LBAC-298] Fix zoom après première recherche

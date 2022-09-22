@@ -177,7 +177,7 @@ module.exports = async (optionalFileName) => {
       motsClefsDomaine,
       motsClefsSpecifiques,
       appellationsROMEs,
-      coupleAppelationsRomeIntitules,
+      coupleAppellationsRomeIntitules,
       codesFAPs,
       libellesFAPs,
       sousDomainesOnisep;
@@ -193,7 +193,7 @@ module.exports = async (optionalFileName) => {
       motsClefsDomaine = [];
       motsClefsSpecifiques = [];
       appellationsROMEs = [];
-      coupleAppelationsRomeIntitules = [];
+      coupleAppellationsRomeIntitules = [];
       codesFAPs = [];
       libellesFAPs = [];
       sousDomainesOnisep = [];
@@ -218,7 +218,7 @@ module.exports = async (optionalFileName) => {
           mots_clefs_specifiques: [...new Set(motsClefsSpecifiques)].join(", "),
           mots_clefs: [...new Set(motsClefsDomaine)].join(", "),
           appellations_romes: [...new Set(appellationsROMEs)].join(", "),
-          couples_appelations_rome_metier: coupleAppelationsRomeIntitules,
+          couples_appellations_rome_metier: coupleAppellationsRomeIntitules,
           codes_romes: codesROMEs,
           intitules_romes: intitulesROMEs,
           codes_rncps: codesRNCPs,
@@ -267,11 +267,11 @@ module.exports = async (optionalFileName) => {
           }
 
           if (currentAppellationsROMEs) {
-            currentAppellationsROMEs.split(", ").map((appelation) => {
-              coupleAppelationsRomeIntitules.push({
+            currentAppellationsROMEs.split(", ").map((appellation) => {
+              coupleAppellationsRomeIntitules.push({
                 codeRome: row.code_rome.trim(),
                 intitule: row.libelle_rome.trim(),
-                appelation: appelation,
+                appellation: appellation,
               });
             });
           }
