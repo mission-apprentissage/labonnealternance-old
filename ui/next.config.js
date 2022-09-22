@@ -44,6 +44,7 @@ const contentSecurityPolicy = `
               http://localhost:5000; 
   img-src 'self' 
               data: 
+              blob:
               https://www.notion.so
               https://www.google-analytics.com
               https://www.google.com
@@ -66,6 +67,7 @@ const contentSecurityPolicy = `
             https://cdn.trustcommander.net
             https://labonnealternance.pole-emploi.fr
             https://labonnealternance.apprentissage.beta.gouv.fr;
+  child-src 'self' blob:;
   block-all-mixed-content;
   upgrade-insecure-requests;
 `;
@@ -85,6 +87,10 @@ module.exports = async (phase, { defaultConfig }) =>
             {
               key: "X-Content-Type-Options",
               value: "nosniff",
+            },
+            {
+              key: "Access-Control-Allow-Origin",
+              value: "*",
             },
             {
               key: "Content-Security-Policy",
