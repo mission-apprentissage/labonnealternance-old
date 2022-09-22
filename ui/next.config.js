@@ -93,7 +93,7 @@ module.exports = async (phase, { defaultConfig }) =>
               value: "*",
             },
             {
-              key: "Content-Security-Policy-Report-Only",
+              key: "Content-Security-Policy",
               value: inline(contentSecurityPolicy + " frame-ancestors 'none';"),
             },
             {
@@ -114,7 +114,7 @@ module.exports = async (phase, { defaultConfig }) =>
           source: "/:slug(recherche-apprentissage|recherche-emploi|recherche-apprentissage-formation|postuler)",
           headers: [
             {
-              key: "Content-Security-Policy-Report-Only",
+              key: "Content-Security-Policy",
               value: inline(contentSecurityPolicy),
             },
           ],
