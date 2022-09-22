@@ -87,6 +87,10 @@ module.exports = async (phase, { defaultConfig }) =>
               value: "nosniff",
             },
             {
+              key: "Access-Control-Allow-Origin",
+              value: "*",
+            },
+            {
               key: "Content-Security-Policy",
               value: inline(contentSecurityPolicy + " frame-ancestors 'none';"),
             },
