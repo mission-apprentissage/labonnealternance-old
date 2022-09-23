@@ -37,7 +37,20 @@ const matchaMockMandataire = {
         type: ["Apprentissage"],
         multi_diffuser: null,
         _id: "62bda757812f6400289afe68",
-        rome_detail: {},
+        rome_detail: {
+          definition:
+            "Conditionne des produits au moyen d'une machine automatisée d'emballage, d'embouteillage, de palettisation selon les règles d'hygiène, de sécurité et les impératifs de production (délais, quantités, qualité). Applique des mesures correctives en cas de dysfonctionnement des équipements et de non-conformité du conditionnement des produits.\\nPeut effectuer le réglage, l'entretien des équipements et réaliser des opérations de marquage, de stockage, d'étiquetage, ...\\nPeut coordonner une équipe (manutentionnaires, opérateurs, ...).",
+          competencesDeBase: [
+            {
+              code: "123601",
+              libelle: "Contrôler la sécurité d'une installation",
+            },
+            {
+              code: "123564",
+              libelle: "Contrôler le fonctionnement d'un outil ou équipement",
+            },
+          ],
+        },
         elligible_handicap: false,
         quantite: 1,
         duree_contrat: 2,
@@ -74,7 +87,43 @@ const matchaMock = {
         niveau: "Licence, autres formations niveau (Bac+3)",
         date_debut_apprentissage: "2022-09-01T00:00:00.000Z",
         romes: ["M1805"],
-        rome_detail: {},
+        rome_detail: {
+          definition:
+            "Matcha test ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          competencesDeBase: [
+            {
+              code: "106394",
+              libelle:
+                "Vérifier et maintenir l'état de propreté des équipements (machines de remplissage, ensachage, étiquetage, ...) et du matériel",
+              noeudCompetence: {
+                code: "00168",
+                libelle: "Maintenance d'équipements de production ou collectifs",
+                racineCompetence: {
+                  code: "00030",
+                  libelle: "Maintenance - entretien technique",
+                },
+              },
+              typeCompetence: "SavoirFaire",
+              riasecMineur: "R",
+              riasecMajeur: "R",
+            },
+            {
+              code: "123601",
+              libelle: "Contrôler la sécurité d'une installation",
+              noeudCompetence: {
+                code: "00254",
+                libelle: "Prévention des risques",
+                racineCompetence: {
+                  code: "00036",
+                  libelle: "Prévention et gestion des risques",
+                },
+              },
+              typeCompetence: "SavoirFaire",
+              riasecMineur: "R",
+              riasecMajeur: "C",
+            },
+          ],
+        },
         date_creation: "2022-07-09T00:00:00.000Z",
         date_expiration: "2022-08-09T00:00:00.000Z",
         date_mise_a_jour: "2022-07-09T19:08:13.911Z",
