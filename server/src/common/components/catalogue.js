@@ -6,8 +6,6 @@ const queryString = require("query-string");
 const { fetchStream } = require("../utils/httpUtils");
 const { streamJsonArray } = require("../utils/streamUtils");
 
-const API = axios.create({ baseURL: `${config.private.catalogueUrl}` });
-
 const neededFieldsFromCatalogue = {
   published: 1,
   catalogue_published: 1,
@@ -57,35 +55,7 @@ const neededFieldsFromCatalogue = {
   rome_codes: 1,
 };
 
-/*const getConvertedFormations = async (options, chunckCallback = null) => {
-  let { page, allFormations, limit, query } = { page: 1, allFormations: [], limit: 1050, ...options };
-  let params = { page, limit, query };
-
-  try {
-    const response = await API.get(config.formationsEndPoint, { params });
-
-    const { formations, pagination } = response.data;
-    allFormations = allFormations.concat(formations);
-
-    if (page < pagination.nombre_de_page) {
-      if (chunckCallback) {
-        await chunckCallback(allFormations);
-        allFormations = [];
-      }
-      return getConvertedFormations({ page: page + 1, allFormations, limit, query }, chunckCallback);
-    } else {
-      if (chunckCallback) {
-        await chunckCallback(allFormations);
-        return [];
-      }
-      return allFormations;
-    }
-  } catch (error) {
-    logger.error("getConvertedFormations", error);
-    throw new Error("unable to fetch Formations");
-  }
-};
-*/
+const API = axios.create({ baseURL: `${config.private.catalogueUrl}` });
 
 const countFormations = async () => {
   try {
@@ -101,9 +71,7 @@ const fetchFormations = ({ formationCount }) => {
 
   const streamFormations = async (query, options) => {
     const params = convertQueryIntoParams(query, options);
-    const response = await fetchStream(
-      `https://catalogue.apprentissage.beta.gouv.fr/api/entity/formations.json?${params}`
-    );
+    const response = await fetchStream(`${config.private.catalogueUrl}${config.formationsEndPoint}.json?${params}`);
 
     return compose(response, streamJsonArray());
   };
@@ -130,7 +98,6 @@ const convertQueryIntoParams = (query, options = {}) => {
 };
 
 module.exports = {
-  //getConvertedFormations,
   fetchFormations,
   countFormations,
 };

@@ -1,11 +1,7 @@
 const _ = require("lodash");
 const { ConvertedFormation_0, ConvertedFormation_1 } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
-const {
-  //getConvertedFormations,
-  fetchFormations,
-  countFormations,
-} = require("../../common/components/catalogue");
+const { fetchFormations, countFormations } = require("../../common/components/catalogue");
 const { mongooseInstance } = require("../../common/mongodb");
 const { rebuildIndex } = require("../../common/utils/esUtils");
 const {
@@ -14,7 +10,6 @@ const {
   updateFormationsIndexAlias,
 } = require("../../common/components/indexSourceFormations");
 const { oleoduc, transformData, writeData } = require("oleoduc");
-//const { Readable } = require("stream");
 const logger = require("../../common/logger");
 const { logMessage } = require("../../common/utils/logMessage");
 const { notifyToSlack } = require("../../common/utils/slackUtils");
@@ -61,12 +56,10 @@ const importFormations = async ({ workIndex, workMongo, formationCount }) => {
     await oleoduc(
       await fetchFormations({ formationCount }),
       transformData(async (formation) => {
-        //console.log(formation.cle_ministere_educatif,count++);
         return formation;
       }),
       writeData(async (formation) => {
         stats.total++;
-        //console.log("save : ",formation.cle_ministere_educatif,count);
         try {
           await db.collections[workIndex].save(formation);
           stats.created++;
@@ -92,52 +85,6 @@ const importFormations = async ({ workIndex, workMongo, formationCount }) => {
   }
 };
 
-/*const importFormationsOldStyle = async ({ workIndex, workMongo }) => {
-  logMessage("info", `Début import`);
-
-  const stats = {
-    total: 0,
-    created: 0,
-    failed: 0,
-  };
-
-  try {
-    const db = mongooseInstance.connection;
-
-    await getConvertedFormations({ limit: 1000 }, async (chunck) => {
-      logger.info(`Inserting ${chunck.length} formations ...`);
-
-      await oleoduc(
-        Readable.from(chunck),
-        writeData(
-          async (e) => {
-            stats.total++;
-            try {
-              //await workMongo.create(e);
-              //console.log("e : ",e);
-
-              await db.collections[workIndex].save(e);
-              stats.created++;
-            } catch (e) {
-              stats.failed++;
-              logger.error(e);
-            }
-          },
-          { parallel: 8 }
-        )
-      );
-    });
-
-    await rebuildIndex(workMongo);
-
-    return stats;
-  } catch (e) {
-    // stop here if not able to get trainings (keep existing ones)
-    logger.error(`Error fetching formations from Catalogue ${workIndex}`, e);
-    throw new Error("Error fetching formations from Catalogue");
-  }
-};
-*/
 let running = false;
 
 module.exports = async (onlyChangeMasterIndex = false) => {
