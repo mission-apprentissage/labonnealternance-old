@@ -143,7 +143,7 @@ const Cookies = () => (
               consentement via{" "}
               <a href="#" onClick={handleTagCo}>
                 {" "}
-                via ce lien dédié{" "}
+                 ce lien dédié{" "}
               </a>
               .
             </span>
