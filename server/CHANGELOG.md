@@ -1,7 +1,11 @@
 # CHANGELOG
 
-## 1.20.8 [20/09/2022]
-[LBAC-289] Toogles visibles sur les bouchons
+## 1.20.9 [25/09/2022]
+[LBAC-289] Toggles visibles sur les bouchons
+
+## 1.20.8 [22/09/2022]
+[LBAC-328] Fix CSP pour safari
+[LBAC-330] Mise à jour de nodejs
 
 ## 1.20.7 [15/09/2022]
 [LBAC-302] Correction détection tests swagger inter environnements
