@@ -1,12 +1,20 @@
 # CHANGELOG
 
+## 1.20.9 [25/09/2022]
+[LBAC-289] Toggles visibles sur les bouchons
+[LBAC-244] Critères de recherches en liste non déroulante
+
+## 1.20.8 [22/09/2022]
+[LBAC-328] Fix CSP pour safari
+[LBAC-330] Mise à jour de nodejs
+
 ## 1.20.7 [15/09/2022]
 [LBAC-302] Correction détection tests swagger inter environnements
 [LBAC-298] Fix zoom après première recherche
 [LBAR-617] Modification endpoint "intitule"
 [LBAC-67] Automate d'anonymisation des candidatures
 [LBAC-269] Eligible Handicap
-[LBAC-244] Critères de recherches en liste non déroulante
+[LBAC-299] Fix responsive widget postuler
 
 ## 1.20.6 [07/09/2022]
 [LBAC-265] Enrichissement info entreprises anonymes et mandatées
