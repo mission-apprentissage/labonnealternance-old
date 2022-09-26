@@ -1,12 +1,4 @@
-const findExactItemRank = ({ value, items }) => {
-  let rank = 0;
-  items.map((item, i) => {
-    if (value.toLowerCase() === item.label.toLowerCase()) {
-      rank = i;
-    }
-  });
-  return rank;
-};
+import findExactItemRank from "./findExactItemRank";
 
 export default async function onInputValueChangeService({
   inputValue,

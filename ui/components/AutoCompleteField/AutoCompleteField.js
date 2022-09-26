@@ -6,6 +6,7 @@ import onInputValueChangeService from "./onInputValueChangeService";
 import highlightItem from "../../services/hightlightItem";
 import ReactHtmlParser from "react-html-parser";
 import { Spinner } from "reactstrap";
+import findExactItemRank from "./findExactItemRank";
 
 let debouncedOnInputValueChange = null;
 
@@ -151,7 +152,7 @@ export const AutoCompleteField = ({
     id: "lang-switcher",
     items: inputItems,
     itemToString,
-    defaultHighlightedIndex: 0,
+    defaultHighlightedIndex: findExactItemRank({ value: inputTextValue, items: inputItems }),
     initialSelectedItem,
     initialIsOpen,
     inputValue: inputTextValue,
