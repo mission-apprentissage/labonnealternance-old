@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.20.10 [28/09/2022]
+[LBAC-329] Fix bug choix de recherche par nom de diplôme
+
 ## 1.20.9 [25/09/2022]
 [LBAC-289] Toggles visibles sur les bouchons
 
