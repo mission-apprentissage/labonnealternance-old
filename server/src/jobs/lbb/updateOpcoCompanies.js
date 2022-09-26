@@ -105,7 +105,7 @@ module.exports = async () => {
 
       await Opco.deleteMany({});
 
-      // extraction depuis les établissements des adresses à géolocaliser
+      // extraction de la liste des sirens de l'opco Akto
       await oleoduc(
         fs.createReadStream(opcoSirenFile),
         readLineByLine(),
