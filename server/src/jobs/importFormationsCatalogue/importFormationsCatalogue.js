@@ -1,7 +1,7 @@
 const _ = require("lodash");
 const { ConvertedFormation_0, ConvertedFormation_1 } = require("../../common/model");
 const { getElasticInstance } = require("../../common/esClient");
-const { getConvertedFormations, countFormations } = require("../../common/components/catalogue");
+const { fetchFormations, countFormations } = require("../../common/components/catalogue");
 const { mongooseInstance } = require("../../common/mongodb");
 const { rebuildIndex } = require("../../common/utils/esUtils");
 const {
@@ -9,8 +9,7 @@ const {
   updateFormationsSourceIndex,
   updateFormationsIndexAlias,
 } = require("../../common/components/indexSourceFormations");
-const { oleoduc, writeData } = require("oleoduc");
-const { Readable } = require("stream");
+const { oleoduc, transformData, writeData } = require("oleoduc");
 const logger = require("../../common/logger");
 const { logMessage } = require("../../common/utils/logMessage");
 const { notifyToSlack } = require("../../common/utils/slackUtils");
@@ -42,7 +41,7 @@ const cleanIndexAndDb = async ({ workIndex, workMongo }) => {
   await createIndex(workMongo);
 };
 
-const importFormations = async ({ workIndex, workMongo }) => {
+const importFormations = async ({ workIndex, workMongo, formationCount }) => {
   logMessage("info", `Début import`);
 
   const stats = {
@@ -54,33 +53,33 @@ const importFormations = async ({ workIndex, workMongo }) => {
   try {
     const db = mongooseInstance.connection;
 
-    await getConvertedFormations({ limit: 1000 }, async (chunck) => {
-      logger.info(`Inserting ${chunck.length} formations ...`);
+    await oleoduc(
+      await fetchFormations({ formationCount }),
+      transformData(async (formation) => {
+        return formation;
+      }),
+      writeData(async (formation) => {
+        stats.total++;
+        try {
+          await db.collections[workIndex].save(formation);
+          stats.created++;
+        } catch (e) {
+          stats.failed++;
+          logger.error(e);
+        }
 
-      await oleoduc(
-        Readable.from(chunck),
-        writeData(
-          async (e) => {
-            stats.total++;
-            try {
-              //await workMongo.create(e);
-              await db.collections[workIndex].save(e);
-              stats.created++;
-            } catch (e) {
-              stats.failed++;
-              logger.error(e);
-            }
-          },
-          { parallel: 8 }
-        )
-      );
-    });
+        if (stats.total % 1000 === 0) {
+          logMessage("info", `${stats.total} trainings processed`);
+        }
+      }),
+      { parallel: 8 }
+    );
 
     await rebuildIndex(workMongo);
 
     return stats;
   } catch (e) {
-    // stop here if not able to get etablissements (keep existing ones)
+    // stop here if not able to get trainings (keep existing ones)
     logger.error(`Error fetching formations from Catalogue ${workIndex}`, e);
     throw new Error("Error fetching formations from Catalogue");
   }
@@ -123,7 +122,7 @@ module.exports = async (onlyChangeMasterIndex = false) => {
         if (!onlyChangeMasterIndex) {
           await cleanIndexAndDb({ workIndex, workMongo });
 
-          stats = await importFormations({ workIndex, workMongo });
+          stats = await importFormations({ workIndex, workMongo, formationCount });
         } else {
           logMessage("info", `Permutation d'index seule`);
         }

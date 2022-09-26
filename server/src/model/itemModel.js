@@ -2,7 +2,7 @@ const itemModel = (type) => {
   return {
     ideaType: type, // type de l'item :  formation | lbb | lba | peJob | matcha
 
-    title: null, // pe -> intitule | lbb/lba -> enseigne | formation -> nom | matcha -> offres.libelle
+    title: null, // pe -> intitule | lbb/lba -> enseigne | formation -> intitule_long OU intitule_court | matcha -> offres.libelle
     longTitle: null, // formation -> intitule_long,
     id: null, // formation -> id | matcha -> id_form
     idRco: null, // formation -> id_formation
@@ -20,7 +20,7 @@ const itemModel = (type) => {
     // lieu principal pour l'item, lieu de formation ou lieu de l'offre ou adresse de l'entreprise
     place: {
       distance: null, // distance au centre de recherche en km. pe --> lieutTravail.distance recalculé par turf.js | formation --> sort[0] | lbb/lba -> distance | matcha -> sort[0]
-      fullAddress: null, // adresse postale reconstruite à partir des éléments d'adresse fournis | matcha -> adresse
+      fullAddress: null, // adresse postale reconstruite à partir des éléments d'adresse fournis | matcha -> adresse | formation -> lieu_formation_adresse + code_postal + localite OU etablissement_formateur_adresse + ...complement_adresse + ...code_postal + ...localite + ...cedex OU etablissement_gestionnaire_adresse + ...complement_adresse + ...localite + ...cedex
       latitude: null, // formation -> idea_geo_coordonnees_etablissement | pe -> lieuTravail.latitude | lbb/lba -> lat | matcha -> geo_coordonnees
       longitude: null, // formation -> idea_geo_coordonnees_etablissement | pe -> lieuTravail.longitude | lbb/lba -> lon | matcha -> geo_coordonnees
       city: null, // pe -> lieuTravail.libelle | formation -> localite | pe -> city

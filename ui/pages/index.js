@@ -18,6 +18,7 @@ import axios from "axios";
 import csvToArray from "utils/csvToArray.js";
 import { some } from "lodash";
 import { ParameterContext } from "../context/ParameterContextProvider";
+import AmeliorerLBA from "@/components/HomeComponents/AmeliorerLBA";
 
 const Home = (props) => {
   const router = useRouter();
@@ -43,6 +44,10 @@ const Home = (props) => {
       </div>
       <div className="c-homebg py-5">
         <AlgoHome />
+      </div>
+
+      <div className="c-homebg">
+        <AmeliorerLBA />
       </div>
 
       <HomeReview reviews={props.reviews} />
