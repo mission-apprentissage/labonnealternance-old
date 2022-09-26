@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.20.9 [26/09/2022]
+[LBAC-300] Import Catalogue en utilisant le endpont /formations.json
+[LBAC-324] Import uniquement des champs du catalogue dont nous avons besoin
+[LBAC-289] Toggles visibles sur les bouchons
+[LBAC-332] Ajout bloc Aidez-nous
+
 ## 1.20.8 [22/09/2022]
 [LBAC-328] Fix CSP pour safari
 [LBAC-330] Mise à jour de nodejs
