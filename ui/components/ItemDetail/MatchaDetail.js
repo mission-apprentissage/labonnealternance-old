@@ -92,7 +92,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             <p>
               <span className="c-detail-traininglink">
                 <ExternalLink
-                  className="gtmDidask1 font-weight-bold"
+                  className="gtmDidask1"
                   url="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
                   title="On vous donne des conseils ici pour vous aider !"
                   withPic={<img src="../../images/icons/goto.svg" alt="Lien" />}
