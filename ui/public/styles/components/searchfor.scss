@@ -385,3 +385,25 @@
 .c-result-list.c-result-list--item {
   height: 0%;
 } 
+
+.c-rayons-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  button {
+    background: #FFFFFF;
+    border: 1px solid #CECECE;
+    border-radius: 40px;
+  }
+}
+.c-rayons-button {
+  background: #FFFFFF;
+  border: 1px solid #CECECE;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.c-rayons-button.is-selected {
+  background-color: blue;
+}

@@ -132,8 +132,11 @@ const SearchForm = (props) => {
                   </div>
                 </div>
                 <div className="mt-3 d-block d-md-none">
+                  <h2 class="h6 font-weight-bold">
+                    Rayon
+                  </h2>
                   <div className="c-logobar-field">
-                    button...
+                    {buildRayonsButtons(locationRadius, setFieldValue, setLocationRadius, handleSelectChange)}
                   </div>
                 </div>
               </Col>
