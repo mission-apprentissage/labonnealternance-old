@@ -41,23 +41,32 @@ export function buildAvailableDiplomasOptions(diplomas) {
   );
 }
 
-export function buildAvailableDiplomasButtons(diploma, diplomas, onClickCallback) {
+export function buildAvailableDiplomasButtons(currentDiploma, diplomas, onClickCallback) {
   let allDiplomas = diplomas?.length ? copyDeep(diplomas) : copyDeep(diplomaMap)
   allDiplomas[""] = "Indifférent"
   return (
     <>
-      {
-        Object.keys(sortObject(allDiplomas)).map(function (key, indx) {
-            return (
-              <div key={indx} 
-                    value={key} 
-                    className={`c-diplomas-button ${diploma?.toString() === key ? 'is-selected' : ''}`}
-                    onClick={(evt) => { evt.currentTarget.value = key; onClickCallback(evt, key) }}>
-                {allDiplomas[key]}
-              </div>
-            );
+      {diplomas.length
+        ? diplomas.sort().map((diploma) => {
+          return (
+            <div key={diploma}
+              value={diploma}
+              className={`c-diplomas-button ${currentDiploma?.toString() === diploma ? 'is-selected' : ''}`}
+              onClick={(evt) => { evt.currentTarget.value = diploma; onClickCallback(evt, diploma) }}>
+              {diplomaMap[diploma]}
+            </div>
+          );
         })
-      }
+        : Object.keys(diplomaMap).map((key) => {
+          return (
+            <div key={key}
+              value={key}
+              className={`c-diplomas-button ${currentDiploma?.toString() === key ? 'is-selected' : ''}`}
+              onClick={(evt) => { evt.currentTarget.value = key; onClickCallback(evt, key) }}>
+              {diplomaMap[key]}
+            </div>
+          );
+        })}
     </>
   );
 }
