@@ -1,3 +1,54 @@
+const formationRdvaMock = {
+  cle_ministere_educatif: "id-formation-rdva-test",
+  cfd: "50020007",
+  nom: null,
+  etablissement_gestionnaire_code_postal: "74570",
+  etablissement_formateur_code_postal: "74570",
+  code_commune_insee: "74137",
+  num_departement: "74",
+  region: "Auvergne-Rhône-Alpes",
+  localite: "Dummy",
+  etablissement_formateur_localite: "DUMMY",
+  etablissement_gestionnaire_localite: "DUMMY",
+  intitule_long: "BOULANGER (CAP)",
+  intitule_court: "BOULANGER",
+  diplome: "CERTIFICAT D'APTITUDES PROFESSIONNELLES",
+  niveau: "3 (CAP...)",
+  onisep_url: "http://www.onisep.fr/http/redirection/formation/identifiant/7796",
+  rncp_code: "RNCP18704",
+  rncp_intitule: "Boulanger",
+  rncp_eligible_apprentissage: true,
+  capacite: null,
+  id_rco_formation: "id-formation-rdva-test|03_0000173##03_1200005|80003",
+  id_formation: "id-formation-rdva-test",
+  etablissement_gestionnaire_id: "5e8df92120ff3b216126872a",
+  etablissement_gestionnaire_uai: "0700008G",
+  etablissement_gestionnaire_type: null,
+  etablissement_gestionnaire_conventionne: null,
+  etablissement_gestionnaire_adresse: "126 RTE DES EMPLOIS",
+  etablissement_gestionnaire_complement_adresse: null,
+  etablissement_gestionnaire_cedex: null,
+  etablissement_gestionnaire_entreprise_raison_sociale: "CAMPUS DE DUMMY",
+  etablissement_formateur_id: "5e8df92120ff3b216126872a",
+  etablissement_formateur_siret: "30000000000018",
+  etablissement_formateur_uai: "0700008G",
+  etablissement_formateur_adresse: "126 CHE DES METIERS",
+  etablissement_formateur_complement_adresse: null,
+  etablissement_formateur_cedex: null,
+  etablissement_formateur_entreprise_raison_sociale: "CAMPUS DE DUMMY",
+  periode: ["2021-09-01T00:00:00.000Z", "2022-09-01T00:00:00.000Z"],
+  idea_geo_coordonnees_etablissement: "46.002614,6.15737772159091",
+  created_at: "2021-04-01T02:23:24.063Z",
+  last_update_at: "2022-06-01T05:59:29.856Z",
+  id: "5fd25616c67da3c3e6bd0810",
+  email: "mock@mail.com",
+  lieu_formation_adresse: "126 route des emplois",
+  code_postal: "74570",
+  etablissement_gestionnaire_siret: "30000004600018",
+  rome_codes: ["D1102"],
+  prdv_url: "https://example.com",
+};
+
 const formationMock = {
   cle_ministere_educatif: "id-formation-test",
   cfd: "50020007",
@@ -50,7 +101,7 @@ const formationMock = {
 
 const formationsMock = [
   { source: formationMock, id: formationMock.id, sort: [5] },
-  { source: formationMock, id: formationMock.id, sort: [10] },
+  { source: formationRdvaMock, id: formationRdvaMock.id, sort: [10] },
   { source: { ...formationMock, intitule_long: "PATISSIER (CAP)" }, id: formationMock.id, sort: [15] },
 ];
 
@@ -99,6 +150,7 @@ const lbfFormationMock = {
 
 module.exports = {
   formationMock,
+  formationRdvaMock,
   formationsMock,
   lbfFormationMock,
 };

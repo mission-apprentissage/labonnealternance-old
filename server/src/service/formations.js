@@ -11,7 +11,12 @@ const crypto = require("crypto");
 const { manageApiError } = require("../common/utils/errorManager");
 //const logger = require("../common/logger");
 const { regionCodeToDepartmentList } = require("../common/utils/regionInseeCodes");
-const { formationMock, formationsMock, lbfFormationMock } = require("../../tests/mocks/formations-mock");
+const {
+  formationMock,
+  formationRdvaMock,
+  formationsMock,
+  lbfFormationMock,
+} = require("../../tests/mocks/formations-mock");
 const { notifyToSlack } = require("../common/utils/slackUtils");
 
 const formationResultLimit = 150;
@@ -173,6 +178,8 @@ const getFormation = async ({ id, caller }) => {
 
     if (id === "id-formation-test") {
       responseFormation = formationMock;
+    } else if (id === "id-formation-rdva-test") {
+      responseFormation = formationRdvaMock;
     } else {
       const Formation = await getCurrentFormationsSourceCollection();
       responseFormation = await Formation.findOne({ cle_ministere_educatif: id });
