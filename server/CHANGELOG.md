@@ -2,6 +2,7 @@
 
 ## 1.20.10 [28/09/2022]
 [LBAC-329] Fix bug choix de recherche par nom de diplôme
+[LBAC-244] Critères de recherches en liste non déroulante
 
 ## 1.20.9 [26/09/2022]
 [LBAC-300] Import Catalogue en utilisant le endpont /formations.json
