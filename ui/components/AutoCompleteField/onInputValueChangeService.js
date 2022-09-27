@@ -1,3 +1,5 @@
+import findExactItemRank from "./findExactItemRank";
+
 export default async function onInputValueChangeService({
   inputValue,
   inputItems = [],
@@ -22,8 +24,9 @@ export default async function onInputValueChangeService({
       // cf. test sur setInputTextValue qui est présent exclusivement dans ce cas
       if (setInputTextValue) {
         setInputTextValue(inputValue);
-        setFieldValue(newItems[0]);
-        selectItem(newItems[0]);
+        const rank = findExactItemRank({ value: inputValue, items: newItems });
+        setFieldValue(newItems[rank]);
+        selectItem(newItems[rank]);
       }
 
       if (initialSelectedItem) {
