@@ -39,17 +39,17 @@ export function buildAvailableDiplomasButtons(currentDiploma, diplomas, onClickC
     localDiploma = defaultDiploma
   }
   let allDiplomas = diplomas?.length ? diplomas.sort() : Object.keys(diplomaMap)
-  allDiplomas.unshift("Indifférent")
+  allDiplomas.unshift(defaultDiploma)
   return (
     <>
       {
         allDiplomas.map(function (key, indx) {
           return (
             <div key={indx}
-              value={key === "Indifférent" ? "" : key}
+              value={key === defaultDiploma ? "" : key}
               className={`c-diplomas-button ${localDiploma?.toString() === key ? 'is-selected' : ''}`}
               onClick={(evt) => { evt.currentTarget.value = key === defaultDiploma ? "" : key; onClickCallback(evt, key) }}>
-              {diplomaMap[key] || "Indifférent"}
+              {diplomaMap[key] || defaultDiploma}
             </div>
           );
         })
