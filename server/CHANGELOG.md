@@ -10,6 +10,7 @@
 [LBAC-324] Import uniquement des champs du catalogue dont nous avons besoin
 [LBAC-289] Toggles visibles sur les bouchons
 [LBAC-332] Ajout bloc Aidez-nous
+[LBAC-244] Fiche détail
 
 ## 1.20.8 [22/09/2022]
 [LBAC-328] Fix CSP pour safari

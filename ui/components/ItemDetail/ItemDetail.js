@@ -95,7 +95,7 @@ const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem
           ""
         )}
         <header className={`c-detail-header c-detail--collapse-header-${collapseHeader}`}>
-          <div className="w-100">
+          <div className="w-100 pl-0 pl-sm-3">
             <div className="d-flex justify-content-end mb-2 c-tiny-btn-bar">
               {getTags({ kind, isCfa, isMandataire, hasAlsoJob })}
               {getNavigationButtons({ goPrev, goNext, setSeeInfo, handleClose })}
