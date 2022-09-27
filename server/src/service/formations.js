@@ -10,6 +10,7 @@ const { trackApiCall } = require("../common/utils/sendTrackingEvent");
 const crypto = require("crypto");
 const { manageApiError } = require("../common/utils/errorManager");
 //const logger = require("../common/logger");
+const { stringify } = require("../common/utils/stringify.js");
 const { regionCodeToDepartmentList } = require("../common/utils/regionInseeCodes");
 const { formationMock, formationsMock, lbfFormationMock } = require("../../tests/mocks/formations-mock");
 const { notifyToSlack } = require("../common/utils/slackUtils");
@@ -54,6 +55,7 @@ const getFormations = async ({
   api = "formationV1",
   useMock,
 }) => {
+  console.log("hhhheeeeey-------------------------------------------------");
   try {
     if (useMock && useMock !== "false") {
       return formationsMock;
@@ -155,7 +157,9 @@ const getFormations = async ({
     responseFormations.body.hits.hits.forEach((formation) => {
       formations.push({ source: formation._source, sort: formation.sort, id: formation._id });
     });
-
+    console.log("ffffformmmmationnn----------------------------------");
+    console.log("ffffformmmmationnn----------------------------------");
+    console.log(stringify(formations, 4, null, 2));
     return formations;
   } catch (error) {
     return manageApiError({
@@ -176,6 +180,8 @@ const getFormation = async ({ id, caller }) => {
     } else {
       const Formation = await getCurrentFormationsSourceCollection();
       responseFormation = await Formation.findOne({ cle_ministere_educatif: id });
+      console.log("responseFormation -----------------------------------------------");
+      console.log(stringify(responseFormation, 4, null, 2));
     }
 
     //throw new Error("BOOM");

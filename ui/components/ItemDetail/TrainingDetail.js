@@ -15,6 +15,7 @@ import { SearchResultContext } from "../../context/SearchResultContextProvider";
 import { DisplayContext } from "../../context/DisplayContextProvider";
 
 const TrainingDetail = ({ training, hasAlsoJob }) => {
+  console.log('training', training);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -189,12 +190,12 @@ const getTrainingDetails = (training) => {
         ""
       )}
 
-      {training["duree-indicative"] ? (
+      {training["duree-indicative"] || true ? (
         <div className="c-detail-description media">
           <img src={sablierIcon} alt="sablier" />
           <div className="c-detail-training media-body">
             <h3 className="c-detail-description-title mb-3 mt-0">Durée</h3>
-            {training["duree-indicative"]}
+            {training["duree-indicative"]} eee
           </div>
         </div>
       ) : (
