@@ -5,14 +5,14 @@ import { AutoCompleteField } from "../../../components/AutoCompleteField/AutoCom
 
 import { fetchAddresses } from "../../../services/baseAdresse";
 import { DomainError } from "../../";
-import buildRayons from "../../../services/buildRayons";
+import { buildRayonsOptions, buildRayonsButtons } from "../../../services/buildRayons";
 import handleSelectChange from "../../../services/handleSelectChange";
 import { partialRight } from "lodash";
 import domainChanged from "../../../services/domainChanged";
 import { autoCompleteToStringFunction, compareAutoCompleteValues } from "../../../services/autoCompleteUtilities";
 import updateValuesFromJobAutoComplete from "../../../services/updateValuesFromJobAutoComplete";
 import formikUpdateValue from "../../../services/formikUpdateValue";
-import buildAvailableDiplomas from "../../../services/buildAvailableDiplomas";
+import { buildAvailableDiplomasOptions, buildAvailableDiplomasButtons} from "../../../services/buildAvailableDiplomas";
 import validateFormik from "../../../services/validateFormik";
 import { SearchResultContext } from "../../../context/SearchResultContextProvider";
 import { ParameterContext } from "../../../context/ParameterContextProvider";
@@ -22,6 +22,8 @@ const SearchForm = (props) => {
   const { hasSearch } = useContext(SearchResultContext);
   const { widgetParameters } = React.useContext(ParameterContext);
   const { formValues, isFormVisible } = React.useContext(DisplayContext);
+
+  const [locationRadius, setLocationRadius] = useState(30);
 
   useEffect(() => {
     setLocationRadius(contextFormValues?.radius ?? 30);
@@ -33,7 +35,6 @@ const SearchForm = (props) => {
     widgetParameters?.applyFormValues && widgetParameters?.formValues ? widgetParameters.formValues : formValues;
 
   const [jobValue, setJobValue] = useState(null);
-  const [locationRadius, setLocationRadius] = useState(30);
   const [diplomas, setDiplomas] = useState([]);
   const [diploma, setDiploma] = useState("");
   const [domainError, setDomainError] = useState(false);
@@ -116,7 +117,7 @@ const SearchForm = (props) => {
                 </div>
               </Col>
               <Col xs="12">
-                <div className="c-logobar-formgroup formGroup mt-3">
+                <div className="c-logobar-formgroup formGroup mt-3 d-none d-md-block">
                   <label htmlFor="jobField" className="c-logobar-label">
                     Rayon
                   </label>
@@ -127,13 +128,21 @@ const SearchForm = (props) => {
                       value={locationRadius}
                       name="locationRadius"
                     >
-                      {buildRayons()}
+                      {buildRayonsOptions()}
                     </Input>
+                  </div>
+                </div>
+                <div className="mt-3 d-block d-md-none formGroup">
+                  <h3 className="h6 font-weight-bold">
+                    Rayon
+                  </h3>
+                  <div className="c-logobar-field">
+                    {buildRayonsButtons(locationRadius, (evt) => handleSelectChange(evt, setFieldValue, setLocationRadius, "radius"))}
                   </div>
                 </div>
               </Col>
               <Col xs="12">
-                <div className="formGroup c-logobar-formgroup mt-3">
+                <div className="formGroup c-logobar-formgroup mt-3 d-none d-md-block">
                   <div className="">
                     <label htmlFor="jobField" className="c-logobar-label">
                       Niveau d'études visé
@@ -145,9 +154,17 @@ const SearchForm = (props) => {
                         type="select"
                         name="diploma"
                       >
-                        {buildAvailableDiplomas(diplomas)}
+                        {buildAvailableDiplomasOptions(diplomas)}
                       </Input>
                     </div>
+                  </div>
+                </div>
+                <div className="mt-3 d-block d-md-none formGroup">
+                  <h3 className="h6 font-weight-bold">
+                    Niveau d'études visé
+                  </h3>
+                  <div className="c-diplomas-buttons">
+                    {buildAvailableDiplomasButtons(diploma, diplomas, (evt) => handleSelectChange(evt, setFieldValue, setDiploma, "diploma"))}
                   </div>
                 </div>
               </Col>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useContext } from "react";
+
 import { useRouter } from "next/router";
 
 import { DisplayContext } from "../../context/DisplayContextProvider";
@@ -11,8 +12,8 @@ import WidgetHeader from "../../components/WidgetHeader/WidgetHeader";
 const StartForm = (props) => {
   const router = useRouter();
 
-  const { setFormValues } = React.useContext(DisplayContext);
-  const { setShouldExecuteSearch } = React.useContext(ParameterContext);
+  const { setFormValues } = useContext(DisplayContext);
+  const { setShouldExecuteSearch } = useContext(ParameterContext);
 
   const handleSearchSubmit = ({ values }) => {
     setFormValues(pick(values, ["job", "location", "radius", "diploma"]));
@@ -26,12 +27,17 @@ const StartForm = (props) => {
 
   return (
     <>
-      <div className="d-lg-none">
-        <SearchForm handleSearchSubmit={handleSearchSubmitFunction} isHome={true} showResultList={() => {}} />
-      </div>
-      <div className="d-none d-lg-block">
-        <WidgetHeader handleSearchSubmit={handleSearchSubmit} isHome={true} />
-      </div>
+        <div className="d-lg-none">
+          <SearchForm handleSearchSubmit={handleSearchSubmitFunction} 
+                        isHome={true} 
+                        showResultList={() => {}}
+                        />
+        </div>
+        <div className="d-none d-lg-block">
+          <WidgetHeader handleSearchSubmit={handleSearchSubmit} 
+            isHome={true} 
+            />
+        </div>
     </>
   );
 };
