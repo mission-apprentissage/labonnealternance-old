@@ -7,17 +7,6 @@ const diplomaMap = {
   "7 (Master, titre ingénieur...)": "Master, titre ingénieur, autres formations niveaux 7 ou 8 (bac+5)",
 };
 
-function copyDeep(element) {
-  return JSON.parse(JSON.stringify(element))
-}
-
-function sortObject(obj) {
-  return Object.keys(obj).sort().reduce(function (result, key) {
-    result[key] = obj[key];
-    return result;
-  }, {});
-}
-
 export function buildAvailableDiplomasOptions(diplomas) {
   return (
     <>
@@ -49,7 +38,7 @@ export function buildAvailableDiplomasButtons(currentDiploma, diplomas, onClickC
   } else {
     localDiploma = defaultDiploma
   }
-  let allDiplomas = diplomas?.length ? copyDeep(diplomas.sort()) : copyDeep(Object.keys(diplomaMap))
+  let allDiplomas = diplomas?.length ? diplomas.sort() : Object.keys(diplomaMap)
   allDiplomas.unshift("Indifférent")
   return (
     <>
