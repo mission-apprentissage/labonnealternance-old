@@ -168,6 +168,7 @@ Amélioration du retour des intitulés ROME pour Matcha
 Ajout d'une route sur l'intitulé ROME
 Ajout du détail du code ROME sur les offres Matcha
 Endpoint mise à jour email Bonne Boîte
+[337] Essai ChakraUI
 
 ## 1.18.3 [23/02/2022]
 Adaptation script pour SAVE update
