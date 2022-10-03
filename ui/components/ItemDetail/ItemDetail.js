@@ -34,6 +34,7 @@ import gotoIcon from "public/images/icons/goto.svg";
 import { SendPlausibleEvent } from "../../utils/plausible";
 
 const ItemDetail = ({ selectedItem, handleClose, displayNavbar, handleSelectItem, activeFilter }) => {
+  console.log('selectedItem', selectedItem);
   const kind = selectedItem?.ideaType;
 
   const isCfa = isCfaEntreprise(selectedItem?.company?.siret, selectedItem?.company?.headquarter?.siret);
