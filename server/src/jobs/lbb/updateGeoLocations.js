@@ -8,8 +8,9 @@ const { GeoLocation } = require("../../common/model");
 const _ = require("lodash");
 const fsExtra = require("fs-extra");
 const { logMessage } = require("../../common/utils/logMessage");
+const removeQuotes = require("./removeQuotes.js");
 const tempDir = "./assets/geoLocations/";
-const etablissementFilePath = path.join(__dirname, "./assets/etablissements.csv");
+const etablissementFilePath = path.join(__dirname, "./assets/etablissements/etablissements.csv");
 
 let predictionMap = {};
 
@@ -18,10 +19,10 @@ const parseAdressesEtablissements = (line) => {
 
   if (terms[4] !== "numerorue") {
     return {
-      siret: terms[0],
-      numerorue: terms[4].toUpperCase(),
-      libellerue: terms[5].toUpperCase(),
-      citycode: terms[6],
+      siret: removeQuotes(terms[0]),
+      numerorue: removeQuotes(terms[4]).toUpperCase(),
+      libellerue: removeQuotes(terms[5]).toUpperCase(),
+      citycode: removeQuotes(terms[6]),
     };
   } else {
     return null;

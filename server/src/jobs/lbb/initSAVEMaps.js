@@ -2,6 +2,7 @@ const { logMessage } = require("../../common/utils/logMessage");
 const { oleoduc, accumulateData, readLineByLine, transformData, writeData } = require("oleoduc");
 const fs = require("fs");
 const path = require("path");
+const removeQuotes = require("./removeQuotes");
 
 const updateFilePath = path.join(__dirname, "./assets/lba_save_etablissements_admin_update.csv");
 const removeFilePath = path.join(__dirname, "./assets/lba_save_etablissements_admin_remove.csv");
@@ -60,31 +61,31 @@ const parseUpdateLine = (line) => {
 
     let companies = [];
 
-    let sirets = terms[1].replace(/"/g, "").trim().split(/,|\s/g);
+    let sirets = removeQuotes(terms[1]).trim().split(/,|\s/g);
     sirets = sirets.map((siret) => siret.padStart(14, "0"));
 
-    let email = terms[3]?.replace(/"/g, "")?.trim();
-    let telephone = terms[4]?.replace(/"/g, "")?.trim();
-    let website = terms[5]?.replace(/"/g, "")?.trim();
+    let email = removeQuotes(terms[3])?.trim();
+    let telephone = removeQuotes(terms[4])?.trim();
+    let website = removeQuotes(terms[5])?.trim();
 
     let removeEmail = terms[6]; // "0" | "1"
     let removePhone = terms[7];
     let removeWebsite = terms[8];
 
-    let romesToBoost = terms[11]?.replace(/"/g, "");
+    let romesToBoost = removeQuotes(terms[11]);
 
-    let romesToRemove = terms[13]?.replace(/"/g, "");
+    let romesToRemove = removeQuotes(terms[13]);
 
-    let emailAlternance = terms[15]?.replace(/"/g, "");
-    let romesAlternance = terms[16]?.replace(/"/g, "");
+    let emailAlternance = removeQuotes(terms[15]);
+    let romesAlternance = removeQuotes(terms[16]);
 
-    let romesAlternanceToRemove = terms[18]?.replace(/"/g, "");
+    let romesAlternanceToRemove = removeQuotes(terms[18]);
 
     let scoreAlternance = terms[20];
-    let phoneAlternance = terms[22]?.replace(/"/g, "");
+    let phoneAlternance = removeQuotes(terms[22]);
     let websiteAlternance = terms[23];
-    let newCompanyName = terms[27]?.replace(/"/g, "");
-    let newOfficeName = terms[28]?.replace(/"/g, "");
+    let newCompanyName = removeQuotes(terms[27]);
+    let newOfficeName = removeQuotes(terms[28]);
 
     website = websiteAlternance ? websiteAlternance : website;
     telephone = phoneAlternance ? phoneAlternance : telephone;
@@ -152,7 +153,7 @@ const parseRemoveLine = (line) => {
 
   if (removeCount > 1) {
     return {
-      siret: terms[1].replace(/"/g, "").padStart(14, "0"),
+      siret: removeQuotes(terms[1]).padStart(14, "0"),
     };
   } else {
     return null;
@@ -169,23 +170,23 @@ const parseAddLine = (line) => {
     */
 
   if (addCount > 1) {
-    let lbbScore = terms[17].replace(/"/g, "");
-    let lbaScore = terms[26].replace(/"/g, "");
+    let lbbScore = removeQuotes(terms[17]);
+    let lbaScore = removeQuotes(terms[26]);
     let score = lbaScore !== "0" ? lbaScore : lbbScore;
 
     let company = {
-      siret: terms[0].replace(/"/g, "").padStart(14, "0"),
-      raisonsociale: terms[1].replace(/"/g, ""),
-      enseigne: terms[2].replace(/"/g, ""),
-      code_naf: terms[3].replace(/"/g, ""),
-      numero_rue: terms[4].replace(/"/g, ""),
+      siret: removeQuotes(terms[0]).padStart(14, "0"),
+      raisonsociale: removeQuotes(terms[1]),
+      enseigne: removeQuotes(terms[2]),
+      code_naf: removeQuotes(terms[3]),
+      numero_rue: removeQuotes(terms[4]),
       libelle_rue: terms[5],
-      code_commune: terms[6].replace(/"/g, ""),
-      code_postal: terms[7].replace(/"/g, ""),
+      code_commune: removeQuotes(terms[6]),
+      code_postal: removeQuotes(terms[7]),
       email: terms[8],
-      telephone: terms[9].replace(/"/g, ""),
+      telephone: removeQuotes(terms[9]),
       website: terms[10],
-      tranche_effectif: terms[16].replace(/"/g, ""),
+      tranche_effectif: removeQuotes(terms[16]),
       type: lbaScore !== "0" ? "lba" : "lbb",
       score,
     };

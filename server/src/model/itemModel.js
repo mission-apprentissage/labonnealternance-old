@@ -110,7 +110,7 @@ const itemModel = (type) => {
         {
             description,
             objectif,
-            duree-indicative,
+            durée-indicative,
             sessions,
         }
     */,
