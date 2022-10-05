@@ -2,6 +2,7 @@ const { logMessage } = require("../../common/utils/logMessage");
 const { oleoduc, readLineByLine, transformData, writeData } = require("oleoduc");
 const fs = require("fs");
 const path = require("path");
+const removeQuotes = require("./removeQuotes");
 const filePath = path.join(__dirname, "./assets/tirage_LBA_170621.csv");
 
 let predictionMap = {};
@@ -17,7 +18,7 @@ const parseLine = (line) => {
 
   if (count > 1) {
     return {
-      siret: terms[1].replace(/"/g, "").padStart(14, "0"),
+      siret: removeQuotes(terms[1]).padStart(14, "0"),
       score: terms[0],
     };
   } else {
