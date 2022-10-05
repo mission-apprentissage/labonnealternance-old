@@ -14,6 +14,7 @@ const { logMessage } = require("../../common/utils/logMessage");
 const { mongooseInstance } = require("../../common/mongodb");
 const { initSAVERemoveMap, initSAVEUpdateMap, initSAVEAddMap } = require("./initSAVEMaps");
 const { updateSAVECompanies } = require("./updateSAVECompanies");
+const removeQuotes = require("./removeQuotes");
 
 const defaultPredictionByROMEThreshold = 0.2; // 0.2 arbitraire
 const CBSPredictionByROMEThreshold = 3.84; // 3.84 arbitraire
@@ -28,6 +29,8 @@ let updateMap = {};
 let addMap = {};
 
 let count = 0;
+let romePredictionFilteredCount = 0;
+let predictionOkCount = 0;
 
 let findRomesForNafCount = 0;
 let findRomesForNafTime = 0;
@@ -40,14 +43,7 @@ let findBBCount = 0;
 let findBBTime = 0;
 let running = false;
 
-const filePath = path.join(__dirname, "./assets/etablissements.csv");
-
-/*
-path point de montage
-const testFilePath = path.join(__dirname, "./datalakepe/extractmailing_lba_CCI.bz2");
-let stats = fs.statSync(testFilePath);
-var fileSizeInBytes = stats.size;
-logMessage("info test montage", fileSizeInBytes);*/
+const filePath = path.join(__dirname, "./assets/etablissements/etablissements.csv");
 
 const findRomesForNaf = async (bonneBoite) => {
   let sTime = new Date().getTime();
@@ -79,6 +75,8 @@ const resetContext = () => {
   // clearing memory and reseting params
   resetHashmaps();
   count = 0;
+  romePredictionFilteredCount = 0;
+  predictionOkCount = 0;
   predictionByROMEThreshold = defaultPredictionByROMEThreshold;
 };
 
@@ -87,19 +85,21 @@ const emptyMongo = async () => {
   await BonnesBoites.deleteMany({});
 };
 
-const getScoreForCompany = async (siret) => {
+const getScoreAndTypeForCompany = (siret) => {
   let sTime = new Date().getTime();
-  let companyScore = predictionMap[siret];
+  let companyScoreAndType = predictionMap[siret];
+
+  //console.log(companyScore, siret);
 
   let eTime = new Date().getTime();
 
   getScoreForCompanyCount++;
   getScoreForCompanyTime += eTime - sTime;
 
-  return companyScore;
+  return companyScoreAndType;
 };
 
-const filterRomesFromNafHirings = (bonneBoite /*, romes*/) => {
+const filterRomesFromNafHirings = (bonneBoite) => {
   const nafRomeHirings = nafScoreMap[bonneBoite.code_naf];
 
   let filteredRomes = [];
@@ -170,7 +170,7 @@ const printProgress = () => {
         getScoreForCompanyTime / getScoreForCompanyCount
       }ms -- getGeoCount ${getGeoCount} avg ${getGeoTime / getGeoCount}ms -- findBBCount ${findBBCount} avg ${
         findBBTime / findBBCount
-      }ms `
+      }ms filtered ${romePredictionFilteredCount} / ${predictionOkCount} / ${getScoreForCompanyCount}`
     );
   }
 };
@@ -178,19 +178,19 @@ const printProgress = () => {
 const initCompanyFromLine = (line) => {
   const terms = line.split(";");
   return {
-    siret: terms[0].padStart(14, "0"),
-    enseigne: terms[1],
-    nom: terms[2],
-    code_naf: terms[3],
-    numero_rue: terms[4],
-    libelle_rue: terms[5],
-    code_commune: terms[6],
-    code_postal: terms[7],
-    email: terms[8].toUpperCase() !== "NULL" ? terms[8] : "",
-    telephone: terms[9] !== "NULL" ? terms[9] : "",
-    tranche_effectif: terms[10] !== "NULL" ? terms[10] : "",
-    website: terms[11] !== "NULL" ? terms[11] : "",
-    type: "lba",
+    siret: removeQuotes(terms[0]).padStart(14, "0"),
+    enseigne: removeQuotes(terms[1]),
+    nom: removeQuotes(terms[2]),
+    code_naf: removeQuotes(terms[3]),
+    numero_rue: removeQuotes(terms[4]),
+    libelle_rue: removeQuotes(terms[5]),
+    code_commune: removeQuotes(terms[6]),
+    code_postal: removeQuotes(terms[7]),
+    email: terms[8].toUpperCase() !== '"NULL"' ? removeQuotes(terms[8]) : "",
+    telephone: terms[9] !== '"NULL"' ? removeQuotes(terms[9]) : "",
+    tranche_effectif: terms[10] !== '"NULL"' ? removeQuotes(terms[10]) : "",
+    website: terms[11] !== '"NULL"' ? removeQuotes(terms[11]) : "",
+    type: "",
   };
 };
 
@@ -242,11 +242,26 @@ const removeSAVECompanies = async () => {
   Initialize bonneBoite from data, add missing data from maps, 
 */
 const buildAndFilterBonneBoiteFromData = async (company) => {
-  let score = company.score || (await getScoreForCompany(company.siret));
+  //console.log(company.score);
+  let type;
+  let score;
+
+  if (company.type) {
+    score = company.score;
+    type = company.type;
+  } else {
+    const scoreAndTypeForCompany = getScoreAndTypeForCompany(company.siret);
+    if (scoreAndTypeForCompany) {
+      score = scoreAndTypeForCompany.score;
+      type = scoreAndTypeForCompany.type;
+    }
+  }
 
   if (!score) {
     return null;
   }
+
+  predictionOkCount++;
 
   let sTime = new Date().getTime();
   let bonneBoite = await BonnesBoites.findOne({ siret: company.siret });
@@ -260,6 +275,7 @@ const buildAndFilterBonneBoiteFromData = async (company) => {
   }
 
   bonneBoite.score = score;
+  bonneBoite.type = type;
 
   // TODO checker si suppression via support PE
 
@@ -267,6 +283,7 @@ const buildAndFilterBonneBoiteFromData = async (company) => {
 
   // filtrage des éléments inexploitables
   if (romes.length === 0) {
+    romePredictionFilteredCount++;
     return null;
   } else {
     bonneBoite.romes = romes;
@@ -275,7 +292,7 @@ const buildAndFilterBonneBoiteFromData = async (company) => {
   let geo = await getGeoLocationForCompany(bonneBoite);
 
   if (!bonneBoite.geo_coordonnees) {
-    if (!geo) {
+    if (!geo || geo.geoLocation === ",") {
       return null;
     } else {
       bonneBoite.ville = geo.city;
