@@ -732,10 +732,11 @@
             "required": false,
             "schema":{
                 "type": "string",
-                "enum": ["3 (CAP...)", "4 (BAC...)", "5 (BTS, DEUST...)", "6 (Licence...)", "7 (Master, titre ingénieur...)"]
+                "enum": ["3 (CAP...)", "4 (BAC...)", "5 (BTS, DEUST...)", "6 (Licence...)", "7 (Master, titre ingénieur...)"],
+                "default": ""
             },
             "description": "Le niveau de diplôme requis. Si précisé, doit contenir à minima le chiffre d'une seule des valeurs autorisées", 
-            "example": "3"
+            "example": "3 (CAP...)"
         },
 
         "sources":
