@@ -58,7 +58,7 @@ class GeoData {
     if (!responseApiAdresse || responseApiAdresse.features.length === 0) {
       //console.log(`Second geoloc call with postcode \t ${code_postal}`);
       responseApiAdresse = await apiGeoAdresse.searchPostcodeOnly(
-        `${ville ? ville : "a"}`, // hack si ville absente
+        `${ville ? ville : code_postal}`, // hack si ville absente
         this.refinePostcode(code_postal)
       );
     }
@@ -77,19 +77,6 @@ class GeoData {
       );
       return false;
     }
-
-    // signalement des cas avec ambiguité
-    /*if (responseApiAdresse.features.length > 1) {
-      console.log(
-        `Multiple geoloc results for establishment.\t${this.getAddress(
-          numero_rue,
-          type_voie,
-          libelle_rue,
-          code_postal,
-          localite
-        )}\t${responseApiAdresse.features[0].properties.label} ${responseApiAdresse.features[0].properties.postcode}`
-      );
-    }*/
 
     const geojson = { ...responseApiAdresse };
 
