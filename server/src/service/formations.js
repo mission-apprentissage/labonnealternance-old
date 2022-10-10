@@ -647,6 +647,8 @@ const getFormationDescriptionQuery = async (params) => {
 
     if (params.id === "id-formation-test") {
       formationDescription = lbfFormationMock;
+    } else if (params.id === "id-formation-rdva-test") {
+      formationDescription = { data: formationRdvaMock };
     } else {
       formationDescription = await axios.get(`${lbfDescriptionUrl}?${getLbfQueryParams(params)}`);
     }
