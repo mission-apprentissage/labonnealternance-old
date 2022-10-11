@@ -171,7 +171,6 @@ const APROPOS = () => (
                 />
               </div>
             </div>
-            </div>
           </div>
 
           <h2 className="c-about-title">Autres liens utiles</h2>
