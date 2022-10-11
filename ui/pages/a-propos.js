@@ -132,7 +132,6 @@ const APROPOS = () => (
                 />
               </div>
             </div>
-            </div>
             <div className="card c-about-card c-about-card--small mt-3 mb-4">
               <div className="c-about-card__img2">
                 <img src={logoMaintenant} width="134" alt={"Redirection vers le site Maintenant"} />
