@@ -17,7 +17,7 @@ const AmeliorerLBA = () => {
             à quelques questions et nous partager votre avis.
           </div>
           <div className="mt-3">
-            <ExternalLink className="c-homecomponent-link c-homecomponent-link__clear mt-3" url="https://calendly.com/rdv-labonnealternance/discussion-labonnealternance" title="Prendre rendez-vous" />
+            <ExternalLink className="c-homecomponent-link c-homecomponent-link__clear mt-3" url="https://calendly.com/rdv-labonnealternance/discussion-labonnealternance" title="Je participe" />
           </div>
         </div>
       </div>
