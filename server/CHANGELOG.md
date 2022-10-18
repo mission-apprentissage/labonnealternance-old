@@ -2,6 +2,7 @@
 
 ## 1.20.10 [30/09/2022]
 [LBAC-244] Critères de recherches en liste non déroulante
+[LBAC-266] Amélioration informations liste de résultats
 
 ## 1.20.9 [27/09/2022]
 [LBAC-300] Import Catalogue en utilisant le endpont /formations.json
