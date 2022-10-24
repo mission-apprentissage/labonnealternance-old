@@ -4,6 +4,7 @@ import TagOffreEmploi from "../TagOffreEmploi";
 import TagOffreAssociee from "../TagOffreAssociee";
 import TagCfaDEntreprise from "../TagCfaDEntreprise";
 import TagFormationAssociee from "../TagFormationAssociee";
+import TagFormation from "../TagFormation";
 
 export default function getTags({ kind, isCfa, isMandataire, hasAlsoJob }) {
   return (
@@ -16,7 +17,9 @@ export default function getTags({ kind, isCfa, isMandataire, hasAlsoJob }) {
               <TagOffreAssociee/> 
             </span>
           : 
-            <></> 
+            <>
+              <TagFormation />
+            </> 
           }
         </>
         : 
