@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import trainingIcon from "../../public/images/icons/book.svg";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
 import { ScopeContext } from "../../context/ScopeContext";
 import TagCfaDEntreprise from "./TagCfaDEntreprise";
+import TagFormation from "./TagFormation";
 import TagOffreAssociee from "./TagOffreAssociee";
 import { setSelectedMarker } from "../../utils/mapTools";
 import { getItemQueryParameters } from "../../utils/getItemId";
@@ -113,9 +113,6 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
       href={actualLink}
     >
       <div className="c-media" id={`id${training.id}`}>
-        <div className="c-media-figure">
-          <img className="cardIcon" src={trainingIcon} alt="" />
-        </div>
 
         <div className="c-media-body">
           <div className="row no-gutters">
@@ -123,6 +120,7 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
               <div className="title d-inline-block">{training.title ? training.title : training.longTitle}</div>
             </div>
             <div className="col-12 col-lg-6  d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
+              <TagFormation />
               {
                 isCfa ? 
                   <>
