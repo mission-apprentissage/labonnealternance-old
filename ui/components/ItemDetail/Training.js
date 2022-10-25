@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import trainingIcon from "../../public/images/icons/book.svg";
 import { fetchAddresses } from "../../services/baseAdresse";
 import extendedSearchPin from "../../public/images/icons/jobPin.svg";
 import { ScopeContext } from "../../context/ScopeContext";
@@ -113,9 +112,6 @@ const Training = ({ training, handleSelectItem, showTextOnly, searchForJobsOnNew
       href={actualLink}
     >
       <div className="c-media" id={`id${training.id}`}>
-        <div className="c-media-figure">
-          <img className="cardIcon" src={trainingIcon} alt="" />
-        </div>
 
         <div className="c-media-body">
           <div className="row no-gutters">
