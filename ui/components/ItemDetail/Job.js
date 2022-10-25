@@ -121,9 +121,6 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
       href={actualLink}
     >
       <div className="c-media" id={`${kind}${job.job.id}`}>
-        <div className="c-media-figure">
-          <img className="cardIcon" src={jobIcon} alt="" />
-        </div>
 
         <div className="c-media-body">
           <div className="row no-gutters">
