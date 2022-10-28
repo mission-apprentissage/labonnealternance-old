@@ -54,7 +54,8 @@ export const searchForJobsFunction = async ({
     let peJobs = null;
 
     let results = {};
-
+    console.log("response.data")
+    console.log(response.data)
     if (response.data === "romes_missing") {
       setJobSearchError(technicalErrorText);
       logError("Job search error", `Missing romes`);

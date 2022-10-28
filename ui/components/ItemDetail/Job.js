@@ -121,15 +121,12 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
       href={actualLink}
     >
       <div className="c-media" id={`${kind}${job.job.id}`}>
-        <div className="c-media-figure">
-          <img className="cardIcon" src={jobIcon} alt="" />
-        </div>
 
         <div className="c-media-body">
           <div className="row no-gutters">
             <div className="col-12 col-lg-7 text-left">
               <div className="title d-inline-block">
-                {job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Offre anonyme</i>")}
+                {job.title}
               </div>
             </div>
             <div className="col-12 col-lg-5 d-lg-flex flex-column text-left text-lg-right my-1 my-lg-0">
@@ -139,7 +136,7 @@ const Job = ({ job, handleSelectItem, showTextOnly, searchForTrainingsOnNewCente
           </div>
 
           <div>
-            <div className="cardText pt-2">{job.title}</div>
+            <div className="cardText pt-2">{job.company && job.company.name ? job.company.name : ReactHtmlParser("<i>Offre anonyme</i>")}</div>
             <div className="cardText pt-2">{job.place.fullAddress}</div>
           </div>
 
