@@ -72,7 +72,7 @@ const getMatchaJobById = async ({ id, caller }) => {
     let jobs = null;
     if (id === "id-matcha-test") {
       jobs = { data: matchaMock._source };
-    } else if (id === "id-matcha-test2") {
+    } else if (id === "id-matcha-test_2") {
       jobs = { data: matchaMockMandataire._source };
     } else {
       jobs = await axios.get(`${matchaJobEndPoint}/${id}`);

@@ -63,7 +63,7 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
           {job?.job?.elligibleHandicap ? 
             <div className="c-eligible mt-3">
               <div>
-                <img className="" src="/images/info.svg" alt="info" />
+                <img className="" src="/images/info.svg" alt="A noter" />
               </div>
               <div className="ml-2">
                 À compétences égales, une attention particulière sera apportée aux personnes en situation de handicap.
@@ -92,10 +92,10 @@ const MatchaDetail = ({ job, seeInfo, setSeeInfo }) => {
             <p>
               <span className="c-detail-traininglink">
                 <ExternalLink
-                  className="gtmDidask1 font-weight-bold"
+                  className="gtmDidask1"
                   url="https://dinum-beta.didask.com/courses/demonstration/60d21bf5be76560000ae916e"
                   title="On vous donne des conseils ici pour vous aider !"
-                  withPic={<img src="../../images/icons/goto.svg" alt="Lien" />}
+                  withPic={<img src="../../images/icons/goto.svg" alt="Ouverture dans un nouvel onglet" />}
                 />
               </span>
             </p>

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+
 import HeaderForm from "../../components/HeaderForm/HeaderForm";
 import LogoIdea from "../../components/LogoIdea/LogoIdea";
 import { useRouter } from "next/router";
@@ -17,7 +18,6 @@ const WidgetHeader = ({ handleSearchSubmit, isHome }) => {
   const handleSearchSubmitFunction = (values) => {
     return handleSearchSubmit({ values });
   };
-
   if (isHome) {
     additionalClassName = "home";
   }
