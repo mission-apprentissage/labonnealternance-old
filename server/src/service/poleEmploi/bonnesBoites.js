@@ -3,7 +3,7 @@ const { itemModel } = require("../../model/itemModel");
 const { manageApiError } = require("../../common/utils/errorManager");
 const { encryptMailWithIV } = require("../../common/utils/encryptString");
 const { isAllowedSource } = require("../../common/utils/isAllowedSource");
-
+const { lbbMock } = require("../../../tests/mocks/lbbs-mock");
 const esClient = getBonnesBoitesES();
 
 const getSomeLbbCompanies = async ({
@@ -16,11 +16,16 @@ const getSomeLbbCompanies = async ({
   caller,
   opco,
   api = "jobV1",
+  useMock,
 }) => {
   const hasLocation = latitude === undefined ? false : true;
   let companies = null;
   let currentRadius = hasLocation ? radius : 21000;
   let companyLimit = 150; //TODO: query params options or default value from properties -> size || 100
+
+  if (useMock) {
+    return [lbbMock];
+  }
 
   companies = await getLbbCompanies({
     romes,

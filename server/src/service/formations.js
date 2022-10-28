@@ -665,7 +665,7 @@ const getFormationDescriptionQuery = async (params) => {
 };
 
 const getFormationsParRegionQuery = async (query) => {
-  //console.log("query : ", query);
+  console.log("query : ", query);
 
   const queryValidationResult = formationsRegionQueryValidator(query);
 
@@ -674,6 +674,10 @@ const getFormationsParRegionQuery = async (query) => {
   }
 
   try {
+    if (query.useMock) {
+      return {};
+    }
+
     let formations = await getRegionFormations({
       romes: query.romes ? query.romes.split(",") : null,
       region: query.region,
