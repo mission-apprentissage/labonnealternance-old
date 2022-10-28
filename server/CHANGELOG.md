@@ -4,6 +4,9 @@
 [LBAC-244] Critères de recherches en liste non déroulante
 [LBAC-308] Suppression de l'appariement
 [LBAC-247] RDVA activé sur formation fictive
+[LBAC-349] Amélioration accessiblité des images
+[LBAC-369] Suffixe tracking url Pôle emploi
+[LBAC-364] Wording
 
 ## 1.20.9 [27/09/2022]
 [LBAC-300] Import Catalogue en utilisant le endpont /formations.json
