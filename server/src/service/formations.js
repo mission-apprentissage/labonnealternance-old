@@ -234,8 +234,6 @@ const getRegionFormations = async ({
   limit = formationResultLimit,
   caller,
 }) => {
-  //console.log(romes, coords, radius, diploma);
-
   try {
     let mustTerm = [];
 
@@ -674,10 +672,6 @@ const getFormationsParRegionQuery = async (query) => {
   }
 
   try {
-    if (query.useMock) {
-      return {};
-    }
-
     let formations = await getRegionFormations({
       romes: query.romes ? query.romes.split(",") : null,
       region: query.region,
