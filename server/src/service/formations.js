@@ -663,8 +663,6 @@ const getFormationDescriptionQuery = async (params) => {
 };
 
 const getFormationsParRegionQuery = async (query) => {
-  console.log("query : ", query);
-
   const queryValidationResult = formationsRegionQueryValidator(query);
 
   if (queryValidationResult.error) {
