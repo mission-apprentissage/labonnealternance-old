@@ -1,11 +1,20 @@
 # CHANGELOG
 
+## 1.20.10 [28/10/2022]
+[LBAC-244] Critères de recherches en liste non déroulante
+[LBAC-308] Suppression de l'appariement
+[LBAC-247] RDVA activé sur formation fictive
+[LBAC-349] Amélioration accessiblité des images
+[LBAC-369] Suffixe tracking url Pôle emploi
+[LBAC-364] Wording
+
 ## 1.20.9 [27/09/2022]
 [LBAC-329] Fix bug choix de recherche par nom de diplôme
 [LBAC-300] Import Catalogue en utilisant le endpoint /formations.json
 [LBAC-324] Import uniquement des champs du catalogue dont nous avons besoin
 [LBAC-289] Toggles visibles sur les bouchons
 [LBAC-332] Ajout bloc Aidez-nous
+[LBAC-244] Fiche détail
 
 ## 1.20.8 [22/09/2022]
 [LBAC-328] Fix CSP pour safari

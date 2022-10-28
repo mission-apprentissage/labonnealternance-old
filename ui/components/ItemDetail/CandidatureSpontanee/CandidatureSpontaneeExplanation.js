@@ -40,23 +40,34 @@ const CandidatureSpontaneeExplanation = (props) => {
             <br />
             Besoin d'aide pour concevoir votre CV ? Il existe plusieurs outils gratuits :
             <br />
-            <ExternalLink
-              className="gtmCVLink gtmClicnjob"
-              url="https://cv.clicnjob.fr/"
-              title="https://cv.clicnjob.fr/"
-            />
             <br />
-            <ExternalLink
-              className="gtmCVLink gtmCvdesigner"
-              url="https://cvdesignr.com/fr"
-              title="https://cvdesignr.com/fr"
-            />
-            <br />
-            <ExternalLink
-              className="gtmCVLink gtmCanva"
-              url="https://www.canva.com/fr_fr/creer/cv/"
-              title="https://www.canva.com/fr_fr/creer/cv/"
-            />
+            <ul className="c-detail-lbb-minilist">
+              <li>
+                <ExternalLink
+                  className="gtmCVLink gtmClicnjob c-nice-link"
+                  url="https://cv.clicnjob.fr/"
+                  title="https://cv.clicnjob.fr/"
+                  withPic={<img src="../../images/icons/goto.svg" alt="Lien" />}
+                />
+              </li>
+              <li>
+                <ExternalLink
+                  className="gtmCVLink gtmCvdesigner c-nice-link"
+                  url="https://cvdesignr.com/fr"
+                  title="https://cvdesignr.com/fr"
+                  withPic={<img src="../../images/icons/goto.svg" alt="Lien" />}
+                />
+              </li>
+              <li>
+                <ExternalLink
+                  className="gtmCVLink gtmCanva c-nice-link"
+                  url="https://www.canva.com/fr_fr/creer/cv/"
+                  title="https://www.canva.com/fr_fr/creer/cv/"
+                  withPic={<img src="../../images/icons/goto.svg" alt="Lien" />}
+                />
+              </li>
+            </ul>
+
           </p>
         </>
       );
