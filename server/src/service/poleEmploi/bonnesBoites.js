@@ -24,26 +24,26 @@ const getSomeLbbCompanies = async ({
   let companyLimit = 150; //TODO: query params options or default value from properties -> size || 100
 
   if (useMock) {
-    return [lbbMock];
+    return { results: [lbbMock] };
+  } else {
+    companies = await getLbbCompanies({
+      romes,
+      latitude,
+      longitude,
+      radius: currentRadius,
+      companyLimit,
+      type,
+      caller,
+      api,
+      opco,
+    });
+
+    if (companies && companies.length) {
+      companies = transformLbbCompaniesForIdea({ companies, radius, type, referer, caller });
+    }
+
+    return companies;
   }
-
-  companies = await getLbbCompanies({
-    romes,
-    latitude,
-    longitude,
-    radius: currentRadius,
-    companyLimit,
-    type,
-    caller,
-    api,
-    opco,
-  });
-
-  if (companies && companies.length) {
-    companies = transformLbbCompaniesForIdea({ companies, radius, type, referer, caller });
-  }
-
-  return companies;
 };
 
 const transformLbbCompaniesForIdea = ({ companies, type, referer, caller }) => {
