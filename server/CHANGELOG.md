@@ -3,7 +3,6 @@
 ## 1.20.10 [28/10/2022]
 [LBAC-244] Critères de recherches en liste non déroulante
 [LBAC-308] Suppression de l'appariement
-[LBAC-308b] Suppression de l'appariement - suppression bannière info
 [LBAC-247] RDVA activé sur formation fictive
 [LBAC-349] Amélioration accessiblité des images
 [LBAC-369] Suffixe tracking url Pôle emploi
