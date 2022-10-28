@@ -2,7 +2,7 @@ const lbbMock = {
   ideaType: "lbb",
   title: "SOCIETE RADIOLOGIQUE LIBERTE",
   longTitle: null,
-  id: null,
+  id: "id-lbb-mock",
   idRco: null,
   idRcoFormation: null,
   contact: {
