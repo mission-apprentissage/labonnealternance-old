@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## 1.20.10 [30/09/2022]
+## 1.20.10 [28/10/2022]
 [LBAC-244] Critères de recherches en liste non déroulante
 [LBAC-308] Suppression de l'appariement
+[LBAC-247] RDVA activé sur formation fictive
 
 ## 1.20.9 [27/09/2022]
 [LBAC-300] Import Catalogue en utilisant le endpont /formations.json
