@@ -7,6 +7,8 @@
 [LBAC-349] Amélioration accessiblité des images
 [LBAC-369] Suffixe tracking url Pôle emploi
 [LBAC-364] Wording
+[LBAC-266] Modifications liste de résultats
+=======
 
 ## 1.20.9 [27/09/2022]
 [LBAC-329] Fix bug choix de recherche par nom de diplôme
